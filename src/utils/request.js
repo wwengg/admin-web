@@ -2,6 +2,8 @@ import axios from 'axios'
 import { MessageBox, Message } from 'element-ui'
 import store from '@/store'
 import { getToken } from '@/utils/auth'
+import protoRoot from '@/proto/proto'
+var protobuf = require('protobufjs')
 
 // create an axios instance
 const service = axios.create({
@@ -43,10 +45,20 @@ service.interceptors.response.use(
    * You can also judge the status by HTTP Status Code
    */
   response => {
-    const res = response.data
+    const data = response.data
+    var res
+    try {
+      res = protoRoot.HttpResponse.decode(data)
+    } catch (e) {
+      if (e instanceof protobuf.util.ProtocolError) {
+        // e.instance holds the so far decoded message with missing required fields
+      } else {
+        // wire format is invalid
+      }
+    }
 
     // if the custom code is not 20000, it is judged as an error.
-    if (res.code !== 20000) {
+    if (res.code !== protoRoot.pbcommon.EnumCode['success']) {
       Message({
         message: res.message || 'Error',
         type: 'error',

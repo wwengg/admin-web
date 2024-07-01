@@ -13,6 +13,7 @@ import '@/styles/index.scss' // global css
 import App from './App'
 import store from './store'
 import router from './router'
+import protobufPlugin from './proto/protobuf-plugin'
 
 import './icons' // icon
 import './permission' // permission control
@@ -45,9 +46,13 @@ Object.keys(filters).forEach(key => {
 
 Vue.config.productionTip = false
 
+import * as protoRoot from '@/proto/proto.js'
+Vue.prototype.$protoRoot = protoRoot
+
 new Vue({
   el: '#app',
   router,
   store,
+  protobufPlugin,
   render: h => h(App)
 })
