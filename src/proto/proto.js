@@ -1580,7 +1580,7 @@ $root.httpgate = (function() {
          * Properties of a HttpResponse.
          * @memberof httpgate
          * @interface IHttpResponse
-         * @property {number|null} [code] HttpResponse code
+         * @property {pbcommon.EnumCode|null} [code] HttpResponse code
          * @property {string|null} [msg] HttpResponse msg
          * @property {Uint8Array|null} [data] HttpResponse data
          * @property {string|null} [newToken] HttpResponse newToken
@@ -1604,7 +1604,7 @@ $root.httpgate = (function() {
 
     /**
          * HttpResponse code.
-         * @member {number} code
+         * @member {pbcommon.EnumCode} code
          * @memberof httpgate.HttpResponse
          * @instance
          */
@@ -1744,7 +1744,36 @@ $root.httpgate = (function() {
     HttpResponse.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.code != null && message.hasOwnProperty('code')) {
-        if (!$util.isInteger(message.code)) { return 'code: integer expected' }
+        switch (message.code) {
+          default:
+            return 'code: enum value expected'
+          case 0:
+          case 200:
+          case 500:
+          case 501:
+          case 502:
+          case 503:
+          case 504:
+          case 505:
+          case 1001:
+          case 1002:
+          case 1003:
+          case 1004:
+          case 2002:
+          case 2003:
+          case 2004:
+          case 2005:
+          case 2006:
+          case 2007:
+          case 2008:
+          case 2009:
+          case 2010:
+          case 2011:
+          case 2012:
+          case 2013:
+          case 2014:
+            break
+        }
       }
       if (message.msg != null && message.hasOwnProperty('msg')) {
         if (!$util.isString(message.msg)) { return 'msg: string expected' }
@@ -1769,7 +1798,114 @@ $root.httpgate = (function() {
     HttpResponse.fromObject = function fromObject(object) {
       if (object instanceof $root.httpgate.HttpResponse) { return object }
       var message = new $root.httpgate.HttpResponse()
-      if (object.code != null) { message.code = object.code | 0 }
+      switch (object.code) {
+        default:
+          if (typeof object.code === 'number') {
+            message.code = object.code
+            break
+          }
+          break
+        case 'None':
+        case 0:
+          message.code = 0
+          break
+        case 'Success':
+        case 200:
+          message.code = 200
+          break
+        case 'Fail':
+        case 500:
+          message.code = 500
+          break
+        case 'Unknown':
+        case 501:
+          message.code = 501
+          break
+        case 'Internal':
+        case 502:
+          message.code = 502
+          break
+        case 'Invalid':
+        case 503:
+          message.code = 503
+          break
+        case 'InvalidParam':
+        case 504:
+          message.code = 504
+          break
+        case 'ParamError':
+        case 505:
+          message.code = 505
+          break
+        case 'FindError':
+        case 1001:
+          message.code = 1001
+          break
+        case 'CreateError':
+        case 1002:
+          message.code = 1002
+          break
+        case 'DeleteError':
+        case 1003:
+          message.code = 1003
+          break
+        case 'UpdateError':
+        case 1004:
+          message.code = 1004
+          break
+        case 'InvalidToken':
+        case 2002:
+          message.code = 2002
+          break
+        case 'InvalidSign':
+        case 2003:
+          message.code = 2003
+          break
+        case 'NotLogin':
+        case 2004:
+          message.code = 2004
+          break
+        case 'LoginTimeout':
+        case 2005:
+          message.code = 2005
+          break
+        case 'LoginError':
+        case 2006:
+          message.code = 2006
+          break
+        case 'LoginForbidden':
+        case 2007:
+          message.code = 2007
+          break
+        case 'LoginExpired':
+        case 2008:
+          message.code = 2008
+          break
+        case 'LoginInvalid':
+        case 2009:
+          message.code = 2009
+          break
+        case 'LoginInvalidPassword':
+        case 2010:
+          message.code = 2010
+          break
+        case 'LoginInvalidUsername':
+        case 2011:
+          message.code = 2011
+          break
+        case 'LoginInvalidEmail':
+        case 2012:
+          message.code = 2012
+          break
+        case 'LoginInvalidPhone':
+        case 2013:
+          message.code = 2013
+          break
+        case 'LoginInvalidUsernameOrEmail':
+        case 2014:
+          message.code = 2014
+          break
+      }
       if (object.msg != null) { message.msg = String(object.msg) }
       if (object.data != null) {
         if (typeof object.data === 'string') { $util.base64.decode(object.data, message.data = $util.newBuffer($util.base64.length(object.data)), 0) } else if (object.data.length >= 0) { message.data = object.data }
@@ -1791,7 +1927,7 @@ $root.httpgate = (function() {
       if (!options) { options = {} }
       var object = {}
       if (options.defaults) {
-        object.code = 0
+        object.code = options.enums === String ? 'None' : 0
         object.msg = ''
         if (options.bytes === String) { object.data = '' } else {
           object.data = []
@@ -1799,7 +1935,7 @@ $root.httpgate = (function() {
         }
         object.newToken = ''
       }
-      if (message.code != null && message.hasOwnProperty('code')) { object.code = message.code }
+      if (message.code != null && message.hasOwnProperty('code')) { object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code }
       if (message.msg != null && message.hasOwnProperty('msg')) { object.msg = message.msg }
       if (message.data != null && message.hasOwnProperty('data')) { object.data = options.bytes === String ? $util.base64.encode(message.data, 0, message.data.length) : options.bytes === Array ? Array.prototype.slice.call(message.data) : message.data }
       if (message.newToken != null && message.hasOwnProperty('newToken')) { object.newToken = message.newToken }
@@ -1836,6 +1972,1361 @@ $root.httpgate = (function() {
   })()
 
   return httpgate
+})()
+
+$root.pbuser = (function() {
+  /**
+     * Namespace pbuser.
+     * @exports pbuser
+     * @namespace
+     */
+  var pbuser = {}
+
+  pbuser.UserModel = (function() {
+    /**
+         * Properties of a UserModel.
+         * @memberof pbuser
+         * @interface IUserModel
+         * @property {number|Long|null} [id] UserModel id
+         * @property {string|null} [createdAt] UserModel createdAt
+         * @property {string|null} [updatedAt] UserModel updatedAt
+         * @property {string|null} [name] UserModel name
+         * @property {string|null} [email] UserModel email
+         * @property {string|null} [password] UserModel password
+         * @property {string|null} [phone] UserModel phone
+         * @property {number|null} [gender] UserModel gender
+         * @property {string|null} [birthday] UserModel birthday
+         * @property {string|null} [address] UserModel address
+         * @property {string|null} [avatar] UserModel avatar
+         * @property {string|null} [description] UserModel description
+         * @property {number|null} [status] UserModel status
+         * @property {number|null} [type] UserModel type
+         * @property {string|null} [role] UserModel role
+         */
+
+    /**
+         * Constructs a new UserModel.
+         * @memberof pbuser
+         * @classdesc Represents a UserModel.
+         * @implements IUserModel
+         * @constructor
+         * @param {pbuser.IUserModel=} [properties] Properties to set
+         */
+    function UserModel(properties) {
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * UserModel id.
+         * @member {number|Long} id
+         * @memberof pbuser.UserModel
+         * @instance
+         */
+    UserModel.prototype.id = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+
+    /**
+         * UserModel createdAt.
+         * @member {string} createdAt
+         * @memberof pbuser.UserModel
+         * @instance
+         */
+    UserModel.prototype.createdAt = ''
+
+    /**
+         * UserModel updatedAt.
+         * @member {string} updatedAt
+         * @memberof pbuser.UserModel
+         * @instance
+         */
+    UserModel.prototype.updatedAt = ''
+
+    /**
+         * UserModel name.
+         * @member {string} name
+         * @memberof pbuser.UserModel
+         * @instance
+         */
+    UserModel.prototype.name = ''
+
+    /**
+         * UserModel email.
+         * @member {string} email
+         * @memberof pbuser.UserModel
+         * @instance
+         */
+    UserModel.prototype.email = ''
+
+    /**
+         * UserModel password.
+         * @member {string} password
+         * @memberof pbuser.UserModel
+         * @instance
+         */
+    UserModel.prototype.password = ''
+
+    /**
+         * UserModel phone.
+         * @member {string} phone
+         * @memberof pbuser.UserModel
+         * @instance
+         */
+    UserModel.prototype.phone = ''
+
+    /**
+         * UserModel gender.
+         * @member {number} gender
+         * @memberof pbuser.UserModel
+         * @instance
+         */
+    UserModel.prototype.gender = 0
+
+    /**
+         * UserModel birthday.
+         * @member {string} birthday
+         * @memberof pbuser.UserModel
+         * @instance
+         */
+    UserModel.prototype.birthday = ''
+
+    /**
+         * UserModel address.
+         * @member {string} address
+         * @memberof pbuser.UserModel
+         * @instance
+         */
+    UserModel.prototype.address = ''
+
+    /**
+         * UserModel avatar.
+         * @member {string} avatar
+         * @memberof pbuser.UserModel
+         * @instance
+         */
+    UserModel.prototype.avatar = ''
+
+    /**
+         * UserModel description.
+         * @member {string} description
+         * @memberof pbuser.UserModel
+         * @instance
+         */
+    UserModel.prototype.description = ''
+
+    /**
+         * UserModel status.
+         * @member {number} status
+         * @memberof pbuser.UserModel
+         * @instance
+         */
+    UserModel.prototype.status = 0
+
+    /**
+         * UserModel type.
+         * @member {number} type
+         * @memberof pbuser.UserModel
+         * @instance
+         */
+    UserModel.prototype.type = 0
+
+    /**
+         * UserModel role.
+         * @member {string} role
+         * @memberof pbuser.UserModel
+         * @instance
+         */
+    UserModel.prototype.role = ''
+
+    /**
+         * Creates a new UserModel instance using the specified properties.
+         * @function create
+         * @memberof pbuser.UserModel
+         * @static
+         * @param {pbuser.IUserModel=} [properties] Properties to set
+         * @returns {pbuser.UserModel} UserModel instance
+         */
+    UserModel.create = function create(properties) {
+      return new UserModel(properties)
+    }
+
+    /**
+         * Encodes the specified UserModel message. Does not implicitly {@link pbuser.UserModel.verify|verify} messages.
+         * @function encode
+         * @memberof pbuser.UserModel
+         * @static
+         * @param {pbuser.IUserModel} message UserModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    UserModel.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.id != null && Object.hasOwnProperty.call(message, 'id')) { writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id) }
+      if (message.createdAt != null && Object.hasOwnProperty.call(message, 'createdAt')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.createdAt) }
+      if (message.updatedAt != null && Object.hasOwnProperty.call(message, 'updatedAt')) { writer.uint32(/* id 3, wireType 2 =*/26).string(message.updatedAt) }
+      if (message.name != null && Object.hasOwnProperty.call(message, 'name')) { writer.uint32(/* id 4, wireType 2 =*/34).string(message.name) }
+      if (message.email != null && Object.hasOwnProperty.call(message, 'email')) { writer.uint32(/* id 5, wireType 2 =*/42).string(message.email) }
+      if (message.password != null && Object.hasOwnProperty.call(message, 'password')) { writer.uint32(/* id 6, wireType 2 =*/50).string(message.password) }
+      if (message.phone != null && Object.hasOwnProperty.call(message, 'phone')) { writer.uint32(/* id 7, wireType 2 =*/58).string(message.phone) }
+      if (message.gender != null && Object.hasOwnProperty.call(message, 'gender')) { writer.uint32(/* id 8, wireType 0 =*/64).int32(message.gender) }
+      if (message.birthday != null && Object.hasOwnProperty.call(message, 'birthday')) { writer.uint32(/* id 9, wireType 2 =*/74).string(message.birthday) }
+      if (message.address != null && Object.hasOwnProperty.call(message, 'address')) { writer.uint32(/* id 10, wireType 2 =*/82).string(message.address) }
+      if (message.avatar != null && Object.hasOwnProperty.call(message, 'avatar')) { writer.uint32(/* id 11, wireType 2 =*/90).string(message.avatar) }
+      if (message.description != null && Object.hasOwnProperty.call(message, 'description')) { writer.uint32(/* id 12, wireType 2 =*/98).string(message.description) }
+      if (message.status != null && Object.hasOwnProperty.call(message, 'status')) { writer.uint32(/* id 13, wireType 0 =*/104).int32(message.status) }
+      if (message.type != null && Object.hasOwnProperty.call(message, 'type')) { writer.uint32(/* id 14, wireType 0 =*/112).int32(message.type) }
+      if (message.role != null && Object.hasOwnProperty.call(message, 'role')) { writer.uint32(/* id 15, wireType 2 =*/122).string(message.role) }
+      return writer
+    }
+
+    /**
+         * Encodes the specified UserModel message, length delimited. Does not implicitly {@link pbuser.UserModel.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbuser.UserModel
+         * @static
+         * @param {pbuser.IUserModel} message UserModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    UserModel.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes a UserModel message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbuser.UserModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbuser.UserModel} UserModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    UserModel.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbuser.UserModel()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            message.id = reader.int64()
+            break
+          }
+          case 2: {
+            message.createdAt = reader.string()
+            break
+          }
+          case 3: {
+            message.updatedAt = reader.string()
+            break
+          }
+          case 4: {
+            message.name = reader.string()
+            break
+          }
+          case 5: {
+            message.email = reader.string()
+            break
+          }
+          case 6: {
+            message.password = reader.string()
+            break
+          }
+          case 7: {
+            message.phone = reader.string()
+            break
+          }
+          case 8: {
+            message.gender = reader.int32()
+            break
+          }
+          case 9: {
+            message.birthday = reader.string()
+            break
+          }
+          case 10: {
+            message.address = reader.string()
+            break
+          }
+          case 11: {
+            message.avatar = reader.string()
+            break
+          }
+          case 12: {
+            message.description = reader.string()
+            break
+          }
+          case 13: {
+            message.status = reader.int32()
+            break
+          }
+          case 14: {
+            message.type = reader.int32()
+            break
+          }
+          case 15: {
+            message.role = reader.string()
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes a UserModel message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbuser.UserModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbuser.UserModel} UserModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    UserModel.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies a UserModel message.
+         * @function verify
+         * @memberof pbuser.UserModel
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    UserModel.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.id != null && message.hasOwnProperty('id')) {
+        if (!$util.isInteger(message.id) && !(message.id && $util.isInteger(message.id.low) && $util.isInteger(message.id.high))) { return 'id: integer|Long expected' }
+      }
+      if (message.createdAt != null && message.hasOwnProperty('createdAt')) {
+        if (!$util.isString(message.createdAt)) { return 'createdAt: string expected' }
+      }
+      if (message.updatedAt != null && message.hasOwnProperty('updatedAt')) {
+        if (!$util.isString(message.updatedAt)) { return 'updatedAt: string expected' }
+      }
+      if (message.name != null && message.hasOwnProperty('name')) {
+        if (!$util.isString(message.name)) { return 'name: string expected' }
+      }
+      if (message.email != null && message.hasOwnProperty('email')) {
+        if (!$util.isString(message.email)) { return 'email: string expected' }
+      }
+      if (message.password != null && message.hasOwnProperty('password')) {
+        if (!$util.isString(message.password)) { return 'password: string expected' }
+      }
+      if (message.phone != null && message.hasOwnProperty('phone')) {
+        if (!$util.isString(message.phone)) { return 'phone: string expected' }
+      }
+      if (message.gender != null && message.hasOwnProperty('gender')) {
+        if (!$util.isInteger(message.gender)) { return 'gender: integer expected' }
+      }
+      if (message.birthday != null && message.hasOwnProperty('birthday')) {
+        if (!$util.isString(message.birthday)) { return 'birthday: string expected' }
+      }
+      if (message.address != null && message.hasOwnProperty('address')) {
+        if (!$util.isString(message.address)) { return 'address: string expected' }
+      }
+      if (message.avatar != null && message.hasOwnProperty('avatar')) {
+        if (!$util.isString(message.avatar)) { return 'avatar: string expected' }
+      }
+      if (message.description != null && message.hasOwnProperty('description')) {
+        if (!$util.isString(message.description)) { return 'description: string expected' }
+      }
+      if (message.status != null && message.hasOwnProperty('status')) {
+        if (!$util.isInteger(message.status)) { return 'status: integer expected' }
+      }
+      if (message.type != null && message.hasOwnProperty('type')) {
+        if (!$util.isInteger(message.type)) { return 'type: integer expected' }
+      }
+      if (message.role != null && message.hasOwnProperty('role')) {
+        if (!$util.isString(message.role)) { return 'role: string expected' }
+      }
+      return null
+    }
+
+    /**
+         * Creates a UserModel message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbuser.UserModel
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbuser.UserModel} UserModel
+         */
+    UserModel.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbuser.UserModel) { return object }
+      var message = new $root.pbuser.UserModel()
+      if (object.id != null) {
+        if ($util.Long) { (message.id = $util.Long.fromValue(object.id)).unsigned = false } else if (typeof object.id === 'string') { message.id = parseInt(object.id, 10) } else if (typeof object.id === 'number') { message.id = object.id } else if (typeof object.id === 'object') { message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber() }
+      }
+      if (object.createdAt != null) { message.createdAt = String(object.createdAt) }
+      if (object.updatedAt != null) { message.updatedAt = String(object.updatedAt) }
+      if (object.name != null) { message.name = String(object.name) }
+      if (object.email != null) { message.email = String(object.email) }
+      if (object.password != null) { message.password = String(object.password) }
+      if (object.phone != null) { message.phone = String(object.phone) }
+      if (object.gender != null) { message.gender = object.gender | 0 }
+      if (object.birthday != null) { message.birthday = String(object.birthday) }
+      if (object.address != null) { message.address = String(object.address) }
+      if (object.avatar != null) { message.avatar = String(object.avatar) }
+      if (object.description != null) { message.description = String(object.description) }
+      if (object.status != null) { message.status = object.status | 0 }
+      if (object.type != null) { message.type = object.type | 0 }
+      if (object.role != null) { message.role = String(object.role) }
+      return message
+    }
+
+    /**
+         * Creates a plain object from a UserModel message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbuser.UserModel
+         * @static
+         * @param {pbuser.UserModel} message UserModel
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    UserModel.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.defaults) {
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.id = options.longs === String ? '0' : 0 }
+        object.createdAt = ''
+        object.updatedAt = ''
+        object.name = ''
+        object.email = ''
+        object.password = ''
+        object.phone = ''
+        object.gender = 0
+        object.birthday = ''
+        object.address = ''
+        object.avatar = ''
+        object.description = ''
+        object.status = 0
+        object.type = 0
+        object.role = ''
+      }
+      if (message.id != null && message.hasOwnProperty('id')) {
+        if (typeof message.id === 'number') { object.id = options.longs === String ? String(message.id) : message.id } else { object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id }
+      }
+      if (message.createdAt != null && message.hasOwnProperty('createdAt')) { object.createdAt = message.createdAt }
+      if (message.updatedAt != null && message.hasOwnProperty('updatedAt')) { object.updatedAt = message.updatedAt }
+      if (message.name != null && message.hasOwnProperty('name')) { object.name = message.name }
+      if (message.email != null && message.hasOwnProperty('email')) { object.email = message.email }
+      if (message.password != null && message.hasOwnProperty('password')) { object.password = message.password }
+      if (message.phone != null && message.hasOwnProperty('phone')) { object.phone = message.phone }
+      if (message.gender != null && message.hasOwnProperty('gender')) { object.gender = message.gender }
+      if (message.birthday != null && message.hasOwnProperty('birthday')) { object.birthday = message.birthday }
+      if (message.address != null && message.hasOwnProperty('address')) { object.address = message.address }
+      if (message.avatar != null && message.hasOwnProperty('avatar')) { object.avatar = message.avatar }
+      if (message.description != null && message.hasOwnProperty('description')) { object.description = message.description }
+      if (message.status != null && message.hasOwnProperty('status')) { object.status = message.status }
+      if (message.type != null && message.hasOwnProperty('type')) { object.type = message.type }
+      if (message.role != null && message.hasOwnProperty('role')) { object.role = message.role }
+      return object
+    }
+
+    /**
+         * Converts this UserModel to JSON.
+         * @function toJSON
+         * @memberof pbuser.UserModel
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    UserModel.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for UserModel
+         * @function getTypeUrl
+         * @memberof pbuser.UserModel
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    UserModel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/pbuser.UserModel'
+    }
+
+    return UserModel
+  })()
+
+  pbuser.FindUserArgs = (function() {
+    /**
+         * Properties of a FindUserArgs.
+         * @memberof pbuser
+         * @interface IFindUserArgs
+         * @property {pbcommon.IPageInfo|null} [pageInfo] FindUserArgs pageInfo
+         * @property {pbuser.IUserModel|null} [query] FindUserArgs query
+         */
+
+    /**
+         * Constructs a new FindUserArgs.
+         * @memberof pbuser
+         * @classdesc Represents a FindUserArgs.
+         * @implements IFindUserArgs
+         * @constructor
+         * @param {pbuser.IFindUserArgs=} [properties] Properties to set
+         */
+    function FindUserArgs(properties) {
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * FindUserArgs pageInfo.
+         * @member {pbcommon.IPageInfo|null|undefined} pageInfo
+         * @memberof pbuser.FindUserArgs
+         * @instance
+         */
+    FindUserArgs.prototype.pageInfo = null
+
+    /**
+         * FindUserArgs query.
+         * @member {pbuser.IUserModel|null|undefined} query
+         * @memberof pbuser.FindUserArgs
+         * @instance
+         */
+    FindUserArgs.prototype.query = null
+
+    /**
+         * Creates a new FindUserArgs instance using the specified properties.
+         * @function create
+         * @memberof pbuser.FindUserArgs
+         * @static
+         * @param {pbuser.IFindUserArgs=} [properties] Properties to set
+         * @returns {pbuser.FindUserArgs} FindUserArgs instance
+         */
+    FindUserArgs.create = function create(properties) {
+      return new FindUserArgs(properties)
+    }
+
+    /**
+         * Encodes the specified FindUserArgs message. Does not implicitly {@link pbuser.FindUserArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbuser.FindUserArgs
+         * @static
+         * @param {pbuser.IFindUserArgs} message FindUserArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    FindUserArgs.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.pageInfo != null && Object.hasOwnProperty.call(message, 'pageInfo')) { $root.pbcommon.PageInfo.encode(message.pageInfo, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim() }
+      if (message.query != null && Object.hasOwnProperty.call(message, 'query')) { $root.pbuser.UserModel.encode(message.query, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim() }
+      return writer
+    }
+
+    /**
+         * Encodes the specified FindUserArgs message, length delimited. Does not implicitly {@link pbuser.FindUserArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbuser.FindUserArgs
+         * @static
+         * @param {pbuser.IFindUserArgs} message FindUserArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    FindUserArgs.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes a FindUserArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbuser.FindUserArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbuser.FindUserArgs} FindUserArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    FindUserArgs.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbuser.FindUserArgs()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            message.pageInfo = $root.pbcommon.PageInfo.decode(reader, reader.uint32())
+            break
+          }
+          case 2: {
+            message.query = $root.pbuser.UserModel.decode(reader, reader.uint32())
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes a FindUserArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbuser.FindUserArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbuser.FindUserArgs} FindUserArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    FindUserArgs.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies a FindUserArgs message.
+         * @function verify
+         * @memberof pbuser.FindUserArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    FindUserArgs.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.pageInfo != null && message.hasOwnProperty('pageInfo')) {
+        var error = $root.pbcommon.PageInfo.verify(message.pageInfo)
+        if (error) { return 'pageInfo.' + error }
+      }
+      if (message.query != null && message.hasOwnProperty('query')) {
+        var error = $root.pbuser.UserModel.verify(message.query)
+        if (error) { return 'query.' + error }
+      }
+      return null
+    }
+
+    /**
+         * Creates a FindUserArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbuser.FindUserArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbuser.FindUserArgs} FindUserArgs
+         */
+    FindUserArgs.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbuser.FindUserArgs) { return object }
+      var message = new $root.pbuser.FindUserArgs()
+      if (object.pageInfo != null) {
+        if (typeof object.pageInfo !== 'object') { throw TypeError('.pbuser.FindUserArgs.pageInfo: object expected') }
+        message.pageInfo = $root.pbcommon.PageInfo.fromObject(object.pageInfo)
+      }
+      if (object.query != null) {
+        if (typeof object.query !== 'object') { throw TypeError('.pbuser.FindUserArgs.query: object expected') }
+        message.query = $root.pbuser.UserModel.fromObject(object.query)
+      }
+      return message
+    }
+
+    /**
+         * Creates a plain object from a FindUserArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbuser.FindUserArgs
+         * @static
+         * @param {pbuser.FindUserArgs} message FindUserArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    FindUserArgs.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.defaults) {
+        object.pageInfo = null
+        object.query = null
+      }
+      if (message.pageInfo != null && message.hasOwnProperty('pageInfo')) { object.pageInfo = $root.pbcommon.PageInfo.toObject(message.pageInfo, options) }
+      if (message.query != null && message.hasOwnProperty('query')) { object.query = $root.pbuser.UserModel.toObject(message.query, options) }
+      return object
+    }
+
+    /**
+         * Converts this FindUserArgs to JSON.
+         * @function toJSON
+         * @memberof pbuser.FindUserArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    FindUserArgs.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for FindUserArgs
+         * @function getTypeUrl
+         * @memberof pbuser.FindUserArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    FindUserArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/pbuser.FindUserArgs'
+    }
+
+    return FindUserArgs
+  })()
+
+  pbuser.FindUserReplay = (function() {
+    /**
+         * Properties of a FindUserReplay.
+         * @memberof pbuser
+         * @interface IFindUserReplay
+         * @property {pbcommon.EnumCode|null} [code] FindUserReplay code
+         * @property {string|null} [msg] FindUserReplay msg
+         * @property {pbuser.IUserModel|null} [data] FindUserReplay data
+         * @property {Array.<pbuser.IUserModel>|null} [list] FindUserReplay list
+         * @property {number|Long|null} [total] FindUserReplay total
+         */
+
+    /**
+         * Constructs a new FindUserReplay.
+         * @memberof pbuser
+         * @classdesc Represents a FindUserReplay.
+         * @implements IFindUserReplay
+         * @constructor
+         * @param {pbuser.IFindUserReplay=} [properties] Properties to set
+         */
+    function FindUserReplay(properties) {
+      this.list = []
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * FindUserReplay code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbuser.FindUserReplay
+         * @instance
+         */
+    FindUserReplay.prototype.code = 0
+
+    /**
+         * FindUserReplay msg.
+         * @member {string} msg
+         * @memberof pbuser.FindUserReplay
+         * @instance
+         */
+    FindUserReplay.prototype.msg = ''
+
+    /**
+         * FindUserReplay data.
+         * @member {pbuser.IUserModel|null|undefined} data
+         * @memberof pbuser.FindUserReplay
+         * @instance
+         */
+    FindUserReplay.prototype.data = null
+
+    /**
+         * FindUserReplay list.
+         * @member {Array.<pbuser.IUserModel>} list
+         * @memberof pbuser.FindUserReplay
+         * @instance
+         */
+    FindUserReplay.prototype.list = $util.emptyArray
+
+    /**
+         * FindUserReplay total.
+         * @member {number|Long} total
+         * @memberof pbuser.FindUserReplay
+         * @instance
+         */
+    FindUserReplay.prototype.total = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+
+    /**
+         * Creates a new FindUserReplay instance using the specified properties.
+         * @function create
+         * @memberof pbuser.FindUserReplay
+         * @static
+         * @param {pbuser.IFindUserReplay=} [properties] Properties to set
+         * @returns {pbuser.FindUserReplay} FindUserReplay instance
+         */
+    FindUserReplay.create = function create(properties) {
+      return new FindUserReplay(properties)
+    }
+
+    /**
+         * Encodes the specified FindUserReplay message. Does not implicitly {@link pbuser.FindUserReplay.verify|verify} messages.
+         * @function encode
+         * @memberof pbuser.FindUserReplay
+         * @static
+         * @param {pbuser.IFindUserReplay} message FindUserReplay message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    FindUserReplay.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.code != null && Object.hasOwnProperty.call(message, 'code')) { writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code) }
+      if (message.msg != null && Object.hasOwnProperty.call(message, 'msg')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg) }
+      if (message.data != null && Object.hasOwnProperty.call(message, 'data')) { $root.pbuser.UserModel.encode(message.data, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim() }
+      if (message.list != null && message.list.length) {
+        for (var i = 0; i < message.list.length; ++i) { $root.pbuser.UserModel.encode(message.list[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim() }
+      }
+      if (message.total != null && Object.hasOwnProperty.call(message, 'total')) { writer.uint32(/* id 5, wireType 0 =*/40).int64(message.total) }
+      return writer
+    }
+
+    /**
+         * Encodes the specified FindUserReplay message, length delimited. Does not implicitly {@link pbuser.FindUserReplay.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbuser.FindUserReplay
+         * @static
+         * @param {pbuser.IFindUserReplay} message FindUserReplay message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    FindUserReplay.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes a FindUserReplay message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbuser.FindUserReplay
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbuser.FindUserReplay} FindUserReplay
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    FindUserReplay.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbuser.FindUserReplay()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            message.code = reader.int32()
+            break
+          }
+          case 2: {
+            message.msg = reader.string()
+            break
+          }
+          case 3: {
+            message.data = $root.pbuser.UserModel.decode(reader, reader.uint32())
+            break
+          }
+          case 4: {
+            if (!(message.list && message.list.length)) { message.list = [] }
+            message.list.push($root.pbuser.UserModel.decode(reader, reader.uint32()))
+            break
+          }
+          case 5: {
+            message.total = reader.int64()
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes a FindUserReplay message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbuser.FindUserReplay
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbuser.FindUserReplay} FindUserReplay
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    FindUserReplay.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies a FindUserReplay message.
+         * @function verify
+         * @memberof pbuser.FindUserReplay
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    FindUserReplay.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.code != null && message.hasOwnProperty('code')) {
+        switch (message.code) {
+          default:
+            return 'code: enum value expected'
+          case 0:
+          case 200:
+          case 500:
+          case 501:
+          case 502:
+          case 503:
+          case 504:
+          case 505:
+          case 1001:
+          case 1002:
+          case 1003:
+          case 1004:
+          case 2002:
+          case 2003:
+          case 2004:
+          case 2005:
+          case 2006:
+          case 2007:
+          case 2008:
+          case 2009:
+          case 2010:
+          case 2011:
+          case 2012:
+          case 2013:
+          case 2014:
+            break
+        }
+      }
+      if (message.msg != null && message.hasOwnProperty('msg')) {
+        if (!$util.isString(message.msg)) { return 'msg: string expected' }
+      }
+      if (message.data != null && message.hasOwnProperty('data')) {
+        var error = $root.pbuser.UserModel.verify(message.data)
+        if (error) { return 'data.' + error }
+      }
+      if (message.list != null && message.hasOwnProperty('list')) {
+        if (!Array.isArray(message.list)) { return 'list: array expected' }
+        for (var i = 0; i < message.list.length; ++i) {
+          var error = $root.pbuser.UserModel.verify(message.list[i])
+          if (error) { return 'list.' + error }
+        }
+      }
+      if (message.total != null && message.hasOwnProperty('total')) {
+        if (!$util.isInteger(message.total) && !(message.total && $util.isInteger(message.total.low) && $util.isInteger(message.total.high))) { return 'total: integer|Long expected' }
+      }
+      return null
+    }
+
+    /**
+         * Creates a FindUserReplay message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbuser.FindUserReplay
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbuser.FindUserReplay} FindUserReplay
+         */
+    FindUserReplay.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbuser.FindUserReplay) { return object }
+      var message = new $root.pbuser.FindUserReplay()
+      switch (object.code) {
+        default:
+          if (typeof object.code === 'number') {
+            message.code = object.code
+            break
+          }
+          break
+        case 'None':
+        case 0:
+          message.code = 0
+          break
+        case 'Success':
+        case 200:
+          message.code = 200
+          break
+        case 'Fail':
+        case 500:
+          message.code = 500
+          break
+        case 'Unknown':
+        case 501:
+          message.code = 501
+          break
+        case 'Internal':
+        case 502:
+          message.code = 502
+          break
+        case 'Invalid':
+        case 503:
+          message.code = 503
+          break
+        case 'InvalidParam':
+        case 504:
+          message.code = 504
+          break
+        case 'ParamError':
+        case 505:
+          message.code = 505
+          break
+        case 'FindError':
+        case 1001:
+          message.code = 1001
+          break
+        case 'CreateError':
+        case 1002:
+          message.code = 1002
+          break
+        case 'DeleteError':
+        case 1003:
+          message.code = 1003
+          break
+        case 'UpdateError':
+        case 1004:
+          message.code = 1004
+          break
+        case 'InvalidToken':
+        case 2002:
+          message.code = 2002
+          break
+        case 'InvalidSign':
+        case 2003:
+          message.code = 2003
+          break
+        case 'NotLogin':
+        case 2004:
+          message.code = 2004
+          break
+        case 'LoginTimeout':
+        case 2005:
+          message.code = 2005
+          break
+        case 'LoginError':
+        case 2006:
+          message.code = 2006
+          break
+        case 'LoginForbidden':
+        case 2007:
+          message.code = 2007
+          break
+        case 'LoginExpired':
+        case 2008:
+          message.code = 2008
+          break
+        case 'LoginInvalid':
+        case 2009:
+          message.code = 2009
+          break
+        case 'LoginInvalidPassword':
+        case 2010:
+          message.code = 2010
+          break
+        case 'LoginInvalidUsername':
+        case 2011:
+          message.code = 2011
+          break
+        case 'LoginInvalidEmail':
+        case 2012:
+          message.code = 2012
+          break
+        case 'LoginInvalidPhone':
+        case 2013:
+          message.code = 2013
+          break
+        case 'LoginInvalidUsernameOrEmail':
+        case 2014:
+          message.code = 2014
+          break
+      }
+      if (object.msg != null) { message.msg = String(object.msg) }
+      if (object.data != null) {
+        if (typeof object.data !== 'object') { throw TypeError('.pbuser.FindUserReplay.data: object expected') }
+        message.data = $root.pbuser.UserModel.fromObject(object.data)
+      }
+      if (object.list) {
+        if (!Array.isArray(object.list)) { throw TypeError('.pbuser.FindUserReplay.list: array expected') }
+        message.list = []
+        for (var i = 0; i < object.list.length; ++i) {
+          if (typeof object.list[i] !== 'object') { throw TypeError('.pbuser.FindUserReplay.list: object expected') }
+          message.list[i] = $root.pbuser.UserModel.fromObject(object.list[i])
+        }
+      }
+      if (object.total != null) {
+        if ($util.Long) { (message.total = $util.Long.fromValue(object.total)).unsigned = false } else if (typeof object.total === 'string') { message.total = parseInt(object.total, 10) } else if (typeof object.total === 'number') { message.total = object.total } else if (typeof object.total === 'object') { message.total = new $util.LongBits(object.total.low >>> 0, object.total.high >>> 0).toNumber() }
+      }
+      return message
+    }
+
+    /**
+         * Creates a plain object from a FindUserReplay message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbuser.FindUserReplay
+         * @static
+         * @param {pbuser.FindUserReplay} message FindUserReplay
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    FindUserReplay.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.arrays || options.defaults) { object.list = [] }
+      if (options.defaults) {
+        object.code = options.enums === String ? 'None' : 0
+        object.msg = ''
+        object.data = null
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.total = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.total = options.longs === String ? '0' : 0 }
+      }
+      if (message.code != null && message.hasOwnProperty('code')) { object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code }
+      if (message.msg != null && message.hasOwnProperty('msg')) { object.msg = message.msg }
+      if (message.data != null && message.hasOwnProperty('data')) { object.data = $root.pbuser.UserModel.toObject(message.data, options) }
+      if (message.list && message.list.length) {
+        object.list = []
+        for (var j = 0; j < message.list.length; ++j) { object.list[j] = $root.pbuser.UserModel.toObject(message.list[j], options) }
+      }
+      if (message.total != null && message.hasOwnProperty('total')) {
+        if (typeof message.total === 'number') { object.total = options.longs === String ? String(message.total) : message.total } else { object.total = options.longs === String ? $util.Long.prototype.toString.call(message.total) : options.longs === Number ? new $util.LongBits(message.total.low >>> 0, message.total.high >>> 0).toNumber() : message.total }
+      }
+      return object
+    }
+
+    /**
+         * Converts this FindUserReplay to JSON.
+         * @function toJSON
+         * @memberof pbuser.FindUserReplay
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    FindUserReplay.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for FindUserReplay
+         * @function getTypeUrl
+         * @memberof pbuser.FindUserReplay
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    FindUserReplay.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/pbuser.FindUserReplay'
+    }
+
+    return FindUserReplay
+  })()
+
+  pbuser.User = (function() {
+    /**
+         * Constructs a new User service.
+         * @memberof pbuser
+         * @classdesc Represents a User
+         * @extends $protobuf.rpc.Service
+         * @constructor
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         */
+    function User(rpcImpl, requestDelimited, responseDelimited) {
+      $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited)
+    }
+
+    (User.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = User
+
+    /**
+         * Creates new User service using the specified rpc implementation.
+         * @function create
+         * @memberof pbuser.User
+         * @static
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         * @returns {User} RPC service. Useful where requests and/or responses are streamed.
+         */
+    User.create = function create(rpcImpl, requestDelimited, responseDelimited) {
+      return new this(rpcImpl, requestDelimited, responseDelimited)
+    }
+
+    /**
+         * Callback as used by {@link pbuser.User#createUser}.
+         * @memberof pbuser.User
+         * @typedef CreateUserCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+    /**
+         * Calls CreateUser.
+         * @function createUser
+         * @memberof pbuser.User
+         * @instance
+         * @param {pbuser.IUserModel} request UserModel message or plain object
+         * @param {pbuser.User.CreateUserCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+    Object.defineProperty(User.prototype.createUser = function createUser(request, callback) {
+      return this.rpcCall(createUser, $root.pbuser.UserModel, $root.pbcommon.CommonResult, request, callback)
+    }, 'name', { value: 'CreateUser' })
+
+    /**
+         * Calls CreateUser.
+         * @function createUser
+         * @memberof pbuser.User
+         * @instance
+         * @param {pbuser.IUserModel} request UserModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+    /**
+         * Callback as used by {@link pbuser.User#updateUser}.
+         * @memberof pbuser.User
+         * @typedef UpdateUserCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+    /**
+         * Calls UpdateUser.
+         * @function updateUser
+         * @memberof pbuser.User
+         * @instance
+         * @param {pbuser.IUserModel} request UserModel message or plain object
+         * @param {pbuser.User.UpdateUserCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+    Object.defineProperty(User.prototype.updateUser = function updateUser(request, callback) {
+      return this.rpcCall(updateUser, $root.pbuser.UserModel, $root.pbcommon.CommonResult, request, callback)
+    }, 'name', { value: 'UpdateUser' })
+
+    /**
+         * Calls UpdateUser.
+         * @function updateUser
+         * @memberof pbuser.User
+         * @instance
+         * @param {pbuser.IUserModel} request UserModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+    /**
+         * Callback as used by {@link pbuser.User#deleteUser}.
+         * @memberof pbuser.User
+         * @typedef DeleteUserCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+    /**
+         * Calls DeleteUser.
+         * @function deleteUser
+         * @memberof pbuser.User
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbuser.User.DeleteUserCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+    Object.defineProperty(User.prototype.deleteUser = function deleteUser(request, callback) {
+      return this.rpcCall(deleteUser, $root.pbcommon.IdArgs, $root.pbcommon.CommonResult, request, callback)
+    }, 'name', { value: 'DeleteUser' })
+
+    /**
+         * Calls DeleteUser.
+         * @function deleteUser
+         * @memberof pbuser.User
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+    /**
+         * Callback as used by {@link pbuser.User#findUserById}.
+         * @memberof pbuser.User
+         * @typedef FindUserByIdCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbuser.FindUserReplay} [response] FindUserReplay
+         */
+
+    /**
+         * Calls FindUserById.
+         * @function findUserById
+         * @memberof pbuser.User
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbuser.User.FindUserByIdCallback} callback Node-style callback called with the error, if any, and FindUserReplay
+         * @returns {undefined}
+         * @variation 1
+         */
+    Object.defineProperty(User.prototype.findUserById = function findUserById(request, callback) {
+      return this.rpcCall(findUserById, $root.pbcommon.IdArgs, $root.pbuser.FindUserReplay, request, callback)
+    }, 'name', { value: 'FindUserById' })
+
+    /**
+         * Calls FindUserById.
+         * @function findUserById
+         * @memberof pbuser.User
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbuser.FindUserReplay>} Promise
+         * @variation 2
+         */
+
+    /**
+         * Callback as used by {@link pbuser.User#findUserList}.
+         * @memberof pbuser.User
+         * @typedef FindUserListCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbuser.FindUserReplay} [response] FindUserReplay
+         */
+
+    /**
+         * Calls FindUserList.
+         * @function findUserList
+         * @memberof pbuser.User
+         * @instance
+         * @param {pbuser.IFindUserArgs} request FindUserArgs message or plain object
+         * @param {pbuser.User.FindUserListCallback} callback Node-style callback called with the error, if any, and FindUserReplay
+         * @returns {undefined}
+         * @variation 1
+         */
+    Object.defineProperty(User.prototype.findUserList = function findUserList(request, callback) {
+      return this.rpcCall(findUserList, $root.pbuser.FindUserArgs, $root.pbuser.FindUserReplay, request, callback)
+    }, 'name', { value: 'FindUserList' })
+
+    /**
+         * Calls FindUserList.
+         * @function findUserList
+         * @memberof pbuser.User
+         * @instance
+         * @param {pbuser.IFindUserArgs} request FindUserArgs message or plain object
+         * @returns {Promise<pbuser.FindUserReplay>} Promise
+         * @variation 2
+         */
+
+    return User
+  })()
+
+  return pbuser
 })()
 
 module.exports = $root

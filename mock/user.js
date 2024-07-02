@@ -33,16 +33,16 @@ module.exports = [
       const token = tokens[username]
 
       // mock error
-      if (!token) {
-        return {
-          code: 60204,
-          message: 'Account and password are incorrect.'
-        }
-      }
+      // if (!token) {
+      //   return {
+      //     code: 60204,
+      //     message: 'Account and password are incorrect.'
+      //   }
+      // }
 
       return {
-        code: 20000,
-        data: token
+        code: 200,
+        data: "admin-token"
       }
     }
   },
@@ -56,16 +56,21 @@ module.exports = [
       const info = users[token]
 
       // mock error
-      if (!info) {
-        return {
-          code: 50008,
-          message: 'Login failed, unable to get user details.'
-        }
-      }
+      // if (!info) {
+      //   return {
+      //     code: 50008,
+      //     message: 'Login failed, unable to get user details.'
+      //   }
+      // }
 
       return {
-        code: 20000,
-        data: info
+        code: 200,
+        data: {
+          roles: ['admin'],
+          introduction: 'I am a super administrator',
+          avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
+          name: 'Super Admin'
+        }
       }
     }
   },
@@ -76,7 +81,7 @@ module.exports = [
     type: 'post',
     response: _ => {
       return {
-        code: 20000,
+        code: 200,
         data: 'success'
       }
     }

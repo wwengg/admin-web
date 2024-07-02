@@ -3,6 +3,7 @@ import { MessageBox, Message } from 'element-ui'
 import store from '@/store'
 import { getToken } from '@/utils/auth'
 import protoRoot from '@/proto/proto'
+// import data from '@/views/pdf/content'
 var protobuf = require('protobufjs')
 
 // create an axios instance
@@ -15,14 +16,30 @@ const service = axios.create({
 // request interceptor
 service.interceptors.request.use(
   config => {
+    if (config.mock === true) {
+      config.baseURL = process.env.VUE_APP_BASE_MOCK
+    } else {
+      config.headers['Accept'] = 'application/x-protobuf'
+    }
     // do something before request is sent
-
+    var messageData = {}
+    config.headers['Content-Type'] = 'application/x-protobuf'
     if (store.getters.token) {
       // let each request carry token
       // ['X-Token'] is a custom headers key
       // please modify it according to the actual situation
       config.headers['X-Token'] = getToken()
+
+      messageData['token'] = '123123'
     }
+    messageData['v'] = '1'
+    console.log(config)
+    if (config.pb) {
+      messageData['data'] = new Uint8Array(config.buffer)
+      console.log(messageData)
+      config.data = protoRoot.httpgate.HttpRequest.encode(messageData).finish().slice().buffer
+    }
+    console.log(config.data)
     return config
   },
   error => {
@@ -46,19 +63,29 @@ service.interceptors.response.use(
    */
   response => {
     const data = response.data
+    console.log(response)
     var res
-    try {
-      res = protoRoot.HttpResponse.decode(data)
-    } catch (e) {
-      if (e instanceof protobuf.util.ProtocolError) {
-        // e.instance holds the so far decoded message with missing required fields
-      } else {
-        // wire format is invalid
+    var bufferData
+    if (!response.config.pb) {
+      res = data
+    } else {
+      try {
+        bufferData = Buffer.from(data, 'binary')
+        console.log(bufferData)
+        const pbList = response.config.pb.split('.')
+        var responseMessage = protoRoot[pbList[0]][pbList[1]]
+        res = responseMessage.decode(bufferData)
+      } catch (e) {
+        console.log(e)
+        if (e instanceof protobuf.util.ProtocolError) {
+          // e.instance holds the so far decoded message with missing required fields
+        } else {
+          // wire format is invalid
+        }
       }
     }
-
-    // if the custom code is not 20000, it is judged as an error.
-    if (res.code !== protoRoot.pbcommon.EnumCode['success']) {
+    // if the custom code is not 200, it is judged as an error.
+    if (res.code !== protoRoot.pbcommon.EnumCode['Success']) {
       Message({
         message: res.message || 'Error',
         type: 'error',
@@ -78,7 +105,11 @@ service.interceptors.response.use(
           })
         })
       }
-      return Promise.reject(new Error(res.message || 'Error'))
+      if (res.msg === '') {
+        res.msg = 'Error'
+      }
+      console.log(res.msg)
+      return res.msg
     } else {
       return res
     }
@@ -86,7 +117,7 @@ service.interceptors.response.use(
   error => {
     console.log('err' + error) // for debug
     Message({
-      message: error.message,
+      message: error.msg,
       type: 'error',
       duration: 5 * 1000
     })

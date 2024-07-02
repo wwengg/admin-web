@@ -130,6 +130,30 @@ export const constantRoutes = [
  */
 export const asyncRoutes = [
   {
+    path: '/admin',
+    component: Layout,
+    redirect: '/admin/user',
+    alwaysShow: true, // will always show the root menu
+    name: 'admin',
+    meta: {
+      title: '超级管理员',
+      icon: 'lock',
+      roles: ['admin'] // you can set roles in root nav
+    },
+    children: [
+      {
+        path: 'user',
+        component: () => import('@/views/admin/user/table'),
+        name: 'adminUser',
+        meta: {
+          title: '用户管理',
+          roles: ['admin'] // or you can only set roles in sub nav
+        }
+      }
+
+    ]
+  },
+  {
     path: '/permission',
     component: Layout,
     redirect: '/permission/page',

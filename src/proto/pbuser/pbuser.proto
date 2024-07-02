@@ -1,0 +1,51 @@
+/*
+Copyright © 2024 NAME HERE <wwwwangg@163.com>
+*/
+syntax = "proto3";
+
+package pbuser;
+
+option go_package = "auth/proto/pbuser";
+
+import "pbcommon/pbcommon.proto";
+
+
+message UserModel{
+  int64 id = 1;
+  string createdAt = 2;
+  string updatedAt = 3;
+
+  string name = 4;
+  string email = 5;
+  string password = 6;
+  string phone = 7;
+  int32  gender = 8;
+  string birthday = 9;
+  string address = 10;
+  string avatar = 11;
+  string description = 12;
+  int32  status = 13;
+  int32  type = 14;
+  string role = 15;  // 多个role用,隔开  activeRole存在token中
+}
+
+message FindUserArgs{
+  pbcommon.PageInfo pageInfo = 1;
+  UserModel query = 2;
+}
+
+message FindUserReplay{
+  pbcommon.EnumCode code = 1;
+  string msg = 2;
+  UserModel data =3;
+  repeated UserModel list = 4;
+  int64 total = 5;
+}
+
+service User {
+  rpc CreateUser(UserModel) returns(pbcommon.CommonResult){}
+  rpc UpdateUser(UserModel) returns(pbcommon.CommonResult){}
+  rpc DeleteUser(pbcommon.IdArgs) returns(pbcommon.CommonResult){}
+  rpc FindUserById(pbcommon.IdArgs) returns(FindUserReplay){}
+  rpc FindUserList(FindUserArgs) returns(FindUserReplay){}
+}
