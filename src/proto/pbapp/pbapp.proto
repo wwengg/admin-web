@@ -1,0 +1,56 @@
+/*
+Copyright © 2024 NAME HERE <EMAIL ADDRESS>
+*/
+syntax = "proto3";
+
+package pbapp;
+
+option go_package = "auth/proto/pbapp";
+
+import "pbcommon/pbcommon.proto";
+
+
+message AppModel{
+  int64 id = 1;
+  string createdAt = 2;
+  string updatedAt = 3;
+
+  string name = 4;
+  string description = 5;
+  string icon = 6;
+  string logo = 7;
+  string url = 8;
+  string version = 9;
+  int32 type = 10;
+  int32 status = 11;
+  int64  ownerId = 12;
+  string ownerName = 13;
+  string ownerEmail = 14;
+  string ownerPhone = 15;
+  string ownerMobile = 16;
+  string ownerAddress = 17;
+  string ownerZipCode = 18;
+  string ownerCountry = 19;
+  string officalUrl = 20;
+}
+
+message FindAppArgs{
+  pbcommon.PageInfo pageInfo = 1;
+  AppModel query = 2;
+}
+
+message FindAppReply{
+  pbcommon.EnumCode code = 1;
+  string msg = 2;
+  AppModel data =3;
+  repeated AppModel list = 4;
+  int64 total = 5;
+}
+
+service App {
+  rpc CreateApp(AppModel) returns(pbcommon.CommonResult){}
+  rpc UpdateApp(AppModel) returns(pbcommon.CommonResult){}
+  rpc DeleteApp(pbcommon.IdArgs) returns(pbcommon.CommonResult){}
+  rpc FindAppById(pbcommon.IdArgs) returns(FindAppReply){}
+  rpc FindAppList(FindAppArgs) returns(FindAppReply){}
+}

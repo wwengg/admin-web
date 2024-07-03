@@ -3333,4 +3333,3593 @@ $root.pbuser = (function() {
   return pbuser
 })()
 
+$root.pbapp = (function() {
+  /**
+     * Namespace pbapp.
+     * @exports pbapp
+     * @namespace
+     */
+  var pbapp = {}
+
+  pbapp.AppModel = (function() {
+    /**
+         * Properties of an AppModel.
+         * @memberof pbapp
+         * @interface IAppModel
+         * @property {number|Long|null} [id] AppModel id
+         * @property {string|null} [createdAt] AppModel createdAt
+         * @property {string|null} [updatedAt] AppModel updatedAt
+         * @property {string|null} [name] AppModel name
+         * @property {string|null} [description] AppModel description
+         * @property {string|null} [icon] AppModel icon
+         * @property {string|null} [logo] AppModel logo
+         * @property {string|null} [url] AppModel url
+         * @property {string|null} [version] AppModel version
+         * @property {number|null} [type] AppModel type
+         * @property {number|null} [status] AppModel status
+         * @property {number|Long|null} [ownerId] AppModel ownerId
+         * @property {string|null} [ownerName] AppModel ownerName
+         * @property {string|null} [ownerEmail] AppModel ownerEmail
+         * @property {string|null} [ownerPhone] AppModel ownerPhone
+         * @property {string|null} [ownerMobile] AppModel ownerMobile
+         * @property {string|null} [ownerAddress] AppModel ownerAddress
+         * @property {string|null} [ownerZipCode] AppModel ownerZipCode
+         * @property {string|null} [ownerCountry] AppModel ownerCountry
+         * @property {string|null} [officalUrl] AppModel officalUrl
+         */
+
+    /**
+         * Constructs a new AppModel.
+         * @memberof pbapp
+         * @classdesc Represents an AppModel.
+         * @implements IAppModel
+         * @constructor
+         * @param {pbapp.IAppModel=} [properties] Properties to set
+         */
+    function AppModel(properties) {
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * AppModel id.
+         * @member {number|Long} id
+         * @memberof pbapp.AppModel
+         * @instance
+         */
+    AppModel.prototype.id = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+
+    /**
+         * AppModel createdAt.
+         * @member {string} createdAt
+         * @memberof pbapp.AppModel
+         * @instance
+         */
+    AppModel.prototype.createdAt = ''
+
+    /**
+         * AppModel updatedAt.
+         * @member {string} updatedAt
+         * @memberof pbapp.AppModel
+         * @instance
+         */
+    AppModel.prototype.updatedAt = ''
+
+    /**
+         * AppModel name.
+         * @member {string} name
+         * @memberof pbapp.AppModel
+         * @instance
+         */
+    AppModel.prototype.name = ''
+
+    /**
+         * AppModel description.
+         * @member {string} description
+         * @memberof pbapp.AppModel
+         * @instance
+         */
+    AppModel.prototype.description = ''
+
+    /**
+         * AppModel icon.
+         * @member {string} icon
+         * @memberof pbapp.AppModel
+         * @instance
+         */
+    AppModel.prototype.icon = ''
+
+    /**
+         * AppModel logo.
+         * @member {string} logo
+         * @memberof pbapp.AppModel
+         * @instance
+         */
+    AppModel.prototype.logo = ''
+
+    /**
+         * AppModel url.
+         * @member {string} url
+         * @memberof pbapp.AppModel
+         * @instance
+         */
+    AppModel.prototype.url = ''
+
+    /**
+         * AppModel version.
+         * @member {string} version
+         * @memberof pbapp.AppModel
+         * @instance
+         */
+    AppModel.prototype.version = ''
+
+    /**
+         * AppModel type.
+         * @member {number} type
+         * @memberof pbapp.AppModel
+         * @instance
+         */
+    AppModel.prototype.type = 0
+
+    /**
+         * AppModel status.
+         * @member {number} status
+         * @memberof pbapp.AppModel
+         * @instance
+         */
+    AppModel.prototype.status = 0
+
+    /**
+         * AppModel ownerId.
+         * @member {number|Long} ownerId
+         * @memberof pbapp.AppModel
+         * @instance
+         */
+    AppModel.prototype.ownerId = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+
+    /**
+         * AppModel ownerName.
+         * @member {string} ownerName
+         * @memberof pbapp.AppModel
+         * @instance
+         */
+    AppModel.prototype.ownerName = ''
+
+    /**
+         * AppModel ownerEmail.
+         * @member {string} ownerEmail
+         * @memberof pbapp.AppModel
+         * @instance
+         */
+    AppModel.prototype.ownerEmail = ''
+
+    /**
+         * AppModel ownerPhone.
+         * @member {string} ownerPhone
+         * @memberof pbapp.AppModel
+         * @instance
+         */
+    AppModel.prototype.ownerPhone = ''
+
+    /**
+         * AppModel ownerMobile.
+         * @member {string} ownerMobile
+         * @memberof pbapp.AppModel
+         * @instance
+         */
+    AppModel.prototype.ownerMobile = ''
+
+    /**
+         * AppModel ownerAddress.
+         * @member {string} ownerAddress
+         * @memberof pbapp.AppModel
+         * @instance
+         */
+    AppModel.prototype.ownerAddress = ''
+
+    /**
+         * AppModel ownerZipCode.
+         * @member {string} ownerZipCode
+         * @memberof pbapp.AppModel
+         * @instance
+         */
+    AppModel.prototype.ownerZipCode = ''
+
+    /**
+         * AppModel ownerCountry.
+         * @member {string} ownerCountry
+         * @memberof pbapp.AppModel
+         * @instance
+         */
+    AppModel.prototype.ownerCountry = ''
+
+    /**
+         * AppModel officalUrl.
+         * @member {string} officalUrl
+         * @memberof pbapp.AppModel
+         * @instance
+         */
+    AppModel.prototype.officalUrl = ''
+
+    /**
+         * Creates a new AppModel instance using the specified properties.
+         * @function create
+         * @memberof pbapp.AppModel
+         * @static
+         * @param {pbapp.IAppModel=} [properties] Properties to set
+         * @returns {pbapp.AppModel} AppModel instance
+         */
+    AppModel.create = function create(properties) {
+      return new AppModel(properties)
+    }
+
+    /**
+         * Encodes the specified AppModel message. Does not implicitly {@link pbapp.AppModel.verify|verify} messages.
+         * @function encode
+         * @memberof pbapp.AppModel
+         * @static
+         * @param {pbapp.IAppModel} message AppModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    AppModel.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.id != null && Object.hasOwnProperty.call(message, 'id')) { writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id) }
+      if (message.createdAt != null && Object.hasOwnProperty.call(message, 'createdAt')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.createdAt) }
+      if (message.updatedAt != null && Object.hasOwnProperty.call(message, 'updatedAt')) { writer.uint32(/* id 3, wireType 2 =*/26).string(message.updatedAt) }
+      if (message.name != null && Object.hasOwnProperty.call(message, 'name')) { writer.uint32(/* id 4, wireType 2 =*/34).string(message.name) }
+      if (message.description != null && Object.hasOwnProperty.call(message, 'description')) { writer.uint32(/* id 5, wireType 2 =*/42).string(message.description) }
+      if (message.icon != null && Object.hasOwnProperty.call(message, 'icon')) { writer.uint32(/* id 6, wireType 2 =*/50).string(message.icon) }
+      if (message.logo != null && Object.hasOwnProperty.call(message, 'logo')) { writer.uint32(/* id 7, wireType 2 =*/58).string(message.logo) }
+      if (message.url != null && Object.hasOwnProperty.call(message, 'url')) { writer.uint32(/* id 8, wireType 2 =*/66).string(message.url) }
+      if (message.version != null && Object.hasOwnProperty.call(message, 'version')) { writer.uint32(/* id 9, wireType 2 =*/74).string(message.version) }
+      if (message.type != null && Object.hasOwnProperty.call(message, 'type')) { writer.uint32(/* id 10, wireType 0 =*/80).int32(message.type) }
+      if (message.status != null && Object.hasOwnProperty.call(message, 'status')) { writer.uint32(/* id 11, wireType 0 =*/88).int32(message.status) }
+      if (message.ownerId != null && Object.hasOwnProperty.call(message, 'ownerId')) { writer.uint32(/* id 12, wireType 0 =*/96).int64(message.ownerId) }
+      if (message.ownerName != null && Object.hasOwnProperty.call(message, 'ownerName')) { writer.uint32(/* id 13, wireType 2 =*/106).string(message.ownerName) }
+      if (message.ownerEmail != null && Object.hasOwnProperty.call(message, 'ownerEmail')) { writer.uint32(/* id 14, wireType 2 =*/114).string(message.ownerEmail) }
+      if (message.ownerPhone != null && Object.hasOwnProperty.call(message, 'ownerPhone')) { writer.uint32(/* id 15, wireType 2 =*/122).string(message.ownerPhone) }
+      if (message.ownerMobile != null && Object.hasOwnProperty.call(message, 'ownerMobile')) { writer.uint32(/* id 16, wireType 2 =*/130).string(message.ownerMobile) }
+      if (message.ownerAddress != null && Object.hasOwnProperty.call(message, 'ownerAddress')) { writer.uint32(/* id 17, wireType 2 =*/138).string(message.ownerAddress) }
+      if (message.ownerZipCode != null && Object.hasOwnProperty.call(message, 'ownerZipCode')) { writer.uint32(/* id 18, wireType 2 =*/146).string(message.ownerZipCode) }
+      if (message.ownerCountry != null && Object.hasOwnProperty.call(message, 'ownerCountry')) { writer.uint32(/* id 19, wireType 2 =*/154).string(message.ownerCountry) }
+      if (message.officalUrl != null && Object.hasOwnProperty.call(message, 'officalUrl')) { writer.uint32(/* id 20, wireType 2 =*/162).string(message.officalUrl) }
+      return writer
+    }
+
+    /**
+         * Encodes the specified AppModel message, length delimited. Does not implicitly {@link pbapp.AppModel.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbapp.AppModel
+         * @static
+         * @param {pbapp.IAppModel} message AppModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    AppModel.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes an AppModel message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbapp.AppModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbapp.AppModel} AppModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    AppModel.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbapp.AppModel()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            message.id = reader.int64()
+            break
+          }
+          case 2: {
+            message.createdAt = reader.string()
+            break
+          }
+          case 3: {
+            message.updatedAt = reader.string()
+            break
+          }
+          case 4: {
+            message.name = reader.string()
+            break
+          }
+          case 5: {
+            message.description = reader.string()
+            break
+          }
+          case 6: {
+            message.icon = reader.string()
+            break
+          }
+          case 7: {
+            message.logo = reader.string()
+            break
+          }
+          case 8: {
+            message.url = reader.string()
+            break
+          }
+          case 9: {
+            message.version = reader.string()
+            break
+          }
+          case 10: {
+            message.type = reader.int32()
+            break
+          }
+          case 11: {
+            message.status = reader.int32()
+            break
+          }
+          case 12: {
+            message.ownerId = reader.int64()
+            break
+          }
+          case 13: {
+            message.ownerName = reader.string()
+            break
+          }
+          case 14: {
+            message.ownerEmail = reader.string()
+            break
+          }
+          case 15: {
+            message.ownerPhone = reader.string()
+            break
+          }
+          case 16: {
+            message.ownerMobile = reader.string()
+            break
+          }
+          case 17: {
+            message.ownerAddress = reader.string()
+            break
+          }
+          case 18: {
+            message.ownerZipCode = reader.string()
+            break
+          }
+          case 19: {
+            message.ownerCountry = reader.string()
+            break
+          }
+          case 20: {
+            message.officalUrl = reader.string()
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes an AppModel message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbapp.AppModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbapp.AppModel} AppModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    AppModel.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies an AppModel message.
+         * @function verify
+         * @memberof pbapp.AppModel
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    AppModel.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.id != null && message.hasOwnProperty('id')) {
+        if (!$util.isInteger(message.id) && !(message.id && $util.isInteger(message.id.low) && $util.isInteger(message.id.high))) { return 'id: integer|Long expected' }
+      }
+      if (message.createdAt != null && message.hasOwnProperty('createdAt')) {
+        if (!$util.isString(message.createdAt)) { return 'createdAt: string expected' }
+      }
+      if (message.updatedAt != null && message.hasOwnProperty('updatedAt')) {
+        if (!$util.isString(message.updatedAt)) { return 'updatedAt: string expected' }
+      }
+      if (message.name != null && message.hasOwnProperty('name')) {
+        if (!$util.isString(message.name)) { return 'name: string expected' }
+      }
+      if (message.description != null && message.hasOwnProperty('description')) {
+        if (!$util.isString(message.description)) { return 'description: string expected' }
+      }
+      if (message.icon != null && message.hasOwnProperty('icon')) {
+        if (!$util.isString(message.icon)) { return 'icon: string expected' }
+      }
+      if (message.logo != null && message.hasOwnProperty('logo')) {
+        if (!$util.isString(message.logo)) { return 'logo: string expected' }
+      }
+      if (message.url != null && message.hasOwnProperty('url')) {
+        if (!$util.isString(message.url)) { return 'url: string expected' }
+      }
+      if (message.version != null && message.hasOwnProperty('version')) {
+        if (!$util.isString(message.version)) { return 'version: string expected' }
+      }
+      if (message.type != null && message.hasOwnProperty('type')) {
+        if (!$util.isInteger(message.type)) { return 'type: integer expected' }
+      }
+      if (message.status != null && message.hasOwnProperty('status')) {
+        if (!$util.isInteger(message.status)) { return 'status: integer expected' }
+      }
+      if (message.ownerId != null && message.hasOwnProperty('ownerId')) {
+        if (!$util.isInteger(message.ownerId) && !(message.ownerId && $util.isInteger(message.ownerId.low) && $util.isInteger(message.ownerId.high))) { return 'ownerId: integer|Long expected' }
+      }
+      if (message.ownerName != null && message.hasOwnProperty('ownerName')) {
+        if (!$util.isString(message.ownerName)) { return 'ownerName: string expected' }
+      }
+      if (message.ownerEmail != null && message.hasOwnProperty('ownerEmail')) {
+        if (!$util.isString(message.ownerEmail)) { return 'ownerEmail: string expected' }
+      }
+      if (message.ownerPhone != null && message.hasOwnProperty('ownerPhone')) {
+        if (!$util.isString(message.ownerPhone)) { return 'ownerPhone: string expected' }
+      }
+      if (message.ownerMobile != null && message.hasOwnProperty('ownerMobile')) {
+        if (!$util.isString(message.ownerMobile)) { return 'ownerMobile: string expected' }
+      }
+      if (message.ownerAddress != null && message.hasOwnProperty('ownerAddress')) {
+        if (!$util.isString(message.ownerAddress)) { return 'ownerAddress: string expected' }
+      }
+      if (message.ownerZipCode != null && message.hasOwnProperty('ownerZipCode')) {
+        if (!$util.isString(message.ownerZipCode)) { return 'ownerZipCode: string expected' }
+      }
+      if (message.ownerCountry != null && message.hasOwnProperty('ownerCountry')) {
+        if (!$util.isString(message.ownerCountry)) { return 'ownerCountry: string expected' }
+      }
+      if (message.officalUrl != null && message.hasOwnProperty('officalUrl')) {
+        if (!$util.isString(message.officalUrl)) { return 'officalUrl: string expected' }
+      }
+      return null
+    }
+
+    /**
+         * Creates an AppModel message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbapp.AppModel
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbapp.AppModel} AppModel
+         */
+    AppModel.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbapp.AppModel) { return object }
+      var message = new $root.pbapp.AppModel()
+      if (object.id != null) {
+        if ($util.Long) { (message.id = $util.Long.fromValue(object.id)).unsigned = false } else if (typeof object.id === 'string') { message.id = parseInt(object.id, 10) } else if (typeof object.id === 'number') { message.id = object.id } else if (typeof object.id === 'object') { message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber() }
+      }
+      if (object.createdAt != null) { message.createdAt = String(object.createdAt) }
+      if (object.updatedAt != null) { message.updatedAt = String(object.updatedAt) }
+      if (object.name != null) { message.name = String(object.name) }
+      if (object.description != null) { message.description = String(object.description) }
+      if (object.icon != null) { message.icon = String(object.icon) }
+      if (object.logo != null) { message.logo = String(object.logo) }
+      if (object.url != null) { message.url = String(object.url) }
+      if (object.version != null) { message.version = String(object.version) }
+      if (object.type != null) { message.type = object.type | 0 }
+      if (object.status != null) { message.status = object.status | 0 }
+      if (object.ownerId != null) {
+        if ($util.Long) { (message.ownerId = $util.Long.fromValue(object.ownerId)).unsigned = false } else if (typeof object.ownerId === 'string') { message.ownerId = parseInt(object.ownerId, 10) } else if (typeof object.ownerId === 'number') { message.ownerId = object.ownerId } else if (typeof object.ownerId === 'object') { message.ownerId = new $util.LongBits(object.ownerId.low >>> 0, object.ownerId.high >>> 0).toNumber() }
+      }
+      if (object.ownerName != null) { message.ownerName = String(object.ownerName) }
+      if (object.ownerEmail != null) { message.ownerEmail = String(object.ownerEmail) }
+      if (object.ownerPhone != null) { message.ownerPhone = String(object.ownerPhone) }
+      if (object.ownerMobile != null) { message.ownerMobile = String(object.ownerMobile) }
+      if (object.ownerAddress != null) { message.ownerAddress = String(object.ownerAddress) }
+      if (object.ownerZipCode != null) { message.ownerZipCode = String(object.ownerZipCode) }
+      if (object.ownerCountry != null) { message.ownerCountry = String(object.ownerCountry) }
+      if (object.officalUrl != null) { message.officalUrl = String(object.officalUrl) }
+      return message
+    }
+
+    /**
+         * Creates a plain object from an AppModel message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbapp.AppModel
+         * @static
+         * @param {pbapp.AppModel} message AppModel
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    AppModel.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.defaults) {
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.id = options.longs === String ? '0' : 0 }
+        object.createdAt = ''
+        object.updatedAt = ''
+        object.name = ''
+        object.description = ''
+        object.icon = ''
+        object.logo = ''
+        object.url = ''
+        object.version = ''
+        object.type = 0
+        object.status = 0
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.ownerId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.ownerId = options.longs === String ? '0' : 0 }
+        object.ownerName = ''
+        object.ownerEmail = ''
+        object.ownerPhone = ''
+        object.ownerMobile = ''
+        object.ownerAddress = ''
+        object.ownerZipCode = ''
+        object.ownerCountry = ''
+        object.officalUrl = ''
+      }
+      if (message.id != null && message.hasOwnProperty('id')) {
+        if (typeof message.id === 'number') { object.id = options.longs === String ? String(message.id) : message.id } else { object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id }
+      }
+      if (message.createdAt != null && message.hasOwnProperty('createdAt')) { object.createdAt = message.createdAt }
+      if (message.updatedAt != null && message.hasOwnProperty('updatedAt')) { object.updatedAt = message.updatedAt }
+      if (message.name != null && message.hasOwnProperty('name')) { object.name = message.name }
+      if (message.description != null && message.hasOwnProperty('description')) { object.description = message.description }
+      if (message.icon != null && message.hasOwnProperty('icon')) { object.icon = message.icon }
+      if (message.logo != null && message.hasOwnProperty('logo')) { object.logo = message.logo }
+      if (message.url != null && message.hasOwnProperty('url')) { object.url = message.url }
+      if (message.version != null && message.hasOwnProperty('version')) { object.version = message.version }
+      if (message.type != null && message.hasOwnProperty('type')) { object.type = message.type }
+      if (message.status != null && message.hasOwnProperty('status')) { object.status = message.status }
+      if (message.ownerId != null && message.hasOwnProperty('ownerId')) {
+        if (typeof message.ownerId === 'number') { object.ownerId = options.longs === String ? String(message.ownerId) : message.ownerId } else { object.ownerId = options.longs === String ? $util.Long.prototype.toString.call(message.ownerId) : options.longs === Number ? new $util.LongBits(message.ownerId.low >>> 0, message.ownerId.high >>> 0).toNumber() : message.ownerId }
+      }
+      if (message.ownerName != null && message.hasOwnProperty('ownerName')) { object.ownerName = message.ownerName }
+      if (message.ownerEmail != null && message.hasOwnProperty('ownerEmail')) { object.ownerEmail = message.ownerEmail }
+      if (message.ownerPhone != null && message.hasOwnProperty('ownerPhone')) { object.ownerPhone = message.ownerPhone }
+      if (message.ownerMobile != null && message.hasOwnProperty('ownerMobile')) { object.ownerMobile = message.ownerMobile }
+      if (message.ownerAddress != null && message.hasOwnProperty('ownerAddress')) { object.ownerAddress = message.ownerAddress }
+      if (message.ownerZipCode != null && message.hasOwnProperty('ownerZipCode')) { object.ownerZipCode = message.ownerZipCode }
+      if (message.ownerCountry != null && message.hasOwnProperty('ownerCountry')) { object.ownerCountry = message.ownerCountry }
+      if (message.officalUrl != null && message.hasOwnProperty('officalUrl')) { object.officalUrl = message.officalUrl }
+      return object
+    }
+
+    /**
+         * Converts this AppModel to JSON.
+         * @function toJSON
+         * @memberof pbapp.AppModel
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    AppModel.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for AppModel
+         * @function getTypeUrl
+         * @memberof pbapp.AppModel
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    AppModel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/pbapp.AppModel'
+    }
+
+    return AppModel
+  })()
+
+  pbapp.FindAppArgs = (function() {
+    /**
+         * Properties of a FindAppArgs.
+         * @memberof pbapp
+         * @interface IFindAppArgs
+         * @property {pbcommon.IPageInfo|null} [pageInfo] FindAppArgs pageInfo
+         * @property {pbapp.IAppModel|null} [query] FindAppArgs query
+         */
+
+    /**
+         * Constructs a new FindAppArgs.
+         * @memberof pbapp
+         * @classdesc Represents a FindAppArgs.
+         * @implements IFindAppArgs
+         * @constructor
+         * @param {pbapp.IFindAppArgs=} [properties] Properties to set
+         */
+    function FindAppArgs(properties) {
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * FindAppArgs pageInfo.
+         * @member {pbcommon.IPageInfo|null|undefined} pageInfo
+         * @memberof pbapp.FindAppArgs
+         * @instance
+         */
+    FindAppArgs.prototype.pageInfo = null
+
+    /**
+         * FindAppArgs query.
+         * @member {pbapp.IAppModel|null|undefined} query
+         * @memberof pbapp.FindAppArgs
+         * @instance
+         */
+    FindAppArgs.prototype.query = null
+
+    /**
+         * Creates a new FindAppArgs instance using the specified properties.
+         * @function create
+         * @memberof pbapp.FindAppArgs
+         * @static
+         * @param {pbapp.IFindAppArgs=} [properties] Properties to set
+         * @returns {pbapp.FindAppArgs} FindAppArgs instance
+         */
+    FindAppArgs.create = function create(properties) {
+      return new FindAppArgs(properties)
+    }
+
+    /**
+         * Encodes the specified FindAppArgs message. Does not implicitly {@link pbapp.FindAppArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbapp.FindAppArgs
+         * @static
+         * @param {pbapp.IFindAppArgs} message FindAppArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    FindAppArgs.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.pageInfo != null && Object.hasOwnProperty.call(message, 'pageInfo')) { $root.pbcommon.PageInfo.encode(message.pageInfo, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim() }
+      if (message.query != null && Object.hasOwnProperty.call(message, 'query')) { $root.pbapp.AppModel.encode(message.query, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim() }
+      return writer
+    }
+
+    /**
+         * Encodes the specified FindAppArgs message, length delimited. Does not implicitly {@link pbapp.FindAppArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbapp.FindAppArgs
+         * @static
+         * @param {pbapp.IFindAppArgs} message FindAppArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    FindAppArgs.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes a FindAppArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbapp.FindAppArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbapp.FindAppArgs} FindAppArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    FindAppArgs.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbapp.FindAppArgs()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            message.pageInfo = $root.pbcommon.PageInfo.decode(reader, reader.uint32())
+            break
+          }
+          case 2: {
+            message.query = $root.pbapp.AppModel.decode(reader, reader.uint32())
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes a FindAppArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbapp.FindAppArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbapp.FindAppArgs} FindAppArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    FindAppArgs.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies a FindAppArgs message.
+         * @function verify
+         * @memberof pbapp.FindAppArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    FindAppArgs.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.pageInfo != null && message.hasOwnProperty('pageInfo')) {
+        var error = $root.pbcommon.PageInfo.verify(message.pageInfo)
+        if (error) { return 'pageInfo.' + error }
+      }
+      if (message.query != null && message.hasOwnProperty('query')) {
+        var error = $root.pbapp.AppModel.verify(message.query)
+        if (error) { return 'query.' + error }
+      }
+      return null
+    }
+
+    /**
+         * Creates a FindAppArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbapp.FindAppArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbapp.FindAppArgs} FindAppArgs
+         */
+    FindAppArgs.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbapp.FindAppArgs) { return object }
+      var message = new $root.pbapp.FindAppArgs()
+      if (object.pageInfo != null) {
+        if (typeof object.pageInfo !== 'object') { throw TypeError('.pbapp.FindAppArgs.pageInfo: object expected') }
+        message.pageInfo = $root.pbcommon.PageInfo.fromObject(object.pageInfo)
+      }
+      if (object.query != null) {
+        if (typeof object.query !== 'object') { throw TypeError('.pbapp.FindAppArgs.query: object expected') }
+        message.query = $root.pbapp.AppModel.fromObject(object.query)
+      }
+      return message
+    }
+
+    /**
+         * Creates a plain object from a FindAppArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbapp.FindAppArgs
+         * @static
+         * @param {pbapp.FindAppArgs} message FindAppArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    FindAppArgs.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.defaults) {
+        object.pageInfo = null
+        object.query = null
+      }
+      if (message.pageInfo != null && message.hasOwnProperty('pageInfo')) { object.pageInfo = $root.pbcommon.PageInfo.toObject(message.pageInfo, options) }
+      if (message.query != null && message.hasOwnProperty('query')) { object.query = $root.pbapp.AppModel.toObject(message.query, options) }
+      return object
+    }
+
+    /**
+         * Converts this FindAppArgs to JSON.
+         * @function toJSON
+         * @memberof pbapp.FindAppArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    FindAppArgs.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for FindAppArgs
+         * @function getTypeUrl
+         * @memberof pbapp.FindAppArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    FindAppArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/pbapp.FindAppArgs'
+    }
+
+    return FindAppArgs
+  })()
+
+  pbapp.FindAppReply = (function() {
+    /**
+         * Properties of a FindAppReply.
+         * @memberof pbapp
+         * @interface IFindAppReply
+         * @property {pbcommon.EnumCode|null} [code] FindAppReply code
+         * @property {string|null} [msg] FindAppReply msg
+         * @property {pbapp.IAppModel|null} [data] FindAppReply data
+         * @property {Array.<pbapp.IAppModel>|null} [list] FindAppReply list
+         * @property {number|Long|null} [total] FindAppReply total
+         */
+
+    /**
+         * Constructs a new FindAppReply.
+         * @memberof pbapp
+         * @classdesc Represents a FindAppReply.
+         * @implements IFindAppReply
+         * @constructor
+         * @param {pbapp.IFindAppReply=} [properties] Properties to set
+         */
+    function FindAppReply(properties) {
+      this.list = []
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * FindAppReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbapp.FindAppReply
+         * @instance
+         */
+    FindAppReply.prototype.code = 0
+
+    /**
+         * FindAppReply msg.
+         * @member {string} msg
+         * @memberof pbapp.FindAppReply
+         * @instance
+         */
+    FindAppReply.prototype.msg = ''
+
+    /**
+         * FindAppReply data.
+         * @member {pbapp.IAppModel|null|undefined} data
+         * @memberof pbapp.FindAppReply
+         * @instance
+         */
+    FindAppReply.prototype.data = null
+
+    /**
+         * FindAppReply list.
+         * @member {Array.<pbapp.IAppModel>} list
+         * @memberof pbapp.FindAppReply
+         * @instance
+         */
+    FindAppReply.prototype.list = $util.emptyArray
+
+    /**
+         * FindAppReply total.
+         * @member {number|Long} total
+         * @memberof pbapp.FindAppReply
+         * @instance
+         */
+    FindAppReply.prototype.total = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+
+    /**
+         * Creates a new FindAppReply instance using the specified properties.
+         * @function create
+         * @memberof pbapp.FindAppReply
+         * @static
+         * @param {pbapp.IFindAppReply=} [properties] Properties to set
+         * @returns {pbapp.FindAppReply} FindAppReply instance
+         */
+    FindAppReply.create = function create(properties) {
+      return new FindAppReply(properties)
+    }
+
+    /**
+         * Encodes the specified FindAppReply message. Does not implicitly {@link pbapp.FindAppReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbapp.FindAppReply
+         * @static
+         * @param {pbapp.IFindAppReply} message FindAppReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    FindAppReply.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.code != null && Object.hasOwnProperty.call(message, 'code')) { writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code) }
+      if (message.msg != null && Object.hasOwnProperty.call(message, 'msg')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg) }
+      if (message.data != null && Object.hasOwnProperty.call(message, 'data')) { $root.pbapp.AppModel.encode(message.data, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim() }
+      if (message.list != null && message.list.length) {
+        for (var i = 0; i < message.list.length; ++i) { $root.pbapp.AppModel.encode(message.list[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim() }
+      }
+      if (message.total != null && Object.hasOwnProperty.call(message, 'total')) { writer.uint32(/* id 5, wireType 0 =*/40).int64(message.total) }
+      return writer
+    }
+
+    /**
+         * Encodes the specified FindAppReply message, length delimited. Does not implicitly {@link pbapp.FindAppReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbapp.FindAppReply
+         * @static
+         * @param {pbapp.IFindAppReply} message FindAppReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    FindAppReply.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes a FindAppReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbapp.FindAppReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbapp.FindAppReply} FindAppReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    FindAppReply.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbapp.FindAppReply()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            message.code = reader.int32()
+            break
+          }
+          case 2: {
+            message.msg = reader.string()
+            break
+          }
+          case 3: {
+            message.data = $root.pbapp.AppModel.decode(reader, reader.uint32())
+            break
+          }
+          case 4: {
+            if (!(message.list && message.list.length)) { message.list = [] }
+            message.list.push($root.pbapp.AppModel.decode(reader, reader.uint32()))
+            break
+          }
+          case 5: {
+            message.total = reader.int64()
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes a FindAppReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbapp.FindAppReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbapp.FindAppReply} FindAppReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    FindAppReply.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies a FindAppReply message.
+         * @function verify
+         * @memberof pbapp.FindAppReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    FindAppReply.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.code != null && message.hasOwnProperty('code')) {
+        switch (message.code) {
+          default:
+            return 'code: enum value expected'
+          case 0:
+          case 200:
+          case 500:
+          case 501:
+          case 502:
+          case 503:
+          case 504:
+          case 505:
+          case 1001:
+          case 1002:
+          case 1003:
+          case 1004:
+          case 2002:
+          case 2003:
+          case 2004:
+          case 2005:
+          case 2006:
+          case 2007:
+          case 2008:
+          case 2009:
+          case 2010:
+          case 2011:
+          case 2012:
+          case 2013:
+          case 2014:
+            break
+        }
+      }
+      if (message.msg != null && message.hasOwnProperty('msg')) {
+        if (!$util.isString(message.msg)) { return 'msg: string expected' }
+      }
+      if (message.data != null && message.hasOwnProperty('data')) {
+        var error = $root.pbapp.AppModel.verify(message.data)
+        if (error) { return 'data.' + error }
+      }
+      if (message.list != null && message.hasOwnProperty('list')) {
+        if (!Array.isArray(message.list)) { return 'list: array expected' }
+        for (var i = 0; i < message.list.length; ++i) {
+          var error = $root.pbapp.AppModel.verify(message.list[i])
+          if (error) { return 'list.' + error }
+        }
+      }
+      if (message.total != null && message.hasOwnProperty('total')) {
+        if (!$util.isInteger(message.total) && !(message.total && $util.isInteger(message.total.low) && $util.isInteger(message.total.high))) { return 'total: integer|Long expected' }
+      }
+      return null
+    }
+
+    /**
+         * Creates a FindAppReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbapp.FindAppReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbapp.FindAppReply} FindAppReply
+         */
+    FindAppReply.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbapp.FindAppReply) { return object }
+      var message = new $root.pbapp.FindAppReply()
+      switch (object.code) {
+        default:
+          if (typeof object.code === 'number') {
+            message.code = object.code
+            break
+          }
+          break
+        case 'None':
+        case 0:
+          message.code = 0
+          break
+        case 'Success':
+        case 200:
+          message.code = 200
+          break
+        case 'Fail':
+        case 500:
+          message.code = 500
+          break
+        case 'Unknown':
+        case 501:
+          message.code = 501
+          break
+        case 'Internal':
+        case 502:
+          message.code = 502
+          break
+        case 'Invalid':
+        case 503:
+          message.code = 503
+          break
+        case 'InvalidParam':
+        case 504:
+          message.code = 504
+          break
+        case 'ParamError':
+        case 505:
+          message.code = 505
+          break
+        case 'FindError':
+        case 1001:
+          message.code = 1001
+          break
+        case 'CreateError':
+        case 1002:
+          message.code = 1002
+          break
+        case 'DeleteError':
+        case 1003:
+          message.code = 1003
+          break
+        case 'UpdateError':
+        case 1004:
+          message.code = 1004
+          break
+        case 'InvalidToken':
+        case 2002:
+          message.code = 2002
+          break
+        case 'InvalidSign':
+        case 2003:
+          message.code = 2003
+          break
+        case 'NotLogin':
+        case 2004:
+          message.code = 2004
+          break
+        case 'LoginTimeout':
+        case 2005:
+          message.code = 2005
+          break
+        case 'LoginError':
+        case 2006:
+          message.code = 2006
+          break
+        case 'LoginForbidden':
+        case 2007:
+          message.code = 2007
+          break
+        case 'LoginExpired':
+        case 2008:
+          message.code = 2008
+          break
+        case 'LoginInvalid':
+        case 2009:
+          message.code = 2009
+          break
+        case 'LoginInvalidPassword':
+        case 2010:
+          message.code = 2010
+          break
+        case 'LoginInvalidUsername':
+        case 2011:
+          message.code = 2011
+          break
+        case 'LoginInvalidEmail':
+        case 2012:
+          message.code = 2012
+          break
+        case 'LoginInvalidPhone':
+        case 2013:
+          message.code = 2013
+          break
+        case 'LoginInvalidUsernameOrEmail':
+        case 2014:
+          message.code = 2014
+          break
+      }
+      if (object.msg != null) { message.msg = String(object.msg) }
+      if (object.data != null) {
+        if (typeof object.data !== 'object') { throw TypeError('.pbapp.FindAppReply.data: object expected') }
+        message.data = $root.pbapp.AppModel.fromObject(object.data)
+      }
+      if (object.list) {
+        if (!Array.isArray(object.list)) { throw TypeError('.pbapp.FindAppReply.list: array expected') }
+        message.list = []
+        for (var i = 0; i < object.list.length; ++i) {
+          if (typeof object.list[i] !== 'object') { throw TypeError('.pbapp.FindAppReply.list: object expected') }
+          message.list[i] = $root.pbapp.AppModel.fromObject(object.list[i])
+        }
+      }
+      if (object.total != null) {
+        if ($util.Long) { (message.total = $util.Long.fromValue(object.total)).unsigned = false } else if (typeof object.total === 'string') { message.total = parseInt(object.total, 10) } else if (typeof object.total === 'number') { message.total = object.total } else if (typeof object.total === 'object') { message.total = new $util.LongBits(object.total.low >>> 0, object.total.high >>> 0).toNumber() }
+      }
+      return message
+    }
+
+    /**
+         * Creates a plain object from a FindAppReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbapp.FindAppReply
+         * @static
+         * @param {pbapp.FindAppReply} message FindAppReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    FindAppReply.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.arrays || options.defaults) { object.list = [] }
+      if (options.defaults) {
+        object.code = options.enums === String ? 'None' : 0
+        object.msg = ''
+        object.data = null
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.total = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.total = options.longs === String ? '0' : 0 }
+      }
+      if (message.code != null && message.hasOwnProperty('code')) { object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code }
+      if (message.msg != null && message.hasOwnProperty('msg')) { object.msg = message.msg }
+      if (message.data != null && message.hasOwnProperty('data')) { object.data = $root.pbapp.AppModel.toObject(message.data, options) }
+      if (message.list && message.list.length) {
+        object.list = []
+        for (var j = 0; j < message.list.length; ++j) { object.list[j] = $root.pbapp.AppModel.toObject(message.list[j], options) }
+      }
+      if (message.total != null && message.hasOwnProperty('total')) {
+        if (typeof message.total === 'number') { object.total = options.longs === String ? String(message.total) : message.total } else { object.total = options.longs === String ? $util.Long.prototype.toString.call(message.total) : options.longs === Number ? new $util.LongBits(message.total.low >>> 0, message.total.high >>> 0).toNumber() : message.total }
+      }
+      return object
+    }
+
+    /**
+         * Converts this FindAppReply to JSON.
+         * @function toJSON
+         * @memberof pbapp.FindAppReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    FindAppReply.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for FindAppReply
+         * @function getTypeUrl
+         * @memberof pbapp.FindAppReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    FindAppReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/pbapp.FindAppReply'
+    }
+
+    return FindAppReply
+  })()
+
+  pbapp.App = (function() {
+    /**
+         * Constructs a new App service.
+         * @memberof pbapp
+         * @classdesc Represents an App
+         * @extends $protobuf.rpc.Service
+         * @constructor
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         */
+    function App(rpcImpl, requestDelimited, responseDelimited) {
+      $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited)
+    }
+
+    (App.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = App
+
+    /**
+         * Creates new App service using the specified rpc implementation.
+         * @function create
+         * @memberof pbapp.App
+         * @static
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         * @returns {App} RPC service. Useful where requests and/or responses are streamed.
+         */
+    App.create = function create(rpcImpl, requestDelimited, responseDelimited) {
+      return new this(rpcImpl, requestDelimited, responseDelimited)
+    }
+
+    /**
+         * Callback as used by {@link pbapp.App#createApp}.
+         * @memberof pbapp.App
+         * @typedef CreateAppCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+    /**
+         * Calls CreateApp.
+         * @function createApp
+         * @memberof pbapp.App
+         * @instance
+         * @param {pbapp.IAppModel} request AppModel message or plain object
+         * @param {pbapp.App.CreateAppCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+    Object.defineProperty(App.prototype.createApp = function createApp(request, callback) {
+      return this.rpcCall(createApp, $root.pbapp.AppModel, $root.pbcommon.CommonResult, request, callback)
+    }, 'name', { value: 'CreateApp' })
+
+    /**
+         * Calls CreateApp.
+         * @function createApp
+         * @memberof pbapp.App
+         * @instance
+         * @param {pbapp.IAppModel} request AppModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+    /**
+         * Callback as used by {@link pbapp.App#updateApp}.
+         * @memberof pbapp.App
+         * @typedef UpdateAppCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+    /**
+         * Calls UpdateApp.
+         * @function updateApp
+         * @memberof pbapp.App
+         * @instance
+         * @param {pbapp.IAppModel} request AppModel message or plain object
+         * @param {pbapp.App.UpdateAppCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+    Object.defineProperty(App.prototype.updateApp = function updateApp(request, callback) {
+      return this.rpcCall(updateApp, $root.pbapp.AppModel, $root.pbcommon.CommonResult, request, callback)
+    }, 'name', { value: 'UpdateApp' })
+
+    /**
+         * Calls UpdateApp.
+         * @function updateApp
+         * @memberof pbapp.App
+         * @instance
+         * @param {pbapp.IAppModel} request AppModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+    /**
+         * Callback as used by {@link pbapp.App#deleteApp}.
+         * @memberof pbapp.App
+         * @typedef DeleteAppCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+    /**
+         * Calls DeleteApp.
+         * @function deleteApp
+         * @memberof pbapp.App
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbapp.App.DeleteAppCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+    Object.defineProperty(App.prototype.deleteApp = function deleteApp(request, callback) {
+      return this.rpcCall(deleteApp, $root.pbcommon.IdArgs, $root.pbcommon.CommonResult, request, callback)
+    }, 'name', { value: 'DeleteApp' })
+
+    /**
+         * Calls DeleteApp.
+         * @function deleteApp
+         * @memberof pbapp.App
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+    /**
+         * Callback as used by {@link pbapp.App#findAppById}.
+         * @memberof pbapp.App
+         * @typedef FindAppByIdCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbapp.FindAppReply} [response] FindAppReply
+         */
+
+    /**
+         * Calls FindAppById.
+         * @function findAppById
+         * @memberof pbapp.App
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbapp.App.FindAppByIdCallback} callback Node-style callback called with the error, if any, and FindAppReply
+         * @returns {undefined}
+         * @variation 1
+         */
+    Object.defineProperty(App.prototype.findAppById = function findAppById(request, callback) {
+      return this.rpcCall(findAppById, $root.pbcommon.IdArgs, $root.pbapp.FindAppReply, request, callback)
+    }, 'name', { value: 'FindAppById' })
+
+    /**
+         * Calls FindAppById.
+         * @function findAppById
+         * @memberof pbapp.App
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbapp.FindAppReply>} Promise
+         * @variation 2
+         */
+
+    /**
+         * Callback as used by {@link pbapp.App#findAppList}.
+         * @memberof pbapp.App
+         * @typedef FindAppListCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbapp.FindAppReply} [response] FindAppReply
+         */
+
+    /**
+         * Calls FindAppList.
+         * @function findAppList
+         * @memberof pbapp.App
+         * @instance
+         * @param {pbapp.IFindAppArgs} request FindAppArgs message or plain object
+         * @param {pbapp.App.FindAppListCallback} callback Node-style callback called with the error, if any, and FindAppReply
+         * @returns {undefined}
+         * @variation 1
+         */
+    Object.defineProperty(App.prototype.findAppList = function findAppList(request, callback) {
+      return this.rpcCall(findAppList, $root.pbapp.FindAppArgs, $root.pbapp.FindAppReply, request, callback)
+    }, 'name', { value: 'FindAppList' })
+
+    /**
+         * Calls FindAppList.
+         * @function findAppList
+         * @memberof pbapp.App
+         * @instance
+         * @param {pbapp.IFindAppArgs} request FindAppArgs message or plain object
+         * @returns {Promise<pbapp.FindAppReply>} Promise
+         * @variation 2
+         */
+
+    return App
+  })()
+
+  return pbapp
+})()
+
+$root.pbdeviceReport = (function() {
+  /**
+     * Namespace pbdeviceReport.
+     * @exports pbdeviceReport
+     * @namespace
+     */
+  var pbdeviceReport = {}
+
+  pbdeviceReport.DeviceReportModel = (function() {
+    /**
+         * Properties of a DeviceReportModel.
+         * @memberof pbdeviceReport
+         * @interface IDeviceReportModel
+         * @property {number|Long|null} [id] DeviceReportModel id
+         * @property {string|null} [createdAt] DeviceReportModel createdAt
+         * @property {string|null} [updatedAt] DeviceReportModel updatedAt
+         * @property {number|null} [rptNo] DeviceReportModel rptNo
+         * @property {string|null} [imei] DeviceReportModel imei
+         * @property {string|null} [firmwareEdition] DeviceReportModel firmwareEdition
+         * @property {string|null} [reportTime] DeviceReportModel reportTime
+         * @property {string|null} [devModel] DeviceReportModel devModel
+         * @property {string|null} [reportType] DeviceReportModel reportType
+         * @property {number|null} [csq] DeviceReportModel csq
+         * @property {number|null} [dumpEnergy] DeviceReportModel dumpEnergy
+         * @property {number|null} [stepNum] DeviceReportModel stepNum
+         * @property {number|null} [charging] DeviceReportModel charging
+         * @property {number|null} [status] DeviceReportModel status
+         * @property {string|null} [macs] DeviceReportModel macs
+         * @property {string|null} [latitude] DeviceReportModel latitude
+         * @property {string|null} [longitude] DeviceReportModel longitude
+         * @property {number|null} [flag] DeviceReportModel flag
+         */
+
+    /**
+         * Constructs a new DeviceReportModel.
+         * @memberof pbdeviceReport
+         * @classdesc Represents a DeviceReportModel.
+         * @implements IDeviceReportModel
+         * @constructor
+         * @param {pbdeviceReport.IDeviceReportModel=} [properties] Properties to set
+         */
+    function DeviceReportModel(properties) {
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * DeviceReportModel id.
+         * @member {number|Long} id
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @instance
+         */
+    DeviceReportModel.prototype.id = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+
+    /**
+         * DeviceReportModel createdAt.
+         * @member {string} createdAt
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @instance
+         */
+    DeviceReportModel.prototype.createdAt = ''
+
+    /**
+         * DeviceReportModel updatedAt.
+         * @member {string} updatedAt
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @instance
+         */
+    DeviceReportModel.prototype.updatedAt = ''
+
+    /**
+         * DeviceReportModel rptNo.
+         * @member {number} rptNo
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @instance
+         */
+    DeviceReportModel.prototype.rptNo = 0
+
+    /**
+         * DeviceReportModel imei.
+         * @member {string} imei
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @instance
+         */
+    DeviceReportModel.prototype.imei = ''
+
+    /**
+         * DeviceReportModel firmwareEdition.
+         * @member {string} firmwareEdition
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @instance
+         */
+    DeviceReportModel.prototype.firmwareEdition = ''
+
+    /**
+         * DeviceReportModel reportTime.
+         * @member {string} reportTime
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @instance
+         */
+    DeviceReportModel.prototype.reportTime = ''
+
+    /**
+         * DeviceReportModel devModel.
+         * @member {string} devModel
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @instance
+         */
+    DeviceReportModel.prototype.devModel = ''
+
+    /**
+         * DeviceReportModel reportType.
+         * @member {string} reportType
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @instance
+         */
+    DeviceReportModel.prototype.reportType = ''
+
+    /**
+         * DeviceReportModel csq.
+         * @member {number} csq
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @instance
+         */
+    DeviceReportModel.prototype.csq = 0
+
+    /**
+         * DeviceReportModel dumpEnergy.
+         * @member {number} dumpEnergy
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @instance
+         */
+    DeviceReportModel.prototype.dumpEnergy = 0
+
+    /**
+         * DeviceReportModel stepNum.
+         * @member {number} stepNum
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @instance
+         */
+    DeviceReportModel.prototype.stepNum = 0
+
+    /**
+         * DeviceReportModel charging.
+         * @member {number} charging
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @instance
+         */
+    DeviceReportModel.prototype.charging = 0
+
+    /**
+         * DeviceReportModel status.
+         * @member {number} status
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @instance
+         */
+    DeviceReportModel.prototype.status = 0
+
+    /**
+         * DeviceReportModel macs.
+         * @member {string} macs
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @instance
+         */
+    DeviceReportModel.prototype.macs = ''
+
+    /**
+         * DeviceReportModel latitude.
+         * @member {string} latitude
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @instance
+         */
+    DeviceReportModel.prototype.latitude = ''
+
+    /**
+         * DeviceReportModel longitude.
+         * @member {string} longitude
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @instance
+         */
+    DeviceReportModel.prototype.longitude = ''
+
+    /**
+         * DeviceReportModel flag.
+         * @member {number} flag
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @instance
+         */
+    DeviceReportModel.prototype.flag = 0
+
+    /**
+         * Creates a new DeviceReportModel instance using the specified properties.
+         * @function create
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @static
+         * @param {pbdeviceReport.IDeviceReportModel=} [properties] Properties to set
+         * @returns {pbdeviceReport.DeviceReportModel} DeviceReportModel instance
+         */
+    DeviceReportModel.create = function create(properties) {
+      return new DeviceReportModel(properties)
+    }
+
+    /**
+         * Encodes the specified DeviceReportModel message. Does not implicitly {@link pbdeviceReport.DeviceReportModel.verify|verify} messages.
+         * @function encode
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @static
+         * @param {pbdeviceReport.IDeviceReportModel} message DeviceReportModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    DeviceReportModel.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.id != null && Object.hasOwnProperty.call(message, 'id')) { writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id) }
+      if (message.createdAt != null && Object.hasOwnProperty.call(message, 'createdAt')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.createdAt) }
+      if (message.updatedAt != null && Object.hasOwnProperty.call(message, 'updatedAt')) { writer.uint32(/* id 3, wireType 2 =*/26).string(message.updatedAt) }
+      if (message.rptNo != null && Object.hasOwnProperty.call(message, 'rptNo')) { writer.uint32(/* id 4, wireType 0 =*/32).int32(message.rptNo) }
+      if (message.imei != null && Object.hasOwnProperty.call(message, 'imei')) { writer.uint32(/* id 5, wireType 2 =*/42).string(message.imei) }
+      if (message.firmwareEdition != null && Object.hasOwnProperty.call(message, 'firmwareEdition')) { writer.uint32(/* id 6, wireType 2 =*/50).string(message.firmwareEdition) }
+      if (message.reportTime != null && Object.hasOwnProperty.call(message, 'reportTime')) { writer.uint32(/* id 7, wireType 2 =*/58).string(message.reportTime) }
+      if (message.devModel != null && Object.hasOwnProperty.call(message, 'devModel')) { writer.uint32(/* id 8, wireType 2 =*/66).string(message.devModel) }
+      if (message.reportType != null && Object.hasOwnProperty.call(message, 'reportType')) { writer.uint32(/* id 9, wireType 2 =*/74).string(message.reportType) }
+      if (message.csq != null && Object.hasOwnProperty.call(message, 'csq')) { writer.uint32(/* id 10, wireType 0 =*/80).int32(message.csq) }
+      if (message.dumpEnergy != null && Object.hasOwnProperty.call(message, 'dumpEnergy')) { writer.uint32(/* id 11, wireType 0 =*/88).int32(message.dumpEnergy) }
+      if (message.stepNum != null && Object.hasOwnProperty.call(message, 'stepNum')) { writer.uint32(/* id 12, wireType 0 =*/96).int32(message.stepNum) }
+      if (message.charging != null && Object.hasOwnProperty.call(message, 'charging')) { writer.uint32(/* id 13, wireType 0 =*/104).int32(message.charging) }
+      if (message.status != null && Object.hasOwnProperty.call(message, 'status')) { writer.uint32(/* id 14, wireType 0 =*/112).int32(message.status) }
+      if (message.macs != null && Object.hasOwnProperty.call(message, 'macs')) { writer.uint32(/* id 15, wireType 2 =*/122).string(message.macs) }
+      if (message.latitude != null && Object.hasOwnProperty.call(message, 'latitude')) { writer.uint32(/* id 16, wireType 2 =*/130).string(message.latitude) }
+      if (message.longitude != null && Object.hasOwnProperty.call(message, 'longitude')) { writer.uint32(/* id 17, wireType 2 =*/138).string(message.longitude) }
+      if (message.flag != null && Object.hasOwnProperty.call(message, 'flag')) { writer.uint32(/* id 18, wireType 0 =*/144).int32(message.flag) }
+      return writer
+    }
+
+    /**
+         * Encodes the specified DeviceReportModel message, length delimited. Does not implicitly {@link pbdeviceReport.DeviceReportModel.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @static
+         * @param {pbdeviceReport.IDeviceReportModel} message DeviceReportModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    DeviceReportModel.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes a DeviceReportModel message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbdeviceReport.DeviceReportModel} DeviceReportModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    DeviceReportModel.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbdeviceReport.DeviceReportModel()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            message.id = reader.int64()
+            break
+          }
+          case 2: {
+            message.createdAt = reader.string()
+            break
+          }
+          case 3: {
+            message.updatedAt = reader.string()
+            break
+          }
+          case 4: {
+            message.rptNo = reader.int32()
+            break
+          }
+          case 5: {
+            message.imei = reader.string()
+            break
+          }
+          case 6: {
+            message.firmwareEdition = reader.string()
+            break
+          }
+          case 7: {
+            message.reportTime = reader.string()
+            break
+          }
+          case 8: {
+            message.devModel = reader.string()
+            break
+          }
+          case 9: {
+            message.reportType = reader.string()
+            break
+          }
+          case 10: {
+            message.csq = reader.int32()
+            break
+          }
+          case 11: {
+            message.dumpEnergy = reader.int32()
+            break
+          }
+          case 12: {
+            message.stepNum = reader.int32()
+            break
+          }
+          case 13: {
+            message.charging = reader.int32()
+            break
+          }
+          case 14: {
+            message.status = reader.int32()
+            break
+          }
+          case 15: {
+            message.macs = reader.string()
+            break
+          }
+          case 16: {
+            message.latitude = reader.string()
+            break
+          }
+          case 17: {
+            message.longitude = reader.string()
+            break
+          }
+          case 18: {
+            message.flag = reader.int32()
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes a DeviceReportModel message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbdeviceReport.DeviceReportModel} DeviceReportModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    DeviceReportModel.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies a DeviceReportModel message.
+         * @function verify
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    DeviceReportModel.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.id != null && message.hasOwnProperty('id')) {
+        if (!$util.isInteger(message.id) && !(message.id && $util.isInteger(message.id.low) && $util.isInteger(message.id.high))) { return 'id: integer|Long expected' }
+      }
+      if (message.createdAt != null && message.hasOwnProperty('createdAt')) {
+        if (!$util.isString(message.createdAt)) { return 'createdAt: string expected' }
+      }
+      if (message.updatedAt != null && message.hasOwnProperty('updatedAt')) {
+        if (!$util.isString(message.updatedAt)) { return 'updatedAt: string expected' }
+      }
+      if (message.rptNo != null && message.hasOwnProperty('rptNo')) {
+        if (!$util.isInteger(message.rptNo)) { return 'rptNo: integer expected' }
+      }
+      if (message.imei != null && message.hasOwnProperty('imei')) {
+        if (!$util.isString(message.imei)) { return 'imei: string expected' }
+      }
+      if (message.firmwareEdition != null && message.hasOwnProperty('firmwareEdition')) {
+        if (!$util.isString(message.firmwareEdition)) { return 'firmwareEdition: string expected' }
+      }
+      if (message.reportTime != null && message.hasOwnProperty('reportTime')) {
+        if (!$util.isString(message.reportTime)) { return 'reportTime: string expected' }
+      }
+      if (message.devModel != null && message.hasOwnProperty('devModel')) {
+        if (!$util.isString(message.devModel)) { return 'devModel: string expected' }
+      }
+      if (message.reportType != null && message.hasOwnProperty('reportType')) {
+        if (!$util.isString(message.reportType)) { return 'reportType: string expected' }
+      }
+      if (message.csq != null && message.hasOwnProperty('csq')) {
+        if (!$util.isInteger(message.csq)) { return 'csq: integer expected' }
+      }
+      if (message.dumpEnergy != null && message.hasOwnProperty('dumpEnergy')) {
+        if (!$util.isInteger(message.dumpEnergy)) { return 'dumpEnergy: integer expected' }
+      }
+      if (message.stepNum != null && message.hasOwnProperty('stepNum')) {
+        if (!$util.isInteger(message.stepNum)) { return 'stepNum: integer expected' }
+      }
+      if (message.charging != null && message.hasOwnProperty('charging')) {
+        if (!$util.isInteger(message.charging)) { return 'charging: integer expected' }
+      }
+      if (message.status != null && message.hasOwnProperty('status')) {
+        if (!$util.isInteger(message.status)) { return 'status: integer expected' }
+      }
+      if (message.macs != null && message.hasOwnProperty('macs')) {
+        if (!$util.isString(message.macs)) { return 'macs: string expected' }
+      }
+      if (message.latitude != null && message.hasOwnProperty('latitude')) {
+        if (!$util.isString(message.latitude)) { return 'latitude: string expected' }
+      }
+      if (message.longitude != null && message.hasOwnProperty('longitude')) {
+        if (!$util.isString(message.longitude)) { return 'longitude: string expected' }
+      }
+      if (message.flag != null && message.hasOwnProperty('flag')) {
+        if (!$util.isInteger(message.flag)) { return 'flag: integer expected' }
+      }
+      return null
+    }
+
+    /**
+         * Creates a DeviceReportModel message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbdeviceReport.DeviceReportModel} DeviceReportModel
+         */
+    DeviceReportModel.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbdeviceReport.DeviceReportModel) { return object }
+      var message = new $root.pbdeviceReport.DeviceReportModel()
+      if (object.id != null) {
+        if ($util.Long) { (message.id = $util.Long.fromValue(object.id)).unsigned = false } else if (typeof object.id === 'string') { message.id = parseInt(object.id, 10) } else if (typeof object.id === 'number') { message.id = object.id } else if (typeof object.id === 'object') { message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber() }
+      }
+      if (object.createdAt != null) { message.createdAt = String(object.createdAt) }
+      if (object.updatedAt != null) { message.updatedAt = String(object.updatedAt) }
+      if (object.rptNo != null) { message.rptNo = object.rptNo | 0 }
+      if (object.imei != null) { message.imei = String(object.imei) }
+      if (object.firmwareEdition != null) { message.firmwareEdition = String(object.firmwareEdition) }
+      if (object.reportTime != null) { message.reportTime = String(object.reportTime) }
+      if (object.devModel != null) { message.devModel = String(object.devModel) }
+      if (object.reportType != null) { message.reportType = String(object.reportType) }
+      if (object.csq != null) { message.csq = object.csq | 0 }
+      if (object.dumpEnergy != null) { message.dumpEnergy = object.dumpEnergy | 0 }
+      if (object.stepNum != null) { message.stepNum = object.stepNum | 0 }
+      if (object.charging != null) { message.charging = object.charging | 0 }
+      if (object.status != null) { message.status = object.status | 0 }
+      if (object.macs != null) { message.macs = String(object.macs) }
+      if (object.latitude != null) { message.latitude = String(object.latitude) }
+      if (object.longitude != null) { message.longitude = String(object.longitude) }
+      if (object.flag != null) { message.flag = object.flag | 0 }
+      return message
+    }
+
+    /**
+         * Creates a plain object from a DeviceReportModel message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @static
+         * @param {pbdeviceReport.DeviceReportModel} message DeviceReportModel
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    DeviceReportModel.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.defaults) {
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.id = options.longs === String ? '0' : 0 }
+        object.createdAt = ''
+        object.updatedAt = ''
+        object.rptNo = 0
+        object.imei = ''
+        object.firmwareEdition = ''
+        object.reportTime = ''
+        object.devModel = ''
+        object.reportType = ''
+        object.csq = 0
+        object.dumpEnergy = 0
+        object.stepNum = 0
+        object.charging = 0
+        object.status = 0
+        object.macs = ''
+        object.latitude = ''
+        object.longitude = ''
+        object.flag = 0
+      }
+      if (message.id != null && message.hasOwnProperty('id')) {
+        if (typeof message.id === 'number') { object.id = options.longs === String ? String(message.id) : message.id } else { object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id }
+      }
+      if (message.createdAt != null && message.hasOwnProperty('createdAt')) { object.createdAt = message.createdAt }
+      if (message.updatedAt != null && message.hasOwnProperty('updatedAt')) { object.updatedAt = message.updatedAt }
+      if (message.rptNo != null && message.hasOwnProperty('rptNo')) { object.rptNo = message.rptNo }
+      if (message.imei != null && message.hasOwnProperty('imei')) { object.imei = message.imei }
+      if (message.firmwareEdition != null && message.hasOwnProperty('firmwareEdition')) { object.firmwareEdition = message.firmwareEdition }
+      if (message.reportTime != null && message.hasOwnProperty('reportTime')) { object.reportTime = message.reportTime }
+      if (message.devModel != null && message.hasOwnProperty('devModel')) { object.devModel = message.devModel }
+      if (message.reportType != null && message.hasOwnProperty('reportType')) { object.reportType = message.reportType }
+      if (message.csq != null && message.hasOwnProperty('csq')) { object.csq = message.csq }
+      if (message.dumpEnergy != null && message.hasOwnProperty('dumpEnergy')) { object.dumpEnergy = message.dumpEnergy }
+      if (message.stepNum != null && message.hasOwnProperty('stepNum')) { object.stepNum = message.stepNum }
+      if (message.charging != null && message.hasOwnProperty('charging')) { object.charging = message.charging }
+      if (message.status != null && message.hasOwnProperty('status')) { object.status = message.status }
+      if (message.macs != null && message.hasOwnProperty('macs')) { object.macs = message.macs }
+      if (message.latitude != null && message.hasOwnProperty('latitude')) { object.latitude = message.latitude }
+      if (message.longitude != null && message.hasOwnProperty('longitude')) { object.longitude = message.longitude }
+      if (message.flag != null && message.hasOwnProperty('flag')) { object.flag = message.flag }
+      return object
+    }
+
+    /**
+         * Converts this DeviceReportModel to JSON.
+         * @function toJSON
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    DeviceReportModel.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for DeviceReportModel
+         * @function getTypeUrl
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    DeviceReportModel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/pbdeviceReport.DeviceReportModel'
+    }
+
+    return DeviceReportModel
+  })()
+
+  pbdeviceReport.FindDeviceReportArgs = (function() {
+    /**
+         * Properties of a FindDeviceReportArgs.
+         * @memberof pbdeviceReport
+         * @interface IFindDeviceReportArgs
+         * @property {pbcommon.IPageInfo|null} [pageInfo] FindDeviceReportArgs pageInfo
+         * @property {pbdeviceReport.IDeviceReportModel|null} [query] FindDeviceReportArgs query
+         */
+
+    /**
+         * Constructs a new FindDeviceReportArgs.
+         * @memberof pbdeviceReport
+         * @classdesc Represents a FindDeviceReportArgs.
+         * @implements IFindDeviceReportArgs
+         * @constructor
+         * @param {pbdeviceReport.IFindDeviceReportArgs=} [properties] Properties to set
+         */
+    function FindDeviceReportArgs(properties) {
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * FindDeviceReportArgs pageInfo.
+         * @member {pbcommon.IPageInfo|null|undefined} pageInfo
+         * @memberof pbdeviceReport.FindDeviceReportArgs
+         * @instance
+         */
+    FindDeviceReportArgs.prototype.pageInfo = null
+
+    /**
+         * FindDeviceReportArgs query.
+         * @member {pbdeviceReport.IDeviceReportModel|null|undefined} query
+         * @memberof pbdeviceReport.FindDeviceReportArgs
+         * @instance
+         */
+    FindDeviceReportArgs.prototype.query = null
+
+    /**
+         * Creates a new FindDeviceReportArgs instance using the specified properties.
+         * @function create
+         * @memberof pbdeviceReport.FindDeviceReportArgs
+         * @static
+         * @param {pbdeviceReport.IFindDeviceReportArgs=} [properties] Properties to set
+         * @returns {pbdeviceReport.FindDeviceReportArgs} FindDeviceReportArgs instance
+         */
+    FindDeviceReportArgs.create = function create(properties) {
+      return new FindDeviceReportArgs(properties)
+    }
+
+    /**
+         * Encodes the specified FindDeviceReportArgs message. Does not implicitly {@link pbdeviceReport.FindDeviceReportArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbdeviceReport.FindDeviceReportArgs
+         * @static
+         * @param {pbdeviceReport.IFindDeviceReportArgs} message FindDeviceReportArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    FindDeviceReportArgs.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.pageInfo != null && Object.hasOwnProperty.call(message, 'pageInfo')) { $root.pbcommon.PageInfo.encode(message.pageInfo, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim() }
+      if (message.query != null && Object.hasOwnProperty.call(message, 'query')) { $root.pbdeviceReport.DeviceReportModel.encode(message.query, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim() }
+      return writer
+    }
+
+    /**
+         * Encodes the specified FindDeviceReportArgs message, length delimited. Does not implicitly {@link pbdeviceReport.FindDeviceReportArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbdeviceReport.FindDeviceReportArgs
+         * @static
+         * @param {pbdeviceReport.IFindDeviceReportArgs} message FindDeviceReportArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    FindDeviceReportArgs.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes a FindDeviceReportArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbdeviceReport.FindDeviceReportArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbdeviceReport.FindDeviceReportArgs} FindDeviceReportArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    FindDeviceReportArgs.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbdeviceReport.FindDeviceReportArgs()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            message.pageInfo = $root.pbcommon.PageInfo.decode(reader, reader.uint32())
+            break
+          }
+          case 2: {
+            message.query = $root.pbdeviceReport.DeviceReportModel.decode(reader, reader.uint32())
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes a FindDeviceReportArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbdeviceReport.FindDeviceReportArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbdeviceReport.FindDeviceReportArgs} FindDeviceReportArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    FindDeviceReportArgs.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies a FindDeviceReportArgs message.
+         * @function verify
+         * @memberof pbdeviceReport.FindDeviceReportArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    FindDeviceReportArgs.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.pageInfo != null && message.hasOwnProperty('pageInfo')) {
+        var error = $root.pbcommon.PageInfo.verify(message.pageInfo)
+        if (error) { return 'pageInfo.' + error }
+      }
+      if (message.query != null && message.hasOwnProperty('query')) {
+        var error = $root.pbdeviceReport.DeviceReportModel.verify(message.query)
+        if (error) { return 'query.' + error }
+      }
+      return null
+    }
+
+    /**
+         * Creates a FindDeviceReportArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbdeviceReport.FindDeviceReportArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbdeviceReport.FindDeviceReportArgs} FindDeviceReportArgs
+         */
+    FindDeviceReportArgs.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbdeviceReport.FindDeviceReportArgs) { return object }
+      var message = new $root.pbdeviceReport.FindDeviceReportArgs()
+      if (object.pageInfo != null) {
+        if (typeof object.pageInfo !== 'object') { throw TypeError('.pbdeviceReport.FindDeviceReportArgs.pageInfo: object expected') }
+        message.pageInfo = $root.pbcommon.PageInfo.fromObject(object.pageInfo)
+      }
+      if (object.query != null) {
+        if (typeof object.query !== 'object') { throw TypeError('.pbdeviceReport.FindDeviceReportArgs.query: object expected') }
+        message.query = $root.pbdeviceReport.DeviceReportModel.fromObject(object.query)
+      }
+      return message
+    }
+
+    /**
+         * Creates a plain object from a FindDeviceReportArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbdeviceReport.FindDeviceReportArgs
+         * @static
+         * @param {pbdeviceReport.FindDeviceReportArgs} message FindDeviceReportArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    FindDeviceReportArgs.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.defaults) {
+        object.pageInfo = null
+        object.query = null
+      }
+      if (message.pageInfo != null && message.hasOwnProperty('pageInfo')) { object.pageInfo = $root.pbcommon.PageInfo.toObject(message.pageInfo, options) }
+      if (message.query != null && message.hasOwnProperty('query')) { object.query = $root.pbdeviceReport.DeviceReportModel.toObject(message.query, options) }
+      return object
+    }
+
+    /**
+         * Converts this FindDeviceReportArgs to JSON.
+         * @function toJSON
+         * @memberof pbdeviceReport.FindDeviceReportArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    FindDeviceReportArgs.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for FindDeviceReportArgs
+         * @function getTypeUrl
+         * @memberof pbdeviceReport.FindDeviceReportArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    FindDeviceReportArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/pbdeviceReport.FindDeviceReportArgs'
+    }
+
+    return FindDeviceReportArgs
+  })()
+
+  pbdeviceReport.FindDeviceReportReplay = (function() {
+    /**
+         * Properties of a FindDeviceReportReplay.
+         * @memberof pbdeviceReport
+         * @interface IFindDeviceReportReplay
+         * @property {pbcommon.EnumCode|null} [code] FindDeviceReportReplay code
+         * @property {string|null} [msg] FindDeviceReportReplay msg
+         * @property {pbdeviceReport.IDeviceReportModel|null} [data] FindDeviceReportReplay data
+         * @property {Array.<pbdeviceReport.IDeviceReportModel>|null} [list] FindDeviceReportReplay list
+         * @property {number|Long|null} [total] FindDeviceReportReplay total
+         */
+
+    /**
+         * Constructs a new FindDeviceReportReplay.
+         * @memberof pbdeviceReport
+         * @classdesc Represents a FindDeviceReportReplay.
+         * @implements IFindDeviceReportReplay
+         * @constructor
+         * @param {pbdeviceReport.IFindDeviceReportReplay=} [properties] Properties to set
+         */
+    function FindDeviceReportReplay(properties) {
+      this.list = []
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * FindDeviceReportReplay code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbdeviceReport.FindDeviceReportReplay
+         * @instance
+         */
+    FindDeviceReportReplay.prototype.code = 0
+
+    /**
+         * FindDeviceReportReplay msg.
+         * @member {string} msg
+         * @memberof pbdeviceReport.FindDeviceReportReplay
+         * @instance
+         */
+    FindDeviceReportReplay.prototype.msg = ''
+
+    /**
+         * FindDeviceReportReplay data.
+         * @member {pbdeviceReport.IDeviceReportModel|null|undefined} data
+         * @memberof pbdeviceReport.FindDeviceReportReplay
+         * @instance
+         */
+    FindDeviceReportReplay.prototype.data = null
+
+    /**
+         * FindDeviceReportReplay list.
+         * @member {Array.<pbdeviceReport.IDeviceReportModel>} list
+         * @memberof pbdeviceReport.FindDeviceReportReplay
+         * @instance
+         */
+    FindDeviceReportReplay.prototype.list = $util.emptyArray
+
+    /**
+         * FindDeviceReportReplay total.
+         * @member {number|Long} total
+         * @memberof pbdeviceReport.FindDeviceReportReplay
+         * @instance
+         */
+    FindDeviceReportReplay.prototype.total = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+
+    /**
+         * Creates a new FindDeviceReportReplay instance using the specified properties.
+         * @function create
+         * @memberof pbdeviceReport.FindDeviceReportReplay
+         * @static
+         * @param {pbdeviceReport.IFindDeviceReportReplay=} [properties] Properties to set
+         * @returns {pbdeviceReport.FindDeviceReportReplay} FindDeviceReportReplay instance
+         */
+    FindDeviceReportReplay.create = function create(properties) {
+      return new FindDeviceReportReplay(properties)
+    }
+
+    /**
+         * Encodes the specified FindDeviceReportReplay message. Does not implicitly {@link pbdeviceReport.FindDeviceReportReplay.verify|verify} messages.
+         * @function encode
+         * @memberof pbdeviceReport.FindDeviceReportReplay
+         * @static
+         * @param {pbdeviceReport.IFindDeviceReportReplay} message FindDeviceReportReplay message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    FindDeviceReportReplay.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.code != null && Object.hasOwnProperty.call(message, 'code')) { writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code) }
+      if (message.msg != null && Object.hasOwnProperty.call(message, 'msg')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg) }
+      if (message.data != null && Object.hasOwnProperty.call(message, 'data')) { $root.pbdeviceReport.DeviceReportModel.encode(message.data, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim() }
+      if (message.list != null && message.list.length) {
+        for (var i = 0; i < message.list.length; ++i) { $root.pbdeviceReport.DeviceReportModel.encode(message.list[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim() }
+      }
+      if (message.total != null && Object.hasOwnProperty.call(message, 'total')) { writer.uint32(/* id 5, wireType 0 =*/40).int64(message.total) }
+      return writer
+    }
+
+    /**
+         * Encodes the specified FindDeviceReportReplay message, length delimited. Does not implicitly {@link pbdeviceReport.FindDeviceReportReplay.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbdeviceReport.FindDeviceReportReplay
+         * @static
+         * @param {pbdeviceReport.IFindDeviceReportReplay} message FindDeviceReportReplay message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    FindDeviceReportReplay.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes a FindDeviceReportReplay message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbdeviceReport.FindDeviceReportReplay
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbdeviceReport.FindDeviceReportReplay} FindDeviceReportReplay
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    FindDeviceReportReplay.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbdeviceReport.FindDeviceReportReplay()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            message.code = reader.int32()
+            break
+          }
+          case 2: {
+            message.msg = reader.string()
+            break
+          }
+          case 3: {
+            message.data = $root.pbdeviceReport.DeviceReportModel.decode(reader, reader.uint32())
+            break
+          }
+          case 4: {
+            if (!(message.list && message.list.length)) { message.list = [] }
+            message.list.push($root.pbdeviceReport.DeviceReportModel.decode(reader, reader.uint32()))
+            break
+          }
+          case 5: {
+            message.total = reader.int64()
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes a FindDeviceReportReplay message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbdeviceReport.FindDeviceReportReplay
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbdeviceReport.FindDeviceReportReplay} FindDeviceReportReplay
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    FindDeviceReportReplay.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies a FindDeviceReportReplay message.
+         * @function verify
+         * @memberof pbdeviceReport.FindDeviceReportReplay
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    FindDeviceReportReplay.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.code != null && message.hasOwnProperty('code')) {
+        switch (message.code) {
+          default:
+            return 'code: enum value expected'
+          case 0:
+          case 200:
+          case 500:
+          case 501:
+          case 502:
+          case 503:
+          case 504:
+          case 505:
+          case 1001:
+          case 1002:
+          case 1003:
+          case 1004:
+          case 2002:
+          case 2003:
+          case 2004:
+          case 2005:
+          case 2006:
+          case 2007:
+          case 2008:
+          case 2009:
+          case 2010:
+          case 2011:
+          case 2012:
+          case 2013:
+          case 2014:
+            break
+        }
+      }
+      if (message.msg != null && message.hasOwnProperty('msg')) {
+        if (!$util.isString(message.msg)) { return 'msg: string expected' }
+      }
+      if (message.data != null && message.hasOwnProperty('data')) {
+        var error = $root.pbdeviceReport.DeviceReportModel.verify(message.data)
+        if (error) { return 'data.' + error }
+      }
+      if (message.list != null && message.hasOwnProperty('list')) {
+        if (!Array.isArray(message.list)) { return 'list: array expected' }
+        for (var i = 0; i < message.list.length; ++i) {
+          var error = $root.pbdeviceReport.DeviceReportModel.verify(message.list[i])
+          if (error) { return 'list.' + error }
+        }
+      }
+      if (message.total != null && message.hasOwnProperty('total')) {
+        if (!$util.isInteger(message.total) && !(message.total && $util.isInteger(message.total.low) && $util.isInteger(message.total.high))) { return 'total: integer|Long expected' }
+      }
+      return null
+    }
+
+    /**
+         * Creates a FindDeviceReportReplay message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbdeviceReport.FindDeviceReportReplay
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbdeviceReport.FindDeviceReportReplay} FindDeviceReportReplay
+         */
+    FindDeviceReportReplay.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbdeviceReport.FindDeviceReportReplay) { return object }
+      var message = new $root.pbdeviceReport.FindDeviceReportReplay()
+      switch (object.code) {
+        default:
+          if (typeof object.code === 'number') {
+            message.code = object.code
+            break
+          }
+          break
+        case 'None':
+        case 0:
+          message.code = 0
+          break
+        case 'Success':
+        case 200:
+          message.code = 200
+          break
+        case 'Fail':
+        case 500:
+          message.code = 500
+          break
+        case 'Unknown':
+        case 501:
+          message.code = 501
+          break
+        case 'Internal':
+        case 502:
+          message.code = 502
+          break
+        case 'Invalid':
+        case 503:
+          message.code = 503
+          break
+        case 'InvalidParam':
+        case 504:
+          message.code = 504
+          break
+        case 'ParamError':
+        case 505:
+          message.code = 505
+          break
+        case 'FindError':
+        case 1001:
+          message.code = 1001
+          break
+        case 'CreateError':
+        case 1002:
+          message.code = 1002
+          break
+        case 'DeleteError':
+        case 1003:
+          message.code = 1003
+          break
+        case 'UpdateError':
+        case 1004:
+          message.code = 1004
+          break
+        case 'InvalidToken':
+        case 2002:
+          message.code = 2002
+          break
+        case 'InvalidSign':
+        case 2003:
+          message.code = 2003
+          break
+        case 'NotLogin':
+        case 2004:
+          message.code = 2004
+          break
+        case 'LoginTimeout':
+        case 2005:
+          message.code = 2005
+          break
+        case 'LoginError':
+        case 2006:
+          message.code = 2006
+          break
+        case 'LoginForbidden':
+        case 2007:
+          message.code = 2007
+          break
+        case 'LoginExpired':
+        case 2008:
+          message.code = 2008
+          break
+        case 'LoginInvalid':
+        case 2009:
+          message.code = 2009
+          break
+        case 'LoginInvalidPassword':
+        case 2010:
+          message.code = 2010
+          break
+        case 'LoginInvalidUsername':
+        case 2011:
+          message.code = 2011
+          break
+        case 'LoginInvalidEmail':
+        case 2012:
+          message.code = 2012
+          break
+        case 'LoginInvalidPhone':
+        case 2013:
+          message.code = 2013
+          break
+        case 'LoginInvalidUsernameOrEmail':
+        case 2014:
+          message.code = 2014
+          break
+      }
+      if (object.msg != null) { message.msg = String(object.msg) }
+      if (object.data != null) {
+        if (typeof object.data !== 'object') { throw TypeError('.pbdeviceReport.FindDeviceReportReplay.data: object expected') }
+        message.data = $root.pbdeviceReport.DeviceReportModel.fromObject(object.data)
+      }
+      if (object.list) {
+        if (!Array.isArray(object.list)) { throw TypeError('.pbdeviceReport.FindDeviceReportReplay.list: array expected') }
+        message.list = []
+        for (var i = 0; i < object.list.length; ++i) {
+          if (typeof object.list[i] !== 'object') { throw TypeError('.pbdeviceReport.FindDeviceReportReplay.list: object expected') }
+          message.list[i] = $root.pbdeviceReport.DeviceReportModel.fromObject(object.list[i])
+        }
+      }
+      if (object.total != null) {
+        if ($util.Long) { (message.total = $util.Long.fromValue(object.total)).unsigned = false } else if (typeof object.total === 'string') { message.total = parseInt(object.total, 10) } else if (typeof object.total === 'number') { message.total = object.total } else if (typeof object.total === 'object') { message.total = new $util.LongBits(object.total.low >>> 0, object.total.high >>> 0).toNumber() }
+      }
+      return message
+    }
+
+    /**
+         * Creates a plain object from a FindDeviceReportReplay message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbdeviceReport.FindDeviceReportReplay
+         * @static
+         * @param {pbdeviceReport.FindDeviceReportReplay} message FindDeviceReportReplay
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    FindDeviceReportReplay.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.arrays || options.defaults) { object.list = [] }
+      if (options.defaults) {
+        object.code = options.enums === String ? 'None' : 0
+        object.msg = ''
+        object.data = null
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.total = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.total = options.longs === String ? '0' : 0 }
+      }
+      if (message.code != null && message.hasOwnProperty('code')) { object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code }
+      if (message.msg != null && message.hasOwnProperty('msg')) { object.msg = message.msg }
+      if (message.data != null && message.hasOwnProperty('data')) { object.data = $root.pbdeviceReport.DeviceReportModel.toObject(message.data, options) }
+      if (message.list && message.list.length) {
+        object.list = []
+        for (var j = 0; j < message.list.length; ++j) { object.list[j] = $root.pbdeviceReport.DeviceReportModel.toObject(message.list[j], options) }
+      }
+      if (message.total != null && message.hasOwnProperty('total')) {
+        if (typeof message.total === 'number') { object.total = options.longs === String ? String(message.total) : message.total } else { object.total = options.longs === String ? $util.Long.prototype.toString.call(message.total) : options.longs === Number ? new $util.LongBits(message.total.low >>> 0, message.total.high >>> 0).toNumber() : message.total }
+      }
+      return object
+    }
+
+    /**
+         * Converts this FindDeviceReportReplay to JSON.
+         * @function toJSON
+         * @memberof pbdeviceReport.FindDeviceReportReplay
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    FindDeviceReportReplay.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for FindDeviceReportReplay
+         * @function getTypeUrl
+         * @memberof pbdeviceReport.FindDeviceReportReplay
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    FindDeviceReportReplay.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/pbdeviceReport.FindDeviceReportReplay'
+    }
+
+    return FindDeviceReportReplay
+  })()
+
+  pbdeviceReport.AepReportArgs = (function() {
+    /**
+         * Properties of an AepReportArgs.
+         * @memberof pbdeviceReport
+         * @interface IAepReportArgs
+         * @property {number|null} [upPacketSN] AepReportArgs upPacketSN
+         * @property {number|null} [upDataSN] AepReportArgs upDataSN
+         * @property {string|null} [topic] AepReportArgs topic
+         * @property {number|Long|null} [timestamp] AepReportArgs timestamp
+         * @property {string|null} [tenantId] AepReportArgs tenantId
+         * @property {string|null} [serviceId] AepReportArgs serviceId
+         * @property {string|null} [protocol] AepReportArgs protocol
+         * @property {string|null} [productId] AepReportArgs productId
+         * @property {pbdeviceReport.AepReportArgs.IPayload|null} [payload] AepReportArgs payload
+         * @property {string|null} [messageType] AepReportArgs messageType
+         * @property {string|null} [deviceType] AepReportArgs deviceType
+         * @property {string|null} [deviceId] AepReportArgs deviceId
+         * @property {string|null} [assocAssetId] AepReportArgs assocAssetId
+         * @property {string|null} [IMSI] AepReportArgs IMSI
+         * @property {string|null} [IMEI] AepReportArgs IMEI
+         */
+
+    /**
+         * Constructs a new AepReportArgs.
+         * @memberof pbdeviceReport
+         * @classdesc Represents an AepReportArgs.
+         * @implements IAepReportArgs
+         * @constructor
+         * @param {pbdeviceReport.IAepReportArgs=} [properties] Properties to set
+         */
+    function AepReportArgs(properties) {
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * AepReportArgs upPacketSN.
+         * @member {number} upPacketSN
+         * @memberof pbdeviceReport.AepReportArgs
+         * @instance
+         */
+    AepReportArgs.prototype.upPacketSN = 0
+
+    /**
+         * AepReportArgs upDataSN.
+         * @member {number} upDataSN
+         * @memberof pbdeviceReport.AepReportArgs
+         * @instance
+         */
+    AepReportArgs.prototype.upDataSN = 0
+
+    /**
+         * AepReportArgs topic.
+         * @member {string} topic
+         * @memberof pbdeviceReport.AepReportArgs
+         * @instance
+         */
+    AepReportArgs.prototype.topic = ''
+
+    /**
+         * AepReportArgs timestamp.
+         * @member {number|Long} timestamp
+         * @memberof pbdeviceReport.AepReportArgs
+         * @instance
+         */
+    AepReportArgs.prototype.timestamp = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+
+    /**
+         * AepReportArgs tenantId.
+         * @member {string} tenantId
+         * @memberof pbdeviceReport.AepReportArgs
+         * @instance
+         */
+    AepReportArgs.prototype.tenantId = ''
+
+    /**
+         * AepReportArgs serviceId.
+         * @member {string} serviceId
+         * @memberof pbdeviceReport.AepReportArgs
+         * @instance
+         */
+    AepReportArgs.prototype.serviceId = ''
+
+    /**
+         * AepReportArgs protocol.
+         * @member {string} protocol
+         * @memberof pbdeviceReport.AepReportArgs
+         * @instance
+         */
+    AepReportArgs.prototype.protocol = ''
+
+    /**
+         * AepReportArgs productId.
+         * @member {string} productId
+         * @memberof pbdeviceReport.AepReportArgs
+         * @instance
+         */
+    AepReportArgs.prototype.productId = ''
+
+    /**
+         * AepReportArgs payload.
+         * @member {pbdeviceReport.AepReportArgs.IPayload|null|undefined} payload
+         * @memberof pbdeviceReport.AepReportArgs
+         * @instance
+         */
+    AepReportArgs.prototype.payload = null
+
+    /**
+         * AepReportArgs messageType.
+         * @member {string} messageType
+         * @memberof pbdeviceReport.AepReportArgs
+         * @instance
+         */
+    AepReportArgs.prototype.messageType = ''
+
+    /**
+         * AepReportArgs deviceType.
+         * @member {string} deviceType
+         * @memberof pbdeviceReport.AepReportArgs
+         * @instance
+         */
+    AepReportArgs.prototype.deviceType = ''
+
+    /**
+         * AepReportArgs deviceId.
+         * @member {string} deviceId
+         * @memberof pbdeviceReport.AepReportArgs
+         * @instance
+         */
+    AepReportArgs.prototype.deviceId = ''
+
+    /**
+         * AepReportArgs assocAssetId.
+         * @member {string} assocAssetId
+         * @memberof pbdeviceReport.AepReportArgs
+         * @instance
+         */
+    AepReportArgs.prototype.assocAssetId = ''
+
+    /**
+         * AepReportArgs IMSI.
+         * @member {string} IMSI
+         * @memberof pbdeviceReport.AepReportArgs
+         * @instance
+         */
+    AepReportArgs.prototype.IMSI = ''
+
+    /**
+         * AepReportArgs IMEI.
+         * @member {string} IMEI
+         * @memberof pbdeviceReport.AepReportArgs
+         * @instance
+         */
+    AepReportArgs.prototype.IMEI = ''
+
+    /**
+         * Creates a new AepReportArgs instance using the specified properties.
+         * @function create
+         * @memberof pbdeviceReport.AepReportArgs
+         * @static
+         * @param {pbdeviceReport.IAepReportArgs=} [properties] Properties to set
+         * @returns {pbdeviceReport.AepReportArgs} AepReportArgs instance
+         */
+    AepReportArgs.create = function create(properties) {
+      return new AepReportArgs(properties)
+    }
+
+    /**
+         * Encodes the specified AepReportArgs message. Does not implicitly {@link pbdeviceReport.AepReportArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbdeviceReport.AepReportArgs
+         * @static
+         * @param {pbdeviceReport.IAepReportArgs} message AepReportArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    AepReportArgs.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.upPacketSN != null && Object.hasOwnProperty.call(message, 'upPacketSN')) { writer.uint32(/* id 1, wireType 0 =*/8).int32(message.upPacketSN) }
+      if (message.upDataSN != null && Object.hasOwnProperty.call(message, 'upDataSN')) { writer.uint32(/* id 2, wireType 0 =*/16).int32(message.upDataSN) }
+      if (message.topic != null && Object.hasOwnProperty.call(message, 'topic')) { writer.uint32(/* id 3, wireType 2 =*/26).string(message.topic) }
+      if (message.timestamp != null && Object.hasOwnProperty.call(message, 'timestamp')) { writer.uint32(/* id 4, wireType 0 =*/32).int64(message.timestamp) }
+      if (message.tenantId != null && Object.hasOwnProperty.call(message, 'tenantId')) { writer.uint32(/* id 5, wireType 2 =*/42).string(message.tenantId) }
+      if (message.serviceId != null && Object.hasOwnProperty.call(message, 'serviceId')) { writer.uint32(/* id 6, wireType 2 =*/50).string(message.serviceId) }
+      if (message.protocol != null && Object.hasOwnProperty.call(message, 'protocol')) { writer.uint32(/* id 7, wireType 2 =*/58).string(message.protocol) }
+      if (message.productId != null && Object.hasOwnProperty.call(message, 'productId')) { writer.uint32(/* id 8, wireType 2 =*/66).string(message.productId) }
+      if (message.payload != null && Object.hasOwnProperty.call(message, 'payload')) { $root.pbdeviceReport.AepReportArgs.Payload.encode(message.payload, writer.uint32(/* id 9, wireType 2 =*/74).fork()).ldelim() }
+      if (message.messageType != null && Object.hasOwnProperty.call(message, 'messageType')) { writer.uint32(/* id 10, wireType 2 =*/82).string(message.messageType) }
+      if (message.deviceType != null && Object.hasOwnProperty.call(message, 'deviceType')) { writer.uint32(/* id 11, wireType 2 =*/90).string(message.deviceType) }
+      if (message.deviceId != null && Object.hasOwnProperty.call(message, 'deviceId')) { writer.uint32(/* id 12, wireType 2 =*/98).string(message.deviceId) }
+      if (message.assocAssetId != null && Object.hasOwnProperty.call(message, 'assocAssetId')) { writer.uint32(/* id 13, wireType 2 =*/106).string(message.assocAssetId) }
+      if (message.IMSI != null && Object.hasOwnProperty.call(message, 'IMSI')) { writer.uint32(/* id 14, wireType 2 =*/114).string(message.IMSI) }
+      if (message.IMEI != null && Object.hasOwnProperty.call(message, 'IMEI')) { writer.uint32(/* id 15, wireType 2 =*/122).string(message.IMEI) }
+      return writer
+    }
+
+    /**
+         * Encodes the specified AepReportArgs message, length delimited. Does not implicitly {@link pbdeviceReport.AepReportArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbdeviceReport.AepReportArgs
+         * @static
+         * @param {pbdeviceReport.IAepReportArgs} message AepReportArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    AepReportArgs.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes an AepReportArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbdeviceReport.AepReportArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbdeviceReport.AepReportArgs} AepReportArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    AepReportArgs.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbdeviceReport.AepReportArgs()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            message.upPacketSN = reader.int32()
+            break
+          }
+          case 2: {
+            message.upDataSN = reader.int32()
+            break
+          }
+          case 3: {
+            message.topic = reader.string()
+            break
+          }
+          case 4: {
+            message.timestamp = reader.int64()
+            break
+          }
+          case 5: {
+            message.tenantId = reader.string()
+            break
+          }
+          case 6: {
+            message.serviceId = reader.string()
+            break
+          }
+          case 7: {
+            message.protocol = reader.string()
+            break
+          }
+          case 8: {
+            message.productId = reader.string()
+            break
+          }
+          case 9: {
+            message.payload = $root.pbdeviceReport.AepReportArgs.Payload.decode(reader, reader.uint32())
+            break
+          }
+          case 10: {
+            message.messageType = reader.string()
+            break
+          }
+          case 11: {
+            message.deviceType = reader.string()
+            break
+          }
+          case 12: {
+            message.deviceId = reader.string()
+            break
+          }
+          case 13: {
+            message.assocAssetId = reader.string()
+            break
+          }
+          case 14: {
+            message.IMSI = reader.string()
+            break
+          }
+          case 15: {
+            message.IMEI = reader.string()
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes an AepReportArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbdeviceReport.AepReportArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbdeviceReport.AepReportArgs} AepReportArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    AepReportArgs.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies an AepReportArgs message.
+         * @function verify
+         * @memberof pbdeviceReport.AepReportArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    AepReportArgs.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.upPacketSN != null && message.hasOwnProperty('upPacketSN')) {
+        if (!$util.isInteger(message.upPacketSN)) { return 'upPacketSN: integer expected' }
+      }
+      if (message.upDataSN != null && message.hasOwnProperty('upDataSN')) {
+        if (!$util.isInteger(message.upDataSN)) { return 'upDataSN: integer expected' }
+      }
+      if (message.topic != null && message.hasOwnProperty('topic')) {
+        if (!$util.isString(message.topic)) { return 'topic: string expected' }
+      }
+      if (message.timestamp != null && message.hasOwnProperty('timestamp')) {
+        if (!$util.isInteger(message.timestamp) && !(message.timestamp && $util.isInteger(message.timestamp.low) && $util.isInteger(message.timestamp.high))) { return 'timestamp: integer|Long expected' }
+      }
+      if (message.tenantId != null && message.hasOwnProperty('tenantId')) {
+        if (!$util.isString(message.tenantId)) { return 'tenantId: string expected' }
+      }
+      if (message.serviceId != null && message.hasOwnProperty('serviceId')) {
+        if (!$util.isString(message.serviceId)) { return 'serviceId: string expected' }
+      }
+      if (message.protocol != null && message.hasOwnProperty('protocol')) {
+        if (!$util.isString(message.protocol)) { return 'protocol: string expected' }
+      }
+      if (message.productId != null && message.hasOwnProperty('productId')) {
+        if (!$util.isString(message.productId)) { return 'productId: string expected' }
+      }
+      if (message.payload != null && message.hasOwnProperty('payload')) {
+        var error = $root.pbdeviceReport.AepReportArgs.Payload.verify(message.payload)
+        if (error) { return 'payload.' + error }
+      }
+      if (message.messageType != null && message.hasOwnProperty('messageType')) {
+        if (!$util.isString(message.messageType)) { return 'messageType: string expected' }
+      }
+      if (message.deviceType != null && message.hasOwnProperty('deviceType')) {
+        if (!$util.isString(message.deviceType)) { return 'deviceType: string expected' }
+      }
+      if (message.deviceId != null && message.hasOwnProperty('deviceId')) {
+        if (!$util.isString(message.deviceId)) { return 'deviceId: string expected' }
+      }
+      if (message.assocAssetId != null && message.hasOwnProperty('assocAssetId')) {
+        if (!$util.isString(message.assocAssetId)) { return 'assocAssetId: string expected' }
+      }
+      if (message.IMSI != null && message.hasOwnProperty('IMSI')) {
+        if (!$util.isString(message.IMSI)) { return 'IMSI: string expected' }
+      }
+      if (message.IMEI != null && message.hasOwnProperty('IMEI')) {
+        if (!$util.isString(message.IMEI)) { return 'IMEI: string expected' }
+      }
+      return null
+    }
+
+    /**
+         * Creates an AepReportArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbdeviceReport.AepReportArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbdeviceReport.AepReportArgs} AepReportArgs
+         */
+    AepReportArgs.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbdeviceReport.AepReportArgs) { return object }
+      var message = new $root.pbdeviceReport.AepReportArgs()
+      if (object.upPacketSN != null) { message.upPacketSN = object.upPacketSN | 0 }
+      if (object.upDataSN != null) { message.upDataSN = object.upDataSN | 0 }
+      if (object.topic != null) { message.topic = String(object.topic) }
+      if (object.timestamp != null) {
+        if ($util.Long) { (message.timestamp = $util.Long.fromValue(object.timestamp)).unsigned = false } else if (typeof object.timestamp === 'string') { message.timestamp = parseInt(object.timestamp, 10) } else if (typeof object.timestamp === 'number') { message.timestamp = object.timestamp } else if (typeof object.timestamp === 'object') { message.timestamp = new $util.LongBits(object.timestamp.low >>> 0, object.timestamp.high >>> 0).toNumber() }
+      }
+      if (object.tenantId != null) { message.tenantId = String(object.tenantId) }
+      if (object.serviceId != null) { message.serviceId = String(object.serviceId) }
+      if (object.protocol != null) { message.protocol = String(object.protocol) }
+      if (object.productId != null) { message.productId = String(object.productId) }
+      if (object.payload != null) {
+        if (typeof object.payload !== 'object') { throw TypeError('.pbdeviceReport.AepReportArgs.payload: object expected') }
+        message.payload = $root.pbdeviceReport.AepReportArgs.Payload.fromObject(object.payload)
+      }
+      if (object.messageType != null) { message.messageType = String(object.messageType) }
+      if (object.deviceType != null) { message.deviceType = String(object.deviceType) }
+      if (object.deviceId != null) { message.deviceId = String(object.deviceId) }
+      if (object.assocAssetId != null) { message.assocAssetId = String(object.assocAssetId) }
+      if (object.IMSI != null) { message.IMSI = String(object.IMSI) }
+      if (object.IMEI != null) { message.IMEI = String(object.IMEI) }
+      return message
+    }
+
+    /**
+         * Creates a plain object from an AepReportArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbdeviceReport.AepReportArgs
+         * @static
+         * @param {pbdeviceReport.AepReportArgs} message AepReportArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    AepReportArgs.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.defaults) {
+        object.upPacketSN = 0
+        object.upDataSN = 0
+        object.topic = ''
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.timestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.timestamp = options.longs === String ? '0' : 0 }
+        object.tenantId = ''
+        object.serviceId = ''
+        object.protocol = ''
+        object.productId = ''
+        object.payload = null
+        object.messageType = ''
+        object.deviceType = ''
+        object.deviceId = ''
+        object.assocAssetId = ''
+        object.IMSI = ''
+        object.IMEI = ''
+      }
+      if (message.upPacketSN != null && message.hasOwnProperty('upPacketSN')) { object.upPacketSN = message.upPacketSN }
+      if (message.upDataSN != null && message.hasOwnProperty('upDataSN')) { object.upDataSN = message.upDataSN }
+      if (message.topic != null && message.hasOwnProperty('topic')) { object.topic = message.topic }
+      if (message.timestamp != null && message.hasOwnProperty('timestamp')) {
+        if (typeof message.timestamp === 'number') { object.timestamp = options.longs === String ? String(message.timestamp) : message.timestamp } else { object.timestamp = options.longs === String ? $util.Long.prototype.toString.call(message.timestamp) : options.longs === Number ? new $util.LongBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0).toNumber() : message.timestamp }
+      }
+      if (message.tenantId != null && message.hasOwnProperty('tenantId')) { object.tenantId = message.tenantId }
+      if (message.serviceId != null && message.hasOwnProperty('serviceId')) { object.serviceId = message.serviceId }
+      if (message.protocol != null && message.hasOwnProperty('protocol')) { object.protocol = message.protocol }
+      if (message.productId != null && message.hasOwnProperty('productId')) { object.productId = message.productId }
+      if (message.payload != null && message.hasOwnProperty('payload')) { object.payload = $root.pbdeviceReport.AepReportArgs.Payload.toObject(message.payload, options) }
+      if (message.messageType != null && message.hasOwnProperty('messageType')) { object.messageType = message.messageType }
+      if (message.deviceType != null && message.hasOwnProperty('deviceType')) { object.deviceType = message.deviceType }
+      if (message.deviceId != null && message.hasOwnProperty('deviceId')) { object.deviceId = message.deviceId }
+      if (message.assocAssetId != null && message.hasOwnProperty('assocAssetId')) { object.assocAssetId = message.assocAssetId }
+      if (message.IMSI != null && message.hasOwnProperty('IMSI')) { object.IMSI = message.IMSI }
+      if (message.IMEI != null && message.hasOwnProperty('IMEI')) { object.IMEI = message.IMEI }
+      return object
+    }
+
+    /**
+         * Converts this AepReportArgs to JSON.
+         * @function toJSON
+         * @memberof pbdeviceReport.AepReportArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    AepReportArgs.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for AepReportArgs
+         * @function getTypeUrl
+         * @memberof pbdeviceReport.AepReportArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    AepReportArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/pbdeviceReport.AepReportArgs'
+    }
+
+    AepReportArgs.Payload = (function() {
+      /**
+             * Properties of a Payload.
+             * @memberof pbdeviceReport.AepReportArgs
+             * @interface IPayload
+             * @property {string|null} [APPdata] Payload APPdata
+             */
+
+      /**
+             * Constructs a new Payload.
+             * @memberof pbdeviceReport.AepReportArgs
+             * @classdesc Represents a Payload.
+             * @implements IPayload
+             * @constructor
+             * @param {pbdeviceReport.AepReportArgs.IPayload=} [properties] Properties to set
+             */
+      function Payload(properties) {
+        if (properties) {
+          for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+            if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+          }
+        }
+      }
+
+      /**
+             * Payload APPdata.
+             * @member {string} APPdata
+             * @memberof pbdeviceReport.AepReportArgs.Payload
+             * @instance
+             */
+      Payload.prototype.APPdata = ''
+
+      /**
+             * Creates a new Payload instance using the specified properties.
+             * @function create
+             * @memberof pbdeviceReport.AepReportArgs.Payload
+             * @static
+             * @param {pbdeviceReport.AepReportArgs.IPayload=} [properties] Properties to set
+             * @returns {pbdeviceReport.AepReportArgs.Payload} Payload instance
+             */
+      Payload.create = function create(properties) {
+        return new Payload(properties)
+      }
+
+      /**
+             * Encodes the specified Payload message. Does not implicitly {@link pbdeviceReport.AepReportArgs.Payload.verify|verify} messages.
+             * @function encode
+             * @memberof pbdeviceReport.AepReportArgs.Payload
+             * @static
+             * @param {pbdeviceReport.AepReportArgs.IPayload} message Payload message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+      Payload.encode = function encode(message, writer) {
+        if (!writer) { writer = $Writer.create() }
+        if (message.APPdata != null && Object.hasOwnProperty.call(message, 'APPdata')) { writer.uint32(/* id 1, wireType 2 =*/10).string(message.APPdata) }
+        return writer
+      }
+
+      /**
+             * Encodes the specified Payload message, length delimited. Does not implicitly {@link pbdeviceReport.AepReportArgs.Payload.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof pbdeviceReport.AepReportArgs.Payload
+             * @static
+             * @param {pbdeviceReport.AepReportArgs.IPayload} message Payload message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+      Payload.encodeDelimited = function encodeDelimited(message, writer) {
+        return this.encode(message, writer).ldelim()
+      }
+
+      /**
+             * Decodes a Payload message from the specified reader or buffer.
+             * @function decode
+             * @memberof pbdeviceReport.AepReportArgs.Payload
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {pbdeviceReport.AepReportArgs.Payload} Payload
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+      Payload.decode = function decode(reader, length) {
+        if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+        var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbdeviceReport.AepReportArgs.Payload()
+        while (reader.pos < end) {
+          var tag = reader.uint32()
+          switch (tag >>> 3) {
+            case 1: {
+              message.APPdata = reader.string()
+              break
+            }
+            default:
+              reader.skipType(tag & 7)
+              break
+          }
+        }
+        return message
+      }
+
+      /**
+             * Decodes a Payload message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof pbdeviceReport.AepReportArgs.Payload
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {pbdeviceReport.AepReportArgs.Payload} Payload
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+      Payload.decodeDelimited = function decodeDelimited(reader) {
+        if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+        return this.decode(reader, reader.uint32())
+      }
+
+      /**
+             * Verifies a Payload message.
+             * @function verify
+             * @memberof pbdeviceReport.AepReportArgs.Payload
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+      Payload.verify = function verify(message) {
+        if (typeof message !== 'object' || message === null) { return 'object expected' }
+        if (message.APPdata != null && message.hasOwnProperty('APPdata')) {
+          if (!$util.isString(message.APPdata)) { return 'APPdata: string expected' }
+        }
+        return null
+      }
+
+      /**
+             * Creates a Payload message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof pbdeviceReport.AepReportArgs.Payload
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {pbdeviceReport.AepReportArgs.Payload} Payload
+             */
+      Payload.fromObject = function fromObject(object) {
+        if (object instanceof $root.pbdeviceReport.AepReportArgs.Payload) { return object }
+        var message = new $root.pbdeviceReport.AepReportArgs.Payload()
+        if (object.APPdata != null) { message.APPdata = String(object.APPdata) }
+        return message
+      }
+
+      /**
+             * Creates a plain object from a Payload message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof pbdeviceReport.AepReportArgs.Payload
+             * @static
+             * @param {pbdeviceReport.AepReportArgs.Payload} message Payload
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+      Payload.toObject = function toObject(message, options) {
+        if (!options) { options = {} }
+        var object = {}
+        if (options.defaults) { object.APPdata = '' }
+        if (message.APPdata != null && message.hasOwnProperty('APPdata')) { object.APPdata = message.APPdata }
+        return object
+      }
+
+      /**
+             * Converts this Payload to JSON.
+             * @function toJSON
+             * @memberof pbdeviceReport.AepReportArgs.Payload
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+      Payload.prototype.toJSON = function toJSON() {
+        return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+      }
+
+      /**
+             * Gets the default type url for Payload
+             * @function getTypeUrl
+             * @memberof pbdeviceReport.AepReportArgs.Payload
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+      Payload.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+          typeUrlPrefix = 'type.googleapis.com'
+        }
+        return typeUrlPrefix + '/pbdeviceReport.AepReportArgs.Payload'
+      }
+
+      return Payload
+    })()
+
+    return AepReportArgs
+  })()
+
+  pbdeviceReport.DeviceReport = (function() {
+    /**
+         * Constructs a new DeviceReport service.
+         * @memberof pbdeviceReport
+         * @classdesc Represents a DeviceReport
+         * @extends $protobuf.rpc.Service
+         * @constructor
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         */
+    function DeviceReport(rpcImpl, requestDelimited, responseDelimited) {
+      $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited)
+    }
+
+    (DeviceReport.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = DeviceReport
+
+    /**
+         * Creates new DeviceReport service using the specified rpc implementation.
+         * @function create
+         * @memberof pbdeviceReport.DeviceReport
+         * @static
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         * @returns {DeviceReport} RPC service. Useful where requests and/or responses are streamed.
+         */
+    DeviceReport.create = function create(rpcImpl, requestDelimited, responseDelimited) {
+      return new this(rpcImpl, requestDelimited, responseDelimited)
+    }
+
+    /**
+         * Callback as used by {@link pbdeviceReport.DeviceReport#createDeviceReport}.
+         * @memberof pbdeviceReport.DeviceReport
+         * @typedef CreateDeviceReportCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+    /**
+         * Calls CreateDeviceReport.
+         * @function createDeviceReport
+         * @memberof pbdeviceReport.DeviceReport
+         * @instance
+         * @param {pbdeviceReport.IDeviceReportModel} request DeviceReportModel message or plain object
+         * @param {pbdeviceReport.DeviceReport.CreateDeviceReportCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+    Object.defineProperty(DeviceReport.prototype.createDeviceReport = function createDeviceReport(request, callback) {
+      return this.rpcCall(createDeviceReport, $root.pbdeviceReport.DeviceReportModel, $root.pbcommon.CommonResult, request, callback)
+    }, 'name', { value: 'CreateDeviceReport' })
+
+    /**
+         * Calls CreateDeviceReport.
+         * @function createDeviceReport
+         * @memberof pbdeviceReport.DeviceReport
+         * @instance
+         * @param {pbdeviceReport.IDeviceReportModel} request DeviceReportModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+    /**
+         * Callback as used by {@link pbdeviceReport.DeviceReport#updateDeviceReport}.
+         * @memberof pbdeviceReport.DeviceReport
+         * @typedef UpdateDeviceReportCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+    /**
+         * Calls UpdateDeviceReport.
+         * @function updateDeviceReport
+         * @memberof pbdeviceReport.DeviceReport
+         * @instance
+         * @param {pbdeviceReport.IDeviceReportModel} request DeviceReportModel message or plain object
+         * @param {pbdeviceReport.DeviceReport.UpdateDeviceReportCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+    Object.defineProperty(DeviceReport.prototype.updateDeviceReport = function updateDeviceReport(request, callback) {
+      return this.rpcCall(updateDeviceReport, $root.pbdeviceReport.DeviceReportModel, $root.pbcommon.CommonResult, request, callback)
+    }, 'name', { value: 'UpdateDeviceReport' })
+
+    /**
+         * Calls UpdateDeviceReport.
+         * @function updateDeviceReport
+         * @memberof pbdeviceReport.DeviceReport
+         * @instance
+         * @param {pbdeviceReport.IDeviceReportModel} request DeviceReportModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+    /**
+         * Callback as used by {@link pbdeviceReport.DeviceReport#deleteDeviceReport}.
+         * @memberof pbdeviceReport.DeviceReport
+         * @typedef DeleteDeviceReportCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+    /**
+         * Calls DeleteDeviceReport.
+         * @function deleteDeviceReport
+         * @memberof pbdeviceReport.DeviceReport
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbdeviceReport.DeviceReport.DeleteDeviceReportCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+    Object.defineProperty(DeviceReport.prototype.deleteDeviceReport = function deleteDeviceReport(request, callback) {
+      return this.rpcCall(deleteDeviceReport, $root.pbcommon.IdArgs, $root.pbcommon.CommonResult, request, callback)
+    }, 'name', { value: 'DeleteDeviceReport' })
+
+    /**
+         * Calls DeleteDeviceReport.
+         * @function deleteDeviceReport
+         * @memberof pbdeviceReport.DeviceReport
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+    /**
+         * Callback as used by {@link pbdeviceReport.DeviceReport#findDeviceReportById}.
+         * @memberof pbdeviceReport.DeviceReport
+         * @typedef FindDeviceReportByIdCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbdeviceReport.FindDeviceReportReplay} [response] FindDeviceReportReplay
+         */
+
+    /**
+         * Calls FindDeviceReportById.
+         * @function findDeviceReportById
+         * @memberof pbdeviceReport.DeviceReport
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbdeviceReport.DeviceReport.FindDeviceReportByIdCallback} callback Node-style callback called with the error, if any, and FindDeviceReportReplay
+         * @returns {undefined}
+         * @variation 1
+         */
+    Object.defineProperty(DeviceReport.prototype.findDeviceReportById = function findDeviceReportById(request, callback) {
+      return this.rpcCall(findDeviceReportById, $root.pbcommon.IdArgs, $root.pbdeviceReport.FindDeviceReportReplay, request, callback)
+    }, 'name', { value: 'FindDeviceReportById' })
+
+    /**
+         * Calls FindDeviceReportById.
+         * @function findDeviceReportById
+         * @memberof pbdeviceReport.DeviceReport
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbdeviceReport.FindDeviceReportReplay>} Promise
+         * @variation 2
+         */
+
+    /**
+         * Callback as used by {@link pbdeviceReport.DeviceReport#findDeviceReportList}.
+         * @memberof pbdeviceReport.DeviceReport
+         * @typedef FindDeviceReportListCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbdeviceReport.FindDeviceReportReplay} [response] FindDeviceReportReplay
+         */
+
+    /**
+         * Calls FindDeviceReportList.
+         * @function findDeviceReportList
+         * @memberof pbdeviceReport.DeviceReport
+         * @instance
+         * @param {pbdeviceReport.IFindDeviceReportArgs} request FindDeviceReportArgs message or plain object
+         * @param {pbdeviceReport.DeviceReport.FindDeviceReportListCallback} callback Node-style callback called with the error, if any, and FindDeviceReportReplay
+         * @returns {undefined}
+         * @variation 1
+         */
+    Object.defineProperty(DeviceReport.prototype.findDeviceReportList = function findDeviceReportList(request, callback) {
+      return this.rpcCall(findDeviceReportList, $root.pbdeviceReport.FindDeviceReportArgs, $root.pbdeviceReport.FindDeviceReportReplay, request, callback)
+    }, 'name', { value: 'FindDeviceReportList' })
+
+    /**
+         * Calls FindDeviceReportList.
+         * @function findDeviceReportList
+         * @memberof pbdeviceReport.DeviceReport
+         * @instance
+         * @param {pbdeviceReport.IFindDeviceReportArgs} request FindDeviceReportArgs message or plain object
+         * @returns {Promise<pbdeviceReport.FindDeviceReportReplay>} Promise
+         * @variation 2
+         */
+
+    /**
+         * Callback as used by {@link pbdeviceReport.DeviceReport#aepReport}.
+         * @memberof pbdeviceReport.DeviceReport
+         * @typedef AepReportCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+    /**
+         * Calls AepReport.
+         * @function aepReport
+         * @memberof pbdeviceReport.DeviceReport
+         * @instance
+         * @param {pbdeviceReport.IAepReportArgs} request AepReportArgs message or plain object
+         * @param {pbdeviceReport.DeviceReport.AepReportCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+    Object.defineProperty(DeviceReport.prototype.aepReport = function aepReport(request, callback) {
+      return this.rpcCall(aepReport, $root.pbdeviceReport.AepReportArgs, $root.pbcommon.CommonResult, request, callback)
+    }, 'name', { value: 'AepReport' })
+
+    /**
+         * Calls AepReport.
+         * @function aepReport
+         * @memberof pbdeviceReport.DeviceReport
+         * @instance
+         * @param {pbdeviceReport.IAepReportArgs} request AepReportArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+    return DeviceReport
+  })()
+
+  return pbdeviceReport
+})()
+
 module.exports = $root

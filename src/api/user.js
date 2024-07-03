@@ -37,7 +37,7 @@ export function findUserById(id) {
     url: '/v2/user/findUserById',
     method: 'post',
     buffer,
-    pb: 'pbuser.FindUserReplay'
+    pb: 'pbuser.FindUserReply'
   })
 }
 
@@ -49,7 +49,7 @@ export function findUserList(data) {
     url: '/v2/user/findUserList',
     method: 'post',
     buffer,
-    pb: 'pbuser.FindUserReplay'
+    pb: 'pbuser.FindUserReply'
   })
 }
 

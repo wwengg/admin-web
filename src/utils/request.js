@@ -71,10 +71,16 @@ service.interceptors.response.use(
         // console.log(bufferData)
         var uintArray = new Uint8Array(response.data)
         const pbList = response.config.pb.split('.')
-        var responseMessage = protoRoot[pbList[0]][pbList[1]]
+        console.log(pbList)
+        const responseMessage = protoRoot[pbList[0]][pbList[1]]
         res = responseMessage.decode(uintArray)
         console.log(res)
       } catch (e) {
+        Message({
+          message: 'protobuf decode error:' + e.message,
+          type: 'error',
+          duration: 5 * 1000
+        })
         console.log(e)
         if (e instanceof protobuf.util.ProtocolError) {
           // e.instance holds the so far decoded message with missing required fields

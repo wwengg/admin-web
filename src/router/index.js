@@ -149,8 +149,40 @@ export const asyncRoutes = [
           title: '用户管理',
           roles: ['admin'] // or you can only set roles in sub nav
         }
+      },
+      {
+        path: 'app',
+        component: () => import('@/views/admin/app/app'),
+        name: 'adminApp',
+        meta: {
+          title: '应用管理',
+          roles: ['admin'] // or you can only set roles in sub nav
+        }
       }
 
+    ]
+  },
+  {
+    path: '/nb',
+    component: Layout,
+    redirect: '/nb/deviceReport',
+    alwaysShow: true, // will always show the root menu
+    name: 'nb',
+    meta: {
+      title: 'NB',
+      icon: 'lock',
+      roles: ['admin'] // you can set roles in root nav
+    },
+    children: [
+      {
+        path: 'deviceReport',
+        component: () => import('@/views/nb/deviceReport/deviceReport'),
+        name: 'deviceReport',
+        meta: {
+          title: '数据上报查询',
+          roles: ['admin'] // or you can only set roles in sub nav
+        }
+      }
     ]
   },
   {
