@@ -6,7 +6,8 @@ export function createUser(data) {
   return request({
     url: '/v2/user/createUser',
     method: 'post',
-    buffer
+    buffer,
+    pb: 'pbcommon.CommonResult'
   })
 }
 
@@ -15,7 +16,8 @@ export function updateUser(data) {
   return request({
     url: '/v2/user/updateUser',
     method: 'post',
-    buffer
+    buffer,
+    pb: 'pbcommon.CommonResult'
   })
 }
 
@@ -24,7 +26,8 @@ export function deleteUser(id) {
   return request({
     url: '/v2/user/deleteUser',
     method: 'post',
-    buffer
+    buffer,
+    pb: 'pbcommon.CommonResult'
   })
 }
 

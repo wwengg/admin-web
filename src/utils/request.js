@@ -20,6 +20,7 @@ service.interceptors.request.use(
       config.baseURL = process.env.VUE_APP_BASE_MOCK
     } else {
       config.headers['Accept'] = 'application/x-protobuf'
+      config.responseType = 'arraybuffer'
     }
     // do something before request is sent
     var messageData = {}
@@ -33,13 +34,11 @@ service.interceptors.request.use(
       messageData['token'] = '123123'
     }
     messageData['v'] = '1'
-    console.log(config)
     if (config.pb) {
       messageData['data'] = new Uint8Array(config.buffer)
       console.log(messageData)
       config.data = protoRoot.httpgate.HttpRequest.encode(messageData).finish().slice().buffer
     }
-    console.log(config.data)
     return config
   },
   error => {
@@ -63,18 +62,18 @@ service.interceptors.response.use(
    */
   response => {
     const data = response.data
-    console.log(response)
     var res
-    var bufferData
     if (!response.config.pb) {
       res = data
     } else {
       try {
-        bufferData = Buffer.from(data, 'binary')
-        console.log(bufferData)
+        // bufferData = Buffer.from(data, 'binary')
+        // console.log(bufferData)
+        var uintArray = new Uint8Array(response.data)
         const pbList = response.config.pb.split('.')
         var responseMessage = protoRoot[pbList[0]][pbList[1]]
-        res = responseMessage.decode(bufferData)
+        res = responseMessage.decode(uintArray)
+        console.log(res)
       } catch (e) {
         console.log(e)
         if (e instanceof protobuf.util.ProtocolError) {
@@ -111,6 +110,15 @@ service.interceptors.response.use(
       console.log(res.msg)
       return res.msg
     } else {
+      if (response.config.pb) {
+        const pbList = response.config.pb.split('.')
+        const responseMessage = protoRoot[pbList[0]][pbList[1]]
+        res = responseMessage.toObject(res, {
+          enums: String,
+          longs: String,
+          defaults: true
+        })
+      }
       return res
     }
   },

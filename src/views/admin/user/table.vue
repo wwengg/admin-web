@@ -1,14 +1,26 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-input v-model="query.title" placeholder="Title" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
+      <el-input
+        v-model="query.title"
+        placeholder="Title"
+        style="width: 200px;"
+        class="filter-item"
+        @keyup.enter.native="handleFilter"
+      />
+      <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">
+        搜索
+      </el-button>
+      <el-button
+        class="filter-item"
+        style="margin-left: 10px;"
+        type="primary"
+        icon="el-icon-edit"
+        @click="handleCreate"
+      >
+        新建
+      </el-button>
     </div>
-    <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">
-      搜索
-    </el-button>
-    <el-button class="filter-item" style="margin-left: 10px;" type="primary" icon="el-icon-edit" @click="handleCreate">
-      新建
-    </el-button>
     <el-table
       :key="tableKey"
       v-loading="listLoading"
@@ -23,30 +35,19 @@
           <span>{{ row.id }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="Date" width="150px" align="center">
-        <template slot-scope="{row}">
-          <span>{{ row.timestamp | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="Title" min-width="150px" />
-      <el-table-column label="Author" width="110px" align="center">
-        <template slot-scope="{row}">
-          <span>{{ row.author }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="Imp" width="80px">
-        <template slot-scope="{row}">
-          <svg-icon v-for="n in + row.importance" :key="n" icon-class="star" class="meta-item__icon" />
-        </template>
-      </el-table-column>
-      <el-table-column label="Readings" align="center" width="95">
-        <template slot-scope="{row}">
-          <span v-if="row.pageviews" class="link-type">{{ row.pageviews }}</span>
-          <span v-else>0</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="Status" class-name="status-col" width="100" />
-      <el-table-column label="手机号" min-width="150" prop="phone" />
+      <el-table-column label="CreatedAt" width="150px" align="center" prop="createdAt" />
+      <el-table-column label="UpdatedAt" width="150px" align="center" prop="updatedAt" />
+      <el-table-column label="Name" width="150px" align="center" prop="name" />
+      <el-table-column label="Email" width="150px" align="center" prop="email" />
+      <el-table-column label="Phone" width="150px" align="center" prop="phone" />
+      <el-table-column label="Gender" width="150px" align="center" prop="gender" />
+      <el-table-column label="Birthday" width="150px" align="center" prop="birthday" />
+      <el-table-column label="Address" width="150px" align="center" prop="address" />
+      <el-table-column label="Avatar" width="150px" align="center" prop="avatar" />
+      <el-table-column label="Description" width="150px" align="center" prop="description" />
+      <el-table-column label="Status" width="150px" align="center" prop="status" />
+      <el-table-column label="Type" width="150px" align="center" prop="type" />
+      <el-table-column label="Role" width="150px" align="center" prop="role" />
       <el-table-column label="操作" align="center" width="230" class-name="small-padding fixed-width">
         <template slot-scope="{row}">
           <el-button type="primary" size="mini" @click="handleUpdate(row)">
@@ -58,40 +59,60 @@
               <el-button size="mini" type="text" @click="row.visible = false">取消</el-button>
               <el-button type="primary" size="mini" @click="handleDelete(row)">确定</el-button>
             </div>
-            <el-button slot="reference" type="danger" icon="el-icon-delete" size="small">删除</el-button>
+            <el-button slot="reference" size="mini" type="danger">删除</el-button>
           </el-popover>
         </template>
       </el-table-column>
     </el-table>
-
-    <pagination v-show="total>0" :total="total" :page.sync="page" :limit.sync="pageSize" @pagination="getTableData" />
-
+    <pagination v-show="total > 0" :total="total" :page.sync="page" :limit.sync="pageSize" @pagination="getTableData" />
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
-      <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="70px" style="width: 400px; margin-left:50px;">
-        <el-form-item label="Type" prop="type">
-          <el-input v-model="temp.type" />
+      <el-form
+        ref="dataForm"
+        :rules="rules"
+        :model="temp"
+        label-position="left"
+        label-width="120px"
+        style="width: 450px; margin-left:50px;"
+      >
+        <el-form-item label="Name" prop="name">
+          <el-input v-model="temp.name" />
         </el-form-item>
-        <el-form-item label="Date" prop="timestamp">
-          <el-input v-model="temp.timestamp" />
+        <el-form-item label="Email" prop="email">
+          <el-input v-model="temp.email" />
         </el-form-item>
-        <el-form-item label="Title" prop="title">
-          <el-input v-model="temp.title" />
+        <el-form-item label="Phone" prop="phone">
+          <el-input v-model="temp.phone" />
+        </el-form-item>
+        <el-form-item label="Gender" prop="gender">
+          <el-input v-model.number="temp.gender" />
+        </el-form-item>
+        <el-form-item label="Birthday" prop="birthday">
+          <el-input v-model="temp.birthday" type="date" />
+        </el-form-item>
+        <el-form-item label="Address" prop="address">
+          <el-input v-model="temp.address" />
+        </el-form-item>
+        <el-form-item label="Avatar" prop="avatar">
+          <el-input v-model="temp.avatar" />
+        </el-form-item>
+        <el-form-item label="Description" prop="description">
+          <el-input v-model="temp.description" />
         </el-form-item>
         <el-form-item label="Status" prop="status">
-          <el-input v-model="temp.status" />
+          <el-input v-model.number="temp.status" />
         </el-form-item>
-        <el-form-item label="Importance" prop="importance">
-          <el-input v-model="temp.importance" />
+        <el-form-item label="Type" prop="type">
+          <el-input v-model.number="temp.type" />
         </el-form-item>
-        <el-form-item label="Remark">
-          <el-input v-model="temp.remark" />
+        <el-form-item label="Role" prop="role">
+          <el-input v-model="temp.role" />
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">
           取消
         </el-button>
-        <el-button type="primary" @click="dialogStatus==='create'?createData():updateData()">
+        <el-button type="primary" @click="dialogStatus === 'create' ? createData() : updateData()">
           完成
         </el-button>
       </div>
@@ -116,12 +137,19 @@ export default {
       tableKey: 0,
       temp: {
         id: undefined,
-        importance: 1,
-        remark: '',
-        timestamp: new Date(),
-        title: '',
-        type: '',
-        status: 'published'
+        createdAt: '',
+        updatedAt: '',
+        name: '',
+        email: '',
+        phone: '',
+        gender: 0,
+        birthday: '',
+        address: '',
+        avatar: '',
+        description: '',
+        status: 0,
+        type: 0,
+        role: ''
       },
       dialogFormVisible: false,
       dialogStatus: '',
@@ -154,12 +182,19 @@ export default {
     resetTemp() {
       this.temp = {
         id: undefined,
-        importance: 1,
-        remark: '',
-        timestamp: new Date(),
-        title: '',
-        status: 'published',
-        type: ''
+        createdAt: '',
+        updatedAt: '',
+        name: '',
+        email: '',
+        phone: '',
+        gender: 0,
+        birthday: '',
+        address: '',
+        avatar: '',
+        description: '',
+        status: 0,
+        type: 0,
+        role: ''
       }
     },
     handleCreate() {
@@ -173,38 +208,46 @@ export default {
     async createData() {
       this.$refs['dataForm'].validate(async(valid) => {
         if (valid) {
-          await createUser(this.temp)
-          this.dialogFormVisible = false
-          this.$notify({
-            title: 'Success',
-            message: '创建成功',
-            type: 'success',
-            duration: 2000
-          })
+          const res = await createUser(this.temp)
+          if (res.code === 'Success') {
+            this.handleFilter()
+            this.dialogFormVisible = false
+            this.$notify({
+              title: 'Success',
+              message: '创建成功',
+              type: 'success',
+              duration: 2000
+            })
+          }
         }
       })
     },
     async handleUpdate(row) {
       const res = await findUserById(row.id)
-      const findUserReplay = this.$protoRoot.pbuser.FindUserReplay.decode(res.data)
-      this.temp = findUserReplay.data
-      this.dialogStatus = 'update'
-      this.dialogFormVisible = true
-      this.$nextTick(() => {
-        this.$refs['dataForm'].clearValidate()
-      })
+      console.log(res)
+      if (res.code === 'Success') {
+        this.temp = res.data
+        this.dialogStatus = 'update'
+        this.dialogFormVisible = true
+        this.$nextTick(() => {
+          this.$refs['dataForm'].clearValidate()
+        })
+      }
     },
     async updateData() {
       this.$refs['dataForm'].validate(async(valid) => {
         if (valid) {
-          await updateUser(this.temp)
-          this.dialogFormVisible = false
-          this.$notify({
-            title: 'Success',
-            message: '更新成功',
-            type: 'success',
-            duration: 2000
-          })
+          const res = await updateUser(this.temp)
+          if (res.code === 'Success') {
+            this.dialogFormVisible = false
+            this.$notify({
+              title: 'Success',
+              message: '更新成功',
+              type: 'success',
+              duration: 2000
+            })
+            this.getTableData()
+          }
         }
       })
     },

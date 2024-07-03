@@ -13,9 +13,12 @@ export default {
     async getTableData(page = this.page, pageSize = this.pageSize, query = this.query) {
       this.listLoading = true
       const res = await this.listApi({ pageInfo: { page, pageSize }, query })
+      console.log(res)
       this.listLoading = false
-      this.tableData = res.list
-      this.total = res.total
+      if (res.code === 'Success') {
+        this.tableData = res.list
+        this.total = Number(res.total)
+      }
     }
   }
 }

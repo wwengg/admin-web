@@ -3,6 +3,10 @@
 
 var $protobuf = require('protobufjs/minimal')
 
+var Long = require('long')
+$protobuf.util.Long = Long
+$protobuf.configure()
+
 // Common aliases
 var $Reader = $protobuf.Reader; var $Writer = $protobuf.Writer; var $util = $protobuf.util
 
@@ -2687,27 +2691,27 @@ $root.pbuser = (function() {
     return FindUserArgs
   })()
 
-  pbuser.FindUserReplay = (function() {
+  pbuser.FindUserReply = (function() {
     /**
-         * Properties of a FindUserReplay.
+         * Properties of a FindUserReply.
          * @memberof pbuser
-         * @interface IFindUserReplay
-         * @property {pbcommon.EnumCode|null} [code] FindUserReplay code
-         * @property {string|null} [msg] FindUserReplay msg
-         * @property {pbuser.IUserModel|null} [data] FindUserReplay data
-         * @property {Array.<pbuser.IUserModel>|null} [list] FindUserReplay list
-         * @property {number|Long|null} [total] FindUserReplay total
+         * @interface IFindUserReply
+         * @property {pbcommon.EnumCode|null} [code] FindUserReply code
+         * @property {string|null} [msg] FindUserReply msg
+         * @property {pbuser.IUserModel|null} [data] FindUserReply data
+         * @property {Array.<pbuser.IUserModel>|null} [list] FindUserReply list
+         * @property {number|Long|null} [total] FindUserReply total
          */
 
     /**
-         * Constructs a new FindUserReplay.
+         * Constructs a new FindUserReply.
          * @memberof pbuser
-         * @classdesc Represents a FindUserReplay.
-         * @implements IFindUserReplay
+         * @classdesc Represents a FindUserReply.
+         * @implements IFindUserReply
          * @constructor
-         * @param {pbuser.IFindUserReplay=} [properties] Properties to set
+         * @param {pbuser.IFindUserReply=} [properties] Properties to set
          */
-    function FindUserReplay(properties) {
+    function FindUserReply(properties) {
       this.list = []
       if (properties) {
         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
@@ -2717,67 +2721,67 @@ $root.pbuser = (function() {
     }
 
     /**
-         * FindUserReplay code.
+         * FindUserReply code.
          * @member {pbcommon.EnumCode} code
-         * @memberof pbuser.FindUserReplay
+         * @memberof pbuser.FindUserReply
          * @instance
          */
-    FindUserReplay.prototype.code = 0
+    FindUserReply.prototype.code = 0
 
     /**
-         * FindUserReplay msg.
+         * FindUserReply msg.
          * @member {string} msg
-         * @memberof pbuser.FindUserReplay
+         * @memberof pbuser.FindUserReply
          * @instance
          */
-    FindUserReplay.prototype.msg = ''
+    FindUserReply.prototype.msg = ''
 
     /**
-         * FindUserReplay data.
+         * FindUserReply data.
          * @member {pbuser.IUserModel|null|undefined} data
-         * @memberof pbuser.FindUserReplay
+         * @memberof pbuser.FindUserReply
          * @instance
          */
-    FindUserReplay.prototype.data = null
+    FindUserReply.prototype.data = null
 
     /**
-         * FindUserReplay list.
+         * FindUserReply list.
          * @member {Array.<pbuser.IUserModel>} list
-         * @memberof pbuser.FindUserReplay
+         * @memberof pbuser.FindUserReply
          * @instance
          */
-    FindUserReplay.prototype.list = $util.emptyArray
+    FindUserReply.prototype.list = $util.emptyArray
 
     /**
-         * FindUserReplay total.
+         * FindUserReply total.
          * @member {number|Long} total
-         * @memberof pbuser.FindUserReplay
+         * @memberof pbuser.FindUserReply
          * @instance
          */
-    FindUserReplay.prototype.total = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+    FindUserReply.prototype.total = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-         * Creates a new FindUserReplay instance using the specified properties.
+         * Creates a new FindUserReply instance using the specified properties.
          * @function create
-         * @memberof pbuser.FindUserReplay
+         * @memberof pbuser.FindUserReply
          * @static
-         * @param {pbuser.IFindUserReplay=} [properties] Properties to set
-         * @returns {pbuser.FindUserReplay} FindUserReplay instance
+         * @param {pbuser.IFindUserReply=} [properties] Properties to set
+         * @returns {pbuser.FindUserReply} FindUserReply instance
          */
-    FindUserReplay.create = function create(properties) {
-      return new FindUserReplay(properties)
+    FindUserReply.create = function create(properties) {
+      return new FindUserReply(properties)
     }
 
     /**
-         * Encodes the specified FindUserReplay message. Does not implicitly {@link pbuser.FindUserReplay.verify|verify} messages.
+         * Encodes the specified FindUserReply message. Does not implicitly {@link pbuser.FindUserReply.verify|verify} messages.
          * @function encode
-         * @memberof pbuser.FindUserReplay
+         * @memberof pbuser.FindUserReply
          * @static
-         * @param {pbuser.IFindUserReplay} message FindUserReplay message or plain object to encode
+         * @param {pbuser.IFindUserReply} message FindUserReply message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-    FindUserReplay.encode = function encode(message, writer) {
+    FindUserReply.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.code != null && Object.hasOwnProperty.call(message, 'code')) { writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code) }
       if (message.msg != null && Object.hasOwnProperty.call(message, 'msg')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg) }
@@ -2790,32 +2794,32 @@ $root.pbuser = (function() {
     }
 
     /**
-         * Encodes the specified FindUserReplay message, length delimited. Does not implicitly {@link pbuser.FindUserReplay.verify|verify} messages.
+         * Encodes the specified FindUserReply message, length delimited. Does not implicitly {@link pbuser.FindUserReply.verify|verify} messages.
          * @function encodeDelimited
-         * @memberof pbuser.FindUserReplay
+         * @memberof pbuser.FindUserReply
          * @static
-         * @param {pbuser.IFindUserReplay} message FindUserReplay message or plain object to encode
+         * @param {pbuser.IFindUserReply} message FindUserReply message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-    FindUserReplay.encodeDelimited = function encodeDelimited(message, writer) {
+    FindUserReply.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-         * Decodes a FindUserReplay message from the specified reader or buffer.
+         * Decodes a FindUserReply message from the specified reader or buffer.
          * @function decode
-         * @memberof pbuser.FindUserReplay
+         * @memberof pbuser.FindUserReply
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {pbuser.FindUserReplay} FindUserReplay
+         * @returns {pbuser.FindUserReply} FindUserReply
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-    FindUserReplay.decode = function decode(reader, length) {
+    FindUserReply.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
-      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbuser.FindUserReplay()
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbuser.FindUserReply()
       while (reader.pos < end) {
         var tag = reader.uint32()
         switch (tag >>> 3) {
@@ -2849,29 +2853,29 @@ $root.pbuser = (function() {
     }
 
     /**
-         * Decodes a FindUserReplay message from the specified reader or buffer, length delimited.
+         * Decodes a FindUserReply message from the specified reader or buffer, length delimited.
          * @function decodeDelimited
-         * @memberof pbuser.FindUserReplay
+         * @memberof pbuser.FindUserReply
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {pbuser.FindUserReplay} FindUserReplay
+         * @returns {pbuser.FindUserReply} FindUserReply
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-    FindUserReplay.decodeDelimited = function decodeDelimited(reader) {
+    FindUserReply.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-         * Verifies a FindUserReplay message.
+         * Verifies a FindUserReply message.
          * @function verify
-         * @memberof pbuser.FindUserReplay
+         * @memberof pbuser.FindUserReply
          * @static
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-    FindUserReplay.verify = function verify(message) {
+    FindUserReply.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.code != null && message.hasOwnProperty('code')) {
         switch (message.code) {
@@ -2926,16 +2930,16 @@ $root.pbuser = (function() {
     }
 
     /**
-         * Creates a FindUserReplay message from a plain object. Also converts values to their respective internal types.
+         * Creates a FindUserReply message from a plain object. Also converts values to their respective internal types.
          * @function fromObject
-         * @memberof pbuser.FindUserReplay
+         * @memberof pbuser.FindUserReply
          * @static
          * @param {Object.<string,*>} object Plain object
-         * @returns {pbuser.FindUserReplay} FindUserReplay
+         * @returns {pbuser.FindUserReply} FindUserReply
          */
-    FindUserReplay.fromObject = function fromObject(object) {
-      if (object instanceof $root.pbuser.FindUserReplay) { return object }
-      var message = new $root.pbuser.FindUserReplay()
+    FindUserReply.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbuser.FindUserReply) { return object }
+      var message = new $root.pbuser.FindUserReply()
       switch (object.code) {
         default:
           if (typeof object.code === 'number') {
@@ -3046,14 +3050,14 @@ $root.pbuser = (function() {
       }
       if (object.msg != null) { message.msg = String(object.msg) }
       if (object.data != null) {
-        if (typeof object.data !== 'object') { throw TypeError('.pbuser.FindUserReplay.data: object expected') }
+        if (typeof object.data !== 'object') { throw TypeError('.pbuser.FindUserReply.data: object expected') }
         message.data = $root.pbuser.UserModel.fromObject(object.data)
       }
       if (object.list) {
-        if (!Array.isArray(object.list)) { throw TypeError('.pbuser.FindUserReplay.list: array expected') }
+        if (!Array.isArray(object.list)) { throw TypeError('.pbuser.FindUserReply.list: array expected') }
         message.list = []
         for (var i = 0; i < object.list.length; ++i) {
-          if (typeof object.list[i] !== 'object') { throw TypeError('.pbuser.FindUserReplay.list: object expected') }
+          if (typeof object.list[i] !== 'object') { throw TypeError('.pbuser.FindUserReply.list: object expected') }
           message.list[i] = $root.pbuser.UserModel.fromObject(object.list[i])
         }
       }
@@ -3064,15 +3068,15 @@ $root.pbuser = (function() {
     }
 
     /**
-         * Creates a plain object from a FindUserReplay message. Also converts values to other types if specified.
+         * Creates a plain object from a FindUserReply message. Also converts values to other types if specified.
          * @function toObject
-         * @memberof pbuser.FindUserReplay
+         * @memberof pbuser.FindUserReply
          * @static
-         * @param {pbuser.FindUserReplay} message FindUserReplay
+         * @param {pbuser.FindUserReply} message FindUserReply
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-    FindUserReplay.toObject = function toObject(message, options) {
+    FindUserReply.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
       if (options.arrays || options.defaults) { object.list = [] }
@@ -3099,32 +3103,32 @@ $root.pbuser = (function() {
     }
 
     /**
-         * Converts this FindUserReplay to JSON.
+         * Converts this FindUserReply to JSON.
          * @function toJSON
-         * @memberof pbuser.FindUserReplay
+         * @memberof pbuser.FindUserReply
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-    FindUserReplay.prototype.toJSON = function toJSON() {
+    FindUserReply.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-         * Gets the default type url for FindUserReplay
+         * Gets the default type url for FindUserReply
          * @function getTypeUrl
-         * @memberof pbuser.FindUserReplay
+         * @memberof pbuser.FindUserReply
          * @static
          * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns {string} The default type url
          */
-    FindUserReplay.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+    FindUserReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
       }
-      return typeUrlPrefix + '/pbuser.FindUserReplay'
+      return typeUrlPrefix + '/pbuser.FindUserReply'
     }
 
-    return FindUserReplay
+    return FindUserReply
   })()
 
   pbuser.User = (function() {
@@ -3263,7 +3267,7 @@ $root.pbuser = (function() {
          * @typedef FindUserByIdCallback
          * @type {function}
          * @param {Error|null} error Error, if any
-         * @param {pbuser.FindUserReplay} [response] FindUserReplay
+         * @param {pbuser.FindUserReply} [response] FindUserReply
          */
 
     /**
@@ -3272,12 +3276,12 @@ $root.pbuser = (function() {
          * @memberof pbuser.User
          * @instance
          * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-         * @param {pbuser.User.FindUserByIdCallback} callback Node-style callback called with the error, if any, and FindUserReplay
+         * @param {pbuser.User.FindUserByIdCallback} callback Node-style callback called with the error, if any, and FindUserReply
          * @returns {undefined}
          * @variation 1
          */
     Object.defineProperty(User.prototype.findUserById = function findUserById(request, callback) {
-      return this.rpcCall(findUserById, $root.pbcommon.IdArgs, $root.pbuser.FindUserReplay, request, callback)
+      return this.rpcCall(findUserById, $root.pbcommon.IdArgs, $root.pbuser.FindUserReply, request, callback)
     }, 'name', { value: 'FindUserById' })
 
     /**
@@ -3286,7 +3290,7 @@ $root.pbuser = (function() {
          * @memberof pbuser.User
          * @instance
          * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-         * @returns {Promise<pbuser.FindUserReplay>} Promise
+         * @returns {Promise<pbuser.FindUserReply>} Promise
          * @variation 2
          */
 
@@ -3296,7 +3300,7 @@ $root.pbuser = (function() {
          * @typedef FindUserListCallback
          * @type {function}
          * @param {Error|null} error Error, if any
-         * @param {pbuser.FindUserReplay} [response] FindUserReplay
+         * @param {pbuser.FindUserReply} [response] FindUserReply
          */
 
     /**
@@ -3305,12 +3309,12 @@ $root.pbuser = (function() {
          * @memberof pbuser.User
          * @instance
          * @param {pbuser.IFindUserArgs} request FindUserArgs message or plain object
-         * @param {pbuser.User.FindUserListCallback} callback Node-style callback called with the error, if any, and FindUserReplay
+         * @param {pbuser.User.FindUserListCallback} callback Node-style callback called with the error, if any, and FindUserReply
          * @returns {undefined}
          * @variation 1
          */
     Object.defineProperty(User.prototype.findUserList = function findUserList(request, callback) {
-      return this.rpcCall(findUserList, $root.pbuser.FindUserArgs, $root.pbuser.FindUserReplay, request, callback)
+      return this.rpcCall(findUserList, $root.pbuser.FindUserArgs, $root.pbuser.FindUserReply, request, callback)
     }, 'name', { value: 'FindUserList' })
 
     /**
@@ -3319,7 +3323,7 @@ $root.pbuser = (function() {
          * @memberof pbuser.User
          * @instance
          * @param {pbuser.IFindUserArgs} request FindUserArgs message or plain object
-         * @returns {Promise<pbuser.FindUserReplay>} Promise
+         * @returns {Promise<pbuser.FindUserReply>} Promise
          * @variation 2
          */
 

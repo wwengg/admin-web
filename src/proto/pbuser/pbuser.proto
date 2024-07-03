@@ -34,7 +34,7 @@ message FindUserArgs{
   UserModel query = 2;
 }
 
-message FindUserReplay{
+message FindUserReply{
   pbcommon.EnumCode code = 1;
   string msg = 2;
   UserModel data =3;
@@ -46,6 +46,6 @@ service User {
   rpc CreateUser(UserModel) returns(pbcommon.CommonResult){}
   rpc UpdateUser(UserModel) returns(pbcommon.CommonResult){}
   rpc DeleteUser(pbcommon.IdArgs) returns(pbcommon.CommonResult){}
-  rpc FindUserById(pbcommon.IdArgs) returns(FindUserReplay){}
-  rpc FindUserList(FindUserArgs) returns(FindUserReplay){}
+  rpc FindUserById(pbcommon.IdArgs) returns(FindUserReply){}
+  rpc FindUserList(FindUserArgs) returns(FindUserReply){}
 }
