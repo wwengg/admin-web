@@ -163,6 +163,47 @@ export const asyncRoutes = [
     ]
   },
   {
+    path: '/shop',
+    component: Layout,
+    redirect: '/shop/shop',
+    alwaysShow: true, // will always show the root menu
+    name: 'shop',
+    meta: {
+      title: '商户管理',
+      icon: 'lock',
+      roles: ['admin'] // you can set roles in root nav
+    },
+    children: [
+      {
+        path: 'shop',
+        component: () => import('@/views/shop/shop/shop'),
+        name: 'shopShop',
+        meta: {
+          title: '商户审核',
+          roles: ['admin'] // or you can only set roles in sub nav
+        }
+      },
+      {
+        path: 'activeShop',
+        component: () => import('@/views/shop/activeShop/activeShop'),
+        name: 'activeShop',
+        meta: {
+          title: '商户列表',
+          roles: ['admin'] // or you can only set roles in sub nav
+        }
+      },
+      {
+        path: 'goods',
+        component: () => import('@/views/shop/goods/goods'),
+        name: 'goods',
+        meta: {
+          title: '商品列表',
+          roles: ['admin'] // or you can only set roles in sub nav
+        }
+      }
+    ]
+  },
+  {
     path: '/nb',
     component: Layout,
     redirect: '/nb/deviceReport',

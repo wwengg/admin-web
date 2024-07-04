@@ -1,0 +1,52 @@
+/*
+Copyright © 2024 NAME HERE <EMAIL ADDRESS>
+*/
+syntax = "proto3";
+
+package pbactiveShop;
+
+option go_package = "aike/proto/pbactiveShop";
+
+import "pbcommon/pbcommon.proto";
+
+
+message ActiveShopModel{
+  int64 id = 1;
+  string createdAt = 2;
+  string updatedAt = 3;
+  int64 shopId = 4;
+  string shopName = 5;
+  string shopLogo = 6;
+  string videoUrl = 7; // 介绍视频
+  string description = 8; // 文字介绍
+  string address = 9; // 地址
+  string phone = 10; // 电话
+  string tags = 11; // 店铺标签(,分隔)
+  string openTime = 12; // 营业时间
+  string closeTime = 13; // 营业时间
+  int32 status = 14; // 状态(0:禁用,1:启用)
+  int32 sort = 15; // 排序
+  string lat = 16;  // 经度
+  string lng = 17;  // 纬度
+}
+
+message FindActiveShopArgs{
+  pbcommon.PageInfo pageInfo = 1;
+  ActiveShopModel query = 2;
+}
+
+message FindActiveShopReply{
+  pbcommon.EnumCode code = 1;
+  string msg = 2;
+  ActiveShopModel data =3;
+  repeated ActiveShopModel list = 4;
+  int64 total = 5;
+}
+
+service ActiveShop {
+  rpc CreateActiveShop(ActiveShopModel) returns(pbcommon.CommonResult){}
+  rpc UpdateActiveShop(ActiveShopModel) returns(pbcommon.CommonResult){}
+  rpc DeleteActiveShop(pbcommon.IdArgs) returns(pbcommon.CommonResult){}
+  rpc FindActiveShopById(pbcommon.IdArgs) returns(FindActiveShopReply){}
+  rpc FindActiveShopList(FindActiveShopArgs) returns(FindActiveShopReply){}
+}
