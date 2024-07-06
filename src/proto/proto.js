@@ -1994,18 +1994,40 @@ $root.pbuser = (function() {
          * @property {number|Long|null} [id] UserModel id
          * @property {string|null} [createdAt] UserModel createdAt
          * @property {string|null} [updatedAt] UserModel updatedAt
-         * @property {string|null} [name] UserModel name
-         * @property {string|null} [email] UserModel email
+         * @property {string|null} [username] UserModel username
          * @property {string|null} [password] UserModel password
-         * @property {string|null} [phone] UserModel phone
+         * @property {string|null} [email] UserModel email
+         * @property {number|Long|null} [phone] UserModel phone
+         * @property {string|null} [nickName] UserModel nickName
+         * @property {number|Long|null} [userOauthId] UserModel userOauthId
+         * @property {number|Long|null} [appId] UserModel appId
+         * @property {string|null} [avatar] UserModel avatar
          * @property {number|null} [gender] UserModel gender
          * @property {string|null} [birthday] UserModel birthday
-         * @property {string|null} [address] UserModel address
-         * @property {string|null} [avatar] UserModel avatar
+         * @property {string|null} [signature] UserModel signature
          * @property {string|null} [description] UserModel description
-         * @property {number|null} [status] UserModel status
-         * @property {number|null} [type] UserModel type
-         * @property {string|null} [role] UserModel role
+         * @property {string|null} [location] UserModel location
+         * @property {string|null} [regip] UserModel regip
+         * @property {string|null} [regtm] UserModel regtm
+         * @property {pbuser.UserStatus|null} [status] UserModel status
+         * @property {number|null} [accountType] UserModel accountType
+         * @property {number|Long|null} [role] UserModel role
+         * @property {number|Long|null} [pretty] UserModel pretty
+         * @property {number|null} [age] UserModel age
+         * @property {number|null} [country] UserModel country
+         * @property {string|null} [countryName] UserModel countryName
+         * @property {string|null} [city] UserModel city
+         * @property {number|null} [Zone] UserModel Zone
+         * @property {string|null} [devDesc] UserModel devDesc
+         * @property {string|null} [platform] UserModel platform
+         * @property {string|null} [devUuid] UserModel devUuid
+         * @property {string|null} [ver] UserModel ver
+         * @property {number|null} [isRobt] UserModel isRobt
+         * @property {string|null} [regDate] UserModel regDate
+         * @property {string|null} [certName] UserModel certName
+         * @property {string|null} [certNo] UserModel certNo
+         * @property {boolean|null} [first] UserModel first
+         * @property {boolean|null} [isYoungMod] UserModel isYoungMod
          */
 
     /**
@@ -2049,20 +2071,12 @@ $root.pbuser = (function() {
     UserModel.prototype.updatedAt = ''
 
     /**
-         * UserModel name.
-         * @member {string} name
+         * UserModel username.
+         * @member {string} username
          * @memberof pbuser.UserModel
          * @instance
          */
-    UserModel.prototype.name = ''
-
-    /**
-         * UserModel email.
-         * @member {string} email
-         * @memberof pbuser.UserModel
-         * @instance
-         */
-    UserModel.prototype.email = ''
+    UserModel.prototype.username = ''
 
     /**
          * UserModel password.
@@ -2073,12 +2087,52 @@ $root.pbuser = (function() {
     UserModel.prototype.password = ''
 
     /**
-         * UserModel phone.
-         * @member {string} phone
+         * UserModel email.
+         * @member {string} email
          * @memberof pbuser.UserModel
          * @instance
          */
-    UserModel.prototype.phone = ''
+    UserModel.prototype.email = ''
+
+    /**
+         * UserModel phone.
+         * @member {number|Long} phone
+         * @memberof pbuser.UserModel
+         * @instance
+         */
+    UserModel.prototype.phone = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+
+    /**
+         * UserModel nickName.
+         * @member {string} nickName
+         * @memberof pbuser.UserModel
+         * @instance
+         */
+    UserModel.prototype.nickName = ''
+
+    /**
+         * UserModel userOauthId.
+         * @member {number|Long} userOauthId
+         * @memberof pbuser.UserModel
+         * @instance
+         */
+    UserModel.prototype.userOauthId = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+
+    /**
+         * UserModel appId.
+         * @member {number|Long} appId
+         * @memberof pbuser.UserModel
+         * @instance
+         */
+    UserModel.prototype.appId = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+
+    /**
+         * UserModel avatar.
+         * @member {string} avatar
+         * @memberof pbuser.UserModel
+         * @instance
+         */
+    UserModel.prototype.avatar = ''
 
     /**
          * UserModel gender.
@@ -2097,20 +2151,12 @@ $root.pbuser = (function() {
     UserModel.prototype.birthday = ''
 
     /**
-         * UserModel address.
-         * @member {string} address
+         * UserModel signature.
+         * @member {string} signature
          * @memberof pbuser.UserModel
          * @instance
          */
-    UserModel.prototype.address = ''
-
-    /**
-         * UserModel avatar.
-         * @member {string} avatar
-         * @memberof pbuser.UserModel
-         * @instance
-         */
-    UserModel.prototype.avatar = ''
+    UserModel.prototype.signature = ''
 
     /**
          * UserModel description.
@@ -2121,28 +2167,180 @@ $root.pbuser = (function() {
     UserModel.prototype.description = ''
 
     /**
+         * UserModel location.
+         * @member {string} location
+         * @memberof pbuser.UserModel
+         * @instance
+         */
+    UserModel.prototype.location = ''
+
+    /**
+         * UserModel regip.
+         * @member {string} regip
+         * @memberof pbuser.UserModel
+         * @instance
+         */
+    UserModel.prototype.regip = ''
+
+    /**
+         * UserModel regtm.
+         * @member {string} regtm
+         * @memberof pbuser.UserModel
+         * @instance
+         */
+    UserModel.prototype.regtm = ''
+
+    /**
          * UserModel status.
-         * @member {number} status
+         * @member {pbuser.UserStatus} status
          * @memberof pbuser.UserModel
          * @instance
          */
     UserModel.prototype.status = 0
 
     /**
-         * UserModel type.
-         * @member {number} type
+         * UserModel accountType.
+         * @member {number} accountType
          * @memberof pbuser.UserModel
          * @instance
          */
-    UserModel.prototype.type = 0
+    UserModel.prototype.accountType = 0
 
     /**
          * UserModel role.
-         * @member {string} role
+         * @member {number|Long} role
          * @memberof pbuser.UserModel
          * @instance
          */
-    UserModel.prototype.role = ''
+    UserModel.prototype.role = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+
+    /**
+         * UserModel pretty.
+         * @member {number|Long} pretty
+         * @memberof pbuser.UserModel
+         * @instance
+         */
+    UserModel.prototype.pretty = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+
+    /**
+         * UserModel age.
+         * @member {number} age
+         * @memberof pbuser.UserModel
+         * @instance
+         */
+    UserModel.prototype.age = 0
+
+    /**
+         * UserModel country.
+         * @member {number} country
+         * @memberof pbuser.UserModel
+         * @instance
+         */
+    UserModel.prototype.country = 0
+
+    /**
+         * UserModel countryName.
+         * @member {string} countryName
+         * @memberof pbuser.UserModel
+         * @instance
+         */
+    UserModel.prototype.countryName = ''
+
+    /**
+         * UserModel city.
+         * @member {string} city
+         * @memberof pbuser.UserModel
+         * @instance
+         */
+    UserModel.prototype.city = ''
+
+    /**
+         * UserModel Zone.
+         * @member {number} Zone
+         * @memberof pbuser.UserModel
+         * @instance
+         */
+    UserModel.prototype.Zone = 0
+
+    /**
+         * UserModel devDesc.
+         * @member {string} devDesc
+         * @memberof pbuser.UserModel
+         * @instance
+         */
+    UserModel.prototype.devDesc = ''
+
+    /**
+         * UserModel platform.
+         * @member {string} platform
+         * @memberof pbuser.UserModel
+         * @instance
+         */
+    UserModel.prototype.platform = ''
+
+    /**
+         * UserModel devUuid.
+         * @member {string} devUuid
+         * @memberof pbuser.UserModel
+         * @instance
+         */
+    UserModel.prototype.devUuid = ''
+
+    /**
+         * UserModel ver.
+         * @member {string} ver
+         * @memberof pbuser.UserModel
+         * @instance
+         */
+    UserModel.prototype.ver = ''
+
+    /**
+         * UserModel isRobt.
+         * @member {number} isRobt
+         * @memberof pbuser.UserModel
+         * @instance
+         */
+    UserModel.prototype.isRobt = 0
+
+    /**
+         * UserModel regDate.
+         * @member {string} regDate
+         * @memberof pbuser.UserModel
+         * @instance
+         */
+    UserModel.prototype.regDate = ''
+
+    /**
+         * UserModel certName.
+         * @member {string} certName
+         * @memberof pbuser.UserModel
+         * @instance
+         */
+    UserModel.prototype.certName = ''
+
+    /**
+         * UserModel certNo.
+         * @member {string} certNo
+         * @memberof pbuser.UserModel
+         * @instance
+         */
+    UserModel.prototype.certNo = ''
+
+    /**
+         * UserModel first.
+         * @member {boolean} first
+         * @memberof pbuser.UserModel
+         * @instance
+         */
+    UserModel.prototype.first = false
+
+    /**
+         * UserModel isYoungMod.
+         * @member {boolean} isYoungMod
+         * @memberof pbuser.UserModel
+         * @instance
+         */
+    UserModel.prototype.isYoungMod = false
 
     /**
          * Creates a new UserModel instance using the specified properties.
@@ -2170,18 +2368,40 @@ $root.pbuser = (function() {
       if (message.id != null && Object.hasOwnProperty.call(message, 'id')) { writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id) }
       if (message.createdAt != null && Object.hasOwnProperty.call(message, 'createdAt')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.createdAt) }
       if (message.updatedAt != null && Object.hasOwnProperty.call(message, 'updatedAt')) { writer.uint32(/* id 3, wireType 2 =*/26).string(message.updatedAt) }
-      if (message.name != null && Object.hasOwnProperty.call(message, 'name')) { writer.uint32(/* id 4, wireType 2 =*/34).string(message.name) }
-      if (message.email != null && Object.hasOwnProperty.call(message, 'email')) { writer.uint32(/* id 5, wireType 2 =*/42).string(message.email) }
-      if (message.password != null && Object.hasOwnProperty.call(message, 'password')) { writer.uint32(/* id 6, wireType 2 =*/50).string(message.password) }
-      if (message.phone != null && Object.hasOwnProperty.call(message, 'phone')) { writer.uint32(/* id 7, wireType 2 =*/58).string(message.phone) }
-      if (message.gender != null && Object.hasOwnProperty.call(message, 'gender')) { writer.uint32(/* id 8, wireType 0 =*/64).int32(message.gender) }
-      if (message.birthday != null && Object.hasOwnProperty.call(message, 'birthday')) { writer.uint32(/* id 9, wireType 2 =*/74).string(message.birthday) }
-      if (message.address != null && Object.hasOwnProperty.call(message, 'address')) { writer.uint32(/* id 10, wireType 2 =*/82).string(message.address) }
+      if (message.username != null && Object.hasOwnProperty.call(message, 'username')) { writer.uint32(/* id 4, wireType 2 =*/34).string(message.username) }
+      if (message.password != null && Object.hasOwnProperty.call(message, 'password')) { writer.uint32(/* id 5, wireType 2 =*/42).string(message.password) }
+      if (message.email != null && Object.hasOwnProperty.call(message, 'email')) { writer.uint32(/* id 6, wireType 2 =*/50).string(message.email) }
+      if (message.phone != null && Object.hasOwnProperty.call(message, 'phone')) { writer.uint32(/* id 7, wireType 0 =*/56).int64(message.phone) }
+      if (message.nickName != null && Object.hasOwnProperty.call(message, 'nickName')) { writer.uint32(/* id 8, wireType 2 =*/66).string(message.nickName) }
+      if (message.userOauthId != null && Object.hasOwnProperty.call(message, 'userOauthId')) { writer.uint32(/* id 9, wireType 0 =*/72).int64(message.userOauthId) }
+      if (message.appId != null && Object.hasOwnProperty.call(message, 'appId')) { writer.uint32(/* id 10, wireType 0 =*/80).int64(message.appId) }
       if (message.avatar != null && Object.hasOwnProperty.call(message, 'avatar')) { writer.uint32(/* id 11, wireType 2 =*/90).string(message.avatar) }
-      if (message.description != null && Object.hasOwnProperty.call(message, 'description')) { writer.uint32(/* id 12, wireType 2 =*/98).string(message.description) }
-      if (message.status != null && Object.hasOwnProperty.call(message, 'status')) { writer.uint32(/* id 13, wireType 0 =*/104).int32(message.status) }
-      if (message.type != null && Object.hasOwnProperty.call(message, 'type')) { writer.uint32(/* id 14, wireType 0 =*/112).int32(message.type) }
-      if (message.role != null && Object.hasOwnProperty.call(message, 'role')) { writer.uint32(/* id 15, wireType 2 =*/122).string(message.role) }
+      if (message.gender != null && Object.hasOwnProperty.call(message, 'gender')) { writer.uint32(/* id 12, wireType 0 =*/96).int32(message.gender) }
+      if (message.birthday != null && Object.hasOwnProperty.call(message, 'birthday')) { writer.uint32(/* id 13, wireType 2 =*/106).string(message.birthday) }
+      if (message.signature != null && Object.hasOwnProperty.call(message, 'signature')) { writer.uint32(/* id 14, wireType 2 =*/114).string(message.signature) }
+      if (message.description != null && Object.hasOwnProperty.call(message, 'description')) { writer.uint32(/* id 15, wireType 2 =*/122).string(message.description) }
+      if (message.location != null && Object.hasOwnProperty.call(message, 'location')) { writer.uint32(/* id 16, wireType 2 =*/130).string(message.location) }
+      if (message.regip != null && Object.hasOwnProperty.call(message, 'regip')) { writer.uint32(/* id 17, wireType 2 =*/138).string(message.regip) }
+      if (message.regtm != null && Object.hasOwnProperty.call(message, 'regtm')) { writer.uint32(/* id 18, wireType 2 =*/146).string(message.regtm) }
+      if (message.status != null && Object.hasOwnProperty.call(message, 'status')) { writer.uint32(/* id 19, wireType 0 =*/152).int32(message.status) }
+      if (message.accountType != null && Object.hasOwnProperty.call(message, 'accountType')) { writer.uint32(/* id 20, wireType 0 =*/160).int32(message.accountType) }
+      if (message.role != null && Object.hasOwnProperty.call(message, 'role')) { writer.uint32(/* id 21, wireType 0 =*/168).int64(message.role) }
+      if (message.pretty != null && Object.hasOwnProperty.call(message, 'pretty')) { writer.uint32(/* id 22, wireType 0 =*/176).int64(message.pretty) }
+      if (message.age != null && Object.hasOwnProperty.call(message, 'age')) { writer.uint32(/* id 23, wireType 0 =*/184).int32(message.age) }
+      if (message.country != null && Object.hasOwnProperty.call(message, 'country')) { writer.uint32(/* id 24, wireType 0 =*/192).int32(message.country) }
+      if (message.countryName != null && Object.hasOwnProperty.call(message, 'countryName')) { writer.uint32(/* id 25, wireType 2 =*/202).string(message.countryName) }
+      if (message.city != null && Object.hasOwnProperty.call(message, 'city')) { writer.uint32(/* id 26, wireType 2 =*/210).string(message.city) }
+      if (message.Zone != null && Object.hasOwnProperty.call(message, 'Zone')) { writer.uint32(/* id 27, wireType 0 =*/216).int32(message.Zone) }
+      if (message.devDesc != null && Object.hasOwnProperty.call(message, 'devDesc')) { writer.uint32(/* id 28, wireType 2 =*/226).string(message.devDesc) }
+      if (message.platform != null && Object.hasOwnProperty.call(message, 'platform')) { writer.uint32(/* id 29, wireType 2 =*/234).string(message.platform) }
+      if (message.devUuid != null && Object.hasOwnProperty.call(message, 'devUuid')) { writer.uint32(/* id 30, wireType 2 =*/242).string(message.devUuid) }
+      if (message.ver != null && Object.hasOwnProperty.call(message, 'ver')) { writer.uint32(/* id 31, wireType 2 =*/250).string(message.ver) }
+      if (message.isRobt != null && Object.hasOwnProperty.call(message, 'isRobt')) { writer.uint32(/* id 32, wireType 0 =*/256).int32(message.isRobt) }
+      if (message.regDate != null && Object.hasOwnProperty.call(message, 'regDate')) { writer.uint32(/* id 33, wireType 2 =*/266).string(message.regDate) }
+      if (message.certName != null && Object.hasOwnProperty.call(message, 'certName')) { writer.uint32(/* id 34, wireType 2 =*/274).string(message.certName) }
+      if (message.certNo != null && Object.hasOwnProperty.call(message, 'certNo')) { writer.uint32(/* id 35, wireType 2 =*/282).string(message.certNo) }
+      if (message.first != null && Object.hasOwnProperty.call(message, 'first')) { writer.uint32(/* id 36, wireType 0 =*/288).bool(message.first) }
+      if (message.isYoungMod != null && Object.hasOwnProperty.call(message, 'isYoungMod')) { writer.uint32(/* id 37, wireType 0 =*/296).bool(message.isYoungMod) }
       return writer
     }
 
@@ -2228,31 +2448,31 @@ $root.pbuser = (function() {
             break
           }
           case 4: {
-            message.name = reader.string()
+            message.username = reader.string()
             break
           }
           case 5: {
-            message.email = reader.string()
-            break
-          }
-          case 6: {
             message.password = reader.string()
             break
           }
+          case 6: {
+            message.email = reader.string()
+            break
+          }
           case 7: {
-            message.phone = reader.string()
+            message.phone = reader.int64()
             break
           }
           case 8: {
-            message.gender = reader.int32()
+            message.nickName = reader.string()
             break
           }
           case 9: {
-            message.birthday = reader.string()
+            message.userOauthId = reader.int64()
             break
           }
           case 10: {
-            message.address = reader.string()
+            message.appId = reader.int64()
             break
           }
           case 11: {
@@ -2260,19 +2480,107 @@ $root.pbuser = (function() {
             break
           }
           case 12: {
-            message.description = reader.string()
+            message.gender = reader.int32()
             break
           }
           case 13: {
-            message.status = reader.int32()
+            message.birthday = reader.string()
             break
           }
           case 14: {
-            message.type = reader.int32()
+            message.signature = reader.string()
             break
           }
           case 15: {
-            message.role = reader.string()
+            message.description = reader.string()
+            break
+          }
+          case 16: {
+            message.location = reader.string()
+            break
+          }
+          case 17: {
+            message.regip = reader.string()
+            break
+          }
+          case 18: {
+            message.regtm = reader.string()
+            break
+          }
+          case 19: {
+            message.status = reader.int32()
+            break
+          }
+          case 20: {
+            message.accountType = reader.int32()
+            break
+          }
+          case 21: {
+            message.role = reader.int64()
+            break
+          }
+          case 22: {
+            message.pretty = reader.int64()
+            break
+          }
+          case 23: {
+            message.age = reader.int32()
+            break
+          }
+          case 24: {
+            message.country = reader.int32()
+            break
+          }
+          case 25: {
+            message.countryName = reader.string()
+            break
+          }
+          case 26: {
+            message.city = reader.string()
+            break
+          }
+          case 27: {
+            message.Zone = reader.int32()
+            break
+          }
+          case 28: {
+            message.devDesc = reader.string()
+            break
+          }
+          case 29: {
+            message.platform = reader.string()
+            break
+          }
+          case 30: {
+            message.devUuid = reader.string()
+            break
+          }
+          case 31: {
+            message.ver = reader.string()
+            break
+          }
+          case 32: {
+            message.isRobt = reader.int32()
+            break
+          }
+          case 33: {
+            message.regDate = reader.string()
+            break
+          }
+          case 34: {
+            message.certName = reader.string()
+            break
+          }
+          case 35: {
+            message.certNo = reader.string()
+            break
+          }
+          case 36: {
+            message.first = reader.bool()
+            break
+          }
+          case 37: {
+            message.isYoungMod = reader.bool()
             break
           }
           default:
@@ -2317,17 +2625,29 @@ $root.pbuser = (function() {
       if (message.updatedAt != null && message.hasOwnProperty('updatedAt')) {
         if (!$util.isString(message.updatedAt)) { return 'updatedAt: string expected' }
       }
-      if (message.name != null && message.hasOwnProperty('name')) {
-        if (!$util.isString(message.name)) { return 'name: string expected' }
-      }
-      if (message.email != null && message.hasOwnProperty('email')) {
-        if (!$util.isString(message.email)) { return 'email: string expected' }
+      if (message.username != null && message.hasOwnProperty('username')) {
+        if (!$util.isString(message.username)) { return 'username: string expected' }
       }
       if (message.password != null && message.hasOwnProperty('password')) {
         if (!$util.isString(message.password)) { return 'password: string expected' }
       }
+      if (message.email != null && message.hasOwnProperty('email')) {
+        if (!$util.isString(message.email)) { return 'email: string expected' }
+      }
       if (message.phone != null && message.hasOwnProperty('phone')) {
-        if (!$util.isString(message.phone)) { return 'phone: string expected' }
+        if (!$util.isInteger(message.phone) && !(message.phone && $util.isInteger(message.phone.low) && $util.isInteger(message.phone.high))) { return 'phone: integer|Long expected' }
+      }
+      if (message.nickName != null && message.hasOwnProperty('nickName')) {
+        if (!$util.isString(message.nickName)) { return 'nickName: string expected' }
+      }
+      if (message.userOauthId != null && message.hasOwnProperty('userOauthId')) {
+        if (!$util.isInteger(message.userOauthId) && !(message.userOauthId && $util.isInteger(message.userOauthId.low) && $util.isInteger(message.userOauthId.high))) { return 'userOauthId: integer|Long expected' }
+      }
+      if (message.appId != null && message.hasOwnProperty('appId')) {
+        if (!$util.isInteger(message.appId) && !(message.appId && $util.isInteger(message.appId.low) && $util.isInteger(message.appId.high))) { return 'appId: integer|Long expected' }
+      }
+      if (message.avatar != null && message.hasOwnProperty('avatar')) {
+        if (!$util.isString(message.avatar)) { return 'avatar: string expected' }
       }
       if (message.gender != null && message.hasOwnProperty('gender')) {
         if (!$util.isInteger(message.gender)) { return 'gender: integer expected' }
@@ -2335,23 +2655,84 @@ $root.pbuser = (function() {
       if (message.birthday != null && message.hasOwnProperty('birthday')) {
         if (!$util.isString(message.birthday)) { return 'birthday: string expected' }
       }
-      if (message.address != null && message.hasOwnProperty('address')) {
-        if (!$util.isString(message.address)) { return 'address: string expected' }
-      }
-      if (message.avatar != null && message.hasOwnProperty('avatar')) {
-        if (!$util.isString(message.avatar)) { return 'avatar: string expected' }
+      if (message.signature != null && message.hasOwnProperty('signature')) {
+        if (!$util.isString(message.signature)) { return 'signature: string expected' }
       }
       if (message.description != null && message.hasOwnProperty('description')) {
         if (!$util.isString(message.description)) { return 'description: string expected' }
       }
-      if (message.status != null && message.hasOwnProperty('status')) {
-        if (!$util.isInteger(message.status)) { return 'status: integer expected' }
+      if (message.location != null && message.hasOwnProperty('location')) {
+        if (!$util.isString(message.location)) { return 'location: string expected' }
       }
-      if (message.type != null && message.hasOwnProperty('type')) {
-        if (!$util.isInteger(message.type)) { return 'type: integer expected' }
+      if (message.regip != null && message.hasOwnProperty('regip')) {
+        if (!$util.isString(message.regip)) { return 'regip: string expected' }
+      }
+      if (message.regtm != null && message.hasOwnProperty('regtm')) {
+        if (!$util.isString(message.regtm)) { return 'regtm: string expected' }
+      }
+      if (message.status != null && message.hasOwnProperty('status')) {
+        switch (message.status) {
+          default:
+            return 'status: enum value expected'
+          case 0:
+          case 1:
+          case 2:
+            break
+        }
+      }
+      if (message.accountType != null && message.hasOwnProperty('accountType')) {
+        if (!$util.isInteger(message.accountType)) { return 'accountType: integer expected' }
       }
       if (message.role != null && message.hasOwnProperty('role')) {
-        if (!$util.isString(message.role)) { return 'role: string expected' }
+        if (!$util.isInteger(message.role) && !(message.role && $util.isInteger(message.role.low) && $util.isInteger(message.role.high))) { return 'role: integer|Long expected' }
+      }
+      if (message.pretty != null && message.hasOwnProperty('pretty')) {
+        if (!$util.isInteger(message.pretty) && !(message.pretty && $util.isInteger(message.pretty.low) && $util.isInteger(message.pretty.high))) { return 'pretty: integer|Long expected' }
+      }
+      if (message.age != null && message.hasOwnProperty('age')) {
+        if (!$util.isInteger(message.age)) { return 'age: integer expected' }
+      }
+      if (message.country != null && message.hasOwnProperty('country')) {
+        if (!$util.isInteger(message.country)) { return 'country: integer expected' }
+      }
+      if (message.countryName != null && message.hasOwnProperty('countryName')) {
+        if (!$util.isString(message.countryName)) { return 'countryName: string expected' }
+      }
+      if (message.city != null && message.hasOwnProperty('city')) {
+        if (!$util.isString(message.city)) { return 'city: string expected' }
+      }
+      if (message.Zone != null && message.hasOwnProperty('Zone')) {
+        if (!$util.isInteger(message.Zone)) { return 'Zone: integer expected' }
+      }
+      if (message.devDesc != null && message.hasOwnProperty('devDesc')) {
+        if (!$util.isString(message.devDesc)) { return 'devDesc: string expected' }
+      }
+      if (message.platform != null && message.hasOwnProperty('platform')) {
+        if (!$util.isString(message.platform)) { return 'platform: string expected' }
+      }
+      if (message.devUuid != null && message.hasOwnProperty('devUuid')) {
+        if (!$util.isString(message.devUuid)) { return 'devUuid: string expected' }
+      }
+      if (message.ver != null && message.hasOwnProperty('ver')) {
+        if (!$util.isString(message.ver)) { return 'ver: string expected' }
+      }
+      if (message.isRobt != null && message.hasOwnProperty('isRobt')) {
+        if (!$util.isInteger(message.isRobt)) { return 'isRobt: integer expected' }
+      }
+      if (message.regDate != null && message.hasOwnProperty('regDate')) {
+        if (!$util.isString(message.regDate)) { return 'regDate: string expected' }
+      }
+      if (message.certName != null && message.hasOwnProperty('certName')) {
+        if (!$util.isString(message.certName)) { return 'certName: string expected' }
+      }
+      if (message.certNo != null && message.hasOwnProperty('certNo')) {
+        if (!$util.isString(message.certNo)) { return 'certNo: string expected' }
+      }
+      if (message.first != null && message.hasOwnProperty('first')) {
+        if (typeof message.first !== 'boolean') { return 'first: boolean expected' }
+      }
+      if (message.isYoungMod != null && message.hasOwnProperty('isYoungMod')) {
+        if (typeof message.isYoungMod !== 'boolean') { return 'isYoungMod: boolean expected' }
       }
       return null
     }
@@ -2372,18 +2753,69 @@ $root.pbuser = (function() {
       }
       if (object.createdAt != null) { message.createdAt = String(object.createdAt) }
       if (object.updatedAt != null) { message.updatedAt = String(object.updatedAt) }
-      if (object.name != null) { message.name = String(object.name) }
-      if (object.email != null) { message.email = String(object.email) }
+      if (object.username != null) { message.username = String(object.username) }
       if (object.password != null) { message.password = String(object.password) }
-      if (object.phone != null) { message.phone = String(object.phone) }
+      if (object.email != null) { message.email = String(object.email) }
+      if (object.phone != null) {
+        if ($util.Long) { (message.phone = $util.Long.fromValue(object.phone)).unsigned = false } else if (typeof object.phone === 'string') { message.phone = parseInt(object.phone, 10) } else if (typeof object.phone === 'number') { message.phone = object.phone } else if (typeof object.phone === 'object') { message.phone = new $util.LongBits(object.phone.low >>> 0, object.phone.high >>> 0).toNumber() }
+      }
+      if (object.nickName != null) { message.nickName = String(object.nickName) }
+      if (object.userOauthId != null) {
+        if ($util.Long) { (message.userOauthId = $util.Long.fromValue(object.userOauthId)).unsigned = false } else if (typeof object.userOauthId === 'string') { message.userOauthId = parseInt(object.userOauthId, 10) } else if (typeof object.userOauthId === 'number') { message.userOauthId = object.userOauthId } else if (typeof object.userOauthId === 'object') { message.userOauthId = new $util.LongBits(object.userOauthId.low >>> 0, object.userOauthId.high >>> 0).toNumber() }
+      }
+      if (object.appId != null) {
+        if ($util.Long) { (message.appId = $util.Long.fromValue(object.appId)).unsigned = false } else if (typeof object.appId === 'string') { message.appId = parseInt(object.appId, 10) } else if (typeof object.appId === 'number') { message.appId = object.appId } else if (typeof object.appId === 'object') { message.appId = new $util.LongBits(object.appId.low >>> 0, object.appId.high >>> 0).toNumber() }
+      }
+      if (object.avatar != null) { message.avatar = String(object.avatar) }
       if (object.gender != null) { message.gender = object.gender | 0 }
       if (object.birthday != null) { message.birthday = String(object.birthday) }
-      if (object.address != null) { message.address = String(object.address) }
-      if (object.avatar != null) { message.avatar = String(object.avatar) }
+      if (object.signature != null) { message.signature = String(object.signature) }
       if (object.description != null) { message.description = String(object.description) }
-      if (object.status != null) { message.status = object.status | 0 }
-      if (object.type != null) { message.type = object.type | 0 }
-      if (object.role != null) { message.role = String(object.role) }
+      if (object.location != null) { message.location = String(object.location) }
+      if (object.regip != null) { message.regip = String(object.regip) }
+      if (object.regtm != null) { message.regtm = String(object.regtm) }
+      switch (object.status) {
+        default:
+          if (typeof object.status === 'number') {
+            message.status = object.status
+            break
+          }
+          break
+        case 'UserStatusNone':
+        case 0:
+          message.status = 0
+          break
+        case 'Normal':
+        case 1:
+          message.status = 1
+          break
+        case 'Banned':
+        case 2:
+          message.status = 2
+          break
+      }
+      if (object.accountType != null) { message.accountType = object.accountType | 0 }
+      if (object.role != null) {
+        if ($util.Long) { (message.role = $util.Long.fromValue(object.role)).unsigned = false } else if (typeof object.role === 'string') { message.role = parseInt(object.role, 10) } else if (typeof object.role === 'number') { message.role = object.role } else if (typeof object.role === 'object') { message.role = new $util.LongBits(object.role.low >>> 0, object.role.high >>> 0).toNumber() }
+      }
+      if (object.pretty != null) {
+        if ($util.Long) { (message.pretty = $util.Long.fromValue(object.pretty)).unsigned = false } else if (typeof object.pretty === 'string') { message.pretty = parseInt(object.pretty, 10) } else if (typeof object.pretty === 'number') { message.pretty = object.pretty } else if (typeof object.pretty === 'object') { message.pretty = new $util.LongBits(object.pretty.low >>> 0, object.pretty.high >>> 0).toNumber() }
+      }
+      if (object.age != null) { message.age = object.age | 0 }
+      if (object.country != null) { message.country = object.country | 0 }
+      if (object.countryName != null) { message.countryName = String(object.countryName) }
+      if (object.city != null) { message.city = String(object.city) }
+      if (object.Zone != null) { message.Zone = object.Zone | 0 }
+      if (object.devDesc != null) { message.devDesc = String(object.devDesc) }
+      if (object.platform != null) { message.platform = String(object.platform) }
+      if (object.devUuid != null) { message.devUuid = String(object.devUuid) }
+      if (object.ver != null) { message.ver = String(object.ver) }
+      if (object.isRobt != null) { message.isRobt = object.isRobt | 0 }
+      if (object.regDate != null) { message.regDate = String(object.regDate) }
+      if (object.certName != null) { message.certName = String(object.certName) }
+      if (object.certNo != null) { message.certNo = String(object.certNo) }
+      if (object.first != null) { message.first = Boolean(object.first) }
+      if (object.isYoungMod != null) { message.isYoungMod = Boolean(object.isYoungMod) }
       return message
     }
 
@@ -2406,36 +2838,105 @@ $root.pbuser = (function() {
         } else { object.id = options.longs === String ? '0' : 0 }
         object.createdAt = ''
         object.updatedAt = ''
-        object.name = ''
-        object.email = ''
+        object.username = ''
         object.password = ''
-        object.phone = ''
+        object.email = ''
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.phone = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.phone = options.longs === String ? '0' : 0 }
+        object.nickName = ''
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.userOauthId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.userOauthId = options.longs === String ? '0' : 0 }
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.appId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.appId = options.longs === String ? '0' : 0 }
+        object.avatar = ''
         object.gender = 0
         object.birthday = ''
-        object.address = ''
-        object.avatar = ''
+        object.signature = ''
         object.description = ''
-        object.status = 0
-        object.type = 0
-        object.role = ''
+        object.location = ''
+        object.regip = ''
+        object.regtm = ''
+        object.status = options.enums === String ? 'UserStatusNone' : 0
+        object.accountType = 0
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.role = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.role = options.longs === String ? '0' : 0 }
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.pretty = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.pretty = options.longs === String ? '0' : 0 }
+        object.age = 0
+        object.country = 0
+        object.countryName = ''
+        object.city = ''
+        object.Zone = 0
+        object.devDesc = ''
+        object.platform = ''
+        object.devUuid = ''
+        object.ver = ''
+        object.isRobt = 0
+        object.regDate = ''
+        object.certName = ''
+        object.certNo = ''
+        object.first = false
+        object.isYoungMod = false
       }
       if (message.id != null && message.hasOwnProperty('id')) {
         if (typeof message.id === 'number') { object.id = options.longs === String ? String(message.id) : message.id } else { object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id }
       }
       if (message.createdAt != null && message.hasOwnProperty('createdAt')) { object.createdAt = message.createdAt }
       if (message.updatedAt != null && message.hasOwnProperty('updatedAt')) { object.updatedAt = message.updatedAt }
-      if (message.name != null && message.hasOwnProperty('name')) { object.name = message.name }
-      if (message.email != null && message.hasOwnProperty('email')) { object.email = message.email }
+      if (message.username != null && message.hasOwnProperty('username')) { object.username = message.username }
       if (message.password != null && message.hasOwnProperty('password')) { object.password = message.password }
-      if (message.phone != null && message.hasOwnProperty('phone')) { object.phone = message.phone }
+      if (message.email != null && message.hasOwnProperty('email')) { object.email = message.email }
+      if (message.phone != null && message.hasOwnProperty('phone')) {
+        if (typeof message.phone === 'number') { object.phone = options.longs === String ? String(message.phone) : message.phone } else { object.phone = options.longs === String ? $util.Long.prototype.toString.call(message.phone) : options.longs === Number ? new $util.LongBits(message.phone.low >>> 0, message.phone.high >>> 0).toNumber() : message.phone }
+      }
+      if (message.nickName != null && message.hasOwnProperty('nickName')) { object.nickName = message.nickName }
+      if (message.userOauthId != null && message.hasOwnProperty('userOauthId')) {
+        if (typeof message.userOauthId === 'number') { object.userOauthId = options.longs === String ? String(message.userOauthId) : message.userOauthId } else { object.userOauthId = options.longs === String ? $util.Long.prototype.toString.call(message.userOauthId) : options.longs === Number ? new $util.LongBits(message.userOauthId.low >>> 0, message.userOauthId.high >>> 0).toNumber() : message.userOauthId }
+      }
+      if (message.appId != null && message.hasOwnProperty('appId')) {
+        if (typeof message.appId === 'number') { object.appId = options.longs === String ? String(message.appId) : message.appId } else { object.appId = options.longs === String ? $util.Long.prototype.toString.call(message.appId) : options.longs === Number ? new $util.LongBits(message.appId.low >>> 0, message.appId.high >>> 0).toNumber() : message.appId }
+      }
+      if (message.avatar != null && message.hasOwnProperty('avatar')) { object.avatar = message.avatar }
       if (message.gender != null && message.hasOwnProperty('gender')) { object.gender = message.gender }
       if (message.birthday != null && message.hasOwnProperty('birthday')) { object.birthday = message.birthday }
-      if (message.address != null && message.hasOwnProperty('address')) { object.address = message.address }
-      if (message.avatar != null && message.hasOwnProperty('avatar')) { object.avatar = message.avatar }
+      if (message.signature != null && message.hasOwnProperty('signature')) { object.signature = message.signature }
       if (message.description != null && message.hasOwnProperty('description')) { object.description = message.description }
-      if (message.status != null && message.hasOwnProperty('status')) { object.status = message.status }
-      if (message.type != null && message.hasOwnProperty('type')) { object.type = message.type }
-      if (message.role != null && message.hasOwnProperty('role')) { object.role = message.role }
+      if (message.location != null && message.hasOwnProperty('location')) { object.location = message.location }
+      if (message.regip != null && message.hasOwnProperty('regip')) { object.regip = message.regip }
+      if (message.regtm != null && message.hasOwnProperty('regtm')) { object.regtm = message.regtm }
+      if (message.status != null && message.hasOwnProperty('status')) { object.status = options.enums === String ? $root.pbuser.UserStatus[message.status] === undefined ? message.status : $root.pbuser.UserStatus[message.status] : message.status }
+      if (message.accountType != null && message.hasOwnProperty('accountType')) { object.accountType = message.accountType }
+      if (message.role != null && message.hasOwnProperty('role')) {
+        if (typeof message.role === 'number') { object.role = options.longs === String ? String(message.role) : message.role } else { object.role = options.longs === String ? $util.Long.prototype.toString.call(message.role) : options.longs === Number ? new $util.LongBits(message.role.low >>> 0, message.role.high >>> 0).toNumber() : message.role }
+      }
+      if (message.pretty != null && message.hasOwnProperty('pretty')) {
+        if (typeof message.pretty === 'number') { object.pretty = options.longs === String ? String(message.pretty) : message.pretty } else { object.pretty = options.longs === String ? $util.Long.prototype.toString.call(message.pretty) : options.longs === Number ? new $util.LongBits(message.pretty.low >>> 0, message.pretty.high >>> 0).toNumber() : message.pretty }
+      }
+      if (message.age != null && message.hasOwnProperty('age')) { object.age = message.age }
+      if (message.country != null && message.hasOwnProperty('country')) { object.country = message.country }
+      if (message.countryName != null && message.hasOwnProperty('countryName')) { object.countryName = message.countryName }
+      if (message.city != null && message.hasOwnProperty('city')) { object.city = message.city }
+      if (message.Zone != null && message.hasOwnProperty('Zone')) { object.Zone = message.Zone }
+      if (message.devDesc != null && message.hasOwnProperty('devDesc')) { object.devDesc = message.devDesc }
+      if (message.platform != null && message.hasOwnProperty('platform')) { object.platform = message.platform }
+      if (message.devUuid != null && message.hasOwnProperty('devUuid')) { object.devUuid = message.devUuid }
+      if (message.ver != null && message.hasOwnProperty('ver')) { object.ver = message.ver }
+      if (message.isRobt != null && message.hasOwnProperty('isRobt')) { object.isRobt = message.isRobt }
+      if (message.regDate != null && message.hasOwnProperty('regDate')) { object.regDate = message.regDate }
+      if (message.certName != null && message.hasOwnProperty('certName')) { object.certName = message.certName }
+      if (message.certNo != null && message.hasOwnProperty('certNo')) { object.certNo = message.certNo }
+      if (message.first != null && message.hasOwnProperty('first')) { object.first = message.first }
+      if (message.isYoungMod != null && message.hasOwnProperty('isYoungMod')) { object.isYoungMod = message.isYoungMod }
       return object
     }
 
@@ -2466,6 +2967,42 @@ $root.pbuser = (function() {
     }
 
     return UserModel
+  })()
+
+  /**
+     * UserStatus enum.
+     * @name pbuser.UserStatus
+     * @enum {number}
+     * @property {number} UserStatusNone=0 UserStatusNone value
+     * @property {number} Normal=1 Normal value
+     * @property {number} Banned=2 Banned value
+     */
+  pbuser.UserStatus = (function() {
+    var valuesById = {}; var values = Object.create(valuesById)
+    values[valuesById[0] = 'UserStatusNone'] = 0
+    values[valuesById[1] = 'Normal'] = 1
+    values[valuesById[2] = 'Banned'] = 2
+    return values
+  })()
+
+  /**
+     * AccountType enum.
+     * @name pbuser.AccountType
+     * @enum {number}
+     * @property {number} AccountTypeNone=0 AccountTypeNone value
+     * @property {number} Wechat=1 Wechat value
+     * @property {number} Phone=2 Phone value
+     * @property {number} Email=3 Email value
+     * @property {number} Admin=4 Admin value
+     */
+  pbuser.AccountType = (function() {
+    var valuesById = {}; var values = Object.create(valuesById)
+    values[valuesById[0] = 'AccountTypeNone'] = 0
+    values[valuesById[1] = 'Wechat'] = 1
+    values[valuesById[2] = 'Phone'] = 2
+    values[valuesById[3] = 'Email'] = 3
+    values[valuesById[4] = 'Admin'] = 4
+    return values
   })()
 
   pbuser.FindUserArgs = (function() {
@@ -3331,6 +3868,1250 @@ $root.pbuser = (function() {
   })()
 
   return pbuser
+})()
+
+$root.pbuserOauth = (function() {
+  /**
+     * Namespace pbuserOauth.
+     * @exports pbuserOauth
+     * @namespace
+     */
+  var pbuserOauth = {}
+
+  pbuserOauth.UserOauthModel = (function() {
+    /**
+         * Properties of a UserOauthModel.
+         * @memberof pbuserOauth
+         * @interface IUserOauthModel
+         * @property {number|Long|null} [id] UserOauthModel id
+         * @property {string|null} [createdAt] UserOauthModel createdAt
+         * @property {string|null} [updatedAt] UserOauthModel updatedAt
+         * @property {pbuserOauth.OauthType|null} [oauthType] UserOauthModel oauthType
+         * @property {string|null} [openId] UserOauthModel openId
+         * @property {string|null} [unionId] UserOauthModel unionId
+         * @property {number|Long|null} [appId] UserOauthModel appId
+         */
+
+    /**
+         * Constructs a new UserOauthModel.
+         * @memberof pbuserOauth
+         * @classdesc Represents a UserOauthModel.
+         * @implements IUserOauthModel
+         * @constructor
+         * @param {pbuserOauth.IUserOauthModel=} [properties] Properties to set
+         */
+    function UserOauthModel(properties) {
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * UserOauthModel id.
+         * @member {number|Long} id
+         * @memberof pbuserOauth.UserOauthModel
+         * @instance
+         */
+    UserOauthModel.prototype.id = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+
+    /**
+         * UserOauthModel createdAt.
+         * @member {string} createdAt
+         * @memberof pbuserOauth.UserOauthModel
+         * @instance
+         */
+    UserOauthModel.prototype.createdAt = ''
+
+    /**
+         * UserOauthModel updatedAt.
+         * @member {string} updatedAt
+         * @memberof pbuserOauth.UserOauthModel
+         * @instance
+         */
+    UserOauthModel.prototype.updatedAt = ''
+
+    /**
+         * UserOauthModel oauthType.
+         * @member {pbuserOauth.OauthType} oauthType
+         * @memberof pbuserOauth.UserOauthModel
+         * @instance
+         */
+    UserOauthModel.prototype.oauthType = 0
+
+    /**
+         * UserOauthModel openId.
+         * @member {string} openId
+         * @memberof pbuserOauth.UserOauthModel
+         * @instance
+         */
+    UserOauthModel.prototype.openId = ''
+
+    /**
+         * UserOauthModel unionId.
+         * @member {string} unionId
+         * @memberof pbuserOauth.UserOauthModel
+         * @instance
+         */
+    UserOauthModel.prototype.unionId = ''
+
+    /**
+         * UserOauthModel appId.
+         * @member {number|Long} appId
+         * @memberof pbuserOauth.UserOauthModel
+         * @instance
+         */
+    UserOauthModel.prototype.appId = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+
+    /**
+         * Creates a new UserOauthModel instance using the specified properties.
+         * @function create
+         * @memberof pbuserOauth.UserOauthModel
+         * @static
+         * @param {pbuserOauth.IUserOauthModel=} [properties] Properties to set
+         * @returns {pbuserOauth.UserOauthModel} UserOauthModel instance
+         */
+    UserOauthModel.create = function create(properties) {
+      return new UserOauthModel(properties)
+    }
+
+    /**
+         * Encodes the specified UserOauthModel message. Does not implicitly {@link pbuserOauth.UserOauthModel.verify|verify} messages.
+         * @function encode
+         * @memberof pbuserOauth.UserOauthModel
+         * @static
+         * @param {pbuserOauth.IUserOauthModel} message UserOauthModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    UserOauthModel.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.id != null && Object.hasOwnProperty.call(message, 'id')) { writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id) }
+      if (message.createdAt != null && Object.hasOwnProperty.call(message, 'createdAt')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.createdAt) }
+      if (message.updatedAt != null && Object.hasOwnProperty.call(message, 'updatedAt')) { writer.uint32(/* id 3, wireType 2 =*/26).string(message.updatedAt) }
+      if (message.oauthType != null && Object.hasOwnProperty.call(message, 'oauthType')) { writer.uint32(/* id 4, wireType 0 =*/32).int32(message.oauthType) }
+      if (message.openId != null && Object.hasOwnProperty.call(message, 'openId')) { writer.uint32(/* id 5, wireType 2 =*/42).string(message.openId) }
+      if (message.unionId != null && Object.hasOwnProperty.call(message, 'unionId')) { writer.uint32(/* id 6, wireType 2 =*/50).string(message.unionId) }
+      if (message.appId != null && Object.hasOwnProperty.call(message, 'appId')) { writer.uint32(/* id 7, wireType 0 =*/56).int64(message.appId) }
+      return writer
+    }
+
+    /**
+         * Encodes the specified UserOauthModel message, length delimited. Does not implicitly {@link pbuserOauth.UserOauthModel.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbuserOauth.UserOauthModel
+         * @static
+         * @param {pbuserOauth.IUserOauthModel} message UserOauthModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    UserOauthModel.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes a UserOauthModel message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbuserOauth.UserOauthModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbuserOauth.UserOauthModel} UserOauthModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    UserOauthModel.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbuserOauth.UserOauthModel()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            message.id = reader.int64()
+            break
+          }
+          case 2: {
+            message.createdAt = reader.string()
+            break
+          }
+          case 3: {
+            message.updatedAt = reader.string()
+            break
+          }
+          case 4: {
+            message.oauthType = reader.int32()
+            break
+          }
+          case 5: {
+            message.openId = reader.string()
+            break
+          }
+          case 6: {
+            message.unionId = reader.string()
+            break
+          }
+          case 7: {
+            message.appId = reader.int64()
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes a UserOauthModel message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbuserOauth.UserOauthModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbuserOauth.UserOauthModel} UserOauthModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    UserOauthModel.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies a UserOauthModel message.
+         * @function verify
+         * @memberof pbuserOauth.UserOauthModel
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    UserOauthModel.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.id != null && message.hasOwnProperty('id')) {
+        if (!$util.isInteger(message.id) && !(message.id && $util.isInteger(message.id.low) && $util.isInteger(message.id.high))) { return 'id: integer|Long expected' }
+      }
+      if (message.createdAt != null && message.hasOwnProperty('createdAt')) {
+        if (!$util.isString(message.createdAt)) { return 'createdAt: string expected' }
+      }
+      if (message.updatedAt != null && message.hasOwnProperty('updatedAt')) {
+        if (!$util.isString(message.updatedAt)) { return 'updatedAt: string expected' }
+      }
+      if (message.oauthType != null && message.hasOwnProperty('oauthType')) {
+        switch (message.oauthType) {
+          default:
+            return 'oauthType: enum value expected'
+          case 0:
+          case 1:
+          case 2:
+            break
+        }
+      }
+      if (message.openId != null && message.hasOwnProperty('openId')) {
+        if (!$util.isString(message.openId)) { return 'openId: string expected' }
+      }
+      if (message.unionId != null && message.hasOwnProperty('unionId')) {
+        if (!$util.isString(message.unionId)) { return 'unionId: string expected' }
+      }
+      if (message.appId != null && message.hasOwnProperty('appId')) {
+        if (!$util.isInteger(message.appId) && !(message.appId && $util.isInteger(message.appId.low) && $util.isInteger(message.appId.high))) { return 'appId: integer|Long expected' }
+      }
+      return null
+    }
+
+    /**
+         * Creates a UserOauthModel message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbuserOauth.UserOauthModel
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbuserOauth.UserOauthModel} UserOauthModel
+         */
+    UserOauthModel.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbuserOauth.UserOauthModel) { return object }
+      var message = new $root.pbuserOauth.UserOauthModel()
+      if (object.id != null) {
+        if ($util.Long) { (message.id = $util.Long.fromValue(object.id)).unsigned = false } else if (typeof object.id === 'string') { message.id = parseInt(object.id, 10) } else if (typeof object.id === 'number') { message.id = object.id } else if (typeof object.id === 'object') { message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber() }
+      }
+      if (object.createdAt != null) { message.createdAt = String(object.createdAt) }
+      if (object.updatedAt != null) { message.updatedAt = String(object.updatedAt) }
+      switch (object.oauthType) {
+        default:
+          if (typeof object.oauthType === 'number') {
+            message.oauthType = object.oauthType
+            break
+          }
+          break
+        case 'OAUTH_TYPE_NONE':
+        case 0:
+          message.oauthType = 0
+          break
+        case 'OAUTH_TYPE_WECHAT':
+        case 1:
+          message.oauthType = 1
+          break
+        case 'OAUTH_TYPE_QQ':
+        case 2:
+          message.oauthType = 2
+          break
+      }
+      if (object.openId != null) { message.openId = String(object.openId) }
+      if (object.unionId != null) { message.unionId = String(object.unionId) }
+      if (object.appId != null) {
+        if ($util.Long) { (message.appId = $util.Long.fromValue(object.appId)).unsigned = false } else if (typeof object.appId === 'string') { message.appId = parseInt(object.appId, 10) } else if (typeof object.appId === 'number') { message.appId = object.appId } else if (typeof object.appId === 'object') { message.appId = new $util.LongBits(object.appId.low >>> 0, object.appId.high >>> 0).toNumber() }
+      }
+      return message
+    }
+
+    /**
+         * Creates a plain object from a UserOauthModel message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbuserOauth.UserOauthModel
+         * @static
+         * @param {pbuserOauth.UserOauthModel} message UserOauthModel
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    UserOauthModel.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.defaults) {
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.id = options.longs === String ? '0' : 0 }
+        object.createdAt = ''
+        object.updatedAt = ''
+        object.oauthType = options.enums === String ? 'OAUTH_TYPE_NONE' : 0
+        object.openId = ''
+        object.unionId = ''
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.appId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.appId = options.longs === String ? '0' : 0 }
+      }
+      if (message.id != null && message.hasOwnProperty('id')) {
+        if (typeof message.id === 'number') { object.id = options.longs === String ? String(message.id) : message.id } else { object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id }
+      }
+      if (message.createdAt != null && message.hasOwnProperty('createdAt')) { object.createdAt = message.createdAt }
+      if (message.updatedAt != null && message.hasOwnProperty('updatedAt')) { object.updatedAt = message.updatedAt }
+      if (message.oauthType != null && message.hasOwnProperty('oauthType')) { object.oauthType = options.enums === String ? $root.pbuserOauth.OauthType[message.oauthType] === undefined ? message.oauthType : $root.pbuserOauth.OauthType[message.oauthType] : message.oauthType }
+      if (message.openId != null && message.hasOwnProperty('openId')) { object.openId = message.openId }
+      if (message.unionId != null && message.hasOwnProperty('unionId')) { object.unionId = message.unionId }
+      if (message.appId != null && message.hasOwnProperty('appId')) {
+        if (typeof message.appId === 'number') { object.appId = options.longs === String ? String(message.appId) : message.appId } else { object.appId = options.longs === String ? $util.Long.prototype.toString.call(message.appId) : options.longs === Number ? new $util.LongBits(message.appId.low >>> 0, message.appId.high >>> 0).toNumber() : message.appId }
+      }
+      return object
+    }
+
+    /**
+         * Converts this UserOauthModel to JSON.
+         * @function toJSON
+         * @memberof pbuserOauth.UserOauthModel
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    UserOauthModel.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for UserOauthModel
+         * @function getTypeUrl
+         * @memberof pbuserOauth.UserOauthModel
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    UserOauthModel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/pbuserOauth.UserOauthModel'
+    }
+
+    return UserOauthModel
+  })()
+
+  /**
+     * OauthType enum.
+     * @name pbuserOauth.OauthType
+     * @enum {number}
+     * @property {number} OAUTH_TYPE_NONE=0 OAUTH_TYPE_NONE value
+     * @property {number} OAUTH_TYPE_WECHAT=1 OAUTH_TYPE_WECHAT value
+     * @property {number} OAUTH_TYPE_QQ=2 OAUTH_TYPE_QQ value
+     */
+  pbuserOauth.OauthType = (function() {
+    var valuesById = {}; var values = Object.create(valuesById)
+    values[valuesById[0] = 'OAUTH_TYPE_NONE'] = 0
+    values[valuesById[1] = 'OAUTH_TYPE_WECHAT'] = 1
+    values[valuesById[2] = 'OAUTH_TYPE_QQ'] = 2
+    return values
+  })()
+
+  pbuserOauth.FindUserOauthArgs = (function() {
+    /**
+         * Properties of a FindUserOauthArgs.
+         * @memberof pbuserOauth
+         * @interface IFindUserOauthArgs
+         * @property {pbcommon.IPageInfo|null} [pageInfo] FindUserOauthArgs pageInfo
+         * @property {pbuserOauth.IUserOauthModel|null} [query] FindUserOauthArgs query
+         */
+
+    /**
+         * Constructs a new FindUserOauthArgs.
+         * @memberof pbuserOauth
+         * @classdesc Represents a FindUserOauthArgs.
+         * @implements IFindUserOauthArgs
+         * @constructor
+         * @param {pbuserOauth.IFindUserOauthArgs=} [properties] Properties to set
+         */
+    function FindUserOauthArgs(properties) {
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * FindUserOauthArgs pageInfo.
+         * @member {pbcommon.IPageInfo|null|undefined} pageInfo
+         * @memberof pbuserOauth.FindUserOauthArgs
+         * @instance
+         */
+    FindUserOauthArgs.prototype.pageInfo = null
+
+    /**
+         * FindUserOauthArgs query.
+         * @member {pbuserOauth.IUserOauthModel|null|undefined} query
+         * @memberof pbuserOauth.FindUserOauthArgs
+         * @instance
+         */
+    FindUserOauthArgs.prototype.query = null
+
+    /**
+         * Creates a new FindUserOauthArgs instance using the specified properties.
+         * @function create
+         * @memberof pbuserOauth.FindUserOauthArgs
+         * @static
+         * @param {pbuserOauth.IFindUserOauthArgs=} [properties] Properties to set
+         * @returns {pbuserOauth.FindUserOauthArgs} FindUserOauthArgs instance
+         */
+    FindUserOauthArgs.create = function create(properties) {
+      return new FindUserOauthArgs(properties)
+    }
+
+    /**
+         * Encodes the specified FindUserOauthArgs message. Does not implicitly {@link pbuserOauth.FindUserOauthArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbuserOauth.FindUserOauthArgs
+         * @static
+         * @param {pbuserOauth.IFindUserOauthArgs} message FindUserOauthArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    FindUserOauthArgs.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.pageInfo != null && Object.hasOwnProperty.call(message, 'pageInfo')) { $root.pbcommon.PageInfo.encode(message.pageInfo, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim() }
+      if (message.query != null && Object.hasOwnProperty.call(message, 'query')) { $root.pbuserOauth.UserOauthModel.encode(message.query, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim() }
+      return writer
+    }
+
+    /**
+         * Encodes the specified FindUserOauthArgs message, length delimited. Does not implicitly {@link pbuserOauth.FindUserOauthArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbuserOauth.FindUserOauthArgs
+         * @static
+         * @param {pbuserOauth.IFindUserOauthArgs} message FindUserOauthArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    FindUserOauthArgs.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes a FindUserOauthArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbuserOauth.FindUserOauthArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbuserOauth.FindUserOauthArgs} FindUserOauthArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    FindUserOauthArgs.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbuserOauth.FindUserOauthArgs()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            message.pageInfo = $root.pbcommon.PageInfo.decode(reader, reader.uint32())
+            break
+          }
+          case 2: {
+            message.query = $root.pbuserOauth.UserOauthModel.decode(reader, reader.uint32())
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes a FindUserOauthArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbuserOauth.FindUserOauthArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbuserOauth.FindUserOauthArgs} FindUserOauthArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    FindUserOauthArgs.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies a FindUserOauthArgs message.
+         * @function verify
+         * @memberof pbuserOauth.FindUserOauthArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    FindUserOauthArgs.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.pageInfo != null && message.hasOwnProperty('pageInfo')) {
+        var error = $root.pbcommon.PageInfo.verify(message.pageInfo)
+        if (error) { return 'pageInfo.' + error }
+      }
+      if (message.query != null && message.hasOwnProperty('query')) {
+        var error = $root.pbuserOauth.UserOauthModel.verify(message.query)
+        if (error) { return 'query.' + error }
+      }
+      return null
+    }
+
+    /**
+         * Creates a FindUserOauthArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbuserOauth.FindUserOauthArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbuserOauth.FindUserOauthArgs} FindUserOauthArgs
+         */
+    FindUserOauthArgs.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbuserOauth.FindUserOauthArgs) { return object }
+      var message = new $root.pbuserOauth.FindUserOauthArgs()
+      if (object.pageInfo != null) {
+        if (typeof object.pageInfo !== 'object') { throw TypeError('.pbuserOauth.FindUserOauthArgs.pageInfo: object expected') }
+        message.pageInfo = $root.pbcommon.PageInfo.fromObject(object.pageInfo)
+      }
+      if (object.query != null) {
+        if (typeof object.query !== 'object') { throw TypeError('.pbuserOauth.FindUserOauthArgs.query: object expected') }
+        message.query = $root.pbuserOauth.UserOauthModel.fromObject(object.query)
+      }
+      return message
+    }
+
+    /**
+         * Creates a plain object from a FindUserOauthArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbuserOauth.FindUserOauthArgs
+         * @static
+         * @param {pbuserOauth.FindUserOauthArgs} message FindUserOauthArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    FindUserOauthArgs.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.defaults) {
+        object.pageInfo = null
+        object.query = null
+      }
+      if (message.pageInfo != null && message.hasOwnProperty('pageInfo')) { object.pageInfo = $root.pbcommon.PageInfo.toObject(message.pageInfo, options) }
+      if (message.query != null && message.hasOwnProperty('query')) { object.query = $root.pbuserOauth.UserOauthModel.toObject(message.query, options) }
+      return object
+    }
+
+    /**
+         * Converts this FindUserOauthArgs to JSON.
+         * @function toJSON
+         * @memberof pbuserOauth.FindUserOauthArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    FindUserOauthArgs.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for FindUserOauthArgs
+         * @function getTypeUrl
+         * @memberof pbuserOauth.FindUserOauthArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    FindUserOauthArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/pbuserOauth.FindUserOauthArgs'
+    }
+
+    return FindUserOauthArgs
+  })()
+
+  pbuserOauth.FindUserOauthReply = (function() {
+    /**
+         * Properties of a FindUserOauthReply.
+         * @memberof pbuserOauth
+         * @interface IFindUserOauthReply
+         * @property {pbcommon.EnumCode|null} [code] FindUserOauthReply code
+         * @property {string|null} [msg] FindUserOauthReply msg
+         * @property {pbuserOauth.IUserOauthModel|null} [data] FindUserOauthReply data
+         * @property {Array.<pbuserOauth.IUserOauthModel>|null} [list] FindUserOauthReply list
+         * @property {number|Long|null} [total] FindUserOauthReply total
+         */
+
+    /**
+         * Constructs a new FindUserOauthReply.
+         * @memberof pbuserOauth
+         * @classdesc Represents a FindUserOauthReply.
+         * @implements IFindUserOauthReply
+         * @constructor
+         * @param {pbuserOauth.IFindUserOauthReply=} [properties] Properties to set
+         */
+    function FindUserOauthReply(properties) {
+      this.list = []
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * FindUserOauthReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbuserOauth.FindUserOauthReply
+         * @instance
+         */
+    FindUserOauthReply.prototype.code = 0
+
+    /**
+         * FindUserOauthReply msg.
+         * @member {string} msg
+         * @memberof pbuserOauth.FindUserOauthReply
+         * @instance
+         */
+    FindUserOauthReply.prototype.msg = ''
+
+    /**
+         * FindUserOauthReply data.
+         * @member {pbuserOauth.IUserOauthModel|null|undefined} data
+         * @memberof pbuserOauth.FindUserOauthReply
+         * @instance
+         */
+    FindUserOauthReply.prototype.data = null
+
+    /**
+         * FindUserOauthReply list.
+         * @member {Array.<pbuserOauth.IUserOauthModel>} list
+         * @memberof pbuserOauth.FindUserOauthReply
+         * @instance
+         */
+    FindUserOauthReply.prototype.list = $util.emptyArray
+
+    /**
+         * FindUserOauthReply total.
+         * @member {number|Long} total
+         * @memberof pbuserOauth.FindUserOauthReply
+         * @instance
+         */
+    FindUserOauthReply.prototype.total = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+
+    /**
+         * Creates a new FindUserOauthReply instance using the specified properties.
+         * @function create
+         * @memberof pbuserOauth.FindUserOauthReply
+         * @static
+         * @param {pbuserOauth.IFindUserOauthReply=} [properties] Properties to set
+         * @returns {pbuserOauth.FindUserOauthReply} FindUserOauthReply instance
+         */
+    FindUserOauthReply.create = function create(properties) {
+      return new FindUserOauthReply(properties)
+    }
+
+    /**
+         * Encodes the specified FindUserOauthReply message. Does not implicitly {@link pbuserOauth.FindUserOauthReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbuserOauth.FindUserOauthReply
+         * @static
+         * @param {pbuserOauth.IFindUserOauthReply} message FindUserOauthReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    FindUserOauthReply.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.code != null && Object.hasOwnProperty.call(message, 'code')) { writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code) }
+      if (message.msg != null && Object.hasOwnProperty.call(message, 'msg')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg) }
+      if (message.data != null && Object.hasOwnProperty.call(message, 'data')) { $root.pbuserOauth.UserOauthModel.encode(message.data, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim() }
+      if (message.list != null && message.list.length) {
+        for (var i = 0; i < message.list.length; ++i) { $root.pbuserOauth.UserOauthModel.encode(message.list[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim() }
+      }
+      if (message.total != null && Object.hasOwnProperty.call(message, 'total')) { writer.uint32(/* id 5, wireType 0 =*/40).int64(message.total) }
+      return writer
+    }
+
+    /**
+         * Encodes the specified FindUserOauthReply message, length delimited. Does not implicitly {@link pbuserOauth.FindUserOauthReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbuserOauth.FindUserOauthReply
+         * @static
+         * @param {pbuserOauth.IFindUserOauthReply} message FindUserOauthReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    FindUserOauthReply.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes a FindUserOauthReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbuserOauth.FindUserOauthReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbuserOauth.FindUserOauthReply} FindUserOauthReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    FindUserOauthReply.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbuserOauth.FindUserOauthReply()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            message.code = reader.int32()
+            break
+          }
+          case 2: {
+            message.msg = reader.string()
+            break
+          }
+          case 3: {
+            message.data = $root.pbuserOauth.UserOauthModel.decode(reader, reader.uint32())
+            break
+          }
+          case 4: {
+            if (!(message.list && message.list.length)) { message.list = [] }
+            message.list.push($root.pbuserOauth.UserOauthModel.decode(reader, reader.uint32()))
+            break
+          }
+          case 5: {
+            message.total = reader.int64()
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes a FindUserOauthReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbuserOauth.FindUserOauthReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbuserOauth.FindUserOauthReply} FindUserOauthReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    FindUserOauthReply.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies a FindUserOauthReply message.
+         * @function verify
+         * @memberof pbuserOauth.FindUserOauthReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    FindUserOauthReply.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.code != null && message.hasOwnProperty('code')) {
+        switch (message.code) {
+          default:
+            return 'code: enum value expected'
+          case 0:
+          case 200:
+          case 500:
+          case 501:
+          case 502:
+          case 503:
+          case 504:
+          case 505:
+          case 1001:
+          case 1002:
+          case 1003:
+          case 1004:
+          case 2002:
+          case 2003:
+          case 2004:
+          case 2005:
+          case 2006:
+          case 2007:
+          case 2008:
+          case 2009:
+          case 2010:
+          case 2011:
+          case 2012:
+          case 2013:
+          case 2014:
+            break
+        }
+      }
+      if (message.msg != null && message.hasOwnProperty('msg')) {
+        if (!$util.isString(message.msg)) { return 'msg: string expected' }
+      }
+      if (message.data != null && message.hasOwnProperty('data')) {
+        var error = $root.pbuserOauth.UserOauthModel.verify(message.data)
+        if (error) { return 'data.' + error }
+      }
+      if (message.list != null && message.hasOwnProperty('list')) {
+        if (!Array.isArray(message.list)) { return 'list: array expected' }
+        for (var i = 0; i < message.list.length; ++i) {
+          var error = $root.pbuserOauth.UserOauthModel.verify(message.list[i])
+          if (error) { return 'list.' + error }
+        }
+      }
+      if (message.total != null && message.hasOwnProperty('total')) {
+        if (!$util.isInteger(message.total) && !(message.total && $util.isInteger(message.total.low) && $util.isInteger(message.total.high))) { return 'total: integer|Long expected' }
+      }
+      return null
+    }
+
+    /**
+         * Creates a FindUserOauthReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbuserOauth.FindUserOauthReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbuserOauth.FindUserOauthReply} FindUserOauthReply
+         */
+    FindUserOauthReply.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbuserOauth.FindUserOauthReply) { return object }
+      var message = new $root.pbuserOauth.FindUserOauthReply()
+      switch (object.code) {
+        default:
+          if (typeof object.code === 'number') {
+            message.code = object.code
+            break
+          }
+          break
+        case 'None':
+        case 0:
+          message.code = 0
+          break
+        case 'Success':
+        case 200:
+          message.code = 200
+          break
+        case 'Fail':
+        case 500:
+          message.code = 500
+          break
+        case 'Unknown':
+        case 501:
+          message.code = 501
+          break
+        case 'Internal':
+        case 502:
+          message.code = 502
+          break
+        case 'Invalid':
+        case 503:
+          message.code = 503
+          break
+        case 'InvalidParam':
+        case 504:
+          message.code = 504
+          break
+        case 'ParamError':
+        case 505:
+          message.code = 505
+          break
+        case 'FindError':
+        case 1001:
+          message.code = 1001
+          break
+        case 'CreateError':
+        case 1002:
+          message.code = 1002
+          break
+        case 'DeleteError':
+        case 1003:
+          message.code = 1003
+          break
+        case 'UpdateError':
+        case 1004:
+          message.code = 1004
+          break
+        case 'InvalidToken':
+        case 2002:
+          message.code = 2002
+          break
+        case 'InvalidSign':
+        case 2003:
+          message.code = 2003
+          break
+        case 'NotLogin':
+        case 2004:
+          message.code = 2004
+          break
+        case 'LoginTimeout':
+        case 2005:
+          message.code = 2005
+          break
+        case 'LoginError':
+        case 2006:
+          message.code = 2006
+          break
+        case 'LoginForbidden':
+        case 2007:
+          message.code = 2007
+          break
+        case 'LoginExpired':
+        case 2008:
+          message.code = 2008
+          break
+        case 'LoginInvalid':
+        case 2009:
+          message.code = 2009
+          break
+        case 'LoginInvalidPassword':
+        case 2010:
+          message.code = 2010
+          break
+        case 'LoginInvalidUsername':
+        case 2011:
+          message.code = 2011
+          break
+        case 'LoginInvalidEmail':
+        case 2012:
+          message.code = 2012
+          break
+        case 'LoginInvalidPhone':
+        case 2013:
+          message.code = 2013
+          break
+        case 'LoginInvalidUsernameOrEmail':
+        case 2014:
+          message.code = 2014
+          break
+      }
+      if (object.msg != null) { message.msg = String(object.msg) }
+      if (object.data != null) {
+        if (typeof object.data !== 'object') { throw TypeError('.pbuserOauth.FindUserOauthReply.data: object expected') }
+        message.data = $root.pbuserOauth.UserOauthModel.fromObject(object.data)
+      }
+      if (object.list) {
+        if (!Array.isArray(object.list)) { throw TypeError('.pbuserOauth.FindUserOauthReply.list: array expected') }
+        message.list = []
+        for (var i = 0; i < object.list.length; ++i) {
+          if (typeof object.list[i] !== 'object') { throw TypeError('.pbuserOauth.FindUserOauthReply.list: object expected') }
+          message.list[i] = $root.pbuserOauth.UserOauthModel.fromObject(object.list[i])
+        }
+      }
+      if (object.total != null) {
+        if ($util.Long) { (message.total = $util.Long.fromValue(object.total)).unsigned = false } else if (typeof object.total === 'string') { message.total = parseInt(object.total, 10) } else if (typeof object.total === 'number') { message.total = object.total } else if (typeof object.total === 'object') { message.total = new $util.LongBits(object.total.low >>> 0, object.total.high >>> 0).toNumber() }
+      }
+      return message
+    }
+
+    /**
+         * Creates a plain object from a FindUserOauthReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbuserOauth.FindUserOauthReply
+         * @static
+         * @param {pbuserOauth.FindUserOauthReply} message FindUserOauthReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    FindUserOauthReply.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.arrays || options.defaults) { object.list = [] }
+      if (options.defaults) {
+        object.code = options.enums === String ? 'None' : 0
+        object.msg = ''
+        object.data = null
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.total = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.total = options.longs === String ? '0' : 0 }
+      }
+      if (message.code != null && message.hasOwnProperty('code')) { object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code }
+      if (message.msg != null && message.hasOwnProperty('msg')) { object.msg = message.msg }
+      if (message.data != null && message.hasOwnProperty('data')) { object.data = $root.pbuserOauth.UserOauthModel.toObject(message.data, options) }
+      if (message.list && message.list.length) {
+        object.list = []
+        for (var j = 0; j < message.list.length; ++j) { object.list[j] = $root.pbuserOauth.UserOauthModel.toObject(message.list[j], options) }
+      }
+      if (message.total != null && message.hasOwnProperty('total')) {
+        if (typeof message.total === 'number') { object.total = options.longs === String ? String(message.total) : message.total } else { object.total = options.longs === String ? $util.Long.prototype.toString.call(message.total) : options.longs === Number ? new $util.LongBits(message.total.low >>> 0, message.total.high >>> 0).toNumber() : message.total }
+      }
+      return object
+    }
+
+    /**
+         * Converts this FindUserOauthReply to JSON.
+         * @function toJSON
+         * @memberof pbuserOauth.FindUserOauthReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    FindUserOauthReply.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for FindUserOauthReply
+         * @function getTypeUrl
+         * @memberof pbuserOauth.FindUserOauthReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    FindUserOauthReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/pbuserOauth.FindUserOauthReply'
+    }
+
+    return FindUserOauthReply
+  })()
+
+  pbuserOauth.UserOauth = (function() {
+    /**
+         * Constructs a new UserOauth service.
+         * @memberof pbuserOauth
+         * @classdesc Represents a UserOauth
+         * @extends $protobuf.rpc.Service
+         * @constructor
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         */
+    function UserOauth(rpcImpl, requestDelimited, responseDelimited) {
+      $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited)
+    }
+
+    (UserOauth.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = UserOauth
+
+    /**
+         * Creates new UserOauth service using the specified rpc implementation.
+         * @function create
+         * @memberof pbuserOauth.UserOauth
+         * @static
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         * @returns {UserOauth} RPC service. Useful where requests and/or responses are streamed.
+         */
+    UserOauth.create = function create(rpcImpl, requestDelimited, responseDelimited) {
+      return new this(rpcImpl, requestDelimited, responseDelimited)
+    }
+
+    /**
+         * Callback as used by {@link pbuserOauth.UserOauth#createUserOauth}.
+         * @memberof pbuserOauth.UserOauth
+         * @typedef CreateUserOauthCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+    /**
+         * Calls CreateUserOauth.
+         * @function createUserOauth
+         * @memberof pbuserOauth.UserOauth
+         * @instance
+         * @param {pbuserOauth.IUserOauthModel} request UserOauthModel message or plain object
+         * @param {pbuserOauth.UserOauth.CreateUserOauthCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+    Object.defineProperty(UserOauth.prototype.createUserOauth = function createUserOauth(request, callback) {
+      return this.rpcCall(createUserOauth, $root.pbuserOauth.UserOauthModel, $root.pbcommon.CommonResult, request, callback)
+    }, 'name', { value: 'CreateUserOauth' })
+
+    /**
+         * Calls CreateUserOauth.
+         * @function createUserOauth
+         * @memberof pbuserOauth.UserOauth
+         * @instance
+         * @param {pbuserOauth.IUserOauthModel} request UserOauthModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+    /**
+         * Callback as used by {@link pbuserOauth.UserOauth#updateUserOauth}.
+         * @memberof pbuserOauth.UserOauth
+         * @typedef UpdateUserOauthCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+    /**
+         * Calls UpdateUserOauth.
+         * @function updateUserOauth
+         * @memberof pbuserOauth.UserOauth
+         * @instance
+         * @param {pbuserOauth.IUserOauthModel} request UserOauthModel message or plain object
+         * @param {pbuserOauth.UserOauth.UpdateUserOauthCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+    Object.defineProperty(UserOauth.prototype.updateUserOauth = function updateUserOauth(request, callback) {
+      return this.rpcCall(updateUserOauth, $root.pbuserOauth.UserOauthModel, $root.pbcommon.CommonResult, request, callback)
+    }, 'name', { value: 'UpdateUserOauth' })
+
+    /**
+         * Calls UpdateUserOauth.
+         * @function updateUserOauth
+         * @memberof pbuserOauth.UserOauth
+         * @instance
+         * @param {pbuserOauth.IUserOauthModel} request UserOauthModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+    /**
+         * Callback as used by {@link pbuserOauth.UserOauth#deleteUserOauth}.
+         * @memberof pbuserOauth.UserOauth
+         * @typedef DeleteUserOauthCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+    /**
+         * Calls DeleteUserOauth.
+         * @function deleteUserOauth
+         * @memberof pbuserOauth.UserOauth
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbuserOauth.UserOauth.DeleteUserOauthCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+    Object.defineProperty(UserOauth.prototype.deleteUserOauth = function deleteUserOauth(request, callback) {
+      return this.rpcCall(deleteUserOauth, $root.pbcommon.IdArgs, $root.pbcommon.CommonResult, request, callback)
+    }, 'name', { value: 'DeleteUserOauth' })
+
+    /**
+         * Calls DeleteUserOauth.
+         * @function deleteUserOauth
+         * @memberof pbuserOauth.UserOauth
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+    /**
+         * Callback as used by {@link pbuserOauth.UserOauth#findUserOauthById}.
+         * @memberof pbuserOauth.UserOauth
+         * @typedef FindUserOauthByIdCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbuserOauth.FindUserOauthReply} [response] FindUserOauthReply
+         */
+
+    /**
+         * Calls FindUserOauthById.
+         * @function findUserOauthById
+         * @memberof pbuserOauth.UserOauth
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbuserOauth.UserOauth.FindUserOauthByIdCallback} callback Node-style callback called with the error, if any, and FindUserOauthReply
+         * @returns {undefined}
+         * @variation 1
+         */
+    Object.defineProperty(UserOauth.prototype.findUserOauthById = function findUserOauthById(request, callback) {
+      return this.rpcCall(findUserOauthById, $root.pbcommon.IdArgs, $root.pbuserOauth.FindUserOauthReply, request, callback)
+    }, 'name', { value: 'FindUserOauthById' })
+
+    /**
+         * Calls FindUserOauthById.
+         * @function findUserOauthById
+         * @memberof pbuserOauth.UserOauth
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbuserOauth.FindUserOauthReply>} Promise
+         * @variation 2
+         */
+
+    /**
+         * Callback as used by {@link pbuserOauth.UserOauth#findUserOauthList}.
+         * @memberof pbuserOauth.UserOauth
+         * @typedef FindUserOauthListCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbuserOauth.FindUserOauthReply} [response] FindUserOauthReply
+         */
+
+    /**
+         * Calls FindUserOauthList.
+         * @function findUserOauthList
+         * @memberof pbuserOauth.UserOauth
+         * @instance
+         * @param {pbuserOauth.IFindUserOauthArgs} request FindUserOauthArgs message or plain object
+         * @param {pbuserOauth.UserOauth.FindUserOauthListCallback} callback Node-style callback called with the error, if any, and FindUserOauthReply
+         * @returns {undefined}
+         * @variation 1
+         */
+    Object.defineProperty(UserOauth.prototype.findUserOauthList = function findUserOauthList(request, callback) {
+      return this.rpcCall(findUserOauthList, $root.pbuserOauth.FindUserOauthArgs, $root.pbuserOauth.FindUserOauthReply, request, callback)
+    }, 'name', { value: 'FindUserOauthList' })
+
+    /**
+         * Calls FindUserOauthList.
+         * @function findUserOauthList
+         * @memberof pbuserOauth.UserOauth
+         * @instance
+         * @param {pbuserOauth.IFindUserOauthArgs} request FindUserOauthArgs message or plain object
+         * @returns {Promise<pbuserOauth.FindUserOauthReply>} Promise
+         * @variation 2
+         */
+
+    return UserOauth
+  })()
+
+  return pbuserOauth
 })()
 
 $root.pbapp = (function() {

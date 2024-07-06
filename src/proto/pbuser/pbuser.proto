@@ -1,11 +1,11 @@
 /*
-Copyright © 2024 NAME HERE <wwwwangg@163.com>
+Copyright © 2024 NAME HERE <EMAIL ADDRESS>
 */
 syntax = "proto3";
 
 package pbuser;
 
-option go_package = "auth/proto/pbuser";
+option go_package = "upms/proto/pbuser";
 
 import "pbcommon/pbcommon.proto";
 
@@ -15,18 +15,54 @@ message UserModel{
   string createdAt = 2;
   string updatedAt = 3;
 
-  string name = 4;
-  string email = 5;
-  string password = 6;
-  string phone = 7;
-  int32  gender = 8;
-  string birthday = 9;
-  string address = 10;
-  string avatar = 11;
-  string description = 12;
-  int32  status = 13;
-  int32  type = 14;
-  string role = 15;  // 多个role用,隔开  activeRole存在token中
+  string username = 4; // 用户名
+  string password = 5; // 密码
+  string email = 6; // 邮箱
+  int64 phone = 7; // 电话
+  string nickName = 8; // 昵称
+  int64 userOauthId = 9; // OauthId
+  int64 appId = 10; // appId
+  string avatar = 11; // 头像
+  int32  gender = 12; // 性别
+  string birthday = 13; // 生日
+  string signature = 14; // 个性签名
+  string description = 15; // 个人简介
+  string location = 16; // 所在地
+  string regip = 17; // 注册ip
+  string regtm = 18; // 注册时间
+  UserStatus status = 19; // 状态
+  int32 accountType = 20; // 账号类型
+  int64 role = 21; // 账号角色，0-普通用户  >0-后台操作权限账户
+  int64 pretty = 22;  // 靓号
+  int32 age = 23; // 年龄
+  int32 country = 24; // 国家代码
+  string countryName = 25; // 国家名称
+  string city = 26; // 所在城市
+  int32 Zone = 27; // 区号
+  string devDesc = 28; // 设备描述
+  string platform = 29; // 平台类型
+  string devUuid = 30; // 设备uuid
+  string ver = 31; // 客户端版本号
+  int32 isRobt = 32;  // 是否机器人
+  string regDate = 33; // 注册日期
+  string certName = 34; // 真实姓名
+  string certNo = 35; // 证件号码
+  bool first = 36; // 是否需要显示设置用户信息界面
+  bool isYoungMod = 37; // 是否青少年模式
+}
+
+enum UserStatus {
+  UserStatusNone = 0;
+  Normal = 1;  // 正常
+  Banned = 2;  // 封禁
+}
+
+enum AccountType {
+  AccountTypeNone = 0;
+  Wechat = 1;
+  Phone = 2;
+  Email = 3;
+  Admin = 4;
 }
 
 message FindUserArgs{

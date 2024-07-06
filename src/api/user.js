@@ -21,8 +21,8 @@ export function updateUser(data) {
   })
 }
 
-export function deleteUser(id) {
-  var buffer = protoRoot.pbcommon.IdArgs.encode({ id: id }).finish().slice().buffer
+export function deleteUser(data) {
+  var buffer = protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
   return request({
     url: '/v2/user/deleteUser',
     method: 'post',
@@ -31,8 +31,8 @@ export function deleteUser(id) {
   })
 }
 
-export function findUserById(id) {
-  var buffer = protoRoot.pbcommon.IdArgs.encode({ id: id }).finish().slice().buffer
+export function findUserById(data) {
+  var buffer = protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
   return request({
     url: '/v2/user/findUserById',
     method: 'post',
@@ -42,9 +42,7 @@ export function findUserById(id) {
 }
 
 export function findUserList(data) {
-  console.log(data)
   var buffer = protoRoot.pbuser.FindUserArgs.encode(data).finish().slice().buffer
-  console.log(buffer)
   return request({
     url: '/v2/user/findUserList',
     method: 'post',
