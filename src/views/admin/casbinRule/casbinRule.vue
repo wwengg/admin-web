@@ -37,10 +37,23 @@
       </el-table-column>
       <el-table-column label="CreatedAt" width="150px" align="center" prop="createdAt" />
       <el-table-column label="UpdatedAt" width="150px" align="center" prop="updatedAt" />
-      <el-table-column label="Name" width="150px" align="center" prop="name" />
-      <el-table-column label="Sort" width="150px" align="center" prop="sort" />
-      <el-table-column label="ParentId" width="150px" align="center" prop="parentId" />
-      <el-table-column label="AppId" width="150px" align="center" prop="appId" />
+      <el-table-column label="名称" width="150px" align="center" prop="casbinRuleName" />
+      <el-table-column label="类型" width="150px" align="center" prop="casbinRuleType" />
+      <!-- <el-table-column label="V0" width="150px" align="center" prop="v0">
+      </el-table-column> -->
+      <el-table-column label="api版本号" width="150px" align="center" prop="v1" />
+      <el-table-column label="servicePath" width="150px" align="center" prop="v2" />
+      <el-table-column label="serviceMethod" width="150px" align="center" prop="v3" />
+      <!-- <el-table-column label="V4" width="150px" align="center" prop="v4">
+      </el-table-column>
+      <el-table-column label="V5" width="150px" align="center" prop="v5">
+      </el-table-column>
+      <el-table-column label="V6" width="150px" align="center" prop="v6">
+      </el-table-column>
+      <el-table-column label="V7" width="150px" align="center" prop="v7">
+      </el-table-column>
+      <el-table-column label="V8" width="150px" align="center" prop="v8">
+      </el-table-column> -->
       <el-table-column label="操作" align="center" width="230" class-name="small-padding fixed-width">
         <template slot-scope="{row}">
           <el-button type="primary" size="mini" @click="handleUpdate(row)">
@@ -67,20 +80,56 @@
         label-width="120px"
         style="width: 450px; margin-left:50px;"
       >
-        <el-form-item label="Name" prop="name">
-          <el-input v-model="temp.name" />
+        <el-form-item label="名称" prop="casbinRuleName">
+          <el-input v-model="temp.casbinRuleName" />
         </el-form-item>
-        <el-form-item label="Sort" prop="sort">
-          <el-input v-model="temp.sort" />
+        <!-- <el-form-item label="CasbinRuleType" prop="casbinRuleType">
+          <el-input v-model="temp.casbinRuleType" />
         </el-form-item>
-        <el-form-item label="ParentId" prop="parentId">
-          <el-input v-model="temp.parentId" />
+        <el-form-item label="V0" prop="v0">
+          <el-input v-model="temp.v0" />
+        </el-form-item> -->
+        <el-form-item label="api版本号" prop="v1">
+          <el-input v-model="temp.v1" />
         </el-form-item>
-        <el-form-item label="AppId" prop="appId">
-          <el-input v-model="temp.appId" />
+        <el-form-item label="servicePath" prop="v2">
+          <el-input v-model="temp.v2" />
         </el-form-item>
+        <el-form-item label="serviceMethod" prop="v3">
+          <el-input v-model="temp.v3" />
+        </el-form-item>
+        <!-- <el-form-item label="V4" prop="v4">
+          <el-input v-model="temp.v4" />
+        </el-form-item>
+        <el-form-item label="V5" prop="v5">
+          <el-input v-model="temp.v5" />
+        </el-form-item>
+        <el-form-item label="V6" prop="v6">
+          <el-input v-model="temp.v6" />
+        </el-form-item>
+        <el-form-item label="V7" prop="v7">
+          <el-input v-model="temp.v7" />
+        </el-form-item>
+        <el-form-item label="V8" prop="v8">
+          <el-input v-model="temp.v8" />
+        </el-form-item> -->
       </el-form>
       <div slot="footer" class="dialog-footer">
+        <el-button @click="autoFillForm(0)">
+          填充创建
+        </el-button>
+        <el-button @click="autoFillForm(1)">
+          填充更新
+        </el-button>
+        <el-button @click="autoFillForm(2)">
+          填充删除
+        </el-button>
+        <el-button @click="autoFillForm(3)">
+          填充查询
+        </el-button>
+        <el-button @click="autoFillForm(4)">
+          填充查询列表
+        </el-button>
         <el-button @click="dialogFormVisible = false">
           取消
         </el-button>
@@ -93,29 +142,36 @@
 </template>
 
 <script>
-import { createUploadGroup, updateUploadGroup, deleteUploadGroup, findUploadGroupById, findUploadGroupList } from '@/api/uploadGroup'
+import { createCasbinRule, updateCasbinRule, deleteCasbinRule, findCasbinRuleById, findCasbinRuleList } from '@/api/casbinRule'
 import waves from '@/directive/waves' // waves directive
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
 import tableList from '@/mixins/tableList'
 
 export default {
-  name: 'UploadGroupTable',
+  name: 'CasbinRuleTable',
   components: { Pagination },
   directives: { waves },
   mixins: [tableList],
   data() {
     return {
-      listApi: findUploadGroupList,
+      listApi: findCasbinRuleList,
       tableKey: 0,
       temp: {
         id: undefined,
         createdAt: '',
         updatedAt: '',
 
-        name: '',
-        sort: '',
-        parentId: 0,
-        appId: 0
+        casbinRuleName: '',
+        casbinRuleType: '1',
+        v0: '0',
+        v1: '',
+        v2: '',
+        v3: ''
+        // v4: '',
+        // v5: '',
+        // v6: '',
+        // v7: '',
+        // v8: '',
       },
       dialogFormVisible: false,
       dialogStatus: '',
@@ -150,10 +206,17 @@ export default {
         id: undefined,
         createdAt: '',
         updatedAt: '',
-        name: '',
-        sort: '',
-        parentId: 0,
-        appId: 0
+        casbinRuleName: '',
+        casbinRuleType: '1',
+        v0: '0',
+        v1: '',
+        v2: '',
+        v3: ''
+        // v4: '',
+        // v5: '',
+        // v6: '',
+        // v7: '',
+        // v8: '',
       }
     },
     handleCreate() {
@@ -167,7 +230,7 @@ export default {
     async createData() {
       this.$refs['dataForm'].validate(async(valid) => {
         if (valid) {
-          const res = await createUploadGroup(this.temp)
+          const res = await createCasbinRule(this.temp)
           if (res.code === 'Success') {
             this.handleFilter()
             this.dialogFormVisible = false
@@ -182,7 +245,7 @@ export default {
       })
     },
     async handleUpdate(row) {
-      const res = await findUploadGroupById(row.id)
+      const res = await findCasbinRuleById({ id: row.id })
       console.log(res)
       if (res.code === 'Success') {
         this.temp = res.data
@@ -196,7 +259,7 @@ export default {
     async updateData() {
       this.$refs['dataForm'].validate(async(valid) => {
         if (valid) {
-          const res = await updateUploadGroup(this.temp)
+          const res = await updateCasbinRule(this.temp)
           if (res.code === 'Success') {
             this.dialogFormVisible = false
             this.$notify({
@@ -211,8 +274,39 @@ export default {
       })
     },
     async handleDelete(row) {
-      await deleteUploadGroup({ id: row.id })
+      await deleteCasbinRule({ id: row.id })
       this.getTableData()
+    },
+    autoFillForm(type) {
+      if (this.temp.v2 === '') {
+        return
+      }
+      this.temp.v1 = 'v2'
+      switch (type) {
+        case 0:
+          this.temp.casbinRuleName = `创建${this.temp.v2}`
+          this.temp.v3 = `Create${this.temp.v2}`
+          break
+        case 1:
+          this.temp.casbinRuleName = `更新${this.temp.v2}`
+          this.temp.v3 = `Update${this.temp.v2}`
+          break
+        case 2:
+          this.temp.casbinRuleName = `删除${this.temp.v2}`
+          this.temp.v3 = `Delete${this.temp.v2}`
+          break
+        case 3:
+          this.temp.casbinRuleName = `查询${this.temp.v2}`
+          this.temp.v3 = `Find${this.temp.v2}ById`
+          break
+        case 4:
+          this.temp.casbinRuleName = `查询${this.temp.v2}列表`
+          this.temp.v3 = `Find${this.temp.v2}List`
+          break
+
+        default:
+          break
+      }
     }
   }
 }

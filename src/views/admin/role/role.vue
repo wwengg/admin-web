@@ -37,10 +37,13 @@
       </el-table-column>
       <el-table-column label="CreatedAt" width="150px" align="center" prop="createdAt" />
       <el-table-column label="UpdatedAt" width="150px" align="center" prop="updatedAt" />
-      <el-table-column label="Name" width="150px" align="center" prop="name" />
-      <el-table-column label="Sort" width="150px" align="center" prop="sort" />
       <el-table-column label="ParentId" width="150px" align="center" prop="parentId" />
-      <el-table-column label="AppId" width="150px" align="center" prop="appId" />
+      <el-table-column label="RoleName" width="150px" align="center" prop="roleName" />
+      <el-table-column label="RoleCode" width="150px" align="center" prop="roleCode" />
+      <el-table-column label="RoleDesc" width="150px" align="center" prop="roleDesc" />
+      <el-table-column label="RoleType" width="150px" align="center" prop="roleType" />
+      <el-table-column label="RoleStatus" width="150px" align="center" prop="roleStatus" />
+      <el-table-column label="Permissions" width="150px" align="center" prop="permissions" />
       <el-table-column label="操作" align="center" width="230" class-name="small-padding fixed-width">
         <template slot-scope="{row}">
           <el-button type="primary" size="mini" @click="handleUpdate(row)">
@@ -67,17 +70,26 @@
         label-width="120px"
         style="width: 450px; margin-left:50px;"
       >
-        <el-form-item label="Name" prop="name">
-          <el-input v-model="temp.name" />
-        </el-form-item>
-        <el-form-item label="Sort" prop="sort">
-          <el-input v-model="temp.sort" />
-        </el-form-item>
         <el-form-item label="ParentId" prop="parentId">
           <el-input v-model="temp.parentId" />
         </el-form-item>
-        <el-form-item label="AppId" prop="appId">
-          <el-input v-model="temp.appId" />
+        <el-form-item label="RoleName" prop="roleName">
+          <el-input v-model="temp.roleName" />
+        </el-form-item>
+        <el-form-item label="RoleCode" prop="roleCode">
+          <el-input v-model="temp.roleCode" />
+        </el-form-item>
+        <el-form-item label="RoleDesc" prop="roleDesc">
+          <el-input v-model="temp.roleDesc" />
+        </el-form-item>
+        <el-form-item label="RoleType" prop="roleType">
+          <el-input v-model="temp.roleType" />
+        </el-form-item>
+        <el-form-item label="RoleStatus" prop="roleStatus">
+          <el-input v-model="temp.roleStatus" />
+        </el-form-item>
+        <el-form-item label="Permissions" prop="permissions">
+          <el-input v-model="temp.permissions" />
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -93,29 +105,32 @@
 </template>
 
 <script>
-import { createUploadGroup, updateUploadGroup, deleteUploadGroup, findUploadGroupById, findUploadGroupList } from '@/api/uploadGroup'
+import { createRole, updateRole2, deleteRole2, findRoleById, findRoleList } from '@/api/role'
 import waves from '@/directive/waves' // waves directive
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
 import tableList from '@/mixins/tableList'
 
 export default {
-  name: 'UploadGroupTable',
+  name: 'RoleTable',
   components: { Pagination },
   directives: { waves },
   mixins: [tableList],
   data() {
     return {
-      listApi: findUploadGroupList,
+      listApi: findRoleList,
       tableKey: 0,
       temp: {
         id: undefined,
         createdAt: '',
         updatedAt: '',
 
-        name: '',
-        sort: '',
         parentId: 0,
-        appId: 0
+        roleName: '',
+        roleCode: 0,
+        roleDesc: '',
+        roleType: '',
+        roleStatus: 0,
+        permissions: ''
       },
       dialogFormVisible: false,
       dialogStatus: '',
@@ -150,10 +165,13 @@ export default {
         id: undefined,
         createdAt: '',
         updatedAt: '',
-        name: '',
-        sort: '',
         parentId: 0,
-        appId: 0
+        roleName: '',
+        roleCode: 0,
+        roleDesc: '',
+        roleType: '',
+        roleStatus: 0,
+        permissions: ''
       }
     },
     handleCreate() {
@@ -167,7 +185,7 @@ export default {
     async createData() {
       this.$refs['dataForm'].validate(async(valid) => {
         if (valid) {
-          const res = await createUploadGroup(this.temp)
+          const res = await createRole(this.temp)
           if (res.code === 'Success') {
             this.handleFilter()
             this.dialogFormVisible = false
@@ -182,7 +200,7 @@ export default {
       })
     },
     async handleUpdate(row) {
-      const res = await findUploadGroupById(row.id)
+      const res = await findRoleById({ id: row.id })
       console.log(res)
       if (res.code === 'Success') {
         this.temp = res.data
@@ -196,7 +214,7 @@ export default {
     async updateData() {
       this.$refs['dataForm'].validate(async(valid) => {
         if (valid) {
-          const res = await updateUploadGroup(this.temp)
+          const res = await updateRole2(this.temp)
           if (res.code === 'Success') {
             this.dialogFormVisible = false
             this.$notify({
@@ -211,7 +229,7 @@ export default {
       })
     },
     async handleDelete(row) {
-      await deleteUploadGroup({ id: row.id })
+      await deleteRole2({ id: row.id })
       this.getTableData()
     }
   }

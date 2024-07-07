@@ -182,7 +182,7 @@ export default {
       })
     },
     async handleUpdate(row) {
-      const res = await findUserOauthById(row.id)
+      const res = await findUserOauthById({ id: row.id })
       console.log(res)
       if (res.code === 'Success') {
         this.temp = res.data
@@ -211,7 +211,7 @@ export default {
       })
     },
     async handleDelete(row) {
-      await deleteUserOauth(row.id)
+      await deleteUserOauth({ id: row.id })
       this.getTableData()
     }
   }

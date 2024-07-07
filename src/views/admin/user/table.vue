@@ -362,7 +362,7 @@ export default {
       })
     },
     async handleUpdate(row) {
-      const res = await findUserById(row.id)
+      const res = await findUserById({ id: row.id })
       console.log(res)
       if (res.code === 'Success') {
         this.temp = res.data
@@ -391,7 +391,7 @@ export default {
       })
     },
     async handleDelete(row) {
-      await deleteUser(row.id)
+      await deleteUser({ id: row.id })
       this.getTableData()
     }
   }

@@ -37,9 +37,16 @@
       </el-table-column>
       <el-table-column label="CreatedAt" width="150px" align="center" prop="createdAt" />
       <el-table-column label="UpdatedAt" width="150px" align="center" prop="updatedAt" />
-      <el-table-column label="Name" width="150px" align="center" prop="name" />
-      <el-table-column label="Sort" width="150px" align="center" prop="sort" />
       <el-table-column label="ParentId" width="150px" align="center" prop="parentId" />
+      <el-table-column label="PermissionType" width="150px" align="center" prop="PermissionType" />
+      <el-table-column label="Path" width="150px" align="center" prop="path" />
+      <el-table-column label="Name" width="150px" align="center" prop="name" />
+      <el-table-column label="Hidden" width="150px" align="center" prop="hidden" />
+      <el-table-column label="Component" width="150px" align="center" prop="component" />
+      <el-table-column label="Redirect" width="150px" align="center" prop="redirect" />
+      <el-table-column label="Icon" width="150px" align="center" prop="icon" />
+      <el-table-column label="Keepalive" width="150px" align="center" prop="keepalive" />
+      <el-table-column label="Title" width="150px" align="center" prop="title" />
       <el-table-column label="AppId" width="150px" align="center" prop="appId" />
       <el-table-column label="操作" align="center" width="230" class-name="small-padding fixed-width">
         <template slot-scope="{row}">
@@ -67,14 +74,35 @@
         label-width="120px"
         style="width: 450px; margin-left:50px;"
       >
+        <el-form-item label="ParentId" prop="parentId">
+          <el-input v-model="temp.parentId" />
+        </el-form-item>
+        <el-form-item label="PermissionType" prop="PermissionType">
+          <el-input v-model="temp.PermissionType" />
+        </el-form-item>
+        <el-form-item label="Path" prop="path">
+          <el-input v-model="temp.path" />
+        </el-form-item>
         <el-form-item label="Name" prop="name">
           <el-input v-model="temp.name" />
         </el-form-item>
-        <el-form-item label="Sort" prop="sort">
-          <el-input v-model="temp.sort" />
+        <el-form-item label="Hidden" prop="hidden">
+          <el-input v-model="temp.hidden" />
         </el-form-item>
-        <el-form-item label="ParentId" prop="parentId">
-          <el-input v-model="temp.parentId" />
+        <el-form-item label="Component" prop="component">
+          <el-input v-model="temp.component" />
+        </el-form-item>
+        <el-form-item label="Redirect" prop="redirect">
+          <el-input v-model="temp.redirect" />
+        </el-form-item>
+        <el-form-item label="Icon" prop="icon">
+          <el-input v-model="temp.icon" />
+        </el-form-item>
+        <el-form-item label="Keepalive" prop="keepalive">
+          <el-input v-model="temp.keepalive" />
+        </el-form-item>
+        <el-form-item label="Title" prop="title">
+          <el-input v-model="temp.title" />
         </el-form-item>
         <el-form-item label="AppId" prop="appId">
           <el-input v-model="temp.appId" />
@@ -93,28 +121,35 @@
 </template>
 
 <script>
-import { createUploadGroup, updateUploadGroup, deleteUploadGroup, findUploadGroupById, findUploadGroupList } from '@/api/uploadGroup'
+import { createPermission, updatePermission, deletePermission, findPermissionById, findPermissionList } from '@/api/permission'
 import waves from '@/directive/waves' // waves directive
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
 import tableList from '@/mixins/tableList'
 
 export default {
-  name: 'UploadGroupTable',
+  name: 'PermissionTable',
   components: { Pagination },
   directives: { waves },
   mixins: [tableList],
   data() {
     return {
-      listApi: findUploadGroupList,
+      listApi: findPermissionList,
       tableKey: 0,
       temp: {
         id: undefined,
         createdAt: '',
         updatedAt: '',
 
-        name: '',
-        sort: '',
         parentId: 0,
+        PermissionType: '',
+        path: '',
+        name: '',
+        hidden: '',
+        component: '',
+        redirect: '',
+        icon: '',
+        keepalive: '',
+        title: '',
         appId: 0
       },
       dialogFormVisible: false,
@@ -150,9 +185,16 @@ export default {
         id: undefined,
         createdAt: '',
         updatedAt: '',
-        name: '',
-        sort: '',
         parentId: 0,
+        PermissionType: '',
+        path: '',
+        name: '',
+        hidden: '',
+        component: '',
+        redirect: '',
+        icon: '',
+        keepalive: '',
+        title: '',
         appId: 0
       }
     },
@@ -167,7 +209,7 @@ export default {
     async createData() {
       this.$refs['dataForm'].validate(async(valid) => {
         if (valid) {
-          const res = await createUploadGroup(this.temp)
+          const res = await createPermission(this.temp)
           if (res.code === 'Success') {
             this.handleFilter()
             this.dialogFormVisible = false
@@ -182,7 +224,7 @@ export default {
       })
     },
     async handleUpdate(row) {
-      const res = await findUploadGroupById(row.id)
+      const res = await findPermissionById({ id: row.id })
       console.log(res)
       if (res.code === 'Success') {
         this.temp = res.data
@@ -196,7 +238,7 @@ export default {
     async updateData() {
       this.$refs['dataForm'].validate(async(valid) => {
         if (valid) {
-          const res = await updateUploadGroup(this.temp)
+          const res = await updatePermission(this.temp)
           if (res.code === 'Success') {
             this.dialogFormVisible = false
             this.$notify({
@@ -211,7 +253,7 @@ export default {
       })
     },
     async handleDelete(row) {
-      await deleteUploadGroup({ id: row.id })
+      await deletePermission({ id: row.id })
       this.getTableData()
     }
   }

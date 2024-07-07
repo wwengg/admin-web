@@ -951,6 +951,4089 @@ $root.pbcommon = (function() {
   return pbcommon
 })()
 
+$root.pbcasbinRule = (function() {
+  /**
+     * Namespace pbcasbinRule.
+     * @exports pbcasbinRule
+     * @namespace
+     */
+  var pbcasbinRule = {}
+
+  pbcasbinRule.CasbinRuleModel = (function() {
+    /**
+         * Properties of a CasbinRuleModel.
+         * @memberof pbcasbinRule
+         * @interface ICasbinRuleModel
+         * @property {number|Long|null} [id] CasbinRuleModel id
+         * @property {string|null} [createdAt] CasbinRuleModel createdAt
+         * @property {string|null} [updatedAt] CasbinRuleModel updatedAt
+         * @property {string|null} [casbinRuleName] CasbinRuleModel casbinRuleName
+         * @property {pbcasbinRule.CasbinRuleType|null} [casbinRuleType] CasbinRuleModel casbinRuleType
+         * @property {string|null} [v0] CasbinRuleModel v0
+         * @property {string|null} [v1] CasbinRuleModel v1
+         * @property {string|null} [v2] CasbinRuleModel v2
+         * @property {string|null} [v3] CasbinRuleModel v3
+         * @property {string|null} [v4] CasbinRuleModel v4
+         * @property {string|null} [v5] CasbinRuleModel v5
+         * @property {string|null} [v6] CasbinRuleModel v6
+         * @property {string|null} [v7] CasbinRuleModel v7
+         * @property {string|null} [v8] CasbinRuleModel v8
+         */
+
+    /**
+         * Constructs a new CasbinRuleModel.
+         * @memberof pbcasbinRule
+         * @classdesc Represents a CasbinRuleModel.
+         * @implements ICasbinRuleModel
+         * @constructor
+         * @param {pbcasbinRule.ICasbinRuleModel=} [properties] Properties to set
+         */
+    function CasbinRuleModel(properties) {
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * CasbinRuleModel id.
+         * @member {number|Long} id
+         * @memberof pbcasbinRule.CasbinRuleModel
+         * @instance
+         */
+    CasbinRuleModel.prototype.id = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+
+    /**
+         * CasbinRuleModel createdAt.
+         * @member {string} createdAt
+         * @memberof pbcasbinRule.CasbinRuleModel
+         * @instance
+         */
+    CasbinRuleModel.prototype.createdAt = ''
+
+    /**
+         * CasbinRuleModel updatedAt.
+         * @member {string} updatedAt
+         * @memberof pbcasbinRule.CasbinRuleModel
+         * @instance
+         */
+    CasbinRuleModel.prototype.updatedAt = ''
+
+    /**
+         * CasbinRuleModel casbinRuleName.
+         * @member {string} casbinRuleName
+         * @memberof pbcasbinRule.CasbinRuleModel
+         * @instance
+         */
+    CasbinRuleModel.prototype.casbinRuleName = ''
+
+    /**
+         * CasbinRuleModel casbinRuleType.
+         * @member {pbcasbinRule.CasbinRuleType} casbinRuleType
+         * @memberof pbcasbinRule.CasbinRuleModel
+         * @instance
+         */
+    CasbinRuleModel.prototype.casbinRuleType = 0
+
+    /**
+         * CasbinRuleModel v0.
+         * @member {string} v0
+         * @memberof pbcasbinRule.CasbinRuleModel
+         * @instance
+         */
+    CasbinRuleModel.prototype.v0 = ''
+
+    /**
+         * CasbinRuleModel v1.
+         * @member {string} v1
+         * @memberof pbcasbinRule.CasbinRuleModel
+         * @instance
+         */
+    CasbinRuleModel.prototype.v1 = ''
+
+    /**
+         * CasbinRuleModel v2.
+         * @member {string} v2
+         * @memberof pbcasbinRule.CasbinRuleModel
+         * @instance
+         */
+    CasbinRuleModel.prototype.v2 = ''
+
+    /**
+         * CasbinRuleModel v3.
+         * @member {string} v3
+         * @memberof pbcasbinRule.CasbinRuleModel
+         * @instance
+         */
+    CasbinRuleModel.prototype.v3 = ''
+
+    /**
+         * CasbinRuleModel v4.
+         * @member {string} v4
+         * @memberof pbcasbinRule.CasbinRuleModel
+         * @instance
+         */
+    CasbinRuleModel.prototype.v4 = ''
+
+    /**
+         * CasbinRuleModel v5.
+         * @member {string} v5
+         * @memberof pbcasbinRule.CasbinRuleModel
+         * @instance
+         */
+    CasbinRuleModel.prototype.v5 = ''
+
+    /**
+         * CasbinRuleModel v6.
+         * @member {string} v6
+         * @memberof pbcasbinRule.CasbinRuleModel
+         * @instance
+         */
+    CasbinRuleModel.prototype.v6 = ''
+
+    /**
+         * CasbinRuleModel v7.
+         * @member {string} v7
+         * @memberof pbcasbinRule.CasbinRuleModel
+         * @instance
+         */
+    CasbinRuleModel.prototype.v7 = ''
+
+    /**
+         * CasbinRuleModel v8.
+         * @member {string} v8
+         * @memberof pbcasbinRule.CasbinRuleModel
+         * @instance
+         */
+    CasbinRuleModel.prototype.v8 = ''
+
+    /**
+         * Creates a new CasbinRuleModel instance using the specified properties.
+         * @function create
+         * @memberof pbcasbinRule.CasbinRuleModel
+         * @static
+         * @param {pbcasbinRule.ICasbinRuleModel=} [properties] Properties to set
+         * @returns {pbcasbinRule.CasbinRuleModel} CasbinRuleModel instance
+         */
+    CasbinRuleModel.create = function create(properties) {
+      return new CasbinRuleModel(properties)
+    }
+
+    /**
+         * Encodes the specified CasbinRuleModel message. Does not implicitly {@link pbcasbinRule.CasbinRuleModel.verify|verify} messages.
+         * @function encode
+         * @memberof pbcasbinRule.CasbinRuleModel
+         * @static
+         * @param {pbcasbinRule.ICasbinRuleModel} message CasbinRuleModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    CasbinRuleModel.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.id != null && Object.hasOwnProperty.call(message, 'id')) { writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id) }
+      if (message.createdAt != null && Object.hasOwnProperty.call(message, 'createdAt')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.createdAt) }
+      if (message.updatedAt != null && Object.hasOwnProperty.call(message, 'updatedAt')) { writer.uint32(/* id 3, wireType 2 =*/26).string(message.updatedAt) }
+      if (message.casbinRuleName != null && Object.hasOwnProperty.call(message, 'casbinRuleName')) { writer.uint32(/* id 4, wireType 2 =*/34).string(message.casbinRuleName) }
+      if (message.casbinRuleType != null && Object.hasOwnProperty.call(message, 'casbinRuleType')) { writer.uint32(/* id 5, wireType 0 =*/40).int32(message.casbinRuleType) }
+      if (message.v0 != null && Object.hasOwnProperty.call(message, 'v0')) { writer.uint32(/* id 6, wireType 2 =*/50).string(message.v0) }
+      if (message.v1 != null && Object.hasOwnProperty.call(message, 'v1')) { writer.uint32(/* id 7, wireType 2 =*/58).string(message.v1) }
+      if (message.v2 != null && Object.hasOwnProperty.call(message, 'v2')) { writer.uint32(/* id 8, wireType 2 =*/66).string(message.v2) }
+      if (message.v3 != null && Object.hasOwnProperty.call(message, 'v3')) { writer.uint32(/* id 9, wireType 2 =*/74).string(message.v3) }
+      if (message.v4 != null && Object.hasOwnProperty.call(message, 'v4')) { writer.uint32(/* id 10, wireType 2 =*/82).string(message.v4) }
+      if (message.v5 != null && Object.hasOwnProperty.call(message, 'v5')) { writer.uint32(/* id 11, wireType 2 =*/90).string(message.v5) }
+      if (message.v6 != null && Object.hasOwnProperty.call(message, 'v6')) { writer.uint32(/* id 12, wireType 2 =*/98).string(message.v6) }
+      if (message.v7 != null && Object.hasOwnProperty.call(message, 'v7')) { writer.uint32(/* id 13, wireType 2 =*/106).string(message.v7) }
+      if (message.v8 != null && Object.hasOwnProperty.call(message, 'v8')) { writer.uint32(/* id 14, wireType 2 =*/114).string(message.v8) }
+      return writer
+    }
+
+    /**
+         * Encodes the specified CasbinRuleModel message, length delimited. Does not implicitly {@link pbcasbinRule.CasbinRuleModel.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbcasbinRule.CasbinRuleModel
+         * @static
+         * @param {pbcasbinRule.ICasbinRuleModel} message CasbinRuleModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    CasbinRuleModel.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes a CasbinRuleModel message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbcasbinRule.CasbinRuleModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbcasbinRule.CasbinRuleModel} CasbinRuleModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    CasbinRuleModel.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbcasbinRule.CasbinRuleModel()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            message.id = reader.int64()
+            break
+          }
+          case 2: {
+            message.createdAt = reader.string()
+            break
+          }
+          case 3: {
+            message.updatedAt = reader.string()
+            break
+          }
+          case 4: {
+            message.casbinRuleName = reader.string()
+            break
+          }
+          case 5: {
+            message.casbinRuleType = reader.int32()
+            break
+          }
+          case 6: {
+            message.v0 = reader.string()
+            break
+          }
+          case 7: {
+            message.v1 = reader.string()
+            break
+          }
+          case 8: {
+            message.v2 = reader.string()
+            break
+          }
+          case 9: {
+            message.v3 = reader.string()
+            break
+          }
+          case 10: {
+            message.v4 = reader.string()
+            break
+          }
+          case 11: {
+            message.v5 = reader.string()
+            break
+          }
+          case 12: {
+            message.v6 = reader.string()
+            break
+          }
+          case 13: {
+            message.v7 = reader.string()
+            break
+          }
+          case 14: {
+            message.v8 = reader.string()
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes a CasbinRuleModel message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbcasbinRule.CasbinRuleModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbcasbinRule.CasbinRuleModel} CasbinRuleModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    CasbinRuleModel.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies a CasbinRuleModel message.
+         * @function verify
+         * @memberof pbcasbinRule.CasbinRuleModel
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    CasbinRuleModel.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.id != null && message.hasOwnProperty('id')) {
+        if (!$util.isInteger(message.id) && !(message.id && $util.isInteger(message.id.low) && $util.isInteger(message.id.high))) { return 'id: integer|Long expected' }
+      }
+      if (message.createdAt != null && message.hasOwnProperty('createdAt')) {
+        if (!$util.isString(message.createdAt)) { return 'createdAt: string expected' }
+      }
+      if (message.updatedAt != null && message.hasOwnProperty('updatedAt')) {
+        if (!$util.isString(message.updatedAt)) { return 'updatedAt: string expected' }
+      }
+      if (message.casbinRuleName != null && message.hasOwnProperty('casbinRuleName')) {
+        if (!$util.isString(message.casbinRuleName)) { return 'casbinRuleName: string expected' }
+      }
+      if (message.casbinRuleType != null && message.hasOwnProperty('casbinRuleType')) {
+        switch (message.casbinRuleType) {
+          default:
+            return 'casbinRuleType: enum value expected'
+          case 0:
+          case 1:
+            break
+        }
+      }
+      if (message.v0 != null && message.hasOwnProperty('v0')) {
+        if (!$util.isString(message.v0)) { return 'v0: string expected' }
+      }
+      if (message.v1 != null && message.hasOwnProperty('v1')) {
+        if (!$util.isString(message.v1)) { return 'v1: string expected' }
+      }
+      if (message.v2 != null && message.hasOwnProperty('v2')) {
+        if (!$util.isString(message.v2)) { return 'v2: string expected' }
+      }
+      if (message.v3 != null && message.hasOwnProperty('v3')) {
+        if (!$util.isString(message.v3)) { return 'v3: string expected' }
+      }
+      if (message.v4 != null && message.hasOwnProperty('v4')) {
+        if (!$util.isString(message.v4)) { return 'v4: string expected' }
+      }
+      if (message.v5 != null && message.hasOwnProperty('v5')) {
+        if (!$util.isString(message.v5)) { return 'v5: string expected' }
+      }
+      if (message.v6 != null && message.hasOwnProperty('v6')) {
+        if (!$util.isString(message.v6)) { return 'v6: string expected' }
+      }
+      if (message.v7 != null && message.hasOwnProperty('v7')) {
+        if (!$util.isString(message.v7)) { return 'v7: string expected' }
+      }
+      if (message.v8 != null && message.hasOwnProperty('v8')) {
+        if (!$util.isString(message.v8)) { return 'v8: string expected' }
+      }
+      return null
+    }
+
+    /**
+         * Creates a CasbinRuleModel message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbcasbinRule.CasbinRuleModel
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbcasbinRule.CasbinRuleModel} CasbinRuleModel
+         */
+    CasbinRuleModel.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbcasbinRule.CasbinRuleModel) { return object }
+      var message = new $root.pbcasbinRule.CasbinRuleModel()
+      if (object.id != null) {
+        if ($util.Long) { (message.id = $util.Long.fromValue(object.id)).unsigned = false } else if (typeof object.id === 'string') { message.id = parseInt(object.id, 10) } else if (typeof object.id === 'number') { message.id = object.id } else if (typeof object.id === 'object') { message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber() }
+      }
+      if (object.createdAt != null) { message.createdAt = String(object.createdAt) }
+      if (object.updatedAt != null) { message.updatedAt = String(object.updatedAt) }
+      if (object.casbinRuleName != null) { message.casbinRuleName = String(object.casbinRuleName) }
+      switch (object.casbinRuleType) {
+        default:
+          if (typeof object.casbinRuleType === 'number') {
+            message.casbinRuleType = object.casbinRuleType
+            break
+          }
+          break
+        case 'CASBIN_RULE_TYPE_NONE':
+        case 0:
+          message.casbinRuleType = 0
+          break
+        case 'HTTP':
+        case 1:
+          message.casbinRuleType = 1
+          break
+      }
+      if (object.v0 != null) { message.v0 = String(object.v0) }
+      if (object.v1 != null) { message.v1 = String(object.v1) }
+      if (object.v2 != null) { message.v2 = String(object.v2) }
+      if (object.v3 != null) { message.v3 = String(object.v3) }
+      if (object.v4 != null) { message.v4 = String(object.v4) }
+      if (object.v5 != null) { message.v5 = String(object.v5) }
+      if (object.v6 != null) { message.v6 = String(object.v6) }
+      if (object.v7 != null) { message.v7 = String(object.v7) }
+      if (object.v8 != null) { message.v8 = String(object.v8) }
+      return message
+    }
+
+    /**
+         * Creates a plain object from a CasbinRuleModel message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbcasbinRule.CasbinRuleModel
+         * @static
+         * @param {pbcasbinRule.CasbinRuleModel} message CasbinRuleModel
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    CasbinRuleModel.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.defaults) {
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.id = options.longs === String ? '0' : 0 }
+        object.createdAt = ''
+        object.updatedAt = ''
+        object.casbinRuleName = ''
+        object.casbinRuleType = options.enums === String ? 'CASBIN_RULE_TYPE_NONE' : 0
+        object.v0 = ''
+        object.v1 = ''
+        object.v2 = ''
+        object.v3 = ''
+        object.v4 = ''
+        object.v5 = ''
+        object.v6 = ''
+        object.v7 = ''
+        object.v8 = ''
+      }
+      if (message.id != null && message.hasOwnProperty('id')) {
+        if (typeof message.id === 'number') { object.id = options.longs === String ? String(message.id) : message.id } else { object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id }
+      }
+      if (message.createdAt != null && message.hasOwnProperty('createdAt')) { object.createdAt = message.createdAt }
+      if (message.updatedAt != null && message.hasOwnProperty('updatedAt')) { object.updatedAt = message.updatedAt }
+      if (message.casbinRuleName != null && message.hasOwnProperty('casbinRuleName')) { object.casbinRuleName = message.casbinRuleName }
+      if (message.casbinRuleType != null && message.hasOwnProperty('casbinRuleType')) { object.casbinRuleType = options.enums === String ? $root.pbcasbinRule.CasbinRuleType[message.casbinRuleType] === undefined ? message.casbinRuleType : $root.pbcasbinRule.CasbinRuleType[message.casbinRuleType] : message.casbinRuleType }
+      if (message.v0 != null && message.hasOwnProperty('v0')) { object.v0 = message.v0 }
+      if (message.v1 != null && message.hasOwnProperty('v1')) { object.v1 = message.v1 }
+      if (message.v2 != null && message.hasOwnProperty('v2')) { object.v2 = message.v2 }
+      if (message.v3 != null && message.hasOwnProperty('v3')) { object.v3 = message.v3 }
+      if (message.v4 != null && message.hasOwnProperty('v4')) { object.v4 = message.v4 }
+      if (message.v5 != null && message.hasOwnProperty('v5')) { object.v5 = message.v5 }
+      if (message.v6 != null && message.hasOwnProperty('v6')) { object.v6 = message.v6 }
+      if (message.v7 != null && message.hasOwnProperty('v7')) { object.v7 = message.v7 }
+      if (message.v8 != null && message.hasOwnProperty('v8')) { object.v8 = message.v8 }
+      return object
+    }
+
+    /**
+         * Converts this CasbinRuleModel to JSON.
+         * @function toJSON
+         * @memberof pbcasbinRule.CasbinRuleModel
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    CasbinRuleModel.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for CasbinRuleModel
+         * @function getTypeUrl
+         * @memberof pbcasbinRule.CasbinRuleModel
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    CasbinRuleModel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/pbcasbinRule.CasbinRuleModel'
+    }
+
+    return CasbinRuleModel
+  })()
+
+  /**
+     * CasbinRuleType enum.
+     * @name pbcasbinRule.CasbinRuleType
+     * @enum {number}
+     * @property {number} CASBIN_RULE_TYPE_NONE=0 CASBIN_RULE_TYPE_NONE value
+     * @property {number} HTTP=1 HTTP value
+     */
+  pbcasbinRule.CasbinRuleType = (function() {
+    var valuesById = {}; var values = Object.create(valuesById)
+    values[valuesById[0] = 'CASBIN_RULE_TYPE_NONE'] = 0
+    values[valuesById[1] = 'HTTP'] = 1
+    return values
+  })()
+
+  pbcasbinRule.FindCasbinRuleArgs = (function() {
+    /**
+         * Properties of a FindCasbinRuleArgs.
+         * @memberof pbcasbinRule
+         * @interface IFindCasbinRuleArgs
+         * @property {pbcommon.IPageInfo|null} [pageInfo] FindCasbinRuleArgs pageInfo
+         * @property {pbcasbinRule.ICasbinRuleModel|null} [query] FindCasbinRuleArgs query
+         */
+
+    /**
+         * Constructs a new FindCasbinRuleArgs.
+         * @memberof pbcasbinRule
+         * @classdesc Represents a FindCasbinRuleArgs.
+         * @implements IFindCasbinRuleArgs
+         * @constructor
+         * @param {pbcasbinRule.IFindCasbinRuleArgs=} [properties] Properties to set
+         */
+    function FindCasbinRuleArgs(properties) {
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * FindCasbinRuleArgs pageInfo.
+         * @member {pbcommon.IPageInfo|null|undefined} pageInfo
+         * @memberof pbcasbinRule.FindCasbinRuleArgs
+         * @instance
+         */
+    FindCasbinRuleArgs.prototype.pageInfo = null
+
+    /**
+         * FindCasbinRuleArgs query.
+         * @member {pbcasbinRule.ICasbinRuleModel|null|undefined} query
+         * @memberof pbcasbinRule.FindCasbinRuleArgs
+         * @instance
+         */
+    FindCasbinRuleArgs.prototype.query = null
+
+    /**
+         * Creates a new FindCasbinRuleArgs instance using the specified properties.
+         * @function create
+         * @memberof pbcasbinRule.FindCasbinRuleArgs
+         * @static
+         * @param {pbcasbinRule.IFindCasbinRuleArgs=} [properties] Properties to set
+         * @returns {pbcasbinRule.FindCasbinRuleArgs} FindCasbinRuleArgs instance
+         */
+    FindCasbinRuleArgs.create = function create(properties) {
+      return new FindCasbinRuleArgs(properties)
+    }
+
+    /**
+         * Encodes the specified FindCasbinRuleArgs message. Does not implicitly {@link pbcasbinRule.FindCasbinRuleArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbcasbinRule.FindCasbinRuleArgs
+         * @static
+         * @param {pbcasbinRule.IFindCasbinRuleArgs} message FindCasbinRuleArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    FindCasbinRuleArgs.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.pageInfo != null && Object.hasOwnProperty.call(message, 'pageInfo')) { $root.pbcommon.PageInfo.encode(message.pageInfo, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim() }
+      if (message.query != null && Object.hasOwnProperty.call(message, 'query')) { $root.pbcasbinRule.CasbinRuleModel.encode(message.query, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim() }
+      return writer
+    }
+
+    /**
+         * Encodes the specified FindCasbinRuleArgs message, length delimited. Does not implicitly {@link pbcasbinRule.FindCasbinRuleArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbcasbinRule.FindCasbinRuleArgs
+         * @static
+         * @param {pbcasbinRule.IFindCasbinRuleArgs} message FindCasbinRuleArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    FindCasbinRuleArgs.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes a FindCasbinRuleArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbcasbinRule.FindCasbinRuleArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbcasbinRule.FindCasbinRuleArgs} FindCasbinRuleArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    FindCasbinRuleArgs.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbcasbinRule.FindCasbinRuleArgs()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            message.pageInfo = $root.pbcommon.PageInfo.decode(reader, reader.uint32())
+            break
+          }
+          case 2: {
+            message.query = $root.pbcasbinRule.CasbinRuleModel.decode(reader, reader.uint32())
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes a FindCasbinRuleArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbcasbinRule.FindCasbinRuleArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbcasbinRule.FindCasbinRuleArgs} FindCasbinRuleArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    FindCasbinRuleArgs.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies a FindCasbinRuleArgs message.
+         * @function verify
+         * @memberof pbcasbinRule.FindCasbinRuleArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    FindCasbinRuleArgs.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.pageInfo != null && message.hasOwnProperty('pageInfo')) {
+        var error = $root.pbcommon.PageInfo.verify(message.pageInfo)
+        if (error) { return 'pageInfo.' + error }
+      }
+      if (message.query != null && message.hasOwnProperty('query')) {
+        var error = $root.pbcasbinRule.CasbinRuleModel.verify(message.query)
+        if (error) { return 'query.' + error }
+      }
+      return null
+    }
+
+    /**
+         * Creates a FindCasbinRuleArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbcasbinRule.FindCasbinRuleArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbcasbinRule.FindCasbinRuleArgs} FindCasbinRuleArgs
+         */
+    FindCasbinRuleArgs.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbcasbinRule.FindCasbinRuleArgs) { return object }
+      var message = new $root.pbcasbinRule.FindCasbinRuleArgs()
+      if (object.pageInfo != null) {
+        if (typeof object.pageInfo !== 'object') { throw TypeError('.pbcasbinRule.FindCasbinRuleArgs.pageInfo: object expected') }
+        message.pageInfo = $root.pbcommon.PageInfo.fromObject(object.pageInfo)
+      }
+      if (object.query != null) {
+        if (typeof object.query !== 'object') { throw TypeError('.pbcasbinRule.FindCasbinRuleArgs.query: object expected') }
+        message.query = $root.pbcasbinRule.CasbinRuleModel.fromObject(object.query)
+      }
+      return message
+    }
+
+    /**
+         * Creates a plain object from a FindCasbinRuleArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbcasbinRule.FindCasbinRuleArgs
+         * @static
+         * @param {pbcasbinRule.FindCasbinRuleArgs} message FindCasbinRuleArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    FindCasbinRuleArgs.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.defaults) {
+        object.pageInfo = null
+        object.query = null
+      }
+      if (message.pageInfo != null && message.hasOwnProperty('pageInfo')) { object.pageInfo = $root.pbcommon.PageInfo.toObject(message.pageInfo, options) }
+      if (message.query != null && message.hasOwnProperty('query')) { object.query = $root.pbcasbinRule.CasbinRuleModel.toObject(message.query, options) }
+      return object
+    }
+
+    /**
+         * Converts this FindCasbinRuleArgs to JSON.
+         * @function toJSON
+         * @memberof pbcasbinRule.FindCasbinRuleArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    FindCasbinRuleArgs.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for FindCasbinRuleArgs
+         * @function getTypeUrl
+         * @memberof pbcasbinRule.FindCasbinRuleArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    FindCasbinRuleArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/pbcasbinRule.FindCasbinRuleArgs'
+    }
+
+    return FindCasbinRuleArgs
+  })()
+
+  pbcasbinRule.FindCasbinRuleReply = (function() {
+    /**
+         * Properties of a FindCasbinRuleReply.
+         * @memberof pbcasbinRule
+         * @interface IFindCasbinRuleReply
+         * @property {pbcommon.EnumCode|null} [code] FindCasbinRuleReply code
+         * @property {string|null} [msg] FindCasbinRuleReply msg
+         * @property {pbcasbinRule.ICasbinRuleModel|null} [data] FindCasbinRuleReply data
+         * @property {Array.<pbcasbinRule.ICasbinRuleModel>|null} [list] FindCasbinRuleReply list
+         * @property {number|Long|null} [total] FindCasbinRuleReply total
+         */
+
+    /**
+         * Constructs a new FindCasbinRuleReply.
+         * @memberof pbcasbinRule
+         * @classdesc Represents a FindCasbinRuleReply.
+         * @implements IFindCasbinRuleReply
+         * @constructor
+         * @param {pbcasbinRule.IFindCasbinRuleReply=} [properties] Properties to set
+         */
+    function FindCasbinRuleReply(properties) {
+      this.list = []
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * FindCasbinRuleReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbcasbinRule.FindCasbinRuleReply
+         * @instance
+         */
+    FindCasbinRuleReply.prototype.code = 0
+
+    /**
+         * FindCasbinRuleReply msg.
+         * @member {string} msg
+         * @memberof pbcasbinRule.FindCasbinRuleReply
+         * @instance
+         */
+    FindCasbinRuleReply.prototype.msg = ''
+
+    /**
+         * FindCasbinRuleReply data.
+         * @member {pbcasbinRule.ICasbinRuleModel|null|undefined} data
+         * @memberof pbcasbinRule.FindCasbinRuleReply
+         * @instance
+         */
+    FindCasbinRuleReply.prototype.data = null
+
+    /**
+         * FindCasbinRuleReply list.
+         * @member {Array.<pbcasbinRule.ICasbinRuleModel>} list
+         * @memberof pbcasbinRule.FindCasbinRuleReply
+         * @instance
+         */
+    FindCasbinRuleReply.prototype.list = $util.emptyArray
+
+    /**
+         * FindCasbinRuleReply total.
+         * @member {number|Long} total
+         * @memberof pbcasbinRule.FindCasbinRuleReply
+         * @instance
+         */
+    FindCasbinRuleReply.prototype.total = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+
+    /**
+         * Creates a new FindCasbinRuleReply instance using the specified properties.
+         * @function create
+         * @memberof pbcasbinRule.FindCasbinRuleReply
+         * @static
+         * @param {pbcasbinRule.IFindCasbinRuleReply=} [properties] Properties to set
+         * @returns {pbcasbinRule.FindCasbinRuleReply} FindCasbinRuleReply instance
+         */
+    FindCasbinRuleReply.create = function create(properties) {
+      return new FindCasbinRuleReply(properties)
+    }
+
+    /**
+         * Encodes the specified FindCasbinRuleReply message. Does not implicitly {@link pbcasbinRule.FindCasbinRuleReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbcasbinRule.FindCasbinRuleReply
+         * @static
+         * @param {pbcasbinRule.IFindCasbinRuleReply} message FindCasbinRuleReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    FindCasbinRuleReply.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.code != null && Object.hasOwnProperty.call(message, 'code')) { writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code) }
+      if (message.msg != null && Object.hasOwnProperty.call(message, 'msg')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg) }
+      if (message.data != null && Object.hasOwnProperty.call(message, 'data')) { $root.pbcasbinRule.CasbinRuleModel.encode(message.data, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim() }
+      if (message.list != null && message.list.length) {
+        for (var i = 0; i < message.list.length; ++i) { $root.pbcasbinRule.CasbinRuleModel.encode(message.list[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim() }
+      }
+      if (message.total != null && Object.hasOwnProperty.call(message, 'total')) { writer.uint32(/* id 5, wireType 0 =*/40).int64(message.total) }
+      return writer
+    }
+
+    /**
+         * Encodes the specified FindCasbinRuleReply message, length delimited. Does not implicitly {@link pbcasbinRule.FindCasbinRuleReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbcasbinRule.FindCasbinRuleReply
+         * @static
+         * @param {pbcasbinRule.IFindCasbinRuleReply} message FindCasbinRuleReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    FindCasbinRuleReply.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes a FindCasbinRuleReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbcasbinRule.FindCasbinRuleReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbcasbinRule.FindCasbinRuleReply} FindCasbinRuleReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    FindCasbinRuleReply.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbcasbinRule.FindCasbinRuleReply()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            message.code = reader.int32()
+            break
+          }
+          case 2: {
+            message.msg = reader.string()
+            break
+          }
+          case 3: {
+            message.data = $root.pbcasbinRule.CasbinRuleModel.decode(reader, reader.uint32())
+            break
+          }
+          case 4: {
+            if (!(message.list && message.list.length)) { message.list = [] }
+            message.list.push($root.pbcasbinRule.CasbinRuleModel.decode(reader, reader.uint32()))
+            break
+          }
+          case 5: {
+            message.total = reader.int64()
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes a FindCasbinRuleReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbcasbinRule.FindCasbinRuleReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbcasbinRule.FindCasbinRuleReply} FindCasbinRuleReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    FindCasbinRuleReply.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies a FindCasbinRuleReply message.
+         * @function verify
+         * @memberof pbcasbinRule.FindCasbinRuleReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    FindCasbinRuleReply.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.code != null && message.hasOwnProperty('code')) {
+        switch (message.code) {
+          default:
+            return 'code: enum value expected'
+          case 0:
+          case 200:
+          case 500:
+          case 501:
+          case 502:
+          case 503:
+          case 504:
+          case 505:
+          case 1001:
+          case 1002:
+          case 1003:
+          case 1004:
+          case 2002:
+          case 2003:
+          case 2004:
+          case 2005:
+          case 2006:
+          case 2007:
+          case 2008:
+          case 2009:
+          case 2010:
+          case 2011:
+          case 2012:
+          case 2013:
+          case 2014:
+            break
+        }
+      }
+      if (message.msg != null && message.hasOwnProperty('msg')) {
+        if (!$util.isString(message.msg)) { return 'msg: string expected' }
+      }
+      if (message.data != null && message.hasOwnProperty('data')) {
+        var error = $root.pbcasbinRule.CasbinRuleModel.verify(message.data)
+        if (error) { return 'data.' + error }
+      }
+      if (message.list != null && message.hasOwnProperty('list')) {
+        if (!Array.isArray(message.list)) { return 'list: array expected' }
+        for (var i = 0; i < message.list.length; ++i) {
+          var error = $root.pbcasbinRule.CasbinRuleModel.verify(message.list[i])
+          if (error) { return 'list.' + error }
+        }
+      }
+      if (message.total != null && message.hasOwnProperty('total')) {
+        if (!$util.isInteger(message.total) && !(message.total && $util.isInteger(message.total.low) && $util.isInteger(message.total.high))) { return 'total: integer|Long expected' }
+      }
+      return null
+    }
+
+    /**
+         * Creates a FindCasbinRuleReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbcasbinRule.FindCasbinRuleReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbcasbinRule.FindCasbinRuleReply} FindCasbinRuleReply
+         */
+    FindCasbinRuleReply.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbcasbinRule.FindCasbinRuleReply) { return object }
+      var message = new $root.pbcasbinRule.FindCasbinRuleReply()
+      switch (object.code) {
+        default:
+          if (typeof object.code === 'number') {
+            message.code = object.code
+            break
+          }
+          break
+        case 'None':
+        case 0:
+          message.code = 0
+          break
+        case 'Success':
+        case 200:
+          message.code = 200
+          break
+        case 'Fail':
+        case 500:
+          message.code = 500
+          break
+        case 'Unknown':
+        case 501:
+          message.code = 501
+          break
+        case 'Internal':
+        case 502:
+          message.code = 502
+          break
+        case 'Invalid':
+        case 503:
+          message.code = 503
+          break
+        case 'InvalidParam':
+        case 504:
+          message.code = 504
+          break
+        case 'ParamError':
+        case 505:
+          message.code = 505
+          break
+        case 'FindError':
+        case 1001:
+          message.code = 1001
+          break
+        case 'CreateError':
+        case 1002:
+          message.code = 1002
+          break
+        case 'DeleteError':
+        case 1003:
+          message.code = 1003
+          break
+        case 'UpdateError':
+        case 1004:
+          message.code = 1004
+          break
+        case 'InvalidToken':
+        case 2002:
+          message.code = 2002
+          break
+        case 'InvalidSign':
+        case 2003:
+          message.code = 2003
+          break
+        case 'NotLogin':
+        case 2004:
+          message.code = 2004
+          break
+        case 'LoginTimeout':
+        case 2005:
+          message.code = 2005
+          break
+        case 'LoginError':
+        case 2006:
+          message.code = 2006
+          break
+        case 'LoginForbidden':
+        case 2007:
+          message.code = 2007
+          break
+        case 'LoginExpired':
+        case 2008:
+          message.code = 2008
+          break
+        case 'LoginInvalid':
+        case 2009:
+          message.code = 2009
+          break
+        case 'LoginInvalidPassword':
+        case 2010:
+          message.code = 2010
+          break
+        case 'LoginInvalidUsername':
+        case 2011:
+          message.code = 2011
+          break
+        case 'LoginInvalidEmail':
+        case 2012:
+          message.code = 2012
+          break
+        case 'LoginInvalidPhone':
+        case 2013:
+          message.code = 2013
+          break
+        case 'LoginInvalidUsernameOrEmail':
+        case 2014:
+          message.code = 2014
+          break
+      }
+      if (object.msg != null) { message.msg = String(object.msg) }
+      if (object.data != null) {
+        if (typeof object.data !== 'object') { throw TypeError('.pbcasbinRule.FindCasbinRuleReply.data: object expected') }
+        message.data = $root.pbcasbinRule.CasbinRuleModel.fromObject(object.data)
+      }
+      if (object.list) {
+        if (!Array.isArray(object.list)) { throw TypeError('.pbcasbinRule.FindCasbinRuleReply.list: array expected') }
+        message.list = []
+        for (var i = 0; i < object.list.length; ++i) {
+          if (typeof object.list[i] !== 'object') { throw TypeError('.pbcasbinRule.FindCasbinRuleReply.list: object expected') }
+          message.list[i] = $root.pbcasbinRule.CasbinRuleModel.fromObject(object.list[i])
+        }
+      }
+      if (object.total != null) {
+        if ($util.Long) { (message.total = $util.Long.fromValue(object.total)).unsigned = false } else if (typeof object.total === 'string') { message.total = parseInt(object.total, 10) } else if (typeof object.total === 'number') { message.total = object.total } else if (typeof object.total === 'object') { message.total = new $util.LongBits(object.total.low >>> 0, object.total.high >>> 0).toNumber() }
+      }
+      return message
+    }
+
+    /**
+         * Creates a plain object from a FindCasbinRuleReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbcasbinRule.FindCasbinRuleReply
+         * @static
+         * @param {pbcasbinRule.FindCasbinRuleReply} message FindCasbinRuleReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    FindCasbinRuleReply.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.arrays || options.defaults) { object.list = [] }
+      if (options.defaults) {
+        object.code = options.enums === String ? 'None' : 0
+        object.msg = ''
+        object.data = null
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.total = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.total = options.longs === String ? '0' : 0 }
+      }
+      if (message.code != null && message.hasOwnProperty('code')) { object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code }
+      if (message.msg != null && message.hasOwnProperty('msg')) { object.msg = message.msg }
+      if (message.data != null && message.hasOwnProperty('data')) { object.data = $root.pbcasbinRule.CasbinRuleModel.toObject(message.data, options) }
+      if (message.list && message.list.length) {
+        object.list = []
+        for (var j = 0; j < message.list.length; ++j) { object.list[j] = $root.pbcasbinRule.CasbinRuleModel.toObject(message.list[j], options) }
+      }
+      if (message.total != null && message.hasOwnProperty('total')) {
+        if (typeof message.total === 'number') { object.total = options.longs === String ? String(message.total) : message.total } else { object.total = options.longs === String ? $util.Long.prototype.toString.call(message.total) : options.longs === Number ? new $util.LongBits(message.total.low >>> 0, message.total.high >>> 0).toNumber() : message.total }
+      }
+      return object
+    }
+
+    /**
+         * Converts this FindCasbinRuleReply to JSON.
+         * @function toJSON
+         * @memberof pbcasbinRule.FindCasbinRuleReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    FindCasbinRuleReply.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for FindCasbinRuleReply
+         * @function getTypeUrl
+         * @memberof pbcasbinRule.FindCasbinRuleReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    FindCasbinRuleReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/pbcasbinRule.FindCasbinRuleReply'
+    }
+
+    return FindCasbinRuleReply
+  })()
+
+  pbcasbinRule.CasbinRule = (function() {
+    /**
+         * Constructs a new CasbinRule service.
+         * @memberof pbcasbinRule
+         * @classdesc Represents a CasbinRule
+         * @extends $protobuf.rpc.Service
+         * @constructor
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         */
+    function CasbinRule(rpcImpl, requestDelimited, responseDelimited) {
+      $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited)
+    }
+
+    (CasbinRule.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = CasbinRule
+
+    /**
+         * Creates new CasbinRule service using the specified rpc implementation.
+         * @function create
+         * @memberof pbcasbinRule.CasbinRule
+         * @static
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         * @returns {CasbinRule} RPC service. Useful where requests and/or responses are streamed.
+         */
+    CasbinRule.create = function create(rpcImpl, requestDelimited, responseDelimited) {
+      return new this(rpcImpl, requestDelimited, responseDelimited)
+    }
+
+    /**
+         * Callback as used by {@link pbcasbinRule.CasbinRule#createCasbinRule}.
+         * @memberof pbcasbinRule.CasbinRule
+         * @typedef CreateCasbinRuleCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+    /**
+         * Calls CreateCasbinRule.
+         * @function createCasbinRule
+         * @memberof pbcasbinRule.CasbinRule
+         * @instance
+         * @param {pbcasbinRule.ICasbinRuleModel} request CasbinRuleModel message or plain object
+         * @param {pbcasbinRule.CasbinRule.CreateCasbinRuleCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+    Object.defineProperty(CasbinRule.prototype.createCasbinRule = function createCasbinRule(request, callback) {
+      return this.rpcCall(createCasbinRule, $root.pbcasbinRule.CasbinRuleModel, $root.pbcommon.CommonResult, request, callback)
+    }, 'name', { value: 'CreateCasbinRule' })
+
+    /**
+         * Calls CreateCasbinRule.
+         * @function createCasbinRule
+         * @memberof pbcasbinRule.CasbinRule
+         * @instance
+         * @param {pbcasbinRule.ICasbinRuleModel} request CasbinRuleModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+    /**
+         * Callback as used by {@link pbcasbinRule.CasbinRule#updateCasbinRule}.
+         * @memberof pbcasbinRule.CasbinRule
+         * @typedef UpdateCasbinRuleCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+    /**
+         * Calls UpdateCasbinRule.
+         * @function updateCasbinRule
+         * @memberof pbcasbinRule.CasbinRule
+         * @instance
+         * @param {pbcasbinRule.ICasbinRuleModel} request CasbinRuleModel message or plain object
+         * @param {pbcasbinRule.CasbinRule.UpdateCasbinRuleCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+    Object.defineProperty(CasbinRule.prototype.updateCasbinRule = function updateCasbinRule(request, callback) {
+      return this.rpcCall(updateCasbinRule, $root.pbcasbinRule.CasbinRuleModel, $root.pbcommon.CommonResult, request, callback)
+    }, 'name', { value: 'UpdateCasbinRule' })
+
+    /**
+         * Calls UpdateCasbinRule.
+         * @function updateCasbinRule
+         * @memberof pbcasbinRule.CasbinRule
+         * @instance
+         * @param {pbcasbinRule.ICasbinRuleModel} request CasbinRuleModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+    /**
+         * Callback as used by {@link pbcasbinRule.CasbinRule#deleteCasbinRule}.
+         * @memberof pbcasbinRule.CasbinRule
+         * @typedef DeleteCasbinRuleCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+    /**
+         * Calls DeleteCasbinRule.
+         * @function deleteCasbinRule
+         * @memberof pbcasbinRule.CasbinRule
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbcasbinRule.CasbinRule.DeleteCasbinRuleCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+    Object.defineProperty(CasbinRule.prototype.deleteCasbinRule = function deleteCasbinRule(request, callback) {
+      return this.rpcCall(deleteCasbinRule, $root.pbcommon.IdArgs, $root.pbcommon.CommonResult, request, callback)
+    }, 'name', { value: 'DeleteCasbinRule' })
+
+    /**
+         * Calls DeleteCasbinRule.
+         * @function deleteCasbinRule
+         * @memberof pbcasbinRule.CasbinRule
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+    /**
+         * Callback as used by {@link pbcasbinRule.CasbinRule#findCasbinRuleById}.
+         * @memberof pbcasbinRule.CasbinRule
+         * @typedef FindCasbinRuleByIdCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcasbinRule.FindCasbinRuleReply} [response] FindCasbinRuleReply
+         */
+
+    /**
+         * Calls FindCasbinRuleById.
+         * @function findCasbinRuleById
+         * @memberof pbcasbinRule.CasbinRule
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbcasbinRule.CasbinRule.FindCasbinRuleByIdCallback} callback Node-style callback called with the error, if any, and FindCasbinRuleReply
+         * @returns {undefined}
+         * @variation 1
+         */
+    Object.defineProperty(CasbinRule.prototype.findCasbinRuleById = function findCasbinRuleById(request, callback) {
+      return this.rpcCall(findCasbinRuleById, $root.pbcommon.IdArgs, $root.pbcasbinRule.FindCasbinRuleReply, request, callback)
+    }, 'name', { value: 'FindCasbinRuleById' })
+
+    /**
+         * Calls FindCasbinRuleById.
+         * @function findCasbinRuleById
+         * @memberof pbcasbinRule.CasbinRule
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbcasbinRule.FindCasbinRuleReply>} Promise
+         * @variation 2
+         */
+
+    /**
+         * Callback as used by {@link pbcasbinRule.CasbinRule#findCasbinRuleList}.
+         * @memberof pbcasbinRule.CasbinRule
+         * @typedef FindCasbinRuleListCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcasbinRule.FindCasbinRuleReply} [response] FindCasbinRuleReply
+         */
+
+    /**
+         * Calls FindCasbinRuleList.
+         * @function findCasbinRuleList
+         * @memberof pbcasbinRule.CasbinRule
+         * @instance
+         * @param {pbcasbinRule.IFindCasbinRuleArgs} request FindCasbinRuleArgs message or plain object
+         * @param {pbcasbinRule.CasbinRule.FindCasbinRuleListCallback} callback Node-style callback called with the error, if any, and FindCasbinRuleReply
+         * @returns {undefined}
+         * @variation 1
+         */
+    Object.defineProperty(CasbinRule.prototype.findCasbinRuleList = function findCasbinRuleList(request, callback) {
+      return this.rpcCall(findCasbinRuleList, $root.pbcasbinRule.FindCasbinRuleArgs, $root.pbcasbinRule.FindCasbinRuleReply, request, callback)
+    }, 'name', { value: 'FindCasbinRuleList' })
+
+    /**
+         * Calls FindCasbinRuleList.
+         * @function findCasbinRuleList
+         * @memberof pbcasbinRule.CasbinRule
+         * @instance
+         * @param {pbcasbinRule.IFindCasbinRuleArgs} request FindCasbinRuleArgs message or plain object
+         * @returns {Promise<pbcasbinRule.FindCasbinRuleReply>} Promise
+         * @variation 2
+         */
+
+    return CasbinRule
+  })()
+
+  return pbcasbinRule
+})()
+
+$root.pbpermission = (function() {
+  /**
+     * Namespace pbpermission.
+     * @exports pbpermission
+     * @namespace
+     */
+  var pbpermission = {}
+
+  pbpermission.PermissionModel = (function() {
+    /**
+         * Properties of a PermissionModel.
+         * @memberof pbpermission
+         * @interface IPermissionModel
+         * @property {number|Long|null} [id] PermissionModel id
+         * @property {string|null} [createdAt] PermissionModel createdAt
+         * @property {string|null} [updatedAt] PermissionModel updatedAt
+         * @property {number|Long|null} [parentId] PermissionModel parentId
+         * @property {pbpermission.PermissionType|null} [PermissionType] PermissionModel PermissionType
+         * @property {string|null} [path] PermissionModel path
+         * @property {string|null} [name] PermissionModel name
+         * @property {boolean|null} [hidden] PermissionModel hidden
+         * @property {string|null} [component] PermissionModel component
+         * @property {string|null} [redirect] PermissionModel redirect
+         * @property {string|null} [icon] PermissionModel icon
+         * @property {boolean|null} [keepalive] PermissionModel keepalive
+         * @property {string|null} [title] PermissionModel title
+         * @property {number|Long|null} [appId] PermissionModel appId
+         */
+
+    /**
+         * Constructs a new PermissionModel.
+         * @memberof pbpermission
+         * @classdesc Represents a PermissionModel.
+         * @implements IPermissionModel
+         * @constructor
+         * @param {pbpermission.IPermissionModel=} [properties] Properties to set
+         */
+    function PermissionModel(properties) {
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * PermissionModel id.
+         * @member {number|Long} id
+         * @memberof pbpermission.PermissionModel
+         * @instance
+         */
+    PermissionModel.prototype.id = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+
+    /**
+         * PermissionModel createdAt.
+         * @member {string} createdAt
+         * @memberof pbpermission.PermissionModel
+         * @instance
+         */
+    PermissionModel.prototype.createdAt = ''
+
+    /**
+         * PermissionModel updatedAt.
+         * @member {string} updatedAt
+         * @memberof pbpermission.PermissionModel
+         * @instance
+         */
+    PermissionModel.prototype.updatedAt = ''
+
+    /**
+         * PermissionModel parentId.
+         * @member {number|Long} parentId
+         * @memberof pbpermission.PermissionModel
+         * @instance
+         */
+    PermissionModel.prototype.parentId = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+
+    /**
+         * PermissionModel PermissionType.
+         * @member {pbpermission.PermissionType} PermissionType
+         * @memberof pbpermission.PermissionModel
+         * @instance
+         */
+    PermissionModel.prototype.PermissionType = 0
+
+    /**
+         * PermissionModel path.
+         * @member {string} path
+         * @memberof pbpermission.PermissionModel
+         * @instance
+         */
+    PermissionModel.prototype.path = ''
+
+    /**
+         * PermissionModel name.
+         * @member {string} name
+         * @memberof pbpermission.PermissionModel
+         * @instance
+         */
+    PermissionModel.prototype.name = ''
+
+    /**
+         * PermissionModel hidden.
+         * @member {boolean} hidden
+         * @memberof pbpermission.PermissionModel
+         * @instance
+         */
+    PermissionModel.prototype.hidden = false
+
+    /**
+         * PermissionModel component.
+         * @member {string} component
+         * @memberof pbpermission.PermissionModel
+         * @instance
+         */
+    PermissionModel.prototype.component = ''
+
+    /**
+         * PermissionModel redirect.
+         * @member {string} redirect
+         * @memberof pbpermission.PermissionModel
+         * @instance
+         */
+    PermissionModel.prototype.redirect = ''
+
+    /**
+         * PermissionModel icon.
+         * @member {string} icon
+         * @memberof pbpermission.PermissionModel
+         * @instance
+         */
+    PermissionModel.prototype.icon = ''
+
+    /**
+         * PermissionModel keepalive.
+         * @member {boolean} keepalive
+         * @memberof pbpermission.PermissionModel
+         * @instance
+         */
+    PermissionModel.prototype.keepalive = false
+
+    /**
+         * PermissionModel title.
+         * @member {string} title
+         * @memberof pbpermission.PermissionModel
+         * @instance
+         */
+    PermissionModel.prototype.title = ''
+
+    /**
+         * PermissionModel appId.
+         * @member {number|Long} appId
+         * @memberof pbpermission.PermissionModel
+         * @instance
+         */
+    PermissionModel.prototype.appId = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+
+    /**
+         * Creates a new PermissionModel instance using the specified properties.
+         * @function create
+         * @memberof pbpermission.PermissionModel
+         * @static
+         * @param {pbpermission.IPermissionModel=} [properties] Properties to set
+         * @returns {pbpermission.PermissionModel} PermissionModel instance
+         */
+    PermissionModel.create = function create(properties) {
+      return new PermissionModel(properties)
+    }
+
+    /**
+         * Encodes the specified PermissionModel message. Does not implicitly {@link pbpermission.PermissionModel.verify|verify} messages.
+         * @function encode
+         * @memberof pbpermission.PermissionModel
+         * @static
+         * @param {pbpermission.IPermissionModel} message PermissionModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    PermissionModel.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.id != null && Object.hasOwnProperty.call(message, 'id')) { writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id) }
+      if (message.createdAt != null && Object.hasOwnProperty.call(message, 'createdAt')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.createdAt) }
+      if (message.updatedAt != null && Object.hasOwnProperty.call(message, 'updatedAt')) { writer.uint32(/* id 3, wireType 2 =*/26).string(message.updatedAt) }
+      if (message.parentId != null && Object.hasOwnProperty.call(message, 'parentId')) { writer.uint32(/* id 4, wireType 0 =*/32).int64(message.parentId) }
+      if (message.PermissionType != null && Object.hasOwnProperty.call(message, 'PermissionType')) { writer.uint32(/* id 5, wireType 0 =*/40).int32(message.PermissionType) }
+      if (message.path != null && Object.hasOwnProperty.call(message, 'path')) { writer.uint32(/* id 6, wireType 2 =*/50).string(message.path) }
+      if (message.name != null && Object.hasOwnProperty.call(message, 'name')) { writer.uint32(/* id 7, wireType 2 =*/58).string(message.name) }
+      if (message.hidden != null && Object.hasOwnProperty.call(message, 'hidden')) { writer.uint32(/* id 8, wireType 0 =*/64).bool(message.hidden) }
+      if (message.component != null && Object.hasOwnProperty.call(message, 'component')) { writer.uint32(/* id 9, wireType 2 =*/74).string(message.component) }
+      if (message.redirect != null && Object.hasOwnProperty.call(message, 'redirect')) { writer.uint32(/* id 10, wireType 2 =*/82).string(message.redirect) }
+      if (message.icon != null && Object.hasOwnProperty.call(message, 'icon')) { writer.uint32(/* id 11, wireType 2 =*/90).string(message.icon) }
+      if (message.keepalive != null && Object.hasOwnProperty.call(message, 'keepalive')) { writer.uint32(/* id 12, wireType 0 =*/96).bool(message.keepalive) }
+      if (message.title != null && Object.hasOwnProperty.call(message, 'title')) { writer.uint32(/* id 13, wireType 2 =*/106).string(message.title) }
+      if (message.appId != null && Object.hasOwnProperty.call(message, 'appId')) { writer.uint32(/* id 14, wireType 0 =*/112).int64(message.appId) }
+      return writer
+    }
+
+    /**
+         * Encodes the specified PermissionModel message, length delimited. Does not implicitly {@link pbpermission.PermissionModel.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbpermission.PermissionModel
+         * @static
+         * @param {pbpermission.IPermissionModel} message PermissionModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    PermissionModel.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes a PermissionModel message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbpermission.PermissionModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbpermission.PermissionModel} PermissionModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    PermissionModel.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbpermission.PermissionModel()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            message.id = reader.int64()
+            break
+          }
+          case 2: {
+            message.createdAt = reader.string()
+            break
+          }
+          case 3: {
+            message.updatedAt = reader.string()
+            break
+          }
+          case 4: {
+            message.parentId = reader.int64()
+            break
+          }
+          case 5: {
+            message.PermissionType = reader.int32()
+            break
+          }
+          case 6: {
+            message.path = reader.string()
+            break
+          }
+          case 7: {
+            message.name = reader.string()
+            break
+          }
+          case 8: {
+            message.hidden = reader.bool()
+            break
+          }
+          case 9: {
+            message.component = reader.string()
+            break
+          }
+          case 10: {
+            message.redirect = reader.string()
+            break
+          }
+          case 11: {
+            message.icon = reader.string()
+            break
+          }
+          case 12: {
+            message.keepalive = reader.bool()
+            break
+          }
+          case 13: {
+            message.title = reader.string()
+            break
+          }
+          case 14: {
+            message.appId = reader.int64()
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes a PermissionModel message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbpermission.PermissionModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbpermission.PermissionModel} PermissionModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    PermissionModel.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies a PermissionModel message.
+         * @function verify
+         * @memberof pbpermission.PermissionModel
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    PermissionModel.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.id != null && message.hasOwnProperty('id')) {
+        if (!$util.isInteger(message.id) && !(message.id && $util.isInteger(message.id.low) && $util.isInteger(message.id.high))) { return 'id: integer|Long expected' }
+      }
+      if (message.createdAt != null && message.hasOwnProperty('createdAt')) {
+        if (!$util.isString(message.createdAt)) { return 'createdAt: string expected' }
+      }
+      if (message.updatedAt != null && message.hasOwnProperty('updatedAt')) {
+        if (!$util.isString(message.updatedAt)) { return 'updatedAt: string expected' }
+      }
+      if (message.parentId != null && message.hasOwnProperty('parentId')) {
+        if (!$util.isInteger(message.parentId) && !(message.parentId && $util.isInteger(message.parentId.low) && $util.isInteger(message.parentId.high))) { return 'parentId: integer|Long expected' }
+      }
+      if (message.PermissionType != null && message.hasOwnProperty('PermissionType')) {
+        switch (message.PermissionType) {
+          default:
+            return 'PermissionType: enum value expected'
+          case 0:
+          case 1:
+          case 2:
+            break
+        }
+      }
+      if (message.path != null && message.hasOwnProperty('path')) {
+        if (!$util.isString(message.path)) { return 'path: string expected' }
+      }
+      if (message.name != null && message.hasOwnProperty('name')) {
+        if (!$util.isString(message.name)) { return 'name: string expected' }
+      }
+      if (message.hidden != null && message.hasOwnProperty('hidden')) {
+        if (typeof message.hidden !== 'boolean') { return 'hidden: boolean expected' }
+      }
+      if (message.component != null && message.hasOwnProperty('component')) {
+        if (!$util.isString(message.component)) { return 'component: string expected' }
+      }
+      if (message.redirect != null && message.hasOwnProperty('redirect')) {
+        if (!$util.isString(message.redirect)) { return 'redirect: string expected' }
+      }
+      if (message.icon != null && message.hasOwnProperty('icon')) {
+        if (!$util.isString(message.icon)) { return 'icon: string expected' }
+      }
+      if (message.keepalive != null && message.hasOwnProperty('keepalive')) {
+        if (typeof message.keepalive !== 'boolean') { return 'keepalive: boolean expected' }
+      }
+      if (message.title != null && message.hasOwnProperty('title')) {
+        if (!$util.isString(message.title)) { return 'title: string expected' }
+      }
+      if (message.appId != null && message.hasOwnProperty('appId')) {
+        if (!$util.isInteger(message.appId) && !(message.appId && $util.isInteger(message.appId.low) && $util.isInteger(message.appId.high))) { return 'appId: integer|Long expected' }
+      }
+      return null
+    }
+
+    /**
+         * Creates a PermissionModel message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbpermission.PermissionModel
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbpermission.PermissionModel} PermissionModel
+         */
+    PermissionModel.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbpermission.PermissionModel) { return object }
+      var message = new $root.pbpermission.PermissionModel()
+      if (object.id != null) {
+        if ($util.Long) { (message.id = $util.Long.fromValue(object.id)).unsigned = false } else if (typeof object.id === 'string') { message.id = parseInt(object.id, 10) } else if (typeof object.id === 'number') { message.id = object.id } else if (typeof object.id === 'object') { message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber() }
+      }
+      if (object.createdAt != null) { message.createdAt = String(object.createdAt) }
+      if (object.updatedAt != null) { message.updatedAt = String(object.updatedAt) }
+      if (object.parentId != null) {
+        if ($util.Long) { (message.parentId = $util.Long.fromValue(object.parentId)).unsigned = false } else if (typeof object.parentId === 'string') { message.parentId = parseInt(object.parentId, 10) } else if (typeof object.parentId === 'number') { message.parentId = object.parentId } else if (typeof object.parentId === 'object') { message.parentId = new $util.LongBits(object.parentId.low >>> 0, object.parentId.high >>> 0).toNumber() }
+      }
+      switch (object.PermissionType) {
+        default:
+          if (typeof object.PermissionType === 'number') {
+            message.PermissionType = object.PermissionType
+            break
+          }
+          break
+        case 'PermissionTypeNone':
+        case 0:
+          message.PermissionType = 0
+          break
+        case 'MENU':
+        case 1:
+          message.PermissionType = 1
+          break
+        case 'BUTTON':
+        case 2:
+          message.PermissionType = 2
+          break
+      }
+      if (object.path != null) { message.path = String(object.path) }
+      if (object.name != null) { message.name = String(object.name) }
+      if (object.hidden != null) { message.hidden = Boolean(object.hidden) }
+      if (object.component != null) { message.component = String(object.component) }
+      if (object.redirect != null) { message.redirect = String(object.redirect) }
+      if (object.icon != null) { message.icon = String(object.icon) }
+      if (object.keepalive != null) { message.keepalive = Boolean(object.keepalive) }
+      if (object.title != null) { message.title = String(object.title) }
+      if (object.appId != null) {
+        if ($util.Long) { (message.appId = $util.Long.fromValue(object.appId)).unsigned = false } else if (typeof object.appId === 'string') { message.appId = parseInt(object.appId, 10) } else if (typeof object.appId === 'number') { message.appId = object.appId } else if (typeof object.appId === 'object') { message.appId = new $util.LongBits(object.appId.low >>> 0, object.appId.high >>> 0).toNumber() }
+      }
+      return message
+    }
+
+    /**
+         * Creates a plain object from a PermissionModel message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbpermission.PermissionModel
+         * @static
+         * @param {pbpermission.PermissionModel} message PermissionModel
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    PermissionModel.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.defaults) {
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.id = options.longs === String ? '0' : 0 }
+        object.createdAt = ''
+        object.updatedAt = ''
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.parentId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.parentId = options.longs === String ? '0' : 0 }
+        object.PermissionType = options.enums === String ? 'PermissionTypeNone' : 0
+        object.path = ''
+        object.name = ''
+        object.hidden = false
+        object.component = ''
+        object.redirect = ''
+        object.icon = ''
+        object.keepalive = false
+        object.title = ''
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.appId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.appId = options.longs === String ? '0' : 0 }
+      }
+      if (message.id != null && message.hasOwnProperty('id')) {
+        if (typeof message.id === 'number') { object.id = options.longs === String ? String(message.id) : message.id } else { object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id }
+      }
+      if (message.createdAt != null && message.hasOwnProperty('createdAt')) { object.createdAt = message.createdAt }
+      if (message.updatedAt != null && message.hasOwnProperty('updatedAt')) { object.updatedAt = message.updatedAt }
+      if (message.parentId != null && message.hasOwnProperty('parentId')) {
+        if (typeof message.parentId === 'number') { object.parentId = options.longs === String ? String(message.parentId) : message.parentId } else { object.parentId = options.longs === String ? $util.Long.prototype.toString.call(message.parentId) : options.longs === Number ? new $util.LongBits(message.parentId.low >>> 0, message.parentId.high >>> 0).toNumber() : message.parentId }
+      }
+      if (message.PermissionType != null && message.hasOwnProperty('PermissionType')) { object.PermissionType = options.enums === String ? $root.pbpermission.PermissionType[message.PermissionType] === undefined ? message.PermissionType : $root.pbpermission.PermissionType[message.PermissionType] : message.PermissionType }
+      if (message.path != null && message.hasOwnProperty('path')) { object.path = message.path }
+      if (message.name != null && message.hasOwnProperty('name')) { object.name = message.name }
+      if (message.hidden != null && message.hasOwnProperty('hidden')) { object.hidden = message.hidden }
+      if (message.component != null && message.hasOwnProperty('component')) { object.component = message.component }
+      if (message.redirect != null && message.hasOwnProperty('redirect')) { object.redirect = message.redirect }
+      if (message.icon != null && message.hasOwnProperty('icon')) { object.icon = message.icon }
+      if (message.keepalive != null && message.hasOwnProperty('keepalive')) { object.keepalive = message.keepalive }
+      if (message.title != null && message.hasOwnProperty('title')) { object.title = message.title }
+      if (message.appId != null && message.hasOwnProperty('appId')) {
+        if (typeof message.appId === 'number') { object.appId = options.longs === String ? String(message.appId) : message.appId } else { object.appId = options.longs === String ? $util.Long.prototype.toString.call(message.appId) : options.longs === Number ? new $util.LongBits(message.appId.low >>> 0, message.appId.high >>> 0).toNumber() : message.appId }
+      }
+      return object
+    }
+
+    /**
+         * Converts this PermissionModel to JSON.
+         * @function toJSON
+         * @memberof pbpermission.PermissionModel
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    PermissionModel.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for PermissionModel
+         * @function getTypeUrl
+         * @memberof pbpermission.PermissionModel
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    PermissionModel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/pbpermission.PermissionModel'
+    }
+
+    return PermissionModel
+  })()
+
+  /**
+     * PermissionType enum.
+     * @name pbpermission.PermissionType
+     * @enum {number}
+     * @property {number} PermissionTypeNone=0 PermissionTypeNone value
+     * @property {number} MENU=1 MENU value
+     * @property {number} BUTTON=2 BUTTON value
+     */
+  pbpermission.PermissionType = (function() {
+    var valuesById = {}; var values = Object.create(valuesById)
+    values[valuesById[0] = 'PermissionTypeNone'] = 0
+    values[valuesById[1] = 'MENU'] = 1
+    values[valuesById[2] = 'BUTTON'] = 2
+    return values
+  })()
+
+  pbpermission.FindPermissionArgs = (function() {
+    /**
+         * Properties of a FindPermissionArgs.
+         * @memberof pbpermission
+         * @interface IFindPermissionArgs
+         * @property {pbcommon.IPageInfo|null} [pageInfo] FindPermissionArgs pageInfo
+         * @property {pbpermission.IPermissionModel|null} [query] FindPermissionArgs query
+         */
+
+    /**
+         * Constructs a new FindPermissionArgs.
+         * @memberof pbpermission
+         * @classdesc Represents a FindPermissionArgs.
+         * @implements IFindPermissionArgs
+         * @constructor
+         * @param {pbpermission.IFindPermissionArgs=} [properties] Properties to set
+         */
+    function FindPermissionArgs(properties) {
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * FindPermissionArgs pageInfo.
+         * @member {pbcommon.IPageInfo|null|undefined} pageInfo
+         * @memberof pbpermission.FindPermissionArgs
+         * @instance
+         */
+    FindPermissionArgs.prototype.pageInfo = null
+
+    /**
+         * FindPermissionArgs query.
+         * @member {pbpermission.IPermissionModel|null|undefined} query
+         * @memberof pbpermission.FindPermissionArgs
+         * @instance
+         */
+    FindPermissionArgs.prototype.query = null
+
+    /**
+         * Creates a new FindPermissionArgs instance using the specified properties.
+         * @function create
+         * @memberof pbpermission.FindPermissionArgs
+         * @static
+         * @param {pbpermission.IFindPermissionArgs=} [properties] Properties to set
+         * @returns {pbpermission.FindPermissionArgs} FindPermissionArgs instance
+         */
+    FindPermissionArgs.create = function create(properties) {
+      return new FindPermissionArgs(properties)
+    }
+
+    /**
+         * Encodes the specified FindPermissionArgs message. Does not implicitly {@link pbpermission.FindPermissionArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbpermission.FindPermissionArgs
+         * @static
+         * @param {pbpermission.IFindPermissionArgs} message FindPermissionArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    FindPermissionArgs.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.pageInfo != null && Object.hasOwnProperty.call(message, 'pageInfo')) { $root.pbcommon.PageInfo.encode(message.pageInfo, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim() }
+      if (message.query != null && Object.hasOwnProperty.call(message, 'query')) { $root.pbpermission.PermissionModel.encode(message.query, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim() }
+      return writer
+    }
+
+    /**
+         * Encodes the specified FindPermissionArgs message, length delimited. Does not implicitly {@link pbpermission.FindPermissionArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbpermission.FindPermissionArgs
+         * @static
+         * @param {pbpermission.IFindPermissionArgs} message FindPermissionArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    FindPermissionArgs.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes a FindPermissionArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbpermission.FindPermissionArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbpermission.FindPermissionArgs} FindPermissionArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    FindPermissionArgs.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbpermission.FindPermissionArgs()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            message.pageInfo = $root.pbcommon.PageInfo.decode(reader, reader.uint32())
+            break
+          }
+          case 2: {
+            message.query = $root.pbpermission.PermissionModel.decode(reader, reader.uint32())
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes a FindPermissionArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbpermission.FindPermissionArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbpermission.FindPermissionArgs} FindPermissionArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    FindPermissionArgs.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies a FindPermissionArgs message.
+         * @function verify
+         * @memberof pbpermission.FindPermissionArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    FindPermissionArgs.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.pageInfo != null && message.hasOwnProperty('pageInfo')) {
+        var error = $root.pbcommon.PageInfo.verify(message.pageInfo)
+        if (error) { return 'pageInfo.' + error }
+      }
+      if (message.query != null && message.hasOwnProperty('query')) {
+        var error = $root.pbpermission.PermissionModel.verify(message.query)
+        if (error) { return 'query.' + error }
+      }
+      return null
+    }
+
+    /**
+         * Creates a FindPermissionArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbpermission.FindPermissionArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbpermission.FindPermissionArgs} FindPermissionArgs
+         */
+    FindPermissionArgs.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbpermission.FindPermissionArgs) { return object }
+      var message = new $root.pbpermission.FindPermissionArgs()
+      if (object.pageInfo != null) {
+        if (typeof object.pageInfo !== 'object') { throw TypeError('.pbpermission.FindPermissionArgs.pageInfo: object expected') }
+        message.pageInfo = $root.pbcommon.PageInfo.fromObject(object.pageInfo)
+      }
+      if (object.query != null) {
+        if (typeof object.query !== 'object') { throw TypeError('.pbpermission.FindPermissionArgs.query: object expected') }
+        message.query = $root.pbpermission.PermissionModel.fromObject(object.query)
+      }
+      return message
+    }
+
+    /**
+         * Creates a plain object from a FindPermissionArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbpermission.FindPermissionArgs
+         * @static
+         * @param {pbpermission.FindPermissionArgs} message FindPermissionArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    FindPermissionArgs.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.defaults) {
+        object.pageInfo = null
+        object.query = null
+      }
+      if (message.pageInfo != null && message.hasOwnProperty('pageInfo')) { object.pageInfo = $root.pbcommon.PageInfo.toObject(message.pageInfo, options) }
+      if (message.query != null && message.hasOwnProperty('query')) { object.query = $root.pbpermission.PermissionModel.toObject(message.query, options) }
+      return object
+    }
+
+    /**
+         * Converts this FindPermissionArgs to JSON.
+         * @function toJSON
+         * @memberof pbpermission.FindPermissionArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    FindPermissionArgs.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for FindPermissionArgs
+         * @function getTypeUrl
+         * @memberof pbpermission.FindPermissionArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    FindPermissionArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/pbpermission.FindPermissionArgs'
+    }
+
+    return FindPermissionArgs
+  })()
+
+  pbpermission.FindPermissionReply = (function() {
+    /**
+         * Properties of a FindPermissionReply.
+         * @memberof pbpermission
+         * @interface IFindPermissionReply
+         * @property {pbcommon.EnumCode|null} [code] FindPermissionReply code
+         * @property {string|null} [msg] FindPermissionReply msg
+         * @property {pbpermission.IPermissionModel|null} [data] FindPermissionReply data
+         * @property {Array.<pbpermission.IPermissionModel>|null} [list] FindPermissionReply list
+         * @property {number|Long|null} [total] FindPermissionReply total
+         */
+
+    /**
+         * Constructs a new FindPermissionReply.
+         * @memberof pbpermission
+         * @classdesc Represents a FindPermissionReply.
+         * @implements IFindPermissionReply
+         * @constructor
+         * @param {pbpermission.IFindPermissionReply=} [properties] Properties to set
+         */
+    function FindPermissionReply(properties) {
+      this.list = []
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * FindPermissionReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbpermission.FindPermissionReply
+         * @instance
+         */
+    FindPermissionReply.prototype.code = 0
+
+    /**
+         * FindPermissionReply msg.
+         * @member {string} msg
+         * @memberof pbpermission.FindPermissionReply
+         * @instance
+         */
+    FindPermissionReply.prototype.msg = ''
+
+    /**
+         * FindPermissionReply data.
+         * @member {pbpermission.IPermissionModel|null|undefined} data
+         * @memberof pbpermission.FindPermissionReply
+         * @instance
+         */
+    FindPermissionReply.prototype.data = null
+
+    /**
+         * FindPermissionReply list.
+         * @member {Array.<pbpermission.IPermissionModel>} list
+         * @memberof pbpermission.FindPermissionReply
+         * @instance
+         */
+    FindPermissionReply.prototype.list = $util.emptyArray
+
+    /**
+         * FindPermissionReply total.
+         * @member {number|Long} total
+         * @memberof pbpermission.FindPermissionReply
+         * @instance
+         */
+    FindPermissionReply.prototype.total = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+
+    /**
+         * Creates a new FindPermissionReply instance using the specified properties.
+         * @function create
+         * @memberof pbpermission.FindPermissionReply
+         * @static
+         * @param {pbpermission.IFindPermissionReply=} [properties] Properties to set
+         * @returns {pbpermission.FindPermissionReply} FindPermissionReply instance
+         */
+    FindPermissionReply.create = function create(properties) {
+      return new FindPermissionReply(properties)
+    }
+
+    /**
+         * Encodes the specified FindPermissionReply message. Does not implicitly {@link pbpermission.FindPermissionReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbpermission.FindPermissionReply
+         * @static
+         * @param {pbpermission.IFindPermissionReply} message FindPermissionReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    FindPermissionReply.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.code != null && Object.hasOwnProperty.call(message, 'code')) { writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code) }
+      if (message.msg != null && Object.hasOwnProperty.call(message, 'msg')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg) }
+      if (message.data != null && Object.hasOwnProperty.call(message, 'data')) { $root.pbpermission.PermissionModel.encode(message.data, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim() }
+      if (message.list != null && message.list.length) {
+        for (var i = 0; i < message.list.length; ++i) { $root.pbpermission.PermissionModel.encode(message.list[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim() }
+      }
+      if (message.total != null && Object.hasOwnProperty.call(message, 'total')) { writer.uint32(/* id 5, wireType 0 =*/40).int64(message.total) }
+      return writer
+    }
+
+    /**
+         * Encodes the specified FindPermissionReply message, length delimited. Does not implicitly {@link pbpermission.FindPermissionReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbpermission.FindPermissionReply
+         * @static
+         * @param {pbpermission.IFindPermissionReply} message FindPermissionReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    FindPermissionReply.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes a FindPermissionReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbpermission.FindPermissionReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbpermission.FindPermissionReply} FindPermissionReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    FindPermissionReply.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbpermission.FindPermissionReply()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            message.code = reader.int32()
+            break
+          }
+          case 2: {
+            message.msg = reader.string()
+            break
+          }
+          case 3: {
+            message.data = $root.pbpermission.PermissionModel.decode(reader, reader.uint32())
+            break
+          }
+          case 4: {
+            if (!(message.list && message.list.length)) { message.list = [] }
+            message.list.push($root.pbpermission.PermissionModel.decode(reader, reader.uint32()))
+            break
+          }
+          case 5: {
+            message.total = reader.int64()
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes a FindPermissionReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbpermission.FindPermissionReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbpermission.FindPermissionReply} FindPermissionReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    FindPermissionReply.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies a FindPermissionReply message.
+         * @function verify
+         * @memberof pbpermission.FindPermissionReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    FindPermissionReply.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.code != null && message.hasOwnProperty('code')) {
+        switch (message.code) {
+          default:
+            return 'code: enum value expected'
+          case 0:
+          case 200:
+          case 500:
+          case 501:
+          case 502:
+          case 503:
+          case 504:
+          case 505:
+          case 1001:
+          case 1002:
+          case 1003:
+          case 1004:
+          case 2002:
+          case 2003:
+          case 2004:
+          case 2005:
+          case 2006:
+          case 2007:
+          case 2008:
+          case 2009:
+          case 2010:
+          case 2011:
+          case 2012:
+          case 2013:
+          case 2014:
+            break
+        }
+      }
+      if (message.msg != null && message.hasOwnProperty('msg')) {
+        if (!$util.isString(message.msg)) { return 'msg: string expected' }
+      }
+      if (message.data != null && message.hasOwnProperty('data')) {
+        var error = $root.pbpermission.PermissionModel.verify(message.data)
+        if (error) { return 'data.' + error }
+      }
+      if (message.list != null && message.hasOwnProperty('list')) {
+        if (!Array.isArray(message.list)) { return 'list: array expected' }
+        for (var i = 0; i < message.list.length; ++i) {
+          var error = $root.pbpermission.PermissionModel.verify(message.list[i])
+          if (error) { return 'list.' + error }
+        }
+      }
+      if (message.total != null && message.hasOwnProperty('total')) {
+        if (!$util.isInteger(message.total) && !(message.total && $util.isInteger(message.total.low) && $util.isInteger(message.total.high))) { return 'total: integer|Long expected' }
+      }
+      return null
+    }
+
+    /**
+         * Creates a FindPermissionReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbpermission.FindPermissionReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbpermission.FindPermissionReply} FindPermissionReply
+         */
+    FindPermissionReply.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbpermission.FindPermissionReply) { return object }
+      var message = new $root.pbpermission.FindPermissionReply()
+      switch (object.code) {
+        default:
+          if (typeof object.code === 'number') {
+            message.code = object.code
+            break
+          }
+          break
+        case 'None':
+        case 0:
+          message.code = 0
+          break
+        case 'Success':
+        case 200:
+          message.code = 200
+          break
+        case 'Fail':
+        case 500:
+          message.code = 500
+          break
+        case 'Unknown':
+        case 501:
+          message.code = 501
+          break
+        case 'Internal':
+        case 502:
+          message.code = 502
+          break
+        case 'Invalid':
+        case 503:
+          message.code = 503
+          break
+        case 'InvalidParam':
+        case 504:
+          message.code = 504
+          break
+        case 'ParamError':
+        case 505:
+          message.code = 505
+          break
+        case 'FindError':
+        case 1001:
+          message.code = 1001
+          break
+        case 'CreateError':
+        case 1002:
+          message.code = 1002
+          break
+        case 'DeleteError':
+        case 1003:
+          message.code = 1003
+          break
+        case 'UpdateError':
+        case 1004:
+          message.code = 1004
+          break
+        case 'InvalidToken':
+        case 2002:
+          message.code = 2002
+          break
+        case 'InvalidSign':
+        case 2003:
+          message.code = 2003
+          break
+        case 'NotLogin':
+        case 2004:
+          message.code = 2004
+          break
+        case 'LoginTimeout':
+        case 2005:
+          message.code = 2005
+          break
+        case 'LoginError':
+        case 2006:
+          message.code = 2006
+          break
+        case 'LoginForbidden':
+        case 2007:
+          message.code = 2007
+          break
+        case 'LoginExpired':
+        case 2008:
+          message.code = 2008
+          break
+        case 'LoginInvalid':
+        case 2009:
+          message.code = 2009
+          break
+        case 'LoginInvalidPassword':
+        case 2010:
+          message.code = 2010
+          break
+        case 'LoginInvalidUsername':
+        case 2011:
+          message.code = 2011
+          break
+        case 'LoginInvalidEmail':
+        case 2012:
+          message.code = 2012
+          break
+        case 'LoginInvalidPhone':
+        case 2013:
+          message.code = 2013
+          break
+        case 'LoginInvalidUsernameOrEmail':
+        case 2014:
+          message.code = 2014
+          break
+      }
+      if (object.msg != null) { message.msg = String(object.msg) }
+      if (object.data != null) {
+        if (typeof object.data !== 'object') { throw TypeError('.pbpermission.FindPermissionReply.data: object expected') }
+        message.data = $root.pbpermission.PermissionModel.fromObject(object.data)
+      }
+      if (object.list) {
+        if (!Array.isArray(object.list)) { throw TypeError('.pbpermission.FindPermissionReply.list: array expected') }
+        message.list = []
+        for (var i = 0; i < object.list.length; ++i) {
+          if (typeof object.list[i] !== 'object') { throw TypeError('.pbpermission.FindPermissionReply.list: object expected') }
+          message.list[i] = $root.pbpermission.PermissionModel.fromObject(object.list[i])
+        }
+      }
+      if (object.total != null) {
+        if ($util.Long) { (message.total = $util.Long.fromValue(object.total)).unsigned = false } else if (typeof object.total === 'string') { message.total = parseInt(object.total, 10) } else if (typeof object.total === 'number') { message.total = object.total } else if (typeof object.total === 'object') { message.total = new $util.LongBits(object.total.low >>> 0, object.total.high >>> 0).toNumber() }
+      }
+      return message
+    }
+
+    /**
+         * Creates a plain object from a FindPermissionReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbpermission.FindPermissionReply
+         * @static
+         * @param {pbpermission.FindPermissionReply} message FindPermissionReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    FindPermissionReply.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.arrays || options.defaults) { object.list = [] }
+      if (options.defaults) {
+        object.code = options.enums === String ? 'None' : 0
+        object.msg = ''
+        object.data = null
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.total = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.total = options.longs === String ? '0' : 0 }
+      }
+      if (message.code != null && message.hasOwnProperty('code')) { object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code }
+      if (message.msg != null && message.hasOwnProperty('msg')) { object.msg = message.msg }
+      if (message.data != null && message.hasOwnProperty('data')) { object.data = $root.pbpermission.PermissionModel.toObject(message.data, options) }
+      if (message.list && message.list.length) {
+        object.list = []
+        for (var j = 0; j < message.list.length; ++j) { object.list[j] = $root.pbpermission.PermissionModel.toObject(message.list[j], options) }
+      }
+      if (message.total != null && message.hasOwnProperty('total')) {
+        if (typeof message.total === 'number') { object.total = options.longs === String ? String(message.total) : message.total } else { object.total = options.longs === String ? $util.Long.prototype.toString.call(message.total) : options.longs === Number ? new $util.LongBits(message.total.low >>> 0, message.total.high >>> 0).toNumber() : message.total }
+      }
+      return object
+    }
+
+    /**
+         * Converts this FindPermissionReply to JSON.
+         * @function toJSON
+         * @memberof pbpermission.FindPermissionReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    FindPermissionReply.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for FindPermissionReply
+         * @function getTypeUrl
+         * @memberof pbpermission.FindPermissionReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    FindPermissionReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/pbpermission.FindPermissionReply'
+    }
+
+    return FindPermissionReply
+  })()
+
+  pbpermission.Permission = (function() {
+    /**
+         * Constructs a new Permission service.
+         * @memberof pbpermission
+         * @classdesc Represents a Permission
+         * @extends $protobuf.rpc.Service
+         * @constructor
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         */
+    function Permission(rpcImpl, requestDelimited, responseDelimited) {
+      $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited)
+    }
+
+    (Permission.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = Permission
+
+    /**
+         * Creates new Permission service using the specified rpc implementation.
+         * @function create
+         * @memberof pbpermission.Permission
+         * @static
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         * @returns {Permission} RPC service. Useful where requests and/or responses are streamed.
+         */
+    Permission.create = function create(rpcImpl, requestDelimited, responseDelimited) {
+      return new this(rpcImpl, requestDelimited, responseDelimited)
+    }
+
+    /**
+         * Callback as used by {@link pbpermission.Permission#createPermission}.
+         * @memberof pbpermission.Permission
+         * @typedef CreatePermissionCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+    /**
+         * Calls CreatePermission.
+         * @function createPermission
+         * @memberof pbpermission.Permission
+         * @instance
+         * @param {pbpermission.IPermissionModel} request PermissionModel message or plain object
+         * @param {pbpermission.Permission.CreatePermissionCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+    Object.defineProperty(Permission.prototype.createPermission = function createPermission(request, callback) {
+      return this.rpcCall(createPermission, $root.pbpermission.PermissionModel, $root.pbcommon.CommonResult, request, callback)
+    }, 'name', { value: 'CreatePermission' })
+
+    /**
+         * Calls CreatePermission.
+         * @function createPermission
+         * @memberof pbpermission.Permission
+         * @instance
+         * @param {pbpermission.IPermissionModel} request PermissionModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+    /**
+         * Callback as used by {@link pbpermission.Permission#updatePermission}.
+         * @memberof pbpermission.Permission
+         * @typedef UpdatePermissionCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+    /**
+         * Calls UpdatePermission.
+         * @function updatePermission
+         * @memberof pbpermission.Permission
+         * @instance
+         * @param {pbpermission.IPermissionModel} request PermissionModel message or plain object
+         * @param {pbpermission.Permission.UpdatePermissionCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+    Object.defineProperty(Permission.prototype.updatePermission = function updatePermission(request, callback) {
+      return this.rpcCall(updatePermission, $root.pbpermission.PermissionModel, $root.pbcommon.CommonResult, request, callback)
+    }, 'name', { value: 'UpdatePermission' })
+
+    /**
+         * Calls UpdatePermission.
+         * @function updatePermission
+         * @memberof pbpermission.Permission
+         * @instance
+         * @param {pbpermission.IPermissionModel} request PermissionModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+    /**
+         * Callback as used by {@link pbpermission.Permission#deletePermission}.
+         * @memberof pbpermission.Permission
+         * @typedef DeletePermissionCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+    /**
+         * Calls DeletePermission.
+         * @function deletePermission
+         * @memberof pbpermission.Permission
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbpermission.Permission.DeletePermissionCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+    Object.defineProperty(Permission.prototype.deletePermission = function deletePermission(request, callback) {
+      return this.rpcCall(deletePermission, $root.pbcommon.IdArgs, $root.pbcommon.CommonResult, request, callback)
+    }, 'name', { value: 'DeletePermission' })
+
+    /**
+         * Calls DeletePermission.
+         * @function deletePermission
+         * @memberof pbpermission.Permission
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+    /**
+         * Callback as used by {@link pbpermission.Permission#findPermissionById}.
+         * @memberof pbpermission.Permission
+         * @typedef FindPermissionByIdCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbpermission.FindPermissionReply} [response] FindPermissionReply
+         */
+
+    /**
+         * Calls FindPermissionById.
+         * @function findPermissionById
+         * @memberof pbpermission.Permission
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbpermission.Permission.FindPermissionByIdCallback} callback Node-style callback called with the error, if any, and FindPermissionReply
+         * @returns {undefined}
+         * @variation 1
+         */
+    Object.defineProperty(Permission.prototype.findPermissionById = function findPermissionById(request, callback) {
+      return this.rpcCall(findPermissionById, $root.pbcommon.IdArgs, $root.pbpermission.FindPermissionReply, request, callback)
+    }, 'name', { value: 'FindPermissionById' })
+
+    /**
+         * Calls FindPermissionById.
+         * @function findPermissionById
+         * @memberof pbpermission.Permission
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbpermission.FindPermissionReply>} Promise
+         * @variation 2
+         */
+
+    /**
+         * Callback as used by {@link pbpermission.Permission#findPermissionList}.
+         * @memberof pbpermission.Permission
+         * @typedef FindPermissionListCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbpermission.FindPermissionReply} [response] FindPermissionReply
+         */
+
+    /**
+         * Calls FindPermissionList.
+         * @function findPermissionList
+         * @memberof pbpermission.Permission
+         * @instance
+         * @param {pbpermission.IFindPermissionArgs} request FindPermissionArgs message or plain object
+         * @param {pbpermission.Permission.FindPermissionListCallback} callback Node-style callback called with the error, if any, and FindPermissionReply
+         * @returns {undefined}
+         * @variation 1
+         */
+    Object.defineProperty(Permission.prototype.findPermissionList = function findPermissionList(request, callback) {
+      return this.rpcCall(findPermissionList, $root.pbpermission.FindPermissionArgs, $root.pbpermission.FindPermissionReply, request, callback)
+    }, 'name', { value: 'FindPermissionList' })
+
+    /**
+         * Calls FindPermissionList.
+         * @function findPermissionList
+         * @memberof pbpermission.Permission
+         * @instance
+         * @param {pbpermission.IFindPermissionArgs} request FindPermissionArgs message or plain object
+         * @returns {Promise<pbpermission.FindPermissionReply>} Promise
+         * @variation 2
+         */
+
+    return Permission
+  })()
+
+  return pbpermission
+})()
+
+$root.pbrole = (function() {
+  /**
+     * Namespace pbrole.
+     * @exports pbrole
+     * @namespace
+     */
+  var pbrole = {}
+
+  pbrole.RoleModel = (function() {
+    /**
+         * Properties of a RoleModel.
+         * @memberof pbrole
+         * @interface IRoleModel
+         * @property {number|Long|null} [id] RoleModel id
+         * @property {string|null} [createdAt] RoleModel createdAt
+         * @property {string|null} [updatedAt] RoleModel updatedAt
+         * @property {number|Long|null} [parentId] RoleModel parentId
+         * @property {string|null} [roleName] RoleModel roleName
+         * @property {number|null} [roleCode] RoleModel roleCode
+         * @property {string|null} [roleDesc] RoleModel roleDesc
+         * @property {pbrole.RoleType|null} [roleType] RoleModel roleType
+         * @property {number|null} [roleStatus] RoleModel roleStatus
+         * @property {Array.<pbpermission.IPermissionModel>|null} [permissions] RoleModel permissions
+         */
+
+    /**
+         * Constructs a new RoleModel.
+         * @memberof pbrole
+         * @classdesc Represents a RoleModel.
+         * @implements IRoleModel
+         * @constructor
+         * @param {pbrole.IRoleModel=} [properties] Properties to set
+         */
+    function RoleModel(properties) {
+      this.permissions = []
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * RoleModel id.
+         * @member {number|Long} id
+         * @memberof pbrole.RoleModel
+         * @instance
+         */
+    RoleModel.prototype.id = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+
+    /**
+         * RoleModel createdAt.
+         * @member {string} createdAt
+         * @memberof pbrole.RoleModel
+         * @instance
+         */
+    RoleModel.prototype.createdAt = ''
+
+    /**
+         * RoleModel updatedAt.
+         * @member {string} updatedAt
+         * @memberof pbrole.RoleModel
+         * @instance
+         */
+    RoleModel.prototype.updatedAt = ''
+
+    /**
+         * RoleModel parentId.
+         * @member {number|Long} parentId
+         * @memberof pbrole.RoleModel
+         * @instance
+         */
+    RoleModel.prototype.parentId = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+
+    /**
+         * RoleModel roleName.
+         * @member {string} roleName
+         * @memberof pbrole.RoleModel
+         * @instance
+         */
+    RoleModel.prototype.roleName = ''
+
+    /**
+         * RoleModel roleCode.
+         * @member {number} roleCode
+         * @memberof pbrole.RoleModel
+         * @instance
+         */
+    RoleModel.prototype.roleCode = 0
+
+    /**
+         * RoleModel roleDesc.
+         * @member {string} roleDesc
+         * @memberof pbrole.RoleModel
+         * @instance
+         */
+    RoleModel.prototype.roleDesc = ''
+
+    /**
+         * RoleModel roleType.
+         * @member {pbrole.RoleType} roleType
+         * @memberof pbrole.RoleModel
+         * @instance
+         */
+    RoleModel.prototype.roleType = 0
+
+    /**
+         * RoleModel roleStatus.
+         * @member {number} roleStatus
+         * @memberof pbrole.RoleModel
+         * @instance
+         */
+    RoleModel.prototype.roleStatus = 0
+
+    /**
+         * RoleModel permissions.
+         * @member {Array.<pbpermission.IPermissionModel>} permissions
+         * @memberof pbrole.RoleModel
+         * @instance
+         */
+    RoleModel.prototype.permissions = $util.emptyArray
+
+    /**
+         * Creates a new RoleModel instance using the specified properties.
+         * @function create
+         * @memberof pbrole.RoleModel
+         * @static
+         * @param {pbrole.IRoleModel=} [properties] Properties to set
+         * @returns {pbrole.RoleModel} RoleModel instance
+         */
+    RoleModel.create = function create(properties) {
+      return new RoleModel(properties)
+    }
+
+    /**
+         * Encodes the specified RoleModel message. Does not implicitly {@link pbrole.RoleModel.verify|verify} messages.
+         * @function encode
+         * @memberof pbrole.RoleModel
+         * @static
+         * @param {pbrole.IRoleModel} message RoleModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    RoleModel.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.id != null && Object.hasOwnProperty.call(message, 'id')) { writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id) }
+      if (message.createdAt != null && Object.hasOwnProperty.call(message, 'createdAt')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.createdAt) }
+      if (message.updatedAt != null && Object.hasOwnProperty.call(message, 'updatedAt')) { writer.uint32(/* id 3, wireType 2 =*/26).string(message.updatedAt) }
+      if (message.parentId != null && Object.hasOwnProperty.call(message, 'parentId')) { writer.uint32(/* id 4, wireType 0 =*/32).int64(message.parentId) }
+      if (message.roleName != null && Object.hasOwnProperty.call(message, 'roleName')) { writer.uint32(/* id 5, wireType 2 =*/42).string(message.roleName) }
+      if (message.roleCode != null && Object.hasOwnProperty.call(message, 'roleCode')) { writer.uint32(/* id 6, wireType 0 =*/48).int32(message.roleCode) }
+      if (message.roleDesc != null && Object.hasOwnProperty.call(message, 'roleDesc')) { writer.uint32(/* id 7, wireType 2 =*/58).string(message.roleDesc) }
+      if (message.roleType != null && Object.hasOwnProperty.call(message, 'roleType')) { writer.uint32(/* id 8, wireType 0 =*/64).int32(message.roleType) }
+      if (message.roleStatus != null && Object.hasOwnProperty.call(message, 'roleStatus')) { writer.uint32(/* id 9, wireType 0 =*/72).int32(message.roleStatus) }
+      if (message.permissions != null && message.permissions.length) {
+        for (var i = 0; i < message.permissions.length; ++i) { $root.pbpermission.PermissionModel.encode(message.permissions[i], writer.uint32(/* id 10, wireType 2 =*/82).fork()).ldelim() }
+      }
+      return writer
+    }
+
+    /**
+         * Encodes the specified RoleModel message, length delimited. Does not implicitly {@link pbrole.RoleModel.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbrole.RoleModel
+         * @static
+         * @param {pbrole.IRoleModel} message RoleModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    RoleModel.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes a RoleModel message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbrole.RoleModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbrole.RoleModel} RoleModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    RoleModel.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbrole.RoleModel()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            message.id = reader.int64()
+            break
+          }
+          case 2: {
+            message.createdAt = reader.string()
+            break
+          }
+          case 3: {
+            message.updatedAt = reader.string()
+            break
+          }
+          case 4: {
+            message.parentId = reader.int64()
+            break
+          }
+          case 5: {
+            message.roleName = reader.string()
+            break
+          }
+          case 6: {
+            message.roleCode = reader.int32()
+            break
+          }
+          case 7: {
+            message.roleDesc = reader.string()
+            break
+          }
+          case 8: {
+            message.roleType = reader.int32()
+            break
+          }
+          case 9: {
+            message.roleStatus = reader.int32()
+            break
+          }
+          case 10: {
+            if (!(message.permissions && message.permissions.length)) { message.permissions = [] }
+            message.permissions.push($root.pbpermission.PermissionModel.decode(reader, reader.uint32()))
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes a RoleModel message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbrole.RoleModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbrole.RoleModel} RoleModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    RoleModel.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies a RoleModel message.
+         * @function verify
+         * @memberof pbrole.RoleModel
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    RoleModel.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.id != null && message.hasOwnProperty('id')) {
+        if (!$util.isInteger(message.id) && !(message.id && $util.isInteger(message.id.low) && $util.isInteger(message.id.high))) { return 'id: integer|Long expected' }
+      }
+      if (message.createdAt != null && message.hasOwnProperty('createdAt')) {
+        if (!$util.isString(message.createdAt)) { return 'createdAt: string expected' }
+      }
+      if (message.updatedAt != null && message.hasOwnProperty('updatedAt')) {
+        if (!$util.isString(message.updatedAt)) { return 'updatedAt: string expected' }
+      }
+      if (message.parentId != null && message.hasOwnProperty('parentId')) {
+        if (!$util.isInteger(message.parentId) && !(message.parentId && $util.isInteger(message.parentId.low) && $util.isInteger(message.parentId.high))) { return 'parentId: integer|Long expected' }
+      }
+      if (message.roleName != null && message.hasOwnProperty('roleName')) {
+        if (!$util.isString(message.roleName)) { return 'roleName: string expected' }
+      }
+      if (message.roleCode != null && message.hasOwnProperty('roleCode')) {
+        if (!$util.isInteger(message.roleCode)) { return 'roleCode: integer expected' }
+      }
+      if (message.roleDesc != null && message.hasOwnProperty('roleDesc')) {
+        if (!$util.isString(message.roleDesc)) { return 'roleDesc: string expected' }
+      }
+      if (message.roleType != null && message.hasOwnProperty('roleType')) {
+        switch (message.roleType) {
+          default:
+            return 'roleType: enum value expected'
+          case 0:
+          case 1:
+          case 2:
+            break
+        }
+      }
+      if (message.roleStatus != null && message.hasOwnProperty('roleStatus')) {
+        if (!$util.isInteger(message.roleStatus)) { return 'roleStatus: integer expected' }
+      }
+      if (message.permissions != null && message.hasOwnProperty('permissions')) {
+        if (!Array.isArray(message.permissions)) { return 'permissions: array expected' }
+        for (var i = 0; i < message.permissions.length; ++i) {
+          var error = $root.pbpermission.PermissionModel.verify(message.permissions[i])
+          if (error) { return 'permissions.' + error }
+        }
+      }
+      return null
+    }
+
+    /**
+         * Creates a RoleModel message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbrole.RoleModel
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbrole.RoleModel} RoleModel
+         */
+    RoleModel.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbrole.RoleModel) { return object }
+      var message = new $root.pbrole.RoleModel()
+      if (object.id != null) {
+        if ($util.Long) { (message.id = $util.Long.fromValue(object.id)).unsigned = false } else if (typeof object.id === 'string') { message.id = parseInt(object.id, 10) } else if (typeof object.id === 'number') { message.id = object.id } else if (typeof object.id === 'object') { message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber() }
+      }
+      if (object.createdAt != null) { message.createdAt = String(object.createdAt) }
+      if (object.updatedAt != null) { message.updatedAt = String(object.updatedAt) }
+      if (object.parentId != null) {
+        if ($util.Long) { (message.parentId = $util.Long.fromValue(object.parentId)).unsigned = false } else if (typeof object.parentId === 'string') { message.parentId = parseInt(object.parentId, 10) } else if (typeof object.parentId === 'number') { message.parentId = object.parentId } else if (typeof object.parentId === 'object') { message.parentId = new $util.LongBits(object.parentId.low >>> 0, object.parentId.high >>> 0).toNumber() }
+      }
+      if (object.roleName != null) { message.roleName = String(object.roleName) }
+      if (object.roleCode != null) { message.roleCode = object.roleCode | 0 }
+      if (object.roleDesc != null) { message.roleDesc = String(object.roleDesc) }
+      switch (object.roleType) {
+        default:
+          if (typeof object.roleType === 'number') {
+            message.roleType = object.roleType
+            break
+          }
+          break
+        case 'ROLE_TYPE_NONE':
+        case 0:
+          message.roleType = 0
+          break
+        case 'ADMIN':
+        case 1:
+          message.roleType = 1
+          break
+        case 'APP':
+        case 2:
+          message.roleType = 2
+          break
+      }
+      if (object.roleStatus != null) { message.roleStatus = object.roleStatus | 0 }
+      if (object.permissions) {
+        if (!Array.isArray(object.permissions)) { throw TypeError('.pbrole.RoleModel.permissions: array expected') }
+        message.permissions = []
+        for (var i = 0; i < object.permissions.length; ++i) {
+          if (typeof object.permissions[i] !== 'object') { throw TypeError('.pbrole.RoleModel.permissions: object expected') }
+          message.permissions[i] = $root.pbpermission.PermissionModel.fromObject(object.permissions[i])
+        }
+      }
+      return message
+    }
+
+    /**
+         * Creates a plain object from a RoleModel message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbrole.RoleModel
+         * @static
+         * @param {pbrole.RoleModel} message RoleModel
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    RoleModel.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.arrays || options.defaults) { object.permissions = [] }
+      if (options.defaults) {
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.id = options.longs === String ? '0' : 0 }
+        object.createdAt = ''
+        object.updatedAt = ''
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.parentId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.parentId = options.longs === String ? '0' : 0 }
+        object.roleName = ''
+        object.roleCode = 0
+        object.roleDesc = ''
+        object.roleType = options.enums === String ? 'ROLE_TYPE_NONE' : 0
+        object.roleStatus = 0
+      }
+      if (message.id != null && message.hasOwnProperty('id')) {
+        if (typeof message.id === 'number') { object.id = options.longs === String ? String(message.id) : message.id } else { object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id }
+      }
+      if (message.createdAt != null && message.hasOwnProperty('createdAt')) { object.createdAt = message.createdAt }
+      if (message.updatedAt != null && message.hasOwnProperty('updatedAt')) { object.updatedAt = message.updatedAt }
+      if (message.parentId != null && message.hasOwnProperty('parentId')) {
+        if (typeof message.parentId === 'number') { object.parentId = options.longs === String ? String(message.parentId) : message.parentId } else { object.parentId = options.longs === String ? $util.Long.prototype.toString.call(message.parentId) : options.longs === Number ? new $util.LongBits(message.parentId.low >>> 0, message.parentId.high >>> 0).toNumber() : message.parentId }
+      }
+      if (message.roleName != null && message.hasOwnProperty('roleName')) { object.roleName = message.roleName }
+      if (message.roleCode != null && message.hasOwnProperty('roleCode')) { object.roleCode = message.roleCode }
+      if (message.roleDesc != null && message.hasOwnProperty('roleDesc')) { object.roleDesc = message.roleDesc }
+      if (message.roleType != null && message.hasOwnProperty('roleType')) { object.roleType = options.enums === String ? $root.pbrole.RoleType[message.roleType] === undefined ? message.roleType : $root.pbrole.RoleType[message.roleType] : message.roleType }
+      if (message.roleStatus != null && message.hasOwnProperty('roleStatus')) { object.roleStatus = message.roleStatus }
+      if (message.permissions && message.permissions.length) {
+        object.permissions = []
+        for (var j = 0; j < message.permissions.length; ++j) { object.permissions[j] = $root.pbpermission.PermissionModel.toObject(message.permissions[j], options) }
+      }
+      return object
+    }
+
+    /**
+         * Converts this RoleModel to JSON.
+         * @function toJSON
+         * @memberof pbrole.RoleModel
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    RoleModel.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for RoleModel
+         * @function getTypeUrl
+         * @memberof pbrole.RoleModel
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    RoleModel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/pbrole.RoleModel'
+    }
+
+    return RoleModel
+  })()
+
+  /**
+     * RoleType enum.
+     * @name pbrole.RoleType
+     * @enum {number}
+     * @property {number} ROLE_TYPE_NONE=0 ROLE_TYPE_NONE value
+     * @property {number} ADMIN=1 ADMIN value
+     * @property {number} APP=2 APP value
+     */
+  pbrole.RoleType = (function() {
+    var valuesById = {}; var values = Object.create(valuesById)
+    values[valuesById[0] = 'ROLE_TYPE_NONE'] = 0
+    values[valuesById[1] = 'ADMIN'] = 1
+    values[valuesById[2] = 'APP'] = 2
+    return values
+  })()
+
+  pbrole.FindRoleArgs = (function() {
+    /**
+         * Properties of a FindRoleArgs.
+         * @memberof pbrole
+         * @interface IFindRoleArgs
+         * @property {pbcommon.IPageInfo|null} [pageInfo] FindRoleArgs pageInfo
+         * @property {pbrole.IRoleModel|null} [query] FindRoleArgs query
+         */
+
+    /**
+         * Constructs a new FindRoleArgs.
+         * @memberof pbrole
+         * @classdesc Represents a FindRoleArgs.
+         * @implements IFindRoleArgs
+         * @constructor
+         * @param {pbrole.IFindRoleArgs=} [properties] Properties to set
+         */
+    function FindRoleArgs(properties) {
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * FindRoleArgs pageInfo.
+         * @member {pbcommon.IPageInfo|null|undefined} pageInfo
+         * @memberof pbrole.FindRoleArgs
+         * @instance
+         */
+    FindRoleArgs.prototype.pageInfo = null
+
+    /**
+         * FindRoleArgs query.
+         * @member {pbrole.IRoleModel|null|undefined} query
+         * @memberof pbrole.FindRoleArgs
+         * @instance
+         */
+    FindRoleArgs.prototype.query = null
+
+    /**
+         * Creates a new FindRoleArgs instance using the specified properties.
+         * @function create
+         * @memberof pbrole.FindRoleArgs
+         * @static
+         * @param {pbrole.IFindRoleArgs=} [properties] Properties to set
+         * @returns {pbrole.FindRoleArgs} FindRoleArgs instance
+         */
+    FindRoleArgs.create = function create(properties) {
+      return new FindRoleArgs(properties)
+    }
+
+    /**
+         * Encodes the specified FindRoleArgs message. Does not implicitly {@link pbrole.FindRoleArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbrole.FindRoleArgs
+         * @static
+         * @param {pbrole.IFindRoleArgs} message FindRoleArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    FindRoleArgs.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.pageInfo != null && Object.hasOwnProperty.call(message, 'pageInfo')) { $root.pbcommon.PageInfo.encode(message.pageInfo, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim() }
+      if (message.query != null && Object.hasOwnProperty.call(message, 'query')) { $root.pbrole.RoleModel.encode(message.query, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim() }
+      return writer
+    }
+
+    /**
+         * Encodes the specified FindRoleArgs message, length delimited. Does not implicitly {@link pbrole.FindRoleArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbrole.FindRoleArgs
+         * @static
+         * @param {pbrole.IFindRoleArgs} message FindRoleArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    FindRoleArgs.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes a FindRoleArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbrole.FindRoleArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbrole.FindRoleArgs} FindRoleArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    FindRoleArgs.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbrole.FindRoleArgs()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            message.pageInfo = $root.pbcommon.PageInfo.decode(reader, reader.uint32())
+            break
+          }
+          case 2: {
+            message.query = $root.pbrole.RoleModel.decode(reader, reader.uint32())
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes a FindRoleArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbrole.FindRoleArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbrole.FindRoleArgs} FindRoleArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    FindRoleArgs.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies a FindRoleArgs message.
+         * @function verify
+         * @memberof pbrole.FindRoleArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    FindRoleArgs.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.pageInfo != null && message.hasOwnProperty('pageInfo')) {
+        var error = $root.pbcommon.PageInfo.verify(message.pageInfo)
+        if (error) { return 'pageInfo.' + error }
+      }
+      if (message.query != null && message.hasOwnProperty('query')) {
+        var error = $root.pbrole.RoleModel.verify(message.query)
+        if (error) { return 'query.' + error }
+      }
+      return null
+    }
+
+    /**
+         * Creates a FindRoleArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbrole.FindRoleArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbrole.FindRoleArgs} FindRoleArgs
+         */
+    FindRoleArgs.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbrole.FindRoleArgs) { return object }
+      var message = new $root.pbrole.FindRoleArgs()
+      if (object.pageInfo != null) {
+        if (typeof object.pageInfo !== 'object') { throw TypeError('.pbrole.FindRoleArgs.pageInfo: object expected') }
+        message.pageInfo = $root.pbcommon.PageInfo.fromObject(object.pageInfo)
+      }
+      if (object.query != null) {
+        if (typeof object.query !== 'object') { throw TypeError('.pbrole.FindRoleArgs.query: object expected') }
+        message.query = $root.pbrole.RoleModel.fromObject(object.query)
+      }
+      return message
+    }
+
+    /**
+         * Creates a plain object from a FindRoleArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbrole.FindRoleArgs
+         * @static
+         * @param {pbrole.FindRoleArgs} message FindRoleArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    FindRoleArgs.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.defaults) {
+        object.pageInfo = null
+        object.query = null
+      }
+      if (message.pageInfo != null && message.hasOwnProperty('pageInfo')) { object.pageInfo = $root.pbcommon.PageInfo.toObject(message.pageInfo, options) }
+      if (message.query != null && message.hasOwnProperty('query')) { object.query = $root.pbrole.RoleModel.toObject(message.query, options) }
+      return object
+    }
+
+    /**
+         * Converts this FindRoleArgs to JSON.
+         * @function toJSON
+         * @memberof pbrole.FindRoleArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    FindRoleArgs.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for FindRoleArgs
+         * @function getTypeUrl
+         * @memberof pbrole.FindRoleArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    FindRoleArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/pbrole.FindRoleArgs'
+    }
+
+    return FindRoleArgs
+  })()
+
+  pbrole.FindRoleReply = (function() {
+    /**
+         * Properties of a FindRoleReply.
+         * @memberof pbrole
+         * @interface IFindRoleReply
+         * @property {pbcommon.EnumCode|null} [code] FindRoleReply code
+         * @property {string|null} [msg] FindRoleReply msg
+         * @property {pbrole.IRoleModel|null} [data] FindRoleReply data
+         * @property {Array.<pbrole.IRoleModel>|null} [list] FindRoleReply list
+         * @property {number|Long|null} [total] FindRoleReply total
+         */
+
+    /**
+         * Constructs a new FindRoleReply.
+         * @memberof pbrole
+         * @classdesc Represents a FindRoleReply.
+         * @implements IFindRoleReply
+         * @constructor
+         * @param {pbrole.IFindRoleReply=} [properties] Properties to set
+         */
+    function FindRoleReply(properties) {
+      this.list = []
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * FindRoleReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbrole.FindRoleReply
+         * @instance
+         */
+    FindRoleReply.prototype.code = 0
+
+    /**
+         * FindRoleReply msg.
+         * @member {string} msg
+         * @memberof pbrole.FindRoleReply
+         * @instance
+         */
+    FindRoleReply.prototype.msg = ''
+
+    /**
+         * FindRoleReply data.
+         * @member {pbrole.IRoleModel|null|undefined} data
+         * @memberof pbrole.FindRoleReply
+         * @instance
+         */
+    FindRoleReply.prototype.data = null
+
+    /**
+         * FindRoleReply list.
+         * @member {Array.<pbrole.IRoleModel>} list
+         * @memberof pbrole.FindRoleReply
+         * @instance
+         */
+    FindRoleReply.prototype.list = $util.emptyArray
+
+    /**
+         * FindRoleReply total.
+         * @member {number|Long} total
+         * @memberof pbrole.FindRoleReply
+         * @instance
+         */
+    FindRoleReply.prototype.total = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+
+    /**
+         * Creates a new FindRoleReply instance using the specified properties.
+         * @function create
+         * @memberof pbrole.FindRoleReply
+         * @static
+         * @param {pbrole.IFindRoleReply=} [properties] Properties to set
+         * @returns {pbrole.FindRoleReply} FindRoleReply instance
+         */
+    FindRoleReply.create = function create(properties) {
+      return new FindRoleReply(properties)
+    }
+
+    /**
+         * Encodes the specified FindRoleReply message. Does not implicitly {@link pbrole.FindRoleReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbrole.FindRoleReply
+         * @static
+         * @param {pbrole.IFindRoleReply} message FindRoleReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    FindRoleReply.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.code != null && Object.hasOwnProperty.call(message, 'code')) { writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code) }
+      if (message.msg != null && Object.hasOwnProperty.call(message, 'msg')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg) }
+      if (message.data != null && Object.hasOwnProperty.call(message, 'data')) { $root.pbrole.RoleModel.encode(message.data, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim() }
+      if (message.list != null && message.list.length) {
+        for (var i = 0; i < message.list.length; ++i) { $root.pbrole.RoleModel.encode(message.list[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim() }
+      }
+      if (message.total != null && Object.hasOwnProperty.call(message, 'total')) { writer.uint32(/* id 5, wireType 0 =*/40).int64(message.total) }
+      return writer
+    }
+
+    /**
+         * Encodes the specified FindRoleReply message, length delimited. Does not implicitly {@link pbrole.FindRoleReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbrole.FindRoleReply
+         * @static
+         * @param {pbrole.IFindRoleReply} message FindRoleReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    FindRoleReply.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes a FindRoleReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbrole.FindRoleReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbrole.FindRoleReply} FindRoleReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    FindRoleReply.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbrole.FindRoleReply()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            message.code = reader.int32()
+            break
+          }
+          case 2: {
+            message.msg = reader.string()
+            break
+          }
+          case 3: {
+            message.data = $root.pbrole.RoleModel.decode(reader, reader.uint32())
+            break
+          }
+          case 4: {
+            if (!(message.list && message.list.length)) { message.list = [] }
+            message.list.push($root.pbrole.RoleModel.decode(reader, reader.uint32()))
+            break
+          }
+          case 5: {
+            message.total = reader.int64()
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes a FindRoleReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbrole.FindRoleReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbrole.FindRoleReply} FindRoleReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    FindRoleReply.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies a FindRoleReply message.
+         * @function verify
+         * @memberof pbrole.FindRoleReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    FindRoleReply.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.code != null && message.hasOwnProperty('code')) {
+        switch (message.code) {
+          default:
+            return 'code: enum value expected'
+          case 0:
+          case 200:
+          case 500:
+          case 501:
+          case 502:
+          case 503:
+          case 504:
+          case 505:
+          case 1001:
+          case 1002:
+          case 1003:
+          case 1004:
+          case 2002:
+          case 2003:
+          case 2004:
+          case 2005:
+          case 2006:
+          case 2007:
+          case 2008:
+          case 2009:
+          case 2010:
+          case 2011:
+          case 2012:
+          case 2013:
+          case 2014:
+            break
+        }
+      }
+      if (message.msg != null && message.hasOwnProperty('msg')) {
+        if (!$util.isString(message.msg)) { return 'msg: string expected' }
+      }
+      if (message.data != null && message.hasOwnProperty('data')) {
+        var error = $root.pbrole.RoleModel.verify(message.data)
+        if (error) { return 'data.' + error }
+      }
+      if (message.list != null && message.hasOwnProperty('list')) {
+        if (!Array.isArray(message.list)) { return 'list: array expected' }
+        for (var i = 0; i < message.list.length; ++i) {
+          var error = $root.pbrole.RoleModel.verify(message.list[i])
+          if (error) { return 'list.' + error }
+        }
+      }
+      if (message.total != null && message.hasOwnProperty('total')) {
+        if (!$util.isInteger(message.total) && !(message.total && $util.isInteger(message.total.low) && $util.isInteger(message.total.high))) { return 'total: integer|Long expected' }
+      }
+      return null
+    }
+
+    /**
+         * Creates a FindRoleReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbrole.FindRoleReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbrole.FindRoleReply} FindRoleReply
+         */
+    FindRoleReply.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbrole.FindRoleReply) { return object }
+      var message = new $root.pbrole.FindRoleReply()
+      switch (object.code) {
+        default:
+          if (typeof object.code === 'number') {
+            message.code = object.code
+            break
+          }
+          break
+        case 'None':
+        case 0:
+          message.code = 0
+          break
+        case 'Success':
+        case 200:
+          message.code = 200
+          break
+        case 'Fail':
+        case 500:
+          message.code = 500
+          break
+        case 'Unknown':
+        case 501:
+          message.code = 501
+          break
+        case 'Internal':
+        case 502:
+          message.code = 502
+          break
+        case 'Invalid':
+        case 503:
+          message.code = 503
+          break
+        case 'InvalidParam':
+        case 504:
+          message.code = 504
+          break
+        case 'ParamError':
+        case 505:
+          message.code = 505
+          break
+        case 'FindError':
+        case 1001:
+          message.code = 1001
+          break
+        case 'CreateError':
+        case 1002:
+          message.code = 1002
+          break
+        case 'DeleteError':
+        case 1003:
+          message.code = 1003
+          break
+        case 'UpdateError':
+        case 1004:
+          message.code = 1004
+          break
+        case 'InvalidToken':
+        case 2002:
+          message.code = 2002
+          break
+        case 'InvalidSign':
+        case 2003:
+          message.code = 2003
+          break
+        case 'NotLogin':
+        case 2004:
+          message.code = 2004
+          break
+        case 'LoginTimeout':
+        case 2005:
+          message.code = 2005
+          break
+        case 'LoginError':
+        case 2006:
+          message.code = 2006
+          break
+        case 'LoginForbidden':
+        case 2007:
+          message.code = 2007
+          break
+        case 'LoginExpired':
+        case 2008:
+          message.code = 2008
+          break
+        case 'LoginInvalid':
+        case 2009:
+          message.code = 2009
+          break
+        case 'LoginInvalidPassword':
+        case 2010:
+          message.code = 2010
+          break
+        case 'LoginInvalidUsername':
+        case 2011:
+          message.code = 2011
+          break
+        case 'LoginInvalidEmail':
+        case 2012:
+          message.code = 2012
+          break
+        case 'LoginInvalidPhone':
+        case 2013:
+          message.code = 2013
+          break
+        case 'LoginInvalidUsernameOrEmail':
+        case 2014:
+          message.code = 2014
+          break
+      }
+      if (object.msg != null) { message.msg = String(object.msg) }
+      if (object.data != null) {
+        if (typeof object.data !== 'object') { throw TypeError('.pbrole.FindRoleReply.data: object expected') }
+        message.data = $root.pbrole.RoleModel.fromObject(object.data)
+      }
+      if (object.list) {
+        if (!Array.isArray(object.list)) { throw TypeError('.pbrole.FindRoleReply.list: array expected') }
+        message.list = []
+        for (var i = 0; i < object.list.length; ++i) {
+          if (typeof object.list[i] !== 'object') { throw TypeError('.pbrole.FindRoleReply.list: object expected') }
+          message.list[i] = $root.pbrole.RoleModel.fromObject(object.list[i])
+        }
+      }
+      if (object.total != null) {
+        if ($util.Long) { (message.total = $util.Long.fromValue(object.total)).unsigned = false } else if (typeof object.total === 'string') { message.total = parseInt(object.total, 10) } else if (typeof object.total === 'number') { message.total = object.total } else if (typeof object.total === 'object') { message.total = new $util.LongBits(object.total.low >>> 0, object.total.high >>> 0).toNumber() }
+      }
+      return message
+    }
+
+    /**
+         * Creates a plain object from a FindRoleReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbrole.FindRoleReply
+         * @static
+         * @param {pbrole.FindRoleReply} message FindRoleReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    FindRoleReply.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.arrays || options.defaults) { object.list = [] }
+      if (options.defaults) {
+        object.code = options.enums === String ? 'None' : 0
+        object.msg = ''
+        object.data = null
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.total = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.total = options.longs === String ? '0' : 0 }
+      }
+      if (message.code != null && message.hasOwnProperty('code')) { object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code }
+      if (message.msg != null && message.hasOwnProperty('msg')) { object.msg = message.msg }
+      if (message.data != null && message.hasOwnProperty('data')) { object.data = $root.pbrole.RoleModel.toObject(message.data, options) }
+      if (message.list && message.list.length) {
+        object.list = []
+        for (var j = 0; j < message.list.length; ++j) { object.list[j] = $root.pbrole.RoleModel.toObject(message.list[j], options) }
+      }
+      if (message.total != null && message.hasOwnProperty('total')) {
+        if (typeof message.total === 'number') { object.total = options.longs === String ? String(message.total) : message.total } else { object.total = options.longs === String ? $util.Long.prototype.toString.call(message.total) : options.longs === Number ? new $util.LongBits(message.total.low >>> 0, message.total.high >>> 0).toNumber() : message.total }
+      }
+      return object
+    }
+
+    /**
+         * Converts this FindRoleReply to JSON.
+         * @function toJSON
+         * @memberof pbrole.FindRoleReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    FindRoleReply.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for FindRoleReply
+         * @function getTypeUrl
+         * @memberof pbrole.FindRoleReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    FindRoleReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/pbrole.FindRoleReply'
+    }
+
+    return FindRoleReply
+  })()
+
+  pbrole.Role = (function() {
+    /**
+         * Constructs a new Role service.
+         * @memberof pbrole
+         * @classdesc Represents a Role
+         * @extends $protobuf.rpc.Service
+         * @constructor
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         */
+    function Role(rpcImpl, requestDelimited, responseDelimited) {
+      $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited)
+    }
+
+    (Role.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = Role
+
+    /**
+         * Creates new Role service using the specified rpc implementation.
+         * @function create
+         * @memberof pbrole.Role
+         * @static
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         * @returns {Role} RPC service. Useful where requests and/or responses are streamed.
+         */
+    Role.create = function create(rpcImpl, requestDelimited, responseDelimited) {
+      return new this(rpcImpl, requestDelimited, responseDelimited)
+    }
+
+    /**
+         * Callback as used by {@link pbrole.Role#createRole}.
+         * @memberof pbrole.Role
+         * @typedef CreateRoleCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+    /**
+         * Calls CreateRole.
+         * @function createRole
+         * @memberof pbrole.Role
+         * @instance
+         * @param {pbrole.IRoleModel} request RoleModel message or plain object
+         * @param {pbrole.Role.CreateRoleCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+    Object.defineProperty(Role.prototype.createRole = function createRole(request, callback) {
+      return this.rpcCall(createRole, $root.pbrole.RoleModel, $root.pbcommon.CommonResult, request, callback)
+    }, 'name', { value: 'CreateRole' })
+
+    /**
+         * Calls CreateRole.
+         * @function createRole
+         * @memberof pbrole.Role
+         * @instance
+         * @param {pbrole.IRoleModel} request RoleModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+    /**
+         * Callback as used by {@link pbrole.Role#updateRole}.
+         * @memberof pbrole.Role
+         * @typedef UpdateRoleCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+    /**
+         * Calls UpdateRole.
+         * @function updateRole
+         * @memberof pbrole.Role
+         * @instance
+         * @param {pbrole.IRoleModel} request RoleModel message or plain object
+         * @param {pbrole.Role.UpdateRoleCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+    Object.defineProperty(Role.prototype.updateRole = function updateRole(request, callback) {
+      return this.rpcCall(updateRole, $root.pbrole.RoleModel, $root.pbcommon.CommonResult, request, callback)
+    }, 'name', { value: 'UpdateRole' })
+
+    /**
+         * Calls UpdateRole.
+         * @function updateRole
+         * @memberof pbrole.Role
+         * @instance
+         * @param {pbrole.IRoleModel} request RoleModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+    /**
+         * Callback as used by {@link pbrole.Role#deleteRole}.
+         * @memberof pbrole.Role
+         * @typedef DeleteRoleCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+    /**
+         * Calls DeleteRole.
+         * @function deleteRole
+         * @memberof pbrole.Role
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbrole.Role.DeleteRoleCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+    Object.defineProperty(Role.prototype.deleteRole = function deleteRole(request, callback) {
+      return this.rpcCall(deleteRole, $root.pbcommon.IdArgs, $root.pbcommon.CommonResult, request, callback)
+    }, 'name', { value: 'DeleteRole' })
+
+    /**
+         * Calls DeleteRole.
+         * @function deleteRole
+         * @memberof pbrole.Role
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+    /**
+         * Callback as used by {@link pbrole.Role#findRoleById}.
+         * @memberof pbrole.Role
+         * @typedef FindRoleByIdCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbrole.FindRoleReply} [response] FindRoleReply
+         */
+
+    /**
+         * Calls FindRoleById.
+         * @function findRoleById
+         * @memberof pbrole.Role
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbrole.Role.FindRoleByIdCallback} callback Node-style callback called with the error, if any, and FindRoleReply
+         * @returns {undefined}
+         * @variation 1
+         */
+    Object.defineProperty(Role.prototype.findRoleById = function findRoleById(request, callback) {
+      return this.rpcCall(findRoleById, $root.pbcommon.IdArgs, $root.pbrole.FindRoleReply, request, callback)
+    }, 'name', { value: 'FindRoleById' })
+
+    /**
+         * Calls FindRoleById.
+         * @function findRoleById
+         * @memberof pbrole.Role
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbrole.FindRoleReply>} Promise
+         * @variation 2
+         */
+
+    /**
+         * Callback as used by {@link pbrole.Role#findRoleList}.
+         * @memberof pbrole.Role
+         * @typedef FindRoleListCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbrole.FindRoleReply} [response] FindRoleReply
+         */
+
+    /**
+         * Calls FindRoleList.
+         * @function findRoleList
+         * @memberof pbrole.Role
+         * @instance
+         * @param {pbrole.IFindRoleArgs} request FindRoleArgs message or plain object
+         * @param {pbrole.Role.FindRoleListCallback} callback Node-style callback called with the error, if any, and FindRoleReply
+         * @returns {undefined}
+         * @variation 1
+         */
+    Object.defineProperty(Role.prototype.findRoleList = function findRoleList(request, callback) {
+      return this.rpcCall(findRoleList, $root.pbrole.FindRoleArgs, $root.pbrole.FindRoleReply, request, callback)
+    }, 'name', { value: 'FindRoleList' })
+
+    /**
+         * Calls FindRoleList.
+         * @function findRoleList
+         * @memberof pbrole.Role
+         * @instance
+         * @param {pbrole.IFindRoleArgs} request FindRoleArgs message or plain object
+         * @returns {Promise<pbrole.FindRoleReply>} Promise
+         * @variation 2
+         */
+
+    return Role
+  })()
+
+  return pbrole
+})()
+
 $root.pblogin = (function() {
   /**
      * Namespace pblogin.

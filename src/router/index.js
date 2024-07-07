@@ -158,6 +158,33 @@ export const asyncRoutes = [
           title: '应用管理',
           roles: ['admin'] // or you can only set roles in sub nav
         }
+      },
+      {
+        path: 'role',
+        component: () => import('@/views/admin/role/role'),
+        name: 'adminRole',
+        meta: {
+          title: '角色管理',
+          roles: ['admin'] // or you can only set roles in sub nav
+        }
+      },
+      {
+        path: 'casbinRule',
+        component: () => import('@/views/admin/casbinRule/casbinRule'),
+        name: 'adminCasbinRule',
+        meta: {
+          title: 'api管理',
+          roles: ['admin'] // or you can only set roles in sub nav
+        }
+      },
+      {
+        path: 'permission',
+        component: () => import('@/views/admin/permission/permission'),
+        name: 'adminPermission',
+        meta: {
+          title: '权限管理',
+          roles: ['admin'] // or you can only set roles in sub nav
+        }
       }
 
     ]

@@ -1,51 +1,54 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-input v-model="query.title" placeholder="Title" style="width: 200px;" class="filter-item"
-        @keyup.enter.native="handleFilter" />
+      <el-input
+        v-model="query.title"
+        placeholder="Title"
+        style="width: 200px;"
+        class="filter-item"
+        @keyup.enter.native="handleFilter"
+      />
       <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">
         搜索
       </el-button>
-      <el-button class="filter-item" style="margin-left: 10px;" type="primary" icon="el-icon-edit"
-        @click="handleCreate">
+      <el-button
+        class="filter-item"
+        style="margin-left: 10px;"
+        type="primary"
+        icon="el-icon-edit"
+        @click="handleCreate"
+      >
         新建
       </el-button>
     </div>
-    <el-table :key="tableKey" v-loading="listLoading" :data="tableData" border fit highlight-current-row
-      style="width: 100%;">
+    <el-table
+      :key="tableKey"
+      v-loading="listLoading"
+      :data="tableData"
+      border
+      fit
+      highlight-current-row
+      style="width: 100%;"
+    >
       <el-table-column label="ID" prop="id" sortable="custom" align="center" width="80">
         <template slot-scope="{row}">
           <span>{{ row.id }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="CreatedAt" width="150px" align="center" prop="createdAt">
-      </el-table-column>
-      <el-table-column label="UpdatedAt" width="150px" align="center" prop="updatedAt">
-      </el-table-column>
-      <el-table-column label="GroupId" width="150px" align="center" prop="groupId">
-      </el-table-column>
-      <el-table-column label="Channel" width="150px" align="center" prop="channel">
-      </el-table-column>
-      <el-table-column label="Storage" width="150px" align="center" prop="storage">
-      </el-table-column>
-      <el-table-column label="Domain" width="150px" align="center" prop="domain">
-      </el-table-column>
-      <el-table-column label="Path" width="150px" align="center" prop="path">
-      </el-table-column>
-      <el-table-column label="FileName" width="150px" align="center" prop="fileName">
-      </el-table-column>
-      <el-table-column label="FileSize" width="150px" align="center" prop="fileSize">
-      </el-table-column>
-      <el-table-column label="FileType" width="150px" align="center" prop="fileType">
-      </el-table-column>
-      <el-table-column label="FileExt" width="150px" align="center" prop="fileExt">
-      </el-table-column>
-      <el-table-column label="Cover" width="150px" align="center" prop="cover">
-      </el-table-column>
-      <el-table-column label="UploaderId" width="150px" align="center" prop="uploaderId">
-      </el-table-column>
-      <el-table-column label="AppId" width="150px" align="center" prop="appId">
-      </el-table-column>
+      <el-table-column label="CreatedAt" width="150px" align="center" prop="createdAt" />
+      <el-table-column label="UpdatedAt" width="150px" align="center" prop="updatedAt" />
+      <el-table-column label="GroupId" width="150px" align="center" prop="groupId" />
+      <el-table-column label="Channel" width="150px" align="center" prop="channel" />
+      <el-table-column label="Storage" width="150px" align="center" prop="storage" />
+      <el-table-column label="Domain" width="150px" align="center" prop="domain" />
+      <el-table-column label="Path" width="150px" align="center" prop="path" />
+      <el-table-column label="FileName" width="150px" align="center" prop="fileName" />
+      <el-table-column label="FileSize" width="150px" align="center" prop="fileSize" />
+      <el-table-column label="FileType" width="150px" align="center" prop="fileType" />
+      <el-table-column label="FileExt" width="150px" align="center" prop="fileExt" />
+      <el-table-column label="Cover" width="150px" align="center" prop="cover" />
+      <el-table-column label="UploaderId" width="150px" align="center" prop="uploaderId" />
+      <el-table-column label="AppId" width="150px" align="center" prop="appId" />
       <el-table-column label="操作" align="center" width="230" class-name="small-padding fixed-width">
         <template slot-scope="{row}">
           <el-button type="primary" size="mini" @click="handleUpdate(row)">
@@ -64,8 +67,14 @@
     </el-table>
     <pagination v-show="total > 0" :total="total" :page.sync="page" :limit.sync="pageSize" @pagination="getTableData" />
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
-      <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="120px"
-        style="width: 450px; margin-left:50px;">
+      <el-form
+        ref="dataForm"
+        :rules="rules"
+        :model="temp"
+        label-position="left"
+        label-width="120px"
+        style="width: 450px; margin-left:50px;"
+      >
         <el-form-item label="GroupId" prop="groupId">
           <el-input v-model="temp.groupId" />
         </el-form-item>
@@ -146,7 +155,7 @@ export default {
         fileExt: '',
         cover: '',
         uploaderId: 0,
-        appId: 0,
+        appId: 0
       },
       dialogFormVisible: false,
       dialogStatus: '',
@@ -192,7 +201,7 @@ export default {
         fileExt: '',
         cover: '',
         uploaderId: 0,
-        appId: 0,
+        appId: 0
       }
     },
     handleCreate() {
@@ -204,11 +213,11 @@ export default {
       })
     },
     async createData() {
-      this.$refs['dataForm'].validate(async (valid) => {
+      this.$refs['dataForm'].validate(async(valid) => {
         if (valid) {
           const res = await createUploadFile(this.temp)
           if (res.code === 'Success') {
-            this.handleFilter();
+            this.handleFilter()
             this.dialogFormVisible = false
             this.$notify({
               title: 'Success',
@@ -233,7 +242,7 @@ export default {
       }
     },
     async updateData() {
-      this.$refs['dataForm'].validate(async (valid) => {
+      this.$refs['dataForm'].validate(async(valid) => {
         if (valid) {
           const res = await updateUploadFile(this.temp)
           if (res.code === 'Success') {
@@ -246,12 +255,11 @@ export default {
             })
             this.getTableData()
           }
-
         }
       })
     },
     async handleDelete(row) {
-      await deleteUploadFile(row.id)
+      await deleteUploadFile({ id: row.id })
       this.getTableData()
     }
   }
