@@ -37,23 +37,11 @@
       </el-table-column>
       <el-table-column label="CreatedAt" width="150px" align="center" prop="createdAt" />
       <el-table-column label="UpdatedAt" width="150px" align="center" prop="updatedAt" />
-      <el-table-column label="名称" width="150px" align="center" prop="casbinRuleName" />
-      <el-table-column label="类型" width="150px" align="center" prop="casbinRuleType" />
-      <!-- <el-table-column label="V0" width="150px" align="center" prop="v0">
-      </el-table-column> -->
-      <el-table-column label="api版本号" width="150px" align="center" prop="v1" />
-      <el-table-column label="servicePath" width="150px" align="center" prop="v2" />
-      <el-table-column label="serviceMethod" width="150px" align="center" prop="v3" />
-      <!-- <el-table-column label="V4" width="150px" align="center" prop="v4">
-      </el-table-column>
-      <el-table-column label="V5" width="150px" align="center" prop="v5">
-      </el-table-column>
-      <el-table-column label="V6" width="150px" align="center" prop="v6">
-      </el-table-column>
-      <el-table-column label="V7" width="150px" align="center" prop="v7">
-      </el-table-column>
-      <el-table-column label="V8" width="150px" align="center" prop="v8">
-      </el-table-column> -->
+      <el-table-column label="Type" width="150px" align="center" prop="type" />
+      <el-table-column label="Path" width="150px" align="center" prop="path" />
+      <el-table-column label="Method" width="150px" align="center" prop="method" />
+      <el-table-column label="Name" width="150px" align="center" prop="name" />
+      <el-table-column label="Group" width="150px" align="center" prop="group" />
       <el-table-column label="操作" align="center" width="230" class-name="small-padding fixed-width">
         <template slot-scope="{row}">
           <el-button type="primary" size="mini" @click="handleUpdate(row)">
@@ -80,39 +68,21 @@
         label-width="120px"
         style="width: 450px; margin-left:50px;"
       >
-        <el-form-item label="名称" prop="casbinRuleName">
-          <el-input v-model="temp.casbinRuleName" />
+        <el-form-item label="Type" prop="type">
+          <el-input v-model="temp.type" />
         </el-form-item>
-        <!-- <el-form-item label="CasbinRuleType" prop="casbinRuleType">
-          <el-input v-model="temp.casbinRuleType" />
+        <el-form-item label="Path" prop="path">
+          <el-input v-model="temp.path" />
         </el-form-item>
-        <el-form-item label="V0" prop="v0">
-          <el-input v-model="temp.v0" />
-        </el-form-item> -->
-        <el-form-item label="api版本号" prop="v1">
-          <el-input v-model="temp.v1" />
+        <el-form-item label="Method" prop="method">
+          <el-input v-model="temp.method" />
         </el-form-item>
-        <el-form-item label="servicePath" prop="v2">
-          <el-input v-model="temp.v2" />
+        <el-form-item label="Name" prop="name">
+          <el-input v-model="temp.name" />
         </el-form-item>
-        <el-form-item label="serviceMethod" prop="v3">
-          <el-input v-model="temp.v3" />
+        <el-form-item label="Group" prop="group">
+          <el-input v-model="temp.group" />
         </el-form-item>
-        <!-- <el-form-item label="V4" prop="v4">
-          <el-input v-model="temp.v4" />
-        </el-form-item>
-        <el-form-item label="V5" prop="v5">
-          <el-input v-model="temp.v5" />
-        </el-form-item>
-        <el-form-item label="V6" prop="v6">
-          <el-input v-model="temp.v6" />
-        </el-form-item>
-        <el-form-item label="V7" prop="v7">
-          <el-input v-model="temp.v7" />
-        </el-form-item>
-        <el-form-item label="V8" prop="v8">
-          <el-input v-model="temp.v8" />
-        </el-form-item> -->
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="autoFillForm(0)">
@@ -142,36 +112,30 @@
 </template>
 
 <script>
-import { createCasbinRule, updateCasbinRule, deleteCasbinRule, findCasbinRuleById, findCasbinRuleList } from '@/api/casbinRule'
+import { createApi, updateApi, deleteApi, findApiById, findApiList } from '@/api/api'
 import waves from '@/directive/waves' // waves directive
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
 import tableList from '@/mixins/tableList'
 
 export default {
-  name: 'CasbinRuleTable',
+  name: 'ApiTable',
   components: { Pagination },
   directives: { waves },
   mixins: [tableList],
   data() {
     return {
-      listApi: findCasbinRuleList,
+      listApi: findApiList,
       tableKey: 0,
       temp: {
         id: undefined,
         createdAt: '',
         updatedAt: '',
 
-        casbinRuleName: '',
-        casbinRuleType: '1',
-        v0: '0',
-        v1: '',
-        v2: '',
-        v3: ''
-        // v4: '',
-        // v5: '',
-        // v6: '',
-        // v7: '',
-        // v8: '',
+        type: '',
+        path: '',
+        method: '',
+        name: '',
+        group: ''
       },
       dialogFormVisible: false,
       dialogStatus: '',
@@ -206,17 +170,11 @@ export default {
         id: undefined,
         createdAt: '',
         updatedAt: '',
-        casbinRuleName: '',
-        casbinRuleType: '1',
-        v0: '0',
-        v1: '',
-        v2: '',
-        v3: ''
-        // v4: '',
-        // v5: '',
-        // v6: '',
-        // v7: '',
-        // v8: '',
+        type: '',
+        path: '',
+        method: '',
+        name: '',
+        group: ''
       }
     },
     handleCreate() {
@@ -230,7 +188,7 @@ export default {
     async createData() {
       this.$refs['dataForm'].validate(async(valid) => {
         if (valid) {
-          const res = await createCasbinRule(this.temp)
+          const res = await createApi(this.temp)
           if (res.code === 'Success') {
             this.handleFilter()
             this.dialogFormVisible = false
@@ -245,7 +203,7 @@ export default {
       })
     },
     async handleUpdate(row) {
-      const res = await findCasbinRuleById({ id: row.id })
+      const res = await findApiById({ id: row.id })
       console.log(res)
       if (res.code === 'Success') {
         this.temp = res.data
@@ -259,7 +217,7 @@ export default {
     async updateData() {
       this.$refs['dataForm'].validate(async(valid) => {
         if (valid) {
-          const res = await updateCasbinRule(this.temp)
+          const res = await updateApi(this.temp)
           if (res.code === 'Success') {
             this.dialogFormVisible = false
             this.$notify({
@@ -274,7 +232,7 @@ export default {
       })
     },
     async handleDelete(row) {
-      await deleteCasbinRule({ id: row.id })
+      await deleteApi({ id: row.id })
       this.getTableData()
     },
     autoFillForm(type) {

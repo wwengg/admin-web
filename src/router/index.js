@@ -169,9 +169,9 @@ export const asyncRoutes = [
         }
       },
       {
-        path: 'casbinRule',
-        component: () => import('@/views/admin/casbinRule/casbinRule'),
-        name: 'adminCasbinRule',
+        path: 'api',
+        component: () => import('@/views/admin/api/api'),
+        name: 'adminApi',
         meta: {
           title: 'api管理',
           roles: ['admin'] // or you can only set roles in sub nav
