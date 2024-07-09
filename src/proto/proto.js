@@ -951,44 +951,39 @@ $root.pbcommon = (function() {
   return pbcommon
 })()
 
-$root.pbcasbinRule = (function() {
+$root.pbapi = (function() {
   /**
-     * Namespace pbcasbinRule.
-     * @exports pbcasbinRule
+     * Namespace pbapi.
+     * @exports pbapi
      * @namespace
      */
-  var pbcasbinRule = {}
+  var pbapi = {}
 
-  pbcasbinRule.CasbinRuleModel = (function() {
+  pbapi.ApiModel = (function() {
     /**
-         * Properties of a CasbinRuleModel.
-         * @memberof pbcasbinRule
-         * @interface ICasbinRuleModel
-         * @property {number|Long|null} [id] CasbinRuleModel id
-         * @property {string|null} [createdAt] CasbinRuleModel createdAt
-         * @property {string|null} [updatedAt] CasbinRuleModel updatedAt
-         * @property {string|null} [casbinRuleName] CasbinRuleModel casbinRuleName
-         * @property {pbcasbinRule.CasbinRuleType|null} [casbinRuleType] CasbinRuleModel casbinRuleType
-         * @property {string|null} [v0] CasbinRuleModel v0
-         * @property {string|null} [v1] CasbinRuleModel v1
-         * @property {string|null} [v2] CasbinRuleModel v2
-         * @property {string|null} [v3] CasbinRuleModel v3
-         * @property {string|null} [v4] CasbinRuleModel v4
-         * @property {string|null} [v5] CasbinRuleModel v5
-         * @property {string|null} [v6] CasbinRuleModel v6
-         * @property {string|null} [v7] CasbinRuleModel v7
-         * @property {string|null} [v8] CasbinRuleModel v8
+         * Properties of an ApiModel.
+         * @memberof pbapi
+         * @interface IApiModel
+         * @property {number|Long|null} [id] ApiModel id
+         * @property {string|null} [createdAt] ApiModel createdAt
+         * @property {string|null} [updatedAt] ApiModel updatedAt
+         * @property {string|null} [type] ApiModel type
+         * @property {string|null} [path] ApiModel path
+         * @property {string|null} [method] ApiModel method
+         * @property {string|null} [name] ApiModel name
+         * @property {string|null} [group] ApiModel group
+         * @property {boolean|null} [isSelected] ApiModel isSelected
          */
 
     /**
-         * Constructs a new CasbinRuleModel.
-         * @memberof pbcasbinRule
-         * @classdesc Represents a CasbinRuleModel.
-         * @implements ICasbinRuleModel
+         * Constructs a new ApiModel.
+         * @memberof pbapi
+         * @classdesc Represents an ApiModel.
+         * @implements IApiModel
          * @constructor
-         * @param {pbcasbinRule.ICasbinRuleModel=} [properties] Properties to set
+         * @param {pbapi.IApiModel=} [properties] Properties to set
          */
-    function CasbinRuleModel(properties) {
+    function ApiModel(properties) {
       if (properties) {
         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
           if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
@@ -997,184 +992,139 @@ $root.pbcasbinRule = (function() {
     }
 
     /**
-         * CasbinRuleModel id.
+         * ApiModel id.
          * @member {number|Long} id
-         * @memberof pbcasbinRule.CasbinRuleModel
+         * @memberof pbapi.ApiModel
          * @instance
          */
-    CasbinRuleModel.prototype.id = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+    ApiModel.prototype.id = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-         * CasbinRuleModel createdAt.
+         * ApiModel createdAt.
          * @member {string} createdAt
-         * @memberof pbcasbinRule.CasbinRuleModel
+         * @memberof pbapi.ApiModel
          * @instance
          */
-    CasbinRuleModel.prototype.createdAt = ''
+    ApiModel.prototype.createdAt = ''
 
     /**
-         * CasbinRuleModel updatedAt.
+         * ApiModel updatedAt.
          * @member {string} updatedAt
-         * @memberof pbcasbinRule.CasbinRuleModel
+         * @memberof pbapi.ApiModel
          * @instance
          */
-    CasbinRuleModel.prototype.updatedAt = ''
+    ApiModel.prototype.updatedAt = ''
 
     /**
-         * CasbinRuleModel casbinRuleName.
-         * @member {string} casbinRuleName
-         * @memberof pbcasbinRule.CasbinRuleModel
+         * ApiModel type.
+         * @member {string} type
+         * @memberof pbapi.ApiModel
          * @instance
          */
-    CasbinRuleModel.prototype.casbinRuleName = ''
+    ApiModel.prototype.type = ''
 
     /**
-         * CasbinRuleModel casbinRuleType.
-         * @member {pbcasbinRule.CasbinRuleType} casbinRuleType
-         * @memberof pbcasbinRule.CasbinRuleModel
+         * ApiModel path.
+         * @member {string} path
+         * @memberof pbapi.ApiModel
          * @instance
          */
-    CasbinRuleModel.prototype.casbinRuleType = 0
+    ApiModel.prototype.path = ''
 
     /**
-         * CasbinRuleModel v0.
-         * @member {string} v0
-         * @memberof pbcasbinRule.CasbinRuleModel
+         * ApiModel method.
+         * @member {string} method
+         * @memberof pbapi.ApiModel
          * @instance
          */
-    CasbinRuleModel.prototype.v0 = ''
+    ApiModel.prototype.method = ''
 
     /**
-         * CasbinRuleModel v1.
-         * @member {string} v1
-         * @memberof pbcasbinRule.CasbinRuleModel
+         * ApiModel name.
+         * @member {string} name
+         * @memberof pbapi.ApiModel
          * @instance
          */
-    CasbinRuleModel.prototype.v1 = ''
+    ApiModel.prototype.name = ''
 
     /**
-         * CasbinRuleModel v2.
-         * @member {string} v2
-         * @memberof pbcasbinRule.CasbinRuleModel
+         * ApiModel group.
+         * @member {string} group
+         * @memberof pbapi.ApiModel
          * @instance
          */
-    CasbinRuleModel.prototype.v2 = ''
+    ApiModel.prototype.group = ''
 
     /**
-         * CasbinRuleModel v3.
-         * @member {string} v3
-         * @memberof pbcasbinRule.CasbinRuleModel
+         * ApiModel isSelected.
+         * @member {boolean} isSelected
+         * @memberof pbapi.ApiModel
          * @instance
          */
-    CasbinRuleModel.prototype.v3 = ''
+    ApiModel.prototype.isSelected = false
 
     /**
-         * CasbinRuleModel v4.
-         * @member {string} v4
-         * @memberof pbcasbinRule.CasbinRuleModel
-         * @instance
-         */
-    CasbinRuleModel.prototype.v4 = ''
-
-    /**
-         * CasbinRuleModel v5.
-         * @member {string} v5
-         * @memberof pbcasbinRule.CasbinRuleModel
-         * @instance
-         */
-    CasbinRuleModel.prototype.v5 = ''
-
-    /**
-         * CasbinRuleModel v6.
-         * @member {string} v6
-         * @memberof pbcasbinRule.CasbinRuleModel
-         * @instance
-         */
-    CasbinRuleModel.prototype.v6 = ''
-
-    /**
-         * CasbinRuleModel v7.
-         * @member {string} v7
-         * @memberof pbcasbinRule.CasbinRuleModel
-         * @instance
-         */
-    CasbinRuleModel.prototype.v7 = ''
-
-    /**
-         * CasbinRuleModel v8.
-         * @member {string} v8
-         * @memberof pbcasbinRule.CasbinRuleModel
-         * @instance
-         */
-    CasbinRuleModel.prototype.v8 = ''
-
-    /**
-         * Creates a new CasbinRuleModel instance using the specified properties.
+         * Creates a new ApiModel instance using the specified properties.
          * @function create
-         * @memberof pbcasbinRule.CasbinRuleModel
+         * @memberof pbapi.ApiModel
          * @static
-         * @param {pbcasbinRule.ICasbinRuleModel=} [properties] Properties to set
-         * @returns {pbcasbinRule.CasbinRuleModel} CasbinRuleModel instance
+         * @param {pbapi.IApiModel=} [properties] Properties to set
+         * @returns {pbapi.ApiModel} ApiModel instance
          */
-    CasbinRuleModel.create = function create(properties) {
-      return new CasbinRuleModel(properties)
+    ApiModel.create = function create(properties) {
+      return new ApiModel(properties)
     }
 
     /**
-         * Encodes the specified CasbinRuleModel message. Does not implicitly {@link pbcasbinRule.CasbinRuleModel.verify|verify} messages.
+         * Encodes the specified ApiModel message. Does not implicitly {@link pbapi.ApiModel.verify|verify} messages.
          * @function encode
-         * @memberof pbcasbinRule.CasbinRuleModel
+         * @memberof pbapi.ApiModel
          * @static
-         * @param {pbcasbinRule.ICasbinRuleModel} message CasbinRuleModel message or plain object to encode
+         * @param {pbapi.IApiModel} message ApiModel message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-    CasbinRuleModel.encode = function encode(message, writer) {
+    ApiModel.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.id != null && Object.hasOwnProperty.call(message, 'id')) { writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id) }
       if (message.createdAt != null && Object.hasOwnProperty.call(message, 'createdAt')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.createdAt) }
       if (message.updatedAt != null && Object.hasOwnProperty.call(message, 'updatedAt')) { writer.uint32(/* id 3, wireType 2 =*/26).string(message.updatedAt) }
-      if (message.casbinRuleName != null && Object.hasOwnProperty.call(message, 'casbinRuleName')) { writer.uint32(/* id 4, wireType 2 =*/34).string(message.casbinRuleName) }
-      if (message.casbinRuleType != null && Object.hasOwnProperty.call(message, 'casbinRuleType')) { writer.uint32(/* id 5, wireType 0 =*/40).int32(message.casbinRuleType) }
-      if (message.v0 != null && Object.hasOwnProperty.call(message, 'v0')) { writer.uint32(/* id 6, wireType 2 =*/50).string(message.v0) }
-      if (message.v1 != null && Object.hasOwnProperty.call(message, 'v1')) { writer.uint32(/* id 7, wireType 2 =*/58).string(message.v1) }
-      if (message.v2 != null && Object.hasOwnProperty.call(message, 'v2')) { writer.uint32(/* id 8, wireType 2 =*/66).string(message.v2) }
-      if (message.v3 != null && Object.hasOwnProperty.call(message, 'v3')) { writer.uint32(/* id 9, wireType 2 =*/74).string(message.v3) }
-      if (message.v4 != null && Object.hasOwnProperty.call(message, 'v4')) { writer.uint32(/* id 10, wireType 2 =*/82).string(message.v4) }
-      if (message.v5 != null && Object.hasOwnProperty.call(message, 'v5')) { writer.uint32(/* id 11, wireType 2 =*/90).string(message.v5) }
-      if (message.v6 != null && Object.hasOwnProperty.call(message, 'v6')) { writer.uint32(/* id 12, wireType 2 =*/98).string(message.v6) }
-      if (message.v7 != null && Object.hasOwnProperty.call(message, 'v7')) { writer.uint32(/* id 13, wireType 2 =*/106).string(message.v7) }
-      if (message.v8 != null && Object.hasOwnProperty.call(message, 'v8')) { writer.uint32(/* id 14, wireType 2 =*/114).string(message.v8) }
+      if (message.type != null && Object.hasOwnProperty.call(message, 'type')) { writer.uint32(/* id 4, wireType 2 =*/34).string(message.type) }
+      if (message.path != null && Object.hasOwnProperty.call(message, 'path')) { writer.uint32(/* id 5, wireType 2 =*/42).string(message.path) }
+      if (message.method != null && Object.hasOwnProperty.call(message, 'method')) { writer.uint32(/* id 6, wireType 2 =*/50).string(message.method) }
+      if (message.name != null && Object.hasOwnProperty.call(message, 'name')) { writer.uint32(/* id 7, wireType 2 =*/58).string(message.name) }
+      if (message.group != null && Object.hasOwnProperty.call(message, 'group')) { writer.uint32(/* id 8, wireType 2 =*/66).string(message.group) }
+      if (message.isSelected != null && Object.hasOwnProperty.call(message, 'isSelected')) { writer.uint32(/* id 9, wireType 0 =*/72).bool(message.isSelected) }
       return writer
     }
 
     /**
-         * Encodes the specified CasbinRuleModel message, length delimited. Does not implicitly {@link pbcasbinRule.CasbinRuleModel.verify|verify} messages.
+         * Encodes the specified ApiModel message, length delimited. Does not implicitly {@link pbapi.ApiModel.verify|verify} messages.
          * @function encodeDelimited
-         * @memberof pbcasbinRule.CasbinRuleModel
+         * @memberof pbapi.ApiModel
          * @static
-         * @param {pbcasbinRule.ICasbinRuleModel} message CasbinRuleModel message or plain object to encode
+         * @param {pbapi.IApiModel} message ApiModel message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-    CasbinRuleModel.encodeDelimited = function encodeDelimited(message, writer) {
+    ApiModel.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-         * Decodes a CasbinRuleModel message from the specified reader or buffer.
+         * Decodes an ApiModel message from the specified reader or buffer.
          * @function decode
-         * @memberof pbcasbinRule.CasbinRuleModel
+         * @memberof pbapi.ApiModel
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {pbcasbinRule.CasbinRuleModel} CasbinRuleModel
+         * @returns {pbapi.ApiModel} ApiModel
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-    CasbinRuleModel.decode = function decode(reader, length) {
+    ApiModel.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
-      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbcasbinRule.CasbinRuleModel()
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbapi.ApiModel()
       while (reader.pos < end) {
         var tag = reader.uint32()
         switch (tag >>> 3) {
@@ -1191,47 +1141,27 @@ $root.pbcasbinRule = (function() {
             break
           }
           case 4: {
-            message.casbinRuleName = reader.string()
+            message.type = reader.string()
             break
           }
           case 5: {
-            message.casbinRuleType = reader.int32()
+            message.path = reader.string()
             break
           }
           case 6: {
-            message.v0 = reader.string()
+            message.method = reader.string()
             break
           }
           case 7: {
-            message.v1 = reader.string()
+            message.name = reader.string()
             break
           }
           case 8: {
-            message.v2 = reader.string()
+            message.group = reader.string()
             break
           }
           case 9: {
-            message.v3 = reader.string()
-            break
-          }
-          case 10: {
-            message.v4 = reader.string()
-            break
-          }
-          case 11: {
-            message.v5 = reader.string()
-            break
-          }
-          case 12: {
-            message.v6 = reader.string()
-            break
-          }
-          case 13: {
-            message.v7 = reader.string()
-            break
-          }
-          case 14: {
-            message.v8 = reader.string()
+            message.isSelected = reader.bool()
             break
           }
           default:
@@ -1243,29 +1173,29 @@ $root.pbcasbinRule = (function() {
     }
 
     /**
-         * Decodes a CasbinRuleModel message from the specified reader or buffer, length delimited.
+         * Decodes an ApiModel message from the specified reader or buffer, length delimited.
          * @function decodeDelimited
-         * @memberof pbcasbinRule.CasbinRuleModel
+         * @memberof pbapi.ApiModel
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {pbcasbinRule.CasbinRuleModel} CasbinRuleModel
+         * @returns {pbapi.ApiModel} ApiModel
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-    CasbinRuleModel.decodeDelimited = function decodeDelimited(reader) {
+    ApiModel.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-         * Verifies a CasbinRuleModel message.
+         * Verifies an ApiModel message.
          * @function verify
-         * @memberof pbcasbinRule.CasbinRuleModel
+         * @memberof pbapi.ApiModel
          * @static
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-    CasbinRuleModel.verify = function verify(message) {
+    ApiModel.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.id != null && message.hasOwnProperty('id')) {
         if (!$util.isInteger(message.id) && !(message.id && $util.isInteger(message.id.low) && $util.isInteger(message.id.high))) { return 'id: integer|Long expected' }
@@ -1276,103 +1206,62 @@ $root.pbcasbinRule = (function() {
       if (message.updatedAt != null && message.hasOwnProperty('updatedAt')) {
         if (!$util.isString(message.updatedAt)) { return 'updatedAt: string expected' }
       }
-      if (message.casbinRuleName != null && message.hasOwnProperty('casbinRuleName')) {
-        if (!$util.isString(message.casbinRuleName)) { return 'casbinRuleName: string expected' }
+      if (message.type != null && message.hasOwnProperty('type')) {
+        if (!$util.isString(message.type)) { return 'type: string expected' }
       }
-      if (message.casbinRuleType != null && message.hasOwnProperty('casbinRuleType')) {
-        switch (message.casbinRuleType) {
-          default:
-            return 'casbinRuleType: enum value expected'
-          case 0:
-          case 1:
-            break
-        }
+      if (message.path != null && message.hasOwnProperty('path')) {
+        if (!$util.isString(message.path)) { return 'path: string expected' }
       }
-      if (message.v0 != null && message.hasOwnProperty('v0')) {
-        if (!$util.isString(message.v0)) { return 'v0: string expected' }
+      if (message.method != null && message.hasOwnProperty('method')) {
+        if (!$util.isString(message.method)) { return 'method: string expected' }
       }
-      if (message.v1 != null && message.hasOwnProperty('v1')) {
-        if (!$util.isString(message.v1)) { return 'v1: string expected' }
+      if (message.name != null && message.hasOwnProperty('name')) {
+        if (!$util.isString(message.name)) { return 'name: string expected' }
       }
-      if (message.v2 != null && message.hasOwnProperty('v2')) {
-        if (!$util.isString(message.v2)) { return 'v2: string expected' }
+      if (message.group != null && message.hasOwnProperty('group')) {
+        if (!$util.isString(message.group)) { return 'group: string expected' }
       }
-      if (message.v3 != null && message.hasOwnProperty('v3')) {
-        if (!$util.isString(message.v3)) { return 'v3: string expected' }
-      }
-      if (message.v4 != null && message.hasOwnProperty('v4')) {
-        if (!$util.isString(message.v4)) { return 'v4: string expected' }
-      }
-      if (message.v5 != null && message.hasOwnProperty('v5')) {
-        if (!$util.isString(message.v5)) { return 'v5: string expected' }
-      }
-      if (message.v6 != null && message.hasOwnProperty('v6')) {
-        if (!$util.isString(message.v6)) { return 'v6: string expected' }
-      }
-      if (message.v7 != null && message.hasOwnProperty('v7')) {
-        if (!$util.isString(message.v7)) { return 'v7: string expected' }
-      }
-      if (message.v8 != null && message.hasOwnProperty('v8')) {
-        if (!$util.isString(message.v8)) { return 'v8: string expected' }
+      if (message.isSelected != null && message.hasOwnProperty('isSelected')) {
+        if (typeof message.isSelected !== 'boolean') { return 'isSelected: boolean expected' }
       }
       return null
     }
 
     /**
-         * Creates a CasbinRuleModel message from a plain object. Also converts values to their respective internal types.
+         * Creates an ApiModel message from a plain object. Also converts values to their respective internal types.
          * @function fromObject
-         * @memberof pbcasbinRule.CasbinRuleModel
+         * @memberof pbapi.ApiModel
          * @static
          * @param {Object.<string,*>} object Plain object
-         * @returns {pbcasbinRule.CasbinRuleModel} CasbinRuleModel
+         * @returns {pbapi.ApiModel} ApiModel
          */
-    CasbinRuleModel.fromObject = function fromObject(object) {
-      if (object instanceof $root.pbcasbinRule.CasbinRuleModel) { return object }
-      var message = new $root.pbcasbinRule.CasbinRuleModel()
+    ApiModel.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbapi.ApiModel) { return object }
+      var message = new $root.pbapi.ApiModel()
       if (object.id != null) {
         if ($util.Long) { (message.id = $util.Long.fromValue(object.id)).unsigned = false } else if (typeof object.id === 'string') { message.id = parseInt(object.id, 10) } else if (typeof object.id === 'number') { message.id = object.id } else if (typeof object.id === 'object') { message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber() }
       }
       if (object.createdAt != null) { message.createdAt = String(object.createdAt) }
       if (object.updatedAt != null) { message.updatedAt = String(object.updatedAt) }
-      if (object.casbinRuleName != null) { message.casbinRuleName = String(object.casbinRuleName) }
-      switch (object.casbinRuleType) {
-        default:
-          if (typeof object.casbinRuleType === 'number') {
-            message.casbinRuleType = object.casbinRuleType
-            break
-          }
-          break
-        case 'CASBIN_RULE_TYPE_NONE':
-        case 0:
-          message.casbinRuleType = 0
-          break
-        case 'HTTP':
-        case 1:
-          message.casbinRuleType = 1
-          break
-      }
-      if (object.v0 != null) { message.v0 = String(object.v0) }
-      if (object.v1 != null) { message.v1 = String(object.v1) }
-      if (object.v2 != null) { message.v2 = String(object.v2) }
-      if (object.v3 != null) { message.v3 = String(object.v3) }
-      if (object.v4 != null) { message.v4 = String(object.v4) }
-      if (object.v5 != null) { message.v5 = String(object.v5) }
-      if (object.v6 != null) { message.v6 = String(object.v6) }
-      if (object.v7 != null) { message.v7 = String(object.v7) }
-      if (object.v8 != null) { message.v8 = String(object.v8) }
+      if (object.type != null) { message.type = String(object.type) }
+      if (object.path != null) { message.path = String(object.path) }
+      if (object.method != null) { message.method = String(object.method) }
+      if (object.name != null) { message.name = String(object.name) }
+      if (object.group != null) { message.group = String(object.group) }
+      if (object.isSelected != null) { message.isSelected = Boolean(object.isSelected) }
       return message
     }
 
     /**
-         * Creates a plain object from a CasbinRuleModel message. Also converts values to other types if specified.
+         * Creates a plain object from an ApiModel message. Also converts values to other types if specified.
          * @function toObject
-         * @memberof pbcasbinRule.CasbinRuleModel
+         * @memberof pbapi.ApiModel
          * @static
-         * @param {pbcasbinRule.CasbinRuleModel} message CasbinRuleModel
+         * @param {pbapi.ApiModel} message ApiModel
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-    CasbinRuleModel.toObject = function toObject(message, options) {
+    ApiModel.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
       if (options.defaults) {
@@ -1382,98 +1271,74 @@ $root.pbcasbinRule = (function() {
         } else { object.id = options.longs === String ? '0' : 0 }
         object.createdAt = ''
         object.updatedAt = ''
-        object.casbinRuleName = ''
-        object.casbinRuleType = options.enums === String ? 'CASBIN_RULE_TYPE_NONE' : 0
-        object.v0 = ''
-        object.v1 = ''
-        object.v2 = ''
-        object.v3 = ''
-        object.v4 = ''
-        object.v5 = ''
-        object.v6 = ''
-        object.v7 = ''
-        object.v8 = ''
+        object.type = ''
+        object.path = ''
+        object.method = ''
+        object.name = ''
+        object.group = ''
+        object.isSelected = false
       }
       if (message.id != null && message.hasOwnProperty('id')) {
         if (typeof message.id === 'number') { object.id = options.longs === String ? String(message.id) : message.id } else { object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id }
       }
       if (message.createdAt != null && message.hasOwnProperty('createdAt')) { object.createdAt = message.createdAt }
       if (message.updatedAt != null && message.hasOwnProperty('updatedAt')) { object.updatedAt = message.updatedAt }
-      if (message.casbinRuleName != null && message.hasOwnProperty('casbinRuleName')) { object.casbinRuleName = message.casbinRuleName }
-      if (message.casbinRuleType != null && message.hasOwnProperty('casbinRuleType')) { object.casbinRuleType = options.enums === String ? $root.pbcasbinRule.CasbinRuleType[message.casbinRuleType] === undefined ? message.casbinRuleType : $root.pbcasbinRule.CasbinRuleType[message.casbinRuleType] : message.casbinRuleType }
-      if (message.v0 != null && message.hasOwnProperty('v0')) { object.v0 = message.v0 }
-      if (message.v1 != null && message.hasOwnProperty('v1')) { object.v1 = message.v1 }
-      if (message.v2 != null && message.hasOwnProperty('v2')) { object.v2 = message.v2 }
-      if (message.v3 != null && message.hasOwnProperty('v3')) { object.v3 = message.v3 }
-      if (message.v4 != null && message.hasOwnProperty('v4')) { object.v4 = message.v4 }
-      if (message.v5 != null && message.hasOwnProperty('v5')) { object.v5 = message.v5 }
-      if (message.v6 != null && message.hasOwnProperty('v6')) { object.v6 = message.v6 }
-      if (message.v7 != null && message.hasOwnProperty('v7')) { object.v7 = message.v7 }
-      if (message.v8 != null && message.hasOwnProperty('v8')) { object.v8 = message.v8 }
+      if (message.type != null && message.hasOwnProperty('type')) { object.type = message.type }
+      if (message.path != null && message.hasOwnProperty('path')) { object.path = message.path }
+      if (message.method != null && message.hasOwnProperty('method')) { object.method = message.method }
+      if (message.name != null && message.hasOwnProperty('name')) { object.name = message.name }
+      if (message.group != null && message.hasOwnProperty('group')) { object.group = message.group }
+      if (message.isSelected != null && message.hasOwnProperty('isSelected')) { object.isSelected = message.isSelected }
       return object
     }
 
     /**
-         * Converts this CasbinRuleModel to JSON.
+         * Converts this ApiModel to JSON.
          * @function toJSON
-         * @memberof pbcasbinRule.CasbinRuleModel
+         * @memberof pbapi.ApiModel
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-    CasbinRuleModel.prototype.toJSON = function toJSON() {
+    ApiModel.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-         * Gets the default type url for CasbinRuleModel
+         * Gets the default type url for ApiModel
          * @function getTypeUrl
-         * @memberof pbcasbinRule.CasbinRuleModel
+         * @memberof pbapi.ApiModel
          * @static
          * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns {string} The default type url
          */
-    CasbinRuleModel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+    ApiModel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
       }
-      return typeUrlPrefix + '/pbcasbinRule.CasbinRuleModel'
+      return typeUrlPrefix + '/pbapi.ApiModel'
     }
 
-    return CasbinRuleModel
+    return ApiModel
   })()
 
-  /**
-     * CasbinRuleType enum.
-     * @name pbcasbinRule.CasbinRuleType
-     * @enum {number}
-     * @property {number} CASBIN_RULE_TYPE_NONE=0 CASBIN_RULE_TYPE_NONE value
-     * @property {number} HTTP=1 HTTP value
-     */
-  pbcasbinRule.CasbinRuleType = (function() {
-    var valuesById = {}; var values = Object.create(valuesById)
-    values[valuesById[0] = 'CASBIN_RULE_TYPE_NONE'] = 0
-    values[valuesById[1] = 'HTTP'] = 1
-    return values
-  })()
-
-  pbcasbinRule.FindCasbinRuleArgs = (function() {
+  pbapi.FindApiArgs = (function() {
     /**
-         * Properties of a FindCasbinRuleArgs.
-         * @memberof pbcasbinRule
-         * @interface IFindCasbinRuleArgs
-         * @property {pbcommon.IPageInfo|null} [pageInfo] FindCasbinRuleArgs pageInfo
-         * @property {pbcasbinRule.ICasbinRuleModel|null} [query] FindCasbinRuleArgs query
+         * Properties of a FindApiArgs.
+         * @memberof pbapi
+         * @interface IFindApiArgs
+         * @property {pbcommon.IPageInfo|null} [pageInfo] FindApiArgs pageInfo
+         * @property {pbapi.IApiModel|null} [query] FindApiArgs query
          */
 
     /**
-         * Constructs a new FindCasbinRuleArgs.
-         * @memberof pbcasbinRule
-         * @classdesc Represents a FindCasbinRuleArgs.
-         * @implements IFindCasbinRuleArgs
+         * Constructs a new FindApiArgs.
+         * @memberof pbapi
+         * @classdesc Represents a FindApiArgs.
+         * @implements IFindApiArgs
          * @constructor
-         * @param {pbcasbinRule.IFindCasbinRuleArgs=} [properties] Properties to set
+         * @param {pbapi.IFindApiArgs=} [properties] Properties to set
          */
-    function FindCasbinRuleArgs(properties) {
+    function FindApiArgs(properties) {
       if (properties) {
         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
           if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
@@ -1482,76 +1347,76 @@ $root.pbcasbinRule = (function() {
     }
 
     /**
-         * FindCasbinRuleArgs pageInfo.
+         * FindApiArgs pageInfo.
          * @member {pbcommon.IPageInfo|null|undefined} pageInfo
-         * @memberof pbcasbinRule.FindCasbinRuleArgs
+         * @memberof pbapi.FindApiArgs
          * @instance
          */
-    FindCasbinRuleArgs.prototype.pageInfo = null
+    FindApiArgs.prototype.pageInfo = null
 
     /**
-         * FindCasbinRuleArgs query.
-         * @member {pbcasbinRule.ICasbinRuleModel|null|undefined} query
-         * @memberof pbcasbinRule.FindCasbinRuleArgs
+         * FindApiArgs query.
+         * @member {pbapi.IApiModel|null|undefined} query
+         * @memberof pbapi.FindApiArgs
          * @instance
          */
-    FindCasbinRuleArgs.prototype.query = null
+    FindApiArgs.prototype.query = null
 
     /**
-         * Creates a new FindCasbinRuleArgs instance using the specified properties.
+         * Creates a new FindApiArgs instance using the specified properties.
          * @function create
-         * @memberof pbcasbinRule.FindCasbinRuleArgs
+         * @memberof pbapi.FindApiArgs
          * @static
-         * @param {pbcasbinRule.IFindCasbinRuleArgs=} [properties] Properties to set
-         * @returns {pbcasbinRule.FindCasbinRuleArgs} FindCasbinRuleArgs instance
+         * @param {pbapi.IFindApiArgs=} [properties] Properties to set
+         * @returns {pbapi.FindApiArgs} FindApiArgs instance
          */
-    FindCasbinRuleArgs.create = function create(properties) {
-      return new FindCasbinRuleArgs(properties)
+    FindApiArgs.create = function create(properties) {
+      return new FindApiArgs(properties)
     }
 
     /**
-         * Encodes the specified FindCasbinRuleArgs message. Does not implicitly {@link pbcasbinRule.FindCasbinRuleArgs.verify|verify} messages.
+         * Encodes the specified FindApiArgs message. Does not implicitly {@link pbapi.FindApiArgs.verify|verify} messages.
          * @function encode
-         * @memberof pbcasbinRule.FindCasbinRuleArgs
+         * @memberof pbapi.FindApiArgs
          * @static
-         * @param {pbcasbinRule.IFindCasbinRuleArgs} message FindCasbinRuleArgs message or plain object to encode
+         * @param {pbapi.IFindApiArgs} message FindApiArgs message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-    FindCasbinRuleArgs.encode = function encode(message, writer) {
+    FindApiArgs.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.pageInfo != null && Object.hasOwnProperty.call(message, 'pageInfo')) { $root.pbcommon.PageInfo.encode(message.pageInfo, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim() }
-      if (message.query != null && Object.hasOwnProperty.call(message, 'query')) { $root.pbcasbinRule.CasbinRuleModel.encode(message.query, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim() }
+      if (message.query != null && Object.hasOwnProperty.call(message, 'query')) { $root.pbapi.ApiModel.encode(message.query, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim() }
       return writer
     }
 
     /**
-         * Encodes the specified FindCasbinRuleArgs message, length delimited. Does not implicitly {@link pbcasbinRule.FindCasbinRuleArgs.verify|verify} messages.
+         * Encodes the specified FindApiArgs message, length delimited. Does not implicitly {@link pbapi.FindApiArgs.verify|verify} messages.
          * @function encodeDelimited
-         * @memberof pbcasbinRule.FindCasbinRuleArgs
+         * @memberof pbapi.FindApiArgs
          * @static
-         * @param {pbcasbinRule.IFindCasbinRuleArgs} message FindCasbinRuleArgs message or plain object to encode
+         * @param {pbapi.IFindApiArgs} message FindApiArgs message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-    FindCasbinRuleArgs.encodeDelimited = function encodeDelimited(message, writer) {
+    FindApiArgs.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-         * Decodes a FindCasbinRuleArgs message from the specified reader or buffer.
+         * Decodes a FindApiArgs message from the specified reader or buffer.
          * @function decode
-         * @memberof pbcasbinRule.FindCasbinRuleArgs
+         * @memberof pbapi.FindApiArgs
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {pbcasbinRule.FindCasbinRuleArgs} FindCasbinRuleArgs
+         * @returns {pbapi.FindApiArgs} FindApiArgs
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-    FindCasbinRuleArgs.decode = function decode(reader, length) {
+    FindApiArgs.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
-      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbcasbinRule.FindCasbinRuleArgs()
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbapi.FindApiArgs()
       while (reader.pos < end) {
         var tag = reader.uint32()
         switch (tag >>> 3) {
@@ -1560,7 +1425,7 @@ $root.pbcasbinRule = (function() {
             break
           }
           case 2: {
-            message.query = $root.pbcasbinRule.CasbinRuleModel.decode(reader, reader.uint32())
+            message.query = $root.pbapi.ApiModel.decode(reader, reader.uint32())
             break
           }
           default:
@@ -1572,73 +1437,73 @@ $root.pbcasbinRule = (function() {
     }
 
     /**
-         * Decodes a FindCasbinRuleArgs message from the specified reader or buffer, length delimited.
+         * Decodes a FindApiArgs message from the specified reader or buffer, length delimited.
          * @function decodeDelimited
-         * @memberof pbcasbinRule.FindCasbinRuleArgs
+         * @memberof pbapi.FindApiArgs
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {pbcasbinRule.FindCasbinRuleArgs} FindCasbinRuleArgs
+         * @returns {pbapi.FindApiArgs} FindApiArgs
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-    FindCasbinRuleArgs.decodeDelimited = function decodeDelimited(reader) {
+    FindApiArgs.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-         * Verifies a FindCasbinRuleArgs message.
+         * Verifies a FindApiArgs message.
          * @function verify
-         * @memberof pbcasbinRule.FindCasbinRuleArgs
+         * @memberof pbapi.FindApiArgs
          * @static
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-    FindCasbinRuleArgs.verify = function verify(message) {
+    FindApiArgs.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.pageInfo != null && message.hasOwnProperty('pageInfo')) {
         var error = $root.pbcommon.PageInfo.verify(message.pageInfo)
         if (error) { return 'pageInfo.' + error }
       }
       if (message.query != null && message.hasOwnProperty('query')) {
-        var error = $root.pbcasbinRule.CasbinRuleModel.verify(message.query)
+        var error = $root.pbapi.ApiModel.verify(message.query)
         if (error) { return 'query.' + error }
       }
       return null
     }
 
     /**
-         * Creates a FindCasbinRuleArgs message from a plain object. Also converts values to their respective internal types.
+         * Creates a FindApiArgs message from a plain object. Also converts values to their respective internal types.
          * @function fromObject
-         * @memberof pbcasbinRule.FindCasbinRuleArgs
+         * @memberof pbapi.FindApiArgs
          * @static
          * @param {Object.<string,*>} object Plain object
-         * @returns {pbcasbinRule.FindCasbinRuleArgs} FindCasbinRuleArgs
+         * @returns {pbapi.FindApiArgs} FindApiArgs
          */
-    FindCasbinRuleArgs.fromObject = function fromObject(object) {
-      if (object instanceof $root.pbcasbinRule.FindCasbinRuleArgs) { return object }
-      var message = new $root.pbcasbinRule.FindCasbinRuleArgs()
+    FindApiArgs.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbapi.FindApiArgs) { return object }
+      var message = new $root.pbapi.FindApiArgs()
       if (object.pageInfo != null) {
-        if (typeof object.pageInfo !== 'object') { throw TypeError('.pbcasbinRule.FindCasbinRuleArgs.pageInfo: object expected') }
+        if (typeof object.pageInfo !== 'object') { throw TypeError('.pbapi.FindApiArgs.pageInfo: object expected') }
         message.pageInfo = $root.pbcommon.PageInfo.fromObject(object.pageInfo)
       }
       if (object.query != null) {
-        if (typeof object.query !== 'object') { throw TypeError('.pbcasbinRule.FindCasbinRuleArgs.query: object expected') }
-        message.query = $root.pbcasbinRule.CasbinRuleModel.fromObject(object.query)
+        if (typeof object.query !== 'object') { throw TypeError('.pbapi.FindApiArgs.query: object expected') }
+        message.query = $root.pbapi.ApiModel.fromObject(object.query)
       }
       return message
     }
 
     /**
-         * Creates a plain object from a FindCasbinRuleArgs message. Also converts values to other types if specified.
+         * Creates a plain object from a FindApiArgs message. Also converts values to other types if specified.
          * @function toObject
-         * @memberof pbcasbinRule.FindCasbinRuleArgs
+         * @memberof pbapi.FindApiArgs
          * @static
-         * @param {pbcasbinRule.FindCasbinRuleArgs} message FindCasbinRuleArgs
+         * @param {pbapi.FindApiArgs} message FindApiArgs
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-    FindCasbinRuleArgs.toObject = function toObject(message, options) {
+    FindApiArgs.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
       if (options.defaults) {
@@ -1646,60 +1511,60 @@ $root.pbcasbinRule = (function() {
         object.query = null
       }
       if (message.pageInfo != null && message.hasOwnProperty('pageInfo')) { object.pageInfo = $root.pbcommon.PageInfo.toObject(message.pageInfo, options) }
-      if (message.query != null && message.hasOwnProperty('query')) { object.query = $root.pbcasbinRule.CasbinRuleModel.toObject(message.query, options) }
+      if (message.query != null && message.hasOwnProperty('query')) { object.query = $root.pbapi.ApiModel.toObject(message.query, options) }
       return object
     }
 
     /**
-         * Converts this FindCasbinRuleArgs to JSON.
+         * Converts this FindApiArgs to JSON.
          * @function toJSON
-         * @memberof pbcasbinRule.FindCasbinRuleArgs
+         * @memberof pbapi.FindApiArgs
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-    FindCasbinRuleArgs.prototype.toJSON = function toJSON() {
+    FindApiArgs.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-         * Gets the default type url for FindCasbinRuleArgs
+         * Gets the default type url for FindApiArgs
          * @function getTypeUrl
-         * @memberof pbcasbinRule.FindCasbinRuleArgs
+         * @memberof pbapi.FindApiArgs
          * @static
          * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns {string} The default type url
          */
-    FindCasbinRuleArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+    FindApiArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
       }
-      return typeUrlPrefix + '/pbcasbinRule.FindCasbinRuleArgs'
+      return typeUrlPrefix + '/pbapi.FindApiArgs'
     }
 
-    return FindCasbinRuleArgs
+    return FindApiArgs
   })()
 
-  pbcasbinRule.FindCasbinRuleReply = (function() {
+  pbapi.FindApiReply = (function() {
     /**
-         * Properties of a FindCasbinRuleReply.
-         * @memberof pbcasbinRule
-         * @interface IFindCasbinRuleReply
-         * @property {pbcommon.EnumCode|null} [code] FindCasbinRuleReply code
-         * @property {string|null} [msg] FindCasbinRuleReply msg
-         * @property {pbcasbinRule.ICasbinRuleModel|null} [data] FindCasbinRuleReply data
-         * @property {Array.<pbcasbinRule.ICasbinRuleModel>|null} [list] FindCasbinRuleReply list
-         * @property {number|Long|null} [total] FindCasbinRuleReply total
+         * Properties of a FindApiReply.
+         * @memberof pbapi
+         * @interface IFindApiReply
+         * @property {pbcommon.EnumCode|null} [code] FindApiReply code
+         * @property {string|null} [msg] FindApiReply msg
+         * @property {pbapi.IApiModel|null} [data] FindApiReply data
+         * @property {Array.<pbapi.IApiModel>|null} [list] FindApiReply list
+         * @property {number|Long|null} [total] FindApiReply total
          */
 
     /**
-         * Constructs a new FindCasbinRuleReply.
-         * @memberof pbcasbinRule
-         * @classdesc Represents a FindCasbinRuleReply.
-         * @implements IFindCasbinRuleReply
+         * Constructs a new FindApiReply.
+         * @memberof pbapi
+         * @classdesc Represents a FindApiReply.
+         * @implements IFindApiReply
          * @constructor
-         * @param {pbcasbinRule.IFindCasbinRuleReply=} [properties] Properties to set
+         * @param {pbapi.IFindApiReply=} [properties] Properties to set
          */
-    function FindCasbinRuleReply(properties) {
+    function FindApiReply(properties) {
       this.list = []
       if (properties) {
         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
@@ -1709,105 +1574,105 @@ $root.pbcasbinRule = (function() {
     }
 
     /**
-         * FindCasbinRuleReply code.
+         * FindApiReply code.
          * @member {pbcommon.EnumCode} code
-         * @memberof pbcasbinRule.FindCasbinRuleReply
+         * @memberof pbapi.FindApiReply
          * @instance
          */
-    FindCasbinRuleReply.prototype.code = 0
+    FindApiReply.prototype.code = 0
 
     /**
-         * FindCasbinRuleReply msg.
+         * FindApiReply msg.
          * @member {string} msg
-         * @memberof pbcasbinRule.FindCasbinRuleReply
+         * @memberof pbapi.FindApiReply
          * @instance
          */
-    FindCasbinRuleReply.prototype.msg = ''
+    FindApiReply.prototype.msg = ''
 
     /**
-         * FindCasbinRuleReply data.
-         * @member {pbcasbinRule.ICasbinRuleModel|null|undefined} data
-         * @memberof pbcasbinRule.FindCasbinRuleReply
+         * FindApiReply data.
+         * @member {pbapi.IApiModel|null|undefined} data
+         * @memberof pbapi.FindApiReply
          * @instance
          */
-    FindCasbinRuleReply.prototype.data = null
+    FindApiReply.prototype.data = null
 
     /**
-         * FindCasbinRuleReply list.
-         * @member {Array.<pbcasbinRule.ICasbinRuleModel>} list
-         * @memberof pbcasbinRule.FindCasbinRuleReply
+         * FindApiReply list.
+         * @member {Array.<pbapi.IApiModel>} list
+         * @memberof pbapi.FindApiReply
          * @instance
          */
-    FindCasbinRuleReply.prototype.list = $util.emptyArray
+    FindApiReply.prototype.list = $util.emptyArray
 
     /**
-         * FindCasbinRuleReply total.
+         * FindApiReply total.
          * @member {number|Long} total
-         * @memberof pbcasbinRule.FindCasbinRuleReply
+         * @memberof pbapi.FindApiReply
          * @instance
          */
-    FindCasbinRuleReply.prototype.total = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+    FindApiReply.prototype.total = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-         * Creates a new FindCasbinRuleReply instance using the specified properties.
+         * Creates a new FindApiReply instance using the specified properties.
          * @function create
-         * @memberof pbcasbinRule.FindCasbinRuleReply
+         * @memberof pbapi.FindApiReply
          * @static
-         * @param {pbcasbinRule.IFindCasbinRuleReply=} [properties] Properties to set
-         * @returns {pbcasbinRule.FindCasbinRuleReply} FindCasbinRuleReply instance
+         * @param {pbapi.IFindApiReply=} [properties] Properties to set
+         * @returns {pbapi.FindApiReply} FindApiReply instance
          */
-    FindCasbinRuleReply.create = function create(properties) {
-      return new FindCasbinRuleReply(properties)
+    FindApiReply.create = function create(properties) {
+      return new FindApiReply(properties)
     }
 
     /**
-         * Encodes the specified FindCasbinRuleReply message. Does not implicitly {@link pbcasbinRule.FindCasbinRuleReply.verify|verify} messages.
+         * Encodes the specified FindApiReply message. Does not implicitly {@link pbapi.FindApiReply.verify|verify} messages.
          * @function encode
-         * @memberof pbcasbinRule.FindCasbinRuleReply
+         * @memberof pbapi.FindApiReply
          * @static
-         * @param {pbcasbinRule.IFindCasbinRuleReply} message FindCasbinRuleReply message or plain object to encode
+         * @param {pbapi.IFindApiReply} message FindApiReply message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-    FindCasbinRuleReply.encode = function encode(message, writer) {
+    FindApiReply.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.code != null && Object.hasOwnProperty.call(message, 'code')) { writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code) }
       if (message.msg != null && Object.hasOwnProperty.call(message, 'msg')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg) }
-      if (message.data != null && Object.hasOwnProperty.call(message, 'data')) { $root.pbcasbinRule.CasbinRuleModel.encode(message.data, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim() }
+      if (message.data != null && Object.hasOwnProperty.call(message, 'data')) { $root.pbapi.ApiModel.encode(message.data, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim() }
       if (message.list != null && message.list.length) {
-        for (var i = 0; i < message.list.length; ++i) { $root.pbcasbinRule.CasbinRuleModel.encode(message.list[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim() }
+        for (var i = 0; i < message.list.length; ++i) { $root.pbapi.ApiModel.encode(message.list[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim() }
       }
       if (message.total != null && Object.hasOwnProperty.call(message, 'total')) { writer.uint32(/* id 5, wireType 0 =*/40).int64(message.total) }
       return writer
     }
 
     /**
-         * Encodes the specified FindCasbinRuleReply message, length delimited. Does not implicitly {@link pbcasbinRule.FindCasbinRuleReply.verify|verify} messages.
+         * Encodes the specified FindApiReply message, length delimited. Does not implicitly {@link pbapi.FindApiReply.verify|verify} messages.
          * @function encodeDelimited
-         * @memberof pbcasbinRule.FindCasbinRuleReply
+         * @memberof pbapi.FindApiReply
          * @static
-         * @param {pbcasbinRule.IFindCasbinRuleReply} message FindCasbinRuleReply message or plain object to encode
+         * @param {pbapi.IFindApiReply} message FindApiReply message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-    FindCasbinRuleReply.encodeDelimited = function encodeDelimited(message, writer) {
+    FindApiReply.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-         * Decodes a FindCasbinRuleReply message from the specified reader or buffer.
+         * Decodes a FindApiReply message from the specified reader or buffer.
          * @function decode
-         * @memberof pbcasbinRule.FindCasbinRuleReply
+         * @memberof pbapi.FindApiReply
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {pbcasbinRule.FindCasbinRuleReply} FindCasbinRuleReply
+         * @returns {pbapi.FindApiReply} FindApiReply
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-    FindCasbinRuleReply.decode = function decode(reader, length) {
+    FindApiReply.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
-      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbcasbinRule.FindCasbinRuleReply()
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbapi.FindApiReply()
       while (reader.pos < end) {
         var tag = reader.uint32()
         switch (tag >>> 3) {
@@ -1820,12 +1685,12 @@ $root.pbcasbinRule = (function() {
             break
           }
           case 3: {
-            message.data = $root.pbcasbinRule.CasbinRuleModel.decode(reader, reader.uint32())
+            message.data = $root.pbapi.ApiModel.decode(reader, reader.uint32())
             break
           }
           case 4: {
             if (!(message.list && message.list.length)) { message.list = [] }
-            message.list.push($root.pbcasbinRule.CasbinRuleModel.decode(reader, reader.uint32()))
+            message.list.push($root.pbapi.ApiModel.decode(reader, reader.uint32()))
             break
           }
           case 5: {
@@ -1841,29 +1706,29 @@ $root.pbcasbinRule = (function() {
     }
 
     /**
-         * Decodes a FindCasbinRuleReply message from the specified reader or buffer, length delimited.
+         * Decodes a FindApiReply message from the specified reader or buffer, length delimited.
          * @function decodeDelimited
-         * @memberof pbcasbinRule.FindCasbinRuleReply
+         * @memberof pbapi.FindApiReply
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {pbcasbinRule.FindCasbinRuleReply} FindCasbinRuleReply
+         * @returns {pbapi.FindApiReply} FindApiReply
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-    FindCasbinRuleReply.decodeDelimited = function decodeDelimited(reader) {
+    FindApiReply.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-         * Verifies a FindCasbinRuleReply message.
+         * Verifies a FindApiReply message.
          * @function verify
-         * @memberof pbcasbinRule.FindCasbinRuleReply
+         * @memberof pbapi.FindApiReply
          * @static
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-    FindCasbinRuleReply.verify = function verify(message) {
+    FindApiReply.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.code != null && message.hasOwnProperty('code')) {
         switch (message.code) {
@@ -1901,13 +1766,13 @@ $root.pbcasbinRule = (function() {
         if (!$util.isString(message.msg)) { return 'msg: string expected' }
       }
       if (message.data != null && message.hasOwnProperty('data')) {
-        var error = $root.pbcasbinRule.CasbinRuleModel.verify(message.data)
+        var error = $root.pbapi.ApiModel.verify(message.data)
         if (error) { return 'data.' + error }
       }
       if (message.list != null && message.hasOwnProperty('list')) {
         if (!Array.isArray(message.list)) { return 'list: array expected' }
         for (var i = 0; i < message.list.length; ++i) {
-          var error = $root.pbcasbinRule.CasbinRuleModel.verify(message.list[i])
+          var error = $root.pbapi.ApiModel.verify(message.list[i])
           if (error) { return 'list.' + error }
         }
       }
@@ -1918,16 +1783,16 @@ $root.pbcasbinRule = (function() {
     }
 
     /**
-         * Creates a FindCasbinRuleReply message from a plain object. Also converts values to their respective internal types.
+         * Creates a FindApiReply message from a plain object. Also converts values to their respective internal types.
          * @function fromObject
-         * @memberof pbcasbinRule.FindCasbinRuleReply
+         * @memberof pbapi.FindApiReply
          * @static
          * @param {Object.<string,*>} object Plain object
-         * @returns {pbcasbinRule.FindCasbinRuleReply} FindCasbinRuleReply
+         * @returns {pbapi.FindApiReply} FindApiReply
          */
-    FindCasbinRuleReply.fromObject = function fromObject(object) {
-      if (object instanceof $root.pbcasbinRule.FindCasbinRuleReply) { return object }
-      var message = new $root.pbcasbinRule.FindCasbinRuleReply()
+    FindApiReply.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbapi.FindApiReply) { return object }
+      var message = new $root.pbapi.FindApiReply()
       switch (object.code) {
         default:
           if (typeof object.code === 'number') {
@@ -2038,15 +1903,15 @@ $root.pbcasbinRule = (function() {
       }
       if (object.msg != null) { message.msg = String(object.msg) }
       if (object.data != null) {
-        if (typeof object.data !== 'object') { throw TypeError('.pbcasbinRule.FindCasbinRuleReply.data: object expected') }
-        message.data = $root.pbcasbinRule.CasbinRuleModel.fromObject(object.data)
+        if (typeof object.data !== 'object') { throw TypeError('.pbapi.FindApiReply.data: object expected') }
+        message.data = $root.pbapi.ApiModel.fromObject(object.data)
       }
       if (object.list) {
-        if (!Array.isArray(object.list)) { throw TypeError('.pbcasbinRule.FindCasbinRuleReply.list: array expected') }
+        if (!Array.isArray(object.list)) { throw TypeError('.pbapi.FindApiReply.list: array expected') }
         message.list = []
         for (var i = 0; i < object.list.length; ++i) {
-          if (typeof object.list[i] !== 'object') { throw TypeError('.pbcasbinRule.FindCasbinRuleReply.list: object expected') }
-          message.list[i] = $root.pbcasbinRule.CasbinRuleModel.fromObject(object.list[i])
+          if (typeof object.list[i] !== 'object') { throw TypeError('.pbapi.FindApiReply.list: object expected') }
+          message.list[i] = $root.pbapi.ApiModel.fromObject(object.list[i])
         }
       }
       if (object.total != null) {
@@ -2056,15 +1921,15 @@ $root.pbcasbinRule = (function() {
     }
 
     /**
-         * Creates a plain object from a FindCasbinRuleReply message. Also converts values to other types if specified.
+         * Creates a plain object from a FindApiReply message. Also converts values to other types if specified.
          * @function toObject
-         * @memberof pbcasbinRule.FindCasbinRuleReply
+         * @memberof pbapi.FindApiReply
          * @static
-         * @param {pbcasbinRule.FindCasbinRuleReply} message FindCasbinRuleReply
+         * @param {pbapi.FindApiReply} message FindApiReply
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-    FindCasbinRuleReply.toObject = function toObject(message, options) {
+    FindApiReply.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
       if (options.arrays || options.defaults) { object.list = [] }
@@ -2079,10 +1944,10 @@ $root.pbcasbinRule = (function() {
       }
       if (message.code != null && message.hasOwnProperty('code')) { object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code }
       if (message.msg != null && message.hasOwnProperty('msg')) { object.msg = message.msg }
-      if (message.data != null && message.hasOwnProperty('data')) { object.data = $root.pbcasbinRule.CasbinRuleModel.toObject(message.data, options) }
+      if (message.data != null && message.hasOwnProperty('data')) { object.data = $root.pbapi.ApiModel.toObject(message.data, options) }
       if (message.list && message.list.length) {
         object.list = []
-        for (var j = 0; j < message.list.length; ++j) { object.list[j] = $root.pbcasbinRule.CasbinRuleModel.toObject(message.list[j], options) }
+        for (var j = 0; j < message.list.length; ++j) { object.list[j] = $root.pbapi.ApiModel.toObject(message.list[j], options) }
       }
       if (message.total != null && message.hasOwnProperty('total')) {
         if (typeof message.total === 'number') { object.total = options.longs === String ? String(message.total) : message.total } else { object.total = options.longs === String ? $util.Long.prototype.toString.call(message.total) : options.longs === Number ? new $util.LongBits(message.total.low >>> 0, message.total.high >>> 0).toNumber() : message.total }
@@ -2091,158 +1956,989 @@ $root.pbcasbinRule = (function() {
     }
 
     /**
-         * Converts this FindCasbinRuleReply to JSON.
+         * Converts this FindApiReply to JSON.
          * @function toJSON
-         * @memberof pbcasbinRule.FindCasbinRuleReply
+         * @memberof pbapi.FindApiReply
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-    FindCasbinRuleReply.prototype.toJSON = function toJSON() {
+    FindApiReply.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-         * Gets the default type url for FindCasbinRuleReply
+         * Gets the default type url for FindApiReply
          * @function getTypeUrl
-         * @memberof pbcasbinRule.FindCasbinRuleReply
+         * @memberof pbapi.FindApiReply
          * @static
          * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns {string} The default type url
          */
-    FindCasbinRuleReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+    FindApiReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
       }
-      return typeUrlPrefix + '/pbcasbinRule.FindCasbinRuleReply'
+      return typeUrlPrefix + '/pbapi.FindApiReply'
     }
 
-    return FindCasbinRuleReply
+    return FindApiReply
   })()
 
-  pbcasbinRule.CasbinRule = (function() {
+  pbapi.FindApiByCasbinRoleArgs = (function() {
     /**
-         * Constructs a new CasbinRule service.
-         * @memberof pbcasbinRule
-         * @classdesc Represents a CasbinRule
+         * Properties of a FindApiByCasbinRoleArgs.
+         * @memberof pbapi
+         * @interface IFindApiByCasbinRoleArgs
+         * @property {number|Long|null} [role] FindApiByCasbinRoleArgs role
+         */
+
+    /**
+         * Constructs a new FindApiByCasbinRoleArgs.
+         * @memberof pbapi
+         * @classdesc Represents a FindApiByCasbinRoleArgs.
+         * @implements IFindApiByCasbinRoleArgs
+         * @constructor
+         * @param {pbapi.IFindApiByCasbinRoleArgs=} [properties] Properties to set
+         */
+    function FindApiByCasbinRoleArgs(properties) {
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * FindApiByCasbinRoleArgs role.
+         * @member {number|Long} role
+         * @memberof pbapi.FindApiByCasbinRoleArgs
+         * @instance
+         */
+    FindApiByCasbinRoleArgs.prototype.role = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+
+    /**
+         * Creates a new FindApiByCasbinRoleArgs instance using the specified properties.
+         * @function create
+         * @memberof pbapi.FindApiByCasbinRoleArgs
+         * @static
+         * @param {pbapi.IFindApiByCasbinRoleArgs=} [properties] Properties to set
+         * @returns {pbapi.FindApiByCasbinRoleArgs} FindApiByCasbinRoleArgs instance
+         */
+    FindApiByCasbinRoleArgs.create = function create(properties) {
+      return new FindApiByCasbinRoleArgs(properties)
+    }
+
+    /**
+         * Encodes the specified FindApiByCasbinRoleArgs message. Does not implicitly {@link pbapi.FindApiByCasbinRoleArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbapi.FindApiByCasbinRoleArgs
+         * @static
+         * @param {pbapi.IFindApiByCasbinRoleArgs} message FindApiByCasbinRoleArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    FindApiByCasbinRoleArgs.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.role != null && Object.hasOwnProperty.call(message, 'role')) { writer.uint32(/* id 1, wireType 0 =*/8).int64(message.role) }
+      return writer
+    }
+
+    /**
+         * Encodes the specified FindApiByCasbinRoleArgs message, length delimited. Does not implicitly {@link pbapi.FindApiByCasbinRoleArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbapi.FindApiByCasbinRoleArgs
+         * @static
+         * @param {pbapi.IFindApiByCasbinRoleArgs} message FindApiByCasbinRoleArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    FindApiByCasbinRoleArgs.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes a FindApiByCasbinRoleArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbapi.FindApiByCasbinRoleArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbapi.FindApiByCasbinRoleArgs} FindApiByCasbinRoleArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    FindApiByCasbinRoleArgs.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbapi.FindApiByCasbinRoleArgs()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            message.role = reader.int64()
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes a FindApiByCasbinRoleArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbapi.FindApiByCasbinRoleArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbapi.FindApiByCasbinRoleArgs} FindApiByCasbinRoleArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    FindApiByCasbinRoleArgs.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies a FindApiByCasbinRoleArgs message.
+         * @function verify
+         * @memberof pbapi.FindApiByCasbinRoleArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    FindApiByCasbinRoleArgs.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.role != null && message.hasOwnProperty('role')) {
+        if (!$util.isInteger(message.role) && !(message.role && $util.isInteger(message.role.low) && $util.isInteger(message.role.high))) { return 'role: integer|Long expected' }
+      }
+      return null
+    }
+
+    /**
+         * Creates a FindApiByCasbinRoleArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbapi.FindApiByCasbinRoleArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbapi.FindApiByCasbinRoleArgs} FindApiByCasbinRoleArgs
+         */
+    FindApiByCasbinRoleArgs.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbapi.FindApiByCasbinRoleArgs) { return object }
+      var message = new $root.pbapi.FindApiByCasbinRoleArgs()
+      if (object.role != null) {
+        if ($util.Long) { (message.role = $util.Long.fromValue(object.role)).unsigned = false } else if (typeof object.role === 'string') { message.role = parseInt(object.role, 10) } else if (typeof object.role === 'number') { message.role = object.role } else if (typeof object.role === 'object') { message.role = new $util.LongBits(object.role.low >>> 0, object.role.high >>> 0).toNumber() }
+      }
+      return message
+    }
+
+    /**
+         * Creates a plain object from a FindApiByCasbinRoleArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbapi.FindApiByCasbinRoleArgs
+         * @static
+         * @param {pbapi.FindApiByCasbinRoleArgs} message FindApiByCasbinRoleArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    FindApiByCasbinRoleArgs.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.defaults) {
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.role = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.role = options.longs === String ? '0' : 0 }
+      }
+      if (message.role != null && message.hasOwnProperty('role')) {
+        if (typeof message.role === 'number') { object.role = options.longs === String ? String(message.role) : message.role } else { object.role = options.longs === String ? $util.Long.prototype.toString.call(message.role) : options.longs === Number ? new $util.LongBits(message.role.low >>> 0, message.role.high >>> 0).toNumber() : message.role }
+      }
+      return object
+    }
+
+    /**
+         * Converts this FindApiByCasbinRoleArgs to JSON.
+         * @function toJSON
+         * @memberof pbapi.FindApiByCasbinRoleArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    FindApiByCasbinRoleArgs.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for FindApiByCasbinRoleArgs
+         * @function getTypeUrl
+         * @memberof pbapi.FindApiByCasbinRoleArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    FindApiByCasbinRoleArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/pbapi.FindApiByCasbinRoleArgs'
+    }
+
+    return FindApiByCasbinRoleArgs
+  })()
+
+  pbapi.FindApiByCasbinRoleReply = (function() {
+    /**
+         * Properties of a FindApiByCasbinRoleReply.
+         * @memberof pbapi
+         * @interface IFindApiByCasbinRoleReply
+         * @property {pbcommon.EnumCode|null} [code] FindApiByCasbinRoleReply code
+         * @property {string|null} [msg] FindApiByCasbinRoleReply msg
+         * @property {Array.<pbapi.IApiModel>|null} [list] FindApiByCasbinRoleReply list
+         */
+
+    /**
+         * Constructs a new FindApiByCasbinRoleReply.
+         * @memberof pbapi
+         * @classdesc Represents a FindApiByCasbinRoleReply.
+         * @implements IFindApiByCasbinRoleReply
+         * @constructor
+         * @param {pbapi.IFindApiByCasbinRoleReply=} [properties] Properties to set
+         */
+    function FindApiByCasbinRoleReply(properties) {
+      this.list = []
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * FindApiByCasbinRoleReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbapi.FindApiByCasbinRoleReply
+         * @instance
+         */
+    FindApiByCasbinRoleReply.prototype.code = 0
+
+    /**
+         * FindApiByCasbinRoleReply msg.
+         * @member {string} msg
+         * @memberof pbapi.FindApiByCasbinRoleReply
+         * @instance
+         */
+    FindApiByCasbinRoleReply.prototype.msg = ''
+
+    /**
+         * FindApiByCasbinRoleReply list.
+         * @member {Array.<pbapi.IApiModel>} list
+         * @memberof pbapi.FindApiByCasbinRoleReply
+         * @instance
+         */
+    FindApiByCasbinRoleReply.prototype.list = $util.emptyArray
+
+    /**
+         * Creates a new FindApiByCasbinRoleReply instance using the specified properties.
+         * @function create
+         * @memberof pbapi.FindApiByCasbinRoleReply
+         * @static
+         * @param {pbapi.IFindApiByCasbinRoleReply=} [properties] Properties to set
+         * @returns {pbapi.FindApiByCasbinRoleReply} FindApiByCasbinRoleReply instance
+         */
+    FindApiByCasbinRoleReply.create = function create(properties) {
+      return new FindApiByCasbinRoleReply(properties)
+    }
+
+    /**
+         * Encodes the specified FindApiByCasbinRoleReply message. Does not implicitly {@link pbapi.FindApiByCasbinRoleReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbapi.FindApiByCasbinRoleReply
+         * @static
+         * @param {pbapi.IFindApiByCasbinRoleReply} message FindApiByCasbinRoleReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    FindApiByCasbinRoleReply.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.code != null && Object.hasOwnProperty.call(message, 'code')) { writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code) }
+      if (message.msg != null && Object.hasOwnProperty.call(message, 'msg')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg) }
+      if (message.list != null && message.list.length) {
+        for (var i = 0; i < message.list.length; ++i) { $root.pbapi.ApiModel.encode(message.list[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim() }
+      }
+      return writer
+    }
+
+    /**
+         * Encodes the specified FindApiByCasbinRoleReply message, length delimited. Does not implicitly {@link pbapi.FindApiByCasbinRoleReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbapi.FindApiByCasbinRoleReply
+         * @static
+         * @param {pbapi.IFindApiByCasbinRoleReply} message FindApiByCasbinRoleReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    FindApiByCasbinRoleReply.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes a FindApiByCasbinRoleReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbapi.FindApiByCasbinRoleReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbapi.FindApiByCasbinRoleReply} FindApiByCasbinRoleReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    FindApiByCasbinRoleReply.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbapi.FindApiByCasbinRoleReply()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            message.code = reader.int32()
+            break
+          }
+          case 2: {
+            message.msg = reader.string()
+            break
+          }
+          case 4: {
+            if (!(message.list && message.list.length)) { message.list = [] }
+            message.list.push($root.pbapi.ApiModel.decode(reader, reader.uint32()))
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes a FindApiByCasbinRoleReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbapi.FindApiByCasbinRoleReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbapi.FindApiByCasbinRoleReply} FindApiByCasbinRoleReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    FindApiByCasbinRoleReply.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies a FindApiByCasbinRoleReply message.
+         * @function verify
+         * @memberof pbapi.FindApiByCasbinRoleReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    FindApiByCasbinRoleReply.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.code != null && message.hasOwnProperty('code')) {
+        switch (message.code) {
+          default:
+            return 'code: enum value expected'
+          case 0:
+          case 200:
+          case 500:
+          case 501:
+          case 502:
+          case 503:
+          case 504:
+          case 505:
+          case 1001:
+          case 1002:
+          case 1003:
+          case 1004:
+          case 2002:
+          case 2003:
+          case 2004:
+          case 2005:
+          case 2006:
+          case 2007:
+          case 2008:
+          case 2009:
+          case 2010:
+          case 2011:
+          case 2012:
+          case 2013:
+          case 2014:
+            break
+        }
+      }
+      if (message.msg != null && message.hasOwnProperty('msg')) {
+        if (!$util.isString(message.msg)) { return 'msg: string expected' }
+      }
+      if (message.list != null && message.hasOwnProperty('list')) {
+        if (!Array.isArray(message.list)) { return 'list: array expected' }
+        for (var i = 0; i < message.list.length; ++i) {
+          var error = $root.pbapi.ApiModel.verify(message.list[i])
+          if (error) { return 'list.' + error }
+        }
+      }
+      return null
+    }
+
+    /**
+         * Creates a FindApiByCasbinRoleReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbapi.FindApiByCasbinRoleReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbapi.FindApiByCasbinRoleReply} FindApiByCasbinRoleReply
+         */
+    FindApiByCasbinRoleReply.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbapi.FindApiByCasbinRoleReply) { return object }
+      var message = new $root.pbapi.FindApiByCasbinRoleReply()
+      switch (object.code) {
+        default:
+          if (typeof object.code === 'number') {
+            message.code = object.code
+            break
+          }
+          break
+        case 'None':
+        case 0:
+          message.code = 0
+          break
+        case 'Success':
+        case 200:
+          message.code = 200
+          break
+        case 'Fail':
+        case 500:
+          message.code = 500
+          break
+        case 'Unknown':
+        case 501:
+          message.code = 501
+          break
+        case 'Internal':
+        case 502:
+          message.code = 502
+          break
+        case 'Invalid':
+        case 503:
+          message.code = 503
+          break
+        case 'InvalidParam':
+        case 504:
+          message.code = 504
+          break
+        case 'ParamError':
+        case 505:
+          message.code = 505
+          break
+        case 'FindError':
+        case 1001:
+          message.code = 1001
+          break
+        case 'CreateError':
+        case 1002:
+          message.code = 1002
+          break
+        case 'DeleteError':
+        case 1003:
+          message.code = 1003
+          break
+        case 'UpdateError':
+        case 1004:
+          message.code = 1004
+          break
+        case 'InvalidToken':
+        case 2002:
+          message.code = 2002
+          break
+        case 'InvalidSign':
+        case 2003:
+          message.code = 2003
+          break
+        case 'NotLogin':
+        case 2004:
+          message.code = 2004
+          break
+        case 'LoginTimeout':
+        case 2005:
+          message.code = 2005
+          break
+        case 'LoginError':
+        case 2006:
+          message.code = 2006
+          break
+        case 'LoginForbidden':
+        case 2007:
+          message.code = 2007
+          break
+        case 'LoginExpired':
+        case 2008:
+          message.code = 2008
+          break
+        case 'LoginInvalid':
+        case 2009:
+          message.code = 2009
+          break
+        case 'LoginInvalidPassword':
+        case 2010:
+          message.code = 2010
+          break
+        case 'LoginInvalidUsername':
+        case 2011:
+          message.code = 2011
+          break
+        case 'LoginInvalidEmail':
+        case 2012:
+          message.code = 2012
+          break
+        case 'LoginInvalidPhone':
+        case 2013:
+          message.code = 2013
+          break
+        case 'LoginInvalidUsernameOrEmail':
+        case 2014:
+          message.code = 2014
+          break
+      }
+      if (object.msg != null) { message.msg = String(object.msg) }
+      if (object.list) {
+        if (!Array.isArray(object.list)) { throw TypeError('.pbapi.FindApiByCasbinRoleReply.list: array expected') }
+        message.list = []
+        for (var i = 0; i < object.list.length; ++i) {
+          if (typeof object.list[i] !== 'object') { throw TypeError('.pbapi.FindApiByCasbinRoleReply.list: object expected') }
+          message.list[i] = $root.pbapi.ApiModel.fromObject(object.list[i])
+        }
+      }
+      return message
+    }
+
+    /**
+         * Creates a plain object from a FindApiByCasbinRoleReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbapi.FindApiByCasbinRoleReply
+         * @static
+         * @param {pbapi.FindApiByCasbinRoleReply} message FindApiByCasbinRoleReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    FindApiByCasbinRoleReply.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.arrays || options.defaults) { object.list = [] }
+      if (options.defaults) {
+        object.code = options.enums === String ? 'None' : 0
+        object.msg = ''
+      }
+      if (message.code != null && message.hasOwnProperty('code')) { object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code }
+      if (message.msg != null && message.hasOwnProperty('msg')) { object.msg = message.msg }
+      if (message.list && message.list.length) {
+        object.list = []
+        for (var j = 0; j < message.list.length; ++j) { object.list[j] = $root.pbapi.ApiModel.toObject(message.list[j], options) }
+      }
+      return object
+    }
+
+    /**
+         * Converts this FindApiByCasbinRoleReply to JSON.
+         * @function toJSON
+         * @memberof pbapi.FindApiByCasbinRoleReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    FindApiByCasbinRoleReply.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for FindApiByCasbinRoleReply
+         * @function getTypeUrl
+         * @memberof pbapi.FindApiByCasbinRoleReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    FindApiByCasbinRoleReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/pbapi.FindApiByCasbinRoleReply'
+    }
+
+    return FindApiByCasbinRoleReply
+  })()
+
+  pbapi.SetApiByCasbinRoleArgs = (function() {
+    /**
+         * Properties of a SetApiByCasbinRoleArgs.
+         * @memberof pbapi
+         * @interface ISetApiByCasbinRoleArgs
+         * @property {Array.<pbapi.IApiModel>|null} [list] SetApiByCasbinRoleArgs list
+         * @property {number|Long|null} [role] SetApiByCasbinRoleArgs role
+         */
+
+    /**
+         * Constructs a new SetApiByCasbinRoleArgs.
+         * @memberof pbapi
+         * @classdesc Represents a SetApiByCasbinRoleArgs.
+         * @implements ISetApiByCasbinRoleArgs
+         * @constructor
+         * @param {pbapi.ISetApiByCasbinRoleArgs=} [properties] Properties to set
+         */
+    function SetApiByCasbinRoleArgs(properties) {
+      this.list = []
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * SetApiByCasbinRoleArgs list.
+         * @member {Array.<pbapi.IApiModel>} list
+         * @memberof pbapi.SetApiByCasbinRoleArgs
+         * @instance
+         */
+    SetApiByCasbinRoleArgs.prototype.list = $util.emptyArray
+
+    /**
+         * SetApiByCasbinRoleArgs role.
+         * @member {number|Long} role
+         * @memberof pbapi.SetApiByCasbinRoleArgs
+         * @instance
+         */
+    SetApiByCasbinRoleArgs.prototype.role = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+
+    /**
+         * Creates a new SetApiByCasbinRoleArgs instance using the specified properties.
+         * @function create
+         * @memberof pbapi.SetApiByCasbinRoleArgs
+         * @static
+         * @param {pbapi.ISetApiByCasbinRoleArgs=} [properties] Properties to set
+         * @returns {pbapi.SetApiByCasbinRoleArgs} SetApiByCasbinRoleArgs instance
+         */
+    SetApiByCasbinRoleArgs.create = function create(properties) {
+      return new SetApiByCasbinRoleArgs(properties)
+    }
+
+    /**
+         * Encodes the specified SetApiByCasbinRoleArgs message. Does not implicitly {@link pbapi.SetApiByCasbinRoleArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbapi.SetApiByCasbinRoleArgs
+         * @static
+         * @param {pbapi.ISetApiByCasbinRoleArgs} message SetApiByCasbinRoleArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    SetApiByCasbinRoleArgs.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.list != null && message.list.length) {
+        for (var i = 0; i < message.list.length; ++i) { $root.pbapi.ApiModel.encode(message.list[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim() }
+      }
+      if (message.role != null && Object.hasOwnProperty.call(message, 'role')) { writer.uint32(/* id 2, wireType 0 =*/16).int64(message.role) }
+      return writer
+    }
+
+    /**
+         * Encodes the specified SetApiByCasbinRoleArgs message, length delimited. Does not implicitly {@link pbapi.SetApiByCasbinRoleArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbapi.SetApiByCasbinRoleArgs
+         * @static
+         * @param {pbapi.ISetApiByCasbinRoleArgs} message SetApiByCasbinRoleArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    SetApiByCasbinRoleArgs.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes a SetApiByCasbinRoleArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbapi.SetApiByCasbinRoleArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbapi.SetApiByCasbinRoleArgs} SetApiByCasbinRoleArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    SetApiByCasbinRoleArgs.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbapi.SetApiByCasbinRoleArgs()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            if (!(message.list && message.list.length)) { message.list = [] }
+            message.list.push($root.pbapi.ApiModel.decode(reader, reader.uint32()))
+            break
+          }
+          case 2: {
+            message.role = reader.int64()
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes a SetApiByCasbinRoleArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbapi.SetApiByCasbinRoleArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbapi.SetApiByCasbinRoleArgs} SetApiByCasbinRoleArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    SetApiByCasbinRoleArgs.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies a SetApiByCasbinRoleArgs message.
+         * @function verify
+         * @memberof pbapi.SetApiByCasbinRoleArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    SetApiByCasbinRoleArgs.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.list != null && message.hasOwnProperty('list')) {
+        if (!Array.isArray(message.list)) { return 'list: array expected' }
+        for (var i = 0; i < message.list.length; ++i) {
+          var error = $root.pbapi.ApiModel.verify(message.list[i])
+          if (error) { return 'list.' + error }
+        }
+      }
+      if (message.role != null && message.hasOwnProperty('role')) {
+        if (!$util.isInteger(message.role) && !(message.role && $util.isInteger(message.role.low) && $util.isInteger(message.role.high))) { return 'role: integer|Long expected' }
+      }
+      return null
+    }
+
+    /**
+         * Creates a SetApiByCasbinRoleArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbapi.SetApiByCasbinRoleArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbapi.SetApiByCasbinRoleArgs} SetApiByCasbinRoleArgs
+         */
+    SetApiByCasbinRoleArgs.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbapi.SetApiByCasbinRoleArgs) { return object }
+      var message = new $root.pbapi.SetApiByCasbinRoleArgs()
+      if (object.list) {
+        if (!Array.isArray(object.list)) { throw TypeError('.pbapi.SetApiByCasbinRoleArgs.list: array expected') }
+        message.list = []
+        for (var i = 0; i < object.list.length; ++i) {
+          if (typeof object.list[i] !== 'object') { throw TypeError('.pbapi.SetApiByCasbinRoleArgs.list: object expected') }
+          message.list[i] = $root.pbapi.ApiModel.fromObject(object.list[i])
+        }
+      }
+      if (object.role != null) {
+        if ($util.Long) { (message.role = $util.Long.fromValue(object.role)).unsigned = false } else if (typeof object.role === 'string') { message.role = parseInt(object.role, 10) } else if (typeof object.role === 'number') { message.role = object.role } else if (typeof object.role === 'object') { message.role = new $util.LongBits(object.role.low >>> 0, object.role.high >>> 0).toNumber() }
+      }
+      return message
+    }
+
+    /**
+         * Creates a plain object from a SetApiByCasbinRoleArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbapi.SetApiByCasbinRoleArgs
+         * @static
+         * @param {pbapi.SetApiByCasbinRoleArgs} message SetApiByCasbinRoleArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    SetApiByCasbinRoleArgs.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.arrays || options.defaults) { object.list = [] }
+      if (options.defaults) {
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.role = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.role = options.longs === String ? '0' : 0 }
+      }
+      if (message.list && message.list.length) {
+        object.list = []
+        for (var j = 0; j < message.list.length; ++j) { object.list[j] = $root.pbapi.ApiModel.toObject(message.list[j], options) }
+      }
+      if (message.role != null && message.hasOwnProperty('role')) {
+        if (typeof message.role === 'number') { object.role = options.longs === String ? String(message.role) : message.role } else { object.role = options.longs === String ? $util.Long.prototype.toString.call(message.role) : options.longs === Number ? new $util.LongBits(message.role.low >>> 0, message.role.high >>> 0).toNumber() : message.role }
+      }
+      return object
+    }
+
+    /**
+         * Converts this SetApiByCasbinRoleArgs to JSON.
+         * @function toJSON
+         * @memberof pbapi.SetApiByCasbinRoleArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    SetApiByCasbinRoleArgs.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for SetApiByCasbinRoleArgs
+         * @function getTypeUrl
+         * @memberof pbapi.SetApiByCasbinRoleArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    SetApiByCasbinRoleArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/pbapi.SetApiByCasbinRoleArgs'
+    }
+
+    return SetApiByCasbinRoleArgs
+  })()
+
+  pbapi.Api = (function() {
+    /**
+         * Constructs a new Api service.
+         * @memberof pbapi
+         * @classdesc Represents an Api
          * @extends $protobuf.rpc.Service
          * @constructor
          * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
          * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
          * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
          */
-    function CasbinRule(rpcImpl, requestDelimited, responseDelimited) {
+    function Api(rpcImpl, requestDelimited, responseDelimited) {
       $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited)
     }
 
-    (CasbinRule.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = CasbinRule
+    (Api.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = Api
 
     /**
-         * Creates new CasbinRule service using the specified rpc implementation.
+         * Creates new Api service using the specified rpc implementation.
          * @function create
-         * @memberof pbcasbinRule.CasbinRule
+         * @memberof pbapi.Api
          * @static
          * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
          * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
          * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
-         * @returns {CasbinRule} RPC service. Useful where requests and/or responses are streamed.
+         * @returns {Api} RPC service. Useful where requests and/or responses are streamed.
          */
-    CasbinRule.create = function create(rpcImpl, requestDelimited, responseDelimited) {
+    Api.create = function create(rpcImpl, requestDelimited, responseDelimited) {
       return new this(rpcImpl, requestDelimited, responseDelimited)
     }
 
     /**
-         * Callback as used by {@link pbcasbinRule.CasbinRule#createCasbinRule}.
-         * @memberof pbcasbinRule.CasbinRule
-         * @typedef CreateCasbinRuleCallback
+         * Callback as used by {@link pbapi.Api#createApi}.
+         * @memberof pbapi.Api
+         * @typedef CreateApiCallback
          * @type {function}
          * @param {Error|null} error Error, if any
          * @param {pbcommon.CommonResult} [response] CommonResult
          */
 
     /**
-         * Calls CreateCasbinRule.
-         * @function createCasbinRule
-         * @memberof pbcasbinRule.CasbinRule
+         * Calls CreateApi.
+         * @function createApi
+         * @memberof pbapi.Api
          * @instance
-         * @param {pbcasbinRule.ICasbinRuleModel} request CasbinRuleModel message or plain object
-         * @param {pbcasbinRule.CasbinRule.CreateCasbinRuleCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @param {pbapi.IApiModel} request ApiModel message or plain object
+         * @param {pbapi.Api.CreateApiCallback} callback Node-style callback called with the error, if any, and CommonResult
          * @returns {undefined}
          * @variation 1
          */
-    Object.defineProperty(CasbinRule.prototype.createCasbinRule = function createCasbinRule(request, callback) {
-      return this.rpcCall(createCasbinRule, $root.pbcasbinRule.CasbinRuleModel, $root.pbcommon.CommonResult, request, callback)
-    }, 'name', { value: 'CreateCasbinRule' })
+    Object.defineProperty(Api.prototype.createApi = function createApi(request, callback) {
+      return this.rpcCall(createApi, $root.pbapi.ApiModel, $root.pbcommon.CommonResult, request, callback)
+    }, 'name', { value: 'CreateApi' })
 
     /**
-         * Calls CreateCasbinRule.
-         * @function createCasbinRule
-         * @memberof pbcasbinRule.CasbinRule
+         * Calls CreateApi.
+         * @function createApi
+         * @memberof pbapi.Api
          * @instance
-         * @param {pbcasbinRule.ICasbinRuleModel} request CasbinRuleModel message or plain object
+         * @param {pbapi.IApiModel} request ApiModel message or plain object
          * @returns {Promise<pbcommon.CommonResult>} Promise
          * @variation 2
          */
 
     /**
-         * Callback as used by {@link pbcasbinRule.CasbinRule#updateCasbinRule}.
-         * @memberof pbcasbinRule.CasbinRule
-         * @typedef UpdateCasbinRuleCallback
+         * Callback as used by {@link pbapi.Api#updateApi}.
+         * @memberof pbapi.Api
+         * @typedef UpdateApiCallback
          * @type {function}
          * @param {Error|null} error Error, if any
          * @param {pbcommon.CommonResult} [response] CommonResult
          */
 
     /**
-         * Calls UpdateCasbinRule.
-         * @function updateCasbinRule
-         * @memberof pbcasbinRule.CasbinRule
+         * Calls UpdateApi.
+         * @function updateApi
+         * @memberof pbapi.Api
          * @instance
-         * @param {pbcasbinRule.ICasbinRuleModel} request CasbinRuleModel message or plain object
-         * @param {pbcasbinRule.CasbinRule.UpdateCasbinRuleCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @param {pbapi.IApiModel} request ApiModel message or plain object
+         * @param {pbapi.Api.UpdateApiCallback} callback Node-style callback called with the error, if any, and CommonResult
          * @returns {undefined}
          * @variation 1
          */
-    Object.defineProperty(CasbinRule.prototype.updateCasbinRule = function updateCasbinRule(request, callback) {
-      return this.rpcCall(updateCasbinRule, $root.pbcasbinRule.CasbinRuleModel, $root.pbcommon.CommonResult, request, callback)
-    }, 'name', { value: 'UpdateCasbinRule' })
+    Object.defineProperty(Api.prototype.updateApi = function updateApi(request, callback) {
+      return this.rpcCall(updateApi, $root.pbapi.ApiModel, $root.pbcommon.CommonResult, request, callback)
+    }, 'name', { value: 'UpdateApi' })
 
     /**
-         * Calls UpdateCasbinRule.
-         * @function updateCasbinRule
-         * @memberof pbcasbinRule.CasbinRule
+         * Calls UpdateApi.
+         * @function updateApi
+         * @memberof pbapi.Api
          * @instance
-         * @param {pbcasbinRule.ICasbinRuleModel} request CasbinRuleModel message or plain object
+         * @param {pbapi.IApiModel} request ApiModel message or plain object
          * @returns {Promise<pbcommon.CommonResult>} Promise
          * @variation 2
          */
 
     /**
-         * Callback as used by {@link pbcasbinRule.CasbinRule#deleteCasbinRule}.
-         * @memberof pbcasbinRule.CasbinRule
-         * @typedef DeleteCasbinRuleCallback
+         * Callback as used by {@link pbapi.Api#deleteApi}.
+         * @memberof pbapi.Api
+         * @typedef DeleteApiCallback
          * @type {function}
          * @param {Error|null} error Error, if any
          * @param {pbcommon.CommonResult} [response] CommonResult
          */
 
     /**
-         * Calls DeleteCasbinRule.
-         * @function deleteCasbinRule
-         * @memberof pbcasbinRule.CasbinRule
+         * Calls DeleteApi.
+         * @function deleteApi
+         * @memberof pbapi.Api
          * @instance
          * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-         * @param {pbcasbinRule.CasbinRule.DeleteCasbinRuleCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @param {pbapi.Api.DeleteApiCallback} callback Node-style callback called with the error, if any, and CommonResult
          * @returns {undefined}
          * @variation 1
          */
-    Object.defineProperty(CasbinRule.prototype.deleteCasbinRule = function deleteCasbinRule(request, callback) {
-      return this.rpcCall(deleteCasbinRule, $root.pbcommon.IdArgs, $root.pbcommon.CommonResult, request, callback)
-    }, 'name', { value: 'DeleteCasbinRule' })
+    Object.defineProperty(Api.prototype.deleteApi = function deleteApi(request, callback) {
+      return this.rpcCall(deleteApi, $root.pbcommon.IdArgs, $root.pbcommon.CommonResult, request, callback)
+    }, 'name', { value: 'DeleteApi' })
 
     /**
-         * Calls DeleteCasbinRule.
-         * @function deleteCasbinRule
-         * @memberof pbcasbinRule.CasbinRule
+         * Calls DeleteApi.
+         * @function deleteApi
+         * @memberof pbapi.Api
          * @instance
          * @param {pbcommon.IIdArgs} request IdArgs message or plain object
          * @returns {Promise<pbcommon.CommonResult>} Promise
@@ -2250,75 +2946,141 @@ $root.pbcasbinRule = (function() {
          */
 
     /**
-         * Callback as used by {@link pbcasbinRule.CasbinRule#findCasbinRuleById}.
-         * @memberof pbcasbinRule.CasbinRule
-         * @typedef FindCasbinRuleByIdCallback
+         * Callback as used by {@link pbapi.Api#findApiById}.
+         * @memberof pbapi.Api
+         * @typedef FindApiByIdCallback
          * @type {function}
          * @param {Error|null} error Error, if any
-         * @param {pbcasbinRule.FindCasbinRuleReply} [response] FindCasbinRuleReply
+         * @param {pbapi.FindApiReply} [response] FindApiReply
          */
 
     /**
-         * Calls FindCasbinRuleById.
-         * @function findCasbinRuleById
-         * @memberof pbcasbinRule.CasbinRule
+         * Calls FindApiById.
+         * @function findApiById
+         * @memberof pbapi.Api
          * @instance
          * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-         * @param {pbcasbinRule.CasbinRule.FindCasbinRuleByIdCallback} callback Node-style callback called with the error, if any, and FindCasbinRuleReply
+         * @param {pbapi.Api.FindApiByIdCallback} callback Node-style callback called with the error, if any, and FindApiReply
          * @returns {undefined}
          * @variation 1
          */
-    Object.defineProperty(CasbinRule.prototype.findCasbinRuleById = function findCasbinRuleById(request, callback) {
-      return this.rpcCall(findCasbinRuleById, $root.pbcommon.IdArgs, $root.pbcasbinRule.FindCasbinRuleReply, request, callback)
-    }, 'name', { value: 'FindCasbinRuleById' })
+    Object.defineProperty(Api.prototype.findApiById = function findApiById(request, callback) {
+      return this.rpcCall(findApiById, $root.pbcommon.IdArgs, $root.pbapi.FindApiReply, request, callback)
+    }, 'name', { value: 'FindApiById' })
 
     /**
-         * Calls FindCasbinRuleById.
-         * @function findCasbinRuleById
-         * @memberof pbcasbinRule.CasbinRule
+         * Calls FindApiById.
+         * @function findApiById
+         * @memberof pbapi.Api
          * @instance
          * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-         * @returns {Promise<pbcasbinRule.FindCasbinRuleReply>} Promise
+         * @returns {Promise<pbapi.FindApiReply>} Promise
          * @variation 2
          */
 
     /**
-         * Callback as used by {@link pbcasbinRule.CasbinRule#findCasbinRuleList}.
-         * @memberof pbcasbinRule.CasbinRule
-         * @typedef FindCasbinRuleListCallback
+         * Callback as used by {@link pbapi.Api#findApiList}.
+         * @memberof pbapi.Api
+         * @typedef FindApiListCallback
          * @type {function}
          * @param {Error|null} error Error, if any
-         * @param {pbcasbinRule.FindCasbinRuleReply} [response] FindCasbinRuleReply
+         * @param {pbapi.FindApiReply} [response] FindApiReply
          */
 
     /**
-         * Calls FindCasbinRuleList.
-         * @function findCasbinRuleList
-         * @memberof pbcasbinRule.CasbinRule
+         * Calls FindApiList.
+         * @function findApiList
+         * @memberof pbapi.Api
          * @instance
-         * @param {pbcasbinRule.IFindCasbinRuleArgs} request FindCasbinRuleArgs message or plain object
-         * @param {pbcasbinRule.CasbinRule.FindCasbinRuleListCallback} callback Node-style callback called with the error, if any, and FindCasbinRuleReply
+         * @param {pbapi.IFindApiArgs} request FindApiArgs message or plain object
+         * @param {pbapi.Api.FindApiListCallback} callback Node-style callback called with the error, if any, and FindApiReply
          * @returns {undefined}
          * @variation 1
          */
-    Object.defineProperty(CasbinRule.prototype.findCasbinRuleList = function findCasbinRuleList(request, callback) {
-      return this.rpcCall(findCasbinRuleList, $root.pbcasbinRule.FindCasbinRuleArgs, $root.pbcasbinRule.FindCasbinRuleReply, request, callback)
-    }, 'name', { value: 'FindCasbinRuleList' })
+    Object.defineProperty(Api.prototype.findApiList = function findApiList(request, callback) {
+      return this.rpcCall(findApiList, $root.pbapi.FindApiArgs, $root.pbapi.FindApiReply, request, callback)
+    }, 'name', { value: 'FindApiList' })
 
     /**
-         * Calls FindCasbinRuleList.
-         * @function findCasbinRuleList
-         * @memberof pbcasbinRule.CasbinRule
+         * Calls FindApiList.
+         * @function findApiList
+         * @memberof pbapi.Api
          * @instance
-         * @param {pbcasbinRule.IFindCasbinRuleArgs} request FindCasbinRuleArgs message or plain object
-         * @returns {Promise<pbcasbinRule.FindCasbinRuleReply>} Promise
+         * @param {pbapi.IFindApiArgs} request FindApiArgs message or plain object
+         * @returns {Promise<pbapi.FindApiReply>} Promise
          * @variation 2
          */
 
-    return CasbinRule
+    /**
+         * Callback as used by {@link pbapi.Api#findApiByCasbinRole}.
+         * @memberof pbapi.Api
+         * @typedef FindApiByCasbinRoleCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbapi.FindApiByCasbinRoleReply} [response] FindApiByCasbinRoleReply
+         */
+
+    /**
+         * Calls FindApiByCasbinRole.
+         * @function findApiByCasbinRole
+         * @memberof pbapi.Api
+         * @instance
+         * @param {pbapi.IFindApiByCasbinRoleArgs} request FindApiByCasbinRoleArgs message or plain object
+         * @param {pbapi.Api.FindApiByCasbinRoleCallback} callback Node-style callback called with the error, if any, and FindApiByCasbinRoleReply
+         * @returns {undefined}
+         * @variation 1
+         */
+    Object.defineProperty(Api.prototype.findApiByCasbinRole = function findApiByCasbinRole(request, callback) {
+      return this.rpcCall(findApiByCasbinRole, $root.pbapi.FindApiByCasbinRoleArgs, $root.pbapi.FindApiByCasbinRoleReply, request, callback)
+    }, 'name', { value: 'FindApiByCasbinRole' })
+
+    /**
+         * Calls FindApiByCasbinRole.
+         * @function findApiByCasbinRole
+         * @memberof pbapi.Api
+         * @instance
+         * @param {pbapi.IFindApiByCasbinRoleArgs} request FindApiByCasbinRoleArgs message or plain object
+         * @returns {Promise<pbapi.FindApiByCasbinRoleReply>} Promise
+         * @variation 2
+         */
+
+    /**
+         * Callback as used by {@link pbapi.Api#setApiByCasbinRole}.
+         * @memberof pbapi.Api
+         * @typedef SetApiByCasbinRoleCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+    /**
+         * Calls SetApiByCasbinRole.
+         * @function setApiByCasbinRole
+         * @memberof pbapi.Api
+         * @instance
+         * @param {pbapi.ISetApiByCasbinRoleArgs} request SetApiByCasbinRoleArgs message or plain object
+         * @param {pbapi.Api.SetApiByCasbinRoleCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+    Object.defineProperty(Api.prototype.setApiByCasbinRole = function setApiByCasbinRole(request, callback) {
+      return this.rpcCall(setApiByCasbinRole, $root.pbapi.SetApiByCasbinRoleArgs, $root.pbcommon.CommonResult, request, callback)
+    }, 'name', { value: 'SetApiByCasbinRole' })
+
+    /**
+         * Calls SetApiByCasbinRole.
+         * @function setApiByCasbinRole
+         * @memberof pbapi.Api
+         * @instance
+         * @param {pbapi.ISetApiByCasbinRoleArgs} request SetApiByCasbinRoleArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+    return Api
   })()
 
-  return pbcasbinRule
+  return pbapi
 })()
 
 $root.pbpermission = (function() {

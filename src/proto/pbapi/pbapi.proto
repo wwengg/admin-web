@@ -20,6 +20,7 @@ message ApiModel{
   string method = 6;  // 请求的方法 POST  GET
   string name = 7;  // api名称
   string group = 8; // api分组名称
+  bool isSelected = 9; // 当前角色是否拥有该api权限
 }
 
 message FindApiArgs{
@@ -35,10 +36,30 @@ message FindApiReply{
   int64 total = 5;
 }
 
+
+
+message FindApiByCasbinRoleArgs{
+  int64 role = 1;
+}
+
+
+message FindApiByCasbinRoleReply{
+  pbcommon.EnumCode code = 1;
+  string msg = 2;
+  repeated ApiModel list = 4;
+}
+
+message SetApiByCasbinRoleArgs{
+  repeated ApiModel list = 1;
+  int64 role = 2;
+}
+
 service Api {
   rpc CreateApi(ApiModel) returns(pbcommon.CommonResult){}
   rpc UpdateApi(ApiModel) returns(pbcommon.CommonResult){}
   rpc DeleteApi(pbcommon.IdArgs) returns(pbcommon.CommonResult){}
   rpc FindApiById(pbcommon.IdArgs) returns(FindApiReply){}
   rpc FindApiList(FindApiArgs) returns(FindApiReply){}
+  rpc FindApiByCasbinRole(FindApiByCasbinRoleArgs) returns(FindApiByCasbinRoleReply){}
+  rpc SetApiByCasbinRole(SetApiByCasbinRoleArgs) returns(pbcommon.CommonResult){}
 }
