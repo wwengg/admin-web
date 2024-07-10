@@ -51,3 +51,22 @@ export function findApiList(data) {
   })
 }
 
+export function findApiByCasbinRole(data) {
+  var buffer = protoRoot.pbapi.FindApiByCasbinRoleArgs.encode(data).finish().slice().buffer
+  return request({
+    url: '/v2/api/findApiByCasbinRole',
+    method: 'post',
+    buffer,
+    pb: 'pbapi.FindApiByCasbinRoleReply'
+  })
+}
+
+export function setApiByCasbinRole(data) {
+  var buffer = protoRoot.pbapi.SetApiByCasbinRoleArgs.encode(data).finish().slice().buffer
+  return request({
+    url: '/v2/api/setApiByCasbinRole',
+    method: 'post',
+    buffer,
+    pb: 'pbcommon.CommonResult'
+  })
+}

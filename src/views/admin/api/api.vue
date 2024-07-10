@@ -116,6 +116,7 @@ import { createApi, updateApi, deleteApi, findApiById, findApiList } from '@/api
 import waves from '@/directive/waves' // waves directive
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
 import tableList from '@/mixins/tableList'
+import capitalizeFirstLetter from '@/utils/string'
 
 export default {
   name: 'ApiTable',
@@ -131,9 +132,9 @@ export default {
         createdAt: '',
         updatedAt: '',
 
-        type: '',
+        type: 'HTTP',
         path: '',
-        method: '',
+        method: 'POST',
         name: '',
         group: ''
       },
@@ -170,9 +171,9 @@ export default {
         id: undefined,
         createdAt: '',
         updatedAt: '',
-        type: '',
+        type: 'HTTP',
         path: '',
-        method: '',
+        method: 'POST',
         name: '',
         group: ''
       }
@@ -236,30 +237,30 @@ export default {
       this.getTableData()
     },
     autoFillForm(type) {
-      if (this.temp.v2 === '') {
+      if (this.temp.group === '') {
         return
       }
-      this.temp.v1 = 'v2'
+      const upperName = capitalizeFirstLetter(this.temp.group)
       switch (type) {
         case 0:
-          this.temp.casbinRuleName = `创建${this.temp.v2}`
-          this.temp.v3 = `Create${this.temp.v2}`
+          this.temp.name = `创建${upperName}`
+          this.temp.path = `/v2/${this.temp.group}/create${upperName}`
           break
         case 1:
-          this.temp.casbinRuleName = `更新${this.temp.v2}`
-          this.temp.v3 = `Update${this.temp.v2}`
+          this.temp.name = `更新${upperName}`
+          this.temp.path = `/v2/${this.temp.group}/update${upperName}`
           break
         case 2:
-          this.temp.casbinRuleName = `删除${this.temp.v2}`
-          this.temp.v3 = `Delete${this.temp.v2}`
+          this.temp.name = `删除${upperName}`
+          this.temp.path = `/v2/${this.temp.group}/delete${upperName}`
           break
         case 3:
-          this.temp.casbinRuleName = `查询${this.temp.v2}`
-          this.temp.v3 = `Find${this.temp.v2}ById`
+          this.temp.name = `查询${upperName}`
+          this.temp.path = `/v2/${this.temp.group}/find${upperName}ById`
           break
         case 4:
-          this.temp.casbinRuleName = `查询${this.temp.v2}列表`
-          this.temp.v3 = `Find${this.temp.v2}List`
+          this.temp.name = `查询${upperName}列表`
+          this.temp.path = `/v2/${this.temp.group}/find${upperName}List`
           break
 
         default:
@@ -269,4 +270,3 @@ export default {
   }
 }
 </script>
-

@@ -6134,6 +6134,7 @@ $root.httpgate = (function() {
          * @property {string|null} [sign] HttpRequest sign
          * @property {string|null} [signMethod] HttpRequest signMethod
          * @property {string|null} [timeStamp] HttpRequest timeStamp
+         * @property {string|null} [appId] HttpRequest appId
          * @property {Uint8Array|null} [data] HttpRequest data
          */
 
@@ -6194,6 +6195,14 @@ $root.httpgate = (function() {
     HttpRequest.prototype.timeStamp = ''
 
     /**
+         * HttpRequest appId.
+         * @member {string} appId
+         * @memberof httpgate.HttpRequest
+         * @instance
+         */
+    HttpRequest.prototype.appId = ''
+
+    /**
          * HttpRequest data.
          * @member {Uint8Array} data
          * @memberof httpgate.HttpRequest
@@ -6229,7 +6238,8 @@ $root.httpgate = (function() {
       if (message.sign != null && Object.hasOwnProperty.call(message, 'sign')) { writer.uint32(/* id 3, wireType 2 =*/26).string(message.sign) }
       if (message.signMethod != null && Object.hasOwnProperty.call(message, 'signMethod')) { writer.uint32(/* id 4, wireType 2 =*/34).string(message.signMethod) }
       if (message.timeStamp != null && Object.hasOwnProperty.call(message, 'timeStamp')) { writer.uint32(/* id 5, wireType 2 =*/42).string(message.timeStamp) }
-      if (message.data != null && Object.hasOwnProperty.call(message, 'data')) { writer.uint32(/* id 6, wireType 2 =*/50).bytes(message.data) }
+      if (message.appId != null && Object.hasOwnProperty.call(message, 'appId')) { writer.uint32(/* id 6, wireType 2 =*/50).string(message.appId) }
+      if (message.data != null && Object.hasOwnProperty.call(message, 'data')) { writer.uint32(/* id 7, wireType 2 =*/58).bytes(message.data) }
       return writer
     }
 
@@ -6284,6 +6294,10 @@ $root.httpgate = (function() {
             break
           }
           case 6: {
+            message.appId = reader.string()
+            break
+          }
+          case 7: {
             message.data = reader.bytes()
             break
           }
@@ -6335,6 +6349,9 @@ $root.httpgate = (function() {
       if (message.timeStamp != null && message.hasOwnProperty('timeStamp')) {
         if (!$util.isString(message.timeStamp)) { return 'timeStamp: string expected' }
       }
+      if (message.appId != null && message.hasOwnProperty('appId')) {
+        if (!$util.isString(message.appId)) { return 'appId: string expected' }
+      }
       if (message.data != null && message.hasOwnProperty('data')) {
         if (!(message.data && typeof message.data.length === 'number' || $util.isString(message.data))) { return 'data: buffer expected' }
       }
@@ -6357,6 +6374,7 @@ $root.httpgate = (function() {
       if (object.sign != null) { message.sign = String(object.sign) }
       if (object.signMethod != null) { message.signMethod = String(object.signMethod) }
       if (object.timeStamp != null) { message.timeStamp = String(object.timeStamp) }
+      if (object.appId != null) { message.appId = String(object.appId) }
       if (object.data != null) {
         if (typeof object.data === 'string') { $util.base64.decode(object.data, message.data = $util.newBuffer($util.base64.length(object.data)), 0) } else if (object.data.length >= 0) { message.data = object.data }
       }
@@ -6381,6 +6399,7 @@ $root.httpgate = (function() {
         object.sign = ''
         object.signMethod = ''
         object.timeStamp = ''
+        object.appId = ''
         if (options.bytes === String) { object.data = '' } else {
           object.data = []
           if (options.bytes !== Array) { object.data = $util.newBuffer(object.data) }
@@ -6391,6 +6410,7 @@ $root.httpgate = (function() {
       if (message.sign != null && message.hasOwnProperty('sign')) { object.sign = message.sign }
       if (message.signMethod != null && message.hasOwnProperty('signMethod')) { object.signMethod = message.signMethod }
       if (message.timeStamp != null && message.hasOwnProperty('timeStamp')) { object.timeStamp = message.timeStamp }
+      if (message.appId != null && message.hasOwnProperty('appId')) { object.appId = message.appId }
       if (message.data != null && message.hasOwnProperty('data')) { object.data = options.bytes === String ? $util.base64.encode(message.data, 0, message.data.length) : options.bytes === Array ? Array.prototype.slice.call(message.data) : message.data }
       return object
     }

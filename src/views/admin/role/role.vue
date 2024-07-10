@@ -46,6 +46,9 @@
       <el-table-column label="Permissions" width="150px" align="center" prop="permissions" />
       <el-table-column label="操作" align="center" width="230" class-name="small-padding fixed-width">
         <template slot-scope="{row}">
+          <el-button type="primary" size="mini" @click="handleApis(row.id)">
+            设置api权限
+          </el-button>
           <el-button type="primary" size="mini" @click="handleUpdate(row)">
             编辑
           </el-button>
@@ -61,6 +64,27 @@
       </el-table-column>
     </el-table>
     <pagination v-show="total > 0" :total="total" :page.sync="page" :limit.sync="pageSize" @pagination="getTableData" />
+    <el-dialog title="设置api权限" :visible.sync="dialogFormVisible2">
+      <div style="margin-top: 20px">
+        <el-checkbox
+          v-for="item in apisData"
+          :key="item.id"
+          v-model="item.isSelected"
+          :label="item.name"
+          border
+          size="medium"
+        />
+      </div>
+      <div style="margin-top: 20px">
+        <el-button @click="dialogFormVisible2 = false">
+          取消
+        </el-button>
+        <el-button type="primary" @click="updateApisData()">
+          完成
+        </el-button>
+      </div>
+
+    </el-dialog>
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form
         ref="dataForm"
@@ -106,6 +130,7 @@
 
 <script>
 import { createRole, updateRole2, deleteRole2, findRoleById, findRoleList } from '@/api/role'
+import { findApiByCasbinRole, setApiByCasbinRole } from '@/api/api'
 import waves from '@/directive/waves' // waves directive
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
 import tableList from '@/mixins/tableList'
@@ -119,6 +144,8 @@ export default {
     return {
       listApi: findRoleList,
       tableKey: 0,
+      apisData: [],
+      role: '',
       temp: {
         id: undefined,
         createdAt: '',
@@ -133,6 +160,7 @@ export default {
         permissions: ''
       },
       dialogFormVisible: false,
+      dialogFormVisible2: false,
       dialogStatus: '',
       textMap: {
         update: '编辑',
@@ -149,6 +177,30 @@ export default {
     this.getTableData()
   },
   methods: {
+    async handleApis(id) {
+      this.apisData = []
+      this.role = id
+      const res = await findApiByCasbinRole({ role: id })
+      if (res.code === 'Success') {
+        this.apisData = res.list
+        this.dialogFormVisible2 = true
+        console.log(this.apisData)
+      }
+    },
+    async updateApisData() {
+      const res = await setApiByCasbinRole({ role: this.role, list: this.apisData })
+      if (res.code === 'Success') {
+        this.dialogFormVisible2 = false
+        this.$notify({
+          title: 'Success',
+          message: '设置成功',
+          type: 'success',
+          duration: 2000
+        })
+      }
+      this.apisData = []
+      this.role = ''
+    },
     handleFilter() {
       this.page = 1
       this.getTableData()
@@ -235,4 +287,3 @@ export default {
   }
 }
 </script>
-

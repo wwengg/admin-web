@@ -13,9 +13,9 @@ message HttpRequest{
   string sign = 3;
   string signMethod = 4;
   string timeStamp = 5;
-  bytes data = 6;
+  string appId = 6;
+  bytes data = 7;
 }
-
 message HttpResponse{
   pbcommon.EnumCode code = 1;
   string msg = 2;
