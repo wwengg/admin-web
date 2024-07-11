@@ -51,6 +51,16 @@ export function findUserList(data) {
   })
 }
 
+export function login2(data) {
+  var buffer = protoRoot.pbauth.AdminLoginArgs.encode(data).finish().slice().buffer
+  return request({
+    url: '/v2/auth/adminLogin',
+    method: 'post',
+    buffer,
+    pb: 'pbauth.AuthLoginReply'
+  })
+}
+
 export function login(data) {
   return request({
     url: '/vue-element-admin/user/login',

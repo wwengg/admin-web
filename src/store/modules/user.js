@@ -1,4 +1,4 @@
-import { login, logout, getInfo } from '@/api/user'
+import { login2, logout, getInfo } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import router, { resetRouter } from '@/router'
 
@@ -30,17 +30,37 @@ const mutations = {
 
 const actions = {
   // user login
-  login({ commit }, userInfo) {
+  async login({ commit }, userInfo) {
     const { username, password } = userInfo
+    // console.log(userInfo)
+    // username = username.trim()
+    // const res = await login2({username:username,password:password})
+    // if(res.code == "Success"){
+    //   console.log(res)
+    //   commit('SET_TOKEN',res.token)
+    //   setToken(data.token)
+    // }
     return new Promise((resolve, reject) => {
-      login({ username: username.trim(), password: password }).then(response => {
-        const { data } = response
-        commit('SET_TOKEN', data.token)
-        setToken(data.token)
-        resolve()
-      }).catch(error => {
-        reject(error)
-      })
+      login2({ username: username.trim(), password: password }).then(
+        res => {
+          if (res.code === 'Success') {
+            console.log(res)
+            commit('SET_TOKEN', res.token)
+            setToken(res.token)
+            resolve()
+          } else {
+            reject(res)
+          }
+        }
+      )
+      // login({ username: username.trim(), password: password }).then(response => {
+      //   const { data } = response
+      //   commit('SET_TOKEN', data.token)
+      //   setToken(data.token)
+      //   resolve()
+      // }).catch(error => {
+      //   reject(error)
+      // })
     })
   },
 

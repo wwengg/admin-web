@@ -5796,33 +5796,33 @@ $root.pbrole = (function() {
   return pbrole
 })()
 
-$root.pblogin = (function() {
+$root.pbauth = (function() {
   /**
-     * Namespace pblogin.
-     * @exports pblogin
+     * Namespace pbauth.
+     * @exports pbauth
      * @namespace
      */
-  var pblogin = {}
+  var pbauth = {}
 
-  pblogin.AdminLoginArgs = (function() {
+  pbauth.AuthLoginReply = (function() {
     /**
-         * Properties of an AdminLoginArgs.
-         * @memberof pblogin
-         * @interface IAdminLoginArgs
-         * @property {number|Long|null} [appId] AdminLoginArgs appId
-         * @property {string|null} [username] AdminLoginArgs username
-         * @property {string|null} [password] AdminLoginArgs password
+         * Properties of an AuthLoginReply.
+         * @memberof pbauth
+         * @interface IAuthLoginReply
+         * @property {pbcommon.EnumCode|null} [code] AuthLoginReply code
+         * @property {string|null} [token] AuthLoginReply token
+         * @property {pbuser.IUserModel|null} [user] AuthLoginReply user
          */
 
     /**
-         * Constructs a new AdminLoginArgs.
-         * @memberof pblogin
-         * @classdesc Represents an AdminLoginArgs.
-         * @implements IAdminLoginArgs
+         * Constructs a new AuthLoginReply.
+         * @memberof pbauth
+         * @classdesc Represents an AuthLoginReply.
+         * @implements IAuthLoginReply
          * @constructor
-         * @param {pblogin.IAdminLoginArgs=} [properties] Properties to set
+         * @param {pbauth.IAuthLoginReply=} [properties] Properties to set
          */
-    function AdminLoginArgs(properties) {
+    function AuthLoginReply(properties) {
       if (properties) {
         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
           if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
@@ -5831,735 +5831,85 @@ $root.pblogin = (function() {
     }
 
     /**
-         * AdminLoginArgs appId.
-         * @member {number|Long} appId
-         * @memberof pblogin.AdminLoginArgs
-         * @instance
-         */
-    AdminLoginArgs.prototype.appId = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
-
-    /**
-         * AdminLoginArgs username.
-         * @member {string} username
-         * @memberof pblogin.AdminLoginArgs
-         * @instance
-         */
-    AdminLoginArgs.prototype.username = ''
-
-    /**
-         * AdminLoginArgs password.
-         * @member {string} password
-         * @memberof pblogin.AdminLoginArgs
-         * @instance
-         */
-    AdminLoginArgs.prototype.password = ''
-
-    /**
-         * Creates a new AdminLoginArgs instance using the specified properties.
-         * @function create
-         * @memberof pblogin.AdminLoginArgs
-         * @static
-         * @param {pblogin.IAdminLoginArgs=} [properties] Properties to set
-         * @returns {pblogin.AdminLoginArgs} AdminLoginArgs instance
-         */
-    AdminLoginArgs.create = function create(properties) {
-      return new AdminLoginArgs(properties)
-    }
-
-    /**
-         * Encodes the specified AdminLoginArgs message. Does not implicitly {@link pblogin.AdminLoginArgs.verify|verify} messages.
-         * @function encode
-         * @memberof pblogin.AdminLoginArgs
-         * @static
-         * @param {pblogin.IAdminLoginArgs} message AdminLoginArgs message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-    AdminLoginArgs.encode = function encode(message, writer) {
-      if (!writer) { writer = $Writer.create() }
-      if (message.appId != null && Object.hasOwnProperty.call(message, 'appId')) { writer.uint32(/* id 1, wireType 0 =*/8).int64(message.appId) }
-      if (message.username != null && Object.hasOwnProperty.call(message, 'username')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.username) }
-      if (message.password != null && Object.hasOwnProperty.call(message, 'password')) { writer.uint32(/* id 3, wireType 2 =*/26).string(message.password) }
-      return writer
-    }
-
-    /**
-         * Encodes the specified AdminLoginArgs message, length delimited. Does not implicitly {@link pblogin.AdminLoginArgs.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof pblogin.AdminLoginArgs
-         * @static
-         * @param {pblogin.IAdminLoginArgs} message AdminLoginArgs message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-    AdminLoginArgs.encodeDelimited = function encodeDelimited(message, writer) {
-      return this.encode(message, writer).ldelim()
-    }
-
-    /**
-         * Decodes an AdminLoginArgs message from the specified reader or buffer.
-         * @function decode
-         * @memberof pblogin.AdminLoginArgs
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {pblogin.AdminLoginArgs} AdminLoginArgs
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-    AdminLoginArgs.decode = function decode(reader, length) {
-      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
-      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pblogin.AdminLoginArgs()
-      while (reader.pos < end) {
-        var tag = reader.uint32()
-        switch (tag >>> 3) {
-          case 1: {
-            message.appId = reader.int64()
-            break
-          }
-          case 2: {
-            message.username = reader.string()
-            break
-          }
-          case 3: {
-            message.password = reader.string()
-            break
-          }
-          default:
-            reader.skipType(tag & 7)
-            break
-        }
-      }
-      return message
-    }
-
-    /**
-         * Decodes an AdminLoginArgs message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof pblogin.AdminLoginArgs
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {pblogin.AdminLoginArgs} AdminLoginArgs
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-    AdminLoginArgs.decodeDelimited = function decodeDelimited(reader) {
-      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
-      return this.decode(reader, reader.uint32())
-    }
-
-    /**
-         * Verifies an AdminLoginArgs message.
-         * @function verify
-         * @memberof pblogin.AdminLoginArgs
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-    AdminLoginArgs.verify = function verify(message) {
-      if (typeof message !== 'object' || message === null) { return 'object expected' }
-      if (message.appId != null && message.hasOwnProperty('appId')) {
-        if (!$util.isInteger(message.appId) && !(message.appId && $util.isInteger(message.appId.low) && $util.isInteger(message.appId.high))) { return 'appId: integer|Long expected' }
-      }
-      if (message.username != null && message.hasOwnProperty('username')) {
-        if (!$util.isString(message.username)) { return 'username: string expected' }
-      }
-      if (message.password != null && message.hasOwnProperty('password')) {
-        if (!$util.isString(message.password)) { return 'password: string expected' }
-      }
-      return null
-    }
-
-    /**
-         * Creates an AdminLoginArgs message from a plain object. Also converts values to their respective internal types.
-         * @function fromObject
-         * @memberof pblogin.AdminLoginArgs
-         * @static
-         * @param {Object.<string,*>} object Plain object
-         * @returns {pblogin.AdminLoginArgs} AdminLoginArgs
-         */
-    AdminLoginArgs.fromObject = function fromObject(object) {
-      if (object instanceof $root.pblogin.AdminLoginArgs) { return object }
-      var message = new $root.pblogin.AdminLoginArgs()
-      if (object.appId != null) {
-        if ($util.Long) { (message.appId = $util.Long.fromValue(object.appId)).unsigned = false } else if (typeof object.appId === 'string') { message.appId = parseInt(object.appId, 10) } else if (typeof object.appId === 'number') { message.appId = object.appId } else if (typeof object.appId === 'object') { message.appId = new $util.LongBits(object.appId.low >>> 0, object.appId.high >>> 0).toNumber() }
-      }
-      if (object.username != null) { message.username = String(object.username) }
-      if (object.password != null) { message.password = String(object.password) }
-      return message
-    }
-
-    /**
-         * Creates a plain object from an AdminLoginArgs message. Also converts values to other types if specified.
-         * @function toObject
-         * @memberof pblogin.AdminLoginArgs
-         * @static
-         * @param {pblogin.AdminLoginArgs} message AdminLoginArgs
-         * @param {$protobuf.IConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-    AdminLoginArgs.toObject = function toObject(message, options) {
-      if (!options) { options = {} }
-      var object = {}
-      if (options.defaults) {
-        if ($util.Long) {
-          var long = new $util.Long(0, 0, false)
-          object.appId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
-        } else { object.appId = options.longs === String ? '0' : 0 }
-        object.username = ''
-        object.password = ''
-      }
-      if (message.appId != null && message.hasOwnProperty('appId')) {
-        if (typeof message.appId === 'number') { object.appId = options.longs === String ? String(message.appId) : message.appId } else { object.appId = options.longs === String ? $util.Long.prototype.toString.call(message.appId) : options.longs === Number ? new $util.LongBits(message.appId.low >>> 0, message.appId.high >>> 0).toNumber() : message.appId }
-      }
-      if (message.username != null && message.hasOwnProperty('username')) { object.username = message.username }
-      if (message.password != null && message.hasOwnProperty('password')) { object.password = message.password }
-      return object
-    }
-
-    /**
-         * Converts this AdminLoginArgs to JSON.
-         * @function toJSON
-         * @memberof pblogin.AdminLoginArgs
-         * @instance
-         * @returns {Object.<string,*>} JSON object
-         */
-    AdminLoginArgs.prototype.toJSON = function toJSON() {
-      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
-    }
-
-    /**
-         * Gets the default type url for AdminLoginArgs
-         * @function getTypeUrl
-         * @memberof pblogin.AdminLoginArgs
-         * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
-         */
-    AdminLoginArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-      if (typeUrlPrefix === undefined) {
-        typeUrlPrefix = 'type.googleapis.com'
-      }
-      return typeUrlPrefix + '/pblogin.AdminLoginArgs'
-    }
-
-    return AdminLoginArgs
-  })()
-
-  pblogin.Login = (function() {
-    /**
-         * Constructs a new Login service.
-         * @memberof pblogin
-         * @classdesc Represents a Login
-         * @extends $protobuf.rpc.Service
-         * @constructor
-         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
-         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
-         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
-         */
-    function Login(rpcImpl, requestDelimited, responseDelimited) {
-      $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited)
-    }
-
-    (Login.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = Login
-
-    /**
-         * Creates new Login service using the specified rpc implementation.
-         * @function create
-         * @memberof pblogin.Login
-         * @static
-         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
-         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
-         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
-         * @returns {Login} RPC service. Useful where requests and/or responses are streamed.
-         */
-    Login.create = function create(rpcImpl, requestDelimited, responseDelimited) {
-      return new this(rpcImpl, requestDelimited, responseDelimited)
-    }
-
-    /**
-         * Callback as used by {@link pblogin.Login#adminLogin}.
-         * @memberof pblogin.Login
-         * @typedef AdminLoginCallback
-         * @type {function}
-         * @param {Error|null} error Error, if any
-         * @param {pbcommon.CommonResult} [response] CommonResult
-         */
-
-    /**
-         * Calls AdminLogin.
-         * @function adminLogin
-         * @memberof pblogin.Login
-         * @instance
-         * @param {pblogin.IAdminLoginArgs} request AdminLoginArgs message or plain object
-         * @param {pblogin.Login.AdminLoginCallback} callback Node-style callback called with the error, if any, and CommonResult
-         * @returns {undefined}
-         * @variation 1
-         */
-    Object.defineProperty(Login.prototype.adminLogin = function adminLogin(request, callback) {
-      return this.rpcCall(adminLogin, $root.pblogin.AdminLoginArgs, $root.pbcommon.CommonResult, request, callback)
-    }, 'name', { value: 'AdminLogin' })
-
-    /**
-         * Calls AdminLogin.
-         * @function adminLogin
-         * @memberof pblogin.Login
-         * @instance
-         * @param {pblogin.IAdminLoginArgs} request AdminLoginArgs message or plain object
-         * @returns {Promise<pbcommon.CommonResult>} Promise
-         * @variation 2
-         */
-
-    return Login
-  })()
-
-  return pblogin
-})()
-
-$root.httpgate = (function() {
-  /**
-     * Namespace httpgate.
-     * @exports httpgate
-     * @namespace
-     */
-  var httpgate = {}
-
-  httpgate.HttpRequest = (function() {
-    /**
-         * Properties of a HttpRequest.
-         * @memberof httpgate
-         * @interface IHttpRequest
-         * @property {string|null} [token] HttpRequest token
-         * @property {string|null} [v] HttpRequest v
-         * @property {string|null} [sign] HttpRequest sign
-         * @property {string|null} [signMethod] HttpRequest signMethod
-         * @property {string|null} [timeStamp] HttpRequest timeStamp
-         * @property {string|null} [appId] HttpRequest appId
-         * @property {Uint8Array|null} [data] HttpRequest data
-         */
-
-    /**
-         * Constructs a new HttpRequest.
-         * @memberof httpgate
-         * @classdesc Represents a HttpRequest.
-         * @implements IHttpRequest
-         * @constructor
-         * @param {httpgate.IHttpRequest=} [properties] Properties to set
-         */
-    function HttpRequest(properties) {
-      if (properties) {
-        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
-          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
-        }
-      }
-    }
-
-    /**
-         * HttpRequest token.
-         * @member {string} token
-         * @memberof httpgate.HttpRequest
-         * @instance
-         */
-    HttpRequest.prototype.token = ''
-
-    /**
-         * HttpRequest v.
-         * @member {string} v
-         * @memberof httpgate.HttpRequest
-         * @instance
-         */
-    HttpRequest.prototype.v = ''
-
-    /**
-         * HttpRequest sign.
-         * @member {string} sign
-         * @memberof httpgate.HttpRequest
-         * @instance
-         */
-    HttpRequest.prototype.sign = ''
-
-    /**
-         * HttpRequest signMethod.
-         * @member {string} signMethod
-         * @memberof httpgate.HttpRequest
-         * @instance
-         */
-    HttpRequest.prototype.signMethod = ''
-
-    /**
-         * HttpRequest timeStamp.
-         * @member {string} timeStamp
-         * @memberof httpgate.HttpRequest
-         * @instance
-         */
-    HttpRequest.prototype.timeStamp = ''
-
-    /**
-         * HttpRequest appId.
-         * @member {string} appId
-         * @memberof httpgate.HttpRequest
-         * @instance
-         */
-    HttpRequest.prototype.appId = ''
-
-    /**
-         * HttpRequest data.
-         * @member {Uint8Array} data
-         * @memberof httpgate.HttpRequest
-         * @instance
-         */
-    HttpRequest.prototype.data = $util.newBuffer([])
-
-    /**
-         * Creates a new HttpRequest instance using the specified properties.
-         * @function create
-         * @memberof httpgate.HttpRequest
-         * @static
-         * @param {httpgate.IHttpRequest=} [properties] Properties to set
-         * @returns {httpgate.HttpRequest} HttpRequest instance
-         */
-    HttpRequest.create = function create(properties) {
-      return new HttpRequest(properties)
-    }
-
-    /**
-         * Encodes the specified HttpRequest message. Does not implicitly {@link httpgate.HttpRequest.verify|verify} messages.
-         * @function encode
-         * @memberof httpgate.HttpRequest
-         * @static
-         * @param {httpgate.IHttpRequest} message HttpRequest message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-    HttpRequest.encode = function encode(message, writer) {
-      if (!writer) { writer = $Writer.create() }
-      if (message.token != null && Object.hasOwnProperty.call(message, 'token')) { writer.uint32(/* id 1, wireType 2 =*/10).string(message.token) }
-      if (message.v != null && Object.hasOwnProperty.call(message, 'v')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.v) }
-      if (message.sign != null && Object.hasOwnProperty.call(message, 'sign')) { writer.uint32(/* id 3, wireType 2 =*/26).string(message.sign) }
-      if (message.signMethod != null && Object.hasOwnProperty.call(message, 'signMethod')) { writer.uint32(/* id 4, wireType 2 =*/34).string(message.signMethod) }
-      if (message.timeStamp != null && Object.hasOwnProperty.call(message, 'timeStamp')) { writer.uint32(/* id 5, wireType 2 =*/42).string(message.timeStamp) }
-      if (message.appId != null && Object.hasOwnProperty.call(message, 'appId')) { writer.uint32(/* id 6, wireType 2 =*/50).string(message.appId) }
-      if (message.data != null && Object.hasOwnProperty.call(message, 'data')) { writer.uint32(/* id 7, wireType 2 =*/58).bytes(message.data) }
-      return writer
-    }
-
-    /**
-         * Encodes the specified HttpRequest message, length delimited. Does not implicitly {@link httpgate.HttpRequest.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof httpgate.HttpRequest
-         * @static
-         * @param {httpgate.IHttpRequest} message HttpRequest message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-    HttpRequest.encodeDelimited = function encodeDelimited(message, writer) {
-      return this.encode(message, writer).ldelim()
-    }
-
-    /**
-         * Decodes a HttpRequest message from the specified reader or buffer.
-         * @function decode
-         * @memberof httpgate.HttpRequest
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {httpgate.HttpRequest} HttpRequest
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-    HttpRequest.decode = function decode(reader, length) {
-      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
-      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.httpgate.HttpRequest()
-      while (reader.pos < end) {
-        var tag = reader.uint32()
-        switch (tag >>> 3) {
-          case 1: {
-            message.token = reader.string()
-            break
-          }
-          case 2: {
-            message.v = reader.string()
-            break
-          }
-          case 3: {
-            message.sign = reader.string()
-            break
-          }
-          case 4: {
-            message.signMethod = reader.string()
-            break
-          }
-          case 5: {
-            message.timeStamp = reader.string()
-            break
-          }
-          case 6: {
-            message.appId = reader.string()
-            break
-          }
-          case 7: {
-            message.data = reader.bytes()
-            break
-          }
-          default:
-            reader.skipType(tag & 7)
-            break
-        }
-      }
-      return message
-    }
-
-    /**
-         * Decodes a HttpRequest message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof httpgate.HttpRequest
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {httpgate.HttpRequest} HttpRequest
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-    HttpRequest.decodeDelimited = function decodeDelimited(reader) {
-      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
-      return this.decode(reader, reader.uint32())
-    }
-
-    /**
-         * Verifies a HttpRequest message.
-         * @function verify
-         * @memberof httpgate.HttpRequest
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-    HttpRequest.verify = function verify(message) {
-      if (typeof message !== 'object' || message === null) { return 'object expected' }
-      if (message.token != null && message.hasOwnProperty('token')) {
-        if (!$util.isString(message.token)) { return 'token: string expected' }
-      }
-      if (message.v != null && message.hasOwnProperty('v')) {
-        if (!$util.isString(message.v)) { return 'v: string expected' }
-      }
-      if (message.sign != null && message.hasOwnProperty('sign')) {
-        if (!$util.isString(message.sign)) { return 'sign: string expected' }
-      }
-      if (message.signMethod != null && message.hasOwnProperty('signMethod')) {
-        if (!$util.isString(message.signMethod)) { return 'signMethod: string expected' }
-      }
-      if (message.timeStamp != null && message.hasOwnProperty('timeStamp')) {
-        if (!$util.isString(message.timeStamp)) { return 'timeStamp: string expected' }
-      }
-      if (message.appId != null && message.hasOwnProperty('appId')) {
-        if (!$util.isString(message.appId)) { return 'appId: string expected' }
-      }
-      if (message.data != null && message.hasOwnProperty('data')) {
-        if (!(message.data && typeof message.data.length === 'number' || $util.isString(message.data))) { return 'data: buffer expected' }
-      }
-      return null
-    }
-
-    /**
-         * Creates a HttpRequest message from a plain object. Also converts values to their respective internal types.
-         * @function fromObject
-         * @memberof httpgate.HttpRequest
-         * @static
-         * @param {Object.<string,*>} object Plain object
-         * @returns {httpgate.HttpRequest} HttpRequest
-         */
-    HttpRequest.fromObject = function fromObject(object) {
-      if (object instanceof $root.httpgate.HttpRequest) { return object }
-      var message = new $root.httpgate.HttpRequest()
-      if (object.token != null) { message.token = String(object.token) }
-      if (object.v != null) { message.v = String(object.v) }
-      if (object.sign != null) { message.sign = String(object.sign) }
-      if (object.signMethod != null) { message.signMethod = String(object.signMethod) }
-      if (object.timeStamp != null) { message.timeStamp = String(object.timeStamp) }
-      if (object.appId != null) { message.appId = String(object.appId) }
-      if (object.data != null) {
-        if (typeof object.data === 'string') { $util.base64.decode(object.data, message.data = $util.newBuffer($util.base64.length(object.data)), 0) } else if (object.data.length >= 0) { message.data = object.data }
-      }
-      return message
-    }
-
-    /**
-         * Creates a plain object from a HttpRequest message. Also converts values to other types if specified.
-         * @function toObject
-         * @memberof httpgate.HttpRequest
-         * @static
-         * @param {httpgate.HttpRequest} message HttpRequest
-         * @param {$protobuf.IConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-    HttpRequest.toObject = function toObject(message, options) {
-      if (!options) { options = {} }
-      var object = {}
-      if (options.defaults) {
-        object.token = ''
-        object.v = ''
-        object.sign = ''
-        object.signMethod = ''
-        object.timeStamp = ''
-        object.appId = ''
-        if (options.bytes === String) { object.data = '' } else {
-          object.data = []
-          if (options.bytes !== Array) { object.data = $util.newBuffer(object.data) }
-        }
-      }
-      if (message.token != null && message.hasOwnProperty('token')) { object.token = message.token }
-      if (message.v != null && message.hasOwnProperty('v')) { object.v = message.v }
-      if (message.sign != null && message.hasOwnProperty('sign')) { object.sign = message.sign }
-      if (message.signMethod != null && message.hasOwnProperty('signMethod')) { object.signMethod = message.signMethod }
-      if (message.timeStamp != null && message.hasOwnProperty('timeStamp')) { object.timeStamp = message.timeStamp }
-      if (message.appId != null && message.hasOwnProperty('appId')) { object.appId = message.appId }
-      if (message.data != null && message.hasOwnProperty('data')) { object.data = options.bytes === String ? $util.base64.encode(message.data, 0, message.data.length) : options.bytes === Array ? Array.prototype.slice.call(message.data) : message.data }
-      return object
-    }
-
-    /**
-         * Converts this HttpRequest to JSON.
-         * @function toJSON
-         * @memberof httpgate.HttpRequest
-         * @instance
-         * @returns {Object.<string,*>} JSON object
-         */
-    HttpRequest.prototype.toJSON = function toJSON() {
-      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
-    }
-
-    /**
-         * Gets the default type url for HttpRequest
-         * @function getTypeUrl
-         * @memberof httpgate.HttpRequest
-         * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
-         */
-    HttpRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-      if (typeUrlPrefix === undefined) {
-        typeUrlPrefix = 'type.googleapis.com'
-      }
-      return typeUrlPrefix + '/httpgate.HttpRequest'
-    }
-
-    return HttpRequest
-  })()
-
-  httpgate.HttpResponse = (function() {
-    /**
-         * Properties of a HttpResponse.
-         * @memberof httpgate
-         * @interface IHttpResponse
-         * @property {pbcommon.EnumCode|null} [code] HttpResponse code
-         * @property {string|null} [msg] HttpResponse msg
-         * @property {Uint8Array|null} [data] HttpResponse data
-         * @property {string|null} [newToken] HttpResponse newToken
-         */
-
-    /**
-         * Constructs a new HttpResponse.
-         * @memberof httpgate
-         * @classdesc Represents a HttpResponse.
-         * @implements IHttpResponse
-         * @constructor
-         * @param {httpgate.IHttpResponse=} [properties] Properties to set
-         */
-    function HttpResponse(properties) {
-      if (properties) {
-        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
-          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
-        }
-      }
-    }
-
-    /**
-         * HttpResponse code.
+         * AuthLoginReply code.
          * @member {pbcommon.EnumCode} code
-         * @memberof httpgate.HttpResponse
+         * @memberof pbauth.AuthLoginReply
          * @instance
          */
-    HttpResponse.prototype.code = 0
+    AuthLoginReply.prototype.code = 0
 
     /**
-         * HttpResponse msg.
-         * @member {string} msg
-         * @memberof httpgate.HttpResponse
+         * AuthLoginReply token.
+         * @member {string} token
+         * @memberof pbauth.AuthLoginReply
          * @instance
          */
-    HttpResponse.prototype.msg = ''
+    AuthLoginReply.prototype.token = ''
 
     /**
-         * HttpResponse data.
-         * @member {Uint8Array} data
-         * @memberof httpgate.HttpResponse
+         * AuthLoginReply user.
+         * @member {pbuser.IUserModel|null|undefined} user
+         * @memberof pbauth.AuthLoginReply
          * @instance
          */
-    HttpResponse.prototype.data = $util.newBuffer([])
+    AuthLoginReply.prototype.user = null
 
     /**
-         * HttpResponse newToken.
-         * @member {string} newToken
-         * @memberof httpgate.HttpResponse
-         * @instance
-         */
-    HttpResponse.prototype.newToken = ''
-
-    /**
-         * Creates a new HttpResponse instance using the specified properties.
+         * Creates a new AuthLoginReply instance using the specified properties.
          * @function create
-         * @memberof httpgate.HttpResponse
+         * @memberof pbauth.AuthLoginReply
          * @static
-         * @param {httpgate.IHttpResponse=} [properties] Properties to set
-         * @returns {httpgate.HttpResponse} HttpResponse instance
+         * @param {pbauth.IAuthLoginReply=} [properties] Properties to set
+         * @returns {pbauth.AuthLoginReply} AuthLoginReply instance
          */
-    HttpResponse.create = function create(properties) {
-      return new HttpResponse(properties)
+    AuthLoginReply.create = function create(properties) {
+      return new AuthLoginReply(properties)
     }
 
     /**
-         * Encodes the specified HttpResponse message. Does not implicitly {@link httpgate.HttpResponse.verify|verify} messages.
+         * Encodes the specified AuthLoginReply message. Does not implicitly {@link pbauth.AuthLoginReply.verify|verify} messages.
          * @function encode
-         * @memberof httpgate.HttpResponse
+         * @memberof pbauth.AuthLoginReply
          * @static
-         * @param {httpgate.IHttpResponse} message HttpResponse message or plain object to encode
+         * @param {pbauth.IAuthLoginReply} message AuthLoginReply message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-    HttpResponse.encode = function encode(message, writer) {
+    AuthLoginReply.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.code != null && Object.hasOwnProperty.call(message, 'code')) { writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code) }
-      if (message.msg != null && Object.hasOwnProperty.call(message, 'msg')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg) }
-      if (message.data != null && Object.hasOwnProperty.call(message, 'data')) { writer.uint32(/* id 3, wireType 2 =*/26).bytes(message.data) }
-      if (message.newToken != null && Object.hasOwnProperty.call(message, 'newToken')) { writer.uint32(/* id 4, wireType 2 =*/34).string(message.newToken) }
+      if (message.token != null && Object.hasOwnProperty.call(message, 'token')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.token) }
+      if (message.user != null && Object.hasOwnProperty.call(message, 'user')) { $root.pbuser.UserModel.encode(message.user, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim() }
       return writer
     }
 
     /**
-         * Encodes the specified HttpResponse message, length delimited. Does not implicitly {@link httpgate.HttpResponse.verify|verify} messages.
+         * Encodes the specified AuthLoginReply message, length delimited. Does not implicitly {@link pbauth.AuthLoginReply.verify|verify} messages.
          * @function encodeDelimited
-         * @memberof httpgate.HttpResponse
+         * @memberof pbauth.AuthLoginReply
          * @static
-         * @param {httpgate.IHttpResponse} message HttpResponse message or plain object to encode
+         * @param {pbauth.IAuthLoginReply} message AuthLoginReply message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-    HttpResponse.encodeDelimited = function encodeDelimited(message, writer) {
+    AuthLoginReply.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-         * Decodes a HttpResponse message from the specified reader or buffer.
+         * Decodes an AuthLoginReply message from the specified reader or buffer.
          * @function decode
-         * @memberof httpgate.HttpResponse
+         * @memberof pbauth.AuthLoginReply
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {httpgate.HttpResponse} HttpResponse
+         * @returns {pbauth.AuthLoginReply} AuthLoginReply
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-    HttpResponse.decode = function decode(reader, length) {
+    AuthLoginReply.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
-      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.httpgate.HttpResponse()
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbauth.AuthLoginReply()
       while (reader.pos < end) {
         var tag = reader.uint32()
         switch (tag >>> 3) {
@@ -6568,15 +5918,11 @@ $root.httpgate = (function() {
             break
           }
           case 2: {
-            message.msg = reader.string()
+            message.token = reader.string()
             break
           }
           case 3: {
-            message.data = reader.bytes()
-            break
-          }
-          case 4: {
-            message.newToken = reader.string()
+            message.user = $root.pbuser.UserModel.decode(reader, reader.uint32())
             break
           }
           default:
@@ -6588,29 +5934,29 @@ $root.httpgate = (function() {
     }
 
     /**
-         * Decodes a HttpResponse message from the specified reader or buffer, length delimited.
+         * Decodes an AuthLoginReply message from the specified reader or buffer, length delimited.
          * @function decodeDelimited
-         * @memberof httpgate.HttpResponse
+         * @memberof pbauth.AuthLoginReply
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {httpgate.HttpResponse} HttpResponse
+         * @returns {pbauth.AuthLoginReply} AuthLoginReply
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-    HttpResponse.decodeDelimited = function decodeDelimited(reader) {
+    AuthLoginReply.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-         * Verifies a HttpResponse message.
+         * Verifies an AuthLoginReply message.
          * @function verify
-         * @memberof httpgate.HttpResponse
+         * @memberof pbauth.AuthLoginReply
          * @static
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-    HttpResponse.verify = function verify(message) {
+    AuthLoginReply.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.code != null && message.hasOwnProperty('code')) {
         switch (message.code) {
@@ -6644,29 +5990,27 @@ $root.httpgate = (function() {
             break
         }
       }
-      if (message.msg != null && message.hasOwnProperty('msg')) {
-        if (!$util.isString(message.msg)) { return 'msg: string expected' }
+      if (message.token != null && message.hasOwnProperty('token')) {
+        if (!$util.isString(message.token)) { return 'token: string expected' }
       }
-      if (message.data != null && message.hasOwnProperty('data')) {
-        if (!(message.data && typeof message.data.length === 'number' || $util.isString(message.data))) { return 'data: buffer expected' }
-      }
-      if (message.newToken != null && message.hasOwnProperty('newToken')) {
-        if (!$util.isString(message.newToken)) { return 'newToken: string expected' }
+      if (message.user != null && message.hasOwnProperty('user')) {
+        var error = $root.pbuser.UserModel.verify(message.user)
+        if (error) { return 'user.' + error }
       }
       return null
     }
 
     /**
-         * Creates a HttpResponse message from a plain object. Also converts values to their respective internal types.
+         * Creates an AuthLoginReply message from a plain object. Also converts values to their respective internal types.
          * @function fromObject
-         * @memberof httpgate.HttpResponse
+         * @memberof pbauth.AuthLoginReply
          * @static
          * @param {Object.<string,*>} object Plain object
-         * @returns {httpgate.HttpResponse} HttpResponse
+         * @returns {pbauth.AuthLoginReply} AuthLoginReply
          */
-    HttpResponse.fromObject = function fromObject(object) {
-      if (object instanceof $root.httpgate.HttpResponse) { return object }
-      var message = new $root.httpgate.HttpResponse()
+    AuthLoginReply.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbauth.AuthLoginReply) { return object }
+      var message = new $root.pbauth.AuthLoginReply()
       switch (object.code) {
         default:
           if (typeof object.code === 'number') {
@@ -6775,72 +6119,1515 @@ $root.httpgate = (function() {
           message.code = 2014
           break
       }
-      if (object.msg != null) { message.msg = String(object.msg) }
-      if (object.data != null) {
-        if (typeof object.data === 'string') { $util.base64.decode(object.data, message.data = $util.newBuffer($util.base64.length(object.data)), 0) } else if (object.data.length >= 0) { message.data = object.data }
+      if (object.token != null) { message.token = String(object.token) }
+      if (object.user != null) {
+        if (typeof object.user !== 'object') { throw TypeError('.pbauth.AuthLoginReply.user: object expected') }
+        message.user = $root.pbuser.UserModel.fromObject(object.user)
       }
-      if (object.newToken != null) { message.newToken = String(object.newToken) }
       return message
     }
 
     /**
-         * Creates a plain object from a HttpResponse message. Also converts values to other types if specified.
+         * Creates a plain object from an AuthLoginReply message. Also converts values to other types if specified.
          * @function toObject
-         * @memberof httpgate.HttpResponse
+         * @memberof pbauth.AuthLoginReply
          * @static
-         * @param {httpgate.HttpResponse} message HttpResponse
+         * @param {pbauth.AuthLoginReply} message AuthLoginReply
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-    HttpResponse.toObject = function toObject(message, options) {
+    AuthLoginReply.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
       if (options.defaults) {
         object.code = options.enums === String ? 'None' : 0
-        object.msg = ''
-        if (options.bytes === String) { object.data = '' } else {
-          object.data = []
-          if (options.bytes !== Array) { object.data = $util.newBuffer(object.data) }
-        }
-        object.newToken = ''
+        object.token = ''
+        object.user = null
       }
       if (message.code != null && message.hasOwnProperty('code')) { object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code }
-      if (message.msg != null && message.hasOwnProperty('msg')) { object.msg = message.msg }
-      if (message.data != null && message.hasOwnProperty('data')) { object.data = options.bytes === String ? $util.base64.encode(message.data, 0, message.data.length) : options.bytes === Array ? Array.prototype.slice.call(message.data) : message.data }
-      if (message.newToken != null && message.hasOwnProperty('newToken')) { object.newToken = message.newToken }
+      if (message.token != null && message.hasOwnProperty('token')) { object.token = message.token }
+      if (message.user != null && message.hasOwnProperty('user')) { object.user = $root.pbuser.UserModel.toObject(message.user, options) }
       return object
     }
 
     /**
-         * Converts this HttpResponse to JSON.
+         * Converts this AuthLoginReply to JSON.
          * @function toJSON
-         * @memberof httpgate.HttpResponse
+         * @memberof pbauth.AuthLoginReply
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-    HttpResponse.prototype.toJSON = function toJSON() {
+    AuthLoginReply.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-         * Gets the default type url for HttpResponse
+         * Gets the default type url for AuthLoginReply
          * @function getTypeUrl
-         * @memberof httpgate.HttpResponse
+         * @memberof pbauth.AuthLoginReply
          * @static
          * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns {string} The default type url
          */
-    HttpResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+    AuthLoginReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
       }
-      return typeUrlPrefix + '/httpgate.HttpResponse'
+      return typeUrlPrefix + '/pbauth.AuthLoginReply'
     }
 
-    return HttpResponse
+    return AuthLoginReply
   })()
 
-  return httpgate
+  pbauth.AdminLoginArgs = (function() {
+    /**
+         * Properties of an AdminLoginArgs.
+         * @memberof pbauth
+         * @interface IAdminLoginArgs
+         * @property {string|null} [username] AdminLoginArgs username
+         * @property {string|null} [password] AdminLoginArgs password
+         * @property {string|null} [captchaId] AdminLoginArgs captchaId
+         * @property {string|null} [captchaCode] AdminLoginArgs captchaCode
+         */
+
+    /**
+         * Constructs a new AdminLoginArgs.
+         * @memberof pbauth
+         * @classdesc Represents an AdminLoginArgs.
+         * @implements IAdminLoginArgs
+         * @constructor
+         * @param {pbauth.IAdminLoginArgs=} [properties] Properties to set
+         */
+    function AdminLoginArgs(properties) {
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * AdminLoginArgs username.
+         * @member {string} username
+         * @memberof pbauth.AdminLoginArgs
+         * @instance
+         */
+    AdminLoginArgs.prototype.username = ''
+
+    /**
+         * AdminLoginArgs password.
+         * @member {string} password
+         * @memberof pbauth.AdminLoginArgs
+         * @instance
+         */
+    AdminLoginArgs.prototype.password = ''
+
+    /**
+         * AdminLoginArgs captchaId.
+         * @member {string} captchaId
+         * @memberof pbauth.AdminLoginArgs
+         * @instance
+         */
+    AdminLoginArgs.prototype.captchaId = ''
+
+    /**
+         * AdminLoginArgs captchaCode.
+         * @member {string} captchaCode
+         * @memberof pbauth.AdminLoginArgs
+         * @instance
+         */
+    AdminLoginArgs.prototype.captchaCode = ''
+
+    /**
+         * Creates a new AdminLoginArgs instance using the specified properties.
+         * @function create
+         * @memberof pbauth.AdminLoginArgs
+         * @static
+         * @param {pbauth.IAdminLoginArgs=} [properties] Properties to set
+         * @returns {pbauth.AdminLoginArgs} AdminLoginArgs instance
+         */
+    AdminLoginArgs.create = function create(properties) {
+      return new AdminLoginArgs(properties)
+    }
+
+    /**
+         * Encodes the specified AdminLoginArgs message. Does not implicitly {@link pbauth.AdminLoginArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbauth.AdminLoginArgs
+         * @static
+         * @param {pbauth.IAdminLoginArgs} message AdminLoginArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    AdminLoginArgs.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.username != null && Object.hasOwnProperty.call(message, 'username')) { writer.uint32(/* id 1, wireType 2 =*/10).string(message.username) }
+      if (message.password != null && Object.hasOwnProperty.call(message, 'password')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.password) }
+      if (message.captchaId != null && Object.hasOwnProperty.call(message, 'captchaId')) { writer.uint32(/* id 3, wireType 2 =*/26).string(message.captchaId) }
+      if (message.captchaCode != null && Object.hasOwnProperty.call(message, 'captchaCode')) { writer.uint32(/* id 4, wireType 2 =*/34).string(message.captchaCode) }
+      return writer
+    }
+
+    /**
+         * Encodes the specified AdminLoginArgs message, length delimited. Does not implicitly {@link pbauth.AdminLoginArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbauth.AdminLoginArgs
+         * @static
+         * @param {pbauth.IAdminLoginArgs} message AdminLoginArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    AdminLoginArgs.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes an AdminLoginArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbauth.AdminLoginArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbauth.AdminLoginArgs} AdminLoginArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    AdminLoginArgs.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbauth.AdminLoginArgs()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            message.username = reader.string()
+            break
+          }
+          case 2: {
+            message.password = reader.string()
+            break
+          }
+          case 3: {
+            message.captchaId = reader.string()
+            break
+          }
+          case 4: {
+            message.captchaCode = reader.string()
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes an AdminLoginArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbauth.AdminLoginArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbauth.AdminLoginArgs} AdminLoginArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    AdminLoginArgs.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies an AdminLoginArgs message.
+         * @function verify
+         * @memberof pbauth.AdminLoginArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    AdminLoginArgs.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.username != null && message.hasOwnProperty('username')) {
+        if (!$util.isString(message.username)) { return 'username: string expected' }
+      }
+      if (message.password != null && message.hasOwnProperty('password')) {
+        if (!$util.isString(message.password)) { return 'password: string expected' }
+      }
+      if (message.captchaId != null && message.hasOwnProperty('captchaId')) {
+        if (!$util.isString(message.captchaId)) { return 'captchaId: string expected' }
+      }
+      if (message.captchaCode != null && message.hasOwnProperty('captchaCode')) {
+        if (!$util.isString(message.captchaCode)) { return 'captchaCode: string expected' }
+      }
+      return null
+    }
+
+    /**
+         * Creates an AdminLoginArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbauth.AdminLoginArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbauth.AdminLoginArgs} AdminLoginArgs
+         */
+    AdminLoginArgs.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbauth.AdminLoginArgs) { return object }
+      var message = new $root.pbauth.AdminLoginArgs()
+      if (object.username != null) { message.username = String(object.username) }
+      if (object.password != null) { message.password = String(object.password) }
+      if (object.captchaId != null) { message.captchaId = String(object.captchaId) }
+      if (object.captchaCode != null) { message.captchaCode = String(object.captchaCode) }
+      return message
+    }
+
+    /**
+         * Creates a plain object from an AdminLoginArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbauth.AdminLoginArgs
+         * @static
+         * @param {pbauth.AdminLoginArgs} message AdminLoginArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    AdminLoginArgs.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.defaults) {
+        object.username = ''
+        object.password = ''
+        object.captchaId = ''
+        object.captchaCode = ''
+      }
+      if (message.username != null && message.hasOwnProperty('username')) { object.username = message.username }
+      if (message.password != null && message.hasOwnProperty('password')) { object.password = message.password }
+      if (message.captchaId != null && message.hasOwnProperty('captchaId')) { object.captchaId = message.captchaId }
+      if (message.captchaCode != null && message.hasOwnProperty('captchaCode')) { object.captchaCode = message.captchaCode }
+      return object
+    }
+
+    /**
+         * Converts this AdminLoginArgs to JSON.
+         * @function toJSON
+         * @memberof pbauth.AdminLoginArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    AdminLoginArgs.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for AdminLoginArgs
+         * @function getTypeUrl
+         * @memberof pbauth.AdminLoginArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    AdminLoginArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/pbauth.AdminLoginArgs'
+    }
+
+    return AdminLoginArgs
+  })()
+
+  pbauth.WxLogin = (function() {
+    /**
+         * Properties of a WxLogin.
+         * @memberof pbauth
+         * @interface IWxLogin
+         * @property {string|null} [code] WxLogin code
+         * @property {string|null} [encryptedData] WxLogin encryptedData
+         * @property {string|null} [iv] WxLogin iv
+         * @property {string|null} [rawData] WxLogin rawData
+         * @property {string|null} [signature] WxLogin signature
+         */
+
+    /**
+         * Constructs a new WxLogin.
+         * @memberof pbauth
+         * @classdesc Represents a WxLogin.
+         * @implements IWxLogin
+         * @constructor
+         * @param {pbauth.IWxLogin=} [properties] Properties to set
+         */
+    function WxLogin(properties) {
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * WxLogin code.
+         * @member {string} code
+         * @memberof pbauth.WxLogin
+         * @instance
+         */
+    WxLogin.prototype.code = ''
+
+    /**
+         * WxLogin encryptedData.
+         * @member {string} encryptedData
+         * @memberof pbauth.WxLogin
+         * @instance
+         */
+    WxLogin.prototype.encryptedData = ''
+
+    /**
+         * WxLogin iv.
+         * @member {string} iv
+         * @memberof pbauth.WxLogin
+         * @instance
+         */
+    WxLogin.prototype.iv = ''
+
+    /**
+         * WxLogin rawData.
+         * @member {string} rawData
+         * @memberof pbauth.WxLogin
+         * @instance
+         */
+    WxLogin.prototype.rawData = ''
+
+    /**
+         * WxLogin signature.
+         * @member {string} signature
+         * @memberof pbauth.WxLogin
+         * @instance
+         */
+    WxLogin.prototype.signature = ''
+
+    /**
+         * Creates a new WxLogin instance using the specified properties.
+         * @function create
+         * @memberof pbauth.WxLogin
+         * @static
+         * @param {pbauth.IWxLogin=} [properties] Properties to set
+         * @returns {pbauth.WxLogin} WxLogin instance
+         */
+    WxLogin.create = function create(properties) {
+      return new WxLogin(properties)
+    }
+
+    /**
+         * Encodes the specified WxLogin message. Does not implicitly {@link pbauth.WxLogin.verify|verify} messages.
+         * @function encode
+         * @memberof pbauth.WxLogin
+         * @static
+         * @param {pbauth.IWxLogin} message WxLogin message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    WxLogin.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.code != null && Object.hasOwnProperty.call(message, 'code')) { writer.uint32(/* id 1, wireType 2 =*/10).string(message.code) }
+      if (message.encryptedData != null && Object.hasOwnProperty.call(message, 'encryptedData')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.encryptedData) }
+      if (message.iv != null && Object.hasOwnProperty.call(message, 'iv')) { writer.uint32(/* id 3, wireType 2 =*/26).string(message.iv) }
+      if (message.rawData != null && Object.hasOwnProperty.call(message, 'rawData')) { writer.uint32(/* id 4, wireType 2 =*/34).string(message.rawData) }
+      if (message.signature != null && Object.hasOwnProperty.call(message, 'signature')) { writer.uint32(/* id 5, wireType 2 =*/42).string(message.signature) }
+      return writer
+    }
+
+    /**
+         * Encodes the specified WxLogin message, length delimited. Does not implicitly {@link pbauth.WxLogin.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbauth.WxLogin
+         * @static
+         * @param {pbauth.IWxLogin} message WxLogin message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    WxLogin.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes a WxLogin message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbauth.WxLogin
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbauth.WxLogin} WxLogin
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    WxLogin.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbauth.WxLogin()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            message.code = reader.string()
+            break
+          }
+          case 2: {
+            message.encryptedData = reader.string()
+            break
+          }
+          case 3: {
+            message.iv = reader.string()
+            break
+          }
+          case 4: {
+            message.rawData = reader.string()
+            break
+          }
+          case 5: {
+            message.signature = reader.string()
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes a WxLogin message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbauth.WxLogin
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbauth.WxLogin} WxLogin
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    WxLogin.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies a WxLogin message.
+         * @function verify
+         * @memberof pbauth.WxLogin
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    WxLogin.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.code != null && message.hasOwnProperty('code')) {
+        if (!$util.isString(message.code)) { return 'code: string expected' }
+      }
+      if (message.encryptedData != null && message.hasOwnProperty('encryptedData')) {
+        if (!$util.isString(message.encryptedData)) { return 'encryptedData: string expected' }
+      }
+      if (message.iv != null && message.hasOwnProperty('iv')) {
+        if (!$util.isString(message.iv)) { return 'iv: string expected' }
+      }
+      if (message.rawData != null && message.hasOwnProperty('rawData')) {
+        if (!$util.isString(message.rawData)) { return 'rawData: string expected' }
+      }
+      if (message.signature != null && message.hasOwnProperty('signature')) {
+        if (!$util.isString(message.signature)) { return 'signature: string expected' }
+      }
+      return null
+    }
+
+    /**
+         * Creates a WxLogin message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbauth.WxLogin
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbauth.WxLogin} WxLogin
+         */
+    WxLogin.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbauth.WxLogin) { return object }
+      var message = new $root.pbauth.WxLogin()
+      if (object.code != null) { message.code = String(object.code) }
+      if (object.encryptedData != null) { message.encryptedData = String(object.encryptedData) }
+      if (object.iv != null) { message.iv = String(object.iv) }
+      if (object.rawData != null) { message.rawData = String(object.rawData) }
+      if (object.signature != null) { message.signature = String(object.signature) }
+      return message
+    }
+
+    /**
+         * Creates a plain object from a WxLogin message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbauth.WxLogin
+         * @static
+         * @param {pbauth.WxLogin} message WxLogin
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    WxLogin.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.defaults) {
+        object.code = ''
+        object.encryptedData = ''
+        object.iv = ''
+        object.rawData = ''
+        object.signature = ''
+      }
+      if (message.code != null && message.hasOwnProperty('code')) { object.code = message.code }
+      if (message.encryptedData != null && message.hasOwnProperty('encryptedData')) { object.encryptedData = message.encryptedData }
+      if (message.iv != null && message.hasOwnProperty('iv')) { object.iv = message.iv }
+      if (message.rawData != null && message.hasOwnProperty('rawData')) { object.rawData = message.rawData }
+      if (message.signature != null && message.hasOwnProperty('signature')) { object.signature = message.signature }
+      return object
+    }
+
+    /**
+         * Converts this WxLogin to JSON.
+         * @function toJSON
+         * @memberof pbauth.WxLogin
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    WxLogin.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for WxLogin
+         * @function getTypeUrl
+         * @memberof pbauth.WxLogin
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    WxLogin.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/pbauth.WxLogin'
+    }
+
+    return WxLogin
+  })()
+
+  pbauth.WxLoginReply = (function() {
+    /**
+         * Properties of a WxLoginReply.
+         * @memberof pbauth
+         * @interface IWxLoginReply
+         * @property {string|null} [openid] WxLoginReply openid
+         */
+
+    /**
+         * Constructs a new WxLoginReply.
+         * @memberof pbauth
+         * @classdesc Represents a WxLoginReply.
+         * @implements IWxLoginReply
+         * @constructor
+         * @param {pbauth.IWxLoginReply=} [properties] Properties to set
+         */
+    function WxLoginReply(properties) {
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * WxLoginReply openid.
+         * @member {string} openid
+         * @memberof pbauth.WxLoginReply
+         * @instance
+         */
+    WxLoginReply.prototype.openid = ''
+
+    /**
+         * Creates a new WxLoginReply instance using the specified properties.
+         * @function create
+         * @memberof pbauth.WxLoginReply
+         * @static
+         * @param {pbauth.IWxLoginReply=} [properties] Properties to set
+         * @returns {pbauth.WxLoginReply} WxLoginReply instance
+         */
+    WxLoginReply.create = function create(properties) {
+      return new WxLoginReply(properties)
+    }
+
+    /**
+         * Encodes the specified WxLoginReply message. Does not implicitly {@link pbauth.WxLoginReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbauth.WxLoginReply
+         * @static
+         * @param {pbauth.IWxLoginReply} message WxLoginReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    WxLoginReply.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.openid != null && Object.hasOwnProperty.call(message, 'openid')) { writer.uint32(/* id 1, wireType 2 =*/10).string(message.openid) }
+      return writer
+    }
+
+    /**
+         * Encodes the specified WxLoginReply message, length delimited. Does not implicitly {@link pbauth.WxLoginReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbauth.WxLoginReply
+         * @static
+         * @param {pbauth.IWxLoginReply} message WxLoginReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    WxLoginReply.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes a WxLoginReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbauth.WxLoginReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbauth.WxLoginReply} WxLoginReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    WxLoginReply.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbauth.WxLoginReply()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            message.openid = reader.string()
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes a WxLoginReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbauth.WxLoginReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbauth.WxLoginReply} WxLoginReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    WxLoginReply.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies a WxLoginReply message.
+         * @function verify
+         * @memberof pbauth.WxLoginReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    WxLoginReply.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.openid != null && message.hasOwnProperty('openid')) {
+        if (!$util.isString(message.openid)) { return 'openid: string expected' }
+      }
+      return null
+    }
+
+    /**
+         * Creates a WxLoginReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbauth.WxLoginReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbauth.WxLoginReply} WxLoginReply
+         */
+    WxLoginReply.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbauth.WxLoginReply) { return object }
+      var message = new $root.pbauth.WxLoginReply()
+      if (object.openid != null) { message.openid = String(object.openid) }
+      return message
+    }
+
+    /**
+         * Creates a plain object from a WxLoginReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbauth.WxLoginReply
+         * @static
+         * @param {pbauth.WxLoginReply} message WxLoginReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    WxLoginReply.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.defaults) { object.openid = '' }
+      if (message.openid != null && message.hasOwnProperty('openid')) { object.openid = message.openid }
+      return object
+    }
+
+    /**
+         * Converts this WxLoginReply to JSON.
+         * @function toJSON
+         * @memberof pbauth.WxLoginReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    WxLoginReply.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for WxLoginReply
+         * @function getTypeUrl
+         * @memberof pbauth.WxLoginReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    WxLoginReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/pbauth.WxLoginReply'
+    }
+
+    return WxLoginReply
+  })()
+
+  pbauth.ParseTokenArgs = (function() {
+    /**
+         * Properties of a ParseTokenArgs.
+         * @memberof pbauth
+         * @interface IParseTokenArgs
+         * @property {string|null} [token] ParseTokenArgs token
+         */
+
+    /**
+         * Constructs a new ParseTokenArgs.
+         * @memberof pbauth
+         * @classdesc Represents a ParseTokenArgs.
+         * @implements IParseTokenArgs
+         * @constructor
+         * @param {pbauth.IParseTokenArgs=} [properties] Properties to set
+         */
+    function ParseTokenArgs(properties) {
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * ParseTokenArgs token.
+         * @member {string} token
+         * @memberof pbauth.ParseTokenArgs
+         * @instance
+         */
+    ParseTokenArgs.prototype.token = ''
+
+    /**
+         * Creates a new ParseTokenArgs instance using the specified properties.
+         * @function create
+         * @memberof pbauth.ParseTokenArgs
+         * @static
+         * @param {pbauth.IParseTokenArgs=} [properties] Properties to set
+         * @returns {pbauth.ParseTokenArgs} ParseTokenArgs instance
+         */
+    ParseTokenArgs.create = function create(properties) {
+      return new ParseTokenArgs(properties)
+    }
+
+    /**
+         * Encodes the specified ParseTokenArgs message. Does not implicitly {@link pbauth.ParseTokenArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbauth.ParseTokenArgs
+         * @static
+         * @param {pbauth.IParseTokenArgs} message ParseTokenArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    ParseTokenArgs.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.token != null && Object.hasOwnProperty.call(message, 'token')) { writer.uint32(/* id 1, wireType 2 =*/10).string(message.token) }
+      return writer
+    }
+
+    /**
+         * Encodes the specified ParseTokenArgs message, length delimited. Does not implicitly {@link pbauth.ParseTokenArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbauth.ParseTokenArgs
+         * @static
+         * @param {pbauth.IParseTokenArgs} message ParseTokenArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    ParseTokenArgs.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes a ParseTokenArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbauth.ParseTokenArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbauth.ParseTokenArgs} ParseTokenArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    ParseTokenArgs.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbauth.ParseTokenArgs()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            message.token = reader.string()
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes a ParseTokenArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbauth.ParseTokenArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbauth.ParseTokenArgs} ParseTokenArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    ParseTokenArgs.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies a ParseTokenArgs message.
+         * @function verify
+         * @memberof pbauth.ParseTokenArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    ParseTokenArgs.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.token != null && message.hasOwnProperty('token')) {
+        if (!$util.isString(message.token)) { return 'token: string expected' }
+      }
+      return null
+    }
+
+    /**
+         * Creates a ParseTokenArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbauth.ParseTokenArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbauth.ParseTokenArgs} ParseTokenArgs
+         */
+    ParseTokenArgs.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbauth.ParseTokenArgs) { return object }
+      var message = new $root.pbauth.ParseTokenArgs()
+      if (object.token != null) { message.token = String(object.token) }
+      return message
+    }
+
+    /**
+         * Creates a plain object from a ParseTokenArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbauth.ParseTokenArgs
+         * @static
+         * @param {pbauth.ParseTokenArgs} message ParseTokenArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    ParseTokenArgs.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.defaults) { object.token = '' }
+      if (message.token != null && message.hasOwnProperty('token')) { object.token = message.token }
+      return object
+    }
+
+    /**
+         * Converts this ParseTokenArgs to JSON.
+         * @function toJSON
+         * @memberof pbauth.ParseTokenArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    ParseTokenArgs.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for ParseTokenArgs
+         * @function getTypeUrl
+         * @memberof pbauth.ParseTokenArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    ParseTokenArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/pbauth.ParseTokenArgs'
+    }
+
+    return ParseTokenArgs
+  })()
+
+  pbauth.ParseTokenReply = (function() {
+    /**
+         * Properties of a ParseTokenReply.
+         * @memberof pbauth
+         * @interface IParseTokenReply
+         * @property {pbcommon.EnumCode|null} [code] ParseTokenReply code
+         * @property {string|null} [newToken] ParseTokenReply newToken
+         * @property {number|Long|null} [id] ParseTokenReply id
+         * @property {number|Long|null} [roleId] ParseTokenReply roleId
+         * @property {number|Long|null} [appId] ParseTokenReply appId
+         */
+
+    /**
+         * Constructs a new ParseTokenReply.
+         * @memberof pbauth
+         * @classdesc Represents a ParseTokenReply.
+         * @implements IParseTokenReply
+         * @constructor
+         * @param {pbauth.IParseTokenReply=} [properties] Properties to set
+         */
+    function ParseTokenReply(properties) {
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * ParseTokenReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbauth.ParseTokenReply
+         * @instance
+         */
+    ParseTokenReply.prototype.code = 0
+
+    /**
+         * ParseTokenReply newToken.
+         * @member {string} newToken
+         * @memberof pbauth.ParseTokenReply
+         * @instance
+         */
+    ParseTokenReply.prototype.newToken = ''
+
+    /**
+         * ParseTokenReply id.
+         * @member {number|Long} id
+         * @memberof pbauth.ParseTokenReply
+         * @instance
+         */
+    ParseTokenReply.prototype.id = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+
+    /**
+         * ParseTokenReply roleId.
+         * @member {number|Long} roleId
+         * @memberof pbauth.ParseTokenReply
+         * @instance
+         */
+    ParseTokenReply.prototype.roleId = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+
+    /**
+         * ParseTokenReply appId.
+         * @member {number|Long} appId
+         * @memberof pbauth.ParseTokenReply
+         * @instance
+         */
+    ParseTokenReply.prototype.appId = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+
+    /**
+         * Creates a new ParseTokenReply instance using the specified properties.
+         * @function create
+         * @memberof pbauth.ParseTokenReply
+         * @static
+         * @param {pbauth.IParseTokenReply=} [properties] Properties to set
+         * @returns {pbauth.ParseTokenReply} ParseTokenReply instance
+         */
+    ParseTokenReply.create = function create(properties) {
+      return new ParseTokenReply(properties)
+    }
+
+    /**
+         * Encodes the specified ParseTokenReply message. Does not implicitly {@link pbauth.ParseTokenReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbauth.ParseTokenReply
+         * @static
+         * @param {pbauth.IParseTokenReply} message ParseTokenReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    ParseTokenReply.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.code != null && Object.hasOwnProperty.call(message, 'code')) { writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code) }
+      if (message.newToken != null && Object.hasOwnProperty.call(message, 'newToken')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.newToken) }
+      if (message.id != null && Object.hasOwnProperty.call(message, 'id')) { writer.uint32(/* id 3, wireType 0 =*/24).int64(message.id) }
+      if (message.roleId != null && Object.hasOwnProperty.call(message, 'roleId')) { writer.uint32(/* id 4, wireType 0 =*/32).int64(message.roleId) }
+      if (message.appId != null && Object.hasOwnProperty.call(message, 'appId')) { writer.uint32(/* id 5, wireType 0 =*/40).int64(message.appId) }
+      return writer
+    }
+
+    /**
+         * Encodes the specified ParseTokenReply message, length delimited. Does not implicitly {@link pbauth.ParseTokenReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbauth.ParseTokenReply
+         * @static
+         * @param {pbauth.IParseTokenReply} message ParseTokenReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    ParseTokenReply.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes a ParseTokenReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbauth.ParseTokenReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbauth.ParseTokenReply} ParseTokenReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    ParseTokenReply.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbauth.ParseTokenReply()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            message.code = reader.int32()
+            break
+          }
+          case 2: {
+            message.newToken = reader.string()
+            break
+          }
+          case 3: {
+            message.id = reader.int64()
+            break
+          }
+          case 4: {
+            message.roleId = reader.int64()
+            break
+          }
+          case 5: {
+            message.appId = reader.int64()
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes a ParseTokenReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbauth.ParseTokenReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbauth.ParseTokenReply} ParseTokenReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    ParseTokenReply.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies a ParseTokenReply message.
+         * @function verify
+         * @memberof pbauth.ParseTokenReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    ParseTokenReply.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.code != null && message.hasOwnProperty('code')) {
+        switch (message.code) {
+          default:
+            return 'code: enum value expected'
+          case 0:
+          case 200:
+          case 500:
+          case 501:
+          case 502:
+          case 503:
+          case 504:
+          case 505:
+          case 1001:
+          case 1002:
+          case 1003:
+          case 1004:
+          case 2002:
+          case 2003:
+          case 2004:
+          case 2005:
+          case 2006:
+          case 2007:
+          case 2008:
+          case 2009:
+          case 2010:
+          case 2011:
+          case 2012:
+          case 2013:
+          case 2014:
+            break
+        }
+      }
+      if (message.newToken != null && message.hasOwnProperty('newToken')) {
+        if (!$util.isString(message.newToken)) { return 'newToken: string expected' }
+      }
+      if (message.id != null && message.hasOwnProperty('id')) {
+        if (!$util.isInteger(message.id) && !(message.id && $util.isInteger(message.id.low) && $util.isInteger(message.id.high))) { return 'id: integer|Long expected' }
+      }
+      if (message.roleId != null && message.hasOwnProperty('roleId')) {
+        if (!$util.isInteger(message.roleId) && !(message.roleId && $util.isInteger(message.roleId.low) && $util.isInteger(message.roleId.high))) { return 'roleId: integer|Long expected' }
+      }
+      if (message.appId != null && message.hasOwnProperty('appId')) {
+        if (!$util.isInteger(message.appId) && !(message.appId && $util.isInteger(message.appId.low) && $util.isInteger(message.appId.high))) { return 'appId: integer|Long expected' }
+      }
+      return null
+    }
+
+    /**
+         * Creates a ParseTokenReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbauth.ParseTokenReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbauth.ParseTokenReply} ParseTokenReply
+         */
+    ParseTokenReply.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbauth.ParseTokenReply) { return object }
+      var message = new $root.pbauth.ParseTokenReply()
+      switch (object.code) {
+        default:
+          if (typeof object.code === 'number') {
+            message.code = object.code
+            break
+          }
+          break
+        case 'None':
+        case 0:
+          message.code = 0
+          break
+        case 'Success':
+        case 200:
+          message.code = 200
+          break
+        case 'Fail':
+        case 500:
+          message.code = 500
+          break
+        case 'Unknown':
+        case 501:
+          message.code = 501
+          break
+        case 'Internal':
+        case 502:
+          message.code = 502
+          break
+        case 'Invalid':
+        case 503:
+          message.code = 503
+          break
+        case 'InvalidParam':
+        case 504:
+          message.code = 504
+          break
+        case 'ParamError':
+        case 505:
+          message.code = 505
+          break
+        case 'FindError':
+        case 1001:
+          message.code = 1001
+          break
+        case 'CreateError':
+        case 1002:
+          message.code = 1002
+          break
+        case 'DeleteError':
+        case 1003:
+          message.code = 1003
+          break
+        case 'UpdateError':
+        case 1004:
+          message.code = 1004
+          break
+        case 'InvalidToken':
+        case 2002:
+          message.code = 2002
+          break
+        case 'InvalidSign':
+        case 2003:
+          message.code = 2003
+          break
+        case 'NotLogin':
+        case 2004:
+          message.code = 2004
+          break
+        case 'LoginTimeout':
+        case 2005:
+          message.code = 2005
+          break
+        case 'LoginError':
+        case 2006:
+          message.code = 2006
+          break
+        case 'LoginForbidden':
+        case 2007:
+          message.code = 2007
+          break
+        case 'LoginExpired':
+        case 2008:
+          message.code = 2008
+          break
+        case 'LoginInvalid':
+        case 2009:
+          message.code = 2009
+          break
+        case 'LoginInvalidPassword':
+        case 2010:
+          message.code = 2010
+          break
+        case 'LoginInvalidUsername':
+        case 2011:
+          message.code = 2011
+          break
+        case 'LoginInvalidEmail':
+        case 2012:
+          message.code = 2012
+          break
+        case 'LoginInvalidPhone':
+        case 2013:
+          message.code = 2013
+          break
+        case 'LoginInvalidUsernameOrEmail':
+        case 2014:
+          message.code = 2014
+          break
+      }
+      if (object.newToken != null) { message.newToken = String(object.newToken) }
+      if (object.id != null) {
+        if ($util.Long) { (message.id = $util.Long.fromValue(object.id)).unsigned = false } else if (typeof object.id === 'string') { message.id = parseInt(object.id, 10) } else if (typeof object.id === 'number') { message.id = object.id } else if (typeof object.id === 'object') { message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber() }
+      }
+      if (object.roleId != null) {
+        if ($util.Long) { (message.roleId = $util.Long.fromValue(object.roleId)).unsigned = false } else if (typeof object.roleId === 'string') { message.roleId = parseInt(object.roleId, 10) } else if (typeof object.roleId === 'number') { message.roleId = object.roleId } else if (typeof object.roleId === 'object') { message.roleId = new $util.LongBits(object.roleId.low >>> 0, object.roleId.high >>> 0).toNumber() }
+      }
+      if (object.appId != null) {
+        if ($util.Long) { (message.appId = $util.Long.fromValue(object.appId)).unsigned = false } else if (typeof object.appId === 'string') { message.appId = parseInt(object.appId, 10) } else if (typeof object.appId === 'number') { message.appId = object.appId } else if (typeof object.appId === 'object') { message.appId = new $util.LongBits(object.appId.low >>> 0, object.appId.high >>> 0).toNumber() }
+      }
+      return message
+    }
+
+    /**
+         * Creates a plain object from a ParseTokenReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbauth.ParseTokenReply
+         * @static
+         * @param {pbauth.ParseTokenReply} message ParseTokenReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    ParseTokenReply.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.defaults) {
+        object.code = options.enums === String ? 'None' : 0
+        object.newToken = ''
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.id = options.longs === String ? '0' : 0 }
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.roleId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.roleId = options.longs === String ? '0' : 0 }
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.appId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.appId = options.longs === String ? '0' : 0 }
+      }
+      if (message.code != null && message.hasOwnProperty('code')) { object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code }
+      if (message.newToken != null && message.hasOwnProperty('newToken')) { object.newToken = message.newToken }
+      if (message.id != null && message.hasOwnProperty('id')) {
+        if (typeof message.id === 'number') { object.id = options.longs === String ? String(message.id) : message.id } else { object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id }
+      }
+      if (message.roleId != null && message.hasOwnProperty('roleId')) {
+        if (typeof message.roleId === 'number') { object.roleId = options.longs === String ? String(message.roleId) : message.roleId } else { object.roleId = options.longs === String ? $util.Long.prototype.toString.call(message.roleId) : options.longs === Number ? new $util.LongBits(message.roleId.low >>> 0, message.roleId.high >>> 0).toNumber() : message.roleId }
+      }
+      if (message.appId != null && message.hasOwnProperty('appId')) {
+        if (typeof message.appId === 'number') { object.appId = options.longs === String ? String(message.appId) : message.appId } else { object.appId = options.longs === String ? $util.Long.prototype.toString.call(message.appId) : options.longs === Number ? new $util.LongBits(message.appId.low >>> 0, message.appId.high >>> 0).toNumber() : message.appId }
+      }
+      return object
+    }
+
+    /**
+         * Converts this ParseTokenReply to JSON.
+         * @function toJSON
+         * @memberof pbauth.ParseTokenReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    ParseTokenReply.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for ParseTokenReply
+         * @function getTypeUrl
+         * @memberof pbauth.ParseTokenReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    ParseTokenReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/pbauth.ParseTokenReply'
+    }
+
+    return ParseTokenReply
+  })()
+
+  pbauth.Auth = (function() {
+    /**
+         * Constructs a new Auth service.
+         * @memberof pbauth
+         * @classdesc Represents an Auth
+         * @extends $protobuf.rpc.Service
+         * @constructor
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         */
+    function Auth(rpcImpl, requestDelimited, responseDelimited) {
+      $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited)
+    }
+
+    (Auth.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = Auth
+
+    /**
+         * Creates new Auth service using the specified rpc implementation.
+         * @function create
+         * @memberof pbauth.Auth
+         * @static
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         * @returns {Auth} RPC service. Useful where requests and/or responses are streamed.
+         */
+    Auth.create = function create(rpcImpl, requestDelimited, responseDelimited) {
+      return new this(rpcImpl, requestDelimited, responseDelimited)
+    }
+
+    /**
+         * Callback as used by {@link pbauth.Auth#adminLogin}.
+         * @memberof pbauth.Auth
+         * @typedef AdminLoginCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbauth.AuthLoginReply} [response] AuthLoginReply
+         */
+
+    /**
+         * Calls AdminLogin.
+         * @function adminLogin
+         * @memberof pbauth.Auth
+         * @instance
+         * @param {pbauth.IAdminLoginArgs} request AdminLoginArgs message or plain object
+         * @param {pbauth.Auth.AdminLoginCallback} callback Node-style callback called with the error, if any, and AuthLoginReply
+         * @returns {undefined}
+         * @variation 1
+         */
+    Object.defineProperty(Auth.prototype.adminLogin = function adminLogin(request, callback) {
+      return this.rpcCall(adminLogin, $root.pbauth.AdminLoginArgs, $root.pbauth.AuthLoginReply, request, callback)
+    }, 'name', { value: 'AdminLogin' })
+
+    /**
+         * Calls AdminLogin.
+         * @function adminLogin
+         * @memberof pbauth.Auth
+         * @instance
+         * @param {pbauth.IAdminLoginArgs} request AdminLoginArgs message or plain object
+         * @returns {Promise<pbauth.AuthLoginReply>} Promise
+         * @variation 2
+         */
+
+    /**
+         * Callback as used by {@link pbauth.Auth#parseToken}.
+         * @memberof pbauth.Auth
+         * @typedef ParseTokenCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbauth.ParseTokenReply} [response] ParseTokenReply
+         */
+
+    /**
+         * Calls ParseToken.
+         * @function parseToken
+         * @memberof pbauth.Auth
+         * @instance
+         * @param {pbauth.IParseTokenArgs} request ParseTokenArgs message or plain object
+         * @param {pbauth.Auth.ParseTokenCallback} callback Node-style callback called with the error, if any, and ParseTokenReply
+         * @returns {undefined}
+         * @variation 1
+         */
+    Object.defineProperty(Auth.prototype.parseToken = function parseToken(request, callback) {
+      return this.rpcCall(parseToken, $root.pbauth.ParseTokenArgs, $root.pbauth.ParseTokenReply, request, callback)
+    }, 'name', { value: 'ParseToken' })
+
+    /**
+         * Calls ParseToken.
+         * @function parseToken
+         * @memberof pbauth.Auth
+         * @instance
+         * @param {pbauth.IParseTokenArgs} request ParseTokenArgs message or plain object
+         * @returns {Promise<pbauth.ParseTokenReply>} Promise
+         * @variation 2
+         */
+
+    return Auth
+  })()
+
+  return pbauth
 })()
 
 $root.pbuser = (function() {
@@ -8733,6 +9520,733 @@ $root.pbuser = (function() {
   })()
 
   return pbuser
+})()
+
+$root.httpgate = (function() {
+  /**
+     * Namespace httpgate.
+     * @exports httpgate
+     * @namespace
+     */
+  var httpgate = {}
+
+  httpgate.HttpRequest = (function() {
+    /**
+         * Properties of a HttpRequest.
+         * @memberof httpgate
+         * @interface IHttpRequest
+         * @property {string|null} [token] HttpRequest token
+         * @property {string|null} [v] HttpRequest v
+         * @property {string|null} [sign] HttpRequest sign
+         * @property {string|null} [signMethod] HttpRequest signMethod
+         * @property {string|null} [timeStamp] HttpRequest timeStamp
+         * @property {string|null} [appId] HttpRequest appId
+         * @property {Uint8Array|null} [data] HttpRequest data
+         */
+
+    /**
+         * Constructs a new HttpRequest.
+         * @memberof httpgate
+         * @classdesc Represents a HttpRequest.
+         * @implements IHttpRequest
+         * @constructor
+         * @param {httpgate.IHttpRequest=} [properties] Properties to set
+         */
+    function HttpRequest(properties) {
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * HttpRequest token.
+         * @member {string} token
+         * @memberof httpgate.HttpRequest
+         * @instance
+         */
+    HttpRequest.prototype.token = ''
+
+    /**
+         * HttpRequest v.
+         * @member {string} v
+         * @memberof httpgate.HttpRequest
+         * @instance
+         */
+    HttpRequest.prototype.v = ''
+
+    /**
+         * HttpRequest sign.
+         * @member {string} sign
+         * @memberof httpgate.HttpRequest
+         * @instance
+         */
+    HttpRequest.prototype.sign = ''
+
+    /**
+         * HttpRequest signMethod.
+         * @member {string} signMethod
+         * @memberof httpgate.HttpRequest
+         * @instance
+         */
+    HttpRequest.prototype.signMethod = ''
+
+    /**
+         * HttpRequest timeStamp.
+         * @member {string} timeStamp
+         * @memberof httpgate.HttpRequest
+         * @instance
+         */
+    HttpRequest.prototype.timeStamp = ''
+
+    /**
+         * HttpRequest appId.
+         * @member {string} appId
+         * @memberof httpgate.HttpRequest
+         * @instance
+         */
+    HttpRequest.prototype.appId = ''
+
+    /**
+         * HttpRequest data.
+         * @member {Uint8Array} data
+         * @memberof httpgate.HttpRequest
+         * @instance
+         */
+    HttpRequest.prototype.data = $util.newBuffer([])
+
+    /**
+         * Creates a new HttpRequest instance using the specified properties.
+         * @function create
+         * @memberof httpgate.HttpRequest
+         * @static
+         * @param {httpgate.IHttpRequest=} [properties] Properties to set
+         * @returns {httpgate.HttpRequest} HttpRequest instance
+         */
+    HttpRequest.create = function create(properties) {
+      return new HttpRequest(properties)
+    }
+
+    /**
+         * Encodes the specified HttpRequest message. Does not implicitly {@link httpgate.HttpRequest.verify|verify} messages.
+         * @function encode
+         * @memberof httpgate.HttpRequest
+         * @static
+         * @param {httpgate.IHttpRequest} message HttpRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    HttpRequest.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.token != null && Object.hasOwnProperty.call(message, 'token')) { writer.uint32(/* id 1, wireType 2 =*/10).string(message.token) }
+      if (message.v != null && Object.hasOwnProperty.call(message, 'v')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.v) }
+      if (message.sign != null && Object.hasOwnProperty.call(message, 'sign')) { writer.uint32(/* id 3, wireType 2 =*/26).string(message.sign) }
+      if (message.signMethod != null && Object.hasOwnProperty.call(message, 'signMethod')) { writer.uint32(/* id 4, wireType 2 =*/34).string(message.signMethod) }
+      if (message.timeStamp != null && Object.hasOwnProperty.call(message, 'timeStamp')) { writer.uint32(/* id 5, wireType 2 =*/42).string(message.timeStamp) }
+      if (message.appId != null && Object.hasOwnProperty.call(message, 'appId')) { writer.uint32(/* id 6, wireType 2 =*/50).string(message.appId) }
+      if (message.data != null && Object.hasOwnProperty.call(message, 'data')) { writer.uint32(/* id 7, wireType 2 =*/58).bytes(message.data) }
+      return writer
+    }
+
+    /**
+         * Encodes the specified HttpRequest message, length delimited. Does not implicitly {@link httpgate.HttpRequest.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof httpgate.HttpRequest
+         * @static
+         * @param {httpgate.IHttpRequest} message HttpRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    HttpRequest.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes a HttpRequest message from the specified reader or buffer.
+         * @function decode
+         * @memberof httpgate.HttpRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {httpgate.HttpRequest} HttpRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    HttpRequest.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.httpgate.HttpRequest()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            message.token = reader.string()
+            break
+          }
+          case 2: {
+            message.v = reader.string()
+            break
+          }
+          case 3: {
+            message.sign = reader.string()
+            break
+          }
+          case 4: {
+            message.signMethod = reader.string()
+            break
+          }
+          case 5: {
+            message.timeStamp = reader.string()
+            break
+          }
+          case 6: {
+            message.appId = reader.string()
+            break
+          }
+          case 7: {
+            message.data = reader.bytes()
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes a HttpRequest message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof httpgate.HttpRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {httpgate.HttpRequest} HttpRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    HttpRequest.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies a HttpRequest message.
+         * @function verify
+         * @memberof httpgate.HttpRequest
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    HttpRequest.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.token != null && message.hasOwnProperty('token')) {
+        if (!$util.isString(message.token)) { return 'token: string expected' }
+      }
+      if (message.v != null && message.hasOwnProperty('v')) {
+        if (!$util.isString(message.v)) { return 'v: string expected' }
+      }
+      if (message.sign != null && message.hasOwnProperty('sign')) {
+        if (!$util.isString(message.sign)) { return 'sign: string expected' }
+      }
+      if (message.signMethod != null && message.hasOwnProperty('signMethod')) {
+        if (!$util.isString(message.signMethod)) { return 'signMethod: string expected' }
+      }
+      if (message.timeStamp != null && message.hasOwnProperty('timeStamp')) {
+        if (!$util.isString(message.timeStamp)) { return 'timeStamp: string expected' }
+      }
+      if (message.appId != null && message.hasOwnProperty('appId')) {
+        if (!$util.isString(message.appId)) { return 'appId: string expected' }
+      }
+      if (message.data != null && message.hasOwnProperty('data')) {
+        if (!(message.data && typeof message.data.length === 'number' || $util.isString(message.data))) { return 'data: buffer expected' }
+      }
+      return null
+    }
+
+    /**
+         * Creates a HttpRequest message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof httpgate.HttpRequest
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {httpgate.HttpRequest} HttpRequest
+         */
+    HttpRequest.fromObject = function fromObject(object) {
+      if (object instanceof $root.httpgate.HttpRequest) { return object }
+      var message = new $root.httpgate.HttpRequest()
+      if (object.token != null) { message.token = String(object.token) }
+      if (object.v != null) { message.v = String(object.v) }
+      if (object.sign != null) { message.sign = String(object.sign) }
+      if (object.signMethod != null) { message.signMethod = String(object.signMethod) }
+      if (object.timeStamp != null) { message.timeStamp = String(object.timeStamp) }
+      if (object.appId != null) { message.appId = String(object.appId) }
+      if (object.data != null) {
+        if (typeof object.data === 'string') { $util.base64.decode(object.data, message.data = $util.newBuffer($util.base64.length(object.data)), 0) } else if (object.data.length >= 0) { message.data = object.data }
+      }
+      return message
+    }
+
+    /**
+         * Creates a plain object from a HttpRequest message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof httpgate.HttpRequest
+         * @static
+         * @param {httpgate.HttpRequest} message HttpRequest
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    HttpRequest.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.defaults) {
+        object.token = ''
+        object.v = ''
+        object.sign = ''
+        object.signMethod = ''
+        object.timeStamp = ''
+        object.appId = ''
+        if (options.bytes === String) { object.data = '' } else {
+          object.data = []
+          if (options.bytes !== Array) { object.data = $util.newBuffer(object.data) }
+        }
+      }
+      if (message.token != null && message.hasOwnProperty('token')) { object.token = message.token }
+      if (message.v != null && message.hasOwnProperty('v')) { object.v = message.v }
+      if (message.sign != null && message.hasOwnProperty('sign')) { object.sign = message.sign }
+      if (message.signMethod != null && message.hasOwnProperty('signMethod')) { object.signMethod = message.signMethod }
+      if (message.timeStamp != null && message.hasOwnProperty('timeStamp')) { object.timeStamp = message.timeStamp }
+      if (message.appId != null && message.hasOwnProperty('appId')) { object.appId = message.appId }
+      if (message.data != null && message.hasOwnProperty('data')) { object.data = options.bytes === String ? $util.base64.encode(message.data, 0, message.data.length) : options.bytes === Array ? Array.prototype.slice.call(message.data) : message.data }
+      return object
+    }
+
+    /**
+         * Converts this HttpRequest to JSON.
+         * @function toJSON
+         * @memberof httpgate.HttpRequest
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    HttpRequest.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for HttpRequest
+         * @function getTypeUrl
+         * @memberof httpgate.HttpRequest
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    HttpRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/httpgate.HttpRequest'
+    }
+
+    return HttpRequest
+  })()
+
+  httpgate.HttpResponse = (function() {
+    /**
+         * Properties of a HttpResponse.
+         * @memberof httpgate
+         * @interface IHttpResponse
+         * @property {pbcommon.EnumCode|null} [code] HttpResponse code
+         * @property {string|null} [msg] HttpResponse msg
+         * @property {Uint8Array|null} [data] HttpResponse data
+         * @property {string|null} [newToken] HttpResponse newToken
+         */
+
+    /**
+         * Constructs a new HttpResponse.
+         * @memberof httpgate
+         * @classdesc Represents a HttpResponse.
+         * @implements IHttpResponse
+         * @constructor
+         * @param {httpgate.IHttpResponse=} [properties] Properties to set
+         */
+    function HttpResponse(properties) {
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * HttpResponse code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof httpgate.HttpResponse
+         * @instance
+         */
+    HttpResponse.prototype.code = 0
+
+    /**
+         * HttpResponse msg.
+         * @member {string} msg
+         * @memberof httpgate.HttpResponse
+         * @instance
+         */
+    HttpResponse.prototype.msg = ''
+
+    /**
+         * HttpResponse data.
+         * @member {Uint8Array} data
+         * @memberof httpgate.HttpResponse
+         * @instance
+         */
+    HttpResponse.prototype.data = $util.newBuffer([])
+
+    /**
+         * HttpResponse newToken.
+         * @member {string} newToken
+         * @memberof httpgate.HttpResponse
+         * @instance
+         */
+    HttpResponse.prototype.newToken = ''
+
+    /**
+         * Creates a new HttpResponse instance using the specified properties.
+         * @function create
+         * @memberof httpgate.HttpResponse
+         * @static
+         * @param {httpgate.IHttpResponse=} [properties] Properties to set
+         * @returns {httpgate.HttpResponse} HttpResponse instance
+         */
+    HttpResponse.create = function create(properties) {
+      return new HttpResponse(properties)
+    }
+
+    /**
+         * Encodes the specified HttpResponse message. Does not implicitly {@link httpgate.HttpResponse.verify|verify} messages.
+         * @function encode
+         * @memberof httpgate.HttpResponse
+         * @static
+         * @param {httpgate.IHttpResponse} message HttpResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    HttpResponse.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.code != null && Object.hasOwnProperty.call(message, 'code')) { writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code) }
+      if (message.msg != null && Object.hasOwnProperty.call(message, 'msg')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg) }
+      if (message.data != null && Object.hasOwnProperty.call(message, 'data')) { writer.uint32(/* id 3, wireType 2 =*/26).bytes(message.data) }
+      if (message.newToken != null && Object.hasOwnProperty.call(message, 'newToken')) { writer.uint32(/* id 4, wireType 2 =*/34).string(message.newToken) }
+      return writer
+    }
+
+    /**
+         * Encodes the specified HttpResponse message, length delimited. Does not implicitly {@link httpgate.HttpResponse.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof httpgate.HttpResponse
+         * @static
+         * @param {httpgate.IHttpResponse} message HttpResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    HttpResponse.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes a HttpResponse message from the specified reader or buffer.
+         * @function decode
+         * @memberof httpgate.HttpResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {httpgate.HttpResponse} HttpResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    HttpResponse.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.httpgate.HttpResponse()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            message.code = reader.int32()
+            break
+          }
+          case 2: {
+            message.msg = reader.string()
+            break
+          }
+          case 3: {
+            message.data = reader.bytes()
+            break
+          }
+          case 4: {
+            message.newToken = reader.string()
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes a HttpResponse message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof httpgate.HttpResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {httpgate.HttpResponse} HttpResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    HttpResponse.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies a HttpResponse message.
+         * @function verify
+         * @memberof httpgate.HttpResponse
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    HttpResponse.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.code != null && message.hasOwnProperty('code')) {
+        switch (message.code) {
+          default:
+            return 'code: enum value expected'
+          case 0:
+          case 200:
+          case 500:
+          case 501:
+          case 502:
+          case 503:
+          case 504:
+          case 505:
+          case 1001:
+          case 1002:
+          case 1003:
+          case 1004:
+          case 2002:
+          case 2003:
+          case 2004:
+          case 2005:
+          case 2006:
+          case 2007:
+          case 2008:
+          case 2009:
+          case 2010:
+          case 2011:
+          case 2012:
+          case 2013:
+          case 2014:
+            break
+        }
+      }
+      if (message.msg != null && message.hasOwnProperty('msg')) {
+        if (!$util.isString(message.msg)) { return 'msg: string expected' }
+      }
+      if (message.data != null && message.hasOwnProperty('data')) {
+        if (!(message.data && typeof message.data.length === 'number' || $util.isString(message.data))) { return 'data: buffer expected' }
+      }
+      if (message.newToken != null && message.hasOwnProperty('newToken')) {
+        if (!$util.isString(message.newToken)) { return 'newToken: string expected' }
+      }
+      return null
+    }
+
+    /**
+         * Creates a HttpResponse message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof httpgate.HttpResponse
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {httpgate.HttpResponse} HttpResponse
+         */
+    HttpResponse.fromObject = function fromObject(object) {
+      if (object instanceof $root.httpgate.HttpResponse) { return object }
+      var message = new $root.httpgate.HttpResponse()
+      switch (object.code) {
+        default:
+          if (typeof object.code === 'number') {
+            message.code = object.code
+            break
+          }
+          break
+        case 'None':
+        case 0:
+          message.code = 0
+          break
+        case 'Success':
+        case 200:
+          message.code = 200
+          break
+        case 'Fail':
+        case 500:
+          message.code = 500
+          break
+        case 'Unknown':
+        case 501:
+          message.code = 501
+          break
+        case 'Internal':
+        case 502:
+          message.code = 502
+          break
+        case 'Invalid':
+        case 503:
+          message.code = 503
+          break
+        case 'InvalidParam':
+        case 504:
+          message.code = 504
+          break
+        case 'ParamError':
+        case 505:
+          message.code = 505
+          break
+        case 'FindError':
+        case 1001:
+          message.code = 1001
+          break
+        case 'CreateError':
+        case 1002:
+          message.code = 1002
+          break
+        case 'DeleteError':
+        case 1003:
+          message.code = 1003
+          break
+        case 'UpdateError':
+        case 1004:
+          message.code = 1004
+          break
+        case 'InvalidToken':
+        case 2002:
+          message.code = 2002
+          break
+        case 'InvalidSign':
+        case 2003:
+          message.code = 2003
+          break
+        case 'NotLogin':
+        case 2004:
+          message.code = 2004
+          break
+        case 'LoginTimeout':
+        case 2005:
+          message.code = 2005
+          break
+        case 'LoginError':
+        case 2006:
+          message.code = 2006
+          break
+        case 'LoginForbidden':
+        case 2007:
+          message.code = 2007
+          break
+        case 'LoginExpired':
+        case 2008:
+          message.code = 2008
+          break
+        case 'LoginInvalid':
+        case 2009:
+          message.code = 2009
+          break
+        case 'LoginInvalidPassword':
+        case 2010:
+          message.code = 2010
+          break
+        case 'LoginInvalidUsername':
+        case 2011:
+          message.code = 2011
+          break
+        case 'LoginInvalidEmail':
+        case 2012:
+          message.code = 2012
+          break
+        case 'LoginInvalidPhone':
+        case 2013:
+          message.code = 2013
+          break
+        case 'LoginInvalidUsernameOrEmail':
+        case 2014:
+          message.code = 2014
+          break
+      }
+      if (object.msg != null) { message.msg = String(object.msg) }
+      if (object.data != null) {
+        if (typeof object.data === 'string') { $util.base64.decode(object.data, message.data = $util.newBuffer($util.base64.length(object.data)), 0) } else if (object.data.length >= 0) { message.data = object.data }
+      }
+      if (object.newToken != null) { message.newToken = String(object.newToken) }
+      return message
+    }
+
+    /**
+         * Creates a plain object from a HttpResponse message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof httpgate.HttpResponse
+         * @static
+         * @param {httpgate.HttpResponse} message HttpResponse
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    HttpResponse.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.defaults) {
+        object.code = options.enums === String ? 'None' : 0
+        object.msg = ''
+        if (options.bytes === String) { object.data = '' } else {
+          object.data = []
+          if (options.bytes !== Array) { object.data = $util.newBuffer(object.data) }
+        }
+        object.newToken = ''
+      }
+      if (message.code != null && message.hasOwnProperty('code')) { object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code }
+      if (message.msg != null && message.hasOwnProperty('msg')) { object.msg = message.msg }
+      if (message.data != null && message.hasOwnProperty('data')) { object.data = options.bytes === String ? $util.base64.encode(message.data, 0, message.data.length) : options.bytes === Array ? Array.prototype.slice.call(message.data) : message.data }
+      if (message.newToken != null && message.hasOwnProperty('newToken')) { object.newToken = message.newToken }
+      return object
+    }
+
+    /**
+         * Converts this HttpResponse to JSON.
+         * @function toJSON
+         * @memberof httpgate.HttpResponse
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    HttpResponse.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for HttpResponse
+         * @function getTypeUrl
+         * @memberof httpgate.HttpResponse
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    HttpResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/httpgate.HttpResponse'
+    }
+
+    return HttpResponse
+  })()
+
+  return httpgate
 })()
 
 $root.pbuserOauth = (function() {

@@ -34,6 +34,7 @@ service.interceptors.request.use(
       messageData['token'] = '123123'
     }
     messageData['v'] = '1'
+    messageData['appId'] = '0'
     if (config.pb) {
       messageData['data'] = new Uint8Array(config.buffer)
       console.log(messageData)
@@ -71,7 +72,6 @@ service.interceptors.response.use(
         // console.log(bufferData)
         var uintArray = new Uint8Array(response.data)
         const pbList = response.config.pb.split('.')
-        console.log(pbList)
         const responseMessage = protoRoot[pbList[0]][pbList[1]]
         res = responseMessage.decode(uintArray)
         console.log(res)
@@ -92,7 +92,7 @@ service.interceptors.response.use(
     // if the custom code is not 200, it is judged as an error.
     if (res.code !== protoRoot.pbcommon.EnumCode['Success']) {
       Message({
-        message: res.message || 'Error',
+        message: res.msg || 'Error',
         type: 'error',
         duration: 5 * 1000
       })
@@ -110,10 +110,9 @@ service.interceptors.response.use(
           })
         })
       }
-      if (res.msg === '') {
+      if (res.msg === undefined) {
         res.msg = 'Error'
       }
-      console.log(res.msg)
       return res.msg
     } else {
       if (response.config.pb) {
