@@ -26,15 +26,10 @@ service.interceptors.request.use(
     var messageData = {}
     config.headers['Content-Type'] = 'application/x-protobuf'
     if (store.getters.token) {
-      // let each request carry token
-      // ['X-Token'] is a custom headers key
-      // please modify it according to the actual situation
-      config.headers['X-Token'] = getToken()
-
-      messageData['token'] = '123123'
+      messageData['token'] = getToken()
     }
     messageData['v'] = '1'
-    messageData['appId'] = '0'
+    messageData['appId'] = process.env.VUE_APP_BASE_APPID
     if (config.pb) {
       messageData['data'] = new Uint8Array(config.buffer)
       console.log(messageData)

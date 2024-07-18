@@ -61,7 +61,7 @@ message ParseTokenReply {
 
 
 service Auth {
-  rpc AdminLogin(AdminLoginArgs) returns(AuthLoginReply){} // /v1/auth/adminLogin
+  rpc AdminLogin(AdminLoginArgs) returns(AuthLoginReply){} // /v2/auth/adminLogin
 /*
 service internal use
 */

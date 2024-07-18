@@ -38,22 +38,22 @@
       <el-table-column label="CreatedAt" width="150px" align="center" prop="createdAt" />
       <el-table-column label="UpdatedAt" width="150px" align="center" prop="updatedAt" />
       <el-table-column label="Name" width="150px" align="center" prop="name" />
-      <el-table-column label="Description" width="150px" align="center" prop="description" />
+      <el-table-column label="MiniProgramAppId" width="150px" align="center" prop="miniProgramAppId" />
+      <el-table-column label="MiniProgramAppSecret" width="150px" align="center" prop="miniProgramAppSecret" />
+      <el-table-column label="MiniProgramToken" width="150px" align="center" prop="miniProgramToken" />
+      <el-table-column label="MiniProgramencodingAESKey" width="150px" align="center" prop="miniProgramencodingAESKey" />
+      <el-table-column label="OfficalAppId" width="150px" align="center" prop="officalAppId" />
+      <el-table-column label="OfficalAppSecret" width="150px" align="center" prop="officalAppSecret" />
+      <el-table-column label="IfficalToken" width="150px" align="center" prop="ifficalToken" />
+      <el-table-column label="OfficalEncodingAESKey" width="150px" align="center" prop="officalEncodingAESKey" />
+      <el-table-column label="OpenAppId" width="150px" align="center" prop="openAppId" />
+      <el-table-column label="OpenAppSecret" width="150px" align="center" prop="openAppSecret" />
+      <el-table-column label="OpenToken" width="150px" align="center" prop="openToken" />
+      <el-table-column label="OpenEncodingAESKey" width="150px" align="center" prop="openEncodingAESKey" />
       <el-table-column label="Icon" width="150px" align="center" prop="icon" />
       <el-table-column label="Logo" width="150px" align="center" prop="logo" />
-      <el-table-column label="Url" width="150px" align="center" prop="url" />
+      <el-table-column label="Description" width="150px" align="center" prop="description" />
       <el-table-column label="Version" width="150px" align="center" prop="version" />
-      <el-table-column label="Type" width="150px" align="center" prop="type" />
-      <el-table-column label="Status" width="150px" align="center" prop="status" />
-      <el-table-column label="OwnerId" width="150px" align="center" prop="ownerId" />
-      <el-table-column label="OwnerName" width="150px" align="center" prop="ownerName" />
-      <el-table-column label="OwnerEmail" width="150px" align="center" prop="ownerEmail" />
-      <el-table-column label="OwnerPhone" width="150px" align="center" prop="ownerPhone" />
-      <el-table-column label="OwnerMobile" width="150px" align="center" prop="ownerMobile" />
-      <el-table-column label="OwnerAddress" width="150px" align="center" prop="ownerAddress" />
-      <el-table-column label="OwnerZipCode" width="150px" align="center" prop="ownerZipCode" />
-      <el-table-column label="OwnerCountry" width="150px" align="center" prop="ownerCountry" />
-      <el-table-column label="OfficalUrl" width="150px" align="center" prop="officalUrl" />
       <el-table-column label="操作" align="center" width="230" class-name="small-padding fixed-width">
         <template slot-scope="{row}">
           <el-button type="primary" size="mini" @click="handleUpdate(row)">
@@ -83,8 +83,41 @@
         <el-form-item label="Name" prop="name">
           <el-input v-model="temp.name" />
         </el-form-item>
-        <el-form-item label="Description" prop="description">
-          <el-input v-model="temp.description" />
+        <el-form-item label="MiniProgramAppId" prop="miniProgramAppId">
+          <el-input v-model="temp.miniProgramAppId" />
+        </el-form-item>
+        <el-form-item label="MiniProgramAppSecret" prop="miniProgramAppSecret">
+          <el-input v-model="temp.miniProgramAppSecret" />
+        </el-form-item>
+        <el-form-item label="MiniProgramToken" prop="miniProgramToken">
+          <el-input v-model="temp.miniProgramToken" />
+        </el-form-item>
+        <el-form-item label="MiniProgramencodingAESKey" prop="miniProgramencodingAESKey">
+          <el-input v-model="temp.miniProgramencodingAESKey" />
+        </el-form-item>
+        <el-form-item label="OfficalAppId" prop="officalAppId">
+          <el-input v-model="temp.officalAppId" />
+        </el-form-item>
+        <el-form-item label="OfficalAppSecret" prop="officalAppSecret">
+          <el-input v-model="temp.officalAppSecret" />
+        </el-form-item>
+        <el-form-item label="IfficalToken" prop="ifficalToken">
+          <el-input v-model="temp.ifficalToken" />
+        </el-form-item>
+        <el-form-item label="OfficalEncodingAESKey" prop="officalEncodingAESKey">
+          <el-input v-model="temp.officalEncodingAESKey" />
+        </el-form-item>
+        <el-form-item label="OpenAppId" prop="openAppId">
+          <el-input v-model="temp.openAppId" />
+        </el-form-item>
+        <el-form-item label="OpenAppSecret" prop="openAppSecret">
+          <el-input v-model="temp.openAppSecret" />
+        </el-form-item>
+        <el-form-item label="OpenToken" prop="openToken">
+          <el-input v-model="temp.openToken" />
+        </el-form-item>
+        <el-form-item label="OpenEncodingAESKey" prop="openEncodingAESKey">
+          <el-input v-model="temp.openEncodingAESKey" />
         </el-form-item>
         <el-form-item label="Icon" prop="icon">
           <el-input v-model="temp.icon" />
@@ -92,44 +125,11 @@
         <el-form-item label="Logo" prop="logo">
           <el-input v-model="temp.logo" />
         </el-form-item>
-        <el-form-item label="Url" prop="url">
-          <el-input v-model="temp.url" />
+        <el-form-item label="Description" prop="description">
+          <el-input v-model="temp.description" />
         </el-form-item>
         <el-form-item label="Version" prop="version">
           <el-input v-model="temp.version" />
-        </el-form-item>
-        <el-form-item label="Type" prop="type">
-          <el-input v-model="temp.type" />
-        </el-form-item>
-        <el-form-item label="Status" prop="status">
-          <el-input v-model="temp.status" />
-        </el-form-item>
-        <el-form-item label="OwnerId" prop="ownerId">
-          <el-input v-model="temp.ownerId" />
-        </el-form-item>
-        <el-form-item label="OwnerName" prop="ownerName">
-          <el-input v-model="temp.ownerName" />
-        </el-form-item>
-        <el-form-item label="OwnerEmail" prop="ownerEmail">
-          <el-input v-model="temp.ownerEmail" />
-        </el-form-item>
-        <el-form-item label="OwnerPhone" prop="ownerPhone">
-          <el-input v-model="temp.ownerPhone" />
-        </el-form-item>
-        <el-form-item label="OwnerMobile" prop="ownerMobile">
-          <el-input v-model="temp.ownerMobile" />
-        </el-form-item>
-        <el-form-item label="OwnerAddress" prop="ownerAddress">
-          <el-input v-model="temp.ownerAddress" />
-        </el-form-item>
-        <el-form-item label="OwnerZipCode" prop="ownerZipCode">
-          <el-input v-model="temp.ownerZipCode" />
-        </el-form-item>
-        <el-form-item label="OwnerCountry" prop="ownerCountry">
-          <el-input v-model="temp.ownerCountry" />
-        </el-form-item>
-        <el-form-item label="OfficalUrl" prop="officalUrl">
-          <el-input v-model="temp.officalUrl" />
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -165,22 +165,22 @@ export default {
         updatedAt: '',
 
         name: '',
-        description: '',
+        miniProgramAppId: '',
+        miniProgramAppSecret: '',
+        miniProgramToken: '',
+        miniProgramencodingAESKey: '',
+        officalAppId: '',
+        officalAppSecret: '',
+        ifficalToken: '',
+        officalEncodingAESKey: '',
+        openAppId: '',
+        openAppSecret: '',
+        openToken: '',
+        openEncodingAESKey: '',
         icon: '',
         logo: '',
-        url: '',
-        version: '',
-        type: 0,
-        status: 0,
-        ownerId: 0,
-        ownerName: '',
-        ownerEmail: '',
-        ownerPhone: '',
-        ownerMobile: '',
-        ownerAddress: '',
-        ownerZipCode: '',
-        ownerCountry: '',
-        officalUrl: ''
+        description: '',
+        version: ''
       },
       dialogFormVisible: false,
       dialogStatus: '',
@@ -216,22 +216,22 @@ export default {
         createdAt: '',
         updatedAt: '',
         name: '',
-        description: '',
+        miniProgramAppId: '',
+        miniProgramAppSecret: '',
+        miniProgramToken: '',
+        miniProgramencodingAESKey: '',
+        officalAppId: '',
+        officalAppSecret: '',
+        ifficalToken: '',
+        officalEncodingAESKey: '',
+        openAppId: '',
+        openAppSecret: '',
+        openToken: '',
+        openEncodingAESKey: '',
         icon: '',
         logo: '',
-        url: '',
-        version: '',
-        type: 0,
-        status: 0,
-        ownerId: 0,
-        ownerName: '',
-        ownerEmail: '',
-        ownerPhone: '',
-        ownerMobile: '',
-        ownerAddress: '',
-        ownerZipCode: '',
-        ownerCountry: '',
-        officalUrl: ''
+        description: '',
+        version: ''
       }
     },
     handleCreate() {
@@ -260,7 +260,7 @@ export default {
       })
     },
     async handleUpdate(row) {
-      const res = await findAppById(row.id)
+      const res = await findAppById({ id: row.id })
       console.log(res)
       if (res.code === 'Success') {
         this.temp = res.data
@@ -289,7 +289,7 @@ export default {
       })
     },
     async handleDelete(row) {
-      await deleteApp(row.id)
+      await deleteApp({ id: row.id })
       this.getTableData()
     }
   }

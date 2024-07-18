@@ -11510,22 +11510,22 @@ $root.pbapp = (function() {
          * @property {string|null} [createdAt] AppModel createdAt
          * @property {string|null} [updatedAt] AppModel updatedAt
          * @property {string|null} [name] AppModel name
-         * @property {string|null} [description] AppModel description
+         * @property {string|null} [miniProgramAppId] AppModel miniProgramAppId
+         * @property {string|null} [miniProgramAppSecret] AppModel miniProgramAppSecret
+         * @property {string|null} [miniProgramToken] AppModel miniProgramToken
+         * @property {string|null} [miniProgramencodingAESKey] AppModel miniProgramencodingAESKey
+         * @property {string|null} [officalAppId] AppModel officalAppId
+         * @property {string|null} [officalAppSecret] AppModel officalAppSecret
+         * @property {string|null} [ifficalToken] AppModel ifficalToken
+         * @property {string|null} [officalEncodingAESKey] AppModel officalEncodingAESKey
+         * @property {string|null} [openAppId] AppModel openAppId
+         * @property {string|null} [openAppSecret] AppModel openAppSecret
+         * @property {string|null} [openToken] AppModel openToken
+         * @property {string|null} [openEncodingAESKey] AppModel openEncodingAESKey
          * @property {string|null} [icon] AppModel icon
          * @property {string|null} [logo] AppModel logo
-         * @property {string|null} [url] AppModel url
+         * @property {string|null} [description] AppModel description
          * @property {string|null} [version] AppModel version
-         * @property {number|null} [type] AppModel type
-         * @property {number|null} [status] AppModel status
-         * @property {number|Long|null} [ownerId] AppModel ownerId
-         * @property {string|null} [ownerName] AppModel ownerName
-         * @property {string|null} [ownerEmail] AppModel ownerEmail
-         * @property {string|null} [ownerPhone] AppModel ownerPhone
-         * @property {string|null} [ownerMobile] AppModel ownerMobile
-         * @property {string|null} [ownerAddress] AppModel ownerAddress
-         * @property {string|null} [ownerZipCode] AppModel ownerZipCode
-         * @property {string|null} [ownerCountry] AppModel ownerCountry
-         * @property {string|null} [officalUrl] AppModel officalUrl
          */
 
     /**
@@ -11577,12 +11577,100 @@ $root.pbapp = (function() {
     AppModel.prototype.name = ''
 
     /**
-         * AppModel description.
-         * @member {string} description
+         * AppModel miniProgramAppId.
+         * @member {string} miniProgramAppId
          * @memberof pbapp.AppModel
          * @instance
          */
-    AppModel.prototype.description = ''
+    AppModel.prototype.miniProgramAppId = ''
+
+    /**
+         * AppModel miniProgramAppSecret.
+         * @member {string} miniProgramAppSecret
+         * @memberof pbapp.AppModel
+         * @instance
+         */
+    AppModel.prototype.miniProgramAppSecret = ''
+
+    /**
+         * AppModel miniProgramToken.
+         * @member {string} miniProgramToken
+         * @memberof pbapp.AppModel
+         * @instance
+         */
+    AppModel.prototype.miniProgramToken = ''
+
+    /**
+         * AppModel miniProgramencodingAESKey.
+         * @member {string} miniProgramencodingAESKey
+         * @memberof pbapp.AppModel
+         * @instance
+         */
+    AppModel.prototype.miniProgramencodingAESKey = ''
+
+    /**
+         * AppModel officalAppId.
+         * @member {string} officalAppId
+         * @memberof pbapp.AppModel
+         * @instance
+         */
+    AppModel.prototype.officalAppId = ''
+
+    /**
+         * AppModel officalAppSecret.
+         * @member {string} officalAppSecret
+         * @memberof pbapp.AppModel
+         * @instance
+         */
+    AppModel.prototype.officalAppSecret = ''
+
+    /**
+         * AppModel ifficalToken.
+         * @member {string} ifficalToken
+         * @memberof pbapp.AppModel
+         * @instance
+         */
+    AppModel.prototype.ifficalToken = ''
+
+    /**
+         * AppModel officalEncodingAESKey.
+         * @member {string} officalEncodingAESKey
+         * @memberof pbapp.AppModel
+         * @instance
+         */
+    AppModel.prototype.officalEncodingAESKey = ''
+
+    /**
+         * AppModel openAppId.
+         * @member {string} openAppId
+         * @memberof pbapp.AppModel
+         * @instance
+         */
+    AppModel.prototype.openAppId = ''
+
+    /**
+         * AppModel openAppSecret.
+         * @member {string} openAppSecret
+         * @memberof pbapp.AppModel
+         * @instance
+         */
+    AppModel.prototype.openAppSecret = ''
+
+    /**
+         * AppModel openToken.
+         * @member {string} openToken
+         * @memberof pbapp.AppModel
+         * @instance
+         */
+    AppModel.prototype.openToken = ''
+
+    /**
+         * AppModel openEncodingAESKey.
+         * @member {string} openEncodingAESKey
+         * @memberof pbapp.AppModel
+         * @instance
+         */
+    AppModel.prototype.openEncodingAESKey = ''
 
     /**
          * AppModel icon.
@@ -11601,12 +11689,12 @@ $root.pbapp = (function() {
     AppModel.prototype.logo = ''
 
     /**
-         * AppModel url.
-         * @member {string} url
+         * AppModel description.
+         * @member {string} description
          * @memberof pbapp.AppModel
          * @instance
          */
-    AppModel.prototype.url = ''
+    AppModel.prototype.description = ''
 
     /**
          * AppModel version.
@@ -11615,94 +11703,6 @@ $root.pbapp = (function() {
          * @instance
          */
     AppModel.prototype.version = ''
-
-    /**
-         * AppModel type.
-         * @member {number} type
-         * @memberof pbapp.AppModel
-         * @instance
-         */
-    AppModel.prototype.type = 0
-
-    /**
-         * AppModel status.
-         * @member {number} status
-         * @memberof pbapp.AppModel
-         * @instance
-         */
-    AppModel.prototype.status = 0
-
-    /**
-         * AppModel ownerId.
-         * @member {number|Long} ownerId
-         * @memberof pbapp.AppModel
-         * @instance
-         */
-    AppModel.prototype.ownerId = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
-
-    /**
-         * AppModel ownerName.
-         * @member {string} ownerName
-         * @memberof pbapp.AppModel
-         * @instance
-         */
-    AppModel.prototype.ownerName = ''
-
-    /**
-         * AppModel ownerEmail.
-         * @member {string} ownerEmail
-         * @memberof pbapp.AppModel
-         * @instance
-         */
-    AppModel.prototype.ownerEmail = ''
-
-    /**
-         * AppModel ownerPhone.
-         * @member {string} ownerPhone
-         * @memberof pbapp.AppModel
-         * @instance
-         */
-    AppModel.prototype.ownerPhone = ''
-
-    /**
-         * AppModel ownerMobile.
-         * @member {string} ownerMobile
-         * @memberof pbapp.AppModel
-         * @instance
-         */
-    AppModel.prototype.ownerMobile = ''
-
-    /**
-         * AppModel ownerAddress.
-         * @member {string} ownerAddress
-         * @memberof pbapp.AppModel
-         * @instance
-         */
-    AppModel.prototype.ownerAddress = ''
-
-    /**
-         * AppModel ownerZipCode.
-         * @member {string} ownerZipCode
-         * @memberof pbapp.AppModel
-         * @instance
-         */
-    AppModel.prototype.ownerZipCode = ''
-
-    /**
-         * AppModel ownerCountry.
-         * @member {string} ownerCountry
-         * @memberof pbapp.AppModel
-         * @instance
-         */
-    AppModel.prototype.ownerCountry = ''
-
-    /**
-         * AppModel officalUrl.
-         * @member {string} officalUrl
-         * @memberof pbapp.AppModel
-         * @instance
-         */
-    AppModel.prototype.officalUrl = ''
 
     /**
          * Creates a new AppModel instance using the specified properties.
@@ -11731,22 +11731,22 @@ $root.pbapp = (function() {
       if (message.createdAt != null && Object.hasOwnProperty.call(message, 'createdAt')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.createdAt) }
       if (message.updatedAt != null && Object.hasOwnProperty.call(message, 'updatedAt')) { writer.uint32(/* id 3, wireType 2 =*/26).string(message.updatedAt) }
       if (message.name != null && Object.hasOwnProperty.call(message, 'name')) { writer.uint32(/* id 4, wireType 2 =*/34).string(message.name) }
-      if (message.description != null && Object.hasOwnProperty.call(message, 'description')) { writer.uint32(/* id 5, wireType 2 =*/42).string(message.description) }
-      if (message.icon != null && Object.hasOwnProperty.call(message, 'icon')) { writer.uint32(/* id 6, wireType 2 =*/50).string(message.icon) }
-      if (message.logo != null && Object.hasOwnProperty.call(message, 'logo')) { writer.uint32(/* id 7, wireType 2 =*/58).string(message.logo) }
-      if (message.url != null && Object.hasOwnProperty.call(message, 'url')) { writer.uint32(/* id 8, wireType 2 =*/66).string(message.url) }
-      if (message.version != null && Object.hasOwnProperty.call(message, 'version')) { writer.uint32(/* id 9, wireType 2 =*/74).string(message.version) }
-      if (message.type != null && Object.hasOwnProperty.call(message, 'type')) { writer.uint32(/* id 10, wireType 0 =*/80).int32(message.type) }
-      if (message.status != null && Object.hasOwnProperty.call(message, 'status')) { writer.uint32(/* id 11, wireType 0 =*/88).int32(message.status) }
-      if (message.ownerId != null && Object.hasOwnProperty.call(message, 'ownerId')) { writer.uint32(/* id 12, wireType 0 =*/96).int64(message.ownerId) }
-      if (message.ownerName != null && Object.hasOwnProperty.call(message, 'ownerName')) { writer.uint32(/* id 13, wireType 2 =*/106).string(message.ownerName) }
-      if (message.ownerEmail != null && Object.hasOwnProperty.call(message, 'ownerEmail')) { writer.uint32(/* id 14, wireType 2 =*/114).string(message.ownerEmail) }
-      if (message.ownerPhone != null && Object.hasOwnProperty.call(message, 'ownerPhone')) { writer.uint32(/* id 15, wireType 2 =*/122).string(message.ownerPhone) }
-      if (message.ownerMobile != null && Object.hasOwnProperty.call(message, 'ownerMobile')) { writer.uint32(/* id 16, wireType 2 =*/130).string(message.ownerMobile) }
-      if (message.ownerAddress != null && Object.hasOwnProperty.call(message, 'ownerAddress')) { writer.uint32(/* id 17, wireType 2 =*/138).string(message.ownerAddress) }
-      if (message.ownerZipCode != null && Object.hasOwnProperty.call(message, 'ownerZipCode')) { writer.uint32(/* id 18, wireType 2 =*/146).string(message.ownerZipCode) }
-      if (message.ownerCountry != null && Object.hasOwnProperty.call(message, 'ownerCountry')) { writer.uint32(/* id 19, wireType 2 =*/154).string(message.ownerCountry) }
-      if (message.officalUrl != null && Object.hasOwnProperty.call(message, 'officalUrl')) { writer.uint32(/* id 20, wireType 2 =*/162).string(message.officalUrl) }
+      if (message.miniProgramAppId != null && Object.hasOwnProperty.call(message, 'miniProgramAppId')) { writer.uint32(/* id 5, wireType 2 =*/42).string(message.miniProgramAppId) }
+      if (message.miniProgramAppSecret != null && Object.hasOwnProperty.call(message, 'miniProgramAppSecret')) { writer.uint32(/* id 6, wireType 2 =*/50).string(message.miniProgramAppSecret) }
+      if (message.miniProgramToken != null && Object.hasOwnProperty.call(message, 'miniProgramToken')) { writer.uint32(/* id 7, wireType 2 =*/58).string(message.miniProgramToken) }
+      if (message.miniProgramencodingAESKey != null && Object.hasOwnProperty.call(message, 'miniProgramencodingAESKey')) { writer.uint32(/* id 8, wireType 2 =*/66).string(message.miniProgramencodingAESKey) }
+      if (message.officalAppId != null && Object.hasOwnProperty.call(message, 'officalAppId')) { writer.uint32(/* id 9, wireType 2 =*/74).string(message.officalAppId) }
+      if (message.officalAppSecret != null && Object.hasOwnProperty.call(message, 'officalAppSecret')) { writer.uint32(/* id 10, wireType 2 =*/82).string(message.officalAppSecret) }
+      if (message.ifficalToken != null && Object.hasOwnProperty.call(message, 'ifficalToken')) { writer.uint32(/* id 11, wireType 2 =*/90).string(message.ifficalToken) }
+      if (message.officalEncodingAESKey != null && Object.hasOwnProperty.call(message, 'officalEncodingAESKey')) { writer.uint32(/* id 12, wireType 2 =*/98).string(message.officalEncodingAESKey) }
+      if (message.openAppId != null && Object.hasOwnProperty.call(message, 'openAppId')) { writer.uint32(/* id 13, wireType 2 =*/106).string(message.openAppId) }
+      if (message.openAppSecret != null && Object.hasOwnProperty.call(message, 'openAppSecret')) { writer.uint32(/* id 14, wireType 2 =*/114).string(message.openAppSecret) }
+      if (message.openToken != null && Object.hasOwnProperty.call(message, 'openToken')) { writer.uint32(/* id 15, wireType 2 =*/122).string(message.openToken) }
+      if (message.openEncodingAESKey != null && Object.hasOwnProperty.call(message, 'openEncodingAESKey')) { writer.uint32(/* id 16, wireType 2 =*/130).string(message.openEncodingAESKey) }
+      if (message.icon != null && Object.hasOwnProperty.call(message, 'icon')) { writer.uint32(/* id 17, wireType 2 =*/138).string(message.icon) }
+      if (message.logo != null && Object.hasOwnProperty.call(message, 'logo')) { writer.uint32(/* id 18, wireType 2 =*/146).string(message.logo) }
+      if (message.description != null && Object.hasOwnProperty.call(message, 'description')) { writer.uint32(/* id 19, wireType 2 =*/154).string(message.description) }
+      if (message.version != null && Object.hasOwnProperty.call(message, 'version')) { writer.uint32(/* id 21, wireType 2 =*/170).string(message.version) }
       return writer
     }
 
@@ -11797,67 +11797,67 @@ $root.pbapp = (function() {
             break
           }
           case 5: {
-            message.description = reader.string()
+            message.miniProgramAppId = reader.string()
             break
           }
           case 6: {
-            message.icon = reader.string()
+            message.miniProgramAppSecret = reader.string()
             break
           }
           case 7: {
-            message.logo = reader.string()
+            message.miniProgramToken = reader.string()
             break
           }
           case 8: {
-            message.url = reader.string()
+            message.miniProgramencodingAESKey = reader.string()
             break
           }
           case 9: {
-            message.version = reader.string()
+            message.officalAppId = reader.string()
             break
           }
           case 10: {
-            message.type = reader.int32()
+            message.officalAppSecret = reader.string()
             break
           }
           case 11: {
-            message.status = reader.int32()
+            message.ifficalToken = reader.string()
             break
           }
           case 12: {
-            message.ownerId = reader.int64()
+            message.officalEncodingAESKey = reader.string()
             break
           }
           case 13: {
-            message.ownerName = reader.string()
+            message.openAppId = reader.string()
             break
           }
           case 14: {
-            message.ownerEmail = reader.string()
+            message.openAppSecret = reader.string()
             break
           }
           case 15: {
-            message.ownerPhone = reader.string()
+            message.openToken = reader.string()
             break
           }
           case 16: {
-            message.ownerMobile = reader.string()
+            message.openEncodingAESKey = reader.string()
             break
           }
           case 17: {
-            message.ownerAddress = reader.string()
+            message.icon = reader.string()
             break
           }
           case 18: {
-            message.ownerZipCode = reader.string()
+            message.logo = reader.string()
             break
           }
           case 19: {
-            message.ownerCountry = reader.string()
+            message.description = reader.string()
             break
           }
-          case 20: {
-            message.officalUrl = reader.string()
+          case 21: {
+            message.version = reader.string()
             break
           }
           default:
@@ -11905,8 +11905,41 @@ $root.pbapp = (function() {
       if (message.name != null && message.hasOwnProperty('name')) {
         if (!$util.isString(message.name)) { return 'name: string expected' }
       }
-      if (message.description != null && message.hasOwnProperty('description')) {
-        if (!$util.isString(message.description)) { return 'description: string expected' }
+      if (message.miniProgramAppId != null && message.hasOwnProperty('miniProgramAppId')) {
+        if (!$util.isString(message.miniProgramAppId)) { return 'miniProgramAppId: string expected' }
+      }
+      if (message.miniProgramAppSecret != null && message.hasOwnProperty('miniProgramAppSecret')) {
+        if (!$util.isString(message.miniProgramAppSecret)) { return 'miniProgramAppSecret: string expected' }
+      }
+      if (message.miniProgramToken != null && message.hasOwnProperty('miniProgramToken')) {
+        if (!$util.isString(message.miniProgramToken)) { return 'miniProgramToken: string expected' }
+      }
+      if (message.miniProgramencodingAESKey != null && message.hasOwnProperty('miniProgramencodingAESKey')) {
+        if (!$util.isString(message.miniProgramencodingAESKey)) { return 'miniProgramencodingAESKey: string expected' }
+      }
+      if (message.officalAppId != null && message.hasOwnProperty('officalAppId')) {
+        if (!$util.isString(message.officalAppId)) { return 'officalAppId: string expected' }
+      }
+      if (message.officalAppSecret != null && message.hasOwnProperty('officalAppSecret')) {
+        if (!$util.isString(message.officalAppSecret)) { return 'officalAppSecret: string expected' }
+      }
+      if (message.ifficalToken != null && message.hasOwnProperty('ifficalToken')) {
+        if (!$util.isString(message.ifficalToken)) { return 'ifficalToken: string expected' }
+      }
+      if (message.officalEncodingAESKey != null && message.hasOwnProperty('officalEncodingAESKey')) {
+        if (!$util.isString(message.officalEncodingAESKey)) { return 'officalEncodingAESKey: string expected' }
+      }
+      if (message.openAppId != null && message.hasOwnProperty('openAppId')) {
+        if (!$util.isString(message.openAppId)) { return 'openAppId: string expected' }
+      }
+      if (message.openAppSecret != null && message.hasOwnProperty('openAppSecret')) {
+        if (!$util.isString(message.openAppSecret)) { return 'openAppSecret: string expected' }
+      }
+      if (message.openToken != null && message.hasOwnProperty('openToken')) {
+        if (!$util.isString(message.openToken)) { return 'openToken: string expected' }
+      }
+      if (message.openEncodingAESKey != null && message.hasOwnProperty('openEncodingAESKey')) {
+        if (!$util.isString(message.openEncodingAESKey)) { return 'openEncodingAESKey: string expected' }
       }
       if (message.icon != null && message.hasOwnProperty('icon')) {
         if (!$util.isString(message.icon)) { return 'icon: string expected' }
@@ -11914,44 +11947,11 @@ $root.pbapp = (function() {
       if (message.logo != null && message.hasOwnProperty('logo')) {
         if (!$util.isString(message.logo)) { return 'logo: string expected' }
       }
-      if (message.url != null && message.hasOwnProperty('url')) {
-        if (!$util.isString(message.url)) { return 'url: string expected' }
+      if (message.description != null && message.hasOwnProperty('description')) {
+        if (!$util.isString(message.description)) { return 'description: string expected' }
       }
       if (message.version != null && message.hasOwnProperty('version')) {
         if (!$util.isString(message.version)) { return 'version: string expected' }
-      }
-      if (message.type != null && message.hasOwnProperty('type')) {
-        if (!$util.isInteger(message.type)) { return 'type: integer expected' }
-      }
-      if (message.status != null && message.hasOwnProperty('status')) {
-        if (!$util.isInteger(message.status)) { return 'status: integer expected' }
-      }
-      if (message.ownerId != null && message.hasOwnProperty('ownerId')) {
-        if (!$util.isInteger(message.ownerId) && !(message.ownerId && $util.isInteger(message.ownerId.low) && $util.isInteger(message.ownerId.high))) { return 'ownerId: integer|Long expected' }
-      }
-      if (message.ownerName != null && message.hasOwnProperty('ownerName')) {
-        if (!$util.isString(message.ownerName)) { return 'ownerName: string expected' }
-      }
-      if (message.ownerEmail != null && message.hasOwnProperty('ownerEmail')) {
-        if (!$util.isString(message.ownerEmail)) { return 'ownerEmail: string expected' }
-      }
-      if (message.ownerPhone != null && message.hasOwnProperty('ownerPhone')) {
-        if (!$util.isString(message.ownerPhone)) { return 'ownerPhone: string expected' }
-      }
-      if (message.ownerMobile != null && message.hasOwnProperty('ownerMobile')) {
-        if (!$util.isString(message.ownerMobile)) { return 'ownerMobile: string expected' }
-      }
-      if (message.ownerAddress != null && message.hasOwnProperty('ownerAddress')) {
-        if (!$util.isString(message.ownerAddress)) { return 'ownerAddress: string expected' }
-      }
-      if (message.ownerZipCode != null && message.hasOwnProperty('ownerZipCode')) {
-        if (!$util.isString(message.ownerZipCode)) { return 'ownerZipCode: string expected' }
-      }
-      if (message.ownerCountry != null && message.hasOwnProperty('ownerCountry')) {
-        if (!$util.isString(message.ownerCountry)) { return 'ownerCountry: string expected' }
-      }
-      if (message.officalUrl != null && message.hasOwnProperty('officalUrl')) {
-        if (!$util.isString(message.officalUrl)) { return 'officalUrl: string expected' }
       }
       return null
     }
@@ -11973,24 +11973,22 @@ $root.pbapp = (function() {
       if (object.createdAt != null) { message.createdAt = String(object.createdAt) }
       if (object.updatedAt != null) { message.updatedAt = String(object.updatedAt) }
       if (object.name != null) { message.name = String(object.name) }
-      if (object.description != null) { message.description = String(object.description) }
+      if (object.miniProgramAppId != null) { message.miniProgramAppId = String(object.miniProgramAppId) }
+      if (object.miniProgramAppSecret != null) { message.miniProgramAppSecret = String(object.miniProgramAppSecret) }
+      if (object.miniProgramToken != null) { message.miniProgramToken = String(object.miniProgramToken) }
+      if (object.miniProgramencodingAESKey != null) { message.miniProgramencodingAESKey = String(object.miniProgramencodingAESKey) }
+      if (object.officalAppId != null) { message.officalAppId = String(object.officalAppId) }
+      if (object.officalAppSecret != null) { message.officalAppSecret = String(object.officalAppSecret) }
+      if (object.ifficalToken != null) { message.ifficalToken = String(object.ifficalToken) }
+      if (object.officalEncodingAESKey != null) { message.officalEncodingAESKey = String(object.officalEncodingAESKey) }
+      if (object.openAppId != null) { message.openAppId = String(object.openAppId) }
+      if (object.openAppSecret != null) { message.openAppSecret = String(object.openAppSecret) }
+      if (object.openToken != null) { message.openToken = String(object.openToken) }
+      if (object.openEncodingAESKey != null) { message.openEncodingAESKey = String(object.openEncodingAESKey) }
       if (object.icon != null) { message.icon = String(object.icon) }
       if (object.logo != null) { message.logo = String(object.logo) }
-      if (object.url != null) { message.url = String(object.url) }
+      if (object.description != null) { message.description = String(object.description) }
       if (object.version != null) { message.version = String(object.version) }
-      if (object.type != null) { message.type = object.type | 0 }
-      if (object.status != null) { message.status = object.status | 0 }
-      if (object.ownerId != null) {
-        if ($util.Long) { (message.ownerId = $util.Long.fromValue(object.ownerId)).unsigned = false } else if (typeof object.ownerId === 'string') { message.ownerId = parseInt(object.ownerId, 10) } else if (typeof object.ownerId === 'number') { message.ownerId = object.ownerId } else if (typeof object.ownerId === 'object') { message.ownerId = new $util.LongBits(object.ownerId.low >>> 0, object.ownerId.high >>> 0).toNumber() }
-      }
-      if (object.ownerName != null) { message.ownerName = String(object.ownerName) }
-      if (object.ownerEmail != null) { message.ownerEmail = String(object.ownerEmail) }
-      if (object.ownerPhone != null) { message.ownerPhone = String(object.ownerPhone) }
-      if (object.ownerMobile != null) { message.ownerMobile = String(object.ownerMobile) }
-      if (object.ownerAddress != null) { message.ownerAddress = String(object.ownerAddress) }
-      if (object.ownerZipCode != null) { message.ownerZipCode = String(object.ownerZipCode) }
-      if (object.ownerCountry != null) { message.ownerCountry = String(object.ownerCountry) }
-      if (object.officalUrl != null) { message.officalUrl = String(object.officalUrl) }
       return message
     }
 
@@ -12014,25 +12012,22 @@ $root.pbapp = (function() {
         object.createdAt = ''
         object.updatedAt = ''
         object.name = ''
-        object.description = ''
+        object.miniProgramAppId = ''
+        object.miniProgramAppSecret = ''
+        object.miniProgramToken = ''
+        object.miniProgramencodingAESKey = ''
+        object.officalAppId = ''
+        object.officalAppSecret = ''
+        object.ifficalToken = ''
+        object.officalEncodingAESKey = ''
+        object.openAppId = ''
+        object.openAppSecret = ''
+        object.openToken = ''
+        object.openEncodingAESKey = ''
         object.icon = ''
         object.logo = ''
-        object.url = ''
+        object.description = ''
         object.version = ''
-        object.type = 0
-        object.status = 0
-        if ($util.Long) {
-          var long = new $util.Long(0, 0, false)
-          object.ownerId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
-        } else { object.ownerId = options.longs === String ? '0' : 0 }
-        object.ownerName = ''
-        object.ownerEmail = ''
-        object.ownerPhone = ''
-        object.ownerMobile = ''
-        object.ownerAddress = ''
-        object.ownerZipCode = ''
-        object.ownerCountry = ''
-        object.officalUrl = ''
       }
       if (message.id != null && message.hasOwnProperty('id')) {
         if (typeof message.id === 'number') { object.id = options.longs === String ? String(message.id) : message.id } else { object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id }
@@ -12040,24 +12035,22 @@ $root.pbapp = (function() {
       if (message.createdAt != null && message.hasOwnProperty('createdAt')) { object.createdAt = message.createdAt }
       if (message.updatedAt != null && message.hasOwnProperty('updatedAt')) { object.updatedAt = message.updatedAt }
       if (message.name != null && message.hasOwnProperty('name')) { object.name = message.name }
-      if (message.description != null && message.hasOwnProperty('description')) { object.description = message.description }
+      if (message.miniProgramAppId != null && message.hasOwnProperty('miniProgramAppId')) { object.miniProgramAppId = message.miniProgramAppId }
+      if (message.miniProgramAppSecret != null && message.hasOwnProperty('miniProgramAppSecret')) { object.miniProgramAppSecret = message.miniProgramAppSecret }
+      if (message.miniProgramToken != null && message.hasOwnProperty('miniProgramToken')) { object.miniProgramToken = message.miniProgramToken }
+      if (message.miniProgramencodingAESKey != null && message.hasOwnProperty('miniProgramencodingAESKey')) { object.miniProgramencodingAESKey = message.miniProgramencodingAESKey }
+      if (message.officalAppId != null && message.hasOwnProperty('officalAppId')) { object.officalAppId = message.officalAppId }
+      if (message.officalAppSecret != null && message.hasOwnProperty('officalAppSecret')) { object.officalAppSecret = message.officalAppSecret }
+      if (message.ifficalToken != null && message.hasOwnProperty('ifficalToken')) { object.ifficalToken = message.ifficalToken }
+      if (message.officalEncodingAESKey != null && message.hasOwnProperty('officalEncodingAESKey')) { object.officalEncodingAESKey = message.officalEncodingAESKey }
+      if (message.openAppId != null && message.hasOwnProperty('openAppId')) { object.openAppId = message.openAppId }
+      if (message.openAppSecret != null && message.hasOwnProperty('openAppSecret')) { object.openAppSecret = message.openAppSecret }
+      if (message.openToken != null && message.hasOwnProperty('openToken')) { object.openToken = message.openToken }
+      if (message.openEncodingAESKey != null && message.hasOwnProperty('openEncodingAESKey')) { object.openEncodingAESKey = message.openEncodingAESKey }
       if (message.icon != null && message.hasOwnProperty('icon')) { object.icon = message.icon }
       if (message.logo != null && message.hasOwnProperty('logo')) { object.logo = message.logo }
-      if (message.url != null && message.hasOwnProperty('url')) { object.url = message.url }
+      if (message.description != null && message.hasOwnProperty('description')) { object.description = message.description }
       if (message.version != null && message.hasOwnProperty('version')) { object.version = message.version }
-      if (message.type != null && message.hasOwnProperty('type')) { object.type = message.type }
-      if (message.status != null && message.hasOwnProperty('status')) { object.status = message.status }
-      if (message.ownerId != null && message.hasOwnProperty('ownerId')) {
-        if (typeof message.ownerId === 'number') { object.ownerId = options.longs === String ? String(message.ownerId) : message.ownerId } else { object.ownerId = options.longs === String ? $util.Long.prototype.toString.call(message.ownerId) : options.longs === Number ? new $util.LongBits(message.ownerId.low >>> 0, message.ownerId.high >>> 0).toNumber() : message.ownerId }
-      }
-      if (message.ownerName != null && message.hasOwnProperty('ownerName')) { object.ownerName = message.ownerName }
-      if (message.ownerEmail != null && message.hasOwnProperty('ownerEmail')) { object.ownerEmail = message.ownerEmail }
-      if (message.ownerPhone != null && message.hasOwnProperty('ownerPhone')) { object.ownerPhone = message.ownerPhone }
-      if (message.ownerMobile != null && message.hasOwnProperty('ownerMobile')) { object.ownerMobile = message.ownerMobile }
-      if (message.ownerAddress != null && message.hasOwnProperty('ownerAddress')) { object.ownerAddress = message.ownerAddress }
-      if (message.ownerZipCode != null && message.hasOwnProperty('ownerZipCode')) { object.ownerZipCode = message.ownerZipCode }
-      if (message.ownerCountry != null && message.hasOwnProperty('ownerCountry')) { object.ownerCountry = message.ownerCountry }
-      if (message.officalUrl != null && message.hasOwnProperty('officalUrl')) { object.officalUrl = message.officalUrl }
       return object
     }
 
