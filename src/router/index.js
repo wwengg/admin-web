@@ -160,6 +160,24 @@ export const asyncRoutes = [
         }
       },
       {
+        path: 'employee',
+        component: () => import('@/views/admin/employee/employee'),
+        name: 'adminEmployee',
+        meta: {
+          title: '雇员管理',
+          roles: ['admin'] // or you can only set roles in sub nav
+        }
+      },
+      {
+        path: 'salary',
+        component: () => import('@/views/admin/salary/salary'),
+        name: 'adminSalary',
+        meta: {
+          title: '工资管理',
+          roles: ['admin'] // or you can only set roles in sub nav
+        }
+      },
+      {
         path: 'role',
         component: () => import('@/views/admin/role/role'),
         name: 'adminRole',

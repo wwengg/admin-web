@@ -1,0 +1,46 @@
+/*
+Copyright © 2024 NAME HERE <EMAIL ADDRESS>
+*/
+syntax = "proto3";
+
+package pbsalary;
+
+option go_package = "wwengg.cn/aike/common/proto/pbsalary";
+
+import "pbcommon/pbcommon.proto";
+
+
+message SalaryModel{
+  int64 id = 1;
+  string createdAt = 2;
+  string updatedAt = 3;
+
+  float days = 4;
+  int32 unitPrice = 5;
+  int32 extraPrice = 6;
+  int32 totalPrice = 7;
+  int32 tax = 8;
+  int32 afterTaxPrice = 9;
+  string date = 10;
+}
+
+message FindSalaryArgs{
+  pbcommon.PageInfo pageInfo = 1;
+  SalaryModel query = 2;
+}
+
+message FindSalaryReply{
+  pbcommon.EnumCode code = 1;
+  string msg = 2;
+  SalaryModel data =3;
+  repeated SalaryModel list = 4;
+  int64 total = 5;
+}
+
+service Salary {
+  rpc CreateSalary(SalaryModel) returns(pbcommon.CommonResult){}
+  rpc UpdateSalary(SalaryModel) returns(pbcommon.CommonResult){}
+  rpc DeleteSalary(pbcommon.IdArgs) returns(pbcommon.CommonResult){}
+  rpc FindSalaryById(pbcommon.IdArgs) returns(FindSalaryReply){}
+  rpc FindSalaryList(FindSalaryArgs) returns(FindSalaryReply){}
+}

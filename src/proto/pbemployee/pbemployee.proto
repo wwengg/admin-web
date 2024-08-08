@@ -1,0 +1,46 @@
+/*
+Copyright © 2024 NAME HERE <EMAIL ADDRESS>
+*/
+syntax = "proto3";
+
+package pbemployee;
+
+option go_package = "wwengg.cn/aike/common/proto/pbemployee";
+
+import "pbcommon/pbcommon.proto";
+
+
+message EmployeeModel{
+  int64 id = 1;
+  string createdAt = 2;
+  string updatedAt = 3;
+
+  string realName = 4;
+  string idNumber = 5;
+  string bankAccount = 6;
+  string bankAddress = 7;
+  int32 phone = 8;
+  string jieba = 9;  // 结巴分词
+  string quanpin = 10; // 全拼
+}
+
+message FindEmployeeArgs{
+  pbcommon.PageInfo pageInfo = 1;
+  EmployeeModel query = 2;
+}
+
+message FindEmployeeReply{
+  pbcommon.EnumCode code = 1;
+  string msg = 2;
+  EmployeeModel data =3;
+  repeated EmployeeModel list = 4;
+  int64 total = 5;
+}
+
+service Employee {
+  rpc CreateEmployee(EmployeeModel) returns(pbcommon.CommonResult){}
+  rpc UpdateEmployee(EmployeeModel) returns(pbcommon.CommonResult){}
+  rpc DeleteEmployee(pbcommon.IdArgs) returns(pbcommon.CommonResult){}
+  rpc FindEmployeeById(pbcommon.IdArgs) returns(FindEmployeeReply){}
+  rpc FindEmployeeList(FindEmployeeArgs) returns(FindEmployeeReply){}
+}
