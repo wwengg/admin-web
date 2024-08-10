@@ -5,9 +5,10 @@ syntax = "proto3";
 
 package pbsalary;
 
-option go_package = "wwengg.cn/aike/common/proto/pbsalary";
+option go_package = "wwengg.cn/aike/common/goproto/pbsalary";
 
 import "pbcommon/pbcommon.proto";
+import "pbemployee/pbemployee.proto";
 
 
 message SalaryModel{
@@ -15,13 +16,15 @@ message SalaryModel{
   string createdAt = 2;
   string updatedAt = 3;
 
-  float days = 4;
+  double days = 4;
   int32 unitPrice = 5;
   int32 extraPrice = 6;
-  int32 totalPrice = 7;
+  double totalPrice = 7;
   int32 tax = 8;
   int32 afterTaxPrice = 9;
   string date = 10;
+  int64 employeeId = 11;
+  pbemployee.EmployeeModel employee = 12;
 }
 
 message FindSalaryArgs{

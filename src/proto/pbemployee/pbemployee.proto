@@ -5,7 +5,7 @@ syntax = "proto3";
 
 package pbemployee;
 
-option go_package = "wwengg.cn/aike/common/proto/pbemployee";
+option go_package = "wwengg.cn/aike/common/goproto/pbemployee";
 
 import "pbcommon/pbcommon.proto";
 
@@ -19,7 +19,7 @@ message EmployeeModel{
   string idNumber = 5;
   string bankAccount = 6;
   string bankAddress = 7;
-  int32 phone = 8;
+  int64 phone = 8;
   string jieba = 9;  // 结巴分词
   string quanpin = 10; // 全拼
 }

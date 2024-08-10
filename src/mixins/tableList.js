@@ -12,8 +12,8 @@ export default {
   methods: {
     async getTableData(page = this.page, pageSize = this.pageSize, query = this.query) {
       this.listLoading = true
+      console.log(query)
       const res = await this.listApi({ pageInfo: { page, pageSize }, query })
-      console.log(res)
       this.listLoading = false
       if (res.code === 'Success') {
         this.tableData = res.list

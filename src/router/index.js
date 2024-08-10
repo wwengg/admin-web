@@ -159,24 +159,7 @@ export const asyncRoutes = [
           roles: ['admin'] // or you can only set roles in sub nav
         }
       },
-      {
-        path: 'employee',
-        component: () => import('@/views/admin/employee/employee'),
-        name: 'adminEmployee',
-        meta: {
-          title: '雇员管理',
-          roles: ['admin'] // or you can only set roles in sub nav
-        }
-      },
-      {
-        path: 'salary',
-        component: () => import('@/views/admin/salary/salary'),
-        name: 'adminSalary',
-        meta: {
-          title: '工资管理',
-          roles: ['admin'] // or you can only set roles in sub nav
-        }
-      },
+
       {
         path: 'role',
         component: () => import('@/views/admin/role/role'),
@@ -197,7 +180,7 @@ export const asyncRoutes = [
       },
       {
         path: 'permission',
-        component: () => import('@/views/admin/permission/permission'),
+        component: () => import('@/views/admin/api/api'),
         name: 'adminPermission',
         meta: {
           title: '权限管理',
@@ -266,6 +249,38 @@ export const asyncRoutes = [
         name: 'deviceReport',
         meta: {
           title: '数据上报查询',
+          roles: ['admin'] // or you can only set roles in sub nav
+        }
+      }
+    ]
+  },
+  {
+    path: '/oa',
+    component: Layout,
+    redirect: '/oa/employee',
+    alwaysShow: true, // will always show the root menu
+    name: 'oa',
+    meta: {
+      title: 'OA',
+      icon: 'el-icon-user',
+      roles: ['admin'] // you can set roles in root nav
+    },
+    children: [
+      {
+        path: 'employee',
+        component: () => import('@/views/oa/employee/employee'),
+        name: 'adminEmployee',
+        meta: {
+          title: '雇员管理',
+          roles: ['admin'] // or you can only set roles in sub nav
+        }
+      },
+      {
+        path: 'salary',
+        component: () => import('@/views/oa/salary/salary'),
+        name: 'adminSalary',
+        meta: {
+          title: '工资管理',
           roles: ['admin'] // or you can only set roles in sub nav
         }
       }

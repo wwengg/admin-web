@@ -15,42 +15,42 @@ var $root = $protobuf.roots['default'] || ($protobuf.roots['default'] = {})
 
 $root.pbcommon = (function() {
   /**
-   * Namespace pbcommon.
-   * @exports pbcommon
-   * @namespace
-   */
+     * Namespace pbcommon.
+     * @exports pbcommon
+     * @namespace
+     */
   var pbcommon = {}
 
   /**
-   * EnumCode enum.
-   * @name pbcommon.EnumCode
-   * @enum {number}
-   * @property {number} None=0 None value
-   * @property {number} Success=200 Success value
-   * @property {number} Fail=500 Fail value
-   * @property {number} Unknown=501 Unknown value
-   * @property {number} Internal=502 Internal value
-   * @property {number} Invalid=503 Invalid value
-   * @property {number} InvalidParam=504 InvalidParam value
-   * @property {number} ParamError=505 ParamError value
-   * @property {number} FindError=1001 FindError value
-   * @property {number} CreateError=1002 CreateError value
-   * @property {number} DeleteError=1003 DeleteError value
-   * @property {number} UpdateError=1004 UpdateError value
-   * @property {number} InvalidToken=2002 InvalidToken value
-   * @property {number} InvalidSign=2003 InvalidSign value
-   * @property {number} NotLogin=2004 NotLogin value
-   * @property {number} LoginTimeout=2005 LoginTimeout value
-   * @property {number} LoginError=2006 LoginError value
-   * @property {number} LoginForbidden=2007 LoginForbidden value
-   * @property {number} LoginExpired=2008 LoginExpired value
-   * @property {number} LoginInvalid=2009 LoginInvalid value
-   * @property {number} LoginInvalidPassword=2010 LoginInvalidPassword value
-   * @property {number} LoginInvalidUsername=2011 LoginInvalidUsername value
-   * @property {number} LoginInvalidEmail=2012 LoginInvalidEmail value
-   * @property {number} LoginInvalidPhone=2013 LoginInvalidPhone value
-   * @property {number} LoginInvalidUsernameOrEmail=2014 LoginInvalidUsernameOrEmail value
-   */
+     * EnumCode enum.
+     * @name pbcommon.EnumCode
+     * @enum {number}
+     * @property {number} None=0 None value
+     * @property {number} Success=200 Success value
+     * @property {number} Fail=500 Fail value
+     * @property {number} Unknown=501 Unknown value
+     * @property {number} Internal=502 Internal value
+     * @property {number} Invalid=503 Invalid value
+     * @property {number} InvalidParam=504 InvalidParam value
+     * @property {number} ParamError=505 ParamError value
+     * @property {number} FindError=1001 FindError value
+     * @property {number} CreateError=1002 CreateError value
+     * @property {number} DeleteError=1003 DeleteError value
+     * @property {number} UpdateError=1004 UpdateError value
+     * @property {number} InvalidToken=2002 InvalidToken value
+     * @property {number} InvalidSign=2003 InvalidSign value
+     * @property {number} NotLogin=2004 NotLogin value
+     * @property {number} LoginTimeout=2005 LoginTimeout value
+     * @property {number} LoginError=2006 LoginError value
+     * @property {number} LoginForbidden=2007 LoginForbidden value
+     * @property {number} LoginExpired=2008 LoginExpired value
+     * @property {number} LoginInvalid=2009 LoginInvalid value
+     * @property {number} LoginInvalidPassword=2010 LoginInvalidPassword value
+     * @property {number} LoginInvalidUsername=2011 LoginInvalidUsername value
+     * @property {number} LoginInvalidEmail=2012 LoginInvalidEmail value
+     * @property {number} LoginInvalidPhone=2013 LoginInvalidPhone value
+     * @property {number} LoginInvalidUsernameOrEmail=2014 LoginInvalidUsernameOrEmail value
+     */
   pbcommon.EnumCode = (function() {
     var valuesById = {}; var values = Object.create(valuesById)
     values[valuesById[0] = 'None'] = 0
@@ -83,21 +83,21 @@ $root.pbcommon = (function() {
 
   pbcommon.CommonResult = (function() {
     /**
-     * Properties of a CommonResult.
-     * @memberof pbcommon
-     * @interface ICommonResult
-     * @property {pbcommon.EnumCode|null} [code] CommonResult code
-     * @property {string|null} [msg] CommonResult msg
-     */
+         * Properties of a CommonResult.
+         * @memberof pbcommon
+         * @interface ICommonResult
+         * @property {pbcommon.EnumCode|null} [code] CommonResult code
+         * @property {string|null} [msg] CommonResult msg
+         */
 
     /**
-     * Constructs a new CommonResult.
-     * @memberof pbcommon
-     * @classdesc Represents a CommonResult.
-     * @implements ICommonResult
-     * @constructor
-     * @param {pbcommon.ICommonResult=} [properties] Properties to set
-     */
+         * Constructs a new CommonResult.
+         * @memberof pbcommon
+         * @classdesc Represents a CommonResult.
+         * @implements ICommonResult
+         * @constructor
+         * @param {pbcommon.ICommonResult=} [properties] Properties to set
+         */
     function CommonResult(properties) {
       if (properties) {
         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
@@ -107,42 +107,42 @@ $root.pbcommon = (function() {
     }
 
     /**
-     * CommonResult code.
-     * @member {pbcommon.EnumCode} code
-     * @memberof pbcommon.CommonResult
-     * @instance
-     */
+         * CommonResult code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbcommon.CommonResult
+         * @instance
+         */
     CommonResult.prototype.code = 0
 
     /**
-     * CommonResult msg.
-     * @member {string} msg
-     * @memberof pbcommon.CommonResult
-     * @instance
-     */
+         * CommonResult msg.
+         * @member {string} msg
+         * @memberof pbcommon.CommonResult
+         * @instance
+         */
     CommonResult.prototype.msg = ''
 
     /**
-     * Creates a new CommonResult instance using the specified properties.
-     * @function create
-     * @memberof pbcommon.CommonResult
-     * @static
-     * @param {pbcommon.ICommonResult=} [properties] Properties to set
-     * @returns {pbcommon.CommonResult} CommonResult instance
-     */
+         * Creates a new CommonResult instance using the specified properties.
+         * @function create
+         * @memberof pbcommon.CommonResult
+         * @static
+         * @param {pbcommon.ICommonResult=} [properties] Properties to set
+         * @returns {pbcommon.CommonResult} CommonResult instance
+         */
     CommonResult.create = function create(properties) {
       return new CommonResult(properties)
     }
 
     /**
-     * Encodes the specified CommonResult message. Does not implicitly {@link pbcommon.CommonResult.verify|verify} messages.
-     * @function encode
-     * @memberof pbcommon.CommonResult
-     * @static
-     * @param {pbcommon.ICommonResult} message CommonResult message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified CommonResult message. Does not implicitly {@link pbcommon.CommonResult.verify|verify} messages.
+         * @function encode
+         * @memberof pbcommon.CommonResult
+         * @static
+         * @param {pbcommon.ICommonResult} message CommonResult message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     CommonResult.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.code != null && Object.hasOwnProperty.call(message, 'code')) { writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code) }
@@ -151,29 +151,29 @@ $root.pbcommon = (function() {
     }
 
     /**
-     * Encodes the specified CommonResult message, length delimited. Does not implicitly {@link pbcommon.CommonResult.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbcommon.CommonResult
-     * @static
-     * @param {pbcommon.ICommonResult} message CommonResult message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified CommonResult message, length delimited. Does not implicitly {@link pbcommon.CommonResult.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbcommon.CommonResult
+         * @static
+         * @param {pbcommon.ICommonResult} message CommonResult message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     CommonResult.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes a CommonResult message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbcommon.CommonResult
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbcommon.CommonResult} CommonResult
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a CommonResult message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbcommon.CommonResult
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbcommon.CommonResult} CommonResult
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     CommonResult.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbcommon.CommonResult()
@@ -197,28 +197,28 @@ $root.pbcommon = (function() {
     }
 
     /**
-     * Decodes a CommonResult message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbcommon.CommonResult
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbcommon.CommonResult} CommonResult
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a CommonResult message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbcommon.CommonResult
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbcommon.CommonResult} CommonResult
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     CommonResult.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies a CommonResult message.
-     * @function verify
-     * @memberof pbcommon.CommonResult
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies a CommonResult message.
+         * @function verify
+         * @memberof pbcommon.CommonResult
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     CommonResult.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.code != null && message.hasOwnProperty('code')) {
@@ -260,13 +260,13 @@ $root.pbcommon = (function() {
     }
 
     /**
-     * Creates a CommonResult message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbcommon.CommonResult
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbcommon.CommonResult} CommonResult
-     */
+         * Creates a CommonResult message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbcommon.CommonResult
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbcommon.CommonResult} CommonResult
+         */
     CommonResult.fromObject = function fromObject(object) {
       if (object instanceof $root.pbcommon.CommonResult) { return object }
       var message = new $root.pbcommon.CommonResult()
@@ -383,14 +383,14 @@ $root.pbcommon = (function() {
     }
 
     /**
-     * Creates a plain object from a CommonResult message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbcommon.CommonResult
-     * @static
-     * @param {pbcommon.CommonResult} message CommonResult
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from a CommonResult message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbcommon.CommonResult
+         * @static
+         * @param {pbcommon.CommonResult} message CommonResult
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     CommonResult.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -404,24 +404,24 @@ $root.pbcommon = (function() {
     }
 
     /**
-     * Converts this CommonResult to JSON.
-     * @function toJSON
-     * @memberof pbcommon.CommonResult
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this CommonResult to JSON.
+         * @function toJSON
+         * @memberof pbcommon.CommonResult
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     CommonResult.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for CommonResult
-     * @function getTypeUrl
-     * @memberof pbcommon.CommonResult
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for CommonResult
+         * @function getTypeUrl
+         * @memberof pbcommon.CommonResult
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     CommonResult.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -434,23 +434,23 @@ $root.pbcommon = (function() {
 
   pbcommon.IdArgs = (function() {
     /**
-     * Properties of an IdArgs.
-     * @memberof pbcommon
-     * @interface IIdArgs
-     * @property {number|Long|null} [id] IdArgs id
-     * @property {string|null} [idStr] IdArgs idStr
-     * @property {Array.<number|Long>|null} [ids] IdArgs ids
-     * @property {Array.<string>|null} [idStrs] IdArgs idStrs
-     */
+         * Properties of an IdArgs.
+         * @memberof pbcommon
+         * @interface IIdArgs
+         * @property {number|Long|null} [id] IdArgs id
+         * @property {string|null} [idStr] IdArgs idStr
+         * @property {Array.<number|Long>|null} [ids] IdArgs ids
+         * @property {Array.<string>|null} [idStrs] IdArgs idStrs
+         */
 
     /**
-     * Constructs a new IdArgs.
-     * @memberof pbcommon
-     * @classdesc Represents an IdArgs.
-     * @implements IIdArgs
-     * @constructor
-     * @param {pbcommon.IIdArgs=} [properties] Properties to set
-     */
+         * Constructs a new IdArgs.
+         * @memberof pbcommon
+         * @classdesc Represents an IdArgs.
+         * @implements IIdArgs
+         * @constructor
+         * @param {pbcommon.IIdArgs=} [properties] Properties to set
+         */
     function IdArgs(properties) {
       this.ids = []
       this.idStrs = []
@@ -462,58 +462,58 @@ $root.pbcommon = (function() {
     }
 
     /**
-     * IdArgs id.
-     * @member {number|Long} id
-     * @memberof pbcommon.IdArgs
-     * @instance
-     */
+         * IdArgs id.
+         * @member {number|Long} id
+         * @memberof pbcommon.IdArgs
+         * @instance
+         */
     IdArgs.prototype.id = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * IdArgs idStr.
-     * @member {string} idStr
-     * @memberof pbcommon.IdArgs
-     * @instance
-     */
+         * IdArgs idStr.
+         * @member {string} idStr
+         * @memberof pbcommon.IdArgs
+         * @instance
+         */
     IdArgs.prototype.idStr = ''
 
     /**
-     * IdArgs ids.
-     * @member {Array.<number|Long>} ids
-     * @memberof pbcommon.IdArgs
-     * @instance
-     */
+         * IdArgs ids.
+         * @member {Array.<number|Long>} ids
+         * @memberof pbcommon.IdArgs
+         * @instance
+         */
     IdArgs.prototype.ids = $util.emptyArray
 
     /**
-     * IdArgs idStrs.
-     * @member {Array.<string>} idStrs
-     * @memberof pbcommon.IdArgs
-     * @instance
-     */
+         * IdArgs idStrs.
+         * @member {Array.<string>} idStrs
+         * @memberof pbcommon.IdArgs
+         * @instance
+         */
     IdArgs.prototype.idStrs = $util.emptyArray
 
     /**
-     * Creates a new IdArgs instance using the specified properties.
-     * @function create
-     * @memberof pbcommon.IdArgs
-     * @static
-     * @param {pbcommon.IIdArgs=} [properties] Properties to set
-     * @returns {pbcommon.IdArgs} IdArgs instance
-     */
+         * Creates a new IdArgs instance using the specified properties.
+         * @function create
+         * @memberof pbcommon.IdArgs
+         * @static
+         * @param {pbcommon.IIdArgs=} [properties] Properties to set
+         * @returns {pbcommon.IdArgs} IdArgs instance
+         */
     IdArgs.create = function create(properties) {
       return new IdArgs(properties)
     }
 
     /**
-     * Encodes the specified IdArgs message. Does not implicitly {@link pbcommon.IdArgs.verify|verify} messages.
-     * @function encode
-     * @memberof pbcommon.IdArgs
-     * @static
-     * @param {pbcommon.IIdArgs} message IdArgs message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified IdArgs message. Does not implicitly {@link pbcommon.IdArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbcommon.IdArgs
+         * @static
+         * @param {pbcommon.IIdArgs} message IdArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     IdArgs.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.id != null && Object.hasOwnProperty.call(message, 'id')) { writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id) }
@@ -530,29 +530,29 @@ $root.pbcommon = (function() {
     }
 
     /**
-     * Encodes the specified IdArgs message, length delimited. Does not implicitly {@link pbcommon.IdArgs.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbcommon.IdArgs
-     * @static
-     * @param {pbcommon.IIdArgs} message IdArgs message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified IdArgs message, length delimited. Does not implicitly {@link pbcommon.IdArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbcommon.IdArgs
+         * @static
+         * @param {pbcommon.IIdArgs} message IdArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     IdArgs.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes an IdArgs message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbcommon.IdArgs
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbcommon.IdArgs} IdArgs
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes an IdArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbcommon.IdArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbcommon.IdArgs} IdArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     IdArgs.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbcommon.IdArgs()
@@ -589,28 +589,28 @@ $root.pbcommon = (function() {
     }
 
     /**
-     * Decodes an IdArgs message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbcommon.IdArgs
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbcommon.IdArgs} IdArgs
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes an IdArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbcommon.IdArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbcommon.IdArgs} IdArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     IdArgs.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies an IdArgs message.
-     * @function verify
-     * @memberof pbcommon.IdArgs
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies an IdArgs message.
+         * @function verify
+         * @memberof pbcommon.IdArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     IdArgs.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.id != null && message.hasOwnProperty('id')) {
@@ -635,13 +635,13 @@ $root.pbcommon = (function() {
     }
 
     /**
-     * Creates an IdArgs message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbcommon.IdArgs
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbcommon.IdArgs} IdArgs
-     */
+         * Creates an IdArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbcommon.IdArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbcommon.IdArgs} IdArgs
+         */
     IdArgs.fromObject = function fromObject(object) {
       if (object instanceof $root.pbcommon.IdArgs) { return object }
       var message = new $root.pbcommon.IdArgs()
@@ -665,14 +665,14 @@ $root.pbcommon = (function() {
     }
 
     /**
-     * Creates a plain object from an IdArgs message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbcommon.IdArgs
-     * @static
-     * @param {pbcommon.IdArgs} message IdArgs
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from an IdArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbcommon.IdArgs
+         * @static
+         * @param {pbcommon.IdArgs} message IdArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     IdArgs.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -705,24 +705,24 @@ $root.pbcommon = (function() {
     }
 
     /**
-     * Converts this IdArgs to JSON.
-     * @function toJSON
-     * @memberof pbcommon.IdArgs
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this IdArgs to JSON.
+         * @function toJSON
+         * @memberof pbcommon.IdArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     IdArgs.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for IdArgs
-     * @function getTypeUrl
-     * @memberof pbcommon.IdArgs
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for IdArgs
+         * @function getTypeUrl
+         * @memberof pbcommon.IdArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     IdArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -735,21 +735,21 @@ $root.pbcommon = (function() {
 
   pbcommon.PageInfo = (function() {
     /**
-     * Properties of a PageInfo.
-     * @memberof pbcommon
-     * @interface IPageInfo
-     * @property {number|null} [page] PageInfo page
-     * @property {number|null} [pageSize] PageInfo pageSize
-     */
+         * Properties of a PageInfo.
+         * @memberof pbcommon
+         * @interface IPageInfo
+         * @property {number|null} [page] PageInfo page
+         * @property {number|null} [pageSize] PageInfo pageSize
+         */
 
     /**
-     * Constructs a new PageInfo.
-     * @memberof pbcommon
-     * @classdesc Represents a PageInfo.
-     * @implements IPageInfo
-     * @constructor
-     * @param {pbcommon.IPageInfo=} [properties] Properties to set
-     */
+         * Constructs a new PageInfo.
+         * @memberof pbcommon
+         * @classdesc Represents a PageInfo.
+         * @implements IPageInfo
+         * @constructor
+         * @param {pbcommon.IPageInfo=} [properties] Properties to set
+         */
     function PageInfo(properties) {
       if (properties) {
         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
@@ -759,42 +759,42 @@ $root.pbcommon = (function() {
     }
 
     /**
-     * PageInfo page.
-     * @member {number} page
-     * @memberof pbcommon.PageInfo
-     * @instance
-     */
+         * PageInfo page.
+         * @member {number} page
+         * @memberof pbcommon.PageInfo
+         * @instance
+         */
     PageInfo.prototype.page = 0
 
     /**
-     * PageInfo pageSize.
-     * @member {number} pageSize
-     * @memberof pbcommon.PageInfo
-     * @instance
-     */
+         * PageInfo pageSize.
+         * @member {number} pageSize
+         * @memberof pbcommon.PageInfo
+         * @instance
+         */
     PageInfo.prototype.pageSize = 0
 
     /**
-     * Creates a new PageInfo instance using the specified properties.
-     * @function create
-     * @memberof pbcommon.PageInfo
-     * @static
-     * @param {pbcommon.IPageInfo=} [properties] Properties to set
-     * @returns {pbcommon.PageInfo} PageInfo instance
-     */
+         * Creates a new PageInfo instance using the specified properties.
+         * @function create
+         * @memberof pbcommon.PageInfo
+         * @static
+         * @param {pbcommon.IPageInfo=} [properties] Properties to set
+         * @returns {pbcommon.PageInfo} PageInfo instance
+         */
     PageInfo.create = function create(properties) {
       return new PageInfo(properties)
     }
 
     /**
-     * Encodes the specified PageInfo message. Does not implicitly {@link pbcommon.PageInfo.verify|verify} messages.
-     * @function encode
-     * @memberof pbcommon.PageInfo
-     * @static
-     * @param {pbcommon.IPageInfo} message PageInfo message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified PageInfo message. Does not implicitly {@link pbcommon.PageInfo.verify|verify} messages.
+         * @function encode
+         * @memberof pbcommon.PageInfo
+         * @static
+         * @param {pbcommon.IPageInfo} message PageInfo message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     PageInfo.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.page != null && Object.hasOwnProperty.call(message, 'page')) { writer.uint32(/* id 1, wireType 0 =*/8).int32(message.page) }
@@ -803,29 +803,29 @@ $root.pbcommon = (function() {
     }
 
     /**
-     * Encodes the specified PageInfo message, length delimited. Does not implicitly {@link pbcommon.PageInfo.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbcommon.PageInfo
-     * @static
-     * @param {pbcommon.IPageInfo} message PageInfo message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified PageInfo message, length delimited. Does not implicitly {@link pbcommon.PageInfo.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbcommon.PageInfo
+         * @static
+         * @param {pbcommon.IPageInfo} message PageInfo message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     PageInfo.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes a PageInfo message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbcommon.PageInfo
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbcommon.PageInfo} PageInfo
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a PageInfo message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbcommon.PageInfo
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbcommon.PageInfo} PageInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     PageInfo.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbcommon.PageInfo()
@@ -849,28 +849,28 @@ $root.pbcommon = (function() {
     }
 
     /**
-     * Decodes a PageInfo message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbcommon.PageInfo
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbcommon.PageInfo} PageInfo
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a PageInfo message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbcommon.PageInfo
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbcommon.PageInfo} PageInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     PageInfo.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies a PageInfo message.
-     * @function verify
-     * @memberof pbcommon.PageInfo
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies a PageInfo message.
+         * @function verify
+         * @memberof pbcommon.PageInfo
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     PageInfo.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.page != null && message.hasOwnProperty('page')) {
@@ -883,13 +883,13 @@ $root.pbcommon = (function() {
     }
 
     /**
-     * Creates a PageInfo message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbcommon.PageInfo
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbcommon.PageInfo} PageInfo
-     */
+         * Creates a PageInfo message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbcommon.PageInfo
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbcommon.PageInfo} PageInfo
+         */
     PageInfo.fromObject = function fromObject(object) {
       if (object instanceof $root.pbcommon.PageInfo) { return object }
       var message = new $root.pbcommon.PageInfo()
@@ -899,14 +899,14 @@ $root.pbcommon = (function() {
     }
 
     /**
-     * Creates a plain object from a PageInfo message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbcommon.PageInfo
-     * @static
-     * @param {pbcommon.PageInfo} message PageInfo
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from a PageInfo message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbcommon.PageInfo
+         * @static
+         * @param {pbcommon.PageInfo} message PageInfo
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     PageInfo.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -920,24 +920,24 @@ $root.pbcommon = (function() {
     }
 
     /**
-     * Converts this PageInfo to JSON.
-     * @function toJSON
-     * @memberof pbcommon.PageInfo
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this PageInfo to JSON.
+         * @function toJSON
+         * @memberof pbcommon.PageInfo
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     PageInfo.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for PageInfo
-     * @function getTypeUrl
-     * @memberof pbcommon.PageInfo
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for PageInfo
+         * @function getTypeUrl
+         * @memberof pbcommon.PageInfo
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     PageInfo.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -953,36 +953,36 @@ $root.pbcommon = (function() {
 
 $root.pbapi = (function() {
   /**
-   * Namespace pbapi.
-   * @exports pbapi
-   * @namespace
-   */
+     * Namespace pbapi.
+     * @exports pbapi
+     * @namespace
+     */
   var pbapi = {}
 
   pbapi.ApiModel = (function() {
     /**
-     * Properties of an ApiModel.
-     * @memberof pbapi
-     * @interface IApiModel
-     * @property {number|Long|null} [id] ApiModel id
-     * @property {string|null} [createdAt] ApiModel createdAt
-     * @property {string|null} [updatedAt] ApiModel updatedAt
-     * @property {string|null} [type] ApiModel type
-     * @property {string|null} [path] ApiModel path
-     * @property {string|null} [method] ApiModel method
-     * @property {string|null} [name] ApiModel name
-     * @property {string|null} [group] ApiModel group
-     * @property {boolean|null} [isSelected] ApiModel isSelected
-     */
+         * Properties of an ApiModel.
+         * @memberof pbapi
+         * @interface IApiModel
+         * @property {number|Long|null} [id] ApiModel id
+         * @property {string|null} [createdAt] ApiModel createdAt
+         * @property {string|null} [updatedAt] ApiModel updatedAt
+         * @property {string|null} [type] ApiModel type
+         * @property {string|null} [path] ApiModel path
+         * @property {string|null} [method] ApiModel method
+         * @property {string|null} [name] ApiModel name
+         * @property {string|null} [group] ApiModel group
+         * @property {boolean|null} [isSelected] ApiModel isSelected
+         */
 
     /**
-     * Constructs a new ApiModel.
-     * @memberof pbapi
-     * @classdesc Represents an ApiModel.
-     * @implements IApiModel
-     * @constructor
-     * @param {pbapi.IApiModel=} [properties] Properties to set
-     */
+         * Constructs a new ApiModel.
+         * @memberof pbapi
+         * @classdesc Represents an ApiModel.
+         * @implements IApiModel
+         * @constructor
+         * @param {pbapi.IApiModel=} [properties] Properties to set
+         */
     function ApiModel(properties) {
       if (properties) {
         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
@@ -992,98 +992,98 @@ $root.pbapi = (function() {
     }
 
     /**
-     * ApiModel id.
-     * @member {number|Long} id
-     * @memberof pbapi.ApiModel
-     * @instance
-     */
+         * ApiModel id.
+         * @member {number|Long} id
+         * @memberof pbapi.ApiModel
+         * @instance
+         */
     ApiModel.prototype.id = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * ApiModel createdAt.
-     * @member {string} createdAt
-     * @memberof pbapi.ApiModel
-     * @instance
-     */
+         * ApiModel createdAt.
+         * @member {string} createdAt
+         * @memberof pbapi.ApiModel
+         * @instance
+         */
     ApiModel.prototype.createdAt = ''
 
     /**
-     * ApiModel updatedAt.
-     * @member {string} updatedAt
-     * @memberof pbapi.ApiModel
-     * @instance
-     */
+         * ApiModel updatedAt.
+         * @member {string} updatedAt
+         * @memberof pbapi.ApiModel
+         * @instance
+         */
     ApiModel.prototype.updatedAt = ''
 
     /**
-     * ApiModel type.
-     * @member {string} type
-     * @memberof pbapi.ApiModel
-     * @instance
-     */
+         * ApiModel type.
+         * @member {string} type
+         * @memberof pbapi.ApiModel
+         * @instance
+         */
     ApiModel.prototype.type = ''
 
     /**
-     * ApiModel path.
-     * @member {string} path
-     * @memberof pbapi.ApiModel
-     * @instance
-     */
+         * ApiModel path.
+         * @member {string} path
+         * @memberof pbapi.ApiModel
+         * @instance
+         */
     ApiModel.prototype.path = ''
 
     /**
-     * ApiModel method.
-     * @member {string} method
-     * @memberof pbapi.ApiModel
-     * @instance
-     */
+         * ApiModel method.
+         * @member {string} method
+         * @memberof pbapi.ApiModel
+         * @instance
+         */
     ApiModel.prototype.method = ''
 
     /**
-     * ApiModel name.
-     * @member {string} name
-     * @memberof pbapi.ApiModel
-     * @instance
-     */
+         * ApiModel name.
+         * @member {string} name
+         * @memberof pbapi.ApiModel
+         * @instance
+         */
     ApiModel.prototype.name = ''
 
     /**
-     * ApiModel group.
-     * @member {string} group
-     * @memberof pbapi.ApiModel
-     * @instance
-     */
+         * ApiModel group.
+         * @member {string} group
+         * @memberof pbapi.ApiModel
+         * @instance
+         */
     ApiModel.prototype.group = ''
 
     /**
-     * ApiModel isSelected.
-     * @member {boolean} isSelected
-     * @memberof pbapi.ApiModel
-     * @instance
-     */
+         * ApiModel isSelected.
+         * @member {boolean} isSelected
+         * @memberof pbapi.ApiModel
+         * @instance
+         */
     ApiModel.prototype.isSelected = false
 
     /**
-     * Creates a new ApiModel instance using the specified properties.
-     * @function create
-     * @memberof pbapi.ApiModel
-     * @static
-     * @param {pbapi.IApiModel=} [properties] Properties to set
-     * @returns {pbapi.ApiModel} ApiModel instance
-     */
+         * Creates a new ApiModel instance using the specified properties.
+         * @function create
+         * @memberof pbapi.ApiModel
+         * @static
+         * @param {pbapi.IApiModel=} [properties] Properties to set
+         * @returns {pbapi.ApiModel} ApiModel instance
+         */
     ApiModel.create = function create(properties) {
       return new ApiModel(properties)
     }
 
     /**
-     * Encodes the specified ApiModel message. Does not implicitly {@link pbapi.ApiModel.verify|verify} messages.
-     * @function encode
-     * @memberof pbapi.ApiModel
-     * @static
-     * @param {pbapi.IApiModel} message ApiModel message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified ApiModel message. Does not implicitly {@link pbapi.ApiModel.verify|verify} messages.
+         * @function encode
+         * @memberof pbapi.ApiModel
+         * @static
+         * @param {pbapi.IApiModel} message ApiModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     ApiModel.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.id != null && Object.hasOwnProperty.call(message, 'id')) { writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id) }
@@ -1099,29 +1099,29 @@ $root.pbapi = (function() {
     }
 
     /**
-     * Encodes the specified ApiModel message, length delimited. Does not implicitly {@link pbapi.ApiModel.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbapi.ApiModel
-     * @static
-     * @param {pbapi.IApiModel} message ApiModel message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified ApiModel message, length delimited. Does not implicitly {@link pbapi.ApiModel.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbapi.ApiModel
+         * @static
+         * @param {pbapi.IApiModel} message ApiModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     ApiModel.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes an ApiModel message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbapi.ApiModel
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbapi.ApiModel} ApiModel
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes an ApiModel message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbapi.ApiModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbapi.ApiModel} ApiModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     ApiModel.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbapi.ApiModel()
@@ -1173,28 +1173,28 @@ $root.pbapi = (function() {
     }
 
     /**
-     * Decodes an ApiModel message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbapi.ApiModel
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbapi.ApiModel} ApiModel
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes an ApiModel message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbapi.ApiModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbapi.ApiModel} ApiModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     ApiModel.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies an ApiModel message.
-     * @function verify
-     * @memberof pbapi.ApiModel
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies an ApiModel message.
+         * @function verify
+         * @memberof pbapi.ApiModel
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     ApiModel.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.id != null && message.hasOwnProperty('id')) {
@@ -1228,13 +1228,13 @@ $root.pbapi = (function() {
     }
 
     /**
-     * Creates an ApiModel message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbapi.ApiModel
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbapi.ApiModel} ApiModel
-     */
+         * Creates an ApiModel message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbapi.ApiModel
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbapi.ApiModel} ApiModel
+         */
     ApiModel.fromObject = function fromObject(object) {
       if (object instanceof $root.pbapi.ApiModel) { return object }
       var message = new $root.pbapi.ApiModel()
@@ -1253,14 +1253,14 @@ $root.pbapi = (function() {
     }
 
     /**
-     * Creates a plain object from an ApiModel message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbapi.ApiModel
-     * @static
-     * @param {pbapi.ApiModel} message ApiModel
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from an ApiModel message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbapi.ApiModel
+         * @static
+         * @param {pbapi.ApiModel} message ApiModel
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     ApiModel.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -1293,24 +1293,24 @@ $root.pbapi = (function() {
     }
 
     /**
-     * Converts this ApiModel to JSON.
-     * @function toJSON
-     * @memberof pbapi.ApiModel
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this ApiModel to JSON.
+         * @function toJSON
+         * @memberof pbapi.ApiModel
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     ApiModel.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for ApiModel
-     * @function getTypeUrl
-     * @memberof pbapi.ApiModel
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for ApiModel
+         * @function getTypeUrl
+         * @memberof pbapi.ApiModel
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     ApiModel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -1323,21 +1323,21 @@ $root.pbapi = (function() {
 
   pbapi.FindApiArgs = (function() {
     /**
-     * Properties of a FindApiArgs.
-     * @memberof pbapi
-     * @interface IFindApiArgs
-     * @property {pbcommon.IPageInfo|null} [pageInfo] FindApiArgs pageInfo
-     * @property {pbapi.IApiModel|null} [query] FindApiArgs query
-     */
+         * Properties of a FindApiArgs.
+         * @memberof pbapi
+         * @interface IFindApiArgs
+         * @property {pbcommon.IPageInfo|null} [pageInfo] FindApiArgs pageInfo
+         * @property {pbapi.IApiModel|null} [query] FindApiArgs query
+         */
 
     /**
-     * Constructs a new FindApiArgs.
-     * @memberof pbapi
-     * @classdesc Represents a FindApiArgs.
-     * @implements IFindApiArgs
-     * @constructor
-     * @param {pbapi.IFindApiArgs=} [properties] Properties to set
-     */
+         * Constructs a new FindApiArgs.
+         * @memberof pbapi
+         * @classdesc Represents a FindApiArgs.
+         * @implements IFindApiArgs
+         * @constructor
+         * @param {pbapi.IFindApiArgs=} [properties] Properties to set
+         */
     function FindApiArgs(properties) {
       if (properties) {
         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
@@ -1347,42 +1347,42 @@ $root.pbapi = (function() {
     }
 
     /**
-     * FindApiArgs pageInfo.
-     * @member {pbcommon.IPageInfo|null|undefined} pageInfo
-     * @memberof pbapi.FindApiArgs
-     * @instance
-     */
+         * FindApiArgs pageInfo.
+         * @member {pbcommon.IPageInfo|null|undefined} pageInfo
+         * @memberof pbapi.FindApiArgs
+         * @instance
+         */
     FindApiArgs.prototype.pageInfo = null
 
     /**
-     * FindApiArgs query.
-     * @member {pbapi.IApiModel|null|undefined} query
-     * @memberof pbapi.FindApiArgs
-     * @instance
-     */
+         * FindApiArgs query.
+         * @member {pbapi.IApiModel|null|undefined} query
+         * @memberof pbapi.FindApiArgs
+         * @instance
+         */
     FindApiArgs.prototype.query = null
 
     /**
-     * Creates a new FindApiArgs instance using the specified properties.
-     * @function create
-     * @memberof pbapi.FindApiArgs
-     * @static
-     * @param {pbapi.IFindApiArgs=} [properties] Properties to set
-     * @returns {pbapi.FindApiArgs} FindApiArgs instance
-     */
+         * Creates a new FindApiArgs instance using the specified properties.
+         * @function create
+         * @memberof pbapi.FindApiArgs
+         * @static
+         * @param {pbapi.IFindApiArgs=} [properties] Properties to set
+         * @returns {pbapi.FindApiArgs} FindApiArgs instance
+         */
     FindApiArgs.create = function create(properties) {
       return new FindApiArgs(properties)
     }
 
     /**
-     * Encodes the specified FindApiArgs message. Does not implicitly {@link pbapi.FindApiArgs.verify|verify} messages.
-     * @function encode
-     * @memberof pbapi.FindApiArgs
-     * @static
-     * @param {pbapi.IFindApiArgs} message FindApiArgs message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindApiArgs message. Does not implicitly {@link pbapi.FindApiArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbapi.FindApiArgs
+         * @static
+         * @param {pbapi.IFindApiArgs} message FindApiArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindApiArgs.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.pageInfo != null && Object.hasOwnProperty.call(message, 'pageInfo')) { $root.pbcommon.PageInfo.encode(message.pageInfo, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim() }
@@ -1391,29 +1391,29 @@ $root.pbapi = (function() {
     }
 
     /**
-     * Encodes the specified FindApiArgs message, length delimited. Does not implicitly {@link pbapi.FindApiArgs.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbapi.FindApiArgs
-     * @static
-     * @param {pbapi.IFindApiArgs} message FindApiArgs message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindApiArgs message, length delimited. Does not implicitly {@link pbapi.FindApiArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbapi.FindApiArgs
+         * @static
+         * @param {pbapi.IFindApiArgs} message FindApiArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindApiArgs.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes a FindApiArgs message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbapi.FindApiArgs
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbapi.FindApiArgs} FindApiArgs
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindApiArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbapi.FindApiArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbapi.FindApiArgs} FindApiArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindApiArgs.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbapi.FindApiArgs()
@@ -1437,28 +1437,28 @@ $root.pbapi = (function() {
     }
 
     /**
-     * Decodes a FindApiArgs message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbapi.FindApiArgs
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbapi.FindApiArgs} FindApiArgs
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindApiArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbapi.FindApiArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbapi.FindApiArgs} FindApiArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindApiArgs.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies a FindApiArgs message.
-     * @function verify
-     * @memberof pbapi.FindApiArgs
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies a FindApiArgs message.
+         * @function verify
+         * @memberof pbapi.FindApiArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     FindApiArgs.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.pageInfo != null && message.hasOwnProperty('pageInfo')) {
@@ -1473,13 +1473,13 @@ $root.pbapi = (function() {
     }
 
     /**
-     * Creates a FindApiArgs message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbapi.FindApiArgs
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbapi.FindApiArgs} FindApiArgs
-     */
+         * Creates a FindApiArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbapi.FindApiArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbapi.FindApiArgs} FindApiArgs
+         */
     FindApiArgs.fromObject = function fromObject(object) {
       if (object instanceof $root.pbapi.FindApiArgs) { return object }
       var message = new $root.pbapi.FindApiArgs()
@@ -1495,14 +1495,14 @@ $root.pbapi = (function() {
     }
 
     /**
-     * Creates a plain object from a FindApiArgs message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbapi.FindApiArgs
-     * @static
-     * @param {pbapi.FindApiArgs} message FindApiArgs
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from a FindApiArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbapi.FindApiArgs
+         * @static
+         * @param {pbapi.FindApiArgs} message FindApiArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     FindApiArgs.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -1516,24 +1516,24 @@ $root.pbapi = (function() {
     }
 
     /**
-     * Converts this FindApiArgs to JSON.
-     * @function toJSON
-     * @memberof pbapi.FindApiArgs
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this FindApiArgs to JSON.
+         * @function toJSON
+         * @memberof pbapi.FindApiArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     FindApiArgs.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for FindApiArgs
-     * @function getTypeUrl
-     * @memberof pbapi.FindApiArgs
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for FindApiArgs
+         * @function getTypeUrl
+         * @memberof pbapi.FindApiArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     FindApiArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -1546,24 +1546,24 @@ $root.pbapi = (function() {
 
   pbapi.FindApiReply = (function() {
     /**
-     * Properties of a FindApiReply.
-     * @memberof pbapi
-     * @interface IFindApiReply
-     * @property {pbcommon.EnumCode|null} [code] FindApiReply code
-     * @property {string|null} [msg] FindApiReply msg
-     * @property {pbapi.IApiModel|null} [data] FindApiReply data
-     * @property {Array.<pbapi.IApiModel>|null} [list] FindApiReply list
-     * @property {number|Long|null} [total] FindApiReply total
-     */
+         * Properties of a FindApiReply.
+         * @memberof pbapi
+         * @interface IFindApiReply
+         * @property {pbcommon.EnumCode|null} [code] FindApiReply code
+         * @property {string|null} [msg] FindApiReply msg
+         * @property {pbapi.IApiModel|null} [data] FindApiReply data
+         * @property {Array.<pbapi.IApiModel>|null} [list] FindApiReply list
+         * @property {number|Long|null} [total] FindApiReply total
+         */
 
     /**
-     * Constructs a new FindApiReply.
-     * @memberof pbapi
-     * @classdesc Represents a FindApiReply.
-     * @implements IFindApiReply
-     * @constructor
-     * @param {pbapi.IFindApiReply=} [properties] Properties to set
-     */
+         * Constructs a new FindApiReply.
+         * @memberof pbapi
+         * @classdesc Represents a FindApiReply.
+         * @implements IFindApiReply
+         * @constructor
+         * @param {pbapi.IFindApiReply=} [properties] Properties to set
+         */
     function FindApiReply(properties) {
       this.list = []
       if (properties) {
@@ -1574,66 +1574,66 @@ $root.pbapi = (function() {
     }
 
     /**
-     * FindApiReply code.
-     * @member {pbcommon.EnumCode} code
-     * @memberof pbapi.FindApiReply
-     * @instance
-     */
+         * FindApiReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbapi.FindApiReply
+         * @instance
+         */
     FindApiReply.prototype.code = 0
 
     /**
-     * FindApiReply msg.
-     * @member {string} msg
-     * @memberof pbapi.FindApiReply
-     * @instance
-     */
+         * FindApiReply msg.
+         * @member {string} msg
+         * @memberof pbapi.FindApiReply
+         * @instance
+         */
     FindApiReply.prototype.msg = ''
 
     /**
-     * FindApiReply data.
-     * @member {pbapi.IApiModel|null|undefined} data
-     * @memberof pbapi.FindApiReply
-     * @instance
-     */
+         * FindApiReply data.
+         * @member {pbapi.IApiModel|null|undefined} data
+         * @memberof pbapi.FindApiReply
+         * @instance
+         */
     FindApiReply.prototype.data = null
 
     /**
-     * FindApiReply list.
-     * @member {Array.<pbapi.IApiModel>} list
-     * @memberof pbapi.FindApiReply
-     * @instance
-     */
+         * FindApiReply list.
+         * @member {Array.<pbapi.IApiModel>} list
+         * @memberof pbapi.FindApiReply
+         * @instance
+         */
     FindApiReply.prototype.list = $util.emptyArray
 
     /**
-     * FindApiReply total.
-     * @member {number|Long} total
-     * @memberof pbapi.FindApiReply
-     * @instance
-     */
+         * FindApiReply total.
+         * @member {number|Long} total
+         * @memberof pbapi.FindApiReply
+         * @instance
+         */
     FindApiReply.prototype.total = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * Creates a new FindApiReply instance using the specified properties.
-     * @function create
-     * @memberof pbapi.FindApiReply
-     * @static
-     * @param {pbapi.IFindApiReply=} [properties] Properties to set
-     * @returns {pbapi.FindApiReply} FindApiReply instance
-     */
+         * Creates a new FindApiReply instance using the specified properties.
+         * @function create
+         * @memberof pbapi.FindApiReply
+         * @static
+         * @param {pbapi.IFindApiReply=} [properties] Properties to set
+         * @returns {pbapi.FindApiReply} FindApiReply instance
+         */
     FindApiReply.create = function create(properties) {
       return new FindApiReply(properties)
     }
 
     /**
-     * Encodes the specified FindApiReply message. Does not implicitly {@link pbapi.FindApiReply.verify|verify} messages.
-     * @function encode
-     * @memberof pbapi.FindApiReply
-     * @static
-     * @param {pbapi.IFindApiReply} message FindApiReply message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindApiReply message. Does not implicitly {@link pbapi.FindApiReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbapi.FindApiReply
+         * @static
+         * @param {pbapi.IFindApiReply} message FindApiReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindApiReply.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.code != null && Object.hasOwnProperty.call(message, 'code')) { writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code) }
@@ -1647,29 +1647,29 @@ $root.pbapi = (function() {
     }
 
     /**
-     * Encodes the specified FindApiReply message, length delimited. Does not implicitly {@link pbapi.FindApiReply.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbapi.FindApiReply
-     * @static
-     * @param {pbapi.IFindApiReply} message FindApiReply message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindApiReply message, length delimited. Does not implicitly {@link pbapi.FindApiReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbapi.FindApiReply
+         * @static
+         * @param {pbapi.IFindApiReply} message FindApiReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindApiReply.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes a FindApiReply message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbapi.FindApiReply
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbapi.FindApiReply} FindApiReply
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindApiReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbapi.FindApiReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbapi.FindApiReply} FindApiReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindApiReply.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbapi.FindApiReply()
@@ -1706,28 +1706,28 @@ $root.pbapi = (function() {
     }
 
     /**
-     * Decodes a FindApiReply message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbapi.FindApiReply
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbapi.FindApiReply} FindApiReply
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindApiReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbapi.FindApiReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbapi.FindApiReply} FindApiReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindApiReply.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies a FindApiReply message.
-     * @function verify
-     * @memberof pbapi.FindApiReply
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies a FindApiReply message.
+         * @function verify
+         * @memberof pbapi.FindApiReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     FindApiReply.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.code != null && message.hasOwnProperty('code')) {
@@ -1783,13 +1783,13 @@ $root.pbapi = (function() {
     }
 
     /**
-     * Creates a FindApiReply message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbapi.FindApiReply
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbapi.FindApiReply} FindApiReply
-     */
+         * Creates a FindApiReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbapi.FindApiReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbapi.FindApiReply} FindApiReply
+         */
     FindApiReply.fromObject = function fromObject(object) {
       if (object instanceof $root.pbapi.FindApiReply) { return object }
       var message = new $root.pbapi.FindApiReply()
@@ -1921,14 +1921,14 @@ $root.pbapi = (function() {
     }
 
     /**
-     * Creates a plain object from a FindApiReply message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbapi.FindApiReply
-     * @static
-     * @param {pbapi.FindApiReply} message FindApiReply
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from a FindApiReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbapi.FindApiReply
+         * @static
+         * @param {pbapi.FindApiReply} message FindApiReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     FindApiReply.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -1956,24 +1956,24 @@ $root.pbapi = (function() {
     }
 
     /**
-     * Converts this FindApiReply to JSON.
-     * @function toJSON
-     * @memberof pbapi.FindApiReply
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this FindApiReply to JSON.
+         * @function toJSON
+         * @memberof pbapi.FindApiReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     FindApiReply.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for FindApiReply
-     * @function getTypeUrl
-     * @memberof pbapi.FindApiReply
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for FindApiReply
+         * @function getTypeUrl
+         * @memberof pbapi.FindApiReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     FindApiReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -1986,20 +1986,20 @@ $root.pbapi = (function() {
 
   pbapi.FindApiByCasbinRoleArgs = (function() {
     /**
-     * Properties of a FindApiByCasbinRoleArgs.
-     * @memberof pbapi
-     * @interface IFindApiByCasbinRoleArgs
-     * @property {number|Long|null} [role] FindApiByCasbinRoleArgs role
-     */
+         * Properties of a FindApiByCasbinRoleArgs.
+         * @memberof pbapi
+         * @interface IFindApiByCasbinRoleArgs
+         * @property {number|Long|null} [role] FindApiByCasbinRoleArgs role
+         */
 
     /**
-     * Constructs a new FindApiByCasbinRoleArgs.
-     * @memberof pbapi
-     * @classdesc Represents a FindApiByCasbinRoleArgs.
-     * @implements IFindApiByCasbinRoleArgs
-     * @constructor
-     * @param {pbapi.IFindApiByCasbinRoleArgs=} [properties] Properties to set
-     */
+         * Constructs a new FindApiByCasbinRoleArgs.
+         * @memberof pbapi
+         * @classdesc Represents a FindApiByCasbinRoleArgs.
+         * @implements IFindApiByCasbinRoleArgs
+         * @constructor
+         * @param {pbapi.IFindApiByCasbinRoleArgs=} [properties] Properties to set
+         */
     function FindApiByCasbinRoleArgs(properties) {
       if (properties) {
         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
@@ -2009,34 +2009,34 @@ $root.pbapi = (function() {
     }
 
     /**
-     * FindApiByCasbinRoleArgs role.
-     * @member {number|Long} role
-     * @memberof pbapi.FindApiByCasbinRoleArgs
-     * @instance
-     */
+         * FindApiByCasbinRoleArgs role.
+         * @member {number|Long} role
+         * @memberof pbapi.FindApiByCasbinRoleArgs
+         * @instance
+         */
     FindApiByCasbinRoleArgs.prototype.role = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * Creates a new FindApiByCasbinRoleArgs instance using the specified properties.
-     * @function create
-     * @memberof pbapi.FindApiByCasbinRoleArgs
-     * @static
-     * @param {pbapi.IFindApiByCasbinRoleArgs=} [properties] Properties to set
-     * @returns {pbapi.FindApiByCasbinRoleArgs} FindApiByCasbinRoleArgs instance
-     */
+         * Creates a new FindApiByCasbinRoleArgs instance using the specified properties.
+         * @function create
+         * @memberof pbapi.FindApiByCasbinRoleArgs
+         * @static
+         * @param {pbapi.IFindApiByCasbinRoleArgs=} [properties] Properties to set
+         * @returns {pbapi.FindApiByCasbinRoleArgs} FindApiByCasbinRoleArgs instance
+         */
     FindApiByCasbinRoleArgs.create = function create(properties) {
       return new FindApiByCasbinRoleArgs(properties)
     }
 
     /**
-     * Encodes the specified FindApiByCasbinRoleArgs message. Does not implicitly {@link pbapi.FindApiByCasbinRoleArgs.verify|verify} messages.
-     * @function encode
-     * @memberof pbapi.FindApiByCasbinRoleArgs
-     * @static
-     * @param {pbapi.IFindApiByCasbinRoleArgs} message FindApiByCasbinRoleArgs message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindApiByCasbinRoleArgs message. Does not implicitly {@link pbapi.FindApiByCasbinRoleArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbapi.FindApiByCasbinRoleArgs
+         * @static
+         * @param {pbapi.IFindApiByCasbinRoleArgs} message FindApiByCasbinRoleArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindApiByCasbinRoleArgs.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.role != null && Object.hasOwnProperty.call(message, 'role')) { writer.uint32(/* id 1, wireType 0 =*/8).int64(message.role) }
@@ -2044,29 +2044,29 @@ $root.pbapi = (function() {
     }
 
     /**
-     * Encodes the specified FindApiByCasbinRoleArgs message, length delimited. Does not implicitly {@link pbapi.FindApiByCasbinRoleArgs.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbapi.FindApiByCasbinRoleArgs
-     * @static
-     * @param {pbapi.IFindApiByCasbinRoleArgs} message FindApiByCasbinRoleArgs message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindApiByCasbinRoleArgs message, length delimited. Does not implicitly {@link pbapi.FindApiByCasbinRoleArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbapi.FindApiByCasbinRoleArgs
+         * @static
+         * @param {pbapi.IFindApiByCasbinRoleArgs} message FindApiByCasbinRoleArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindApiByCasbinRoleArgs.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes a FindApiByCasbinRoleArgs message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbapi.FindApiByCasbinRoleArgs
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbapi.FindApiByCasbinRoleArgs} FindApiByCasbinRoleArgs
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindApiByCasbinRoleArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbapi.FindApiByCasbinRoleArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbapi.FindApiByCasbinRoleArgs} FindApiByCasbinRoleArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindApiByCasbinRoleArgs.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbapi.FindApiByCasbinRoleArgs()
@@ -2086,28 +2086,28 @@ $root.pbapi = (function() {
     }
 
     /**
-     * Decodes a FindApiByCasbinRoleArgs message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbapi.FindApiByCasbinRoleArgs
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbapi.FindApiByCasbinRoleArgs} FindApiByCasbinRoleArgs
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindApiByCasbinRoleArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbapi.FindApiByCasbinRoleArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbapi.FindApiByCasbinRoleArgs} FindApiByCasbinRoleArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindApiByCasbinRoleArgs.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies a FindApiByCasbinRoleArgs message.
-     * @function verify
-     * @memberof pbapi.FindApiByCasbinRoleArgs
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies a FindApiByCasbinRoleArgs message.
+         * @function verify
+         * @memberof pbapi.FindApiByCasbinRoleArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     FindApiByCasbinRoleArgs.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.role != null && message.hasOwnProperty('role')) {
@@ -2117,13 +2117,13 @@ $root.pbapi = (function() {
     }
 
     /**
-     * Creates a FindApiByCasbinRoleArgs message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbapi.FindApiByCasbinRoleArgs
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbapi.FindApiByCasbinRoleArgs} FindApiByCasbinRoleArgs
-     */
+         * Creates a FindApiByCasbinRoleArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbapi.FindApiByCasbinRoleArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbapi.FindApiByCasbinRoleArgs} FindApiByCasbinRoleArgs
+         */
     FindApiByCasbinRoleArgs.fromObject = function fromObject(object) {
       if (object instanceof $root.pbapi.FindApiByCasbinRoleArgs) { return object }
       var message = new $root.pbapi.FindApiByCasbinRoleArgs()
@@ -2134,14 +2134,14 @@ $root.pbapi = (function() {
     }
 
     /**
-     * Creates a plain object from a FindApiByCasbinRoleArgs message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbapi.FindApiByCasbinRoleArgs
-     * @static
-     * @param {pbapi.FindApiByCasbinRoleArgs} message FindApiByCasbinRoleArgs
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from a FindApiByCasbinRoleArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbapi.FindApiByCasbinRoleArgs
+         * @static
+         * @param {pbapi.FindApiByCasbinRoleArgs} message FindApiByCasbinRoleArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     FindApiByCasbinRoleArgs.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -2158,24 +2158,24 @@ $root.pbapi = (function() {
     }
 
     /**
-     * Converts this FindApiByCasbinRoleArgs to JSON.
-     * @function toJSON
-     * @memberof pbapi.FindApiByCasbinRoleArgs
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this FindApiByCasbinRoleArgs to JSON.
+         * @function toJSON
+         * @memberof pbapi.FindApiByCasbinRoleArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     FindApiByCasbinRoleArgs.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for FindApiByCasbinRoleArgs
-     * @function getTypeUrl
-     * @memberof pbapi.FindApiByCasbinRoleArgs
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for FindApiByCasbinRoleArgs
+         * @function getTypeUrl
+         * @memberof pbapi.FindApiByCasbinRoleArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     FindApiByCasbinRoleArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -2188,22 +2188,22 @@ $root.pbapi = (function() {
 
   pbapi.FindApiByCasbinRoleReply = (function() {
     /**
-     * Properties of a FindApiByCasbinRoleReply.
-     * @memberof pbapi
-     * @interface IFindApiByCasbinRoleReply
-     * @property {pbcommon.EnumCode|null} [code] FindApiByCasbinRoleReply code
-     * @property {string|null} [msg] FindApiByCasbinRoleReply msg
-     * @property {Array.<pbapi.IApiModel>|null} [list] FindApiByCasbinRoleReply list
-     */
+         * Properties of a FindApiByCasbinRoleReply.
+         * @memberof pbapi
+         * @interface IFindApiByCasbinRoleReply
+         * @property {pbcommon.EnumCode|null} [code] FindApiByCasbinRoleReply code
+         * @property {string|null} [msg] FindApiByCasbinRoleReply msg
+         * @property {Array.<pbapi.IApiModel>|null} [list] FindApiByCasbinRoleReply list
+         */
 
     /**
-     * Constructs a new FindApiByCasbinRoleReply.
-     * @memberof pbapi
-     * @classdesc Represents a FindApiByCasbinRoleReply.
-     * @implements IFindApiByCasbinRoleReply
-     * @constructor
-     * @param {pbapi.IFindApiByCasbinRoleReply=} [properties] Properties to set
-     */
+         * Constructs a new FindApiByCasbinRoleReply.
+         * @memberof pbapi
+         * @classdesc Represents a FindApiByCasbinRoleReply.
+         * @implements IFindApiByCasbinRoleReply
+         * @constructor
+         * @param {pbapi.IFindApiByCasbinRoleReply=} [properties] Properties to set
+         */
     function FindApiByCasbinRoleReply(properties) {
       this.list = []
       if (properties) {
@@ -2214,50 +2214,50 @@ $root.pbapi = (function() {
     }
 
     /**
-     * FindApiByCasbinRoleReply code.
-     * @member {pbcommon.EnumCode} code
-     * @memberof pbapi.FindApiByCasbinRoleReply
-     * @instance
-     */
+         * FindApiByCasbinRoleReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbapi.FindApiByCasbinRoleReply
+         * @instance
+         */
     FindApiByCasbinRoleReply.prototype.code = 0
 
     /**
-     * FindApiByCasbinRoleReply msg.
-     * @member {string} msg
-     * @memberof pbapi.FindApiByCasbinRoleReply
-     * @instance
-     */
+         * FindApiByCasbinRoleReply msg.
+         * @member {string} msg
+         * @memberof pbapi.FindApiByCasbinRoleReply
+         * @instance
+         */
     FindApiByCasbinRoleReply.prototype.msg = ''
 
     /**
-     * FindApiByCasbinRoleReply list.
-     * @member {Array.<pbapi.IApiModel>} list
-     * @memberof pbapi.FindApiByCasbinRoleReply
-     * @instance
-     */
+         * FindApiByCasbinRoleReply list.
+         * @member {Array.<pbapi.IApiModel>} list
+         * @memberof pbapi.FindApiByCasbinRoleReply
+         * @instance
+         */
     FindApiByCasbinRoleReply.prototype.list = $util.emptyArray
 
     /**
-     * Creates a new FindApiByCasbinRoleReply instance using the specified properties.
-     * @function create
-     * @memberof pbapi.FindApiByCasbinRoleReply
-     * @static
-     * @param {pbapi.IFindApiByCasbinRoleReply=} [properties] Properties to set
-     * @returns {pbapi.FindApiByCasbinRoleReply} FindApiByCasbinRoleReply instance
-     */
+         * Creates a new FindApiByCasbinRoleReply instance using the specified properties.
+         * @function create
+         * @memberof pbapi.FindApiByCasbinRoleReply
+         * @static
+         * @param {pbapi.IFindApiByCasbinRoleReply=} [properties] Properties to set
+         * @returns {pbapi.FindApiByCasbinRoleReply} FindApiByCasbinRoleReply instance
+         */
     FindApiByCasbinRoleReply.create = function create(properties) {
       return new FindApiByCasbinRoleReply(properties)
     }
 
     /**
-     * Encodes the specified FindApiByCasbinRoleReply message. Does not implicitly {@link pbapi.FindApiByCasbinRoleReply.verify|verify} messages.
-     * @function encode
-     * @memberof pbapi.FindApiByCasbinRoleReply
-     * @static
-     * @param {pbapi.IFindApiByCasbinRoleReply} message FindApiByCasbinRoleReply message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindApiByCasbinRoleReply message. Does not implicitly {@link pbapi.FindApiByCasbinRoleReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbapi.FindApiByCasbinRoleReply
+         * @static
+         * @param {pbapi.IFindApiByCasbinRoleReply} message FindApiByCasbinRoleReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindApiByCasbinRoleReply.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.code != null && Object.hasOwnProperty.call(message, 'code')) { writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code) }
@@ -2269,29 +2269,29 @@ $root.pbapi = (function() {
     }
 
     /**
-     * Encodes the specified FindApiByCasbinRoleReply message, length delimited. Does not implicitly {@link pbapi.FindApiByCasbinRoleReply.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbapi.FindApiByCasbinRoleReply
-     * @static
-     * @param {pbapi.IFindApiByCasbinRoleReply} message FindApiByCasbinRoleReply message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindApiByCasbinRoleReply message, length delimited. Does not implicitly {@link pbapi.FindApiByCasbinRoleReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbapi.FindApiByCasbinRoleReply
+         * @static
+         * @param {pbapi.IFindApiByCasbinRoleReply} message FindApiByCasbinRoleReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindApiByCasbinRoleReply.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes a FindApiByCasbinRoleReply message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbapi.FindApiByCasbinRoleReply
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbapi.FindApiByCasbinRoleReply} FindApiByCasbinRoleReply
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindApiByCasbinRoleReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbapi.FindApiByCasbinRoleReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbapi.FindApiByCasbinRoleReply} FindApiByCasbinRoleReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindApiByCasbinRoleReply.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbapi.FindApiByCasbinRoleReply()
@@ -2320,28 +2320,28 @@ $root.pbapi = (function() {
     }
 
     /**
-     * Decodes a FindApiByCasbinRoleReply message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbapi.FindApiByCasbinRoleReply
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbapi.FindApiByCasbinRoleReply} FindApiByCasbinRoleReply
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindApiByCasbinRoleReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbapi.FindApiByCasbinRoleReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbapi.FindApiByCasbinRoleReply} FindApiByCasbinRoleReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindApiByCasbinRoleReply.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies a FindApiByCasbinRoleReply message.
-     * @function verify
-     * @memberof pbapi.FindApiByCasbinRoleReply
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies a FindApiByCasbinRoleReply message.
+         * @function verify
+         * @memberof pbapi.FindApiByCasbinRoleReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     FindApiByCasbinRoleReply.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.code != null && message.hasOwnProperty('code')) {
@@ -2390,13 +2390,13 @@ $root.pbapi = (function() {
     }
 
     /**
-     * Creates a FindApiByCasbinRoleReply message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbapi.FindApiByCasbinRoleReply
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbapi.FindApiByCasbinRoleReply} FindApiByCasbinRoleReply
-     */
+         * Creates a FindApiByCasbinRoleReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbapi.FindApiByCasbinRoleReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbapi.FindApiByCasbinRoleReply} FindApiByCasbinRoleReply
+         */
     FindApiByCasbinRoleReply.fromObject = function fromObject(object) {
       if (object instanceof $root.pbapi.FindApiByCasbinRoleReply) { return object }
       var message = new $root.pbapi.FindApiByCasbinRoleReply()
@@ -2521,14 +2521,14 @@ $root.pbapi = (function() {
     }
 
     /**
-     * Creates a plain object from a FindApiByCasbinRoleReply message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbapi.FindApiByCasbinRoleReply
-     * @static
-     * @param {pbapi.FindApiByCasbinRoleReply} message FindApiByCasbinRoleReply
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from a FindApiByCasbinRoleReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbapi.FindApiByCasbinRoleReply
+         * @static
+         * @param {pbapi.FindApiByCasbinRoleReply} message FindApiByCasbinRoleReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     FindApiByCasbinRoleReply.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -2547,24 +2547,24 @@ $root.pbapi = (function() {
     }
 
     /**
-     * Converts this FindApiByCasbinRoleReply to JSON.
-     * @function toJSON
-     * @memberof pbapi.FindApiByCasbinRoleReply
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this FindApiByCasbinRoleReply to JSON.
+         * @function toJSON
+         * @memberof pbapi.FindApiByCasbinRoleReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     FindApiByCasbinRoleReply.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for FindApiByCasbinRoleReply
-     * @function getTypeUrl
-     * @memberof pbapi.FindApiByCasbinRoleReply
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for FindApiByCasbinRoleReply
+         * @function getTypeUrl
+         * @memberof pbapi.FindApiByCasbinRoleReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     FindApiByCasbinRoleReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -2577,21 +2577,21 @@ $root.pbapi = (function() {
 
   pbapi.SetApiByCasbinRoleArgs = (function() {
     /**
-     * Properties of a SetApiByCasbinRoleArgs.
-     * @memberof pbapi
-     * @interface ISetApiByCasbinRoleArgs
-     * @property {Array.<pbapi.IApiModel>|null} [list] SetApiByCasbinRoleArgs list
-     * @property {number|Long|null} [role] SetApiByCasbinRoleArgs role
-     */
+         * Properties of a SetApiByCasbinRoleArgs.
+         * @memberof pbapi
+         * @interface ISetApiByCasbinRoleArgs
+         * @property {Array.<pbapi.IApiModel>|null} [list] SetApiByCasbinRoleArgs list
+         * @property {number|Long|null} [role] SetApiByCasbinRoleArgs role
+         */
 
     /**
-     * Constructs a new SetApiByCasbinRoleArgs.
-     * @memberof pbapi
-     * @classdesc Represents a SetApiByCasbinRoleArgs.
-     * @implements ISetApiByCasbinRoleArgs
-     * @constructor
-     * @param {pbapi.ISetApiByCasbinRoleArgs=} [properties] Properties to set
-     */
+         * Constructs a new SetApiByCasbinRoleArgs.
+         * @memberof pbapi
+         * @classdesc Represents a SetApiByCasbinRoleArgs.
+         * @implements ISetApiByCasbinRoleArgs
+         * @constructor
+         * @param {pbapi.ISetApiByCasbinRoleArgs=} [properties] Properties to set
+         */
     function SetApiByCasbinRoleArgs(properties) {
       this.list = []
       if (properties) {
@@ -2602,42 +2602,42 @@ $root.pbapi = (function() {
     }
 
     /**
-     * SetApiByCasbinRoleArgs list.
-     * @member {Array.<pbapi.IApiModel>} list
-     * @memberof pbapi.SetApiByCasbinRoleArgs
-     * @instance
-     */
+         * SetApiByCasbinRoleArgs list.
+         * @member {Array.<pbapi.IApiModel>} list
+         * @memberof pbapi.SetApiByCasbinRoleArgs
+         * @instance
+         */
     SetApiByCasbinRoleArgs.prototype.list = $util.emptyArray
 
     /**
-     * SetApiByCasbinRoleArgs role.
-     * @member {number|Long} role
-     * @memberof pbapi.SetApiByCasbinRoleArgs
-     * @instance
-     */
+         * SetApiByCasbinRoleArgs role.
+         * @member {number|Long} role
+         * @memberof pbapi.SetApiByCasbinRoleArgs
+         * @instance
+         */
     SetApiByCasbinRoleArgs.prototype.role = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * Creates a new SetApiByCasbinRoleArgs instance using the specified properties.
-     * @function create
-     * @memberof pbapi.SetApiByCasbinRoleArgs
-     * @static
-     * @param {pbapi.ISetApiByCasbinRoleArgs=} [properties] Properties to set
-     * @returns {pbapi.SetApiByCasbinRoleArgs} SetApiByCasbinRoleArgs instance
-     */
+         * Creates a new SetApiByCasbinRoleArgs instance using the specified properties.
+         * @function create
+         * @memberof pbapi.SetApiByCasbinRoleArgs
+         * @static
+         * @param {pbapi.ISetApiByCasbinRoleArgs=} [properties] Properties to set
+         * @returns {pbapi.SetApiByCasbinRoleArgs} SetApiByCasbinRoleArgs instance
+         */
     SetApiByCasbinRoleArgs.create = function create(properties) {
       return new SetApiByCasbinRoleArgs(properties)
     }
 
     /**
-     * Encodes the specified SetApiByCasbinRoleArgs message. Does not implicitly {@link pbapi.SetApiByCasbinRoleArgs.verify|verify} messages.
-     * @function encode
-     * @memberof pbapi.SetApiByCasbinRoleArgs
-     * @static
-     * @param {pbapi.ISetApiByCasbinRoleArgs} message SetApiByCasbinRoleArgs message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified SetApiByCasbinRoleArgs message. Does not implicitly {@link pbapi.SetApiByCasbinRoleArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbapi.SetApiByCasbinRoleArgs
+         * @static
+         * @param {pbapi.ISetApiByCasbinRoleArgs} message SetApiByCasbinRoleArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     SetApiByCasbinRoleArgs.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.list != null && message.list.length) {
@@ -2648,29 +2648,29 @@ $root.pbapi = (function() {
     }
 
     /**
-     * Encodes the specified SetApiByCasbinRoleArgs message, length delimited. Does not implicitly {@link pbapi.SetApiByCasbinRoleArgs.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbapi.SetApiByCasbinRoleArgs
-     * @static
-     * @param {pbapi.ISetApiByCasbinRoleArgs} message SetApiByCasbinRoleArgs message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified SetApiByCasbinRoleArgs message, length delimited. Does not implicitly {@link pbapi.SetApiByCasbinRoleArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbapi.SetApiByCasbinRoleArgs
+         * @static
+         * @param {pbapi.ISetApiByCasbinRoleArgs} message SetApiByCasbinRoleArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     SetApiByCasbinRoleArgs.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes a SetApiByCasbinRoleArgs message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbapi.SetApiByCasbinRoleArgs
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbapi.SetApiByCasbinRoleArgs} SetApiByCasbinRoleArgs
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a SetApiByCasbinRoleArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbapi.SetApiByCasbinRoleArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbapi.SetApiByCasbinRoleArgs} SetApiByCasbinRoleArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     SetApiByCasbinRoleArgs.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbapi.SetApiByCasbinRoleArgs()
@@ -2695,28 +2695,28 @@ $root.pbapi = (function() {
     }
 
     /**
-     * Decodes a SetApiByCasbinRoleArgs message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbapi.SetApiByCasbinRoleArgs
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbapi.SetApiByCasbinRoleArgs} SetApiByCasbinRoleArgs
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a SetApiByCasbinRoleArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbapi.SetApiByCasbinRoleArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbapi.SetApiByCasbinRoleArgs} SetApiByCasbinRoleArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     SetApiByCasbinRoleArgs.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies a SetApiByCasbinRoleArgs message.
-     * @function verify
-     * @memberof pbapi.SetApiByCasbinRoleArgs
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies a SetApiByCasbinRoleArgs message.
+         * @function verify
+         * @memberof pbapi.SetApiByCasbinRoleArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     SetApiByCasbinRoleArgs.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.list != null && message.hasOwnProperty('list')) {
@@ -2733,13 +2733,13 @@ $root.pbapi = (function() {
     }
 
     /**
-     * Creates a SetApiByCasbinRoleArgs message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbapi.SetApiByCasbinRoleArgs
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbapi.SetApiByCasbinRoleArgs} SetApiByCasbinRoleArgs
-     */
+         * Creates a SetApiByCasbinRoleArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbapi.SetApiByCasbinRoleArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbapi.SetApiByCasbinRoleArgs} SetApiByCasbinRoleArgs
+         */
     SetApiByCasbinRoleArgs.fromObject = function fromObject(object) {
       if (object instanceof $root.pbapi.SetApiByCasbinRoleArgs) { return object }
       var message = new $root.pbapi.SetApiByCasbinRoleArgs()
@@ -2758,14 +2758,14 @@ $root.pbapi = (function() {
     }
 
     /**
-     * Creates a plain object from a SetApiByCasbinRoleArgs message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbapi.SetApiByCasbinRoleArgs
-     * @static
-     * @param {pbapi.SetApiByCasbinRoleArgs} message SetApiByCasbinRoleArgs
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from a SetApiByCasbinRoleArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbapi.SetApiByCasbinRoleArgs
+         * @static
+         * @param {pbapi.SetApiByCasbinRoleArgs} message SetApiByCasbinRoleArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     SetApiByCasbinRoleArgs.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -2787,24 +2787,24 @@ $root.pbapi = (function() {
     }
 
     /**
-     * Converts this SetApiByCasbinRoleArgs to JSON.
-     * @function toJSON
-     * @memberof pbapi.SetApiByCasbinRoleArgs
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this SetApiByCasbinRoleArgs to JSON.
+         * @function toJSON
+         * @memberof pbapi.SetApiByCasbinRoleArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     SetApiByCasbinRoleArgs.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for SetApiByCasbinRoleArgs
-     * @function getTypeUrl
-     * @memberof pbapi.SetApiByCasbinRoleArgs
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for SetApiByCasbinRoleArgs
+         * @function getTypeUrl
+         * @memberof pbapi.SetApiByCasbinRoleArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     SetApiByCasbinRoleArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -2817,15 +2817,15 @@ $root.pbapi = (function() {
 
   pbapi.Api = (function() {
     /**
-     * Constructs a new Api service.
-     * @memberof pbapi
-     * @classdesc Represents an Api
-     * @extends $protobuf.rpc.Service
-     * @constructor
-     * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
-     * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
-     * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
-     */
+         * Constructs a new Api service.
+         * @memberof pbapi
+         * @classdesc Represents an Api
+         * @extends $protobuf.rpc.Service
+         * @constructor
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         */
     function Api(rpcImpl, requestDelimited, responseDelimited) {
       $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited)
     }
@@ -2833,249 +2833,249 @@ $root.pbapi = (function() {
     (Api.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = Api
 
     /**
-     * Creates new Api service using the specified rpc implementation.
-     * @function create
-     * @memberof pbapi.Api
-     * @static
-     * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
-     * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
-     * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
-     * @returns {Api} RPC service. Useful where requests and/or responses are streamed.
-     */
+         * Creates new Api service using the specified rpc implementation.
+         * @function create
+         * @memberof pbapi.Api
+         * @static
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         * @returns {Api} RPC service. Useful where requests and/or responses are streamed.
+         */
     Api.create = function create(rpcImpl, requestDelimited, responseDelimited) {
       return new this(rpcImpl, requestDelimited, responseDelimited)
     }
 
     /**
-     * Callback as used by {@link pbapi.Api#createApi}.
-     * @memberof pbapi.Api
-     * @typedef CreateApiCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbcommon.CommonResult} [response] CommonResult
-     */
+         * Callback as used by {@link pbapi.Api#createApi}.
+         * @memberof pbapi.Api
+         * @typedef CreateApiCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
 
     /**
-     * Calls CreateApi.
-     * @function createApi
-     * @memberof pbapi.Api
-     * @instance
-     * @param {pbapi.IApiModel} request ApiModel message or plain object
-     * @param {pbapi.Api.CreateApiCallback} callback Node-style callback called with the error, if any, and CommonResult
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls CreateApi.
+         * @function createApi
+         * @memberof pbapi.Api
+         * @instance
+         * @param {pbapi.IApiModel} request ApiModel message or plain object
+         * @param {pbapi.Api.CreateApiCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(Api.prototype.createApi = function createApi(request, callback) {
       return this.rpcCall(createApi, $root.pbapi.ApiModel, $root.pbcommon.CommonResult, request, callback)
     }, 'name', { value: 'CreateApi' })
 
     /**
-     * Calls CreateApi.
-     * @function createApi
-     * @memberof pbapi.Api
-     * @instance
-     * @param {pbapi.IApiModel} request ApiModel message or plain object
-     * @returns {Promise<pbcommon.CommonResult>} Promise
-     * @variation 2
-     */
+         * Calls CreateApi.
+         * @function createApi
+         * @memberof pbapi.Api
+         * @instance
+         * @param {pbapi.IApiModel} request ApiModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbapi.Api#updateApi}.
-     * @memberof pbapi.Api
-     * @typedef UpdateApiCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbcommon.CommonResult} [response] CommonResult
-     */
+         * Callback as used by {@link pbapi.Api#updateApi}.
+         * @memberof pbapi.Api
+         * @typedef UpdateApiCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
 
     /**
-     * Calls UpdateApi.
-     * @function updateApi
-     * @memberof pbapi.Api
-     * @instance
-     * @param {pbapi.IApiModel} request ApiModel message or plain object
-     * @param {pbapi.Api.UpdateApiCallback} callback Node-style callback called with the error, if any, and CommonResult
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls UpdateApi.
+         * @function updateApi
+         * @memberof pbapi.Api
+         * @instance
+         * @param {pbapi.IApiModel} request ApiModel message or plain object
+         * @param {pbapi.Api.UpdateApiCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(Api.prototype.updateApi = function updateApi(request, callback) {
       return this.rpcCall(updateApi, $root.pbapi.ApiModel, $root.pbcommon.CommonResult, request, callback)
     }, 'name', { value: 'UpdateApi' })
 
     /**
-     * Calls UpdateApi.
-     * @function updateApi
-     * @memberof pbapi.Api
-     * @instance
-     * @param {pbapi.IApiModel} request ApiModel message or plain object
-     * @returns {Promise<pbcommon.CommonResult>} Promise
-     * @variation 2
-     */
+         * Calls UpdateApi.
+         * @function updateApi
+         * @memberof pbapi.Api
+         * @instance
+         * @param {pbapi.IApiModel} request ApiModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbapi.Api#deleteApi}.
-     * @memberof pbapi.Api
-     * @typedef DeleteApiCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbcommon.CommonResult} [response] CommonResult
-     */
+         * Callback as used by {@link pbapi.Api#deleteApi}.
+         * @memberof pbapi.Api
+         * @typedef DeleteApiCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
 
     /**
-     * Calls DeleteApi.
-     * @function deleteApi
-     * @memberof pbapi.Api
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @param {pbapi.Api.DeleteApiCallback} callback Node-style callback called with the error, if any, and CommonResult
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls DeleteApi.
+         * @function deleteApi
+         * @memberof pbapi.Api
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbapi.Api.DeleteApiCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(Api.prototype.deleteApi = function deleteApi(request, callback) {
       return this.rpcCall(deleteApi, $root.pbcommon.IdArgs, $root.pbcommon.CommonResult, request, callback)
     }, 'name', { value: 'DeleteApi' })
 
     /**
-     * Calls DeleteApi.
-     * @function deleteApi
-     * @memberof pbapi.Api
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @returns {Promise<pbcommon.CommonResult>} Promise
-     * @variation 2
-     */
+         * Calls DeleteApi.
+         * @function deleteApi
+         * @memberof pbapi.Api
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbapi.Api#findApiById}.
-     * @memberof pbapi.Api
-     * @typedef FindApiByIdCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbapi.FindApiReply} [response] FindApiReply
-     */
+         * Callback as used by {@link pbapi.Api#findApiById}.
+         * @memberof pbapi.Api
+         * @typedef FindApiByIdCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbapi.FindApiReply} [response] FindApiReply
+         */
 
     /**
-     * Calls FindApiById.
-     * @function findApiById
-     * @memberof pbapi.Api
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @param {pbapi.Api.FindApiByIdCallback} callback Node-style callback called with the error, if any, and FindApiReply
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls FindApiById.
+         * @function findApiById
+         * @memberof pbapi.Api
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbapi.Api.FindApiByIdCallback} callback Node-style callback called with the error, if any, and FindApiReply
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(Api.prototype.findApiById = function findApiById(request, callback) {
       return this.rpcCall(findApiById, $root.pbcommon.IdArgs, $root.pbapi.FindApiReply, request, callback)
     }, 'name', { value: 'FindApiById' })
 
     /**
-     * Calls FindApiById.
-     * @function findApiById
-     * @memberof pbapi.Api
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @returns {Promise<pbapi.FindApiReply>} Promise
-     * @variation 2
-     */
+         * Calls FindApiById.
+         * @function findApiById
+         * @memberof pbapi.Api
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbapi.FindApiReply>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbapi.Api#findApiList}.
-     * @memberof pbapi.Api
-     * @typedef FindApiListCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbapi.FindApiReply} [response] FindApiReply
-     */
+         * Callback as used by {@link pbapi.Api#findApiList}.
+         * @memberof pbapi.Api
+         * @typedef FindApiListCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbapi.FindApiReply} [response] FindApiReply
+         */
 
     /**
-     * Calls FindApiList.
-     * @function findApiList
-     * @memberof pbapi.Api
-     * @instance
-     * @param {pbapi.IFindApiArgs} request FindApiArgs message or plain object
-     * @param {pbapi.Api.FindApiListCallback} callback Node-style callback called with the error, if any, and FindApiReply
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls FindApiList.
+         * @function findApiList
+         * @memberof pbapi.Api
+         * @instance
+         * @param {pbapi.IFindApiArgs} request FindApiArgs message or plain object
+         * @param {pbapi.Api.FindApiListCallback} callback Node-style callback called with the error, if any, and FindApiReply
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(Api.prototype.findApiList = function findApiList(request, callback) {
       return this.rpcCall(findApiList, $root.pbapi.FindApiArgs, $root.pbapi.FindApiReply, request, callback)
     }, 'name', { value: 'FindApiList' })
 
     /**
-     * Calls FindApiList.
-     * @function findApiList
-     * @memberof pbapi.Api
-     * @instance
-     * @param {pbapi.IFindApiArgs} request FindApiArgs message or plain object
-     * @returns {Promise<pbapi.FindApiReply>} Promise
-     * @variation 2
-     */
+         * Calls FindApiList.
+         * @function findApiList
+         * @memberof pbapi.Api
+         * @instance
+         * @param {pbapi.IFindApiArgs} request FindApiArgs message or plain object
+         * @returns {Promise<pbapi.FindApiReply>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbapi.Api#findApiByCasbinRole}.
-     * @memberof pbapi.Api
-     * @typedef FindApiByCasbinRoleCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbapi.FindApiByCasbinRoleReply} [response] FindApiByCasbinRoleReply
-     */
+         * Callback as used by {@link pbapi.Api#findApiByCasbinRole}.
+         * @memberof pbapi.Api
+         * @typedef FindApiByCasbinRoleCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbapi.FindApiByCasbinRoleReply} [response] FindApiByCasbinRoleReply
+         */
 
     /**
-     * Calls FindApiByCasbinRole.
-     * @function findApiByCasbinRole
-     * @memberof pbapi.Api
-     * @instance
-     * @param {pbapi.IFindApiByCasbinRoleArgs} request FindApiByCasbinRoleArgs message or plain object
-     * @param {pbapi.Api.FindApiByCasbinRoleCallback} callback Node-style callback called with the error, if any, and FindApiByCasbinRoleReply
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls FindApiByCasbinRole.
+         * @function findApiByCasbinRole
+         * @memberof pbapi.Api
+         * @instance
+         * @param {pbapi.IFindApiByCasbinRoleArgs} request FindApiByCasbinRoleArgs message or plain object
+         * @param {pbapi.Api.FindApiByCasbinRoleCallback} callback Node-style callback called with the error, if any, and FindApiByCasbinRoleReply
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(Api.prototype.findApiByCasbinRole = function findApiByCasbinRole(request, callback) {
       return this.rpcCall(findApiByCasbinRole, $root.pbapi.FindApiByCasbinRoleArgs, $root.pbapi.FindApiByCasbinRoleReply, request, callback)
     }, 'name', { value: 'FindApiByCasbinRole' })
 
     /**
-     * Calls FindApiByCasbinRole.
-     * @function findApiByCasbinRole
-     * @memberof pbapi.Api
-     * @instance
-     * @param {pbapi.IFindApiByCasbinRoleArgs} request FindApiByCasbinRoleArgs message or plain object
-     * @returns {Promise<pbapi.FindApiByCasbinRoleReply>} Promise
-     * @variation 2
-     */
+         * Calls FindApiByCasbinRole.
+         * @function findApiByCasbinRole
+         * @memberof pbapi.Api
+         * @instance
+         * @param {pbapi.IFindApiByCasbinRoleArgs} request FindApiByCasbinRoleArgs message or plain object
+         * @returns {Promise<pbapi.FindApiByCasbinRoleReply>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbapi.Api#setApiByCasbinRole}.
-     * @memberof pbapi.Api
-     * @typedef SetApiByCasbinRoleCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbcommon.CommonResult} [response] CommonResult
-     */
+         * Callback as used by {@link pbapi.Api#setApiByCasbinRole}.
+         * @memberof pbapi.Api
+         * @typedef SetApiByCasbinRoleCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
 
     /**
-     * Calls SetApiByCasbinRole.
-     * @function setApiByCasbinRole
-     * @memberof pbapi.Api
-     * @instance
-     * @param {pbapi.ISetApiByCasbinRoleArgs} request SetApiByCasbinRoleArgs message or plain object
-     * @param {pbapi.Api.SetApiByCasbinRoleCallback} callback Node-style callback called with the error, if any, and CommonResult
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls SetApiByCasbinRole.
+         * @function setApiByCasbinRole
+         * @memberof pbapi.Api
+         * @instance
+         * @param {pbapi.ISetApiByCasbinRoleArgs} request SetApiByCasbinRoleArgs message or plain object
+         * @param {pbapi.Api.SetApiByCasbinRoleCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(Api.prototype.setApiByCasbinRole = function setApiByCasbinRole(request, callback) {
       return this.rpcCall(setApiByCasbinRole, $root.pbapi.SetApiByCasbinRoleArgs, $root.pbcommon.CommonResult, request, callback)
     }, 'name', { value: 'SetApiByCasbinRole' })
 
     /**
-     * Calls SetApiByCasbinRole.
-     * @function setApiByCasbinRole
-     * @memberof pbapi.Api
-     * @instance
-     * @param {pbapi.ISetApiByCasbinRoleArgs} request SetApiByCasbinRoleArgs message or plain object
-     * @returns {Promise<pbcommon.CommonResult>} Promise
-     * @variation 2
-     */
+         * Calls SetApiByCasbinRole.
+         * @function setApiByCasbinRole
+         * @memberof pbapi.Api
+         * @instance
+         * @param {pbapi.ISetApiByCasbinRoleArgs} request SetApiByCasbinRoleArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
 
     return Api
   })()
@@ -3085,41 +3085,41 @@ $root.pbapi = (function() {
 
 $root.pbpermission = (function() {
   /**
-   * Namespace pbpermission.
-   * @exports pbpermission
-   * @namespace
-   */
+     * Namespace pbpermission.
+     * @exports pbpermission
+     * @namespace
+     */
   var pbpermission = {}
 
   pbpermission.PermissionModel = (function() {
     /**
-     * Properties of a PermissionModel.
-     * @memberof pbpermission
-     * @interface IPermissionModel
-     * @property {number|Long|null} [id] PermissionModel id
-     * @property {string|null} [createdAt] PermissionModel createdAt
-     * @property {string|null} [updatedAt] PermissionModel updatedAt
-     * @property {number|Long|null} [parentId] PermissionModel parentId
-     * @property {pbpermission.PermissionType|null} [PermissionType] PermissionModel PermissionType
-     * @property {string|null} [path] PermissionModel path
-     * @property {string|null} [name] PermissionModel name
-     * @property {boolean|null} [hidden] PermissionModel hidden
-     * @property {string|null} [component] PermissionModel component
-     * @property {string|null} [redirect] PermissionModel redirect
-     * @property {string|null} [icon] PermissionModel icon
-     * @property {boolean|null} [keepalive] PermissionModel keepalive
-     * @property {string|null} [title] PermissionModel title
-     * @property {number|Long|null} [appId] PermissionModel appId
-     */
+         * Properties of a PermissionModel.
+         * @memberof pbpermission
+         * @interface IPermissionModel
+         * @property {number|Long|null} [id] PermissionModel id
+         * @property {string|null} [createdAt] PermissionModel createdAt
+         * @property {string|null} [updatedAt] PermissionModel updatedAt
+         * @property {number|Long|null} [parentId] PermissionModel parentId
+         * @property {pbpermission.PermissionType|null} [PermissionType] PermissionModel PermissionType
+         * @property {string|null} [path] PermissionModel path
+         * @property {string|null} [name] PermissionModel name
+         * @property {boolean|null} [hidden] PermissionModel hidden
+         * @property {string|null} [component] PermissionModel component
+         * @property {string|null} [redirect] PermissionModel redirect
+         * @property {string|null} [icon] PermissionModel icon
+         * @property {boolean|null} [keepalive] PermissionModel keepalive
+         * @property {string|null} [title] PermissionModel title
+         * @property {number|Long|null} [appId] PermissionModel appId
+         */
 
     /**
-     * Constructs a new PermissionModel.
-     * @memberof pbpermission
-     * @classdesc Represents a PermissionModel.
-     * @implements IPermissionModel
-     * @constructor
-     * @param {pbpermission.IPermissionModel=} [properties] Properties to set
-     */
+         * Constructs a new PermissionModel.
+         * @memberof pbpermission
+         * @classdesc Represents a PermissionModel.
+         * @implements IPermissionModel
+         * @constructor
+         * @param {pbpermission.IPermissionModel=} [properties] Properties to set
+         */
     function PermissionModel(properties) {
       if (properties) {
         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
@@ -3129,138 +3129,138 @@ $root.pbpermission = (function() {
     }
 
     /**
-     * PermissionModel id.
-     * @member {number|Long} id
-     * @memberof pbpermission.PermissionModel
-     * @instance
-     */
+         * PermissionModel id.
+         * @member {number|Long} id
+         * @memberof pbpermission.PermissionModel
+         * @instance
+         */
     PermissionModel.prototype.id = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * PermissionModel createdAt.
-     * @member {string} createdAt
-     * @memberof pbpermission.PermissionModel
-     * @instance
-     */
+         * PermissionModel createdAt.
+         * @member {string} createdAt
+         * @memberof pbpermission.PermissionModel
+         * @instance
+         */
     PermissionModel.prototype.createdAt = ''
 
     /**
-     * PermissionModel updatedAt.
-     * @member {string} updatedAt
-     * @memberof pbpermission.PermissionModel
-     * @instance
-     */
+         * PermissionModel updatedAt.
+         * @member {string} updatedAt
+         * @memberof pbpermission.PermissionModel
+         * @instance
+         */
     PermissionModel.prototype.updatedAt = ''
 
     /**
-     * PermissionModel parentId.
-     * @member {number|Long} parentId
-     * @memberof pbpermission.PermissionModel
-     * @instance
-     */
+         * PermissionModel parentId.
+         * @member {number|Long} parentId
+         * @memberof pbpermission.PermissionModel
+         * @instance
+         */
     PermissionModel.prototype.parentId = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * PermissionModel PermissionType.
-     * @member {pbpermission.PermissionType} PermissionType
-     * @memberof pbpermission.PermissionModel
-     * @instance
-     */
+         * PermissionModel PermissionType.
+         * @member {pbpermission.PermissionType} PermissionType
+         * @memberof pbpermission.PermissionModel
+         * @instance
+         */
     PermissionModel.prototype.PermissionType = 0
 
     /**
-     * PermissionModel path.
-     * @member {string} path
-     * @memberof pbpermission.PermissionModel
-     * @instance
-     */
+         * PermissionModel path.
+         * @member {string} path
+         * @memberof pbpermission.PermissionModel
+         * @instance
+         */
     PermissionModel.prototype.path = ''
 
     /**
-     * PermissionModel name.
-     * @member {string} name
-     * @memberof pbpermission.PermissionModel
-     * @instance
-     */
+         * PermissionModel name.
+         * @member {string} name
+         * @memberof pbpermission.PermissionModel
+         * @instance
+         */
     PermissionModel.prototype.name = ''
 
     /**
-     * PermissionModel hidden.
-     * @member {boolean} hidden
-     * @memberof pbpermission.PermissionModel
-     * @instance
-     */
+         * PermissionModel hidden.
+         * @member {boolean} hidden
+         * @memberof pbpermission.PermissionModel
+         * @instance
+         */
     PermissionModel.prototype.hidden = false
 
     /**
-     * PermissionModel component.
-     * @member {string} component
-     * @memberof pbpermission.PermissionModel
-     * @instance
-     */
+         * PermissionModel component.
+         * @member {string} component
+         * @memberof pbpermission.PermissionModel
+         * @instance
+         */
     PermissionModel.prototype.component = ''
 
     /**
-     * PermissionModel redirect.
-     * @member {string} redirect
-     * @memberof pbpermission.PermissionModel
-     * @instance
-     */
+         * PermissionModel redirect.
+         * @member {string} redirect
+         * @memberof pbpermission.PermissionModel
+         * @instance
+         */
     PermissionModel.prototype.redirect = ''
 
     /**
-     * PermissionModel icon.
-     * @member {string} icon
-     * @memberof pbpermission.PermissionModel
-     * @instance
-     */
+         * PermissionModel icon.
+         * @member {string} icon
+         * @memberof pbpermission.PermissionModel
+         * @instance
+         */
     PermissionModel.prototype.icon = ''
 
     /**
-     * PermissionModel keepalive.
-     * @member {boolean} keepalive
-     * @memberof pbpermission.PermissionModel
-     * @instance
-     */
+         * PermissionModel keepalive.
+         * @member {boolean} keepalive
+         * @memberof pbpermission.PermissionModel
+         * @instance
+         */
     PermissionModel.prototype.keepalive = false
 
     /**
-     * PermissionModel title.
-     * @member {string} title
-     * @memberof pbpermission.PermissionModel
-     * @instance
-     */
+         * PermissionModel title.
+         * @member {string} title
+         * @memberof pbpermission.PermissionModel
+         * @instance
+         */
     PermissionModel.prototype.title = ''
 
     /**
-     * PermissionModel appId.
-     * @member {number|Long} appId
-     * @memberof pbpermission.PermissionModel
-     * @instance
-     */
+         * PermissionModel appId.
+         * @member {number|Long} appId
+         * @memberof pbpermission.PermissionModel
+         * @instance
+         */
     PermissionModel.prototype.appId = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * Creates a new PermissionModel instance using the specified properties.
-     * @function create
-     * @memberof pbpermission.PermissionModel
-     * @static
-     * @param {pbpermission.IPermissionModel=} [properties] Properties to set
-     * @returns {pbpermission.PermissionModel} PermissionModel instance
-     */
+         * Creates a new PermissionModel instance using the specified properties.
+         * @function create
+         * @memberof pbpermission.PermissionModel
+         * @static
+         * @param {pbpermission.IPermissionModel=} [properties] Properties to set
+         * @returns {pbpermission.PermissionModel} PermissionModel instance
+         */
     PermissionModel.create = function create(properties) {
       return new PermissionModel(properties)
     }
 
     /**
-     * Encodes the specified PermissionModel message. Does not implicitly {@link pbpermission.PermissionModel.verify|verify} messages.
-     * @function encode
-     * @memberof pbpermission.PermissionModel
-     * @static
-     * @param {pbpermission.IPermissionModel} message PermissionModel message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified PermissionModel message. Does not implicitly {@link pbpermission.PermissionModel.verify|verify} messages.
+         * @function encode
+         * @memberof pbpermission.PermissionModel
+         * @static
+         * @param {pbpermission.IPermissionModel} message PermissionModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     PermissionModel.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.id != null && Object.hasOwnProperty.call(message, 'id')) { writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id) }
@@ -3281,29 +3281,29 @@ $root.pbpermission = (function() {
     }
 
     /**
-     * Encodes the specified PermissionModel message, length delimited. Does not implicitly {@link pbpermission.PermissionModel.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbpermission.PermissionModel
-     * @static
-     * @param {pbpermission.IPermissionModel} message PermissionModel message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified PermissionModel message, length delimited. Does not implicitly {@link pbpermission.PermissionModel.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbpermission.PermissionModel
+         * @static
+         * @param {pbpermission.IPermissionModel} message PermissionModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     PermissionModel.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes a PermissionModel message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbpermission.PermissionModel
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbpermission.PermissionModel} PermissionModel
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a PermissionModel message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbpermission.PermissionModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbpermission.PermissionModel} PermissionModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     PermissionModel.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbpermission.PermissionModel()
@@ -3375,28 +3375,28 @@ $root.pbpermission = (function() {
     }
 
     /**
-     * Decodes a PermissionModel message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbpermission.PermissionModel
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbpermission.PermissionModel} PermissionModel
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a PermissionModel message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbpermission.PermissionModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbpermission.PermissionModel} PermissionModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     PermissionModel.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies a PermissionModel message.
-     * @function verify
-     * @memberof pbpermission.PermissionModel
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies a PermissionModel message.
+         * @function verify
+         * @memberof pbpermission.PermissionModel
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     PermissionModel.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.id != null && message.hasOwnProperty('id')) {
@@ -3452,13 +3452,13 @@ $root.pbpermission = (function() {
     }
 
     /**
-     * Creates a PermissionModel message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbpermission.PermissionModel
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbpermission.PermissionModel} PermissionModel
-     */
+         * Creates a PermissionModel message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbpermission.PermissionModel
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbpermission.PermissionModel} PermissionModel
+         */
     PermissionModel.fromObject = function fromObject(object) {
       if (object instanceof $root.pbpermission.PermissionModel) { return object }
       var message = new $root.pbpermission.PermissionModel()
@@ -3505,14 +3505,14 @@ $root.pbpermission = (function() {
     }
 
     /**
-     * Creates a plain object from a PermissionModel message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbpermission.PermissionModel
-     * @static
-     * @param {pbpermission.PermissionModel} message PermissionModel
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from a PermissionModel message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbpermission.PermissionModel
+         * @static
+         * @param {pbpermission.PermissionModel} message PermissionModel
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     PermissionModel.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -3565,24 +3565,24 @@ $root.pbpermission = (function() {
     }
 
     /**
-     * Converts this PermissionModel to JSON.
-     * @function toJSON
-     * @memberof pbpermission.PermissionModel
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this PermissionModel to JSON.
+         * @function toJSON
+         * @memberof pbpermission.PermissionModel
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     PermissionModel.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for PermissionModel
-     * @function getTypeUrl
-     * @memberof pbpermission.PermissionModel
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for PermissionModel
+         * @function getTypeUrl
+         * @memberof pbpermission.PermissionModel
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     PermissionModel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -3594,13 +3594,13 @@ $root.pbpermission = (function() {
   })()
 
   /**
-   * PermissionType enum.
-   * @name pbpermission.PermissionType
-   * @enum {number}
-   * @property {number} PermissionTypeNone=0 PermissionTypeNone value
-   * @property {number} MENU=1 MENU value
-   * @property {number} BUTTON=2 BUTTON value
-   */
+     * PermissionType enum.
+     * @name pbpermission.PermissionType
+     * @enum {number}
+     * @property {number} PermissionTypeNone=0 PermissionTypeNone value
+     * @property {number} MENU=1 MENU value
+     * @property {number} BUTTON=2 BUTTON value
+     */
   pbpermission.PermissionType = (function() {
     var valuesById = {}; var values = Object.create(valuesById)
     values[valuesById[0] = 'PermissionTypeNone'] = 0
@@ -3611,21 +3611,21 @@ $root.pbpermission = (function() {
 
   pbpermission.FindPermissionArgs = (function() {
     /**
-     * Properties of a FindPermissionArgs.
-     * @memberof pbpermission
-     * @interface IFindPermissionArgs
-     * @property {pbcommon.IPageInfo|null} [pageInfo] FindPermissionArgs pageInfo
-     * @property {pbpermission.IPermissionModel|null} [query] FindPermissionArgs query
-     */
+         * Properties of a FindPermissionArgs.
+         * @memberof pbpermission
+         * @interface IFindPermissionArgs
+         * @property {pbcommon.IPageInfo|null} [pageInfo] FindPermissionArgs pageInfo
+         * @property {pbpermission.IPermissionModel|null} [query] FindPermissionArgs query
+         */
 
     /**
-     * Constructs a new FindPermissionArgs.
-     * @memberof pbpermission
-     * @classdesc Represents a FindPermissionArgs.
-     * @implements IFindPermissionArgs
-     * @constructor
-     * @param {pbpermission.IFindPermissionArgs=} [properties] Properties to set
-     */
+         * Constructs a new FindPermissionArgs.
+         * @memberof pbpermission
+         * @classdesc Represents a FindPermissionArgs.
+         * @implements IFindPermissionArgs
+         * @constructor
+         * @param {pbpermission.IFindPermissionArgs=} [properties] Properties to set
+         */
     function FindPermissionArgs(properties) {
       if (properties) {
         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
@@ -3635,42 +3635,42 @@ $root.pbpermission = (function() {
     }
 
     /**
-     * FindPermissionArgs pageInfo.
-     * @member {pbcommon.IPageInfo|null|undefined} pageInfo
-     * @memberof pbpermission.FindPermissionArgs
-     * @instance
-     */
+         * FindPermissionArgs pageInfo.
+         * @member {pbcommon.IPageInfo|null|undefined} pageInfo
+         * @memberof pbpermission.FindPermissionArgs
+         * @instance
+         */
     FindPermissionArgs.prototype.pageInfo = null
 
     /**
-     * FindPermissionArgs query.
-     * @member {pbpermission.IPermissionModel|null|undefined} query
-     * @memberof pbpermission.FindPermissionArgs
-     * @instance
-     */
+         * FindPermissionArgs query.
+         * @member {pbpermission.IPermissionModel|null|undefined} query
+         * @memberof pbpermission.FindPermissionArgs
+         * @instance
+         */
     FindPermissionArgs.prototype.query = null
 
     /**
-     * Creates a new FindPermissionArgs instance using the specified properties.
-     * @function create
-     * @memberof pbpermission.FindPermissionArgs
-     * @static
-     * @param {pbpermission.IFindPermissionArgs=} [properties] Properties to set
-     * @returns {pbpermission.FindPermissionArgs} FindPermissionArgs instance
-     */
+         * Creates a new FindPermissionArgs instance using the specified properties.
+         * @function create
+         * @memberof pbpermission.FindPermissionArgs
+         * @static
+         * @param {pbpermission.IFindPermissionArgs=} [properties] Properties to set
+         * @returns {pbpermission.FindPermissionArgs} FindPermissionArgs instance
+         */
     FindPermissionArgs.create = function create(properties) {
       return new FindPermissionArgs(properties)
     }
 
     /**
-     * Encodes the specified FindPermissionArgs message. Does not implicitly {@link pbpermission.FindPermissionArgs.verify|verify} messages.
-     * @function encode
-     * @memberof pbpermission.FindPermissionArgs
-     * @static
-     * @param {pbpermission.IFindPermissionArgs} message FindPermissionArgs message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindPermissionArgs message. Does not implicitly {@link pbpermission.FindPermissionArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbpermission.FindPermissionArgs
+         * @static
+         * @param {pbpermission.IFindPermissionArgs} message FindPermissionArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindPermissionArgs.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.pageInfo != null && Object.hasOwnProperty.call(message, 'pageInfo')) { $root.pbcommon.PageInfo.encode(message.pageInfo, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim() }
@@ -3679,29 +3679,29 @@ $root.pbpermission = (function() {
     }
 
     /**
-     * Encodes the specified FindPermissionArgs message, length delimited. Does not implicitly {@link pbpermission.FindPermissionArgs.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbpermission.FindPermissionArgs
-     * @static
-     * @param {pbpermission.IFindPermissionArgs} message FindPermissionArgs message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindPermissionArgs message, length delimited. Does not implicitly {@link pbpermission.FindPermissionArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbpermission.FindPermissionArgs
+         * @static
+         * @param {pbpermission.IFindPermissionArgs} message FindPermissionArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindPermissionArgs.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes a FindPermissionArgs message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbpermission.FindPermissionArgs
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbpermission.FindPermissionArgs} FindPermissionArgs
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindPermissionArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbpermission.FindPermissionArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbpermission.FindPermissionArgs} FindPermissionArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindPermissionArgs.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbpermission.FindPermissionArgs()
@@ -3725,28 +3725,28 @@ $root.pbpermission = (function() {
     }
 
     /**
-     * Decodes a FindPermissionArgs message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbpermission.FindPermissionArgs
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbpermission.FindPermissionArgs} FindPermissionArgs
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindPermissionArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbpermission.FindPermissionArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbpermission.FindPermissionArgs} FindPermissionArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindPermissionArgs.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies a FindPermissionArgs message.
-     * @function verify
-     * @memberof pbpermission.FindPermissionArgs
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies a FindPermissionArgs message.
+         * @function verify
+         * @memberof pbpermission.FindPermissionArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     FindPermissionArgs.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.pageInfo != null && message.hasOwnProperty('pageInfo')) {
@@ -3761,13 +3761,13 @@ $root.pbpermission = (function() {
     }
 
     /**
-     * Creates a FindPermissionArgs message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbpermission.FindPermissionArgs
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbpermission.FindPermissionArgs} FindPermissionArgs
-     */
+         * Creates a FindPermissionArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbpermission.FindPermissionArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbpermission.FindPermissionArgs} FindPermissionArgs
+         */
     FindPermissionArgs.fromObject = function fromObject(object) {
       if (object instanceof $root.pbpermission.FindPermissionArgs) { return object }
       var message = new $root.pbpermission.FindPermissionArgs()
@@ -3783,14 +3783,14 @@ $root.pbpermission = (function() {
     }
 
     /**
-     * Creates a plain object from a FindPermissionArgs message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbpermission.FindPermissionArgs
-     * @static
-     * @param {pbpermission.FindPermissionArgs} message FindPermissionArgs
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from a FindPermissionArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbpermission.FindPermissionArgs
+         * @static
+         * @param {pbpermission.FindPermissionArgs} message FindPermissionArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     FindPermissionArgs.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -3804,24 +3804,24 @@ $root.pbpermission = (function() {
     }
 
     /**
-     * Converts this FindPermissionArgs to JSON.
-     * @function toJSON
-     * @memberof pbpermission.FindPermissionArgs
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this FindPermissionArgs to JSON.
+         * @function toJSON
+         * @memberof pbpermission.FindPermissionArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     FindPermissionArgs.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for FindPermissionArgs
-     * @function getTypeUrl
-     * @memberof pbpermission.FindPermissionArgs
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for FindPermissionArgs
+         * @function getTypeUrl
+         * @memberof pbpermission.FindPermissionArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     FindPermissionArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -3834,24 +3834,24 @@ $root.pbpermission = (function() {
 
   pbpermission.FindPermissionReply = (function() {
     /**
-     * Properties of a FindPermissionReply.
-     * @memberof pbpermission
-     * @interface IFindPermissionReply
-     * @property {pbcommon.EnumCode|null} [code] FindPermissionReply code
-     * @property {string|null} [msg] FindPermissionReply msg
-     * @property {pbpermission.IPermissionModel|null} [data] FindPermissionReply data
-     * @property {Array.<pbpermission.IPermissionModel>|null} [list] FindPermissionReply list
-     * @property {number|Long|null} [total] FindPermissionReply total
-     */
+         * Properties of a FindPermissionReply.
+         * @memberof pbpermission
+         * @interface IFindPermissionReply
+         * @property {pbcommon.EnumCode|null} [code] FindPermissionReply code
+         * @property {string|null} [msg] FindPermissionReply msg
+         * @property {pbpermission.IPermissionModel|null} [data] FindPermissionReply data
+         * @property {Array.<pbpermission.IPermissionModel>|null} [list] FindPermissionReply list
+         * @property {number|Long|null} [total] FindPermissionReply total
+         */
 
     /**
-     * Constructs a new FindPermissionReply.
-     * @memberof pbpermission
-     * @classdesc Represents a FindPermissionReply.
-     * @implements IFindPermissionReply
-     * @constructor
-     * @param {pbpermission.IFindPermissionReply=} [properties] Properties to set
-     */
+         * Constructs a new FindPermissionReply.
+         * @memberof pbpermission
+         * @classdesc Represents a FindPermissionReply.
+         * @implements IFindPermissionReply
+         * @constructor
+         * @param {pbpermission.IFindPermissionReply=} [properties] Properties to set
+         */
     function FindPermissionReply(properties) {
       this.list = []
       if (properties) {
@@ -3862,66 +3862,66 @@ $root.pbpermission = (function() {
     }
 
     /**
-     * FindPermissionReply code.
-     * @member {pbcommon.EnumCode} code
-     * @memberof pbpermission.FindPermissionReply
-     * @instance
-     */
+         * FindPermissionReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbpermission.FindPermissionReply
+         * @instance
+         */
     FindPermissionReply.prototype.code = 0
 
     /**
-     * FindPermissionReply msg.
-     * @member {string} msg
-     * @memberof pbpermission.FindPermissionReply
-     * @instance
-     */
+         * FindPermissionReply msg.
+         * @member {string} msg
+         * @memberof pbpermission.FindPermissionReply
+         * @instance
+         */
     FindPermissionReply.prototype.msg = ''
 
     /**
-     * FindPermissionReply data.
-     * @member {pbpermission.IPermissionModel|null|undefined} data
-     * @memberof pbpermission.FindPermissionReply
-     * @instance
-     */
+         * FindPermissionReply data.
+         * @member {pbpermission.IPermissionModel|null|undefined} data
+         * @memberof pbpermission.FindPermissionReply
+         * @instance
+         */
     FindPermissionReply.prototype.data = null
 
     /**
-     * FindPermissionReply list.
-     * @member {Array.<pbpermission.IPermissionModel>} list
-     * @memberof pbpermission.FindPermissionReply
-     * @instance
-     */
+         * FindPermissionReply list.
+         * @member {Array.<pbpermission.IPermissionModel>} list
+         * @memberof pbpermission.FindPermissionReply
+         * @instance
+         */
     FindPermissionReply.prototype.list = $util.emptyArray
 
     /**
-     * FindPermissionReply total.
-     * @member {number|Long} total
-     * @memberof pbpermission.FindPermissionReply
-     * @instance
-     */
+         * FindPermissionReply total.
+         * @member {number|Long} total
+         * @memberof pbpermission.FindPermissionReply
+         * @instance
+         */
     FindPermissionReply.prototype.total = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * Creates a new FindPermissionReply instance using the specified properties.
-     * @function create
-     * @memberof pbpermission.FindPermissionReply
-     * @static
-     * @param {pbpermission.IFindPermissionReply=} [properties] Properties to set
-     * @returns {pbpermission.FindPermissionReply} FindPermissionReply instance
-     */
+         * Creates a new FindPermissionReply instance using the specified properties.
+         * @function create
+         * @memberof pbpermission.FindPermissionReply
+         * @static
+         * @param {pbpermission.IFindPermissionReply=} [properties] Properties to set
+         * @returns {pbpermission.FindPermissionReply} FindPermissionReply instance
+         */
     FindPermissionReply.create = function create(properties) {
       return new FindPermissionReply(properties)
     }
 
     /**
-     * Encodes the specified FindPermissionReply message. Does not implicitly {@link pbpermission.FindPermissionReply.verify|verify} messages.
-     * @function encode
-     * @memberof pbpermission.FindPermissionReply
-     * @static
-     * @param {pbpermission.IFindPermissionReply} message FindPermissionReply message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindPermissionReply message. Does not implicitly {@link pbpermission.FindPermissionReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbpermission.FindPermissionReply
+         * @static
+         * @param {pbpermission.IFindPermissionReply} message FindPermissionReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindPermissionReply.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.code != null && Object.hasOwnProperty.call(message, 'code')) { writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code) }
@@ -3935,29 +3935,29 @@ $root.pbpermission = (function() {
     }
 
     /**
-     * Encodes the specified FindPermissionReply message, length delimited. Does not implicitly {@link pbpermission.FindPermissionReply.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbpermission.FindPermissionReply
-     * @static
-     * @param {pbpermission.IFindPermissionReply} message FindPermissionReply message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindPermissionReply message, length delimited. Does not implicitly {@link pbpermission.FindPermissionReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbpermission.FindPermissionReply
+         * @static
+         * @param {pbpermission.IFindPermissionReply} message FindPermissionReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindPermissionReply.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes a FindPermissionReply message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbpermission.FindPermissionReply
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbpermission.FindPermissionReply} FindPermissionReply
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindPermissionReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbpermission.FindPermissionReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbpermission.FindPermissionReply} FindPermissionReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindPermissionReply.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbpermission.FindPermissionReply()
@@ -3994,28 +3994,28 @@ $root.pbpermission = (function() {
     }
 
     /**
-     * Decodes a FindPermissionReply message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbpermission.FindPermissionReply
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbpermission.FindPermissionReply} FindPermissionReply
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindPermissionReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbpermission.FindPermissionReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbpermission.FindPermissionReply} FindPermissionReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindPermissionReply.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies a FindPermissionReply message.
-     * @function verify
-     * @memberof pbpermission.FindPermissionReply
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies a FindPermissionReply message.
+         * @function verify
+         * @memberof pbpermission.FindPermissionReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     FindPermissionReply.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.code != null && message.hasOwnProperty('code')) {
@@ -4071,13 +4071,13 @@ $root.pbpermission = (function() {
     }
 
     /**
-     * Creates a FindPermissionReply message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbpermission.FindPermissionReply
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbpermission.FindPermissionReply} FindPermissionReply
-     */
+         * Creates a FindPermissionReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbpermission.FindPermissionReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbpermission.FindPermissionReply} FindPermissionReply
+         */
     FindPermissionReply.fromObject = function fromObject(object) {
       if (object instanceof $root.pbpermission.FindPermissionReply) { return object }
       var message = new $root.pbpermission.FindPermissionReply()
@@ -4209,14 +4209,14 @@ $root.pbpermission = (function() {
     }
 
     /**
-     * Creates a plain object from a FindPermissionReply message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbpermission.FindPermissionReply
-     * @static
-     * @param {pbpermission.FindPermissionReply} message FindPermissionReply
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from a FindPermissionReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbpermission.FindPermissionReply
+         * @static
+         * @param {pbpermission.FindPermissionReply} message FindPermissionReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     FindPermissionReply.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -4244,24 +4244,24 @@ $root.pbpermission = (function() {
     }
 
     /**
-     * Converts this FindPermissionReply to JSON.
-     * @function toJSON
-     * @memberof pbpermission.FindPermissionReply
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this FindPermissionReply to JSON.
+         * @function toJSON
+         * @memberof pbpermission.FindPermissionReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     FindPermissionReply.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for FindPermissionReply
-     * @function getTypeUrl
-     * @memberof pbpermission.FindPermissionReply
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for FindPermissionReply
+         * @function getTypeUrl
+         * @memberof pbpermission.FindPermissionReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     FindPermissionReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -4274,15 +4274,15 @@ $root.pbpermission = (function() {
 
   pbpermission.Permission = (function() {
     /**
-     * Constructs a new Permission service.
-     * @memberof pbpermission
-     * @classdesc Represents a Permission
-     * @extends $protobuf.rpc.Service
-     * @constructor
-     * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
-     * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
-     * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
-     */
+         * Constructs a new Permission service.
+         * @memberof pbpermission
+         * @classdesc Represents a Permission
+         * @extends $protobuf.rpc.Service
+         * @constructor
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         */
     function Permission(rpcImpl, requestDelimited, responseDelimited) {
       $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited)
     }
@@ -4290,183 +4290,183 @@ $root.pbpermission = (function() {
     (Permission.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = Permission
 
     /**
-     * Creates new Permission service using the specified rpc implementation.
-     * @function create
-     * @memberof pbpermission.Permission
-     * @static
-     * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
-     * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
-     * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
-     * @returns {Permission} RPC service. Useful where requests and/or responses are streamed.
-     */
+         * Creates new Permission service using the specified rpc implementation.
+         * @function create
+         * @memberof pbpermission.Permission
+         * @static
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         * @returns {Permission} RPC service. Useful where requests and/or responses are streamed.
+         */
     Permission.create = function create(rpcImpl, requestDelimited, responseDelimited) {
       return new this(rpcImpl, requestDelimited, responseDelimited)
     }
 
     /**
-     * Callback as used by {@link pbpermission.Permission#createPermission}.
-     * @memberof pbpermission.Permission
-     * @typedef CreatePermissionCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbcommon.CommonResult} [response] CommonResult
-     */
+         * Callback as used by {@link pbpermission.Permission#createPermission}.
+         * @memberof pbpermission.Permission
+         * @typedef CreatePermissionCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
 
     /**
-     * Calls CreatePermission.
-     * @function createPermission
-     * @memberof pbpermission.Permission
-     * @instance
-     * @param {pbpermission.IPermissionModel} request PermissionModel message or plain object
-     * @param {pbpermission.Permission.CreatePermissionCallback} callback Node-style callback called with the error, if any, and CommonResult
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls CreatePermission.
+         * @function createPermission
+         * @memberof pbpermission.Permission
+         * @instance
+         * @param {pbpermission.IPermissionModel} request PermissionModel message or plain object
+         * @param {pbpermission.Permission.CreatePermissionCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(Permission.prototype.createPermission = function createPermission(request, callback) {
       return this.rpcCall(createPermission, $root.pbpermission.PermissionModel, $root.pbcommon.CommonResult, request, callback)
     }, 'name', { value: 'CreatePermission' })
 
     /**
-     * Calls CreatePermission.
-     * @function createPermission
-     * @memberof pbpermission.Permission
-     * @instance
-     * @param {pbpermission.IPermissionModel} request PermissionModel message or plain object
-     * @returns {Promise<pbcommon.CommonResult>} Promise
-     * @variation 2
-     */
+         * Calls CreatePermission.
+         * @function createPermission
+         * @memberof pbpermission.Permission
+         * @instance
+         * @param {pbpermission.IPermissionModel} request PermissionModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbpermission.Permission#updatePermission}.
-     * @memberof pbpermission.Permission
-     * @typedef UpdatePermissionCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbcommon.CommonResult} [response] CommonResult
-     */
+         * Callback as used by {@link pbpermission.Permission#updatePermission}.
+         * @memberof pbpermission.Permission
+         * @typedef UpdatePermissionCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
 
     /**
-     * Calls UpdatePermission.
-     * @function updatePermission
-     * @memberof pbpermission.Permission
-     * @instance
-     * @param {pbpermission.IPermissionModel} request PermissionModel message or plain object
-     * @param {pbpermission.Permission.UpdatePermissionCallback} callback Node-style callback called with the error, if any, and CommonResult
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls UpdatePermission.
+         * @function updatePermission
+         * @memberof pbpermission.Permission
+         * @instance
+         * @param {pbpermission.IPermissionModel} request PermissionModel message or plain object
+         * @param {pbpermission.Permission.UpdatePermissionCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(Permission.prototype.updatePermission = function updatePermission(request, callback) {
       return this.rpcCall(updatePermission, $root.pbpermission.PermissionModel, $root.pbcommon.CommonResult, request, callback)
     }, 'name', { value: 'UpdatePermission' })
 
     /**
-     * Calls UpdatePermission.
-     * @function updatePermission
-     * @memberof pbpermission.Permission
-     * @instance
-     * @param {pbpermission.IPermissionModel} request PermissionModel message or plain object
-     * @returns {Promise<pbcommon.CommonResult>} Promise
-     * @variation 2
-     */
+         * Calls UpdatePermission.
+         * @function updatePermission
+         * @memberof pbpermission.Permission
+         * @instance
+         * @param {pbpermission.IPermissionModel} request PermissionModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbpermission.Permission#deletePermission}.
-     * @memberof pbpermission.Permission
-     * @typedef DeletePermissionCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbcommon.CommonResult} [response] CommonResult
-     */
+         * Callback as used by {@link pbpermission.Permission#deletePermission}.
+         * @memberof pbpermission.Permission
+         * @typedef DeletePermissionCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
 
     /**
-     * Calls DeletePermission.
-     * @function deletePermission
-     * @memberof pbpermission.Permission
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @param {pbpermission.Permission.DeletePermissionCallback} callback Node-style callback called with the error, if any, and CommonResult
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls DeletePermission.
+         * @function deletePermission
+         * @memberof pbpermission.Permission
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbpermission.Permission.DeletePermissionCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(Permission.prototype.deletePermission = function deletePermission(request, callback) {
       return this.rpcCall(deletePermission, $root.pbcommon.IdArgs, $root.pbcommon.CommonResult, request, callback)
     }, 'name', { value: 'DeletePermission' })
 
     /**
-     * Calls DeletePermission.
-     * @function deletePermission
-     * @memberof pbpermission.Permission
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @returns {Promise<pbcommon.CommonResult>} Promise
-     * @variation 2
-     */
+         * Calls DeletePermission.
+         * @function deletePermission
+         * @memberof pbpermission.Permission
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbpermission.Permission#findPermissionById}.
-     * @memberof pbpermission.Permission
-     * @typedef FindPermissionByIdCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbpermission.FindPermissionReply} [response] FindPermissionReply
-     */
+         * Callback as used by {@link pbpermission.Permission#findPermissionById}.
+         * @memberof pbpermission.Permission
+         * @typedef FindPermissionByIdCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbpermission.FindPermissionReply} [response] FindPermissionReply
+         */
 
     /**
-     * Calls FindPermissionById.
-     * @function findPermissionById
-     * @memberof pbpermission.Permission
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @param {pbpermission.Permission.FindPermissionByIdCallback} callback Node-style callback called with the error, if any, and FindPermissionReply
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls FindPermissionById.
+         * @function findPermissionById
+         * @memberof pbpermission.Permission
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbpermission.Permission.FindPermissionByIdCallback} callback Node-style callback called with the error, if any, and FindPermissionReply
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(Permission.prototype.findPermissionById = function findPermissionById(request, callback) {
       return this.rpcCall(findPermissionById, $root.pbcommon.IdArgs, $root.pbpermission.FindPermissionReply, request, callback)
     }, 'name', { value: 'FindPermissionById' })
 
     /**
-     * Calls FindPermissionById.
-     * @function findPermissionById
-     * @memberof pbpermission.Permission
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @returns {Promise<pbpermission.FindPermissionReply>} Promise
-     * @variation 2
-     */
+         * Calls FindPermissionById.
+         * @function findPermissionById
+         * @memberof pbpermission.Permission
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbpermission.FindPermissionReply>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbpermission.Permission#findPermissionList}.
-     * @memberof pbpermission.Permission
-     * @typedef FindPermissionListCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbpermission.FindPermissionReply} [response] FindPermissionReply
-     */
+         * Callback as used by {@link pbpermission.Permission#findPermissionList}.
+         * @memberof pbpermission.Permission
+         * @typedef FindPermissionListCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbpermission.FindPermissionReply} [response] FindPermissionReply
+         */
 
     /**
-     * Calls FindPermissionList.
-     * @function findPermissionList
-     * @memberof pbpermission.Permission
-     * @instance
-     * @param {pbpermission.IFindPermissionArgs} request FindPermissionArgs message or plain object
-     * @param {pbpermission.Permission.FindPermissionListCallback} callback Node-style callback called with the error, if any, and FindPermissionReply
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls FindPermissionList.
+         * @function findPermissionList
+         * @memberof pbpermission.Permission
+         * @instance
+         * @param {pbpermission.IFindPermissionArgs} request FindPermissionArgs message or plain object
+         * @param {pbpermission.Permission.FindPermissionListCallback} callback Node-style callback called with the error, if any, and FindPermissionReply
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(Permission.prototype.findPermissionList = function findPermissionList(request, callback) {
       return this.rpcCall(findPermissionList, $root.pbpermission.FindPermissionArgs, $root.pbpermission.FindPermissionReply, request, callback)
     }, 'name', { value: 'FindPermissionList' })
 
     /**
-     * Calls FindPermissionList.
-     * @function findPermissionList
-     * @memberof pbpermission.Permission
-     * @instance
-     * @param {pbpermission.IFindPermissionArgs} request FindPermissionArgs message or plain object
-     * @returns {Promise<pbpermission.FindPermissionReply>} Promise
-     * @variation 2
-     */
+         * Calls FindPermissionList.
+         * @function findPermissionList
+         * @memberof pbpermission.Permission
+         * @instance
+         * @param {pbpermission.IFindPermissionArgs} request FindPermissionArgs message or plain object
+         * @returns {Promise<pbpermission.FindPermissionReply>} Promise
+         * @variation 2
+         */
 
     return Permission
   })()
@@ -4476,37 +4476,37 @@ $root.pbpermission = (function() {
 
 $root.pbrole = (function() {
   /**
-   * Namespace pbrole.
-   * @exports pbrole
-   * @namespace
-   */
+     * Namespace pbrole.
+     * @exports pbrole
+     * @namespace
+     */
   var pbrole = {}
 
   pbrole.RoleModel = (function() {
     /**
-     * Properties of a RoleModel.
-     * @memberof pbrole
-     * @interface IRoleModel
-     * @property {number|Long|null} [id] RoleModel id
-     * @property {string|null} [createdAt] RoleModel createdAt
-     * @property {string|null} [updatedAt] RoleModel updatedAt
-     * @property {number|Long|null} [parentId] RoleModel parentId
-     * @property {string|null} [roleName] RoleModel roleName
-     * @property {number|null} [roleCode] RoleModel roleCode
-     * @property {string|null} [roleDesc] RoleModel roleDesc
-     * @property {pbrole.RoleType|null} [roleType] RoleModel roleType
-     * @property {number|null} [roleStatus] RoleModel roleStatus
-     * @property {Array.<pbpermission.IPermissionModel>|null} [permissions] RoleModel permissions
-     */
+         * Properties of a RoleModel.
+         * @memberof pbrole
+         * @interface IRoleModel
+         * @property {number|Long|null} [id] RoleModel id
+         * @property {string|null} [createdAt] RoleModel createdAt
+         * @property {string|null} [updatedAt] RoleModel updatedAt
+         * @property {number|Long|null} [parentId] RoleModel parentId
+         * @property {string|null} [roleName] RoleModel roleName
+         * @property {number|null} [roleCode] RoleModel roleCode
+         * @property {string|null} [roleDesc] RoleModel roleDesc
+         * @property {pbrole.RoleType|null} [roleType] RoleModel roleType
+         * @property {number|null} [roleStatus] RoleModel roleStatus
+         * @property {Array.<pbpermission.IPermissionModel>|null} [permissions] RoleModel permissions
+         */
 
     /**
-     * Constructs a new RoleModel.
-     * @memberof pbrole
-     * @classdesc Represents a RoleModel.
-     * @implements IRoleModel
-     * @constructor
-     * @param {pbrole.IRoleModel=} [properties] Properties to set
-     */
+         * Constructs a new RoleModel.
+         * @memberof pbrole
+         * @classdesc Represents a RoleModel.
+         * @implements IRoleModel
+         * @constructor
+         * @param {pbrole.IRoleModel=} [properties] Properties to set
+         */
     function RoleModel(properties) {
       this.permissions = []
       if (properties) {
@@ -4517,106 +4517,106 @@ $root.pbrole = (function() {
     }
 
     /**
-     * RoleModel id.
-     * @member {number|Long} id
-     * @memberof pbrole.RoleModel
-     * @instance
-     */
+         * RoleModel id.
+         * @member {number|Long} id
+         * @memberof pbrole.RoleModel
+         * @instance
+         */
     RoleModel.prototype.id = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * RoleModel createdAt.
-     * @member {string} createdAt
-     * @memberof pbrole.RoleModel
-     * @instance
-     */
+         * RoleModel createdAt.
+         * @member {string} createdAt
+         * @memberof pbrole.RoleModel
+         * @instance
+         */
     RoleModel.prototype.createdAt = ''
 
     /**
-     * RoleModel updatedAt.
-     * @member {string} updatedAt
-     * @memberof pbrole.RoleModel
-     * @instance
-     */
+         * RoleModel updatedAt.
+         * @member {string} updatedAt
+         * @memberof pbrole.RoleModel
+         * @instance
+         */
     RoleModel.prototype.updatedAt = ''
 
     /**
-     * RoleModel parentId.
-     * @member {number|Long} parentId
-     * @memberof pbrole.RoleModel
-     * @instance
-     */
+         * RoleModel parentId.
+         * @member {number|Long} parentId
+         * @memberof pbrole.RoleModel
+         * @instance
+         */
     RoleModel.prototype.parentId = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * RoleModel roleName.
-     * @member {string} roleName
-     * @memberof pbrole.RoleModel
-     * @instance
-     */
+         * RoleModel roleName.
+         * @member {string} roleName
+         * @memberof pbrole.RoleModel
+         * @instance
+         */
     RoleModel.prototype.roleName = ''
 
     /**
-     * RoleModel roleCode.
-     * @member {number} roleCode
-     * @memberof pbrole.RoleModel
-     * @instance
-     */
+         * RoleModel roleCode.
+         * @member {number} roleCode
+         * @memberof pbrole.RoleModel
+         * @instance
+         */
     RoleModel.prototype.roleCode = 0
 
     /**
-     * RoleModel roleDesc.
-     * @member {string} roleDesc
-     * @memberof pbrole.RoleModel
-     * @instance
-     */
+         * RoleModel roleDesc.
+         * @member {string} roleDesc
+         * @memberof pbrole.RoleModel
+         * @instance
+         */
     RoleModel.prototype.roleDesc = ''
 
     /**
-     * RoleModel roleType.
-     * @member {pbrole.RoleType} roleType
-     * @memberof pbrole.RoleModel
-     * @instance
-     */
+         * RoleModel roleType.
+         * @member {pbrole.RoleType} roleType
+         * @memberof pbrole.RoleModel
+         * @instance
+         */
     RoleModel.prototype.roleType = 0
 
     /**
-     * RoleModel roleStatus.
-     * @member {number} roleStatus
-     * @memberof pbrole.RoleModel
-     * @instance
-     */
+         * RoleModel roleStatus.
+         * @member {number} roleStatus
+         * @memberof pbrole.RoleModel
+         * @instance
+         */
     RoleModel.prototype.roleStatus = 0
 
     /**
-     * RoleModel permissions.
-     * @member {Array.<pbpermission.IPermissionModel>} permissions
-     * @memberof pbrole.RoleModel
-     * @instance
-     */
+         * RoleModel permissions.
+         * @member {Array.<pbpermission.IPermissionModel>} permissions
+         * @memberof pbrole.RoleModel
+         * @instance
+         */
     RoleModel.prototype.permissions = $util.emptyArray
 
     /**
-     * Creates a new RoleModel instance using the specified properties.
-     * @function create
-     * @memberof pbrole.RoleModel
-     * @static
-     * @param {pbrole.IRoleModel=} [properties] Properties to set
-     * @returns {pbrole.RoleModel} RoleModel instance
-     */
+         * Creates a new RoleModel instance using the specified properties.
+         * @function create
+         * @memberof pbrole.RoleModel
+         * @static
+         * @param {pbrole.IRoleModel=} [properties] Properties to set
+         * @returns {pbrole.RoleModel} RoleModel instance
+         */
     RoleModel.create = function create(properties) {
       return new RoleModel(properties)
     }
 
     /**
-     * Encodes the specified RoleModel message. Does not implicitly {@link pbrole.RoleModel.verify|verify} messages.
-     * @function encode
-     * @memberof pbrole.RoleModel
-     * @static
-     * @param {pbrole.IRoleModel} message RoleModel message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified RoleModel message. Does not implicitly {@link pbrole.RoleModel.verify|verify} messages.
+         * @function encode
+         * @memberof pbrole.RoleModel
+         * @static
+         * @param {pbrole.IRoleModel} message RoleModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     RoleModel.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.id != null && Object.hasOwnProperty.call(message, 'id')) { writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id) }
@@ -4635,29 +4635,29 @@ $root.pbrole = (function() {
     }
 
     /**
-     * Encodes the specified RoleModel message, length delimited. Does not implicitly {@link pbrole.RoleModel.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbrole.RoleModel
-     * @static
-     * @param {pbrole.IRoleModel} message RoleModel message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified RoleModel message, length delimited. Does not implicitly {@link pbrole.RoleModel.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbrole.RoleModel
+         * @static
+         * @param {pbrole.IRoleModel} message RoleModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     RoleModel.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes a RoleModel message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbrole.RoleModel
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbrole.RoleModel} RoleModel
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a RoleModel message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbrole.RoleModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbrole.RoleModel} RoleModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     RoleModel.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbrole.RoleModel()
@@ -4714,28 +4714,28 @@ $root.pbrole = (function() {
     }
 
     /**
-     * Decodes a RoleModel message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbrole.RoleModel
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbrole.RoleModel} RoleModel
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a RoleModel message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbrole.RoleModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbrole.RoleModel} RoleModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     RoleModel.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies a RoleModel message.
-     * @function verify
-     * @memberof pbrole.RoleModel
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies a RoleModel message.
+         * @function verify
+         * @memberof pbrole.RoleModel
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     RoleModel.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.id != null && message.hasOwnProperty('id')) {
@@ -4783,13 +4783,13 @@ $root.pbrole = (function() {
     }
 
     /**
-     * Creates a RoleModel message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbrole.RoleModel
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbrole.RoleModel} RoleModel
-     */
+         * Creates a RoleModel message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbrole.RoleModel
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbrole.RoleModel} RoleModel
+         */
     RoleModel.fromObject = function fromObject(object) {
       if (object instanceof $root.pbrole.RoleModel) { return object }
       var message = new $root.pbrole.RoleModel()
@@ -4837,14 +4837,14 @@ $root.pbrole = (function() {
     }
 
     /**
-     * Creates a plain object from a RoleModel message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbrole.RoleModel
-     * @static
-     * @param {pbrole.RoleModel} message RoleModel
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from a RoleModel message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbrole.RoleModel
+         * @static
+         * @param {pbrole.RoleModel} message RoleModel
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     RoleModel.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -4887,24 +4887,24 @@ $root.pbrole = (function() {
     }
 
     /**
-     * Converts this RoleModel to JSON.
-     * @function toJSON
-     * @memberof pbrole.RoleModel
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this RoleModel to JSON.
+         * @function toJSON
+         * @memberof pbrole.RoleModel
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     RoleModel.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for RoleModel
-     * @function getTypeUrl
-     * @memberof pbrole.RoleModel
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for RoleModel
+         * @function getTypeUrl
+         * @memberof pbrole.RoleModel
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     RoleModel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -4916,13 +4916,13 @@ $root.pbrole = (function() {
   })()
 
   /**
-   * RoleType enum.
-   * @name pbrole.RoleType
-   * @enum {number}
-   * @property {number} ROLE_TYPE_NONE=0 ROLE_TYPE_NONE value
-   * @property {number} ADMIN=1 ADMIN value
-   * @property {number} APP=2 APP value
-   */
+     * RoleType enum.
+     * @name pbrole.RoleType
+     * @enum {number}
+     * @property {number} ROLE_TYPE_NONE=0 ROLE_TYPE_NONE value
+     * @property {number} ADMIN=1 ADMIN value
+     * @property {number} APP=2 APP value
+     */
   pbrole.RoleType = (function() {
     var valuesById = {}; var values = Object.create(valuesById)
     values[valuesById[0] = 'ROLE_TYPE_NONE'] = 0
@@ -4933,21 +4933,21 @@ $root.pbrole = (function() {
 
   pbrole.FindRoleArgs = (function() {
     /**
-     * Properties of a FindRoleArgs.
-     * @memberof pbrole
-     * @interface IFindRoleArgs
-     * @property {pbcommon.IPageInfo|null} [pageInfo] FindRoleArgs pageInfo
-     * @property {pbrole.IRoleModel|null} [query] FindRoleArgs query
-     */
+         * Properties of a FindRoleArgs.
+         * @memberof pbrole
+         * @interface IFindRoleArgs
+         * @property {pbcommon.IPageInfo|null} [pageInfo] FindRoleArgs pageInfo
+         * @property {pbrole.IRoleModel|null} [query] FindRoleArgs query
+         */
 
     /**
-     * Constructs a new FindRoleArgs.
-     * @memberof pbrole
-     * @classdesc Represents a FindRoleArgs.
-     * @implements IFindRoleArgs
-     * @constructor
-     * @param {pbrole.IFindRoleArgs=} [properties] Properties to set
-     */
+         * Constructs a new FindRoleArgs.
+         * @memberof pbrole
+         * @classdesc Represents a FindRoleArgs.
+         * @implements IFindRoleArgs
+         * @constructor
+         * @param {pbrole.IFindRoleArgs=} [properties] Properties to set
+         */
     function FindRoleArgs(properties) {
       if (properties) {
         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
@@ -4957,42 +4957,42 @@ $root.pbrole = (function() {
     }
 
     /**
-     * FindRoleArgs pageInfo.
-     * @member {pbcommon.IPageInfo|null|undefined} pageInfo
-     * @memberof pbrole.FindRoleArgs
-     * @instance
-     */
+         * FindRoleArgs pageInfo.
+         * @member {pbcommon.IPageInfo|null|undefined} pageInfo
+         * @memberof pbrole.FindRoleArgs
+         * @instance
+         */
     FindRoleArgs.prototype.pageInfo = null
 
     /**
-     * FindRoleArgs query.
-     * @member {pbrole.IRoleModel|null|undefined} query
-     * @memberof pbrole.FindRoleArgs
-     * @instance
-     */
+         * FindRoleArgs query.
+         * @member {pbrole.IRoleModel|null|undefined} query
+         * @memberof pbrole.FindRoleArgs
+         * @instance
+         */
     FindRoleArgs.prototype.query = null
 
     /**
-     * Creates a new FindRoleArgs instance using the specified properties.
-     * @function create
-     * @memberof pbrole.FindRoleArgs
-     * @static
-     * @param {pbrole.IFindRoleArgs=} [properties] Properties to set
-     * @returns {pbrole.FindRoleArgs} FindRoleArgs instance
-     */
+         * Creates a new FindRoleArgs instance using the specified properties.
+         * @function create
+         * @memberof pbrole.FindRoleArgs
+         * @static
+         * @param {pbrole.IFindRoleArgs=} [properties] Properties to set
+         * @returns {pbrole.FindRoleArgs} FindRoleArgs instance
+         */
     FindRoleArgs.create = function create(properties) {
       return new FindRoleArgs(properties)
     }
 
     /**
-     * Encodes the specified FindRoleArgs message. Does not implicitly {@link pbrole.FindRoleArgs.verify|verify} messages.
-     * @function encode
-     * @memberof pbrole.FindRoleArgs
-     * @static
-     * @param {pbrole.IFindRoleArgs} message FindRoleArgs message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindRoleArgs message. Does not implicitly {@link pbrole.FindRoleArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbrole.FindRoleArgs
+         * @static
+         * @param {pbrole.IFindRoleArgs} message FindRoleArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindRoleArgs.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.pageInfo != null && Object.hasOwnProperty.call(message, 'pageInfo')) { $root.pbcommon.PageInfo.encode(message.pageInfo, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim() }
@@ -5001,29 +5001,29 @@ $root.pbrole = (function() {
     }
 
     /**
-     * Encodes the specified FindRoleArgs message, length delimited. Does not implicitly {@link pbrole.FindRoleArgs.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbrole.FindRoleArgs
-     * @static
-     * @param {pbrole.IFindRoleArgs} message FindRoleArgs message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindRoleArgs message, length delimited. Does not implicitly {@link pbrole.FindRoleArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbrole.FindRoleArgs
+         * @static
+         * @param {pbrole.IFindRoleArgs} message FindRoleArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindRoleArgs.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes a FindRoleArgs message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbrole.FindRoleArgs
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbrole.FindRoleArgs} FindRoleArgs
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindRoleArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbrole.FindRoleArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbrole.FindRoleArgs} FindRoleArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindRoleArgs.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbrole.FindRoleArgs()
@@ -5047,28 +5047,28 @@ $root.pbrole = (function() {
     }
 
     /**
-     * Decodes a FindRoleArgs message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbrole.FindRoleArgs
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbrole.FindRoleArgs} FindRoleArgs
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindRoleArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbrole.FindRoleArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbrole.FindRoleArgs} FindRoleArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindRoleArgs.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies a FindRoleArgs message.
-     * @function verify
-     * @memberof pbrole.FindRoleArgs
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies a FindRoleArgs message.
+         * @function verify
+         * @memberof pbrole.FindRoleArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     FindRoleArgs.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.pageInfo != null && message.hasOwnProperty('pageInfo')) {
@@ -5083,13 +5083,13 @@ $root.pbrole = (function() {
     }
 
     /**
-     * Creates a FindRoleArgs message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbrole.FindRoleArgs
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbrole.FindRoleArgs} FindRoleArgs
-     */
+         * Creates a FindRoleArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbrole.FindRoleArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbrole.FindRoleArgs} FindRoleArgs
+         */
     FindRoleArgs.fromObject = function fromObject(object) {
       if (object instanceof $root.pbrole.FindRoleArgs) { return object }
       var message = new $root.pbrole.FindRoleArgs()
@@ -5105,14 +5105,14 @@ $root.pbrole = (function() {
     }
 
     /**
-     * Creates a plain object from a FindRoleArgs message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbrole.FindRoleArgs
-     * @static
-     * @param {pbrole.FindRoleArgs} message FindRoleArgs
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from a FindRoleArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbrole.FindRoleArgs
+         * @static
+         * @param {pbrole.FindRoleArgs} message FindRoleArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     FindRoleArgs.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -5126,24 +5126,24 @@ $root.pbrole = (function() {
     }
 
     /**
-     * Converts this FindRoleArgs to JSON.
-     * @function toJSON
-     * @memberof pbrole.FindRoleArgs
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this FindRoleArgs to JSON.
+         * @function toJSON
+         * @memberof pbrole.FindRoleArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     FindRoleArgs.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for FindRoleArgs
-     * @function getTypeUrl
-     * @memberof pbrole.FindRoleArgs
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for FindRoleArgs
+         * @function getTypeUrl
+         * @memberof pbrole.FindRoleArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     FindRoleArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -5156,24 +5156,24 @@ $root.pbrole = (function() {
 
   pbrole.FindRoleReply = (function() {
     /**
-     * Properties of a FindRoleReply.
-     * @memberof pbrole
-     * @interface IFindRoleReply
-     * @property {pbcommon.EnumCode|null} [code] FindRoleReply code
-     * @property {string|null} [msg] FindRoleReply msg
-     * @property {pbrole.IRoleModel|null} [data] FindRoleReply data
-     * @property {Array.<pbrole.IRoleModel>|null} [list] FindRoleReply list
-     * @property {number|Long|null} [total] FindRoleReply total
-     */
+         * Properties of a FindRoleReply.
+         * @memberof pbrole
+         * @interface IFindRoleReply
+         * @property {pbcommon.EnumCode|null} [code] FindRoleReply code
+         * @property {string|null} [msg] FindRoleReply msg
+         * @property {pbrole.IRoleModel|null} [data] FindRoleReply data
+         * @property {Array.<pbrole.IRoleModel>|null} [list] FindRoleReply list
+         * @property {number|Long|null} [total] FindRoleReply total
+         */
 
     /**
-     * Constructs a new FindRoleReply.
-     * @memberof pbrole
-     * @classdesc Represents a FindRoleReply.
-     * @implements IFindRoleReply
-     * @constructor
-     * @param {pbrole.IFindRoleReply=} [properties] Properties to set
-     */
+         * Constructs a new FindRoleReply.
+         * @memberof pbrole
+         * @classdesc Represents a FindRoleReply.
+         * @implements IFindRoleReply
+         * @constructor
+         * @param {pbrole.IFindRoleReply=} [properties] Properties to set
+         */
     function FindRoleReply(properties) {
       this.list = []
       if (properties) {
@@ -5184,66 +5184,66 @@ $root.pbrole = (function() {
     }
 
     /**
-     * FindRoleReply code.
-     * @member {pbcommon.EnumCode} code
-     * @memberof pbrole.FindRoleReply
-     * @instance
-     */
+         * FindRoleReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbrole.FindRoleReply
+         * @instance
+         */
     FindRoleReply.prototype.code = 0
 
     /**
-     * FindRoleReply msg.
-     * @member {string} msg
-     * @memberof pbrole.FindRoleReply
-     * @instance
-     */
+         * FindRoleReply msg.
+         * @member {string} msg
+         * @memberof pbrole.FindRoleReply
+         * @instance
+         */
     FindRoleReply.prototype.msg = ''
 
     /**
-     * FindRoleReply data.
-     * @member {pbrole.IRoleModel|null|undefined} data
-     * @memberof pbrole.FindRoleReply
-     * @instance
-     */
+         * FindRoleReply data.
+         * @member {pbrole.IRoleModel|null|undefined} data
+         * @memberof pbrole.FindRoleReply
+         * @instance
+         */
     FindRoleReply.prototype.data = null
 
     /**
-     * FindRoleReply list.
-     * @member {Array.<pbrole.IRoleModel>} list
-     * @memberof pbrole.FindRoleReply
-     * @instance
-     */
+         * FindRoleReply list.
+         * @member {Array.<pbrole.IRoleModel>} list
+         * @memberof pbrole.FindRoleReply
+         * @instance
+         */
     FindRoleReply.prototype.list = $util.emptyArray
 
     /**
-     * FindRoleReply total.
-     * @member {number|Long} total
-     * @memberof pbrole.FindRoleReply
-     * @instance
-     */
+         * FindRoleReply total.
+         * @member {number|Long} total
+         * @memberof pbrole.FindRoleReply
+         * @instance
+         */
     FindRoleReply.prototype.total = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * Creates a new FindRoleReply instance using the specified properties.
-     * @function create
-     * @memberof pbrole.FindRoleReply
-     * @static
-     * @param {pbrole.IFindRoleReply=} [properties] Properties to set
-     * @returns {pbrole.FindRoleReply} FindRoleReply instance
-     */
+         * Creates a new FindRoleReply instance using the specified properties.
+         * @function create
+         * @memberof pbrole.FindRoleReply
+         * @static
+         * @param {pbrole.IFindRoleReply=} [properties] Properties to set
+         * @returns {pbrole.FindRoleReply} FindRoleReply instance
+         */
     FindRoleReply.create = function create(properties) {
       return new FindRoleReply(properties)
     }
 
     /**
-     * Encodes the specified FindRoleReply message. Does not implicitly {@link pbrole.FindRoleReply.verify|verify} messages.
-     * @function encode
-     * @memberof pbrole.FindRoleReply
-     * @static
-     * @param {pbrole.IFindRoleReply} message FindRoleReply message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindRoleReply message. Does not implicitly {@link pbrole.FindRoleReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbrole.FindRoleReply
+         * @static
+         * @param {pbrole.IFindRoleReply} message FindRoleReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindRoleReply.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.code != null && Object.hasOwnProperty.call(message, 'code')) { writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code) }
@@ -5257,29 +5257,29 @@ $root.pbrole = (function() {
     }
 
     /**
-     * Encodes the specified FindRoleReply message, length delimited. Does not implicitly {@link pbrole.FindRoleReply.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbrole.FindRoleReply
-     * @static
-     * @param {pbrole.IFindRoleReply} message FindRoleReply message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindRoleReply message, length delimited. Does not implicitly {@link pbrole.FindRoleReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbrole.FindRoleReply
+         * @static
+         * @param {pbrole.IFindRoleReply} message FindRoleReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindRoleReply.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes a FindRoleReply message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbrole.FindRoleReply
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbrole.FindRoleReply} FindRoleReply
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindRoleReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbrole.FindRoleReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbrole.FindRoleReply} FindRoleReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindRoleReply.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbrole.FindRoleReply()
@@ -5316,28 +5316,28 @@ $root.pbrole = (function() {
     }
 
     /**
-     * Decodes a FindRoleReply message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbrole.FindRoleReply
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbrole.FindRoleReply} FindRoleReply
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindRoleReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbrole.FindRoleReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbrole.FindRoleReply} FindRoleReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindRoleReply.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies a FindRoleReply message.
-     * @function verify
-     * @memberof pbrole.FindRoleReply
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies a FindRoleReply message.
+         * @function verify
+         * @memberof pbrole.FindRoleReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     FindRoleReply.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.code != null && message.hasOwnProperty('code')) {
@@ -5393,13 +5393,13 @@ $root.pbrole = (function() {
     }
 
     /**
-     * Creates a FindRoleReply message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbrole.FindRoleReply
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbrole.FindRoleReply} FindRoleReply
-     */
+         * Creates a FindRoleReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbrole.FindRoleReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbrole.FindRoleReply} FindRoleReply
+         */
     FindRoleReply.fromObject = function fromObject(object) {
       if (object instanceof $root.pbrole.FindRoleReply) { return object }
       var message = new $root.pbrole.FindRoleReply()
@@ -5531,14 +5531,14 @@ $root.pbrole = (function() {
     }
 
     /**
-     * Creates a plain object from a FindRoleReply message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbrole.FindRoleReply
-     * @static
-     * @param {pbrole.FindRoleReply} message FindRoleReply
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from a FindRoleReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbrole.FindRoleReply
+         * @static
+         * @param {pbrole.FindRoleReply} message FindRoleReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     FindRoleReply.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -5566,24 +5566,24 @@ $root.pbrole = (function() {
     }
 
     /**
-     * Converts this FindRoleReply to JSON.
-     * @function toJSON
-     * @memberof pbrole.FindRoleReply
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this FindRoleReply to JSON.
+         * @function toJSON
+         * @memberof pbrole.FindRoleReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     FindRoleReply.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for FindRoleReply
-     * @function getTypeUrl
-     * @memberof pbrole.FindRoleReply
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for FindRoleReply
+         * @function getTypeUrl
+         * @memberof pbrole.FindRoleReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     FindRoleReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -5596,15 +5596,15 @@ $root.pbrole = (function() {
 
   pbrole.Role = (function() {
     /**
-     * Constructs a new Role service.
-     * @memberof pbrole
-     * @classdesc Represents a Role
-     * @extends $protobuf.rpc.Service
-     * @constructor
-     * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
-     * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
-     * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
-     */
+         * Constructs a new Role service.
+         * @memberof pbrole
+         * @classdesc Represents a Role
+         * @extends $protobuf.rpc.Service
+         * @constructor
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         */
     function Role(rpcImpl, requestDelimited, responseDelimited) {
       $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited)
     }
@@ -5612,183 +5612,183 @@ $root.pbrole = (function() {
     (Role.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = Role
 
     /**
-     * Creates new Role service using the specified rpc implementation.
-     * @function create
-     * @memberof pbrole.Role
-     * @static
-     * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
-     * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
-     * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
-     * @returns {Role} RPC service. Useful where requests and/or responses are streamed.
-     */
+         * Creates new Role service using the specified rpc implementation.
+         * @function create
+         * @memberof pbrole.Role
+         * @static
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         * @returns {Role} RPC service. Useful where requests and/or responses are streamed.
+         */
     Role.create = function create(rpcImpl, requestDelimited, responseDelimited) {
       return new this(rpcImpl, requestDelimited, responseDelimited)
     }
 
     /**
-     * Callback as used by {@link pbrole.Role#createRole}.
-     * @memberof pbrole.Role
-     * @typedef CreateRoleCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbcommon.CommonResult} [response] CommonResult
-     */
+         * Callback as used by {@link pbrole.Role#createRole}.
+         * @memberof pbrole.Role
+         * @typedef CreateRoleCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
 
     /**
-     * Calls CreateRole.
-     * @function createRole
-     * @memberof pbrole.Role
-     * @instance
-     * @param {pbrole.IRoleModel} request RoleModel message or plain object
-     * @param {pbrole.Role.CreateRoleCallback} callback Node-style callback called with the error, if any, and CommonResult
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls CreateRole.
+         * @function createRole
+         * @memberof pbrole.Role
+         * @instance
+         * @param {pbrole.IRoleModel} request RoleModel message or plain object
+         * @param {pbrole.Role.CreateRoleCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(Role.prototype.createRole = function createRole(request, callback) {
       return this.rpcCall(createRole, $root.pbrole.RoleModel, $root.pbcommon.CommonResult, request, callback)
     }, 'name', { value: 'CreateRole' })
 
     /**
-     * Calls CreateRole.
-     * @function createRole
-     * @memberof pbrole.Role
-     * @instance
-     * @param {pbrole.IRoleModel} request RoleModel message or plain object
-     * @returns {Promise<pbcommon.CommonResult>} Promise
-     * @variation 2
-     */
+         * Calls CreateRole.
+         * @function createRole
+         * @memberof pbrole.Role
+         * @instance
+         * @param {pbrole.IRoleModel} request RoleModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbrole.Role#updateRole}.
-     * @memberof pbrole.Role
-     * @typedef UpdateRoleCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbcommon.CommonResult} [response] CommonResult
-     */
+         * Callback as used by {@link pbrole.Role#updateRole}.
+         * @memberof pbrole.Role
+         * @typedef UpdateRoleCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
 
     /**
-     * Calls UpdateRole.
-     * @function updateRole
-     * @memberof pbrole.Role
-     * @instance
-     * @param {pbrole.IRoleModel} request RoleModel message or plain object
-     * @param {pbrole.Role.UpdateRoleCallback} callback Node-style callback called with the error, if any, and CommonResult
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls UpdateRole.
+         * @function updateRole
+         * @memberof pbrole.Role
+         * @instance
+         * @param {pbrole.IRoleModel} request RoleModel message or plain object
+         * @param {pbrole.Role.UpdateRoleCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(Role.prototype.updateRole = function updateRole(request, callback) {
       return this.rpcCall(updateRole, $root.pbrole.RoleModel, $root.pbcommon.CommonResult, request, callback)
     }, 'name', { value: 'UpdateRole' })
 
     /**
-     * Calls UpdateRole.
-     * @function updateRole
-     * @memberof pbrole.Role
-     * @instance
-     * @param {pbrole.IRoleModel} request RoleModel message or plain object
-     * @returns {Promise<pbcommon.CommonResult>} Promise
-     * @variation 2
-     */
+         * Calls UpdateRole.
+         * @function updateRole
+         * @memberof pbrole.Role
+         * @instance
+         * @param {pbrole.IRoleModel} request RoleModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbrole.Role#deleteRole}.
-     * @memberof pbrole.Role
-     * @typedef DeleteRoleCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbcommon.CommonResult} [response] CommonResult
-     */
+         * Callback as used by {@link pbrole.Role#deleteRole}.
+         * @memberof pbrole.Role
+         * @typedef DeleteRoleCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
 
     /**
-     * Calls DeleteRole.
-     * @function deleteRole
-     * @memberof pbrole.Role
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @param {pbrole.Role.DeleteRoleCallback} callback Node-style callback called with the error, if any, and CommonResult
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls DeleteRole.
+         * @function deleteRole
+         * @memberof pbrole.Role
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbrole.Role.DeleteRoleCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(Role.prototype.deleteRole = function deleteRole(request, callback) {
       return this.rpcCall(deleteRole, $root.pbcommon.IdArgs, $root.pbcommon.CommonResult, request, callback)
     }, 'name', { value: 'DeleteRole' })
 
     /**
-     * Calls DeleteRole.
-     * @function deleteRole
-     * @memberof pbrole.Role
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @returns {Promise<pbcommon.CommonResult>} Promise
-     * @variation 2
-     */
+         * Calls DeleteRole.
+         * @function deleteRole
+         * @memberof pbrole.Role
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbrole.Role#findRoleById}.
-     * @memberof pbrole.Role
-     * @typedef FindRoleByIdCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbrole.FindRoleReply} [response] FindRoleReply
-     */
+         * Callback as used by {@link pbrole.Role#findRoleById}.
+         * @memberof pbrole.Role
+         * @typedef FindRoleByIdCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbrole.FindRoleReply} [response] FindRoleReply
+         */
 
     /**
-     * Calls FindRoleById.
-     * @function findRoleById
-     * @memberof pbrole.Role
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @param {pbrole.Role.FindRoleByIdCallback} callback Node-style callback called with the error, if any, and FindRoleReply
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls FindRoleById.
+         * @function findRoleById
+         * @memberof pbrole.Role
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbrole.Role.FindRoleByIdCallback} callback Node-style callback called with the error, if any, and FindRoleReply
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(Role.prototype.findRoleById = function findRoleById(request, callback) {
       return this.rpcCall(findRoleById, $root.pbcommon.IdArgs, $root.pbrole.FindRoleReply, request, callback)
     }, 'name', { value: 'FindRoleById' })
 
     /**
-     * Calls FindRoleById.
-     * @function findRoleById
-     * @memberof pbrole.Role
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @returns {Promise<pbrole.FindRoleReply>} Promise
-     * @variation 2
-     */
+         * Calls FindRoleById.
+         * @function findRoleById
+         * @memberof pbrole.Role
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbrole.FindRoleReply>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbrole.Role#findRoleList}.
-     * @memberof pbrole.Role
-     * @typedef FindRoleListCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbrole.FindRoleReply} [response] FindRoleReply
-     */
+         * Callback as used by {@link pbrole.Role#findRoleList}.
+         * @memberof pbrole.Role
+         * @typedef FindRoleListCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbrole.FindRoleReply} [response] FindRoleReply
+         */
 
     /**
-     * Calls FindRoleList.
-     * @function findRoleList
-     * @memberof pbrole.Role
-     * @instance
-     * @param {pbrole.IFindRoleArgs} request FindRoleArgs message or plain object
-     * @param {pbrole.Role.FindRoleListCallback} callback Node-style callback called with the error, if any, and FindRoleReply
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls FindRoleList.
+         * @function findRoleList
+         * @memberof pbrole.Role
+         * @instance
+         * @param {pbrole.IFindRoleArgs} request FindRoleArgs message or plain object
+         * @param {pbrole.Role.FindRoleListCallback} callback Node-style callback called with the error, if any, and FindRoleReply
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(Role.prototype.findRoleList = function findRoleList(request, callback) {
       return this.rpcCall(findRoleList, $root.pbrole.FindRoleArgs, $root.pbrole.FindRoleReply, request, callback)
     }, 'name', { value: 'FindRoleList' })
 
     /**
-     * Calls FindRoleList.
-     * @function findRoleList
-     * @memberof pbrole.Role
-     * @instance
-     * @param {pbrole.IFindRoleArgs} request FindRoleArgs message or plain object
-     * @returns {Promise<pbrole.FindRoleReply>} Promise
-     * @variation 2
-     */
+         * Calls FindRoleList.
+         * @function findRoleList
+         * @memberof pbrole.Role
+         * @instance
+         * @param {pbrole.IFindRoleArgs} request FindRoleArgs message or plain object
+         * @returns {Promise<pbrole.FindRoleReply>} Promise
+         * @variation 2
+         */
 
     return Role
   })()
@@ -5798,30 +5798,30 @@ $root.pbrole = (function() {
 
 $root.pbauth = (function() {
   /**
-   * Namespace pbauth.
-   * @exports pbauth
-   * @namespace
-   */
+     * Namespace pbauth.
+     * @exports pbauth
+     * @namespace
+     */
   var pbauth = {}
 
   pbauth.AuthLoginReply = (function() {
     /**
-     * Properties of an AuthLoginReply.
-     * @memberof pbauth
-     * @interface IAuthLoginReply
-     * @property {pbcommon.EnumCode|null} [code] AuthLoginReply code
-     * @property {string|null} [token] AuthLoginReply token
-     * @property {pbuser.IUserModel|null} [user] AuthLoginReply user
-     */
+         * Properties of an AuthLoginReply.
+         * @memberof pbauth
+         * @interface IAuthLoginReply
+         * @property {pbcommon.EnumCode|null} [code] AuthLoginReply code
+         * @property {string|null} [token] AuthLoginReply token
+         * @property {pbuser.IUserModel|null} [user] AuthLoginReply user
+         */
 
     /**
-     * Constructs a new AuthLoginReply.
-     * @memberof pbauth
-     * @classdesc Represents an AuthLoginReply.
-     * @implements IAuthLoginReply
-     * @constructor
-     * @param {pbauth.IAuthLoginReply=} [properties] Properties to set
-     */
+         * Constructs a new AuthLoginReply.
+         * @memberof pbauth
+         * @classdesc Represents an AuthLoginReply.
+         * @implements IAuthLoginReply
+         * @constructor
+         * @param {pbauth.IAuthLoginReply=} [properties] Properties to set
+         */
     function AuthLoginReply(properties) {
       if (properties) {
         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
@@ -5831,50 +5831,50 @@ $root.pbauth = (function() {
     }
 
     /**
-     * AuthLoginReply code.
-     * @member {pbcommon.EnumCode} code
-     * @memberof pbauth.AuthLoginReply
-     * @instance
-     */
+         * AuthLoginReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbauth.AuthLoginReply
+         * @instance
+         */
     AuthLoginReply.prototype.code = 0
 
     /**
-     * AuthLoginReply token.
-     * @member {string} token
-     * @memberof pbauth.AuthLoginReply
-     * @instance
-     */
+         * AuthLoginReply token.
+         * @member {string} token
+         * @memberof pbauth.AuthLoginReply
+         * @instance
+         */
     AuthLoginReply.prototype.token = ''
 
     /**
-     * AuthLoginReply user.
-     * @member {pbuser.IUserModel|null|undefined} user
-     * @memberof pbauth.AuthLoginReply
-     * @instance
-     */
+         * AuthLoginReply user.
+         * @member {pbuser.IUserModel|null|undefined} user
+         * @memberof pbauth.AuthLoginReply
+         * @instance
+         */
     AuthLoginReply.prototype.user = null
 
     /**
-     * Creates a new AuthLoginReply instance using the specified properties.
-     * @function create
-     * @memberof pbauth.AuthLoginReply
-     * @static
-     * @param {pbauth.IAuthLoginReply=} [properties] Properties to set
-     * @returns {pbauth.AuthLoginReply} AuthLoginReply instance
-     */
+         * Creates a new AuthLoginReply instance using the specified properties.
+         * @function create
+         * @memberof pbauth.AuthLoginReply
+         * @static
+         * @param {pbauth.IAuthLoginReply=} [properties] Properties to set
+         * @returns {pbauth.AuthLoginReply} AuthLoginReply instance
+         */
     AuthLoginReply.create = function create(properties) {
       return new AuthLoginReply(properties)
     }
 
     /**
-     * Encodes the specified AuthLoginReply message. Does not implicitly {@link pbauth.AuthLoginReply.verify|verify} messages.
-     * @function encode
-     * @memberof pbauth.AuthLoginReply
-     * @static
-     * @param {pbauth.IAuthLoginReply} message AuthLoginReply message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified AuthLoginReply message. Does not implicitly {@link pbauth.AuthLoginReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbauth.AuthLoginReply
+         * @static
+         * @param {pbauth.IAuthLoginReply} message AuthLoginReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     AuthLoginReply.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.code != null && Object.hasOwnProperty.call(message, 'code')) { writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code) }
@@ -5884,29 +5884,29 @@ $root.pbauth = (function() {
     }
 
     /**
-     * Encodes the specified AuthLoginReply message, length delimited. Does not implicitly {@link pbauth.AuthLoginReply.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbauth.AuthLoginReply
-     * @static
-     * @param {pbauth.IAuthLoginReply} message AuthLoginReply message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified AuthLoginReply message, length delimited. Does not implicitly {@link pbauth.AuthLoginReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbauth.AuthLoginReply
+         * @static
+         * @param {pbauth.IAuthLoginReply} message AuthLoginReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     AuthLoginReply.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes an AuthLoginReply message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbauth.AuthLoginReply
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbauth.AuthLoginReply} AuthLoginReply
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes an AuthLoginReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbauth.AuthLoginReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbauth.AuthLoginReply} AuthLoginReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     AuthLoginReply.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbauth.AuthLoginReply()
@@ -5934,28 +5934,28 @@ $root.pbauth = (function() {
     }
 
     /**
-     * Decodes an AuthLoginReply message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbauth.AuthLoginReply
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbauth.AuthLoginReply} AuthLoginReply
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes an AuthLoginReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbauth.AuthLoginReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbauth.AuthLoginReply} AuthLoginReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     AuthLoginReply.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies an AuthLoginReply message.
-     * @function verify
-     * @memberof pbauth.AuthLoginReply
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies an AuthLoginReply message.
+         * @function verify
+         * @memberof pbauth.AuthLoginReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     AuthLoginReply.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.code != null && message.hasOwnProperty('code')) {
@@ -6001,13 +6001,13 @@ $root.pbauth = (function() {
     }
 
     /**
-     * Creates an AuthLoginReply message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbauth.AuthLoginReply
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbauth.AuthLoginReply} AuthLoginReply
-     */
+         * Creates an AuthLoginReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbauth.AuthLoginReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbauth.AuthLoginReply} AuthLoginReply
+         */
     AuthLoginReply.fromObject = function fromObject(object) {
       if (object instanceof $root.pbauth.AuthLoginReply) { return object }
       var message = new $root.pbauth.AuthLoginReply()
@@ -6128,14 +6128,14 @@ $root.pbauth = (function() {
     }
 
     /**
-     * Creates a plain object from an AuthLoginReply message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbauth.AuthLoginReply
-     * @static
-     * @param {pbauth.AuthLoginReply} message AuthLoginReply
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from an AuthLoginReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbauth.AuthLoginReply
+         * @static
+         * @param {pbauth.AuthLoginReply} message AuthLoginReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     AuthLoginReply.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -6151,24 +6151,24 @@ $root.pbauth = (function() {
     }
 
     /**
-     * Converts this AuthLoginReply to JSON.
-     * @function toJSON
-     * @memberof pbauth.AuthLoginReply
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this AuthLoginReply to JSON.
+         * @function toJSON
+         * @memberof pbauth.AuthLoginReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     AuthLoginReply.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for AuthLoginReply
-     * @function getTypeUrl
-     * @memberof pbauth.AuthLoginReply
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for AuthLoginReply
+         * @function getTypeUrl
+         * @memberof pbauth.AuthLoginReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     AuthLoginReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -6181,23 +6181,23 @@ $root.pbauth = (function() {
 
   pbauth.AdminLoginArgs = (function() {
     /**
-     * Properties of an AdminLoginArgs.
-     * @memberof pbauth
-     * @interface IAdminLoginArgs
-     * @property {string|null} [username] AdminLoginArgs username
-     * @property {string|null} [password] AdminLoginArgs password
-     * @property {string|null} [captchaId] AdminLoginArgs captchaId
-     * @property {string|null} [captchaCode] AdminLoginArgs captchaCode
-     */
+         * Properties of an AdminLoginArgs.
+         * @memberof pbauth
+         * @interface IAdminLoginArgs
+         * @property {string|null} [username] AdminLoginArgs username
+         * @property {string|null} [password] AdminLoginArgs password
+         * @property {string|null} [captchaId] AdminLoginArgs captchaId
+         * @property {string|null} [captchaCode] AdminLoginArgs captchaCode
+         */
 
     /**
-     * Constructs a new AdminLoginArgs.
-     * @memberof pbauth
-     * @classdesc Represents an AdminLoginArgs.
-     * @implements IAdminLoginArgs
-     * @constructor
-     * @param {pbauth.IAdminLoginArgs=} [properties] Properties to set
-     */
+         * Constructs a new AdminLoginArgs.
+         * @memberof pbauth
+         * @classdesc Represents an AdminLoginArgs.
+         * @implements IAdminLoginArgs
+         * @constructor
+         * @param {pbauth.IAdminLoginArgs=} [properties] Properties to set
+         */
     function AdminLoginArgs(properties) {
       if (properties) {
         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
@@ -6207,58 +6207,58 @@ $root.pbauth = (function() {
     }
 
     /**
-     * AdminLoginArgs username.
-     * @member {string} username
-     * @memberof pbauth.AdminLoginArgs
-     * @instance
-     */
+         * AdminLoginArgs username.
+         * @member {string} username
+         * @memberof pbauth.AdminLoginArgs
+         * @instance
+         */
     AdminLoginArgs.prototype.username = ''
 
     /**
-     * AdminLoginArgs password.
-     * @member {string} password
-     * @memberof pbauth.AdminLoginArgs
-     * @instance
-     */
+         * AdminLoginArgs password.
+         * @member {string} password
+         * @memberof pbauth.AdminLoginArgs
+         * @instance
+         */
     AdminLoginArgs.prototype.password = ''
 
     /**
-     * AdminLoginArgs captchaId.
-     * @member {string} captchaId
-     * @memberof pbauth.AdminLoginArgs
-     * @instance
-     */
+         * AdminLoginArgs captchaId.
+         * @member {string} captchaId
+         * @memberof pbauth.AdminLoginArgs
+         * @instance
+         */
     AdminLoginArgs.prototype.captchaId = ''
 
     /**
-     * AdminLoginArgs captchaCode.
-     * @member {string} captchaCode
-     * @memberof pbauth.AdminLoginArgs
-     * @instance
-     */
+         * AdminLoginArgs captchaCode.
+         * @member {string} captchaCode
+         * @memberof pbauth.AdminLoginArgs
+         * @instance
+         */
     AdminLoginArgs.prototype.captchaCode = ''
 
     /**
-     * Creates a new AdminLoginArgs instance using the specified properties.
-     * @function create
-     * @memberof pbauth.AdminLoginArgs
-     * @static
-     * @param {pbauth.IAdminLoginArgs=} [properties] Properties to set
-     * @returns {pbauth.AdminLoginArgs} AdminLoginArgs instance
-     */
+         * Creates a new AdminLoginArgs instance using the specified properties.
+         * @function create
+         * @memberof pbauth.AdminLoginArgs
+         * @static
+         * @param {pbauth.IAdminLoginArgs=} [properties] Properties to set
+         * @returns {pbauth.AdminLoginArgs} AdminLoginArgs instance
+         */
     AdminLoginArgs.create = function create(properties) {
       return new AdminLoginArgs(properties)
     }
 
     /**
-     * Encodes the specified AdminLoginArgs message. Does not implicitly {@link pbauth.AdminLoginArgs.verify|verify} messages.
-     * @function encode
-     * @memberof pbauth.AdminLoginArgs
-     * @static
-     * @param {pbauth.IAdminLoginArgs} message AdminLoginArgs message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified AdminLoginArgs message. Does not implicitly {@link pbauth.AdminLoginArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbauth.AdminLoginArgs
+         * @static
+         * @param {pbauth.IAdminLoginArgs} message AdminLoginArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     AdminLoginArgs.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.username != null && Object.hasOwnProperty.call(message, 'username')) { writer.uint32(/* id 1, wireType 2 =*/10).string(message.username) }
@@ -6269,29 +6269,29 @@ $root.pbauth = (function() {
     }
 
     /**
-     * Encodes the specified AdminLoginArgs message, length delimited. Does not implicitly {@link pbauth.AdminLoginArgs.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbauth.AdminLoginArgs
-     * @static
-     * @param {pbauth.IAdminLoginArgs} message AdminLoginArgs message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified AdminLoginArgs message, length delimited. Does not implicitly {@link pbauth.AdminLoginArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbauth.AdminLoginArgs
+         * @static
+         * @param {pbauth.IAdminLoginArgs} message AdminLoginArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     AdminLoginArgs.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes an AdminLoginArgs message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbauth.AdminLoginArgs
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbauth.AdminLoginArgs} AdminLoginArgs
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes an AdminLoginArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbauth.AdminLoginArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbauth.AdminLoginArgs} AdminLoginArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     AdminLoginArgs.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbauth.AdminLoginArgs()
@@ -6323,28 +6323,28 @@ $root.pbauth = (function() {
     }
 
     /**
-     * Decodes an AdminLoginArgs message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbauth.AdminLoginArgs
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbauth.AdminLoginArgs} AdminLoginArgs
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes an AdminLoginArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbauth.AdminLoginArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbauth.AdminLoginArgs} AdminLoginArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     AdminLoginArgs.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies an AdminLoginArgs message.
-     * @function verify
-     * @memberof pbauth.AdminLoginArgs
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies an AdminLoginArgs message.
+         * @function verify
+         * @memberof pbauth.AdminLoginArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     AdminLoginArgs.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.username != null && message.hasOwnProperty('username')) {
@@ -6363,13 +6363,13 @@ $root.pbauth = (function() {
     }
 
     /**
-     * Creates an AdminLoginArgs message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbauth.AdminLoginArgs
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbauth.AdminLoginArgs} AdminLoginArgs
-     */
+         * Creates an AdminLoginArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbauth.AdminLoginArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbauth.AdminLoginArgs} AdminLoginArgs
+         */
     AdminLoginArgs.fromObject = function fromObject(object) {
       if (object instanceof $root.pbauth.AdminLoginArgs) { return object }
       var message = new $root.pbauth.AdminLoginArgs()
@@ -6381,14 +6381,14 @@ $root.pbauth = (function() {
     }
 
     /**
-     * Creates a plain object from an AdminLoginArgs message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbauth.AdminLoginArgs
-     * @static
-     * @param {pbauth.AdminLoginArgs} message AdminLoginArgs
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from an AdminLoginArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbauth.AdminLoginArgs
+         * @static
+         * @param {pbauth.AdminLoginArgs} message AdminLoginArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     AdminLoginArgs.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -6406,24 +6406,24 @@ $root.pbauth = (function() {
     }
 
     /**
-     * Converts this AdminLoginArgs to JSON.
-     * @function toJSON
-     * @memberof pbauth.AdminLoginArgs
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this AdminLoginArgs to JSON.
+         * @function toJSON
+         * @memberof pbauth.AdminLoginArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     AdminLoginArgs.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for AdminLoginArgs
-     * @function getTypeUrl
-     * @memberof pbauth.AdminLoginArgs
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for AdminLoginArgs
+         * @function getTypeUrl
+         * @memberof pbauth.AdminLoginArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     AdminLoginArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -6436,24 +6436,24 @@ $root.pbauth = (function() {
 
   pbauth.WxLogin = (function() {
     /**
-     * Properties of a WxLogin.
-     * @memberof pbauth
-     * @interface IWxLogin
-     * @property {string|null} [code] WxLogin code
-     * @property {string|null} [encryptedData] WxLogin encryptedData
-     * @property {string|null} [iv] WxLogin iv
-     * @property {string|null} [rawData] WxLogin rawData
-     * @property {string|null} [signature] WxLogin signature
-     */
+         * Properties of a WxLogin.
+         * @memberof pbauth
+         * @interface IWxLogin
+         * @property {string|null} [code] WxLogin code
+         * @property {string|null} [encryptedData] WxLogin encryptedData
+         * @property {string|null} [iv] WxLogin iv
+         * @property {string|null} [rawData] WxLogin rawData
+         * @property {string|null} [signature] WxLogin signature
+         */
 
     /**
-     * Constructs a new WxLogin.
-     * @memberof pbauth
-     * @classdesc Represents a WxLogin.
-     * @implements IWxLogin
-     * @constructor
-     * @param {pbauth.IWxLogin=} [properties] Properties to set
-     */
+         * Constructs a new WxLogin.
+         * @memberof pbauth
+         * @classdesc Represents a WxLogin.
+         * @implements IWxLogin
+         * @constructor
+         * @param {pbauth.IWxLogin=} [properties] Properties to set
+         */
     function WxLogin(properties) {
       if (properties) {
         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
@@ -6463,66 +6463,66 @@ $root.pbauth = (function() {
     }
 
     /**
-     * WxLogin code.
-     * @member {string} code
-     * @memberof pbauth.WxLogin
-     * @instance
-     */
+         * WxLogin code.
+         * @member {string} code
+         * @memberof pbauth.WxLogin
+         * @instance
+         */
     WxLogin.prototype.code = ''
 
     /**
-     * WxLogin encryptedData.
-     * @member {string} encryptedData
-     * @memberof pbauth.WxLogin
-     * @instance
-     */
+         * WxLogin encryptedData.
+         * @member {string} encryptedData
+         * @memberof pbauth.WxLogin
+         * @instance
+         */
     WxLogin.prototype.encryptedData = ''
 
     /**
-     * WxLogin iv.
-     * @member {string} iv
-     * @memberof pbauth.WxLogin
-     * @instance
-     */
+         * WxLogin iv.
+         * @member {string} iv
+         * @memberof pbauth.WxLogin
+         * @instance
+         */
     WxLogin.prototype.iv = ''
 
     /**
-     * WxLogin rawData.
-     * @member {string} rawData
-     * @memberof pbauth.WxLogin
-     * @instance
-     */
+         * WxLogin rawData.
+         * @member {string} rawData
+         * @memberof pbauth.WxLogin
+         * @instance
+         */
     WxLogin.prototype.rawData = ''
 
     /**
-     * WxLogin signature.
-     * @member {string} signature
-     * @memberof pbauth.WxLogin
-     * @instance
-     */
+         * WxLogin signature.
+         * @member {string} signature
+         * @memberof pbauth.WxLogin
+         * @instance
+         */
     WxLogin.prototype.signature = ''
 
     /**
-     * Creates a new WxLogin instance using the specified properties.
-     * @function create
-     * @memberof pbauth.WxLogin
-     * @static
-     * @param {pbauth.IWxLogin=} [properties] Properties to set
-     * @returns {pbauth.WxLogin} WxLogin instance
-     */
+         * Creates a new WxLogin instance using the specified properties.
+         * @function create
+         * @memberof pbauth.WxLogin
+         * @static
+         * @param {pbauth.IWxLogin=} [properties] Properties to set
+         * @returns {pbauth.WxLogin} WxLogin instance
+         */
     WxLogin.create = function create(properties) {
       return new WxLogin(properties)
     }
 
     /**
-     * Encodes the specified WxLogin message. Does not implicitly {@link pbauth.WxLogin.verify|verify} messages.
-     * @function encode
-     * @memberof pbauth.WxLogin
-     * @static
-     * @param {pbauth.IWxLogin} message WxLogin message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified WxLogin message. Does not implicitly {@link pbauth.WxLogin.verify|verify} messages.
+         * @function encode
+         * @memberof pbauth.WxLogin
+         * @static
+         * @param {pbauth.IWxLogin} message WxLogin message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     WxLogin.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.code != null && Object.hasOwnProperty.call(message, 'code')) { writer.uint32(/* id 1, wireType 2 =*/10).string(message.code) }
@@ -6534,29 +6534,29 @@ $root.pbauth = (function() {
     }
 
     /**
-     * Encodes the specified WxLogin message, length delimited. Does not implicitly {@link pbauth.WxLogin.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbauth.WxLogin
-     * @static
-     * @param {pbauth.IWxLogin} message WxLogin message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified WxLogin message, length delimited. Does not implicitly {@link pbauth.WxLogin.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbauth.WxLogin
+         * @static
+         * @param {pbauth.IWxLogin} message WxLogin message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     WxLogin.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes a WxLogin message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbauth.WxLogin
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbauth.WxLogin} WxLogin
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a WxLogin message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbauth.WxLogin
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbauth.WxLogin} WxLogin
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     WxLogin.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbauth.WxLogin()
@@ -6592,28 +6592,28 @@ $root.pbauth = (function() {
     }
 
     /**
-     * Decodes a WxLogin message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbauth.WxLogin
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbauth.WxLogin} WxLogin
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a WxLogin message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbauth.WxLogin
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbauth.WxLogin} WxLogin
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     WxLogin.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies a WxLogin message.
-     * @function verify
-     * @memberof pbauth.WxLogin
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies a WxLogin message.
+         * @function verify
+         * @memberof pbauth.WxLogin
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     WxLogin.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.code != null && message.hasOwnProperty('code')) {
@@ -6635,13 +6635,13 @@ $root.pbauth = (function() {
     }
 
     /**
-     * Creates a WxLogin message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbauth.WxLogin
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbauth.WxLogin} WxLogin
-     */
+         * Creates a WxLogin message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbauth.WxLogin
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbauth.WxLogin} WxLogin
+         */
     WxLogin.fromObject = function fromObject(object) {
       if (object instanceof $root.pbauth.WxLogin) { return object }
       var message = new $root.pbauth.WxLogin()
@@ -6654,14 +6654,14 @@ $root.pbauth = (function() {
     }
 
     /**
-     * Creates a plain object from a WxLogin message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbauth.WxLogin
-     * @static
-     * @param {pbauth.WxLogin} message WxLogin
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from a WxLogin message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbauth.WxLogin
+         * @static
+         * @param {pbauth.WxLogin} message WxLogin
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     WxLogin.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -6681,24 +6681,24 @@ $root.pbauth = (function() {
     }
 
     /**
-     * Converts this WxLogin to JSON.
-     * @function toJSON
-     * @memberof pbauth.WxLogin
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this WxLogin to JSON.
+         * @function toJSON
+         * @memberof pbauth.WxLogin
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     WxLogin.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for WxLogin
-     * @function getTypeUrl
-     * @memberof pbauth.WxLogin
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for WxLogin
+         * @function getTypeUrl
+         * @memberof pbauth.WxLogin
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     WxLogin.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -6711,20 +6711,20 @@ $root.pbauth = (function() {
 
   pbauth.WxLoginReply = (function() {
     /**
-     * Properties of a WxLoginReply.
-     * @memberof pbauth
-     * @interface IWxLoginReply
-     * @property {string|null} [openid] WxLoginReply openid
-     */
+         * Properties of a WxLoginReply.
+         * @memberof pbauth
+         * @interface IWxLoginReply
+         * @property {string|null} [openid] WxLoginReply openid
+         */
 
     /**
-     * Constructs a new WxLoginReply.
-     * @memberof pbauth
-     * @classdesc Represents a WxLoginReply.
-     * @implements IWxLoginReply
-     * @constructor
-     * @param {pbauth.IWxLoginReply=} [properties] Properties to set
-     */
+         * Constructs a new WxLoginReply.
+         * @memberof pbauth
+         * @classdesc Represents a WxLoginReply.
+         * @implements IWxLoginReply
+         * @constructor
+         * @param {pbauth.IWxLoginReply=} [properties] Properties to set
+         */
     function WxLoginReply(properties) {
       if (properties) {
         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
@@ -6734,34 +6734,34 @@ $root.pbauth = (function() {
     }
 
     /**
-     * WxLoginReply openid.
-     * @member {string} openid
-     * @memberof pbauth.WxLoginReply
-     * @instance
-     */
+         * WxLoginReply openid.
+         * @member {string} openid
+         * @memberof pbauth.WxLoginReply
+         * @instance
+         */
     WxLoginReply.prototype.openid = ''
 
     /**
-     * Creates a new WxLoginReply instance using the specified properties.
-     * @function create
-     * @memberof pbauth.WxLoginReply
-     * @static
-     * @param {pbauth.IWxLoginReply=} [properties] Properties to set
-     * @returns {pbauth.WxLoginReply} WxLoginReply instance
-     */
+         * Creates a new WxLoginReply instance using the specified properties.
+         * @function create
+         * @memberof pbauth.WxLoginReply
+         * @static
+         * @param {pbauth.IWxLoginReply=} [properties] Properties to set
+         * @returns {pbauth.WxLoginReply} WxLoginReply instance
+         */
     WxLoginReply.create = function create(properties) {
       return new WxLoginReply(properties)
     }
 
     /**
-     * Encodes the specified WxLoginReply message. Does not implicitly {@link pbauth.WxLoginReply.verify|verify} messages.
-     * @function encode
-     * @memberof pbauth.WxLoginReply
-     * @static
-     * @param {pbauth.IWxLoginReply} message WxLoginReply message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified WxLoginReply message. Does not implicitly {@link pbauth.WxLoginReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbauth.WxLoginReply
+         * @static
+         * @param {pbauth.IWxLoginReply} message WxLoginReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     WxLoginReply.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.openid != null && Object.hasOwnProperty.call(message, 'openid')) { writer.uint32(/* id 1, wireType 2 =*/10).string(message.openid) }
@@ -6769,29 +6769,29 @@ $root.pbauth = (function() {
     }
 
     /**
-     * Encodes the specified WxLoginReply message, length delimited. Does not implicitly {@link pbauth.WxLoginReply.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbauth.WxLoginReply
-     * @static
-     * @param {pbauth.IWxLoginReply} message WxLoginReply message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified WxLoginReply message, length delimited. Does not implicitly {@link pbauth.WxLoginReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbauth.WxLoginReply
+         * @static
+         * @param {pbauth.IWxLoginReply} message WxLoginReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     WxLoginReply.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes a WxLoginReply message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbauth.WxLoginReply
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbauth.WxLoginReply} WxLoginReply
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a WxLoginReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbauth.WxLoginReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbauth.WxLoginReply} WxLoginReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     WxLoginReply.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbauth.WxLoginReply()
@@ -6811,28 +6811,28 @@ $root.pbauth = (function() {
     }
 
     /**
-     * Decodes a WxLoginReply message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbauth.WxLoginReply
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbauth.WxLoginReply} WxLoginReply
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a WxLoginReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbauth.WxLoginReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbauth.WxLoginReply} WxLoginReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     WxLoginReply.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies a WxLoginReply message.
-     * @function verify
-     * @memberof pbauth.WxLoginReply
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies a WxLoginReply message.
+         * @function verify
+         * @memberof pbauth.WxLoginReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     WxLoginReply.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.openid != null && message.hasOwnProperty('openid')) {
@@ -6842,13 +6842,13 @@ $root.pbauth = (function() {
     }
 
     /**
-     * Creates a WxLoginReply message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbauth.WxLoginReply
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbauth.WxLoginReply} WxLoginReply
-     */
+         * Creates a WxLoginReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbauth.WxLoginReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbauth.WxLoginReply} WxLoginReply
+         */
     WxLoginReply.fromObject = function fromObject(object) {
       if (object instanceof $root.pbauth.WxLoginReply) { return object }
       var message = new $root.pbauth.WxLoginReply()
@@ -6857,14 +6857,14 @@ $root.pbauth = (function() {
     }
 
     /**
-     * Creates a plain object from a WxLoginReply message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbauth.WxLoginReply
-     * @static
-     * @param {pbauth.WxLoginReply} message WxLoginReply
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from a WxLoginReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbauth.WxLoginReply
+         * @static
+         * @param {pbauth.WxLoginReply} message WxLoginReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     WxLoginReply.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -6874,24 +6874,24 @@ $root.pbauth = (function() {
     }
 
     /**
-     * Converts this WxLoginReply to JSON.
-     * @function toJSON
-     * @memberof pbauth.WxLoginReply
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this WxLoginReply to JSON.
+         * @function toJSON
+         * @memberof pbauth.WxLoginReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     WxLoginReply.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for WxLoginReply
-     * @function getTypeUrl
-     * @memberof pbauth.WxLoginReply
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for WxLoginReply
+         * @function getTypeUrl
+         * @memberof pbauth.WxLoginReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     WxLoginReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -6904,20 +6904,20 @@ $root.pbauth = (function() {
 
   pbauth.ParseTokenArgs = (function() {
     /**
-     * Properties of a ParseTokenArgs.
-     * @memberof pbauth
-     * @interface IParseTokenArgs
-     * @property {string|null} [token] ParseTokenArgs token
-     */
+         * Properties of a ParseTokenArgs.
+         * @memberof pbauth
+         * @interface IParseTokenArgs
+         * @property {string|null} [token] ParseTokenArgs token
+         */
 
     /**
-     * Constructs a new ParseTokenArgs.
-     * @memberof pbauth
-     * @classdesc Represents a ParseTokenArgs.
-     * @implements IParseTokenArgs
-     * @constructor
-     * @param {pbauth.IParseTokenArgs=} [properties] Properties to set
-     */
+         * Constructs a new ParseTokenArgs.
+         * @memberof pbauth
+         * @classdesc Represents a ParseTokenArgs.
+         * @implements IParseTokenArgs
+         * @constructor
+         * @param {pbauth.IParseTokenArgs=} [properties] Properties to set
+         */
     function ParseTokenArgs(properties) {
       if (properties) {
         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
@@ -6927,34 +6927,34 @@ $root.pbauth = (function() {
     }
 
     /**
-     * ParseTokenArgs token.
-     * @member {string} token
-     * @memberof pbauth.ParseTokenArgs
-     * @instance
-     */
+         * ParseTokenArgs token.
+         * @member {string} token
+         * @memberof pbauth.ParseTokenArgs
+         * @instance
+         */
     ParseTokenArgs.prototype.token = ''
 
     /**
-     * Creates a new ParseTokenArgs instance using the specified properties.
-     * @function create
-     * @memberof pbauth.ParseTokenArgs
-     * @static
-     * @param {pbauth.IParseTokenArgs=} [properties] Properties to set
-     * @returns {pbauth.ParseTokenArgs} ParseTokenArgs instance
-     */
+         * Creates a new ParseTokenArgs instance using the specified properties.
+         * @function create
+         * @memberof pbauth.ParseTokenArgs
+         * @static
+         * @param {pbauth.IParseTokenArgs=} [properties] Properties to set
+         * @returns {pbauth.ParseTokenArgs} ParseTokenArgs instance
+         */
     ParseTokenArgs.create = function create(properties) {
       return new ParseTokenArgs(properties)
     }
 
     /**
-     * Encodes the specified ParseTokenArgs message. Does not implicitly {@link pbauth.ParseTokenArgs.verify|verify} messages.
-     * @function encode
-     * @memberof pbauth.ParseTokenArgs
-     * @static
-     * @param {pbauth.IParseTokenArgs} message ParseTokenArgs message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified ParseTokenArgs message. Does not implicitly {@link pbauth.ParseTokenArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbauth.ParseTokenArgs
+         * @static
+         * @param {pbauth.IParseTokenArgs} message ParseTokenArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     ParseTokenArgs.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.token != null && Object.hasOwnProperty.call(message, 'token')) { writer.uint32(/* id 1, wireType 2 =*/10).string(message.token) }
@@ -6962,29 +6962,29 @@ $root.pbauth = (function() {
     }
 
     /**
-     * Encodes the specified ParseTokenArgs message, length delimited. Does not implicitly {@link pbauth.ParseTokenArgs.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbauth.ParseTokenArgs
-     * @static
-     * @param {pbauth.IParseTokenArgs} message ParseTokenArgs message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified ParseTokenArgs message, length delimited. Does not implicitly {@link pbauth.ParseTokenArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbauth.ParseTokenArgs
+         * @static
+         * @param {pbauth.IParseTokenArgs} message ParseTokenArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     ParseTokenArgs.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes a ParseTokenArgs message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbauth.ParseTokenArgs
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbauth.ParseTokenArgs} ParseTokenArgs
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a ParseTokenArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbauth.ParseTokenArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbauth.ParseTokenArgs} ParseTokenArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     ParseTokenArgs.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbauth.ParseTokenArgs()
@@ -7004,28 +7004,28 @@ $root.pbauth = (function() {
     }
 
     /**
-     * Decodes a ParseTokenArgs message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbauth.ParseTokenArgs
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbauth.ParseTokenArgs} ParseTokenArgs
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a ParseTokenArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbauth.ParseTokenArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbauth.ParseTokenArgs} ParseTokenArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     ParseTokenArgs.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies a ParseTokenArgs message.
-     * @function verify
-     * @memberof pbauth.ParseTokenArgs
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies a ParseTokenArgs message.
+         * @function verify
+         * @memberof pbauth.ParseTokenArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     ParseTokenArgs.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.token != null && message.hasOwnProperty('token')) {
@@ -7035,13 +7035,13 @@ $root.pbauth = (function() {
     }
 
     /**
-     * Creates a ParseTokenArgs message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbauth.ParseTokenArgs
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbauth.ParseTokenArgs} ParseTokenArgs
-     */
+         * Creates a ParseTokenArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbauth.ParseTokenArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbauth.ParseTokenArgs} ParseTokenArgs
+         */
     ParseTokenArgs.fromObject = function fromObject(object) {
       if (object instanceof $root.pbauth.ParseTokenArgs) { return object }
       var message = new $root.pbauth.ParseTokenArgs()
@@ -7050,14 +7050,14 @@ $root.pbauth = (function() {
     }
 
     /**
-     * Creates a plain object from a ParseTokenArgs message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbauth.ParseTokenArgs
-     * @static
-     * @param {pbauth.ParseTokenArgs} message ParseTokenArgs
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from a ParseTokenArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbauth.ParseTokenArgs
+         * @static
+         * @param {pbauth.ParseTokenArgs} message ParseTokenArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     ParseTokenArgs.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -7067,24 +7067,24 @@ $root.pbauth = (function() {
     }
 
     /**
-     * Converts this ParseTokenArgs to JSON.
-     * @function toJSON
-     * @memberof pbauth.ParseTokenArgs
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this ParseTokenArgs to JSON.
+         * @function toJSON
+         * @memberof pbauth.ParseTokenArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     ParseTokenArgs.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for ParseTokenArgs
-     * @function getTypeUrl
-     * @memberof pbauth.ParseTokenArgs
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for ParseTokenArgs
+         * @function getTypeUrl
+         * @memberof pbauth.ParseTokenArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     ParseTokenArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -7097,24 +7097,24 @@ $root.pbauth = (function() {
 
   pbauth.ParseTokenReply = (function() {
     /**
-     * Properties of a ParseTokenReply.
-     * @memberof pbauth
-     * @interface IParseTokenReply
-     * @property {pbcommon.EnumCode|null} [code] ParseTokenReply code
-     * @property {string|null} [newToken] ParseTokenReply newToken
-     * @property {number|Long|null} [id] ParseTokenReply id
-     * @property {number|Long|null} [roleId] ParseTokenReply roleId
-     * @property {number|Long|null} [appId] ParseTokenReply appId
-     */
+         * Properties of a ParseTokenReply.
+         * @memberof pbauth
+         * @interface IParseTokenReply
+         * @property {pbcommon.EnumCode|null} [code] ParseTokenReply code
+         * @property {string|null} [newToken] ParseTokenReply newToken
+         * @property {number|Long|null} [id] ParseTokenReply id
+         * @property {number|Long|null} [roleId] ParseTokenReply roleId
+         * @property {number|Long|null} [appId] ParseTokenReply appId
+         */
 
     /**
-     * Constructs a new ParseTokenReply.
-     * @memberof pbauth
-     * @classdesc Represents a ParseTokenReply.
-     * @implements IParseTokenReply
-     * @constructor
-     * @param {pbauth.IParseTokenReply=} [properties] Properties to set
-     */
+         * Constructs a new ParseTokenReply.
+         * @memberof pbauth
+         * @classdesc Represents a ParseTokenReply.
+         * @implements IParseTokenReply
+         * @constructor
+         * @param {pbauth.IParseTokenReply=} [properties] Properties to set
+         */
     function ParseTokenReply(properties) {
       if (properties) {
         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
@@ -7124,66 +7124,66 @@ $root.pbauth = (function() {
     }
 
     /**
-     * ParseTokenReply code.
-     * @member {pbcommon.EnumCode} code
-     * @memberof pbauth.ParseTokenReply
-     * @instance
-     */
+         * ParseTokenReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbauth.ParseTokenReply
+         * @instance
+         */
     ParseTokenReply.prototype.code = 0
 
     /**
-     * ParseTokenReply newToken.
-     * @member {string} newToken
-     * @memberof pbauth.ParseTokenReply
-     * @instance
-     */
+         * ParseTokenReply newToken.
+         * @member {string} newToken
+         * @memberof pbauth.ParseTokenReply
+         * @instance
+         */
     ParseTokenReply.prototype.newToken = ''
 
     /**
-     * ParseTokenReply id.
-     * @member {number|Long} id
-     * @memberof pbauth.ParseTokenReply
-     * @instance
-     */
+         * ParseTokenReply id.
+         * @member {number|Long} id
+         * @memberof pbauth.ParseTokenReply
+         * @instance
+         */
     ParseTokenReply.prototype.id = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * ParseTokenReply roleId.
-     * @member {number|Long} roleId
-     * @memberof pbauth.ParseTokenReply
-     * @instance
-     */
+         * ParseTokenReply roleId.
+         * @member {number|Long} roleId
+         * @memberof pbauth.ParseTokenReply
+         * @instance
+         */
     ParseTokenReply.prototype.roleId = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * ParseTokenReply appId.
-     * @member {number|Long} appId
-     * @memberof pbauth.ParseTokenReply
-     * @instance
-     */
+         * ParseTokenReply appId.
+         * @member {number|Long} appId
+         * @memberof pbauth.ParseTokenReply
+         * @instance
+         */
     ParseTokenReply.prototype.appId = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * Creates a new ParseTokenReply instance using the specified properties.
-     * @function create
-     * @memberof pbauth.ParseTokenReply
-     * @static
-     * @param {pbauth.IParseTokenReply=} [properties] Properties to set
-     * @returns {pbauth.ParseTokenReply} ParseTokenReply instance
-     */
+         * Creates a new ParseTokenReply instance using the specified properties.
+         * @function create
+         * @memberof pbauth.ParseTokenReply
+         * @static
+         * @param {pbauth.IParseTokenReply=} [properties] Properties to set
+         * @returns {pbauth.ParseTokenReply} ParseTokenReply instance
+         */
     ParseTokenReply.create = function create(properties) {
       return new ParseTokenReply(properties)
     }
 
     /**
-     * Encodes the specified ParseTokenReply message. Does not implicitly {@link pbauth.ParseTokenReply.verify|verify} messages.
-     * @function encode
-     * @memberof pbauth.ParseTokenReply
-     * @static
-     * @param {pbauth.IParseTokenReply} message ParseTokenReply message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified ParseTokenReply message. Does not implicitly {@link pbauth.ParseTokenReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbauth.ParseTokenReply
+         * @static
+         * @param {pbauth.IParseTokenReply} message ParseTokenReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     ParseTokenReply.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.code != null && Object.hasOwnProperty.call(message, 'code')) { writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code) }
@@ -7195,29 +7195,29 @@ $root.pbauth = (function() {
     }
 
     /**
-     * Encodes the specified ParseTokenReply message, length delimited. Does not implicitly {@link pbauth.ParseTokenReply.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbauth.ParseTokenReply
-     * @static
-     * @param {pbauth.IParseTokenReply} message ParseTokenReply message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified ParseTokenReply message, length delimited. Does not implicitly {@link pbauth.ParseTokenReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbauth.ParseTokenReply
+         * @static
+         * @param {pbauth.IParseTokenReply} message ParseTokenReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     ParseTokenReply.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes a ParseTokenReply message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbauth.ParseTokenReply
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbauth.ParseTokenReply} ParseTokenReply
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a ParseTokenReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbauth.ParseTokenReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbauth.ParseTokenReply} ParseTokenReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     ParseTokenReply.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbauth.ParseTokenReply()
@@ -7253,28 +7253,28 @@ $root.pbauth = (function() {
     }
 
     /**
-     * Decodes a ParseTokenReply message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbauth.ParseTokenReply
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbauth.ParseTokenReply} ParseTokenReply
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a ParseTokenReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbauth.ParseTokenReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbauth.ParseTokenReply} ParseTokenReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     ParseTokenReply.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies a ParseTokenReply message.
-     * @function verify
-     * @memberof pbauth.ParseTokenReply
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies a ParseTokenReply message.
+         * @function verify
+         * @memberof pbauth.ParseTokenReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     ParseTokenReply.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.code != null && message.hasOwnProperty('code')) {
@@ -7325,13 +7325,13 @@ $root.pbauth = (function() {
     }
 
     /**
-     * Creates a ParseTokenReply message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbauth.ParseTokenReply
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbauth.ParseTokenReply} ParseTokenReply
-     */
+         * Creates a ParseTokenReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbauth.ParseTokenReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbauth.ParseTokenReply} ParseTokenReply
+         */
     ParseTokenReply.fromObject = function fromObject(object) {
       if (object instanceof $root.pbauth.ParseTokenReply) { return object }
       var message = new $root.pbauth.ParseTokenReply()
@@ -7457,14 +7457,14 @@ $root.pbauth = (function() {
     }
 
     /**
-     * Creates a plain object from a ParseTokenReply message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbauth.ParseTokenReply
-     * @static
-     * @param {pbauth.ParseTokenReply} message ParseTokenReply
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from a ParseTokenReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbauth.ParseTokenReply
+         * @static
+         * @param {pbauth.ParseTokenReply} message ParseTokenReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     ParseTokenReply.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -7499,24 +7499,24 @@ $root.pbauth = (function() {
     }
 
     /**
-     * Converts this ParseTokenReply to JSON.
-     * @function toJSON
-     * @memberof pbauth.ParseTokenReply
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this ParseTokenReply to JSON.
+         * @function toJSON
+         * @memberof pbauth.ParseTokenReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     ParseTokenReply.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for ParseTokenReply
-     * @function getTypeUrl
-     * @memberof pbauth.ParseTokenReply
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for ParseTokenReply
+         * @function getTypeUrl
+         * @memberof pbauth.ParseTokenReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     ParseTokenReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -7529,15 +7529,15 @@ $root.pbauth = (function() {
 
   pbauth.Auth = (function() {
     /**
-     * Constructs a new Auth service.
-     * @memberof pbauth
-     * @classdesc Represents an Auth
-     * @extends $protobuf.rpc.Service
-     * @constructor
-     * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
-     * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
-     * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
-     */
+         * Constructs a new Auth service.
+         * @memberof pbauth
+         * @classdesc Represents an Auth
+         * @extends $protobuf.rpc.Service
+         * @constructor
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         */
     function Auth(rpcImpl, requestDelimited, responseDelimited) {
       $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited)
     }
@@ -7545,84 +7545,84 @@ $root.pbauth = (function() {
     (Auth.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = Auth
 
     /**
-     * Creates new Auth service using the specified rpc implementation.
-     * @function create
-     * @memberof pbauth.Auth
-     * @static
-     * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
-     * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
-     * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
-     * @returns {Auth} RPC service. Useful where requests and/or responses are streamed.
-     */
+         * Creates new Auth service using the specified rpc implementation.
+         * @function create
+         * @memberof pbauth.Auth
+         * @static
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         * @returns {Auth} RPC service. Useful where requests and/or responses are streamed.
+         */
     Auth.create = function create(rpcImpl, requestDelimited, responseDelimited) {
       return new this(rpcImpl, requestDelimited, responseDelimited)
     }
 
     /**
-     * Callback as used by {@link pbauth.Auth#adminLogin}.
-     * @memberof pbauth.Auth
-     * @typedef AdminLoginCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbauth.AuthLoginReply} [response] AuthLoginReply
-     */
+         * Callback as used by {@link pbauth.Auth#adminLogin}.
+         * @memberof pbauth.Auth
+         * @typedef AdminLoginCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbauth.AuthLoginReply} [response] AuthLoginReply
+         */
 
     /**
-     * Calls AdminLogin.
-     * @function adminLogin
-     * @memberof pbauth.Auth
-     * @instance
-     * @param {pbauth.IAdminLoginArgs} request AdminLoginArgs message or plain object
-     * @param {pbauth.Auth.AdminLoginCallback} callback Node-style callback called with the error, if any, and AuthLoginReply
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls AdminLogin.
+         * @function adminLogin
+         * @memberof pbauth.Auth
+         * @instance
+         * @param {pbauth.IAdminLoginArgs} request AdminLoginArgs message or plain object
+         * @param {pbauth.Auth.AdminLoginCallback} callback Node-style callback called with the error, if any, and AuthLoginReply
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(Auth.prototype.adminLogin = function adminLogin(request, callback) {
       return this.rpcCall(adminLogin, $root.pbauth.AdminLoginArgs, $root.pbauth.AuthLoginReply, request, callback)
     }, 'name', { value: 'AdminLogin' })
 
     /**
-     * Calls AdminLogin.
-     * @function adminLogin
-     * @memberof pbauth.Auth
-     * @instance
-     * @param {pbauth.IAdminLoginArgs} request AdminLoginArgs message or plain object
-     * @returns {Promise<pbauth.AuthLoginReply>} Promise
-     * @variation 2
-     */
+         * Calls AdminLogin.
+         * @function adminLogin
+         * @memberof pbauth.Auth
+         * @instance
+         * @param {pbauth.IAdminLoginArgs} request AdminLoginArgs message or plain object
+         * @returns {Promise<pbauth.AuthLoginReply>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbauth.Auth#parseToken}.
-     * @memberof pbauth.Auth
-     * @typedef ParseTokenCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbauth.ParseTokenReply} [response] ParseTokenReply
-     */
+         * Callback as used by {@link pbauth.Auth#parseToken}.
+         * @memberof pbauth.Auth
+         * @typedef ParseTokenCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbauth.ParseTokenReply} [response] ParseTokenReply
+         */
 
     /**
-     * Calls ParseToken.
-     * @function parseToken
-     * @memberof pbauth.Auth
-     * @instance
-     * @param {pbauth.IParseTokenArgs} request ParseTokenArgs message or plain object
-     * @param {pbauth.Auth.ParseTokenCallback} callback Node-style callback called with the error, if any, and ParseTokenReply
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls ParseToken.
+         * @function parseToken
+         * @memberof pbauth.Auth
+         * @instance
+         * @param {pbauth.IParseTokenArgs} request ParseTokenArgs message or plain object
+         * @param {pbauth.Auth.ParseTokenCallback} callback Node-style callback called with the error, if any, and ParseTokenReply
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(Auth.prototype.parseToken = function parseToken(request, callback) {
       return this.rpcCall(parseToken, $root.pbauth.ParseTokenArgs, $root.pbauth.ParseTokenReply, request, callback)
     }, 'name', { value: 'ParseToken' })
 
     /**
-     * Calls ParseToken.
-     * @function parseToken
-     * @memberof pbauth.Auth
-     * @instance
-     * @param {pbauth.IParseTokenArgs} request ParseTokenArgs message or plain object
-     * @returns {Promise<pbauth.ParseTokenReply>} Promise
-     * @variation 2
-     */
+         * Calls ParseToken.
+         * @function parseToken
+         * @memberof pbauth.Auth
+         * @instance
+         * @param {pbauth.IParseTokenArgs} request ParseTokenArgs message or plain object
+         * @returns {Promise<pbauth.ParseTokenReply>} Promise
+         * @variation 2
+         */
 
     return Auth
   })()
@@ -7632,64 +7632,64 @@ $root.pbauth = (function() {
 
 $root.pbuser = (function() {
   /**
-   * Namespace pbuser.
-   * @exports pbuser
-   * @namespace
-   */
+     * Namespace pbuser.
+     * @exports pbuser
+     * @namespace
+     */
   var pbuser = {}
 
   pbuser.UserModel = (function() {
     /**
-     * Properties of a UserModel.
-     * @memberof pbuser
-     * @interface IUserModel
-     * @property {number|Long|null} [id] UserModel id
-     * @property {string|null} [createdAt] UserModel createdAt
-     * @property {string|null} [updatedAt] UserModel updatedAt
-     * @property {string|null} [username] UserModel username
-     * @property {string|null} [password] UserModel password
-     * @property {string|null} [email] UserModel email
-     * @property {number|Long|null} [phone] UserModel phone
-     * @property {string|null} [nickName] UserModel nickName
-     * @property {number|Long|null} [userOauthId] UserModel userOauthId
-     * @property {number|Long|null} [appId] UserModel appId
-     * @property {string|null} [avatar] UserModel avatar
-     * @property {number|null} [gender] UserModel gender
-     * @property {string|null} [birthday] UserModel birthday
-     * @property {string|null} [signature] UserModel signature
-     * @property {string|null} [description] UserModel description
-     * @property {string|null} [location] UserModel location
-     * @property {string|null} [regip] UserModel regip
-     * @property {string|null} [regtm] UserModel regtm
-     * @property {pbuser.UserStatus|null} [status] UserModel status
-     * @property {number|null} [accountType] UserModel accountType
-     * @property {number|Long|null} [role] UserModel role
-     * @property {number|Long|null} [pretty] UserModel pretty
-     * @property {number|null} [age] UserModel age
-     * @property {number|null} [country] UserModel country
-     * @property {string|null} [countryName] UserModel countryName
-     * @property {string|null} [city] UserModel city
-     * @property {number|null} [Zone] UserModel Zone
-     * @property {string|null} [devDesc] UserModel devDesc
-     * @property {string|null} [platform] UserModel platform
-     * @property {string|null} [devUuid] UserModel devUuid
-     * @property {string|null} [ver] UserModel ver
-     * @property {number|null} [isRobt] UserModel isRobt
-     * @property {string|null} [regDate] UserModel regDate
-     * @property {string|null} [certName] UserModel certName
-     * @property {string|null} [certNo] UserModel certNo
-     * @property {boolean|null} [first] UserModel first
-     * @property {boolean|null} [isYoungMod] UserModel isYoungMod
-     */
+         * Properties of a UserModel.
+         * @memberof pbuser
+         * @interface IUserModel
+         * @property {number|Long|null} [id] UserModel id
+         * @property {string|null} [createdAt] UserModel createdAt
+         * @property {string|null} [updatedAt] UserModel updatedAt
+         * @property {string|null} [username] UserModel username
+         * @property {string|null} [password] UserModel password
+         * @property {string|null} [email] UserModel email
+         * @property {number|Long|null} [phone] UserModel phone
+         * @property {string|null} [nickName] UserModel nickName
+         * @property {number|Long|null} [userOauthId] UserModel userOauthId
+         * @property {number|Long|null} [appId] UserModel appId
+         * @property {string|null} [avatar] UserModel avatar
+         * @property {number|null} [gender] UserModel gender
+         * @property {string|null} [birthday] UserModel birthday
+         * @property {string|null} [signature] UserModel signature
+         * @property {string|null} [description] UserModel description
+         * @property {string|null} [location] UserModel location
+         * @property {string|null} [regip] UserModel regip
+         * @property {string|null} [regtm] UserModel regtm
+         * @property {pbuser.UserStatus|null} [status] UserModel status
+         * @property {number|null} [accountType] UserModel accountType
+         * @property {number|Long|null} [role] UserModel role
+         * @property {number|Long|null} [pretty] UserModel pretty
+         * @property {number|null} [age] UserModel age
+         * @property {number|null} [country] UserModel country
+         * @property {string|null} [countryName] UserModel countryName
+         * @property {string|null} [city] UserModel city
+         * @property {number|null} [Zone] UserModel Zone
+         * @property {string|null} [devDesc] UserModel devDesc
+         * @property {string|null} [platform] UserModel platform
+         * @property {string|null} [devUuid] UserModel devUuid
+         * @property {string|null} [ver] UserModel ver
+         * @property {number|null} [isRobt] UserModel isRobt
+         * @property {string|null} [regDate] UserModel regDate
+         * @property {string|null} [certName] UserModel certName
+         * @property {string|null} [certNo] UserModel certNo
+         * @property {boolean|null} [first] UserModel first
+         * @property {boolean|null} [isYoungMod] UserModel isYoungMod
+         */
 
     /**
-     * Constructs a new UserModel.
-     * @memberof pbuser
-     * @classdesc Represents a UserModel.
-     * @implements IUserModel
-     * @constructor
-     * @param {pbuser.IUserModel=} [properties] Properties to set
-     */
+         * Constructs a new UserModel.
+         * @memberof pbuser
+         * @classdesc Represents a UserModel.
+         * @implements IUserModel
+         * @constructor
+         * @param {pbuser.IUserModel=} [properties] Properties to set
+         */
     function UserModel(properties) {
       if (properties) {
         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
@@ -7699,322 +7699,322 @@ $root.pbuser = (function() {
     }
 
     /**
-     * UserModel id.
-     * @member {number|Long} id
-     * @memberof pbuser.UserModel
-     * @instance
-     */
+         * UserModel id.
+         * @member {number|Long} id
+         * @memberof pbuser.UserModel
+         * @instance
+         */
     UserModel.prototype.id = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * UserModel createdAt.
-     * @member {string} createdAt
-     * @memberof pbuser.UserModel
-     * @instance
-     */
+         * UserModel createdAt.
+         * @member {string} createdAt
+         * @memberof pbuser.UserModel
+         * @instance
+         */
     UserModel.prototype.createdAt = ''
 
     /**
-     * UserModel updatedAt.
-     * @member {string} updatedAt
-     * @memberof pbuser.UserModel
-     * @instance
-     */
+         * UserModel updatedAt.
+         * @member {string} updatedAt
+         * @memberof pbuser.UserModel
+         * @instance
+         */
     UserModel.prototype.updatedAt = ''
 
     /**
-     * UserModel username.
-     * @member {string} username
-     * @memberof pbuser.UserModel
-     * @instance
-     */
+         * UserModel username.
+         * @member {string} username
+         * @memberof pbuser.UserModel
+         * @instance
+         */
     UserModel.prototype.username = ''
 
     /**
-     * UserModel password.
-     * @member {string} password
-     * @memberof pbuser.UserModel
-     * @instance
-     */
+         * UserModel password.
+         * @member {string} password
+         * @memberof pbuser.UserModel
+         * @instance
+         */
     UserModel.prototype.password = ''
 
     /**
-     * UserModel email.
-     * @member {string} email
-     * @memberof pbuser.UserModel
-     * @instance
-     */
+         * UserModel email.
+         * @member {string} email
+         * @memberof pbuser.UserModel
+         * @instance
+         */
     UserModel.prototype.email = ''
 
     /**
-     * UserModel phone.
-     * @member {number|Long} phone
-     * @memberof pbuser.UserModel
-     * @instance
-     */
+         * UserModel phone.
+         * @member {number|Long} phone
+         * @memberof pbuser.UserModel
+         * @instance
+         */
     UserModel.prototype.phone = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * UserModel nickName.
-     * @member {string} nickName
-     * @memberof pbuser.UserModel
-     * @instance
-     */
+         * UserModel nickName.
+         * @member {string} nickName
+         * @memberof pbuser.UserModel
+         * @instance
+         */
     UserModel.prototype.nickName = ''
 
     /**
-     * UserModel userOauthId.
-     * @member {number|Long} userOauthId
-     * @memberof pbuser.UserModel
-     * @instance
-     */
+         * UserModel userOauthId.
+         * @member {number|Long} userOauthId
+         * @memberof pbuser.UserModel
+         * @instance
+         */
     UserModel.prototype.userOauthId = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * UserModel appId.
-     * @member {number|Long} appId
-     * @memberof pbuser.UserModel
-     * @instance
-     */
+         * UserModel appId.
+         * @member {number|Long} appId
+         * @memberof pbuser.UserModel
+         * @instance
+         */
     UserModel.prototype.appId = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * UserModel avatar.
-     * @member {string} avatar
-     * @memberof pbuser.UserModel
-     * @instance
-     */
+         * UserModel avatar.
+         * @member {string} avatar
+         * @memberof pbuser.UserModel
+         * @instance
+         */
     UserModel.prototype.avatar = ''
 
     /**
-     * UserModel gender.
-     * @member {number} gender
-     * @memberof pbuser.UserModel
-     * @instance
-     */
+         * UserModel gender.
+         * @member {number} gender
+         * @memberof pbuser.UserModel
+         * @instance
+         */
     UserModel.prototype.gender = 0
 
     /**
-     * UserModel birthday.
-     * @member {string} birthday
-     * @memberof pbuser.UserModel
-     * @instance
-     */
+         * UserModel birthday.
+         * @member {string} birthday
+         * @memberof pbuser.UserModel
+         * @instance
+         */
     UserModel.prototype.birthday = ''
 
     /**
-     * UserModel signature.
-     * @member {string} signature
-     * @memberof pbuser.UserModel
-     * @instance
-     */
+         * UserModel signature.
+         * @member {string} signature
+         * @memberof pbuser.UserModel
+         * @instance
+         */
     UserModel.prototype.signature = ''
 
     /**
-     * UserModel description.
-     * @member {string} description
-     * @memberof pbuser.UserModel
-     * @instance
-     */
+         * UserModel description.
+         * @member {string} description
+         * @memberof pbuser.UserModel
+         * @instance
+         */
     UserModel.prototype.description = ''
 
     /**
-     * UserModel location.
-     * @member {string} location
-     * @memberof pbuser.UserModel
-     * @instance
-     */
+         * UserModel location.
+         * @member {string} location
+         * @memberof pbuser.UserModel
+         * @instance
+         */
     UserModel.prototype.location = ''
 
     /**
-     * UserModel regip.
-     * @member {string} regip
-     * @memberof pbuser.UserModel
-     * @instance
-     */
+         * UserModel regip.
+         * @member {string} regip
+         * @memberof pbuser.UserModel
+         * @instance
+         */
     UserModel.prototype.regip = ''
 
     /**
-     * UserModel regtm.
-     * @member {string} regtm
-     * @memberof pbuser.UserModel
-     * @instance
-     */
+         * UserModel regtm.
+         * @member {string} regtm
+         * @memberof pbuser.UserModel
+         * @instance
+         */
     UserModel.prototype.regtm = ''
 
     /**
-     * UserModel status.
-     * @member {pbuser.UserStatus} status
-     * @memberof pbuser.UserModel
-     * @instance
-     */
+         * UserModel status.
+         * @member {pbuser.UserStatus} status
+         * @memberof pbuser.UserModel
+         * @instance
+         */
     UserModel.prototype.status = 0
 
     /**
-     * UserModel accountType.
-     * @member {number} accountType
-     * @memberof pbuser.UserModel
-     * @instance
-     */
+         * UserModel accountType.
+         * @member {number} accountType
+         * @memberof pbuser.UserModel
+         * @instance
+         */
     UserModel.prototype.accountType = 0
 
     /**
-     * UserModel role.
-     * @member {number|Long} role
-     * @memberof pbuser.UserModel
-     * @instance
-     */
+         * UserModel role.
+         * @member {number|Long} role
+         * @memberof pbuser.UserModel
+         * @instance
+         */
     UserModel.prototype.role = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * UserModel pretty.
-     * @member {number|Long} pretty
-     * @memberof pbuser.UserModel
-     * @instance
-     */
+         * UserModel pretty.
+         * @member {number|Long} pretty
+         * @memberof pbuser.UserModel
+         * @instance
+         */
     UserModel.prototype.pretty = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * UserModel age.
-     * @member {number} age
-     * @memberof pbuser.UserModel
-     * @instance
-     */
+         * UserModel age.
+         * @member {number} age
+         * @memberof pbuser.UserModel
+         * @instance
+         */
     UserModel.prototype.age = 0
 
     /**
-     * UserModel country.
-     * @member {number} country
-     * @memberof pbuser.UserModel
-     * @instance
-     */
+         * UserModel country.
+         * @member {number} country
+         * @memberof pbuser.UserModel
+         * @instance
+         */
     UserModel.prototype.country = 0
 
     /**
-     * UserModel countryName.
-     * @member {string} countryName
-     * @memberof pbuser.UserModel
-     * @instance
-     */
+         * UserModel countryName.
+         * @member {string} countryName
+         * @memberof pbuser.UserModel
+         * @instance
+         */
     UserModel.prototype.countryName = ''
 
     /**
-     * UserModel city.
-     * @member {string} city
-     * @memberof pbuser.UserModel
-     * @instance
-     */
+         * UserModel city.
+         * @member {string} city
+         * @memberof pbuser.UserModel
+         * @instance
+         */
     UserModel.prototype.city = ''
 
     /**
-     * UserModel Zone.
-     * @member {number} Zone
-     * @memberof pbuser.UserModel
-     * @instance
-     */
+         * UserModel Zone.
+         * @member {number} Zone
+         * @memberof pbuser.UserModel
+         * @instance
+         */
     UserModel.prototype.Zone = 0
 
     /**
-     * UserModel devDesc.
-     * @member {string} devDesc
-     * @memberof pbuser.UserModel
-     * @instance
-     */
+         * UserModel devDesc.
+         * @member {string} devDesc
+         * @memberof pbuser.UserModel
+         * @instance
+         */
     UserModel.prototype.devDesc = ''
 
     /**
-     * UserModel platform.
-     * @member {string} platform
-     * @memberof pbuser.UserModel
-     * @instance
-     */
+         * UserModel platform.
+         * @member {string} platform
+         * @memberof pbuser.UserModel
+         * @instance
+         */
     UserModel.prototype.platform = ''
 
     /**
-     * UserModel devUuid.
-     * @member {string} devUuid
-     * @memberof pbuser.UserModel
-     * @instance
-     */
+         * UserModel devUuid.
+         * @member {string} devUuid
+         * @memberof pbuser.UserModel
+         * @instance
+         */
     UserModel.prototype.devUuid = ''
 
     /**
-     * UserModel ver.
-     * @member {string} ver
-     * @memberof pbuser.UserModel
-     * @instance
-     */
+         * UserModel ver.
+         * @member {string} ver
+         * @memberof pbuser.UserModel
+         * @instance
+         */
     UserModel.prototype.ver = ''
 
     /**
-     * UserModel isRobt.
-     * @member {number} isRobt
-     * @memberof pbuser.UserModel
-     * @instance
-     */
+         * UserModel isRobt.
+         * @member {number} isRobt
+         * @memberof pbuser.UserModel
+         * @instance
+         */
     UserModel.prototype.isRobt = 0
 
     /**
-     * UserModel regDate.
-     * @member {string} regDate
-     * @memberof pbuser.UserModel
-     * @instance
-     */
+         * UserModel regDate.
+         * @member {string} regDate
+         * @memberof pbuser.UserModel
+         * @instance
+         */
     UserModel.prototype.regDate = ''
 
     /**
-     * UserModel certName.
-     * @member {string} certName
-     * @memberof pbuser.UserModel
-     * @instance
-     */
+         * UserModel certName.
+         * @member {string} certName
+         * @memberof pbuser.UserModel
+         * @instance
+         */
     UserModel.prototype.certName = ''
 
     /**
-     * UserModel certNo.
-     * @member {string} certNo
-     * @memberof pbuser.UserModel
-     * @instance
-     */
+         * UserModel certNo.
+         * @member {string} certNo
+         * @memberof pbuser.UserModel
+         * @instance
+         */
     UserModel.prototype.certNo = ''
 
     /**
-     * UserModel first.
-     * @member {boolean} first
-     * @memberof pbuser.UserModel
-     * @instance
-     */
+         * UserModel first.
+         * @member {boolean} first
+         * @memberof pbuser.UserModel
+         * @instance
+         */
     UserModel.prototype.first = false
 
     /**
-     * UserModel isYoungMod.
-     * @member {boolean} isYoungMod
-     * @memberof pbuser.UserModel
-     * @instance
-     */
+         * UserModel isYoungMod.
+         * @member {boolean} isYoungMod
+         * @memberof pbuser.UserModel
+         * @instance
+         */
     UserModel.prototype.isYoungMod = false
 
     /**
-     * Creates a new UserModel instance using the specified properties.
-     * @function create
-     * @memberof pbuser.UserModel
-     * @static
-     * @param {pbuser.IUserModel=} [properties] Properties to set
-     * @returns {pbuser.UserModel} UserModel instance
-     */
+         * Creates a new UserModel instance using the specified properties.
+         * @function create
+         * @memberof pbuser.UserModel
+         * @static
+         * @param {pbuser.IUserModel=} [properties] Properties to set
+         * @returns {pbuser.UserModel} UserModel instance
+         */
     UserModel.create = function create(properties) {
       return new UserModel(properties)
     }
 
     /**
-     * Encodes the specified UserModel message. Does not implicitly {@link pbuser.UserModel.verify|verify} messages.
-     * @function encode
-     * @memberof pbuser.UserModel
-     * @static
-     * @param {pbuser.IUserModel} message UserModel message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified UserModel message. Does not implicitly {@link pbuser.UserModel.verify|verify} messages.
+         * @function encode
+         * @memberof pbuser.UserModel
+         * @static
+         * @param {pbuser.IUserModel} message UserModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     UserModel.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.id != null && Object.hasOwnProperty.call(message, 'id')) { writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id) }
@@ -8058,29 +8058,29 @@ $root.pbuser = (function() {
     }
 
     /**
-     * Encodes the specified UserModel message, length delimited. Does not implicitly {@link pbuser.UserModel.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbuser.UserModel
-     * @static
-     * @param {pbuser.IUserModel} message UserModel message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified UserModel message, length delimited. Does not implicitly {@link pbuser.UserModel.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbuser.UserModel
+         * @static
+         * @param {pbuser.IUserModel} message UserModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     UserModel.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes a UserModel message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbuser.UserModel
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbuser.UserModel} UserModel
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a UserModel message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbuser.UserModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbuser.UserModel} UserModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     UserModel.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbuser.UserModel()
@@ -8244,28 +8244,28 @@ $root.pbuser = (function() {
     }
 
     /**
-     * Decodes a UserModel message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbuser.UserModel
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbuser.UserModel} UserModel
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a UserModel message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbuser.UserModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbuser.UserModel} UserModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     UserModel.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies a UserModel message.
-     * @function verify
-     * @memberof pbuser.UserModel
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies a UserModel message.
+         * @function verify
+         * @memberof pbuser.UserModel
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     UserModel.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.id != null && message.hasOwnProperty('id')) {
@@ -8390,13 +8390,13 @@ $root.pbuser = (function() {
     }
 
     /**
-     * Creates a UserModel message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbuser.UserModel
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbuser.UserModel} UserModel
-     */
+         * Creates a UserModel message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbuser.UserModel
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbuser.UserModel} UserModel
+         */
     UserModel.fromObject = function fromObject(object) {
       if (object instanceof $root.pbuser.UserModel) { return object }
       var message = new $root.pbuser.UserModel()
@@ -8472,14 +8472,14 @@ $root.pbuser = (function() {
     }
 
     /**
-     * Creates a plain object from a UserModel message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbuser.UserModel
-     * @static
-     * @param {pbuser.UserModel} message UserModel
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from a UserModel message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbuser.UserModel
+         * @static
+         * @param {pbuser.UserModel} message UserModel
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     UserModel.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -8593,24 +8593,24 @@ $root.pbuser = (function() {
     }
 
     /**
-     * Converts this UserModel to JSON.
-     * @function toJSON
-     * @memberof pbuser.UserModel
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this UserModel to JSON.
+         * @function toJSON
+         * @memberof pbuser.UserModel
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     UserModel.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for UserModel
-     * @function getTypeUrl
-     * @memberof pbuser.UserModel
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for UserModel
+         * @function getTypeUrl
+         * @memberof pbuser.UserModel
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     UserModel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -8622,13 +8622,13 @@ $root.pbuser = (function() {
   })()
 
   /**
-   * UserStatus enum.
-   * @name pbuser.UserStatus
-   * @enum {number}
-   * @property {number} UserStatusNone=0 UserStatusNone value
-   * @property {number} Normal=1 Normal value
-   * @property {number} Banned=2 Banned value
-   */
+     * UserStatus enum.
+     * @name pbuser.UserStatus
+     * @enum {number}
+     * @property {number} UserStatusNone=0 UserStatusNone value
+     * @property {number} Normal=1 Normal value
+     * @property {number} Banned=2 Banned value
+     */
   pbuser.UserStatus = (function() {
     var valuesById = {}; var values = Object.create(valuesById)
     values[valuesById[0] = 'UserStatusNone'] = 0
@@ -8638,15 +8638,15 @@ $root.pbuser = (function() {
   })()
 
   /**
-   * AccountType enum.
-   * @name pbuser.AccountType
-   * @enum {number}
-   * @property {number} AccountTypeNone=0 AccountTypeNone value
-   * @property {number} Wechat=1 Wechat value
-   * @property {number} Phone=2 Phone value
-   * @property {number} Email=3 Email value
-   * @property {number} Admin=4 Admin value
-   */
+     * AccountType enum.
+     * @name pbuser.AccountType
+     * @enum {number}
+     * @property {number} AccountTypeNone=0 AccountTypeNone value
+     * @property {number} Wechat=1 Wechat value
+     * @property {number} Phone=2 Phone value
+     * @property {number} Email=3 Email value
+     * @property {number} Admin=4 Admin value
+     */
   pbuser.AccountType = (function() {
     var valuesById = {}; var values = Object.create(valuesById)
     values[valuesById[0] = 'AccountTypeNone'] = 0
@@ -8659,21 +8659,21 @@ $root.pbuser = (function() {
 
   pbuser.FindUserArgs = (function() {
     /**
-     * Properties of a FindUserArgs.
-     * @memberof pbuser
-     * @interface IFindUserArgs
-     * @property {pbcommon.IPageInfo|null} [pageInfo] FindUserArgs pageInfo
-     * @property {pbuser.IUserModel|null} [query] FindUserArgs query
-     */
+         * Properties of a FindUserArgs.
+         * @memberof pbuser
+         * @interface IFindUserArgs
+         * @property {pbcommon.IPageInfo|null} [pageInfo] FindUserArgs pageInfo
+         * @property {pbuser.IUserModel|null} [query] FindUserArgs query
+         */
 
     /**
-     * Constructs a new FindUserArgs.
-     * @memberof pbuser
-     * @classdesc Represents a FindUserArgs.
-     * @implements IFindUserArgs
-     * @constructor
-     * @param {pbuser.IFindUserArgs=} [properties] Properties to set
-     */
+         * Constructs a new FindUserArgs.
+         * @memberof pbuser
+         * @classdesc Represents a FindUserArgs.
+         * @implements IFindUserArgs
+         * @constructor
+         * @param {pbuser.IFindUserArgs=} [properties] Properties to set
+         */
     function FindUserArgs(properties) {
       if (properties) {
         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
@@ -8683,42 +8683,42 @@ $root.pbuser = (function() {
     }
 
     /**
-     * FindUserArgs pageInfo.
-     * @member {pbcommon.IPageInfo|null|undefined} pageInfo
-     * @memberof pbuser.FindUserArgs
-     * @instance
-     */
+         * FindUserArgs pageInfo.
+         * @member {pbcommon.IPageInfo|null|undefined} pageInfo
+         * @memberof pbuser.FindUserArgs
+         * @instance
+         */
     FindUserArgs.prototype.pageInfo = null
 
     /**
-     * FindUserArgs query.
-     * @member {pbuser.IUserModel|null|undefined} query
-     * @memberof pbuser.FindUserArgs
-     * @instance
-     */
+         * FindUserArgs query.
+         * @member {pbuser.IUserModel|null|undefined} query
+         * @memberof pbuser.FindUserArgs
+         * @instance
+         */
     FindUserArgs.prototype.query = null
 
     /**
-     * Creates a new FindUserArgs instance using the specified properties.
-     * @function create
-     * @memberof pbuser.FindUserArgs
-     * @static
-     * @param {pbuser.IFindUserArgs=} [properties] Properties to set
-     * @returns {pbuser.FindUserArgs} FindUserArgs instance
-     */
+         * Creates a new FindUserArgs instance using the specified properties.
+         * @function create
+         * @memberof pbuser.FindUserArgs
+         * @static
+         * @param {pbuser.IFindUserArgs=} [properties] Properties to set
+         * @returns {pbuser.FindUserArgs} FindUserArgs instance
+         */
     FindUserArgs.create = function create(properties) {
       return new FindUserArgs(properties)
     }
 
     /**
-     * Encodes the specified FindUserArgs message. Does not implicitly {@link pbuser.FindUserArgs.verify|verify} messages.
-     * @function encode
-     * @memberof pbuser.FindUserArgs
-     * @static
-     * @param {pbuser.IFindUserArgs} message FindUserArgs message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindUserArgs message. Does not implicitly {@link pbuser.FindUserArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbuser.FindUserArgs
+         * @static
+         * @param {pbuser.IFindUserArgs} message FindUserArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindUserArgs.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.pageInfo != null && Object.hasOwnProperty.call(message, 'pageInfo')) { $root.pbcommon.PageInfo.encode(message.pageInfo, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim() }
@@ -8727,29 +8727,29 @@ $root.pbuser = (function() {
     }
 
     /**
-     * Encodes the specified FindUserArgs message, length delimited. Does not implicitly {@link pbuser.FindUserArgs.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbuser.FindUserArgs
-     * @static
-     * @param {pbuser.IFindUserArgs} message FindUserArgs message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindUserArgs message, length delimited. Does not implicitly {@link pbuser.FindUserArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbuser.FindUserArgs
+         * @static
+         * @param {pbuser.IFindUserArgs} message FindUserArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindUserArgs.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes a FindUserArgs message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbuser.FindUserArgs
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbuser.FindUserArgs} FindUserArgs
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindUserArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbuser.FindUserArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbuser.FindUserArgs} FindUserArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindUserArgs.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbuser.FindUserArgs()
@@ -8773,28 +8773,28 @@ $root.pbuser = (function() {
     }
 
     /**
-     * Decodes a FindUserArgs message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbuser.FindUserArgs
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbuser.FindUserArgs} FindUserArgs
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindUserArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbuser.FindUserArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbuser.FindUserArgs} FindUserArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindUserArgs.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies a FindUserArgs message.
-     * @function verify
-     * @memberof pbuser.FindUserArgs
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies a FindUserArgs message.
+         * @function verify
+         * @memberof pbuser.FindUserArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     FindUserArgs.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.pageInfo != null && message.hasOwnProperty('pageInfo')) {
@@ -8809,13 +8809,13 @@ $root.pbuser = (function() {
     }
 
     /**
-     * Creates a FindUserArgs message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbuser.FindUserArgs
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbuser.FindUserArgs} FindUserArgs
-     */
+         * Creates a FindUserArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbuser.FindUserArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbuser.FindUserArgs} FindUserArgs
+         */
     FindUserArgs.fromObject = function fromObject(object) {
       if (object instanceof $root.pbuser.FindUserArgs) { return object }
       var message = new $root.pbuser.FindUserArgs()
@@ -8831,14 +8831,14 @@ $root.pbuser = (function() {
     }
 
     /**
-     * Creates a plain object from a FindUserArgs message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbuser.FindUserArgs
-     * @static
-     * @param {pbuser.FindUserArgs} message FindUserArgs
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from a FindUserArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbuser.FindUserArgs
+         * @static
+         * @param {pbuser.FindUserArgs} message FindUserArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     FindUserArgs.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -8852,24 +8852,24 @@ $root.pbuser = (function() {
     }
 
     /**
-     * Converts this FindUserArgs to JSON.
-     * @function toJSON
-     * @memberof pbuser.FindUserArgs
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this FindUserArgs to JSON.
+         * @function toJSON
+         * @memberof pbuser.FindUserArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     FindUserArgs.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for FindUserArgs
-     * @function getTypeUrl
-     * @memberof pbuser.FindUserArgs
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for FindUserArgs
+         * @function getTypeUrl
+         * @memberof pbuser.FindUserArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     FindUserArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -8882,24 +8882,24 @@ $root.pbuser = (function() {
 
   pbuser.FindUserReply = (function() {
     /**
-     * Properties of a FindUserReply.
-     * @memberof pbuser
-     * @interface IFindUserReply
-     * @property {pbcommon.EnumCode|null} [code] FindUserReply code
-     * @property {string|null} [msg] FindUserReply msg
-     * @property {pbuser.IUserModel|null} [data] FindUserReply data
-     * @property {Array.<pbuser.IUserModel>|null} [list] FindUserReply list
-     * @property {number|Long|null} [total] FindUserReply total
-     */
+         * Properties of a FindUserReply.
+         * @memberof pbuser
+         * @interface IFindUserReply
+         * @property {pbcommon.EnumCode|null} [code] FindUserReply code
+         * @property {string|null} [msg] FindUserReply msg
+         * @property {pbuser.IUserModel|null} [data] FindUserReply data
+         * @property {Array.<pbuser.IUserModel>|null} [list] FindUserReply list
+         * @property {number|Long|null} [total] FindUserReply total
+         */
 
     /**
-     * Constructs a new FindUserReply.
-     * @memberof pbuser
-     * @classdesc Represents a FindUserReply.
-     * @implements IFindUserReply
-     * @constructor
-     * @param {pbuser.IFindUserReply=} [properties] Properties to set
-     */
+         * Constructs a new FindUserReply.
+         * @memberof pbuser
+         * @classdesc Represents a FindUserReply.
+         * @implements IFindUserReply
+         * @constructor
+         * @param {pbuser.IFindUserReply=} [properties] Properties to set
+         */
     function FindUserReply(properties) {
       this.list = []
       if (properties) {
@@ -8910,66 +8910,66 @@ $root.pbuser = (function() {
     }
 
     /**
-     * FindUserReply code.
-     * @member {pbcommon.EnumCode} code
-     * @memberof pbuser.FindUserReply
-     * @instance
-     */
+         * FindUserReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbuser.FindUserReply
+         * @instance
+         */
     FindUserReply.prototype.code = 0
 
     /**
-     * FindUserReply msg.
-     * @member {string} msg
-     * @memberof pbuser.FindUserReply
-     * @instance
-     */
+         * FindUserReply msg.
+         * @member {string} msg
+         * @memberof pbuser.FindUserReply
+         * @instance
+         */
     FindUserReply.prototype.msg = ''
 
     /**
-     * FindUserReply data.
-     * @member {pbuser.IUserModel|null|undefined} data
-     * @memberof pbuser.FindUserReply
-     * @instance
-     */
+         * FindUserReply data.
+         * @member {pbuser.IUserModel|null|undefined} data
+         * @memberof pbuser.FindUserReply
+         * @instance
+         */
     FindUserReply.prototype.data = null
 
     /**
-     * FindUserReply list.
-     * @member {Array.<pbuser.IUserModel>} list
-     * @memberof pbuser.FindUserReply
-     * @instance
-     */
+         * FindUserReply list.
+         * @member {Array.<pbuser.IUserModel>} list
+         * @memberof pbuser.FindUserReply
+         * @instance
+         */
     FindUserReply.prototype.list = $util.emptyArray
 
     /**
-     * FindUserReply total.
-     * @member {number|Long} total
-     * @memberof pbuser.FindUserReply
-     * @instance
-     */
+         * FindUserReply total.
+         * @member {number|Long} total
+         * @memberof pbuser.FindUserReply
+         * @instance
+         */
     FindUserReply.prototype.total = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * Creates a new FindUserReply instance using the specified properties.
-     * @function create
-     * @memberof pbuser.FindUserReply
-     * @static
-     * @param {pbuser.IFindUserReply=} [properties] Properties to set
-     * @returns {pbuser.FindUserReply} FindUserReply instance
-     */
+         * Creates a new FindUserReply instance using the specified properties.
+         * @function create
+         * @memberof pbuser.FindUserReply
+         * @static
+         * @param {pbuser.IFindUserReply=} [properties] Properties to set
+         * @returns {pbuser.FindUserReply} FindUserReply instance
+         */
     FindUserReply.create = function create(properties) {
       return new FindUserReply(properties)
     }
 
     /**
-     * Encodes the specified FindUserReply message. Does not implicitly {@link pbuser.FindUserReply.verify|verify} messages.
-     * @function encode
-     * @memberof pbuser.FindUserReply
-     * @static
-     * @param {pbuser.IFindUserReply} message FindUserReply message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindUserReply message. Does not implicitly {@link pbuser.FindUserReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbuser.FindUserReply
+         * @static
+         * @param {pbuser.IFindUserReply} message FindUserReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindUserReply.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.code != null && Object.hasOwnProperty.call(message, 'code')) { writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code) }
@@ -8983,29 +8983,29 @@ $root.pbuser = (function() {
     }
 
     /**
-     * Encodes the specified FindUserReply message, length delimited. Does not implicitly {@link pbuser.FindUserReply.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbuser.FindUserReply
-     * @static
-     * @param {pbuser.IFindUserReply} message FindUserReply message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindUserReply message, length delimited. Does not implicitly {@link pbuser.FindUserReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbuser.FindUserReply
+         * @static
+         * @param {pbuser.IFindUserReply} message FindUserReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindUserReply.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes a FindUserReply message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbuser.FindUserReply
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbuser.FindUserReply} FindUserReply
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindUserReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbuser.FindUserReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbuser.FindUserReply} FindUserReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindUserReply.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbuser.FindUserReply()
@@ -9042,28 +9042,28 @@ $root.pbuser = (function() {
     }
 
     /**
-     * Decodes a FindUserReply message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbuser.FindUserReply
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbuser.FindUserReply} FindUserReply
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindUserReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbuser.FindUserReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbuser.FindUserReply} FindUserReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindUserReply.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies a FindUserReply message.
-     * @function verify
-     * @memberof pbuser.FindUserReply
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies a FindUserReply message.
+         * @function verify
+         * @memberof pbuser.FindUserReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     FindUserReply.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.code != null && message.hasOwnProperty('code')) {
@@ -9119,13 +9119,13 @@ $root.pbuser = (function() {
     }
 
     /**
-     * Creates a FindUserReply message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbuser.FindUserReply
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbuser.FindUserReply} FindUserReply
-     */
+         * Creates a FindUserReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbuser.FindUserReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbuser.FindUserReply} FindUserReply
+         */
     FindUserReply.fromObject = function fromObject(object) {
       if (object instanceof $root.pbuser.FindUserReply) { return object }
       var message = new $root.pbuser.FindUserReply()
@@ -9257,14 +9257,14 @@ $root.pbuser = (function() {
     }
 
     /**
-     * Creates a plain object from a FindUserReply message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbuser.FindUserReply
-     * @static
-     * @param {pbuser.FindUserReply} message FindUserReply
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from a FindUserReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbuser.FindUserReply
+         * @static
+         * @param {pbuser.FindUserReply} message FindUserReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     FindUserReply.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -9292,24 +9292,24 @@ $root.pbuser = (function() {
     }
 
     /**
-     * Converts this FindUserReply to JSON.
-     * @function toJSON
-     * @memberof pbuser.FindUserReply
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this FindUserReply to JSON.
+         * @function toJSON
+         * @memberof pbuser.FindUserReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     FindUserReply.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for FindUserReply
-     * @function getTypeUrl
-     * @memberof pbuser.FindUserReply
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for FindUserReply
+         * @function getTypeUrl
+         * @memberof pbuser.FindUserReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     FindUserReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -9322,15 +9322,15 @@ $root.pbuser = (function() {
 
   pbuser.User = (function() {
     /**
-     * Constructs a new User service.
-     * @memberof pbuser
-     * @classdesc Represents a User
-     * @extends $protobuf.rpc.Service
-     * @constructor
-     * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
-     * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
-     * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
-     */
+         * Constructs a new User service.
+         * @memberof pbuser
+         * @classdesc Represents a User
+         * @extends $protobuf.rpc.Service
+         * @constructor
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         */
     function User(rpcImpl, requestDelimited, responseDelimited) {
       $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited)
     }
@@ -9338,183 +9338,183 @@ $root.pbuser = (function() {
     (User.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = User
 
     /**
-     * Creates new User service using the specified rpc implementation.
-     * @function create
-     * @memberof pbuser.User
-     * @static
-     * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
-     * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
-     * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
-     * @returns {User} RPC service. Useful where requests and/or responses are streamed.
-     */
+         * Creates new User service using the specified rpc implementation.
+         * @function create
+         * @memberof pbuser.User
+         * @static
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         * @returns {User} RPC service. Useful where requests and/or responses are streamed.
+         */
     User.create = function create(rpcImpl, requestDelimited, responseDelimited) {
       return new this(rpcImpl, requestDelimited, responseDelimited)
     }
 
     /**
-     * Callback as used by {@link pbuser.User#createUser}.
-     * @memberof pbuser.User
-     * @typedef CreateUserCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbcommon.CommonResult} [response] CommonResult
-     */
+         * Callback as used by {@link pbuser.User#createUser}.
+         * @memberof pbuser.User
+         * @typedef CreateUserCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
 
     /**
-     * Calls CreateUser.
-     * @function createUser
-     * @memberof pbuser.User
-     * @instance
-     * @param {pbuser.IUserModel} request UserModel message or plain object
-     * @param {pbuser.User.CreateUserCallback} callback Node-style callback called with the error, if any, and CommonResult
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls CreateUser.
+         * @function createUser
+         * @memberof pbuser.User
+         * @instance
+         * @param {pbuser.IUserModel} request UserModel message or plain object
+         * @param {pbuser.User.CreateUserCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(User.prototype.createUser = function createUser(request, callback) {
       return this.rpcCall(createUser, $root.pbuser.UserModel, $root.pbcommon.CommonResult, request, callback)
     }, 'name', { value: 'CreateUser' })
 
     /**
-     * Calls CreateUser.
-     * @function createUser
-     * @memberof pbuser.User
-     * @instance
-     * @param {pbuser.IUserModel} request UserModel message or plain object
-     * @returns {Promise<pbcommon.CommonResult>} Promise
-     * @variation 2
-     */
+         * Calls CreateUser.
+         * @function createUser
+         * @memberof pbuser.User
+         * @instance
+         * @param {pbuser.IUserModel} request UserModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbuser.User#updateUser}.
-     * @memberof pbuser.User
-     * @typedef UpdateUserCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbcommon.CommonResult} [response] CommonResult
-     */
+         * Callback as used by {@link pbuser.User#updateUser}.
+         * @memberof pbuser.User
+         * @typedef UpdateUserCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
 
     /**
-     * Calls UpdateUser.
-     * @function updateUser
-     * @memberof pbuser.User
-     * @instance
-     * @param {pbuser.IUserModel} request UserModel message or plain object
-     * @param {pbuser.User.UpdateUserCallback} callback Node-style callback called with the error, if any, and CommonResult
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls UpdateUser.
+         * @function updateUser
+         * @memberof pbuser.User
+         * @instance
+         * @param {pbuser.IUserModel} request UserModel message or plain object
+         * @param {pbuser.User.UpdateUserCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(User.prototype.updateUser = function updateUser(request, callback) {
       return this.rpcCall(updateUser, $root.pbuser.UserModel, $root.pbcommon.CommonResult, request, callback)
     }, 'name', { value: 'UpdateUser' })
 
     /**
-     * Calls UpdateUser.
-     * @function updateUser
-     * @memberof pbuser.User
-     * @instance
-     * @param {pbuser.IUserModel} request UserModel message or plain object
-     * @returns {Promise<pbcommon.CommonResult>} Promise
-     * @variation 2
-     */
+         * Calls UpdateUser.
+         * @function updateUser
+         * @memberof pbuser.User
+         * @instance
+         * @param {pbuser.IUserModel} request UserModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbuser.User#deleteUser}.
-     * @memberof pbuser.User
-     * @typedef DeleteUserCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbcommon.CommonResult} [response] CommonResult
-     */
+         * Callback as used by {@link pbuser.User#deleteUser}.
+         * @memberof pbuser.User
+         * @typedef DeleteUserCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
 
     /**
-     * Calls DeleteUser.
-     * @function deleteUser
-     * @memberof pbuser.User
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @param {pbuser.User.DeleteUserCallback} callback Node-style callback called with the error, if any, and CommonResult
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls DeleteUser.
+         * @function deleteUser
+         * @memberof pbuser.User
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbuser.User.DeleteUserCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(User.prototype.deleteUser = function deleteUser(request, callback) {
       return this.rpcCall(deleteUser, $root.pbcommon.IdArgs, $root.pbcommon.CommonResult, request, callback)
     }, 'name', { value: 'DeleteUser' })
 
     /**
-     * Calls DeleteUser.
-     * @function deleteUser
-     * @memberof pbuser.User
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @returns {Promise<pbcommon.CommonResult>} Promise
-     * @variation 2
-     */
+         * Calls DeleteUser.
+         * @function deleteUser
+         * @memberof pbuser.User
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbuser.User#findUserById}.
-     * @memberof pbuser.User
-     * @typedef FindUserByIdCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbuser.FindUserReply} [response] FindUserReply
-     */
+         * Callback as used by {@link pbuser.User#findUserById}.
+         * @memberof pbuser.User
+         * @typedef FindUserByIdCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbuser.FindUserReply} [response] FindUserReply
+         */
 
     /**
-     * Calls FindUserById.
-     * @function findUserById
-     * @memberof pbuser.User
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @param {pbuser.User.FindUserByIdCallback} callback Node-style callback called with the error, if any, and FindUserReply
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls FindUserById.
+         * @function findUserById
+         * @memberof pbuser.User
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbuser.User.FindUserByIdCallback} callback Node-style callback called with the error, if any, and FindUserReply
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(User.prototype.findUserById = function findUserById(request, callback) {
       return this.rpcCall(findUserById, $root.pbcommon.IdArgs, $root.pbuser.FindUserReply, request, callback)
     }, 'name', { value: 'FindUserById' })
 
     /**
-     * Calls FindUserById.
-     * @function findUserById
-     * @memberof pbuser.User
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @returns {Promise<pbuser.FindUserReply>} Promise
-     * @variation 2
-     */
+         * Calls FindUserById.
+         * @function findUserById
+         * @memberof pbuser.User
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbuser.FindUserReply>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbuser.User#findUserList}.
-     * @memberof pbuser.User
-     * @typedef FindUserListCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbuser.FindUserReply} [response] FindUserReply
-     */
+         * Callback as used by {@link pbuser.User#findUserList}.
+         * @memberof pbuser.User
+         * @typedef FindUserListCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbuser.FindUserReply} [response] FindUserReply
+         */
 
     /**
-     * Calls FindUserList.
-     * @function findUserList
-     * @memberof pbuser.User
-     * @instance
-     * @param {pbuser.IFindUserArgs} request FindUserArgs message or plain object
-     * @param {pbuser.User.FindUserListCallback} callback Node-style callback called with the error, if any, and FindUserReply
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls FindUserList.
+         * @function findUserList
+         * @memberof pbuser.User
+         * @instance
+         * @param {pbuser.IFindUserArgs} request FindUserArgs message or plain object
+         * @param {pbuser.User.FindUserListCallback} callback Node-style callback called with the error, if any, and FindUserReply
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(User.prototype.findUserList = function findUserList(request, callback) {
       return this.rpcCall(findUserList, $root.pbuser.FindUserArgs, $root.pbuser.FindUserReply, request, callback)
     }, 'name', { value: 'FindUserList' })
 
     /**
-     * Calls FindUserList.
-     * @function findUserList
-     * @memberof pbuser.User
-     * @instance
-     * @param {pbuser.IFindUserArgs} request FindUserArgs message or plain object
-     * @returns {Promise<pbuser.FindUserReply>} Promise
-     * @variation 2
-     */
+         * Calls FindUserList.
+         * @function findUserList
+         * @memberof pbuser.User
+         * @instance
+         * @param {pbuser.IFindUserArgs} request FindUserArgs message or plain object
+         * @returns {Promise<pbuser.FindUserReply>} Promise
+         * @variation 2
+         */
 
     return User
   })()
@@ -9524,34 +9524,34 @@ $root.pbuser = (function() {
 
 $root.httpgate = (function() {
   /**
-   * Namespace httpgate.
-   * @exports httpgate
-   * @namespace
-   */
+     * Namespace httpgate.
+     * @exports httpgate
+     * @namespace
+     */
   var httpgate = {}
 
   httpgate.HttpRequest = (function() {
     /**
-     * Properties of a HttpRequest.
-     * @memberof httpgate
-     * @interface IHttpRequest
-     * @property {string|null} [token] HttpRequest token
-     * @property {string|null} [v] HttpRequest v
-     * @property {string|null} [sign] HttpRequest sign
-     * @property {string|null} [signMethod] HttpRequest signMethod
-     * @property {string|null} [timeStamp] HttpRequest timeStamp
-     * @property {string|null} [appId] HttpRequest appId
-     * @property {Uint8Array|null} [data] HttpRequest data
-     */
+         * Properties of a HttpRequest.
+         * @memberof httpgate
+         * @interface IHttpRequest
+         * @property {string|null} [token] HttpRequest token
+         * @property {string|null} [v] HttpRequest v
+         * @property {string|null} [sign] HttpRequest sign
+         * @property {string|null} [signMethod] HttpRequest signMethod
+         * @property {string|null} [timeStamp] HttpRequest timeStamp
+         * @property {string|null} [appId] HttpRequest appId
+         * @property {Uint8Array|null} [data] HttpRequest data
+         */
 
     /**
-     * Constructs a new HttpRequest.
-     * @memberof httpgate
-     * @classdesc Represents a HttpRequest.
-     * @implements IHttpRequest
-     * @constructor
-     * @param {httpgate.IHttpRequest=} [properties] Properties to set
-     */
+         * Constructs a new HttpRequest.
+         * @memberof httpgate
+         * @classdesc Represents a HttpRequest.
+         * @implements IHttpRequest
+         * @constructor
+         * @param {httpgate.IHttpRequest=} [properties] Properties to set
+         */
     function HttpRequest(properties) {
       if (properties) {
         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
@@ -9561,82 +9561,82 @@ $root.httpgate = (function() {
     }
 
     /**
-     * HttpRequest token.
-     * @member {string} token
-     * @memberof httpgate.HttpRequest
-     * @instance
-     */
+         * HttpRequest token.
+         * @member {string} token
+         * @memberof httpgate.HttpRequest
+         * @instance
+         */
     HttpRequest.prototype.token = ''
 
     /**
-     * HttpRequest v.
-     * @member {string} v
-     * @memberof httpgate.HttpRequest
-     * @instance
-     */
+         * HttpRequest v.
+         * @member {string} v
+         * @memberof httpgate.HttpRequest
+         * @instance
+         */
     HttpRequest.prototype.v = ''
 
     /**
-     * HttpRequest sign.
-     * @member {string} sign
-     * @memberof httpgate.HttpRequest
-     * @instance
-     */
+         * HttpRequest sign.
+         * @member {string} sign
+         * @memberof httpgate.HttpRequest
+         * @instance
+         */
     HttpRequest.prototype.sign = ''
 
     /**
-     * HttpRequest signMethod.
-     * @member {string} signMethod
-     * @memberof httpgate.HttpRequest
-     * @instance
-     */
+         * HttpRequest signMethod.
+         * @member {string} signMethod
+         * @memberof httpgate.HttpRequest
+         * @instance
+         */
     HttpRequest.prototype.signMethod = ''
 
     /**
-     * HttpRequest timeStamp.
-     * @member {string} timeStamp
-     * @memberof httpgate.HttpRequest
-     * @instance
-     */
+         * HttpRequest timeStamp.
+         * @member {string} timeStamp
+         * @memberof httpgate.HttpRequest
+         * @instance
+         */
     HttpRequest.prototype.timeStamp = ''
 
     /**
-     * HttpRequest appId.
-     * @member {string} appId
-     * @memberof httpgate.HttpRequest
-     * @instance
-     */
+         * HttpRequest appId.
+         * @member {string} appId
+         * @memberof httpgate.HttpRequest
+         * @instance
+         */
     HttpRequest.prototype.appId = ''
 
     /**
-     * HttpRequest data.
-     * @member {Uint8Array} data
-     * @memberof httpgate.HttpRequest
-     * @instance
-     */
+         * HttpRequest data.
+         * @member {Uint8Array} data
+         * @memberof httpgate.HttpRequest
+         * @instance
+         */
     HttpRequest.prototype.data = $util.newBuffer([])
 
     /**
-     * Creates a new HttpRequest instance using the specified properties.
-     * @function create
-     * @memberof httpgate.HttpRequest
-     * @static
-     * @param {httpgate.IHttpRequest=} [properties] Properties to set
-     * @returns {httpgate.HttpRequest} HttpRequest instance
-     */
+         * Creates a new HttpRequest instance using the specified properties.
+         * @function create
+         * @memberof httpgate.HttpRequest
+         * @static
+         * @param {httpgate.IHttpRequest=} [properties] Properties to set
+         * @returns {httpgate.HttpRequest} HttpRequest instance
+         */
     HttpRequest.create = function create(properties) {
       return new HttpRequest(properties)
     }
 
     /**
-     * Encodes the specified HttpRequest message. Does not implicitly {@link httpgate.HttpRequest.verify|verify} messages.
-     * @function encode
-     * @memberof httpgate.HttpRequest
-     * @static
-     * @param {httpgate.IHttpRequest} message HttpRequest message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified HttpRequest message. Does not implicitly {@link httpgate.HttpRequest.verify|verify} messages.
+         * @function encode
+         * @memberof httpgate.HttpRequest
+         * @static
+         * @param {httpgate.IHttpRequest} message HttpRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     HttpRequest.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.token != null && Object.hasOwnProperty.call(message, 'token')) { writer.uint32(/* id 1, wireType 2 =*/10).string(message.token) }
@@ -9650,29 +9650,29 @@ $root.httpgate = (function() {
     }
 
     /**
-     * Encodes the specified HttpRequest message, length delimited. Does not implicitly {@link httpgate.HttpRequest.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof httpgate.HttpRequest
-     * @static
-     * @param {httpgate.IHttpRequest} message HttpRequest message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified HttpRequest message, length delimited. Does not implicitly {@link httpgate.HttpRequest.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof httpgate.HttpRequest
+         * @static
+         * @param {httpgate.IHttpRequest} message HttpRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     HttpRequest.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes a HttpRequest message from the specified reader or buffer.
-     * @function decode
-     * @memberof httpgate.HttpRequest
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {httpgate.HttpRequest} HttpRequest
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a HttpRequest message from the specified reader or buffer.
+         * @function decode
+         * @memberof httpgate.HttpRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {httpgate.HttpRequest} HttpRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     HttpRequest.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.httpgate.HttpRequest()
@@ -9716,28 +9716,28 @@ $root.httpgate = (function() {
     }
 
     /**
-     * Decodes a HttpRequest message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof httpgate.HttpRequest
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {httpgate.HttpRequest} HttpRequest
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a HttpRequest message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof httpgate.HttpRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {httpgate.HttpRequest} HttpRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     HttpRequest.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies a HttpRequest message.
-     * @function verify
-     * @memberof httpgate.HttpRequest
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies a HttpRequest message.
+         * @function verify
+         * @memberof httpgate.HttpRequest
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     HttpRequest.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.token != null && message.hasOwnProperty('token')) {
@@ -9765,13 +9765,13 @@ $root.httpgate = (function() {
     }
 
     /**
-     * Creates a HttpRequest message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof httpgate.HttpRequest
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {httpgate.HttpRequest} HttpRequest
-     */
+         * Creates a HttpRequest message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof httpgate.HttpRequest
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {httpgate.HttpRequest} HttpRequest
+         */
     HttpRequest.fromObject = function fromObject(object) {
       if (object instanceof $root.httpgate.HttpRequest) { return object }
       var message = new $root.httpgate.HttpRequest()
@@ -9788,14 +9788,14 @@ $root.httpgate = (function() {
     }
 
     /**
-     * Creates a plain object from a HttpRequest message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof httpgate.HttpRequest
-     * @static
-     * @param {httpgate.HttpRequest} message HttpRequest
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from a HttpRequest message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof httpgate.HttpRequest
+         * @static
+         * @param {httpgate.HttpRequest} message HttpRequest
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     HttpRequest.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -9822,24 +9822,24 @@ $root.httpgate = (function() {
     }
 
     /**
-     * Converts this HttpRequest to JSON.
-     * @function toJSON
-     * @memberof httpgate.HttpRequest
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this HttpRequest to JSON.
+         * @function toJSON
+         * @memberof httpgate.HttpRequest
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     HttpRequest.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for HttpRequest
-     * @function getTypeUrl
-     * @memberof httpgate.HttpRequest
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for HttpRequest
+         * @function getTypeUrl
+         * @memberof httpgate.HttpRequest
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     HttpRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -9852,23 +9852,23 @@ $root.httpgate = (function() {
 
   httpgate.HttpResponse = (function() {
     /**
-     * Properties of a HttpResponse.
-     * @memberof httpgate
-     * @interface IHttpResponse
-     * @property {pbcommon.EnumCode|null} [code] HttpResponse code
-     * @property {string|null} [msg] HttpResponse msg
-     * @property {Uint8Array|null} [data] HttpResponse data
-     * @property {string|null} [newToken] HttpResponse newToken
-     */
+         * Properties of a HttpResponse.
+         * @memberof httpgate
+         * @interface IHttpResponse
+         * @property {pbcommon.EnumCode|null} [code] HttpResponse code
+         * @property {string|null} [msg] HttpResponse msg
+         * @property {Uint8Array|null} [data] HttpResponse data
+         * @property {string|null} [newToken] HttpResponse newToken
+         */
 
     /**
-     * Constructs a new HttpResponse.
-     * @memberof httpgate
-     * @classdesc Represents a HttpResponse.
-     * @implements IHttpResponse
-     * @constructor
-     * @param {httpgate.IHttpResponse=} [properties] Properties to set
-     */
+         * Constructs a new HttpResponse.
+         * @memberof httpgate
+         * @classdesc Represents a HttpResponse.
+         * @implements IHttpResponse
+         * @constructor
+         * @param {httpgate.IHttpResponse=} [properties] Properties to set
+         */
     function HttpResponse(properties) {
       if (properties) {
         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
@@ -9878,58 +9878,58 @@ $root.httpgate = (function() {
     }
 
     /**
-     * HttpResponse code.
-     * @member {pbcommon.EnumCode} code
-     * @memberof httpgate.HttpResponse
-     * @instance
-     */
+         * HttpResponse code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof httpgate.HttpResponse
+         * @instance
+         */
     HttpResponse.prototype.code = 0
 
     /**
-     * HttpResponse msg.
-     * @member {string} msg
-     * @memberof httpgate.HttpResponse
-     * @instance
-     */
+         * HttpResponse msg.
+         * @member {string} msg
+         * @memberof httpgate.HttpResponse
+         * @instance
+         */
     HttpResponse.prototype.msg = ''
 
     /**
-     * HttpResponse data.
-     * @member {Uint8Array} data
-     * @memberof httpgate.HttpResponse
-     * @instance
-     */
+         * HttpResponse data.
+         * @member {Uint8Array} data
+         * @memberof httpgate.HttpResponse
+         * @instance
+         */
     HttpResponse.prototype.data = $util.newBuffer([])
 
     /**
-     * HttpResponse newToken.
-     * @member {string} newToken
-     * @memberof httpgate.HttpResponse
-     * @instance
-     */
+         * HttpResponse newToken.
+         * @member {string} newToken
+         * @memberof httpgate.HttpResponse
+         * @instance
+         */
     HttpResponse.prototype.newToken = ''
 
     /**
-     * Creates a new HttpResponse instance using the specified properties.
-     * @function create
-     * @memberof httpgate.HttpResponse
-     * @static
-     * @param {httpgate.IHttpResponse=} [properties] Properties to set
-     * @returns {httpgate.HttpResponse} HttpResponse instance
-     */
+         * Creates a new HttpResponse instance using the specified properties.
+         * @function create
+         * @memberof httpgate.HttpResponse
+         * @static
+         * @param {httpgate.IHttpResponse=} [properties] Properties to set
+         * @returns {httpgate.HttpResponse} HttpResponse instance
+         */
     HttpResponse.create = function create(properties) {
       return new HttpResponse(properties)
     }
 
     /**
-     * Encodes the specified HttpResponse message. Does not implicitly {@link httpgate.HttpResponse.verify|verify} messages.
-     * @function encode
-     * @memberof httpgate.HttpResponse
-     * @static
-     * @param {httpgate.IHttpResponse} message HttpResponse message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified HttpResponse message. Does not implicitly {@link httpgate.HttpResponse.verify|verify} messages.
+         * @function encode
+         * @memberof httpgate.HttpResponse
+         * @static
+         * @param {httpgate.IHttpResponse} message HttpResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     HttpResponse.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.code != null && Object.hasOwnProperty.call(message, 'code')) { writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code) }
@@ -9940,29 +9940,29 @@ $root.httpgate = (function() {
     }
 
     /**
-     * Encodes the specified HttpResponse message, length delimited. Does not implicitly {@link httpgate.HttpResponse.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof httpgate.HttpResponse
-     * @static
-     * @param {httpgate.IHttpResponse} message HttpResponse message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified HttpResponse message, length delimited. Does not implicitly {@link httpgate.HttpResponse.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof httpgate.HttpResponse
+         * @static
+         * @param {httpgate.IHttpResponse} message HttpResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     HttpResponse.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes a HttpResponse message from the specified reader or buffer.
-     * @function decode
-     * @memberof httpgate.HttpResponse
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {httpgate.HttpResponse} HttpResponse
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a HttpResponse message from the specified reader or buffer.
+         * @function decode
+         * @memberof httpgate.HttpResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {httpgate.HttpResponse} HttpResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     HttpResponse.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.httpgate.HttpResponse()
@@ -9994,28 +9994,28 @@ $root.httpgate = (function() {
     }
 
     /**
-     * Decodes a HttpResponse message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof httpgate.HttpResponse
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {httpgate.HttpResponse} HttpResponse
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a HttpResponse message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof httpgate.HttpResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {httpgate.HttpResponse} HttpResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     HttpResponse.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies a HttpResponse message.
-     * @function verify
-     * @memberof httpgate.HttpResponse
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies a HttpResponse message.
+         * @function verify
+         * @memberof httpgate.HttpResponse
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     HttpResponse.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.code != null && message.hasOwnProperty('code')) {
@@ -10063,13 +10063,13 @@ $root.httpgate = (function() {
     }
 
     /**
-     * Creates a HttpResponse message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof httpgate.HttpResponse
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {httpgate.HttpResponse} HttpResponse
-     */
+         * Creates a HttpResponse message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof httpgate.HttpResponse
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {httpgate.HttpResponse} HttpResponse
+         */
     HttpResponse.fromObject = function fromObject(object) {
       if (object instanceof $root.httpgate.HttpResponse) { return object }
       var message = new $root.httpgate.HttpResponse()
@@ -10190,14 +10190,14 @@ $root.httpgate = (function() {
     }
 
     /**
-     * Creates a plain object from a HttpResponse message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof httpgate.HttpResponse
-     * @static
-     * @param {httpgate.HttpResponse} message HttpResponse
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from a HttpResponse message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof httpgate.HttpResponse
+         * @static
+         * @param {httpgate.HttpResponse} message HttpResponse
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     HttpResponse.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -10218,24 +10218,24 @@ $root.httpgate = (function() {
     }
 
     /**
-     * Converts this HttpResponse to JSON.
-     * @function toJSON
-     * @memberof httpgate.HttpResponse
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this HttpResponse to JSON.
+         * @function toJSON
+         * @memberof httpgate.HttpResponse
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     HttpResponse.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for HttpResponse
-     * @function getTypeUrl
-     * @memberof httpgate.HttpResponse
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for HttpResponse
+         * @function getTypeUrl
+         * @memberof httpgate.HttpResponse
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     HttpResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -10251,34 +10251,34 @@ $root.httpgate = (function() {
 
 $root.pbuserOauth = (function() {
   /**
-   * Namespace pbuserOauth.
-   * @exports pbuserOauth
-   * @namespace
-   */
+     * Namespace pbuserOauth.
+     * @exports pbuserOauth
+     * @namespace
+     */
   var pbuserOauth = {}
 
   pbuserOauth.UserOauthModel = (function() {
     /**
-     * Properties of a UserOauthModel.
-     * @memberof pbuserOauth
-     * @interface IUserOauthModel
-     * @property {number|Long|null} [id] UserOauthModel id
-     * @property {string|null} [createdAt] UserOauthModel createdAt
-     * @property {string|null} [updatedAt] UserOauthModel updatedAt
-     * @property {pbuserOauth.OauthType|null} [oauthType] UserOauthModel oauthType
-     * @property {string|null} [openId] UserOauthModel openId
-     * @property {string|null} [unionId] UserOauthModel unionId
-     * @property {number|Long|null} [appId] UserOauthModel appId
-     */
+         * Properties of a UserOauthModel.
+         * @memberof pbuserOauth
+         * @interface IUserOauthModel
+         * @property {number|Long|null} [id] UserOauthModel id
+         * @property {string|null} [createdAt] UserOauthModel createdAt
+         * @property {string|null} [updatedAt] UserOauthModel updatedAt
+         * @property {pbuserOauth.OauthType|null} [oauthType] UserOauthModel oauthType
+         * @property {string|null} [openId] UserOauthModel openId
+         * @property {string|null} [unionId] UserOauthModel unionId
+         * @property {number|Long|null} [appId] UserOauthModel appId
+         */
 
     /**
-     * Constructs a new UserOauthModel.
-     * @memberof pbuserOauth
-     * @classdesc Represents a UserOauthModel.
-     * @implements IUserOauthModel
-     * @constructor
-     * @param {pbuserOauth.IUserOauthModel=} [properties] Properties to set
-     */
+         * Constructs a new UserOauthModel.
+         * @memberof pbuserOauth
+         * @classdesc Represents a UserOauthModel.
+         * @implements IUserOauthModel
+         * @constructor
+         * @param {pbuserOauth.IUserOauthModel=} [properties] Properties to set
+         */
     function UserOauthModel(properties) {
       if (properties) {
         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
@@ -10288,82 +10288,82 @@ $root.pbuserOauth = (function() {
     }
 
     /**
-     * UserOauthModel id.
-     * @member {number|Long} id
-     * @memberof pbuserOauth.UserOauthModel
-     * @instance
-     */
+         * UserOauthModel id.
+         * @member {number|Long} id
+         * @memberof pbuserOauth.UserOauthModel
+         * @instance
+         */
     UserOauthModel.prototype.id = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * UserOauthModel createdAt.
-     * @member {string} createdAt
-     * @memberof pbuserOauth.UserOauthModel
-     * @instance
-     */
+         * UserOauthModel createdAt.
+         * @member {string} createdAt
+         * @memberof pbuserOauth.UserOauthModel
+         * @instance
+         */
     UserOauthModel.prototype.createdAt = ''
 
     /**
-     * UserOauthModel updatedAt.
-     * @member {string} updatedAt
-     * @memberof pbuserOauth.UserOauthModel
-     * @instance
-     */
+         * UserOauthModel updatedAt.
+         * @member {string} updatedAt
+         * @memberof pbuserOauth.UserOauthModel
+         * @instance
+         */
     UserOauthModel.prototype.updatedAt = ''
 
     /**
-     * UserOauthModel oauthType.
-     * @member {pbuserOauth.OauthType} oauthType
-     * @memberof pbuserOauth.UserOauthModel
-     * @instance
-     */
+         * UserOauthModel oauthType.
+         * @member {pbuserOauth.OauthType} oauthType
+         * @memberof pbuserOauth.UserOauthModel
+         * @instance
+         */
     UserOauthModel.prototype.oauthType = 0
 
     /**
-     * UserOauthModel openId.
-     * @member {string} openId
-     * @memberof pbuserOauth.UserOauthModel
-     * @instance
-     */
+         * UserOauthModel openId.
+         * @member {string} openId
+         * @memberof pbuserOauth.UserOauthModel
+         * @instance
+         */
     UserOauthModel.prototype.openId = ''
 
     /**
-     * UserOauthModel unionId.
-     * @member {string} unionId
-     * @memberof pbuserOauth.UserOauthModel
-     * @instance
-     */
+         * UserOauthModel unionId.
+         * @member {string} unionId
+         * @memberof pbuserOauth.UserOauthModel
+         * @instance
+         */
     UserOauthModel.prototype.unionId = ''
 
     /**
-     * UserOauthModel appId.
-     * @member {number|Long} appId
-     * @memberof pbuserOauth.UserOauthModel
-     * @instance
-     */
+         * UserOauthModel appId.
+         * @member {number|Long} appId
+         * @memberof pbuserOauth.UserOauthModel
+         * @instance
+         */
     UserOauthModel.prototype.appId = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * Creates a new UserOauthModel instance using the specified properties.
-     * @function create
-     * @memberof pbuserOauth.UserOauthModel
-     * @static
-     * @param {pbuserOauth.IUserOauthModel=} [properties] Properties to set
-     * @returns {pbuserOauth.UserOauthModel} UserOauthModel instance
-     */
+         * Creates a new UserOauthModel instance using the specified properties.
+         * @function create
+         * @memberof pbuserOauth.UserOauthModel
+         * @static
+         * @param {pbuserOauth.IUserOauthModel=} [properties] Properties to set
+         * @returns {pbuserOauth.UserOauthModel} UserOauthModel instance
+         */
     UserOauthModel.create = function create(properties) {
       return new UserOauthModel(properties)
     }
 
     /**
-     * Encodes the specified UserOauthModel message. Does not implicitly {@link pbuserOauth.UserOauthModel.verify|verify} messages.
-     * @function encode
-     * @memberof pbuserOauth.UserOauthModel
-     * @static
-     * @param {pbuserOauth.IUserOauthModel} message UserOauthModel message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified UserOauthModel message. Does not implicitly {@link pbuserOauth.UserOauthModel.verify|verify} messages.
+         * @function encode
+         * @memberof pbuserOauth.UserOauthModel
+         * @static
+         * @param {pbuserOauth.IUserOauthModel} message UserOauthModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     UserOauthModel.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.id != null && Object.hasOwnProperty.call(message, 'id')) { writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id) }
@@ -10377,29 +10377,29 @@ $root.pbuserOauth = (function() {
     }
 
     /**
-     * Encodes the specified UserOauthModel message, length delimited. Does not implicitly {@link pbuserOauth.UserOauthModel.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbuserOauth.UserOauthModel
-     * @static
-     * @param {pbuserOauth.IUserOauthModel} message UserOauthModel message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified UserOauthModel message, length delimited. Does not implicitly {@link pbuserOauth.UserOauthModel.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbuserOauth.UserOauthModel
+         * @static
+         * @param {pbuserOauth.IUserOauthModel} message UserOauthModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     UserOauthModel.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes a UserOauthModel message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbuserOauth.UserOauthModel
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbuserOauth.UserOauthModel} UserOauthModel
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a UserOauthModel message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbuserOauth.UserOauthModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbuserOauth.UserOauthModel} UserOauthModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     UserOauthModel.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbuserOauth.UserOauthModel()
@@ -10443,28 +10443,28 @@ $root.pbuserOauth = (function() {
     }
 
     /**
-     * Decodes a UserOauthModel message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbuserOauth.UserOauthModel
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbuserOauth.UserOauthModel} UserOauthModel
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a UserOauthModel message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbuserOauth.UserOauthModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbuserOauth.UserOauthModel} UserOauthModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     UserOauthModel.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies a UserOauthModel message.
-     * @function verify
-     * @memberof pbuserOauth.UserOauthModel
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies a UserOauthModel message.
+         * @function verify
+         * @memberof pbuserOauth.UserOauthModel
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     UserOauthModel.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.id != null && message.hasOwnProperty('id')) {
@@ -10499,13 +10499,13 @@ $root.pbuserOauth = (function() {
     }
 
     /**
-     * Creates a UserOauthModel message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbuserOauth.UserOauthModel
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbuserOauth.UserOauthModel} UserOauthModel
-     */
+         * Creates a UserOauthModel message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbuserOauth.UserOauthModel
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbuserOauth.UserOauthModel} UserOauthModel
+         */
     UserOauthModel.fromObject = function fromObject(object) {
       if (object instanceof $root.pbuserOauth.UserOauthModel) { return object }
       var message = new $root.pbuserOauth.UserOauthModel()
@@ -10543,14 +10543,14 @@ $root.pbuserOauth = (function() {
     }
 
     /**
-     * Creates a plain object from a UserOauthModel message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbuserOauth.UserOauthModel
-     * @static
-     * @param {pbuserOauth.UserOauthModel} message UserOauthModel
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from a UserOauthModel message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbuserOauth.UserOauthModel
+         * @static
+         * @param {pbuserOauth.UserOauthModel} message UserOauthModel
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     UserOauthModel.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -10584,24 +10584,24 @@ $root.pbuserOauth = (function() {
     }
 
     /**
-     * Converts this UserOauthModel to JSON.
-     * @function toJSON
-     * @memberof pbuserOauth.UserOauthModel
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this UserOauthModel to JSON.
+         * @function toJSON
+         * @memberof pbuserOauth.UserOauthModel
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     UserOauthModel.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for UserOauthModel
-     * @function getTypeUrl
-     * @memberof pbuserOauth.UserOauthModel
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for UserOauthModel
+         * @function getTypeUrl
+         * @memberof pbuserOauth.UserOauthModel
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     UserOauthModel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -10613,13 +10613,13 @@ $root.pbuserOauth = (function() {
   })()
 
   /**
-   * OauthType enum.
-   * @name pbuserOauth.OauthType
-   * @enum {number}
-   * @property {number} OAUTH_TYPE_NONE=0 OAUTH_TYPE_NONE value
-   * @property {number} OAUTH_TYPE_WECHAT=1 OAUTH_TYPE_WECHAT value
-   * @property {number} OAUTH_TYPE_QQ=2 OAUTH_TYPE_QQ value
-   */
+     * OauthType enum.
+     * @name pbuserOauth.OauthType
+     * @enum {number}
+     * @property {number} OAUTH_TYPE_NONE=0 OAUTH_TYPE_NONE value
+     * @property {number} OAUTH_TYPE_WECHAT=1 OAUTH_TYPE_WECHAT value
+     * @property {number} OAUTH_TYPE_QQ=2 OAUTH_TYPE_QQ value
+     */
   pbuserOauth.OauthType = (function() {
     var valuesById = {}; var values = Object.create(valuesById)
     values[valuesById[0] = 'OAUTH_TYPE_NONE'] = 0
@@ -10630,21 +10630,21 @@ $root.pbuserOauth = (function() {
 
   pbuserOauth.FindUserOauthArgs = (function() {
     /**
-     * Properties of a FindUserOauthArgs.
-     * @memberof pbuserOauth
-     * @interface IFindUserOauthArgs
-     * @property {pbcommon.IPageInfo|null} [pageInfo] FindUserOauthArgs pageInfo
-     * @property {pbuserOauth.IUserOauthModel|null} [query] FindUserOauthArgs query
-     */
+         * Properties of a FindUserOauthArgs.
+         * @memberof pbuserOauth
+         * @interface IFindUserOauthArgs
+         * @property {pbcommon.IPageInfo|null} [pageInfo] FindUserOauthArgs pageInfo
+         * @property {pbuserOauth.IUserOauthModel|null} [query] FindUserOauthArgs query
+         */
 
     /**
-     * Constructs a new FindUserOauthArgs.
-     * @memberof pbuserOauth
-     * @classdesc Represents a FindUserOauthArgs.
-     * @implements IFindUserOauthArgs
-     * @constructor
-     * @param {pbuserOauth.IFindUserOauthArgs=} [properties] Properties to set
-     */
+         * Constructs a new FindUserOauthArgs.
+         * @memberof pbuserOauth
+         * @classdesc Represents a FindUserOauthArgs.
+         * @implements IFindUserOauthArgs
+         * @constructor
+         * @param {pbuserOauth.IFindUserOauthArgs=} [properties] Properties to set
+         */
     function FindUserOauthArgs(properties) {
       if (properties) {
         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
@@ -10654,42 +10654,42 @@ $root.pbuserOauth = (function() {
     }
 
     /**
-     * FindUserOauthArgs pageInfo.
-     * @member {pbcommon.IPageInfo|null|undefined} pageInfo
-     * @memberof pbuserOauth.FindUserOauthArgs
-     * @instance
-     */
+         * FindUserOauthArgs pageInfo.
+         * @member {pbcommon.IPageInfo|null|undefined} pageInfo
+         * @memberof pbuserOauth.FindUserOauthArgs
+         * @instance
+         */
     FindUserOauthArgs.prototype.pageInfo = null
 
     /**
-     * FindUserOauthArgs query.
-     * @member {pbuserOauth.IUserOauthModel|null|undefined} query
-     * @memberof pbuserOauth.FindUserOauthArgs
-     * @instance
-     */
+         * FindUserOauthArgs query.
+         * @member {pbuserOauth.IUserOauthModel|null|undefined} query
+         * @memberof pbuserOauth.FindUserOauthArgs
+         * @instance
+         */
     FindUserOauthArgs.prototype.query = null
 
     /**
-     * Creates a new FindUserOauthArgs instance using the specified properties.
-     * @function create
-     * @memberof pbuserOauth.FindUserOauthArgs
-     * @static
-     * @param {pbuserOauth.IFindUserOauthArgs=} [properties] Properties to set
-     * @returns {pbuserOauth.FindUserOauthArgs} FindUserOauthArgs instance
-     */
+         * Creates a new FindUserOauthArgs instance using the specified properties.
+         * @function create
+         * @memberof pbuserOauth.FindUserOauthArgs
+         * @static
+         * @param {pbuserOauth.IFindUserOauthArgs=} [properties] Properties to set
+         * @returns {pbuserOauth.FindUserOauthArgs} FindUserOauthArgs instance
+         */
     FindUserOauthArgs.create = function create(properties) {
       return new FindUserOauthArgs(properties)
     }
 
     /**
-     * Encodes the specified FindUserOauthArgs message. Does not implicitly {@link pbuserOauth.FindUserOauthArgs.verify|verify} messages.
-     * @function encode
-     * @memberof pbuserOauth.FindUserOauthArgs
-     * @static
-     * @param {pbuserOauth.IFindUserOauthArgs} message FindUserOauthArgs message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindUserOauthArgs message. Does not implicitly {@link pbuserOauth.FindUserOauthArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbuserOauth.FindUserOauthArgs
+         * @static
+         * @param {pbuserOauth.IFindUserOauthArgs} message FindUserOauthArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindUserOauthArgs.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.pageInfo != null && Object.hasOwnProperty.call(message, 'pageInfo')) { $root.pbcommon.PageInfo.encode(message.pageInfo, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim() }
@@ -10698,29 +10698,29 @@ $root.pbuserOauth = (function() {
     }
 
     /**
-     * Encodes the specified FindUserOauthArgs message, length delimited. Does not implicitly {@link pbuserOauth.FindUserOauthArgs.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbuserOauth.FindUserOauthArgs
-     * @static
-     * @param {pbuserOauth.IFindUserOauthArgs} message FindUserOauthArgs message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindUserOauthArgs message, length delimited. Does not implicitly {@link pbuserOauth.FindUserOauthArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbuserOauth.FindUserOauthArgs
+         * @static
+         * @param {pbuserOauth.IFindUserOauthArgs} message FindUserOauthArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindUserOauthArgs.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes a FindUserOauthArgs message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbuserOauth.FindUserOauthArgs
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbuserOauth.FindUserOauthArgs} FindUserOauthArgs
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindUserOauthArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbuserOauth.FindUserOauthArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbuserOauth.FindUserOauthArgs} FindUserOauthArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindUserOauthArgs.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbuserOauth.FindUserOauthArgs()
@@ -10744,28 +10744,28 @@ $root.pbuserOauth = (function() {
     }
 
     /**
-     * Decodes a FindUserOauthArgs message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbuserOauth.FindUserOauthArgs
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbuserOauth.FindUserOauthArgs} FindUserOauthArgs
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindUserOauthArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbuserOauth.FindUserOauthArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbuserOauth.FindUserOauthArgs} FindUserOauthArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindUserOauthArgs.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies a FindUserOauthArgs message.
-     * @function verify
-     * @memberof pbuserOauth.FindUserOauthArgs
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies a FindUserOauthArgs message.
+         * @function verify
+         * @memberof pbuserOauth.FindUserOauthArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     FindUserOauthArgs.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.pageInfo != null && message.hasOwnProperty('pageInfo')) {
@@ -10780,13 +10780,13 @@ $root.pbuserOauth = (function() {
     }
 
     /**
-     * Creates a FindUserOauthArgs message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbuserOauth.FindUserOauthArgs
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbuserOauth.FindUserOauthArgs} FindUserOauthArgs
-     */
+         * Creates a FindUserOauthArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbuserOauth.FindUserOauthArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbuserOauth.FindUserOauthArgs} FindUserOauthArgs
+         */
     FindUserOauthArgs.fromObject = function fromObject(object) {
       if (object instanceof $root.pbuserOauth.FindUserOauthArgs) { return object }
       var message = new $root.pbuserOauth.FindUserOauthArgs()
@@ -10802,14 +10802,14 @@ $root.pbuserOauth = (function() {
     }
 
     /**
-     * Creates a plain object from a FindUserOauthArgs message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbuserOauth.FindUserOauthArgs
-     * @static
-     * @param {pbuserOauth.FindUserOauthArgs} message FindUserOauthArgs
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from a FindUserOauthArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbuserOauth.FindUserOauthArgs
+         * @static
+         * @param {pbuserOauth.FindUserOauthArgs} message FindUserOauthArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     FindUserOauthArgs.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -10823,24 +10823,24 @@ $root.pbuserOauth = (function() {
     }
 
     /**
-     * Converts this FindUserOauthArgs to JSON.
-     * @function toJSON
-     * @memberof pbuserOauth.FindUserOauthArgs
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this FindUserOauthArgs to JSON.
+         * @function toJSON
+         * @memberof pbuserOauth.FindUserOauthArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     FindUserOauthArgs.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for FindUserOauthArgs
-     * @function getTypeUrl
-     * @memberof pbuserOauth.FindUserOauthArgs
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for FindUserOauthArgs
+         * @function getTypeUrl
+         * @memberof pbuserOauth.FindUserOauthArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     FindUserOauthArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -10853,24 +10853,24 @@ $root.pbuserOauth = (function() {
 
   pbuserOauth.FindUserOauthReply = (function() {
     /**
-     * Properties of a FindUserOauthReply.
-     * @memberof pbuserOauth
-     * @interface IFindUserOauthReply
-     * @property {pbcommon.EnumCode|null} [code] FindUserOauthReply code
-     * @property {string|null} [msg] FindUserOauthReply msg
-     * @property {pbuserOauth.IUserOauthModel|null} [data] FindUserOauthReply data
-     * @property {Array.<pbuserOauth.IUserOauthModel>|null} [list] FindUserOauthReply list
-     * @property {number|Long|null} [total] FindUserOauthReply total
-     */
+         * Properties of a FindUserOauthReply.
+         * @memberof pbuserOauth
+         * @interface IFindUserOauthReply
+         * @property {pbcommon.EnumCode|null} [code] FindUserOauthReply code
+         * @property {string|null} [msg] FindUserOauthReply msg
+         * @property {pbuserOauth.IUserOauthModel|null} [data] FindUserOauthReply data
+         * @property {Array.<pbuserOauth.IUserOauthModel>|null} [list] FindUserOauthReply list
+         * @property {number|Long|null} [total] FindUserOauthReply total
+         */
 
     /**
-     * Constructs a new FindUserOauthReply.
-     * @memberof pbuserOauth
-     * @classdesc Represents a FindUserOauthReply.
-     * @implements IFindUserOauthReply
-     * @constructor
-     * @param {pbuserOauth.IFindUserOauthReply=} [properties] Properties to set
-     */
+         * Constructs a new FindUserOauthReply.
+         * @memberof pbuserOauth
+         * @classdesc Represents a FindUserOauthReply.
+         * @implements IFindUserOauthReply
+         * @constructor
+         * @param {pbuserOauth.IFindUserOauthReply=} [properties] Properties to set
+         */
     function FindUserOauthReply(properties) {
       this.list = []
       if (properties) {
@@ -10881,66 +10881,66 @@ $root.pbuserOauth = (function() {
     }
 
     /**
-     * FindUserOauthReply code.
-     * @member {pbcommon.EnumCode} code
-     * @memberof pbuserOauth.FindUserOauthReply
-     * @instance
-     */
+         * FindUserOauthReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbuserOauth.FindUserOauthReply
+         * @instance
+         */
     FindUserOauthReply.prototype.code = 0
 
     /**
-     * FindUserOauthReply msg.
-     * @member {string} msg
-     * @memberof pbuserOauth.FindUserOauthReply
-     * @instance
-     */
+         * FindUserOauthReply msg.
+         * @member {string} msg
+         * @memberof pbuserOauth.FindUserOauthReply
+         * @instance
+         */
     FindUserOauthReply.prototype.msg = ''
 
     /**
-     * FindUserOauthReply data.
-     * @member {pbuserOauth.IUserOauthModel|null|undefined} data
-     * @memberof pbuserOauth.FindUserOauthReply
-     * @instance
-     */
+         * FindUserOauthReply data.
+         * @member {pbuserOauth.IUserOauthModel|null|undefined} data
+         * @memberof pbuserOauth.FindUserOauthReply
+         * @instance
+         */
     FindUserOauthReply.prototype.data = null
 
     /**
-     * FindUserOauthReply list.
-     * @member {Array.<pbuserOauth.IUserOauthModel>} list
-     * @memberof pbuserOauth.FindUserOauthReply
-     * @instance
-     */
+         * FindUserOauthReply list.
+         * @member {Array.<pbuserOauth.IUserOauthModel>} list
+         * @memberof pbuserOauth.FindUserOauthReply
+         * @instance
+         */
     FindUserOauthReply.prototype.list = $util.emptyArray
 
     /**
-     * FindUserOauthReply total.
-     * @member {number|Long} total
-     * @memberof pbuserOauth.FindUserOauthReply
-     * @instance
-     */
+         * FindUserOauthReply total.
+         * @member {number|Long} total
+         * @memberof pbuserOauth.FindUserOauthReply
+         * @instance
+         */
     FindUserOauthReply.prototype.total = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * Creates a new FindUserOauthReply instance using the specified properties.
-     * @function create
-     * @memberof pbuserOauth.FindUserOauthReply
-     * @static
-     * @param {pbuserOauth.IFindUserOauthReply=} [properties] Properties to set
-     * @returns {pbuserOauth.FindUserOauthReply} FindUserOauthReply instance
-     */
+         * Creates a new FindUserOauthReply instance using the specified properties.
+         * @function create
+         * @memberof pbuserOauth.FindUserOauthReply
+         * @static
+         * @param {pbuserOauth.IFindUserOauthReply=} [properties] Properties to set
+         * @returns {pbuserOauth.FindUserOauthReply} FindUserOauthReply instance
+         */
     FindUserOauthReply.create = function create(properties) {
       return new FindUserOauthReply(properties)
     }
 
     /**
-     * Encodes the specified FindUserOauthReply message. Does not implicitly {@link pbuserOauth.FindUserOauthReply.verify|verify} messages.
-     * @function encode
-     * @memberof pbuserOauth.FindUserOauthReply
-     * @static
-     * @param {pbuserOauth.IFindUserOauthReply} message FindUserOauthReply message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindUserOauthReply message. Does not implicitly {@link pbuserOauth.FindUserOauthReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbuserOauth.FindUserOauthReply
+         * @static
+         * @param {pbuserOauth.IFindUserOauthReply} message FindUserOauthReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindUserOauthReply.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.code != null && Object.hasOwnProperty.call(message, 'code')) { writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code) }
@@ -10954,29 +10954,29 @@ $root.pbuserOauth = (function() {
     }
 
     /**
-     * Encodes the specified FindUserOauthReply message, length delimited. Does not implicitly {@link pbuserOauth.FindUserOauthReply.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbuserOauth.FindUserOauthReply
-     * @static
-     * @param {pbuserOauth.IFindUserOauthReply} message FindUserOauthReply message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindUserOauthReply message, length delimited. Does not implicitly {@link pbuserOauth.FindUserOauthReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbuserOauth.FindUserOauthReply
+         * @static
+         * @param {pbuserOauth.IFindUserOauthReply} message FindUserOauthReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindUserOauthReply.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes a FindUserOauthReply message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbuserOauth.FindUserOauthReply
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbuserOauth.FindUserOauthReply} FindUserOauthReply
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindUserOauthReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbuserOauth.FindUserOauthReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbuserOauth.FindUserOauthReply} FindUserOauthReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindUserOauthReply.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbuserOauth.FindUserOauthReply()
@@ -11013,28 +11013,28 @@ $root.pbuserOauth = (function() {
     }
 
     /**
-     * Decodes a FindUserOauthReply message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbuserOauth.FindUserOauthReply
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbuserOauth.FindUserOauthReply} FindUserOauthReply
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindUserOauthReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbuserOauth.FindUserOauthReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbuserOauth.FindUserOauthReply} FindUserOauthReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindUserOauthReply.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies a FindUserOauthReply message.
-     * @function verify
-     * @memberof pbuserOauth.FindUserOauthReply
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies a FindUserOauthReply message.
+         * @function verify
+         * @memberof pbuserOauth.FindUserOauthReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     FindUserOauthReply.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.code != null && message.hasOwnProperty('code')) {
@@ -11090,13 +11090,13 @@ $root.pbuserOauth = (function() {
     }
 
     /**
-     * Creates a FindUserOauthReply message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbuserOauth.FindUserOauthReply
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbuserOauth.FindUserOauthReply} FindUserOauthReply
-     */
+         * Creates a FindUserOauthReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbuserOauth.FindUserOauthReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbuserOauth.FindUserOauthReply} FindUserOauthReply
+         */
     FindUserOauthReply.fromObject = function fromObject(object) {
       if (object instanceof $root.pbuserOauth.FindUserOauthReply) { return object }
       var message = new $root.pbuserOauth.FindUserOauthReply()
@@ -11228,14 +11228,14 @@ $root.pbuserOauth = (function() {
     }
 
     /**
-     * Creates a plain object from a FindUserOauthReply message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbuserOauth.FindUserOauthReply
-     * @static
-     * @param {pbuserOauth.FindUserOauthReply} message FindUserOauthReply
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from a FindUserOauthReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbuserOauth.FindUserOauthReply
+         * @static
+         * @param {pbuserOauth.FindUserOauthReply} message FindUserOauthReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     FindUserOauthReply.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -11263,24 +11263,24 @@ $root.pbuserOauth = (function() {
     }
 
     /**
-     * Converts this FindUserOauthReply to JSON.
-     * @function toJSON
-     * @memberof pbuserOauth.FindUserOauthReply
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this FindUserOauthReply to JSON.
+         * @function toJSON
+         * @memberof pbuserOauth.FindUserOauthReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     FindUserOauthReply.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for FindUserOauthReply
-     * @function getTypeUrl
-     * @memberof pbuserOauth.FindUserOauthReply
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for FindUserOauthReply
+         * @function getTypeUrl
+         * @memberof pbuserOauth.FindUserOauthReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     FindUserOauthReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -11293,15 +11293,15 @@ $root.pbuserOauth = (function() {
 
   pbuserOauth.UserOauth = (function() {
     /**
-     * Constructs a new UserOauth service.
-     * @memberof pbuserOauth
-     * @classdesc Represents a UserOauth
-     * @extends $protobuf.rpc.Service
-     * @constructor
-     * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
-     * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
-     * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
-     */
+         * Constructs a new UserOauth service.
+         * @memberof pbuserOauth
+         * @classdesc Represents a UserOauth
+         * @extends $protobuf.rpc.Service
+         * @constructor
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         */
     function UserOauth(rpcImpl, requestDelimited, responseDelimited) {
       $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited)
     }
@@ -11309,183 +11309,183 @@ $root.pbuserOauth = (function() {
     (UserOauth.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = UserOauth
 
     /**
-     * Creates new UserOauth service using the specified rpc implementation.
-     * @function create
-     * @memberof pbuserOauth.UserOauth
-     * @static
-     * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
-     * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
-     * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
-     * @returns {UserOauth} RPC service. Useful where requests and/or responses are streamed.
-     */
+         * Creates new UserOauth service using the specified rpc implementation.
+         * @function create
+         * @memberof pbuserOauth.UserOauth
+         * @static
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         * @returns {UserOauth} RPC service. Useful where requests and/or responses are streamed.
+         */
     UserOauth.create = function create(rpcImpl, requestDelimited, responseDelimited) {
       return new this(rpcImpl, requestDelimited, responseDelimited)
     }
 
     /**
-     * Callback as used by {@link pbuserOauth.UserOauth#createUserOauth}.
-     * @memberof pbuserOauth.UserOauth
-     * @typedef CreateUserOauthCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbcommon.CommonResult} [response] CommonResult
-     */
+         * Callback as used by {@link pbuserOauth.UserOauth#createUserOauth}.
+         * @memberof pbuserOauth.UserOauth
+         * @typedef CreateUserOauthCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
 
     /**
-     * Calls CreateUserOauth.
-     * @function createUserOauth
-     * @memberof pbuserOauth.UserOauth
-     * @instance
-     * @param {pbuserOauth.IUserOauthModel} request UserOauthModel message or plain object
-     * @param {pbuserOauth.UserOauth.CreateUserOauthCallback} callback Node-style callback called with the error, if any, and CommonResult
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls CreateUserOauth.
+         * @function createUserOauth
+         * @memberof pbuserOauth.UserOauth
+         * @instance
+         * @param {pbuserOauth.IUserOauthModel} request UserOauthModel message or plain object
+         * @param {pbuserOauth.UserOauth.CreateUserOauthCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(UserOauth.prototype.createUserOauth = function createUserOauth(request, callback) {
       return this.rpcCall(createUserOauth, $root.pbuserOauth.UserOauthModel, $root.pbcommon.CommonResult, request, callback)
     }, 'name', { value: 'CreateUserOauth' })
 
     /**
-     * Calls CreateUserOauth.
-     * @function createUserOauth
-     * @memberof pbuserOauth.UserOauth
-     * @instance
-     * @param {pbuserOauth.IUserOauthModel} request UserOauthModel message or plain object
-     * @returns {Promise<pbcommon.CommonResult>} Promise
-     * @variation 2
-     */
+         * Calls CreateUserOauth.
+         * @function createUserOauth
+         * @memberof pbuserOauth.UserOauth
+         * @instance
+         * @param {pbuserOauth.IUserOauthModel} request UserOauthModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbuserOauth.UserOauth#updateUserOauth}.
-     * @memberof pbuserOauth.UserOauth
-     * @typedef UpdateUserOauthCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbcommon.CommonResult} [response] CommonResult
-     */
+         * Callback as used by {@link pbuserOauth.UserOauth#updateUserOauth}.
+         * @memberof pbuserOauth.UserOauth
+         * @typedef UpdateUserOauthCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
 
     /**
-     * Calls UpdateUserOauth.
-     * @function updateUserOauth
-     * @memberof pbuserOauth.UserOauth
-     * @instance
-     * @param {pbuserOauth.IUserOauthModel} request UserOauthModel message or plain object
-     * @param {pbuserOauth.UserOauth.UpdateUserOauthCallback} callback Node-style callback called with the error, if any, and CommonResult
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls UpdateUserOauth.
+         * @function updateUserOauth
+         * @memberof pbuserOauth.UserOauth
+         * @instance
+         * @param {pbuserOauth.IUserOauthModel} request UserOauthModel message or plain object
+         * @param {pbuserOauth.UserOauth.UpdateUserOauthCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(UserOauth.prototype.updateUserOauth = function updateUserOauth(request, callback) {
       return this.rpcCall(updateUserOauth, $root.pbuserOauth.UserOauthModel, $root.pbcommon.CommonResult, request, callback)
     }, 'name', { value: 'UpdateUserOauth' })
 
     /**
-     * Calls UpdateUserOauth.
-     * @function updateUserOauth
-     * @memberof pbuserOauth.UserOauth
-     * @instance
-     * @param {pbuserOauth.IUserOauthModel} request UserOauthModel message or plain object
-     * @returns {Promise<pbcommon.CommonResult>} Promise
-     * @variation 2
-     */
+         * Calls UpdateUserOauth.
+         * @function updateUserOauth
+         * @memberof pbuserOauth.UserOauth
+         * @instance
+         * @param {pbuserOauth.IUserOauthModel} request UserOauthModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbuserOauth.UserOauth#deleteUserOauth}.
-     * @memberof pbuserOauth.UserOauth
-     * @typedef DeleteUserOauthCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbcommon.CommonResult} [response] CommonResult
-     */
+         * Callback as used by {@link pbuserOauth.UserOauth#deleteUserOauth}.
+         * @memberof pbuserOauth.UserOauth
+         * @typedef DeleteUserOauthCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
 
     /**
-     * Calls DeleteUserOauth.
-     * @function deleteUserOauth
-     * @memberof pbuserOauth.UserOauth
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @param {pbuserOauth.UserOauth.DeleteUserOauthCallback} callback Node-style callback called with the error, if any, and CommonResult
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls DeleteUserOauth.
+         * @function deleteUserOauth
+         * @memberof pbuserOauth.UserOauth
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbuserOauth.UserOauth.DeleteUserOauthCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(UserOauth.prototype.deleteUserOauth = function deleteUserOauth(request, callback) {
       return this.rpcCall(deleteUserOauth, $root.pbcommon.IdArgs, $root.pbcommon.CommonResult, request, callback)
     }, 'name', { value: 'DeleteUserOauth' })
 
     /**
-     * Calls DeleteUserOauth.
-     * @function deleteUserOauth
-     * @memberof pbuserOauth.UserOauth
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @returns {Promise<pbcommon.CommonResult>} Promise
-     * @variation 2
-     */
+         * Calls DeleteUserOauth.
+         * @function deleteUserOauth
+         * @memberof pbuserOauth.UserOauth
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbuserOauth.UserOauth#findUserOauthById}.
-     * @memberof pbuserOauth.UserOauth
-     * @typedef FindUserOauthByIdCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbuserOauth.FindUserOauthReply} [response] FindUserOauthReply
-     */
+         * Callback as used by {@link pbuserOauth.UserOauth#findUserOauthById}.
+         * @memberof pbuserOauth.UserOauth
+         * @typedef FindUserOauthByIdCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbuserOauth.FindUserOauthReply} [response] FindUserOauthReply
+         */
 
     /**
-     * Calls FindUserOauthById.
-     * @function findUserOauthById
-     * @memberof pbuserOauth.UserOauth
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @param {pbuserOauth.UserOauth.FindUserOauthByIdCallback} callback Node-style callback called with the error, if any, and FindUserOauthReply
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls FindUserOauthById.
+         * @function findUserOauthById
+         * @memberof pbuserOauth.UserOauth
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbuserOauth.UserOauth.FindUserOauthByIdCallback} callback Node-style callback called with the error, if any, and FindUserOauthReply
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(UserOauth.prototype.findUserOauthById = function findUserOauthById(request, callback) {
       return this.rpcCall(findUserOauthById, $root.pbcommon.IdArgs, $root.pbuserOauth.FindUserOauthReply, request, callback)
     }, 'name', { value: 'FindUserOauthById' })
 
     /**
-     * Calls FindUserOauthById.
-     * @function findUserOauthById
-     * @memberof pbuserOauth.UserOauth
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @returns {Promise<pbuserOauth.FindUserOauthReply>} Promise
-     * @variation 2
-     */
+         * Calls FindUserOauthById.
+         * @function findUserOauthById
+         * @memberof pbuserOauth.UserOauth
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbuserOauth.FindUserOauthReply>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbuserOauth.UserOauth#findUserOauthList}.
-     * @memberof pbuserOauth.UserOauth
-     * @typedef FindUserOauthListCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbuserOauth.FindUserOauthReply} [response] FindUserOauthReply
-     */
+         * Callback as used by {@link pbuserOauth.UserOauth#findUserOauthList}.
+         * @memberof pbuserOauth.UserOauth
+         * @typedef FindUserOauthListCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbuserOauth.FindUserOauthReply} [response] FindUserOauthReply
+         */
 
     /**
-     * Calls FindUserOauthList.
-     * @function findUserOauthList
-     * @memberof pbuserOauth.UserOauth
-     * @instance
-     * @param {pbuserOauth.IFindUserOauthArgs} request FindUserOauthArgs message or plain object
-     * @param {pbuserOauth.UserOauth.FindUserOauthListCallback} callback Node-style callback called with the error, if any, and FindUserOauthReply
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls FindUserOauthList.
+         * @function findUserOauthList
+         * @memberof pbuserOauth.UserOauth
+         * @instance
+         * @param {pbuserOauth.IFindUserOauthArgs} request FindUserOauthArgs message or plain object
+         * @param {pbuserOauth.UserOauth.FindUserOauthListCallback} callback Node-style callback called with the error, if any, and FindUserOauthReply
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(UserOauth.prototype.findUserOauthList = function findUserOauthList(request, callback) {
       return this.rpcCall(findUserOauthList, $root.pbuserOauth.FindUserOauthArgs, $root.pbuserOauth.FindUserOauthReply, request, callback)
     }, 'name', { value: 'FindUserOauthList' })
 
     /**
-     * Calls FindUserOauthList.
-     * @function findUserOauthList
-     * @memberof pbuserOauth.UserOauth
-     * @instance
-     * @param {pbuserOauth.IFindUserOauthArgs} request FindUserOauthArgs message or plain object
-     * @returns {Promise<pbuserOauth.FindUserOauthReply>} Promise
-     * @variation 2
-     */
+         * Calls FindUserOauthList.
+         * @function findUserOauthList
+         * @memberof pbuserOauth.UserOauth
+         * @instance
+         * @param {pbuserOauth.IFindUserOauthArgs} request FindUserOauthArgs message or plain object
+         * @returns {Promise<pbuserOauth.FindUserOauthReply>} Promise
+         * @variation 2
+         */
 
     return UserOauth
   })()
@@ -11495,47 +11495,47 @@ $root.pbuserOauth = (function() {
 
 $root.pbapp = (function() {
   /**
-   * Namespace pbapp.
-   * @exports pbapp
-   * @namespace
-   */
+     * Namespace pbapp.
+     * @exports pbapp
+     * @namespace
+     */
   var pbapp = {}
 
   pbapp.AppModel = (function() {
     /**
-     * Properties of an AppModel.
-     * @memberof pbapp
-     * @interface IAppModel
-     * @property {number|Long|null} [id] AppModel id
-     * @property {string|null} [createdAt] AppModel createdAt
-     * @property {string|null} [updatedAt] AppModel updatedAt
-     * @property {string|null} [name] AppModel name
-     * @property {string|null} [miniProgramAppId] AppModel miniProgramAppId
-     * @property {string|null} [miniProgramAppSecret] AppModel miniProgramAppSecret
-     * @property {string|null} [miniProgramToken] AppModel miniProgramToken
-     * @property {string|null} [miniProgramencodingAESKey] AppModel miniProgramencodingAESKey
-     * @property {string|null} [officalAppId] AppModel officalAppId
-     * @property {string|null} [officalAppSecret] AppModel officalAppSecret
-     * @property {string|null} [ifficalToken] AppModel ifficalToken
-     * @property {string|null} [officalEncodingAESKey] AppModel officalEncodingAESKey
-     * @property {string|null} [openAppId] AppModel openAppId
-     * @property {string|null} [openAppSecret] AppModel openAppSecret
-     * @property {string|null} [openToken] AppModel openToken
-     * @property {string|null} [openEncodingAESKey] AppModel openEncodingAESKey
-     * @property {string|null} [icon] AppModel icon
-     * @property {string|null} [logo] AppModel logo
-     * @property {string|null} [description] AppModel description
-     * @property {string|null} [version] AppModel version
-     */
+         * Properties of an AppModel.
+         * @memberof pbapp
+         * @interface IAppModel
+         * @property {number|Long|null} [id] AppModel id
+         * @property {string|null} [createdAt] AppModel createdAt
+         * @property {string|null} [updatedAt] AppModel updatedAt
+         * @property {string|null} [name] AppModel name
+         * @property {string|null} [miniProgramAppId] AppModel miniProgramAppId
+         * @property {string|null} [miniProgramAppSecret] AppModel miniProgramAppSecret
+         * @property {string|null} [miniProgramToken] AppModel miniProgramToken
+         * @property {string|null} [miniProgramencodingAESKey] AppModel miniProgramencodingAESKey
+         * @property {string|null} [officalAppId] AppModel officalAppId
+         * @property {string|null} [officalAppSecret] AppModel officalAppSecret
+         * @property {string|null} [ifficalToken] AppModel ifficalToken
+         * @property {string|null} [officalEncodingAESKey] AppModel officalEncodingAESKey
+         * @property {string|null} [openAppId] AppModel openAppId
+         * @property {string|null} [openAppSecret] AppModel openAppSecret
+         * @property {string|null} [openToken] AppModel openToken
+         * @property {string|null} [openEncodingAESKey] AppModel openEncodingAESKey
+         * @property {string|null} [icon] AppModel icon
+         * @property {string|null} [logo] AppModel logo
+         * @property {string|null} [description] AppModel description
+         * @property {string|null} [version] AppModel version
+         */
 
     /**
-     * Constructs a new AppModel.
-     * @memberof pbapp
-     * @classdesc Represents an AppModel.
-     * @implements IAppModel
-     * @constructor
-     * @param {pbapp.IAppModel=} [properties] Properties to set
-     */
+         * Constructs a new AppModel.
+         * @memberof pbapp
+         * @classdesc Represents an AppModel.
+         * @implements IAppModel
+         * @constructor
+         * @param {pbapp.IAppModel=} [properties] Properties to set
+         */
     function AppModel(properties) {
       if (properties) {
         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
@@ -11545,186 +11545,186 @@ $root.pbapp = (function() {
     }
 
     /**
-     * AppModel id.
-     * @member {number|Long} id
-     * @memberof pbapp.AppModel
-     * @instance
-     */
+         * AppModel id.
+         * @member {number|Long} id
+         * @memberof pbapp.AppModel
+         * @instance
+         */
     AppModel.prototype.id = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * AppModel createdAt.
-     * @member {string} createdAt
-     * @memberof pbapp.AppModel
-     * @instance
-     */
+         * AppModel createdAt.
+         * @member {string} createdAt
+         * @memberof pbapp.AppModel
+         * @instance
+         */
     AppModel.prototype.createdAt = ''
 
     /**
-     * AppModel updatedAt.
-     * @member {string} updatedAt
-     * @memberof pbapp.AppModel
-     * @instance
-     */
+         * AppModel updatedAt.
+         * @member {string} updatedAt
+         * @memberof pbapp.AppModel
+         * @instance
+         */
     AppModel.prototype.updatedAt = ''
 
     /**
-     * AppModel name.
-     * @member {string} name
-     * @memberof pbapp.AppModel
-     * @instance
-     */
+         * AppModel name.
+         * @member {string} name
+         * @memberof pbapp.AppModel
+         * @instance
+         */
     AppModel.prototype.name = ''
 
     /**
-     * AppModel miniProgramAppId.
-     * @member {string} miniProgramAppId
-     * @memberof pbapp.AppModel
-     * @instance
-     */
+         * AppModel miniProgramAppId.
+         * @member {string} miniProgramAppId
+         * @memberof pbapp.AppModel
+         * @instance
+         */
     AppModel.prototype.miniProgramAppId = ''
 
     /**
-     * AppModel miniProgramAppSecret.
-     * @member {string} miniProgramAppSecret
-     * @memberof pbapp.AppModel
-     * @instance
-     */
+         * AppModel miniProgramAppSecret.
+         * @member {string} miniProgramAppSecret
+         * @memberof pbapp.AppModel
+         * @instance
+         */
     AppModel.prototype.miniProgramAppSecret = ''
 
     /**
-     * AppModel miniProgramToken.
-     * @member {string} miniProgramToken
-     * @memberof pbapp.AppModel
-     * @instance
-     */
+         * AppModel miniProgramToken.
+         * @member {string} miniProgramToken
+         * @memberof pbapp.AppModel
+         * @instance
+         */
     AppModel.prototype.miniProgramToken = ''
 
     /**
-     * AppModel miniProgramencodingAESKey.
-     * @member {string} miniProgramencodingAESKey
-     * @memberof pbapp.AppModel
-     * @instance
-     */
+         * AppModel miniProgramencodingAESKey.
+         * @member {string} miniProgramencodingAESKey
+         * @memberof pbapp.AppModel
+         * @instance
+         */
     AppModel.prototype.miniProgramencodingAESKey = ''
 
     /**
-     * AppModel officalAppId.
-     * @member {string} officalAppId
-     * @memberof pbapp.AppModel
-     * @instance
-     */
+         * AppModel officalAppId.
+         * @member {string} officalAppId
+         * @memberof pbapp.AppModel
+         * @instance
+         */
     AppModel.prototype.officalAppId = ''
 
     /**
-     * AppModel officalAppSecret.
-     * @member {string} officalAppSecret
-     * @memberof pbapp.AppModel
-     * @instance
-     */
+         * AppModel officalAppSecret.
+         * @member {string} officalAppSecret
+         * @memberof pbapp.AppModel
+         * @instance
+         */
     AppModel.prototype.officalAppSecret = ''
 
     /**
-     * AppModel ifficalToken.
-     * @member {string} ifficalToken
-     * @memberof pbapp.AppModel
-     * @instance
-     */
+         * AppModel ifficalToken.
+         * @member {string} ifficalToken
+         * @memberof pbapp.AppModel
+         * @instance
+         */
     AppModel.prototype.ifficalToken = ''
 
     /**
-     * AppModel officalEncodingAESKey.
-     * @member {string} officalEncodingAESKey
-     * @memberof pbapp.AppModel
-     * @instance
-     */
+         * AppModel officalEncodingAESKey.
+         * @member {string} officalEncodingAESKey
+         * @memberof pbapp.AppModel
+         * @instance
+         */
     AppModel.prototype.officalEncodingAESKey = ''
 
     /**
-     * AppModel openAppId.
-     * @member {string} openAppId
-     * @memberof pbapp.AppModel
-     * @instance
-     */
+         * AppModel openAppId.
+         * @member {string} openAppId
+         * @memberof pbapp.AppModel
+         * @instance
+         */
     AppModel.prototype.openAppId = ''
 
     /**
-     * AppModel openAppSecret.
-     * @member {string} openAppSecret
-     * @memberof pbapp.AppModel
-     * @instance
-     */
+         * AppModel openAppSecret.
+         * @member {string} openAppSecret
+         * @memberof pbapp.AppModel
+         * @instance
+         */
     AppModel.prototype.openAppSecret = ''
 
     /**
-     * AppModel openToken.
-     * @member {string} openToken
-     * @memberof pbapp.AppModel
-     * @instance
-     */
+         * AppModel openToken.
+         * @member {string} openToken
+         * @memberof pbapp.AppModel
+         * @instance
+         */
     AppModel.prototype.openToken = ''
 
     /**
-     * AppModel openEncodingAESKey.
-     * @member {string} openEncodingAESKey
-     * @memberof pbapp.AppModel
-     * @instance
-     */
+         * AppModel openEncodingAESKey.
+         * @member {string} openEncodingAESKey
+         * @memberof pbapp.AppModel
+         * @instance
+         */
     AppModel.prototype.openEncodingAESKey = ''
 
     /**
-     * AppModel icon.
-     * @member {string} icon
-     * @memberof pbapp.AppModel
-     * @instance
-     */
+         * AppModel icon.
+         * @member {string} icon
+         * @memberof pbapp.AppModel
+         * @instance
+         */
     AppModel.prototype.icon = ''
 
     /**
-     * AppModel logo.
-     * @member {string} logo
-     * @memberof pbapp.AppModel
-     * @instance
-     */
+         * AppModel logo.
+         * @member {string} logo
+         * @memberof pbapp.AppModel
+         * @instance
+         */
     AppModel.prototype.logo = ''
 
     /**
-     * AppModel description.
-     * @member {string} description
-     * @memberof pbapp.AppModel
-     * @instance
-     */
+         * AppModel description.
+         * @member {string} description
+         * @memberof pbapp.AppModel
+         * @instance
+         */
     AppModel.prototype.description = ''
 
     /**
-     * AppModel version.
-     * @member {string} version
-     * @memberof pbapp.AppModel
-     * @instance
-     */
+         * AppModel version.
+         * @member {string} version
+         * @memberof pbapp.AppModel
+         * @instance
+         */
     AppModel.prototype.version = ''
 
     /**
-     * Creates a new AppModel instance using the specified properties.
-     * @function create
-     * @memberof pbapp.AppModel
-     * @static
-     * @param {pbapp.IAppModel=} [properties] Properties to set
-     * @returns {pbapp.AppModel} AppModel instance
-     */
+         * Creates a new AppModel instance using the specified properties.
+         * @function create
+         * @memberof pbapp.AppModel
+         * @static
+         * @param {pbapp.IAppModel=} [properties] Properties to set
+         * @returns {pbapp.AppModel} AppModel instance
+         */
     AppModel.create = function create(properties) {
       return new AppModel(properties)
     }
 
     /**
-     * Encodes the specified AppModel message. Does not implicitly {@link pbapp.AppModel.verify|verify} messages.
-     * @function encode
-     * @memberof pbapp.AppModel
-     * @static
-     * @param {pbapp.IAppModel} message AppModel message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified AppModel message. Does not implicitly {@link pbapp.AppModel.verify|verify} messages.
+         * @function encode
+         * @memberof pbapp.AppModel
+         * @static
+         * @param {pbapp.IAppModel} message AppModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     AppModel.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.id != null && Object.hasOwnProperty.call(message, 'id')) { writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id) }
@@ -11751,29 +11751,29 @@ $root.pbapp = (function() {
     }
 
     /**
-     * Encodes the specified AppModel message, length delimited. Does not implicitly {@link pbapp.AppModel.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbapp.AppModel
-     * @static
-     * @param {pbapp.IAppModel} message AppModel message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified AppModel message, length delimited. Does not implicitly {@link pbapp.AppModel.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbapp.AppModel
+         * @static
+         * @param {pbapp.IAppModel} message AppModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     AppModel.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes an AppModel message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbapp.AppModel
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbapp.AppModel} AppModel
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes an AppModel message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbapp.AppModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbapp.AppModel} AppModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     AppModel.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbapp.AppModel()
@@ -11869,28 +11869,28 @@ $root.pbapp = (function() {
     }
 
     /**
-     * Decodes an AppModel message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbapp.AppModel
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbapp.AppModel} AppModel
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes an AppModel message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbapp.AppModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbapp.AppModel} AppModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     AppModel.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies an AppModel message.
-     * @function verify
-     * @memberof pbapp.AppModel
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies an AppModel message.
+         * @function verify
+         * @memberof pbapp.AppModel
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     AppModel.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.id != null && message.hasOwnProperty('id')) {
@@ -11957,13 +11957,13 @@ $root.pbapp = (function() {
     }
 
     /**
-     * Creates an AppModel message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbapp.AppModel
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbapp.AppModel} AppModel
-     */
+         * Creates an AppModel message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbapp.AppModel
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbapp.AppModel} AppModel
+         */
     AppModel.fromObject = function fromObject(object) {
       if (object instanceof $root.pbapp.AppModel) { return object }
       var message = new $root.pbapp.AppModel()
@@ -11993,14 +11993,14 @@ $root.pbapp = (function() {
     }
 
     /**
-     * Creates a plain object from an AppModel message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbapp.AppModel
-     * @static
-     * @param {pbapp.AppModel} message AppModel
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from an AppModel message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbapp.AppModel
+         * @static
+         * @param {pbapp.AppModel} message AppModel
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     AppModel.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -12055,24 +12055,24 @@ $root.pbapp = (function() {
     }
 
     /**
-     * Converts this AppModel to JSON.
-     * @function toJSON
-     * @memberof pbapp.AppModel
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this AppModel to JSON.
+         * @function toJSON
+         * @memberof pbapp.AppModel
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     AppModel.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for AppModel
-     * @function getTypeUrl
-     * @memberof pbapp.AppModel
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for AppModel
+         * @function getTypeUrl
+         * @memberof pbapp.AppModel
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     AppModel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -12085,21 +12085,21 @@ $root.pbapp = (function() {
 
   pbapp.FindAppArgs = (function() {
     /**
-     * Properties of a FindAppArgs.
-     * @memberof pbapp
-     * @interface IFindAppArgs
-     * @property {pbcommon.IPageInfo|null} [pageInfo] FindAppArgs pageInfo
-     * @property {pbapp.IAppModel|null} [query] FindAppArgs query
-     */
+         * Properties of a FindAppArgs.
+         * @memberof pbapp
+         * @interface IFindAppArgs
+         * @property {pbcommon.IPageInfo|null} [pageInfo] FindAppArgs pageInfo
+         * @property {pbapp.IAppModel|null} [query] FindAppArgs query
+         */
 
     /**
-     * Constructs a new FindAppArgs.
-     * @memberof pbapp
-     * @classdesc Represents a FindAppArgs.
-     * @implements IFindAppArgs
-     * @constructor
-     * @param {pbapp.IFindAppArgs=} [properties] Properties to set
-     */
+         * Constructs a new FindAppArgs.
+         * @memberof pbapp
+         * @classdesc Represents a FindAppArgs.
+         * @implements IFindAppArgs
+         * @constructor
+         * @param {pbapp.IFindAppArgs=} [properties] Properties to set
+         */
     function FindAppArgs(properties) {
       if (properties) {
         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
@@ -12109,42 +12109,42 @@ $root.pbapp = (function() {
     }
 
     /**
-     * FindAppArgs pageInfo.
-     * @member {pbcommon.IPageInfo|null|undefined} pageInfo
-     * @memberof pbapp.FindAppArgs
-     * @instance
-     */
+         * FindAppArgs pageInfo.
+         * @member {pbcommon.IPageInfo|null|undefined} pageInfo
+         * @memberof pbapp.FindAppArgs
+         * @instance
+         */
     FindAppArgs.prototype.pageInfo = null
 
     /**
-     * FindAppArgs query.
-     * @member {pbapp.IAppModel|null|undefined} query
-     * @memberof pbapp.FindAppArgs
-     * @instance
-     */
+         * FindAppArgs query.
+         * @member {pbapp.IAppModel|null|undefined} query
+         * @memberof pbapp.FindAppArgs
+         * @instance
+         */
     FindAppArgs.prototype.query = null
 
     /**
-     * Creates a new FindAppArgs instance using the specified properties.
-     * @function create
-     * @memberof pbapp.FindAppArgs
-     * @static
-     * @param {pbapp.IFindAppArgs=} [properties] Properties to set
-     * @returns {pbapp.FindAppArgs} FindAppArgs instance
-     */
+         * Creates a new FindAppArgs instance using the specified properties.
+         * @function create
+         * @memberof pbapp.FindAppArgs
+         * @static
+         * @param {pbapp.IFindAppArgs=} [properties] Properties to set
+         * @returns {pbapp.FindAppArgs} FindAppArgs instance
+         */
     FindAppArgs.create = function create(properties) {
       return new FindAppArgs(properties)
     }
 
     /**
-     * Encodes the specified FindAppArgs message. Does not implicitly {@link pbapp.FindAppArgs.verify|verify} messages.
-     * @function encode
-     * @memberof pbapp.FindAppArgs
-     * @static
-     * @param {pbapp.IFindAppArgs} message FindAppArgs message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindAppArgs message. Does not implicitly {@link pbapp.FindAppArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbapp.FindAppArgs
+         * @static
+         * @param {pbapp.IFindAppArgs} message FindAppArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindAppArgs.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.pageInfo != null && Object.hasOwnProperty.call(message, 'pageInfo')) { $root.pbcommon.PageInfo.encode(message.pageInfo, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim() }
@@ -12153,29 +12153,29 @@ $root.pbapp = (function() {
     }
 
     /**
-     * Encodes the specified FindAppArgs message, length delimited. Does not implicitly {@link pbapp.FindAppArgs.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbapp.FindAppArgs
-     * @static
-     * @param {pbapp.IFindAppArgs} message FindAppArgs message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindAppArgs message, length delimited. Does not implicitly {@link pbapp.FindAppArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbapp.FindAppArgs
+         * @static
+         * @param {pbapp.IFindAppArgs} message FindAppArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindAppArgs.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes a FindAppArgs message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbapp.FindAppArgs
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbapp.FindAppArgs} FindAppArgs
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindAppArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbapp.FindAppArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbapp.FindAppArgs} FindAppArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindAppArgs.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbapp.FindAppArgs()
@@ -12199,28 +12199,28 @@ $root.pbapp = (function() {
     }
 
     /**
-     * Decodes a FindAppArgs message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbapp.FindAppArgs
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbapp.FindAppArgs} FindAppArgs
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindAppArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbapp.FindAppArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbapp.FindAppArgs} FindAppArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindAppArgs.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies a FindAppArgs message.
-     * @function verify
-     * @memberof pbapp.FindAppArgs
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies a FindAppArgs message.
+         * @function verify
+         * @memberof pbapp.FindAppArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     FindAppArgs.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.pageInfo != null && message.hasOwnProperty('pageInfo')) {
@@ -12235,13 +12235,13 @@ $root.pbapp = (function() {
     }
 
     /**
-     * Creates a FindAppArgs message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbapp.FindAppArgs
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbapp.FindAppArgs} FindAppArgs
-     */
+         * Creates a FindAppArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbapp.FindAppArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbapp.FindAppArgs} FindAppArgs
+         */
     FindAppArgs.fromObject = function fromObject(object) {
       if (object instanceof $root.pbapp.FindAppArgs) { return object }
       var message = new $root.pbapp.FindAppArgs()
@@ -12257,14 +12257,14 @@ $root.pbapp = (function() {
     }
 
     /**
-     * Creates a plain object from a FindAppArgs message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbapp.FindAppArgs
-     * @static
-     * @param {pbapp.FindAppArgs} message FindAppArgs
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from a FindAppArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbapp.FindAppArgs
+         * @static
+         * @param {pbapp.FindAppArgs} message FindAppArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     FindAppArgs.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -12278,24 +12278,24 @@ $root.pbapp = (function() {
     }
 
     /**
-     * Converts this FindAppArgs to JSON.
-     * @function toJSON
-     * @memberof pbapp.FindAppArgs
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this FindAppArgs to JSON.
+         * @function toJSON
+         * @memberof pbapp.FindAppArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     FindAppArgs.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for FindAppArgs
-     * @function getTypeUrl
-     * @memberof pbapp.FindAppArgs
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for FindAppArgs
+         * @function getTypeUrl
+         * @memberof pbapp.FindAppArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     FindAppArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -12308,24 +12308,24 @@ $root.pbapp = (function() {
 
   pbapp.FindAppReply = (function() {
     /**
-     * Properties of a FindAppReply.
-     * @memberof pbapp
-     * @interface IFindAppReply
-     * @property {pbcommon.EnumCode|null} [code] FindAppReply code
-     * @property {string|null} [msg] FindAppReply msg
-     * @property {pbapp.IAppModel|null} [data] FindAppReply data
-     * @property {Array.<pbapp.IAppModel>|null} [list] FindAppReply list
-     * @property {number|Long|null} [total] FindAppReply total
-     */
+         * Properties of a FindAppReply.
+         * @memberof pbapp
+         * @interface IFindAppReply
+         * @property {pbcommon.EnumCode|null} [code] FindAppReply code
+         * @property {string|null} [msg] FindAppReply msg
+         * @property {pbapp.IAppModel|null} [data] FindAppReply data
+         * @property {Array.<pbapp.IAppModel>|null} [list] FindAppReply list
+         * @property {number|Long|null} [total] FindAppReply total
+         */
 
     /**
-     * Constructs a new FindAppReply.
-     * @memberof pbapp
-     * @classdesc Represents a FindAppReply.
-     * @implements IFindAppReply
-     * @constructor
-     * @param {pbapp.IFindAppReply=} [properties] Properties to set
-     */
+         * Constructs a new FindAppReply.
+         * @memberof pbapp
+         * @classdesc Represents a FindAppReply.
+         * @implements IFindAppReply
+         * @constructor
+         * @param {pbapp.IFindAppReply=} [properties] Properties to set
+         */
     function FindAppReply(properties) {
       this.list = []
       if (properties) {
@@ -12336,66 +12336,66 @@ $root.pbapp = (function() {
     }
 
     /**
-     * FindAppReply code.
-     * @member {pbcommon.EnumCode} code
-     * @memberof pbapp.FindAppReply
-     * @instance
-     */
+         * FindAppReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbapp.FindAppReply
+         * @instance
+         */
     FindAppReply.prototype.code = 0
 
     /**
-     * FindAppReply msg.
-     * @member {string} msg
-     * @memberof pbapp.FindAppReply
-     * @instance
-     */
+         * FindAppReply msg.
+         * @member {string} msg
+         * @memberof pbapp.FindAppReply
+         * @instance
+         */
     FindAppReply.prototype.msg = ''
 
     /**
-     * FindAppReply data.
-     * @member {pbapp.IAppModel|null|undefined} data
-     * @memberof pbapp.FindAppReply
-     * @instance
-     */
+         * FindAppReply data.
+         * @member {pbapp.IAppModel|null|undefined} data
+         * @memberof pbapp.FindAppReply
+         * @instance
+         */
     FindAppReply.prototype.data = null
 
     /**
-     * FindAppReply list.
-     * @member {Array.<pbapp.IAppModel>} list
-     * @memberof pbapp.FindAppReply
-     * @instance
-     */
+         * FindAppReply list.
+         * @member {Array.<pbapp.IAppModel>} list
+         * @memberof pbapp.FindAppReply
+         * @instance
+         */
     FindAppReply.prototype.list = $util.emptyArray
 
     /**
-     * FindAppReply total.
-     * @member {number|Long} total
-     * @memberof pbapp.FindAppReply
-     * @instance
-     */
+         * FindAppReply total.
+         * @member {number|Long} total
+         * @memberof pbapp.FindAppReply
+         * @instance
+         */
     FindAppReply.prototype.total = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * Creates a new FindAppReply instance using the specified properties.
-     * @function create
-     * @memberof pbapp.FindAppReply
-     * @static
-     * @param {pbapp.IFindAppReply=} [properties] Properties to set
-     * @returns {pbapp.FindAppReply} FindAppReply instance
-     */
+         * Creates a new FindAppReply instance using the specified properties.
+         * @function create
+         * @memberof pbapp.FindAppReply
+         * @static
+         * @param {pbapp.IFindAppReply=} [properties] Properties to set
+         * @returns {pbapp.FindAppReply} FindAppReply instance
+         */
     FindAppReply.create = function create(properties) {
       return new FindAppReply(properties)
     }
 
     /**
-     * Encodes the specified FindAppReply message. Does not implicitly {@link pbapp.FindAppReply.verify|verify} messages.
-     * @function encode
-     * @memberof pbapp.FindAppReply
-     * @static
-     * @param {pbapp.IFindAppReply} message FindAppReply message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindAppReply message. Does not implicitly {@link pbapp.FindAppReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbapp.FindAppReply
+         * @static
+         * @param {pbapp.IFindAppReply} message FindAppReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindAppReply.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.code != null && Object.hasOwnProperty.call(message, 'code')) { writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code) }
@@ -12409,29 +12409,29 @@ $root.pbapp = (function() {
     }
 
     /**
-     * Encodes the specified FindAppReply message, length delimited. Does not implicitly {@link pbapp.FindAppReply.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbapp.FindAppReply
-     * @static
-     * @param {pbapp.IFindAppReply} message FindAppReply message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindAppReply message, length delimited. Does not implicitly {@link pbapp.FindAppReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbapp.FindAppReply
+         * @static
+         * @param {pbapp.IFindAppReply} message FindAppReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindAppReply.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes a FindAppReply message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbapp.FindAppReply
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbapp.FindAppReply} FindAppReply
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindAppReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbapp.FindAppReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbapp.FindAppReply} FindAppReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindAppReply.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbapp.FindAppReply()
@@ -12468,28 +12468,28 @@ $root.pbapp = (function() {
     }
 
     /**
-     * Decodes a FindAppReply message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbapp.FindAppReply
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbapp.FindAppReply} FindAppReply
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindAppReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbapp.FindAppReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbapp.FindAppReply} FindAppReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindAppReply.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies a FindAppReply message.
-     * @function verify
-     * @memberof pbapp.FindAppReply
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies a FindAppReply message.
+         * @function verify
+         * @memberof pbapp.FindAppReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     FindAppReply.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.code != null && message.hasOwnProperty('code')) {
@@ -12545,13 +12545,13 @@ $root.pbapp = (function() {
     }
 
     /**
-     * Creates a FindAppReply message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbapp.FindAppReply
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbapp.FindAppReply} FindAppReply
-     */
+         * Creates a FindAppReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbapp.FindAppReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbapp.FindAppReply} FindAppReply
+         */
     FindAppReply.fromObject = function fromObject(object) {
       if (object instanceof $root.pbapp.FindAppReply) { return object }
       var message = new $root.pbapp.FindAppReply()
@@ -12683,14 +12683,14 @@ $root.pbapp = (function() {
     }
 
     /**
-     * Creates a plain object from a FindAppReply message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbapp.FindAppReply
-     * @static
-     * @param {pbapp.FindAppReply} message FindAppReply
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from a FindAppReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbapp.FindAppReply
+         * @static
+         * @param {pbapp.FindAppReply} message FindAppReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     FindAppReply.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -12718,24 +12718,24 @@ $root.pbapp = (function() {
     }
 
     /**
-     * Converts this FindAppReply to JSON.
-     * @function toJSON
-     * @memberof pbapp.FindAppReply
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this FindAppReply to JSON.
+         * @function toJSON
+         * @memberof pbapp.FindAppReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     FindAppReply.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for FindAppReply
-     * @function getTypeUrl
-     * @memberof pbapp.FindAppReply
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for FindAppReply
+         * @function getTypeUrl
+         * @memberof pbapp.FindAppReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     FindAppReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -12748,15 +12748,15 @@ $root.pbapp = (function() {
 
   pbapp.App = (function() {
     /**
-     * Constructs a new App service.
-     * @memberof pbapp
-     * @classdesc Represents an App
-     * @extends $protobuf.rpc.Service
-     * @constructor
-     * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
-     * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
-     * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
-     */
+         * Constructs a new App service.
+         * @memberof pbapp
+         * @classdesc Represents an App
+         * @extends $protobuf.rpc.Service
+         * @constructor
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         */
     function App(rpcImpl, requestDelimited, responseDelimited) {
       $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited)
     }
@@ -12764,183 +12764,183 @@ $root.pbapp = (function() {
     (App.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = App
 
     /**
-     * Creates new App service using the specified rpc implementation.
-     * @function create
-     * @memberof pbapp.App
-     * @static
-     * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
-     * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
-     * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
-     * @returns {App} RPC service. Useful where requests and/or responses are streamed.
-     */
+         * Creates new App service using the specified rpc implementation.
+         * @function create
+         * @memberof pbapp.App
+         * @static
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         * @returns {App} RPC service. Useful where requests and/or responses are streamed.
+         */
     App.create = function create(rpcImpl, requestDelimited, responseDelimited) {
       return new this(rpcImpl, requestDelimited, responseDelimited)
     }
 
     /**
-     * Callback as used by {@link pbapp.App#createApp}.
-     * @memberof pbapp.App
-     * @typedef CreateAppCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbcommon.CommonResult} [response] CommonResult
-     */
+         * Callback as used by {@link pbapp.App#createApp}.
+         * @memberof pbapp.App
+         * @typedef CreateAppCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
 
     /**
-     * Calls CreateApp.
-     * @function createApp
-     * @memberof pbapp.App
-     * @instance
-     * @param {pbapp.IAppModel} request AppModel message or plain object
-     * @param {pbapp.App.CreateAppCallback} callback Node-style callback called with the error, if any, and CommonResult
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls CreateApp.
+         * @function createApp
+         * @memberof pbapp.App
+         * @instance
+         * @param {pbapp.IAppModel} request AppModel message or plain object
+         * @param {pbapp.App.CreateAppCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(App.prototype.createApp = function createApp(request, callback) {
       return this.rpcCall(createApp, $root.pbapp.AppModel, $root.pbcommon.CommonResult, request, callback)
     }, 'name', { value: 'CreateApp' })
 
     /**
-     * Calls CreateApp.
-     * @function createApp
-     * @memberof pbapp.App
-     * @instance
-     * @param {pbapp.IAppModel} request AppModel message or plain object
-     * @returns {Promise<pbcommon.CommonResult>} Promise
-     * @variation 2
-     */
+         * Calls CreateApp.
+         * @function createApp
+         * @memberof pbapp.App
+         * @instance
+         * @param {pbapp.IAppModel} request AppModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbapp.App#updateApp}.
-     * @memberof pbapp.App
-     * @typedef UpdateAppCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbcommon.CommonResult} [response] CommonResult
-     */
+         * Callback as used by {@link pbapp.App#updateApp}.
+         * @memberof pbapp.App
+         * @typedef UpdateAppCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
 
     /**
-     * Calls UpdateApp.
-     * @function updateApp
-     * @memberof pbapp.App
-     * @instance
-     * @param {pbapp.IAppModel} request AppModel message or plain object
-     * @param {pbapp.App.UpdateAppCallback} callback Node-style callback called with the error, if any, and CommonResult
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls UpdateApp.
+         * @function updateApp
+         * @memberof pbapp.App
+         * @instance
+         * @param {pbapp.IAppModel} request AppModel message or plain object
+         * @param {pbapp.App.UpdateAppCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(App.prototype.updateApp = function updateApp(request, callback) {
       return this.rpcCall(updateApp, $root.pbapp.AppModel, $root.pbcommon.CommonResult, request, callback)
     }, 'name', { value: 'UpdateApp' })
 
     /**
-     * Calls UpdateApp.
-     * @function updateApp
-     * @memberof pbapp.App
-     * @instance
-     * @param {pbapp.IAppModel} request AppModel message or plain object
-     * @returns {Promise<pbcommon.CommonResult>} Promise
-     * @variation 2
-     */
+         * Calls UpdateApp.
+         * @function updateApp
+         * @memberof pbapp.App
+         * @instance
+         * @param {pbapp.IAppModel} request AppModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbapp.App#deleteApp}.
-     * @memberof pbapp.App
-     * @typedef DeleteAppCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbcommon.CommonResult} [response] CommonResult
-     */
+         * Callback as used by {@link pbapp.App#deleteApp}.
+         * @memberof pbapp.App
+         * @typedef DeleteAppCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
 
     /**
-     * Calls DeleteApp.
-     * @function deleteApp
-     * @memberof pbapp.App
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @param {pbapp.App.DeleteAppCallback} callback Node-style callback called with the error, if any, and CommonResult
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls DeleteApp.
+         * @function deleteApp
+         * @memberof pbapp.App
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbapp.App.DeleteAppCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(App.prototype.deleteApp = function deleteApp(request, callback) {
       return this.rpcCall(deleteApp, $root.pbcommon.IdArgs, $root.pbcommon.CommonResult, request, callback)
     }, 'name', { value: 'DeleteApp' })
 
     /**
-     * Calls DeleteApp.
-     * @function deleteApp
-     * @memberof pbapp.App
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @returns {Promise<pbcommon.CommonResult>} Promise
-     * @variation 2
-     */
+         * Calls DeleteApp.
+         * @function deleteApp
+         * @memberof pbapp.App
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbapp.App#findAppById}.
-     * @memberof pbapp.App
-     * @typedef FindAppByIdCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbapp.FindAppReply} [response] FindAppReply
-     */
+         * Callback as used by {@link pbapp.App#findAppById}.
+         * @memberof pbapp.App
+         * @typedef FindAppByIdCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbapp.FindAppReply} [response] FindAppReply
+         */
 
     /**
-     * Calls FindAppById.
-     * @function findAppById
-     * @memberof pbapp.App
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @param {pbapp.App.FindAppByIdCallback} callback Node-style callback called with the error, if any, and FindAppReply
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls FindAppById.
+         * @function findAppById
+         * @memberof pbapp.App
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbapp.App.FindAppByIdCallback} callback Node-style callback called with the error, if any, and FindAppReply
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(App.prototype.findAppById = function findAppById(request, callback) {
       return this.rpcCall(findAppById, $root.pbcommon.IdArgs, $root.pbapp.FindAppReply, request, callback)
     }, 'name', { value: 'FindAppById' })
 
     /**
-     * Calls FindAppById.
-     * @function findAppById
-     * @memberof pbapp.App
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @returns {Promise<pbapp.FindAppReply>} Promise
-     * @variation 2
-     */
+         * Calls FindAppById.
+         * @function findAppById
+         * @memberof pbapp.App
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbapp.FindAppReply>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbapp.App#findAppList}.
-     * @memberof pbapp.App
-     * @typedef FindAppListCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbapp.FindAppReply} [response] FindAppReply
-     */
+         * Callback as used by {@link pbapp.App#findAppList}.
+         * @memberof pbapp.App
+         * @typedef FindAppListCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbapp.FindAppReply} [response] FindAppReply
+         */
 
     /**
-     * Calls FindAppList.
-     * @function findAppList
-     * @memberof pbapp.App
-     * @instance
-     * @param {pbapp.IFindAppArgs} request FindAppArgs message or plain object
-     * @param {pbapp.App.FindAppListCallback} callback Node-style callback called with the error, if any, and FindAppReply
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls FindAppList.
+         * @function findAppList
+         * @memberof pbapp.App
+         * @instance
+         * @param {pbapp.IFindAppArgs} request FindAppArgs message or plain object
+         * @param {pbapp.App.FindAppListCallback} callback Node-style callback called with the error, if any, and FindAppReply
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(App.prototype.findAppList = function findAppList(request, callback) {
       return this.rpcCall(findAppList, $root.pbapp.FindAppArgs, $root.pbapp.FindAppReply, request, callback)
     }, 'name', { value: 'FindAppList' })
 
     /**
-     * Calls FindAppList.
-     * @function findAppList
-     * @memberof pbapp.App
-     * @instance
-     * @param {pbapp.IFindAppArgs} request FindAppArgs message or plain object
-     * @returns {Promise<pbapp.FindAppReply>} Promise
-     * @variation 2
-     */
+         * Calls FindAppList.
+         * @function findAppList
+         * @memberof pbapp.App
+         * @instance
+         * @param {pbapp.IFindAppArgs} request FindAppArgs message or plain object
+         * @returns {Promise<pbapp.FindAppReply>} Promise
+         * @variation 2
+         */
 
     return App
   })()
@@ -12950,45 +12950,45 @@ $root.pbapp = (function() {
 
 $root.pbdeviceReport = (function() {
   /**
-   * Namespace pbdeviceReport.
-   * @exports pbdeviceReport
-   * @namespace
-   */
+     * Namespace pbdeviceReport.
+     * @exports pbdeviceReport
+     * @namespace
+     */
   var pbdeviceReport = {}
 
   pbdeviceReport.DeviceReportModel = (function() {
     /**
-     * Properties of a DeviceReportModel.
-     * @memberof pbdeviceReport
-     * @interface IDeviceReportModel
-     * @property {number|Long|null} [id] DeviceReportModel id
-     * @property {string|null} [createdAt] DeviceReportModel createdAt
-     * @property {string|null} [updatedAt] DeviceReportModel updatedAt
-     * @property {number|null} [rptNo] DeviceReportModel rptNo
-     * @property {string|null} [imei] DeviceReportModel imei
-     * @property {string|null} [firmwareEdition] DeviceReportModel firmwareEdition
-     * @property {string|null} [reportTime] DeviceReportModel reportTime
-     * @property {string|null} [devModel] DeviceReportModel devModel
-     * @property {string|null} [reportType] DeviceReportModel reportType
-     * @property {number|null} [csq] DeviceReportModel csq
-     * @property {number|null} [dumpEnergy] DeviceReportModel dumpEnergy
-     * @property {number|null} [stepNum] DeviceReportModel stepNum
-     * @property {number|null} [charging] DeviceReportModel charging
-     * @property {number|null} [status] DeviceReportModel status
-     * @property {string|null} [macs] DeviceReportModel macs
-     * @property {string|null} [latitude] DeviceReportModel latitude
-     * @property {string|null} [longitude] DeviceReportModel longitude
-     * @property {number|null} [flag] DeviceReportModel flag
-     */
+         * Properties of a DeviceReportModel.
+         * @memberof pbdeviceReport
+         * @interface IDeviceReportModel
+         * @property {number|Long|null} [id] DeviceReportModel id
+         * @property {string|null} [createdAt] DeviceReportModel createdAt
+         * @property {string|null} [updatedAt] DeviceReportModel updatedAt
+         * @property {number|null} [rptNo] DeviceReportModel rptNo
+         * @property {string|null} [imei] DeviceReportModel imei
+         * @property {string|null} [firmwareEdition] DeviceReportModel firmwareEdition
+         * @property {string|null} [reportTime] DeviceReportModel reportTime
+         * @property {string|null} [devModel] DeviceReportModel devModel
+         * @property {string|null} [reportType] DeviceReportModel reportType
+         * @property {number|null} [csq] DeviceReportModel csq
+         * @property {number|null} [dumpEnergy] DeviceReportModel dumpEnergy
+         * @property {number|null} [stepNum] DeviceReportModel stepNum
+         * @property {number|null} [charging] DeviceReportModel charging
+         * @property {number|null} [status] DeviceReportModel status
+         * @property {string|null} [macs] DeviceReportModel macs
+         * @property {string|null} [latitude] DeviceReportModel latitude
+         * @property {string|null} [longitude] DeviceReportModel longitude
+         * @property {number|null} [flag] DeviceReportModel flag
+         */
 
     /**
-     * Constructs a new DeviceReportModel.
-     * @memberof pbdeviceReport
-     * @classdesc Represents a DeviceReportModel.
-     * @implements IDeviceReportModel
-     * @constructor
-     * @param {pbdeviceReport.IDeviceReportModel=} [properties] Properties to set
-     */
+         * Constructs a new DeviceReportModel.
+         * @memberof pbdeviceReport
+         * @classdesc Represents a DeviceReportModel.
+         * @implements IDeviceReportModel
+         * @constructor
+         * @param {pbdeviceReport.IDeviceReportModel=} [properties] Properties to set
+         */
     function DeviceReportModel(properties) {
       if (properties) {
         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
@@ -12998,170 +12998,170 @@ $root.pbdeviceReport = (function() {
     }
 
     /**
-     * DeviceReportModel id.
-     * @member {number|Long} id
-     * @memberof pbdeviceReport.DeviceReportModel
-     * @instance
-     */
+         * DeviceReportModel id.
+         * @member {number|Long} id
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @instance
+         */
     DeviceReportModel.prototype.id = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * DeviceReportModel createdAt.
-     * @member {string} createdAt
-     * @memberof pbdeviceReport.DeviceReportModel
-     * @instance
-     */
+         * DeviceReportModel createdAt.
+         * @member {string} createdAt
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @instance
+         */
     DeviceReportModel.prototype.createdAt = ''
 
     /**
-     * DeviceReportModel updatedAt.
-     * @member {string} updatedAt
-     * @memberof pbdeviceReport.DeviceReportModel
-     * @instance
-     */
+         * DeviceReportModel updatedAt.
+         * @member {string} updatedAt
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @instance
+         */
     DeviceReportModel.prototype.updatedAt = ''
 
     /**
-     * DeviceReportModel rptNo.
-     * @member {number} rptNo
-     * @memberof pbdeviceReport.DeviceReportModel
-     * @instance
-     */
+         * DeviceReportModel rptNo.
+         * @member {number} rptNo
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @instance
+         */
     DeviceReportModel.prototype.rptNo = 0
 
     /**
-     * DeviceReportModel imei.
-     * @member {string} imei
-     * @memberof pbdeviceReport.DeviceReportModel
-     * @instance
-     */
+         * DeviceReportModel imei.
+         * @member {string} imei
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @instance
+         */
     DeviceReportModel.prototype.imei = ''
 
     /**
-     * DeviceReportModel firmwareEdition.
-     * @member {string} firmwareEdition
-     * @memberof pbdeviceReport.DeviceReportModel
-     * @instance
-     */
+         * DeviceReportModel firmwareEdition.
+         * @member {string} firmwareEdition
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @instance
+         */
     DeviceReportModel.prototype.firmwareEdition = ''
 
     /**
-     * DeviceReportModel reportTime.
-     * @member {string} reportTime
-     * @memberof pbdeviceReport.DeviceReportModel
-     * @instance
-     */
+         * DeviceReportModel reportTime.
+         * @member {string} reportTime
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @instance
+         */
     DeviceReportModel.prototype.reportTime = ''
 
     /**
-     * DeviceReportModel devModel.
-     * @member {string} devModel
-     * @memberof pbdeviceReport.DeviceReportModel
-     * @instance
-     */
+         * DeviceReportModel devModel.
+         * @member {string} devModel
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @instance
+         */
     DeviceReportModel.prototype.devModel = ''
 
     /**
-     * DeviceReportModel reportType.
-     * @member {string} reportType
-     * @memberof pbdeviceReport.DeviceReportModel
-     * @instance
-     */
+         * DeviceReportModel reportType.
+         * @member {string} reportType
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @instance
+         */
     DeviceReportModel.prototype.reportType = ''
 
     /**
-     * DeviceReportModel csq.
-     * @member {number} csq
-     * @memberof pbdeviceReport.DeviceReportModel
-     * @instance
-     */
+         * DeviceReportModel csq.
+         * @member {number} csq
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @instance
+         */
     DeviceReportModel.prototype.csq = 0
 
     /**
-     * DeviceReportModel dumpEnergy.
-     * @member {number} dumpEnergy
-     * @memberof pbdeviceReport.DeviceReportModel
-     * @instance
-     */
+         * DeviceReportModel dumpEnergy.
+         * @member {number} dumpEnergy
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @instance
+         */
     DeviceReportModel.prototype.dumpEnergy = 0
 
     /**
-     * DeviceReportModel stepNum.
-     * @member {number} stepNum
-     * @memberof pbdeviceReport.DeviceReportModel
-     * @instance
-     */
+         * DeviceReportModel stepNum.
+         * @member {number} stepNum
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @instance
+         */
     DeviceReportModel.prototype.stepNum = 0
 
     /**
-     * DeviceReportModel charging.
-     * @member {number} charging
-     * @memberof pbdeviceReport.DeviceReportModel
-     * @instance
-     */
+         * DeviceReportModel charging.
+         * @member {number} charging
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @instance
+         */
     DeviceReportModel.prototype.charging = 0
 
     /**
-     * DeviceReportModel status.
-     * @member {number} status
-     * @memberof pbdeviceReport.DeviceReportModel
-     * @instance
-     */
+         * DeviceReportModel status.
+         * @member {number} status
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @instance
+         */
     DeviceReportModel.prototype.status = 0
 
     /**
-     * DeviceReportModel macs.
-     * @member {string} macs
-     * @memberof pbdeviceReport.DeviceReportModel
-     * @instance
-     */
+         * DeviceReportModel macs.
+         * @member {string} macs
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @instance
+         */
     DeviceReportModel.prototype.macs = ''
 
     /**
-     * DeviceReportModel latitude.
-     * @member {string} latitude
-     * @memberof pbdeviceReport.DeviceReportModel
-     * @instance
-     */
+         * DeviceReportModel latitude.
+         * @member {string} latitude
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @instance
+         */
     DeviceReportModel.prototype.latitude = ''
 
     /**
-     * DeviceReportModel longitude.
-     * @member {string} longitude
-     * @memberof pbdeviceReport.DeviceReportModel
-     * @instance
-     */
+         * DeviceReportModel longitude.
+         * @member {string} longitude
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @instance
+         */
     DeviceReportModel.prototype.longitude = ''
 
     /**
-     * DeviceReportModel flag.
-     * @member {number} flag
-     * @memberof pbdeviceReport.DeviceReportModel
-     * @instance
-     */
+         * DeviceReportModel flag.
+         * @member {number} flag
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @instance
+         */
     DeviceReportModel.prototype.flag = 0
 
     /**
-     * Creates a new DeviceReportModel instance using the specified properties.
-     * @function create
-     * @memberof pbdeviceReport.DeviceReportModel
-     * @static
-     * @param {pbdeviceReport.IDeviceReportModel=} [properties] Properties to set
-     * @returns {pbdeviceReport.DeviceReportModel} DeviceReportModel instance
-     */
+         * Creates a new DeviceReportModel instance using the specified properties.
+         * @function create
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @static
+         * @param {pbdeviceReport.IDeviceReportModel=} [properties] Properties to set
+         * @returns {pbdeviceReport.DeviceReportModel} DeviceReportModel instance
+         */
     DeviceReportModel.create = function create(properties) {
       return new DeviceReportModel(properties)
     }
 
     /**
-     * Encodes the specified DeviceReportModel message. Does not implicitly {@link pbdeviceReport.DeviceReportModel.verify|verify} messages.
-     * @function encode
-     * @memberof pbdeviceReport.DeviceReportModel
-     * @static
-     * @param {pbdeviceReport.IDeviceReportModel} message DeviceReportModel message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified DeviceReportModel message. Does not implicitly {@link pbdeviceReport.DeviceReportModel.verify|verify} messages.
+         * @function encode
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @static
+         * @param {pbdeviceReport.IDeviceReportModel} message DeviceReportModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     DeviceReportModel.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.id != null && Object.hasOwnProperty.call(message, 'id')) { writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id) }
@@ -13186,29 +13186,29 @@ $root.pbdeviceReport = (function() {
     }
 
     /**
-     * Encodes the specified DeviceReportModel message, length delimited. Does not implicitly {@link pbdeviceReport.DeviceReportModel.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbdeviceReport.DeviceReportModel
-     * @static
-     * @param {pbdeviceReport.IDeviceReportModel} message DeviceReportModel message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified DeviceReportModel message, length delimited. Does not implicitly {@link pbdeviceReport.DeviceReportModel.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @static
+         * @param {pbdeviceReport.IDeviceReportModel} message DeviceReportModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     DeviceReportModel.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes a DeviceReportModel message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbdeviceReport.DeviceReportModel
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbdeviceReport.DeviceReportModel} DeviceReportModel
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a DeviceReportModel message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbdeviceReport.DeviceReportModel} DeviceReportModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     DeviceReportModel.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbdeviceReport.DeviceReportModel()
@@ -13296,28 +13296,28 @@ $root.pbdeviceReport = (function() {
     }
 
     /**
-     * Decodes a DeviceReportModel message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbdeviceReport.DeviceReportModel
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbdeviceReport.DeviceReportModel} DeviceReportModel
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a DeviceReportModel message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbdeviceReport.DeviceReportModel} DeviceReportModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     DeviceReportModel.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies a DeviceReportModel message.
-     * @function verify
-     * @memberof pbdeviceReport.DeviceReportModel
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies a DeviceReportModel message.
+         * @function verify
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     DeviceReportModel.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.id != null && message.hasOwnProperty('id')) {
@@ -13378,13 +13378,13 @@ $root.pbdeviceReport = (function() {
     }
 
     /**
-     * Creates a DeviceReportModel message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbdeviceReport.DeviceReportModel
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbdeviceReport.DeviceReportModel} DeviceReportModel
-     */
+         * Creates a DeviceReportModel message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbdeviceReport.DeviceReportModel} DeviceReportModel
+         */
     DeviceReportModel.fromObject = function fromObject(object) {
       if (object instanceof $root.pbdeviceReport.DeviceReportModel) { return object }
       var message = new $root.pbdeviceReport.DeviceReportModel()
@@ -13412,14 +13412,14 @@ $root.pbdeviceReport = (function() {
     }
 
     /**
-     * Creates a plain object from a DeviceReportModel message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbdeviceReport.DeviceReportModel
-     * @static
-     * @param {pbdeviceReport.DeviceReportModel} message DeviceReportModel
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from a DeviceReportModel message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @static
+         * @param {pbdeviceReport.DeviceReportModel} message DeviceReportModel
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     DeviceReportModel.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -13470,24 +13470,24 @@ $root.pbdeviceReport = (function() {
     }
 
     /**
-     * Converts this DeviceReportModel to JSON.
-     * @function toJSON
-     * @memberof pbdeviceReport.DeviceReportModel
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this DeviceReportModel to JSON.
+         * @function toJSON
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     DeviceReportModel.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for DeviceReportModel
-     * @function getTypeUrl
-     * @memberof pbdeviceReport.DeviceReportModel
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for DeviceReportModel
+         * @function getTypeUrl
+         * @memberof pbdeviceReport.DeviceReportModel
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     DeviceReportModel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -13500,21 +13500,21 @@ $root.pbdeviceReport = (function() {
 
   pbdeviceReport.FindDeviceReportArgs = (function() {
     /**
-     * Properties of a FindDeviceReportArgs.
-     * @memberof pbdeviceReport
-     * @interface IFindDeviceReportArgs
-     * @property {pbcommon.IPageInfo|null} [pageInfo] FindDeviceReportArgs pageInfo
-     * @property {pbdeviceReport.IDeviceReportModel|null} [query] FindDeviceReportArgs query
-     */
+         * Properties of a FindDeviceReportArgs.
+         * @memberof pbdeviceReport
+         * @interface IFindDeviceReportArgs
+         * @property {pbcommon.IPageInfo|null} [pageInfo] FindDeviceReportArgs pageInfo
+         * @property {pbdeviceReport.IDeviceReportModel|null} [query] FindDeviceReportArgs query
+         */
 
     /**
-     * Constructs a new FindDeviceReportArgs.
-     * @memberof pbdeviceReport
-     * @classdesc Represents a FindDeviceReportArgs.
-     * @implements IFindDeviceReportArgs
-     * @constructor
-     * @param {pbdeviceReport.IFindDeviceReportArgs=} [properties] Properties to set
-     */
+         * Constructs a new FindDeviceReportArgs.
+         * @memberof pbdeviceReport
+         * @classdesc Represents a FindDeviceReportArgs.
+         * @implements IFindDeviceReportArgs
+         * @constructor
+         * @param {pbdeviceReport.IFindDeviceReportArgs=} [properties] Properties to set
+         */
     function FindDeviceReportArgs(properties) {
       if (properties) {
         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
@@ -13524,42 +13524,42 @@ $root.pbdeviceReport = (function() {
     }
 
     /**
-     * FindDeviceReportArgs pageInfo.
-     * @member {pbcommon.IPageInfo|null|undefined} pageInfo
-     * @memberof pbdeviceReport.FindDeviceReportArgs
-     * @instance
-     */
+         * FindDeviceReportArgs pageInfo.
+         * @member {pbcommon.IPageInfo|null|undefined} pageInfo
+         * @memberof pbdeviceReport.FindDeviceReportArgs
+         * @instance
+         */
     FindDeviceReportArgs.prototype.pageInfo = null
 
     /**
-     * FindDeviceReportArgs query.
-     * @member {pbdeviceReport.IDeviceReportModel|null|undefined} query
-     * @memberof pbdeviceReport.FindDeviceReportArgs
-     * @instance
-     */
+         * FindDeviceReportArgs query.
+         * @member {pbdeviceReport.IDeviceReportModel|null|undefined} query
+         * @memberof pbdeviceReport.FindDeviceReportArgs
+         * @instance
+         */
     FindDeviceReportArgs.prototype.query = null
 
     /**
-     * Creates a new FindDeviceReportArgs instance using the specified properties.
-     * @function create
-     * @memberof pbdeviceReport.FindDeviceReportArgs
-     * @static
-     * @param {pbdeviceReport.IFindDeviceReportArgs=} [properties] Properties to set
-     * @returns {pbdeviceReport.FindDeviceReportArgs} FindDeviceReportArgs instance
-     */
+         * Creates a new FindDeviceReportArgs instance using the specified properties.
+         * @function create
+         * @memberof pbdeviceReport.FindDeviceReportArgs
+         * @static
+         * @param {pbdeviceReport.IFindDeviceReportArgs=} [properties] Properties to set
+         * @returns {pbdeviceReport.FindDeviceReportArgs} FindDeviceReportArgs instance
+         */
     FindDeviceReportArgs.create = function create(properties) {
       return new FindDeviceReportArgs(properties)
     }
 
     /**
-     * Encodes the specified FindDeviceReportArgs message. Does not implicitly {@link pbdeviceReport.FindDeviceReportArgs.verify|verify} messages.
-     * @function encode
-     * @memberof pbdeviceReport.FindDeviceReportArgs
-     * @static
-     * @param {pbdeviceReport.IFindDeviceReportArgs} message FindDeviceReportArgs message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindDeviceReportArgs message. Does not implicitly {@link pbdeviceReport.FindDeviceReportArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbdeviceReport.FindDeviceReportArgs
+         * @static
+         * @param {pbdeviceReport.IFindDeviceReportArgs} message FindDeviceReportArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindDeviceReportArgs.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.pageInfo != null && Object.hasOwnProperty.call(message, 'pageInfo')) { $root.pbcommon.PageInfo.encode(message.pageInfo, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim() }
@@ -13568,29 +13568,29 @@ $root.pbdeviceReport = (function() {
     }
 
     /**
-     * Encodes the specified FindDeviceReportArgs message, length delimited. Does not implicitly {@link pbdeviceReport.FindDeviceReportArgs.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbdeviceReport.FindDeviceReportArgs
-     * @static
-     * @param {pbdeviceReport.IFindDeviceReportArgs} message FindDeviceReportArgs message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindDeviceReportArgs message, length delimited. Does not implicitly {@link pbdeviceReport.FindDeviceReportArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbdeviceReport.FindDeviceReportArgs
+         * @static
+         * @param {pbdeviceReport.IFindDeviceReportArgs} message FindDeviceReportArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindDeviceReportArgs.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes a FindDeviceReportArgs message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbdeviceReport.FindDeviceReportArgs
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbdeviceReport.FindDeviceReportArgs} FindDeviceReportArgs
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindDeviceReportArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbdeviceReport.FindDeviceReportArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbdeviceReport.FindDeviceReportArgs} FindDeviceReportArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindDeviceReportArgs.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbdeviceReport.FindDeviceReportArgs()
@@ -13614,28 +13614,28 @@ $root.pbdeviceReport = (function() {
     }
 
     /**
-     * Decodes a FindDeviceReportArgs message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbdeviceReport.FindDeviceReportArgs
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbdeviceReport.FindDeviceReportArgs} FindDeviceReportArgs
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindDeviceReportArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbdeviceReport.FindDeviceReportArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbdeviceReport.FindDeviceReportArgs} FindDeviceReportArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindDeviceReportArgs.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies a FindDeviceReportArgs message.
-     * @function verify
-     * @memberof pbdeviceReport.FindDeviceReportArgs
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies a FindDeviceReportArgs message.
+         * @function verify
+         * @memberof pbdeviceReport.FindDeviceReportArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     FindDeviceReportArgs.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.pageInfo != null && message.hasOwnProperty('pageInfo')) {
@@ -13650,13 +13650,13 @@ $root.pbdeviceReport = (function() {
     }
 
     /**
-     * Creates a FindDeviceReportArgs message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbdeviceReport.FindDeviceReportArgs
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbdeviceReport.FindDeviceReportArgs} FindDeviceReportArgs
-     */
+         * Creates a FindDeviceReportArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbdeviceReport.FindDeviceReportArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbdeviceReport.FindDeviceReportArgs} FindDeviceReportArgs
+         */
     FindDeviceReportArgs.fromObject = function fromObject(object) {
       if (object instanceof $root.pbdeviceReport.FindDeviceReportArgs) { return object }
       var message = new $root.pbdeviceReport.FindDeviceReportArgs()
@@ -13672,14 +13672,14 @@ $root.pbdeviceReport = (function() {
     }
 
     /**
-     * Creates a plain object from a FindDeviceReportArgs message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbdeviceReport.FindDeviceReportArgs
-     * @static
-     * @param {pbdeviceReport.FindDeviceReportArgs} message FindDeviceReportArgs
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from a FindDeviceReportArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbdeviceReport.FindDeviceReportArgs
+         * @static
+         * @param {pbdeviceReport.FindDeviceReportArgs} message FindDeviceReportArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     FindDeviceReportArgs.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -13693,24 +13693,24 @@ $root.pbdeviceReport = (function() {
     }
 
     /**
-     * Converts this FindDeviceReportArgs to JSON.
-     * @function toJSON
-     * @memberof pbdeviceReport.FindDeviceReportArgs
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this FindDeviceReportArgs to JSON.
+         * @function toJSON
+         * @memberof pbdeviceReport.FindDeviceReportArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     FindDeviceReportArgs.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for FindDeviceReportArgs
-     * @function getTypeUrl
-     * @memberof pbdeviceReport.FindDeviceReportArgs
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for FindDeviceReportArgs
+         * @function getTypeUrl
+         * @memberof pbdeviceReport.FindDeviceReportArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     FindDeviceReportArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -13723,24 +13723,24 @@ $root.pbdeviceReport = (function() {
 
   pbdeviceReport.FindDeviceReportReplay = (function() {
     /**
-     * Properties of a FindDeviceReportReplay.
-     * @memberof pbdeviceReport
-     * @interface IFindDeviceReportReplay
-     * @property {pbcommon.EnumCode|null} [code] FindDeviceReportReplay code
-     * @property {string|null} [msg] FindDeviceReportReplay msg
-     * @property {pbdeviceReport.IDeviceReportModel|null} [data] FindDeviceReportReplay data
-     * @property {Array.<pbdeviceReport.IDeviceReportModel>|null} [list] FindDeviceReportReplay list
-     * @property {number|Long|null} [total] FindDeviceReportReplay total
-     */
+         * Properties of a FindDeviceReportReplay.
+         * @memberof pbdeviceReport
+         * @interface IFindDeviceReportReplay
+         * @property {pbcommon.EnumCode|null} [code] FindDeviceReportReplay code
+         * @property {string|null} [msg] FindDeviceReportReplay msg
+         * @property {pbdeviceReport.IDeviceReportModel|null} [data] FindDeviceReportReplay data
+         * @property {Array.<pbdeviceReport.IDeviceReportModel>|null} [list] FindDeviceReportReplay list
+         * @property {number|Long|null} [total] FindDeviceReportReplay total
+         */
 
     /**
-     * Constructs a new FindDeviceReportReplay.
-     * @memberof pbdeviceReport
-     * @classdesc Represents a FindDeviceReportReplay.
-     * @implements IFindDeviceReportReplay
-     * @constructor
-     * @param {pbdeviceReport.IFindDeviceReportReplay=} [properties] Properties to set
-     */
+         * Constructs a new FindDeviceReportReplay.
+         * @memberof pbdeviceReport
+         * @classdesc Represents a FindDeviceReportReplay.
+         * @implements IFindDeviceReportReplay
+         * @constructor
+         * @param {pbdeviceReport.IFindDeviceReportReplay=} [properties] Properties to set
+         */
     function FindDeviceReportReplay(properties) {
       this.list = []
       if (properties) {
@@ -13751,66 +13751,66 @@ $root.pbdeviceReport = (function() {
     }
 
     /**
-     * FindDeviceReportReplay code.
-     * @member {pbcommon.EnumCode} code
-     * @memberof pbdeviceReport.FindDeviceReportReplay
-     * @instance
-     */
+         * FindDeviceReportReplay code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbdeviceReport.FindDeviceReportReplay
+         * @instance
+         */
     FindDeviceReportReplay.prototype.code = 0
 
     /**
-     * FindDeviceReportReplay msg.
-     * @member {string} msg
-     * @memberof pbdeviceReport.FindDeviceReportReplay
-     * @instance
-     */
+         * FindDeviceReportReplay msg.
+         * @member {string} msg
+         * @memberof pbdeviceReport.FindDeviceReportReplay
+         * @instance
+         */
     FindDeviceReportReplay.prototype.msg = ''
 
     /**
-     * FindDeviceReportReplay data.
-     * @member {pbdeviceReport.IDeviceReportModel|null|undefined} data
-     * @memberof pbdeviceReport.FindDeviceReportReplay
-     * @instance
-     */
+         * FindDeviceReportReplay data.
+         * @member {pbdeviceReport.IDeviceReportModel|null|undefined} data
+         * @memberof pbdeviceReport.FindDeviceReportReplay
+         * @instance
+         */
     FindDeviceReportReplay.prototype.data = null
 
     /**
-     * FindDeviceReportReplay list.
-     * @member {Array.<pbdeviceReport.IDeviceReportModel>} list
-     * @memberof pbdeviceReport.FindDeviceReportReplay
-     * @instance
-     */
+         * FindDeviceReportReplay list.
+         * @member {Array.<pbdeviceReport.IDeviceReportModel>} list
+         * @memberof pbdeviceReport.FindDeviceReportReplay
+         * @instance
+         */
     FindDeviceReportReplay.prototype.list = $util.emptyArray
 
     /**
-     * FindDeviceReportReplay total.
-     * @member {number|Long} total
-     * @memberof pbdeviceReport.FindDeviceReportReplay
-     * @instance
-     */
+         * FindDeviceReportReplay total.
+         * @member {number|Long} total
+         * @memberof pbdeviceReport.FindDeviceReportReplay
+         * @instance
+         */
     FindDeviceReportReplay.prototype.total = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * Creates a new FindDeviceReportReplay instance using the specified properties.
-     * @function create
-     * @memberof pbdeviceReport.FindDeviceReportReplay
-     * @static
-     * @param {pbdeviceReport.IFindDeviceReportReplay=} [properties] Properties to set
-     * @returns {pbdeviceReport.FindDeviceReportReplay} FindDeviceReportReplay instance
-     */
+         * Creates a new FindDeviceReportReplay instance using the specified properties.
+         * @function create
+         * @memberof pbdeviceReport.FindDeviceReportReplay
+         * @static
+         * @param {pbdeviceReport.IFindDeviceReportReplay=} [properties] Properties to set
+         * @returns {pbdeviceReport.FindDeviceReportReplay} FindDeviceReportReplay instance
+         */
     FindDeviceReportReplay.create = function create(properties) {
       return new FindDeviceReportReplay(properties)
     }
 
     /**
-     * Encodes the specified FindDeviceReportReplay message. Does not implicitly {@link pbdeviceReport.FindDeviceReportReplay.verify|verify} messages.
-     * @function encode
-     * @memberof pbdeviceReport.FindDeviceReportReplay
-     * @static
-     * @param {pbdeviceReport.IFindDeviceReportReplay} message FindDeviceReportReplay message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindDeviceReportReplay message. Does not implicitly {@link pbdeviceReport.FindDeviceReportReplay.verify|verify} messages.
+         * @function encode
+         * @memberof pbdeviceReport.FindDeviceReportReplay
+         * @static
+         * @param {pbdeviceReport.IFindDeviceReportReplay} message FindDeviceReportReplay message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindDeviceReportReplay.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.code != null && Object.hasOwnProperty.call(message, 'code')) { writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code) }
@@ -13824,29 +13824,29 @@ $root.pbdeviceReport = (function() {
     }
 
     /**
-     * Encodes the specified FindDeviceReportReplay message, length delimited. Does not implicitly {@link pbdeviceReport.FindDeviceReportReplay.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbdeviceReport.FindDeviceReportReplay
-     * @static
-     * @param {pbdeviceReport.IFindDeviceReportReplay} message FindDeviceReportReplay message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindDeviceReportReplay message, length delimited. Does not implicitly {@link pbdeviceReport.FindDeviceReportReplay.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbdeviceReport.FindDeviceReportReplay
+         * @static
+         * @param {pbdeviceReport.IFindDeviceReportReplay} message FindDeviceReportReplay message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindDeviceReportReplay.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes a FindDeviceReportReplay message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbdeviceReport.FindDeviceReportReplay
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbdeviceReport.FindDeviceReportReplay} FindDeviceReportReplay
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindDeviceReportReplay message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbdeviceReport.FindDeviceReportReplay
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbdeviceReport.FindDeviceReportReplay} FindDeviceReportReplay
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindDeviceReportReplay.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbdeviceReport.FindDeviceReportReplay()
@@ -13883,28 +13883,28 @@ $root.pbdeviceReport = (function() {
     }
 
     /**
-     * Decodes a FindDeviceReportReplay message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbdeviceReport.FindDeviceReportReplay
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbdeviceReport.FindDeviceReportReplay} FindDeviceReportReplay
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindDeviceReportReplay message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbdeviceReport.FindDeviceReportReplay
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbdeviceReport.FindDeviceReportReplay} FindDeviceReportReplay
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindDeviceReportReplay.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies a FindDeviceReportReplay message.
-     * @function verify
-     * @memberof pbdeviceReport.FindDeviceReportReplay
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies a FindDeviceReportReplay message.
+         * @function verify
+         * @memberof pbdeviceReport.FindDeviceReportReplay
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     FindDeviceReportReplay.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.code != null && message.hasOwnProperty('code')) {
@@ -13960,13 +13960,13 @@ $root.pbdeviceReport = (function() {
     }
 
     /**
-     * Creates a FindDeviceReportReplay message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbdeviceReport.FindDeviceReportReplay
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbdeviceReport.FindDeviceReportReplay} FindDeviceReportReplay
-     */
+         * Creates a FindDeviceReportReplay message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbdeviceReport.FindDeviceReportReplay
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbdeviceReport.FindDeviceReportReplay} FindDeviceReportReplay
+         */
     FindDeviceReportReplay.fromObject = function fromObject(object) {
       if (object instanceof $root.pbdeviceReport.FindDeviceReportReplay) { return object }
       var message = new $root.pbdeviceReport.FindDeviceReportReplay()
@@ -14098,14 +14098,14 @@ $root.pbdeviceReport = (function() {
     }
 
     /**
-     * Creates a plain object from a FindDeviceReportReplay message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbdeviceReport.FindDeviceReportReplay
-     * @static
-     * @param {pbdeviceReport.FindDeviceReportReplay} message FindDeviceReportReplay
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from a FindDeviceReportReplay message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbdeviceReport.FindDeviceReportReplay
+         * @static
+         * @param {pbdeviceReport.FindDeviceReportReplay} message FindDeviceReportReplay
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     FindDeviceReportReplay.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -14133,24 +14133,24 @@ $root.pbdeviceReport = (function() {
     }
 
     /**
-     * Converts this FindDeviceReportReplay to JSON.
-     * @function toJSON
-     * @memberof pbdeviceReport.FindDeviceReportReplay
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this FindDeviceReportReplay to JSON.
+         * @function toJSON
+         * @memberof pbdeviceReport.FindDeviceReportReplay
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     FindDeviceReportReplay.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for FindDeviceReportReplay
-     * @function getTypeUrl
-     * @memberof pbdeviceReport.FindDeviceReportReplay
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for FindDeviceReportReplay
+         * @function getTypeUrl
+         * @memberof pbdeviceReport.FindDeviceReportReplay
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     FindDeviceReportReplay.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -14163,34 +14163,34 @@ $root.pbdeviceReport = (function() {
 
   pbdeviceReport.AepReportArgs = (function() {
     /**
-     * Properties of an AepReportArgs.
-     * @memberof pbdeviceReport
-     * @interface IAepReportArgs
-     * @property {number|null} [upPacketSN] AepReportArgs upPacketSN
-     * @property {number|null} [upDataSN] AepReportArgs upDataSN
-     * @property {string|null} [topic] AepReportArgs topic
-     * @property {number|Long|null} [timestamp] AepReportArgs timestamp
-     * @property {string|null} [tenantId] AepReportArgs tenantId
-     * @property {string|null} [serviceId] AepReportArgs serviceId
-     * @property {string|null} [protocol] AepReportArgs protocol
-     * @property {string|null} [productId] AepReportArgs productId
-     * @property {pbdeviceReport.AepReportArgs.IPayload|null} [payload] AepReportArgs payload
-     * @property {string|null} [messageType] AepReportArgs messageType
-     * @property {string|null} [deviceType] AepReportArgs deviceType
-     * @property {string|null} [deviceId] AepReportArgs deviceId
-     * @property {string|null} [assocAssetId] AepReportArgs assocAssetId
-     * @property {string|null} [IMSI] AepReportArgs IMSI
-     * @property {string|null} [IMEI] AepReportArgs IMEI
-     */
+         * Properties of an AepReportArgs.
+         * @memberof pbdeviceReport
+         * @interface IAepReportArgs
+         * @property {number|null} [upPacketSN] AepReportArgs upPacketSN
+         * @property {number|null} [upDataSN] AepReportArgs upDataSN
+         * @property {string|null} [topic] AepReportArgs topic
+         * @property {number|Long|null} [timestamp] AepReportArgs timestamp
+         * @property {string|null} [tenantId] AepReportArgs tenantId
+         * @property {string|null} [serviceId] AepReportArgs serviceId
+         * @property {string|null} [protocol] AepReportArgs protocol
+         * @property {string|null} [productId] AepReportArgs productId
+         * @property {pbdeviceReport.AepReportArgs.IPayload|null} [payload] AepReportArgs payload
+         * @property {string|null} [messageType] AepReportArgs messageType
+         * @property {string|null} [deviceType] AepReportArgs deviceType
+         * @property {string|null} [deviceId] AepReportArgs deviceId
+         * @property {string|null} [assocAssetId] AepReportArgs assocAssetId
+         * @property {string|null} [IMSI] AepReportArgs IMSI
+         * @property {string|null} [IMEI] AepReportArgs IMEI
+         */
 
     /**
-     * Constructs a new AepReportArgs.
-     * @memberof pbdeviceReport
-     * @classdesc Represents an AepReportArgs.
-     * @implements IAepReportArgs
-     * @constructor
-     * @param {pbdeviceReport.IAepReportArgs=} [properties] Properties to set
-     */
+         * Constructs a new AepReportArgs.
+         * @memberof pbdeviceReport
+         * @classdesc Represents an AepReportArgs.
+         * @implements IAepReportArgs
+         * @constructor
+         * @param {pbdeviceReport.IAepReportArgs=} [properties] Properties to set
+         */
     function AepReportArgs(properties) {
       if (properties) {
         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
@@ -14200,146 +14200,146 @@ $root.pbdeviceReport = (function() {
     }
 
     /**
-     * AepReportArgs upPacketSN.
-     * @member {number} upPacketSN
-     * @memberof pbdeviceReport.AepReportArgs
-     * @instance
-     */
+         * AepReportArgs upPacketSN.
+         * @member {number} upPacketSN
+         * @memberof pbdeviceReport.AepReportArgs
+         * @instance
+         */
     AepReportArgs.prototype.upPacketSN = 0
 
     /**
-     * AepReportArgs upDataSN.
-     * @member {number} upDataSN
-     * @memberof pbdeviceReport.AepReportArgs
-     * @instance
-     */
+         * AepReportArgs upDataSN.
+         * @member {number} upDataSN
+         * @memberof pbdeviceReport.AepReportArgs
+         * @instance
+         */
     AepReportArgs.prototype.upDataSN = 0
 
     /**
-     * AepReportArgs topic.
-     * @member {string} topic
-     * @memberof pbdeviceReport.AepReportArgs
-     * @instance
-     */
+         * AepReportArgs topic.
+         * @member {string} topic
+         * @memberof pbdeviceReport.AepReportArgs
+         * @instance
+         */
     AepReportArgs.prototype.topic = ''
 
     /**
-     * AepReportArgs timestamp.
-     * @member {number|Long} timestamp
-     * @memberof pbdeviceReport.AepReportArgs
-     * @instance
-     */
+         * AepReportArgs timestamp.
+         * @member {number|Long} timestamp
+         * @memberof pbdeviceReport.AepReportArgs
+         * @instance
+         */
     AepReportArgs.prototype.timestamp = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * AepReportArgs tenantId.
-     * @member {string} tenantId
-     * @memberof pbdeviceReport.AepReportArgs
-     * @instance
-     */
+         * AepReportArgs tenantId.
+         * @member {string} tenantId
+         * @memberof pbdeviceReport.AepReportArgs
+         * @instance
+         */
     AepReportArgs.prototype.tenantId = ''
 
     /**
-     * AepReportArgs serviceId.
-     * @member {string} serviceId
-     * @memberof pbdeviceReport.AepReportArgs
-     * @instance
-     */
+         * AepReportArgs serviceId.
+         * @member {string} serviceId
+         * @memberof pbdeviceReport.AepReportArgs
+         * @instance
+         */
     AepReportArgs.prototype.serviceId = ''
 
     /**
-     * AepReportArgs protocol.
-     * @member {string} protocol
-     * @memberof pbdeviceReport.AepReportArgs
-     * @instance
-     */
+         * AepReportArgs protocol.
+         * @member {string} protocol
+         * @memberof pbdeviceReport.AepReportArgs
+         * @instance
+         */
     AepReportArgs.prototype.protocol = ''
 
     /**
-     * AepReportArgs productId.
-     * @member {string} productId
-     * @memberof pbdeviceReport.AepReportArgs
-     * @instance
-     */
+         * AepReportArgs productId.
+         * @member {string} productId
+         * @memberof pbdeviceReport.AepReportArgs
+         * @instance
+         */
     AepReportArgs.prototype.productId = ''
 
     /**
-     * AepReportArgs payload.
-     * @member {pbdeviceReport.AepReportArgs.IPayload|null|undefined} payload
-     * @memberof pbdeviceReport.AepReportArgs
-     * @instance
-     */
+         * AepReportArgs payload.
+         * @member {pbdeviceReport.AepReportArgs.IPayload|null|undefined} payload
+         * @memberof pbdeviceReport.AepReportArgs
+         * @instance
+         */
     AepReportArgs.prototype.payload = null
 
     /**
-     * AepReportArgs messageType.
-     * @member {string} messageType
-     * @memberof pbdeviceReport.AepReportArgs
-     * @instance
-     */
+         * AepReportArgs messageType.
+         * @member {string} messageType
+         * @memberof pbdeviceReport.AepReportArgs
+         * @instance
+         */
     AepReportArgs.prototype.messageType = ''
 
     /**
-     * AepReportArgs deviceType.
-     * @member {string} deviceType
-     * @memberof pbdeviceReport.AepReportArgs
-     * @instance
-     */
+         * AepReportArgs deviceType.
+         * @member {string} deviceType
+         * @memberof pbdeviceReport.AepReportArgs
+         * @instance
+         */
     AepReportArgs.prototype.deviceType = ''
 
     /**
-     * AepReportArgs deviceId.
-     * @member {string} deviceId
-     * @memberof pbdeviceReport.AepReportArgs
-     * @instance
-     */
+         * AepReportArgs deviceId.
+         * @member {string} deviceId
+         * @memberof pbdeviceReport.AepReportArgs
+         * @instance
+         */
     AepReportArgs.prototype.deviceId = ''
 
     /**
-     * AepReportArgs assocAssetId.
-     * @member {string} assocAssetId
-     * @memberof pbdeviceReport.AepReportArgs
-     * @instance
-     */
+         * AepReportArgs assocAssetId.
+         * @member {string} assocAssetId
+         * @memberof pbdeviceReport.AepReportArgs
+         * @instance
+         */
     AepReportArgs.prototype.assocAssetId = ''
 
     /**
-     * AepReportArgs IMSI.
-     * @member {string} IMSI
-     * @memberof pbdeviceReport.AepReportArgs
-     * @instance
-     */
+         * AepReportArgs IMSI.
+         * @member {string} IMSI
+         * @memberof pbdeviceReport.AepReportArgs
+         * @instance
+         */
     AepReportArgs.prototype.IMSI = ''
 
     /**
-     * AepReportArgs IMEI.
-     * @member {string} IMEI
-     * @memberof pbdeviceReport.AepReportArgs
-     * @instance
-     */
+         * AepReportArgs IMEI.
+         * @member {string} IMEI
+         * @memberof pbdeviceReport.AepReportArgs
+         * @instance
+         */
     AepReportArgs.prototype.IMEI = ''
 
     /**
-     * Creates a new AepReportArgs instance using the specified properties.
-     * @function create
-     * @memberof pbdeviceReport.AepReportArgs
-     * @static
-     * @param {pbdeviceReport.IAepReportArgs=} [properties] Properties to set
-     * @returns {pbdeviceReport.AepReportArgs} AepReportArgs instance
-     */
+         * Creates a new AepReportArgs instance using the specified properties.
+         * @function create
+         * @memberof pbdeviceReport.AepReportArgs
+         * @static
+         * @param {pbdeviceReport.IAepReportArgs=} [properties] Properties to set
+         * @returns {pbdeviceReport.AepReportArgs} AepReportArgs instance
+         */
     AepReportArgs.create = function create(properties) {
       return new AepReportArgs(properties)
     }
 
     /**
-     * Encodes the specified AepReportArgs message. Does not implicitly {@link pbdeviceReport.AepReportArgs.verify|verify} messages.
-     * @function encode
-     * @memberof pbdeviceReport.AepReportArgs
-     * @static
-     * @param {pbdeviceReport.IAepReportArgs} message AepReportArgs message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified AepReportArgs message. Does not implicitly {@link pbdeviceReport.AepReportArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbdeviceReport.AepReportArgs
+         * @static
+         * @param {pbdeviceReport.IAepReportArgs} message AepReportArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     AepReportArgs.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.upPacketSN != null && Object.hasOwnProperty.call(message, 'upPacketSN')) { writer.uint32(/* id 1, wireType 0 =*/8).int32(message.upPacketSN) }
@@ -14361,29 +14361,29 @@ $root.pbdeviceReport = (function() {
     }
 
     /**
-     * Encodes the specified AepReportArgs message, length delimited. Does not implicitly {@link pbdeviceReport.AepReportArgs.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbdeviceReport.AepReportArgs
-     * @static
-     * @param {pbdeviceReport.IAepReportArgs} message AepReportArgs message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified AepReportArgs message, length delimited. Does not implicitly {@link pbdeviceReport.AepReportArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbdeviceReport.AepReportArgs
+         * @static
+         * @param {pbdeviceReport.IAepReportArgs} message AepReportArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     AepReportArgs.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes an AepReportArgs message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbdeviceReport.AepReportArgs
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbdeviceReport.AepReportArgs} AepReportArgs
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes an AepReportArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbdeviceReport.AepReportArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbdeviceReport.AepReportArgs} AepReportArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     AepReportArgs.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbdeviceReport.AepReportArgs()
@@ -14459,28 +14459,28 @@ $root.pbdeviceReport = (function() {
     }
 
     /**
-     * Decodes an AepReportArgs message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbdeviceReport.AepReportArgs
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbdeviceReport.AepReportArgs} AepReportArgs
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes an AepReportArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbdeviceReport.AepReportArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbdeviceReport.AepReportArgs} AepReportArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     AepReportArgs.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies an AepReportArgs message.
-     * @function verify
-     * @memberof pbdeviceReport.AepReportArgs
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies an AepReportArgs message.
+         * @function verify
+         * @memberof pbdeviceReport.AepReportArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     AepReportArgs.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.upPacketSN != null && message.hasOwnProperty('upPacketSN')) {
@@ -14533,13 +14533,13 @@ $root.pbdeviceReport = (function() {
     }
 
     /**
-     * Creates an AepReportArgs message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbdeviceReport.AepReportArgs
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbdeviceReport.AepReportArgs} AepReportArgs
-     */
+         * Creates an AepReportArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbdeviceReport.AepReportArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbdeviceReport.AepReportArgs} AepReportArgs
+         */
     AepReportArgs.fromObject = function fromObject(object) {
       if (object instanceof $root.pbdeviceReport.AepReportArgs) { return object }
       var message = new $root.pbdeviceReport.AepReportArgs()
@@ -14567,14 +14567,14 @@ $root.pbdeviceReport = (function() {
     }
 
     /**
-     * Creates a plain object from an AepReportArgs message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbdeviceReport.AepReportArgs
-     * @static
-     * @param {pbdeviceReport.AepReportArgs} message AepReportArgs
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from an AepReportArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbdeviceReport.AepReportArgs
+         * @static
+         * @param {pbdeviceReport.AepReportArgs} message AepReportArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     AepReportArgs.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -14619,24 +14619,24 @@ $root.pbdeviceReport = (function() {
     }
 
     /**
-     * Converts this AepReportArgs to JSON.
-     * @function toJSON
-     * @memberof pbdeviceReport.AepReportArgs
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this AepReportArgs to JSON.
+         * @function toJSON
+         * @memberof pbdeviceReport.AepReportArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     AepReportArgs.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for AepReportArgs
-     * @function getTypeUrl
-     * @memberof pbdeviceReport.AepReportArgs
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for AepReportArgs
+         * @function getTypeUrl
+         * @memberof pbdeviceReport.AepReportArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     AepReportArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -14646,20 +14646,20 @@ $root.pbdeviceReport = (function() {
 
     AepReportArgs.Payload = (function() {
       /**
-       * Properties of a Payload.
-       * @memberof pbdeviceReport.AepReportArgs
-       * @interface IPayload
-       * @property {string|null} [APPdata] Payload APPdata
-       */
+             * Properties of a Payload.
+             * @memberof pbdeviceReport.AepReportArgs
+             * @interface IPayload
+             * @property {string|null} [APPdata] Payload APPdata
+             */
 
       /**
-       * Constructs a new Payload.
-       * @memberof pbdeviceReport.AepReportArgs
-       * @classdesc Represents a Payload.
-       * @implements IPayload
-       * @constructor
-       * @param {pbdeviceReport.AepReportArgs.IPayload=} [properties] Properties to set
-       */
+             * Constructs a new Payload.
+             * @memberof pbdeviceReport.AepReportArgs
+             * @classdesc Represents a Payload.
+             * @implements IPayload
+             * @constructor
+             * @param {pbdeviceReport.AepReportArgs.IPayload=} [properties] Properties to set
+             */
       function Payload(properties) {
         if (properties) {
           for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
@@ -14669,34 +14669,34 @@ $root.pbdeviceReport = (function() {
       }
 
       /**
-       * Payload APPdata.
-       * @member {string} APPdata
-       * @memberof pbdeviceReport.AepReportArgs.Payload
-       * @instance
-       */
+             * Payload APPdata.
+             * @member {string} APPdata
+             * @memberof pbdeviceReport.AepReportArgs.Payload
+             * @instance
+             */
       Payload.prototype.APPdata = ''
 
       /**
-       * Creates a new Payload instance using the specified properties.
-       * @function create
-       * @memberof pbdeviceReport.AepReportArgs.Payload
-       * @static
-       * @param {pbdeviceReport.AepReportArgs.IPayload=} [properties] Properties to set
-       * @returns {pbdeviceReport.AepReportArgs.Payload} Payload instance
-       */
+             * Creates a new Payload instance using the specified properties.
+             * @function create
+             * @memberof pbdeviceReport.AepReportArgs.Payload
+             * @static
+             * @param {pbdeviceReport.AepReportArgs.IPayload=} [properties] Properties to set
+             * @returns {pbdeviceReport.AepReportArgs.Payload} Payload instance
+             */
       Payload.create = function create(properties) {
         return new Payload(properties)
       }
 
       /**
-       * Encodes the specified Payload message. Does not implicitly {@link pbdeviceReport.AepReportArgs.Payload.verify|verify} messages.
-       * @function encode
-       * @memberof pbdeviceReport.AepReportArgs.Payload
-       * @static
-       * @param {pbdeviceReport.AepReportArgs.IPayload} message Payload message or plain object to encode
-       * @param {$protobuf.Writer} [writer] Writer to encode to
-       * @returns {$protobuf.Writer} Writer
-       */
+             * Encodes the specified Payload message. Does not implicitly {@link pbdeviceReport.AepReportArgs.Payload.verify|verify} messages.
+             * @function encode
+             * @memberof pbdeviceReport.AepReportArgs.Payload
+             * @static
+             * @param {pbdeviceReport.AepReportArgs.IPayload} message Payload message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
       Payload.encode = function encode(message, writer) {
         if (!writer) { writer = $Writer.create() }
         if (message.APPdata != null && Object.hasOwnProperty.call(message, 'APPdata')) { writer.uint32(/* id 1, wireType 2 =*/10).string(message.APPdata) }
@@ -14704,29 +14704,29 @@ $root.pbdeviceReport = (function() {
       }
 
       /**
-       * Encodes the specified Payload message, length delimited. Does not implicitly {@link pbdeviceReport.AepReportArgs.Payload.verify|verify} messages.
-       * @function encodeDelimited
-       * @memberof pbdeviceReport.AepReportArgs.Payload
-       * @static
-       * @param {pbdeviceReport.AepReportArgs.IPayload} message Payload message or plain object to encode
-       * @param {$protobuf.Writer} [writer] Writer to encode to
-       * @returns {$protobuf.Writer} Writer
-       */
+             * Encodes the specified Payload message, length delimited. Does not implicitly {@link pbdeviceReport.AepReportArgs.Payload.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof pbdeviceReport.AepReportArgs.Payload
+             * @static
+             * @param {pbdeviceReport.AepReportArgs.IPayload} message Payload message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
       Payload.encodeDelimited = function encodeDelimited(message, writer) {
         return this.encode(message, writer).ldelim()
       }
 
       /**
-       * Decodes a Payload message from the specified reader or buffer.
-       * @function decode
-       * @memberof pbdeviceReport.AepReportArgs.Payload
-       * @static
-       * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-       * @param {number} [length] Message length if known beforehand
-       * @returns {pbdeviceReport.AepReportArgs.Payload} Payload
-       * @throws {Error} If the payload is not a reader or valid buffer
-       * @throws {$protobuf.util.ProtocolError} If required fields are missing
-       */
+             * Decodes a Payload message from the specified reader or buffer.
+             * @function decode
+             * @memberof pbdeviceReport.AepReportArgs.Payload
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {pbdeviceReport.AepReportArgs.Payload} Payload
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
       Payload.decode = function decode(reader, length) {
         if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
         var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbdeviceReport.AepReportArgs.Payload()
@@ -14746,28 +14746,28 @@ $root.pbdeviceReport = (function() {
       }
 
       /**
-       * Decodes a Payload message from the specified reader or buffer, length delimited.
-       * @function decodeDelimited
-       * @memberof pbdeviceReport.AepReportArgs.Payload
-       * @static
-       * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-       * @returns {pbdeviceReport.AepReportArgs.Payload} Payload
-       * @throws {Error} If the payload is not a reader or valid buffer
-       * @throws {$protobuf.util.ProtocolError} If required fields are missing
-       */
+             * Decodes a Payload message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof pbdeviceReport.AepReportArgs.Payload
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {pbdeviceReport.AepReportArgs.Payload} Payload
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
       Payload.decodeDelimited = function decodeDelimited(reader) {
         if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
         return this.decode(reader, reader.uint32())
       }
 
       /**
-       * Verifies a Payload message.
-       * @function verify
-       * @memberof pbdeviceReport.AepReportArgs.Payload
-       * @static
-       * @param {Object.<string,*>} message Plain object to verify
-       * @returns {string|null} `null` if valid, otherwise the reason why it is not
-       */
+             * Verifies a Payload message.
+             * @function verify
+             * @memberof pbdeviceReport.AepReportArgs.Payload
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
       Payload.verify = function verify(message) {
         if (typeof message !== 'object' || message === null) { return 'object expected' }
         if (message.APPdata != null && message.hasOwnProperty('APPdata')) {
@@ -14777,13 +14777,13 @@ $root.pbdeviceReport = (function() {
       }
 
       /**
-       * Creates a Payload message from a plain object. Also converts values to their respective internal types.
-       * @function fromObject
-       * @memberof pbdeviceReport.AepReportArgs.Payload
-       * @static
-       * @param {Object.<string,*>} object Plain object
-       * @returns {pbdeviceReport.AepReportArgs.Payload} Payload
-       */
+             * Creates a Payload message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof pbdeviceReport.AepReportArgs.Payload
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {pbdeviceReport.AepReportArgs.Payload} Payload
+             */
       Payload.fromObject = function fromObject(object) {
         if (object instanceof $root.pbdeviceReport.AepReportArgs.Payload) { return object }
         var message = new $root.pbdeviceReport.AepReportArgs.Payload()
@@ -14792,14 +14792,14 @@ $root.pbdeviceReport = (function() {
       }
 
       /**
-       * Creates a plain object from a Payload message. Also converts values to other types if specified.
-       * @function toObject
-       * @memberof pbdeviceReport.AepReportArgs.Payload
-       * @static
-       * @param {pbdeviceReport.AepReportArgs.Payload} message Payload
-       * @param {$protobuf.IConversionOptions} [options] Conversion options
-       * @returns {Object.<string,*>} Plain object
-       */
+             * Creates a plain object from a Payload message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof pbdeviceReport.AepReportArgs.Payload
+             * @static
+             * @param {pbdeviceReport.AepReportArgs.Payload} message Payload
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
       Payload.toObject = function toObject(message, options) {
         if (!options) { options = {} }
         var object = {}
@@ -14809,24 +14809,24 @@ $root.pbdeviceReport = (function() {
       }
 
       /**
-       * Converts this Payload to JSON.
-       * @function toJSON
-       * @memberof pbdeviceReport.AepReportArgs.Payload
-       * @instance
-       * @returns {Object.<string,*>} JSON object
-       */
+             * Converts this Payload to JSON.
+             * @function toJSON
+             * @memberof pbdeviceReport.AepReportArgs.Payload
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
       Payload.prototype.toJSON = function toJSON() {
         return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
       }
 
       /**
-       * Gets the default type url for Payload
-       * @function getTypeUrl
-       * @memberof pbdeviceReport.AepReportArgs.Payload
-       * @static
-       * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-       * @returns {string} The default type url
-       */
+             * Gets the default type url for Payload
+             * @function getTypeUrl
+             * @memberof pbdeviceReport.AepReportArgs.Payload
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
       Payload.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
         if (typeUrlPrefix === undefined) {
           typeUrlPrefix = 'type.googleapis.com'
@@ -14842,15 +14842,15 @@ $root.pbdeviceReport = (function() {
 
   pbdeviceReport.DeviceReport = (function() {
     /**
-     * Constructs a new DeviceReport service.
-     * @memberof pbdeviceReport
-     * @classdesc Represents a DeviceReport
-     * @extends $protobuf.rpc.Service
-     * @constructor
-     * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
-     * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
-     * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
-     */
+         * Constructs a new DeviceReport service.
+         * @memberof pbdeviceReport
+         * @classdesc Represents a DeviceReport
+         * @extends $protobuf.rpc.Service
+         * @constructor
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         */
     function DeviceReport(rpcImpl, requestDelimited, responseDelimited) {
       $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited)
     }
@@ -14858,216 +14858,216 @@ $root.pbdeviceReport = (function() {
     (DeviceReport.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = DeviceReport
 
     /**
-     * Creates new DeviceReport service using the specified rpc implementation.
-     * @function create
-     * @memberof pbdeviceReport.DeviceReport
-     * @static
-     * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
-     * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
-     * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
-     * @returns {DeviceReport} RPC service. Useful where requests and/or responses are streamed.
-     */
+         * Creates new DeviceReport service using the specified rpc implementation.
+         * @function create
+         * @memberof pbdeviceReport.DeviceReport
+         * @static
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         * @returns {DeviceReport} RPC service. Useful where requests and/or responses are streamed.
+         */
     DeviceReport.create = function create(rpcImpl, requestDelimited, responseDelimited) {
       return new this(rpcImpl, requestDelimited, responseDelimited)
     }
 
     /**
-     * Callback as used by {@link pbdeviceReport.DeviceReport#createDeviceReport}.
-     * @memberof pbdeviceReport.DeviceReport
-     * @typedef CreateDeviceReportCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbcommon.CommonResult} [response] CommonResult
-     */
+         * Callback as used by {@link pbdeviceReport.DeviceReport#createDeviceReport}.
+         * @memberof pbdeviceReport.DeviceReport
+         * @typedef CreateDeviceReportCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
 
     /**
-     * Calls CreateDeviceReport.
-     * @function createDeviceReport
-     * @memberof pbdeviceReport.DeviceReport
-     * @instance
-     * @param {pbdeviceReport.IDeviceReportModel} request DeviceReportModel message or plain object
-     * @param {pbdeviceReport.DeviceReport.CreateDeviceReportCallback} callback Node-style callback called with the error, if any, and CommonResult
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls CreateDeviceReport.
+         * @function createDeviceReport
+         * @memberof pbdeviceReport.DeviceReport
+         * @instance
+         * @param {pbdeviceReport.IDeviceReportModel} request DeviceReportModel message or plain object
+         * @param {pbdeviceReport.DeviceReport.CreateDeviceReportCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(DeviceReport.prototype.createDeviceReport = function createDeviceReport(request, callback) {
       return this.rpcCall(createDeviceReport, $root.pbdeviceReport.DeviceReportModel, $root.pbcommon.CommonResult, request, callback)
     }, 'name', { value: 'CreateDeviceReport' })
 
     /**
-     * Calls CreateDeviceReport.
-     * @function createDeviceReport
-     * @memberof pbdeviceReport.DeviceReport
-     * @instance
-     * @param {pbdeviceReport.IDeviceReportModel} request DeviceReportModel message or plain object
-     * @returns {Promise<pbcommon.CommonResult>} Promise
-     * @variation 2
-     */
+         * Calls CreateDeviceReport.
+         * @function createDeviceReport
+         * @memberof pbdeviceReport.DeviceReport
+         * @instance
+         * @param {pbdeviceReport.IDeviceReportModel} request DeviceReportModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbdeviceReport.DeviceReport#updateDeviceReport}.
-     * @memberof pbdeviceReport.DeviceReport
-     * @typedef UpdateDeviceReportCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbcommon.CommonResult} [response] CommonResult
-     */
+         * Callback as used by {@link pbdeviceReport.DeviceReport#updateDeviceReport}.
+         * @memberof pbdeviceReport.DeviceReport
+         * @typedef UpdateDeviceReportCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
 
     /**
-     * Calls UpdateDeviceReport.
-     * @function updateDeviceReport
-     * @memberof pbdeviceReport.DeviceReport
-     * @instance
-     * @param {pbdeviceReport.IDeviceReportModel} request DeviceReportModel message or plain object
-     * @param {pbdeviceReport.DeviceReport.UpdateDeviceReportCallback} callback Node-style callback called with the error, if any, and CommonResult
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls UpdateDeviceReport.
+         * @function updateDeviceReport
+         * @memberof pbdeviceReport.DeviceReport
+         * @instance
+         * @param {pbdeviceReport.IDeviceReportModel} request DeviceReportModel message or plain object
+         * @param {pbdeviceReport.DeviceReport.UpdateDeviceReportCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(DeviceReport.prototype.updateDeviceReport = function updateDeviceReport(request, callback) {
       return this.rpcCall(updateDeviceReport, $root.pbdeviceReport.DeviceReportModel, $root.pbcommon.CommonResult, request, callback)
     }, 'name', { value: 'UpdateDeviceReport' })
 
     /**
-     * Calls UpdateDeviceReport.
-     * @function updateDeviceReport
-     * @memberof pbdeviceReport.DeviceReport
-     * @instance
-     * @param {pbdeviceReport.IDeviceReportModel} request DeviceReportModel message or plain object
-     * @returns {Promise<pbcommon.CommonResult>} Promise
-     * @variation 2
-     */
+         * Calls UpdateDeviceReport.
+         * @function updateDeviceReport
+         * @memberof pbdeviceReport.DeviceReport
+         * @instance
+         * @param {pbdeviceReport.IDeviceReportModel} request DeviceReportModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbdeviceReport.DeviceReport#deleteDeviceReport}.
-     * @memberof pbdeviceReport.DeviceReport
-     * @typedef DeleteDeviceReportCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbcommon.CommonResult} [response] CommonResult
-     */
+         * Callback as used by {@link pbdeviceReport.DeviceReport#deleteDeviceReport}.
+         * @memberof pbdeviceReport.DeviceReport
+         * @typedef DeleteDeviceReportCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
 
     /**
-     * Calls DeleteDeviceReport.
-     * @function deleteDeviceReport
-     * @memberof pbdeviceReport.DeviceReport
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @param {pbdeviceReport.DeviceReport.DeleteDeviceReportCallback} callback Node-style callback called with the error, if any, and CommonResult
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls DeleteDeviceReport.
+         * @function deleteDeviceReport
+         * @memberof pbdeviceReport.DeviceReport
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbdeviceReport.DeviceReport.DeleteDeviceReportCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(DeviceReport.prototype.deleteDeviceReport = function deleteDeviceReport(request, callback) {
       return this.rpcCall(deleteDeviceReport, $root.pbcommon.IdArgs, $root.pbcommon.CommonResult, request, callback)
     }, 'name', { value: 'DeleteDeviceReport' })
 
     /**
-     * Calls DeleteDeviceReport.
-     * @function deleteDeviceReport
-     * @memberof pbdeviceReport.DeviceReport
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @returns {Promise<pbcommon.CommonResult>} Promise
-     * @variation 2
-     */
+         * Calls DeleteDeviceReport.
+         * @function deleteDeviceReport
+         * @memberof pbdeviceReport.DeviceReport
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbdeviceReport.DeviceReport#findDeviceReportById}.
-     * @memberof pbdeviceReport.DeviceReport
-     * @typedef FindDeviceReportByIdCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbdeviceReport.FindDeviceReportReplay} [response] FindDeviceReportReplay
-     */
+         * Callback as used by {@link pbdeviceReport.DeviceReport#findDeviceReportById}.
+         * @memberof pbdeviceReport.DeviceReport
+         * @typedef FindDeviceReportByIdCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbdeviceReport.FindDeviceReportReplay} [response] FindDeviceReportReplay
+         */
 
     /**
-     * Calls FindDeviceReportById.
-     * @function findDeviceReportById
-     * @memberof pbdeviceReport.DeviceReport
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @param {pbdeviceReport.DeviceReport.FindDeviceReportByIdCallback} callback Node-style callback called with the error, if any, and FindDeviceReportReplay
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls FindDeviceReportById.
+         * @function findDeviceReportById
+         * @memberof pbdeviceReport.DeviceReport
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbdeviceReport.DeviceReport.FindDeviceReportByIdCallback} callback Node-style callback called with the error, if any, and FindDeviceReportReplay
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(DeviceReport.prototype.findDeviceReportById = function findDeviceReportById(request, callback) {
       return this.rpcCall(findDeviceReportById, $root.pbcommon.IdArgs, $root.pbdeviceReport.FindDeviceReportReplay, request, callback)
     }, 'name', { value: 'FindDeviceReportById' })
 
     /**
-     * Calls FindDeviceReportById.
-     * @function findDeviceReportById
-     * @memberof pbdeviceReport.DeviceReport
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @returns {Promise<pbdeviceReport.FindDeviceReportReplay>} Promise
-     * @variation 2
-     */
+         * Calls FindDeviceReportById.
+         * @function findDeviceReportById
+         * @memberof pbdeviceReport.DeviceReport
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbdeviceReport.FindDeviceReportReplay>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbdeviceReport.DeviceReport#findDeviceReportList}.
-     * @memberof pbdeviceReport.DeviceReport
-     * @typedef FindDeviceReportListCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbdeviceReport.FindDeviceReportReplay} [response] FindDeviceReportReplay
-     */
+         * Callback as used by {@link pbdeviceReport.DeviceReport#findDeviceReportList}.
+         * @memberof pbdeviceReport.DeviceReport
+         * @typedef FindDeviceReportListCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbdeviceReport.FindDeviceReportReplay} [response] FindDeviceReportReplay
+         */
 
     /**
-     * Calls FindDeviceReportList.
-     * @function findDeviceReportList
-     * @memberof pbdeviceReport.DeviceReport
-     * @instance
-     * @param {pbdeviceReport.IFindDeviceReportArgs} request FindDeviceReportArgs message or plain object
-     * @param {pbdeviceReport.DeviceReport.FindDeviceReportListCallback} callback Node-style callback called with the error, if any, and FindDeviceReportReplay
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls FindDeviceReportList.
+         * @function findDeviceReportList
+         * @memberof pbdeviceReport.DeviceReport
+         * @instance
+         * @param {pbdeviceReport.IFindDeviceReportArgs} request FindDeviceReportArgs message or plain object
+         * @param {pbdeviceReport.DeviceReport.FindDeviceReportListCallback} callback Node-style callback called with the error, if any, and FindDeviceReportReplay
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(DeviceReport.prototype.findDeviceReportList = function findDeviceReportList(request, callback) {
       return this.rpcCall(findDeviceReportList, $root.pbdeviceReport.FindDeviceReportArgs, $root.pbdeviceReport.FindDeviceReportReplay, request, callback)
     }, 'name', { value: 'FindDeviceReportList' })
 
     /**
-     * Calls FindDeviceReportList.
-     * @function findDeviceReportList
-     * @memberof pbdeviceReport.DeviceReport
-     * @instance
-     * @param {pbdeviceReport.IFindDeviceReportArgs} request FindDeviceReportArgs message or plain object
-     * @returns {Promise<pbdeviceReport.FindDeviceReportReplay>} Promise
-     * @variation 2
-     */
+         * Calls FindDeviceReportList.
+         * @function findDeviceReportList
+         * @memberof pbdeviceReport.DeviceReport
+         * @instance
+         * @param {pbdeviceReport.IFindDeviceReportArgs} request FindDeviceReportArgs message or plain object
+         * @returns {Promise<pbdeviceReport.FindDeviceReportReplay>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbdeviceReport.DeviceReport#aepReport}.
-     * @memberof pbdeviceReport.DeviceReport
-     * @typedef AepReportCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbcommon.CommonResult} [response] CommonResult
-     */
+         * Callback as used by {@link pbdeviceReport.DeviceReport#aepReport}.
+         * @memberof pbdeviceReport.DeviceReport
+         * @typedef AepReportCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
 
     /**
-     * Calls AepReport.
-     * @function aepReport
-     * @memberof pbdeviceReport.DeviceReport
-     * @instance
-     * @param {pbdeviceReport.IAepReportArgs} request AepReportArgs message or plain object
-     * @param {pbdeviceReport.DeviceReport.AepReportCallback} callback Node-style callback called with the error, if any, and CommonResult
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls AepReport.
+         * @function aepReport
+         * @memberof pbdeviceReport.DeviceReport
+         * @instance
+         * @param {pbdeviceReport.IAepReportArgs} request AepReportArgs message or plain object
+         * @param {pbdeviceReport.DeviceReport.AepReportCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(DeviceReport.prototype.aepReport = function aepReport(request, callback) {
       return this.rpcCall(aepReport, $root.pbdeviceReport.AepReportArgs, $root.pbcommon.CommonResult, request, callback)
     }, 'name', { value: 'AepReport' })
 
     /**
-     * Calls AepReport.
-     * @function aepReport
-     * @memberof pbdeviceReport.DeviceReport
-     * @instance
-     * @param {pbdeviceReport.IAepReportArgs} request AepReportArgs message or plain object
-     * @returns {Promise<pbcommon.CommonResult>} Promise
-     * @variation 2
-     */
+         * Calls AepReport.
+         * @function aepReport
+         * @memberof pbdeviceReport.DeviceReport
+         * @instance
+         * @param {pbdeviceReport.IAepReportArgs} request AepReportArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
 
     return DeviceReport
   })()
@@ -15077,40 +15077,40 @@ $root.pbdeviceReport = (function() {
 
 $root.pbshop = (function() {
   /**
-   * Namespace pbshop.
-   * @exports pbshop
-   * @namespace
-   */
+     * Namespace pbshop.
+     * @exports pbshop
+     * @namespace
+     */
   var pbshop = {}
 
   pbshop.ShopModel = (function() {
     /**
-     * Properties of a ShopModel.
-     * @memberof pbshop
-     * @interface IShopModel
-     * @property {number|Long|null} [id] ShopModel id
-     * @property {string|null} [createdAt] ShopModel createdAt
-     * @property {string|null} [updatedAt] ShopModel updatedAt
-     * @property {string|null} [name] ShopModel name
-     * @property {string|null} [address] ShopModel address
-     * @property {string|null} [phone] ShopModel phone
-     * @property {string|null} [businessLicenceUrl] ShopModel businessLicenceUrl
-     * @property {string|null} [idcard1] ShopModel idcard1
-     * @property {string|null} [idcard2] ShopModel idcard2
-     * @property {pbshop.ShopStatusEnum|null} [status] ShopModel status
-     * @property {string|null} [remark] ShopModel remark
-     * @property {string|null} [creator] ShopModel creator
-     * @property {string|null} [updater] ShopModel updater
-     */
+         * Properties of a ShopModel.
+         * @memberof pbshop
+         * @interface IShopModel
+         * @property {number|Long|null} [id] ShopModel id
+         * @property {string|null} [createdAt] ShopModel createdAt
+         * @property {string|null} [updatedAt] ShopModel updatedAt
+         * @property {string|null} [name] ShopModel name
+         * @property {string|null} [address] ShopModel address
+         * @property {string|null} [phone] ShopModel phone
+         * @property {string|null} [businessLicenceUrl] ShopModel businessLicenceUrl
+         * @property {string|null} [idcard1] ShopModel idcard1
+         * @property {string|null} [idcard2] ShopModel idcard2
+         * @property {pbshop.ShopStatusEnum|null} [status] ShopModel status
+         * @property {string|null} [remark] ShopModel remark
+         * @property {string|null} [creator] ShopModel creator
+         * @property {string|null} [updater] ShopModel updater
+         */
 
     /**
-     * Constructs a new ShopModel.
-     * @memberof pbshop
-     * @classdesc Represents a ShopModel.
-     * @implements IShopModel
-     * @constructor
-     * @param {pbshop.IShopModel=} [properties] Properties to set
-     */
+         * Constructs a new ShopModel.
+         * @memberof pbshop
+         * @classdesc Represents a ShopModel.
+         * @implements IShopModel
+         * @constructor
+         * @param {pbshop.IShopModel=} [properties] Properties to set
+         */
     function ShopModel(properties) {
       if (properties) {
         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
@@ -15120,130 +15120,130 @@ $root.pbshop = (function() {
     }
 
     /**
-     * ShopModel id.
-     * @member {number|Long} id
-     * @memberof pbshop.ShopModel
-     * @instance
-     */
+         * ShopModel id.
+         * @member {number|Long} id
+         * @memberof pbshop.ShopModel
+         * @instance
+         */
     ShopModel.prototype.id = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * ShopModel createdAt.
-     * @member {string} createdAt
-     * @memberof pbshop.ShopModel
-     * @instance
-     */
+         * ShopModel createdAt.
+         * @member {string} createdAt
+         * @memberof pbshop.ShopModel
+         * @instance
+         */
     ShopModel.prototype.createdAt = ''
 
     /**
-     * ShopModel updatedAt.
-     * @member {string} updatedAt
-     * @memberof pbshop.ShopModel
-     * @instance
-     */
+         * ShopModel updatedAt.
+         * @member {string} updatedAt
+         * @memberof pbshop.ShopModel
+         * @instance
+         */
     ShopModel.prototype.updatedAt = ''
 
     /**
-     * ShopModel name.
-     * @member {string} name
-     * @memberof pbshop.ShopModel
-     * @instance
-     */
+         * ShopModel name.
+         * @member {string} name
+         * @memberof pbshop.ShopModel
+         * @instance
+         */
     ShopModel.prototype.name = ''
 
     /**
-     * ShopModel address.
-     * @member {string} address
-     * @memberof pbshop.ShopModel
-     * @instance
-     */
+         * ShopModel address.
+         * @member {string} address
+         * @memberof pbshop.ShopModel
+         * @instance
+         */
     ShopModel.prototype.address = ''
 
     /**
-     * ShopModel phone.
-     * @member {string} phone
-     * @memberof pbshop.ShopModel
-     * @instance
-     */
+         * ShopModel phone.
+         * @member {string} phone
+         * @memberof pbshop.ShopModel
+         * @instance
+         */
     ShopModel.prototype.phone = ''
 
     /**
-     * ShopModel businessLicenceUrl.
-     * @member {string} businessLicenceUrl
-     * @memberof pbshop.ShopModel
-     * @instance
-     */
+         * ShopModel businessLicenceUrl.
+         * @member {string} businessLicenceUrl
+         * @memberof pbshop.ShopModel
+         * @instance
+         */
     ShopModel.prototype.businessLicenceUrl = ''
 
     /**
-     * ShopModel idcard1.
-     * @member {string} idcard1
-     * @memberof pbshop.ShopModel
-     * @instance
-     */
+         * ShopModel idcard1.
+         * @member {string} idcard1
+         * @memberof pbshop.ShopModel
+         * @instance
+         */
     ShopModel.prototype.idcard1 = ''
 
     /**
-     * ShopModel idcard2.
-     * @member {string} idcard2
-     * @memberof pbshop.ShopModel
-     * @instance
-     */
+         * ShopModel idcard2.
+         * @member {string} idcard2
+         * @memberof pbshop.ShopModel
+         * @instance
+         */
     ShopModel.prototype.idcard2 = ''
 
     /**
-     * ShopModel status.
-     * @member {pbshop.ShopStatusEnum} status
-     * @memberof pbshop.ShopModel
-     * @instance
-     */
+         * ShopModel status.
+         * @member {pbshop.ShopStatusEnum} status
+         * @memberof pbshop.ShopModel
+         * @instance
+         */
     ShopModel.prototype.status = 0
 
     /**
-     * ShopModel remark.
-     * @member {string} remark
-     * @memberof pbshop.ShopModel
-     * @instance
-     */
+         * ShopModel remark.
+         * @member {string} remark
+         * @memberof pbshop.ShopModel
+         * @instance
+         */
     ShopModel.prototype.remark = ''
 
     /**
-     * ShopModel creator.
-     * @member {string} creator
-     * @memberof pbshop.ShopModel
-     * @instance
-     */
+         * ShopModel creator.
+         * @member {string} creator
+         * @memberof pbshop.ShopModel
+         * @instance
+         */
     ShopModel.prototype.creator = ''
 
     /**
-     * ShopModel updater.
-     * @member {string} updater
-     * @memberof pbshop.ShopModel
-     * @instance
-     */
+         * ShopModel updater.
+         * @member {string} updater
+         * @memberof pbshop.ShopModel
+         * @instance
+         */
     ShopModel.prototype.updater = ''
 
     /**
-     * Creates a new ShopModel instance using the specified properties.
-     * @function create
-     * @memberof pbshop.ShopModel
-     * @static
-     * @param {pbshop.IShopModel=} [properties] Properties to set
-     * @returns {pbshop.ShopModel} ShopModel instance
-     */
+         * Creates a new ShopModel instance using the specified properties.
+         * @function create
+         * @memberof pbshop.ShopModel
+         * @static
+         * @param {pbshop.IShopModel=} [properties] Properties to set
+         * @returns {pbshop.ShopModel} ShopModel instance
+         */
     ShopModel.create = function create(properties) {
       return new ShopModel(properties)
     }
 
     /**
-     * Encodes the specified ShopModel message. Does not implicitly {@link pbshop.ShopModel.verify|verify} messages.
-     * @function encode
-     * @memberof pbshop.ShopModel
-     * @static
-     * @param {pbshop.IShopModel} message ShopModel message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified ShopModel message. Does not implicitly {@link pbshop.ShopModel.verify|verify} messages.
+         * @function encode
+         * @memberof pbshop.ShopModel
+         * @static
+         * @param {pbshop.IShopModel} message ShopModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     ShopModel.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.id != null && Object.hasOwnProperty.call(message, 'id')) { writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id) }
@@ -15263,29 +15263,29 @@ $root.pbshop = (function() {
     }
 
     /**
-     * Encodes the specified ShopModel message, length delimited. Does not implicitly {@link pbshop.ShopModel.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbshop.ShopModel
-     * @static
-     * @param {pbshop.IShopModel} message ShopModel message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified ShopModel message, length delimited. Does not implicitly {@link pbshop.ShopModel.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbshop.ShopModel
+         * @static
+         * @param {pbshop.IShopModel} message ShopModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     ShopModel.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes a ShopModel message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbshop.ShopModel
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbshop.ShopModel} ShopModel
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a ShopModel message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbshop.ShopModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbshop.ShopModel} ShopModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     ShopModel.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbshop.ShopModel()
@@ -15353,28 +15353,28 @@ $root.pbshop = (function() {
     }
 
     /**
-     * Decodes a ShopModel message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbshop.ShopModel
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbshop.ShopModel} ShopModel
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a ShopModel message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbshop.ShopModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbshop.ShopModel} ShopModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     ShopModel.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies a ShopModel message.
-     * @function verify
-     * @memberof pbshop.ShopModel
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies a ShopModel message.
+         * @function verify
+         * @memberof pbshop.ShopModel
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     ShopModel.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.id != null && message.hasOwnProperty('id')) {
@@ -15429,13 +15429,13 @@ $root.pbshop = (function() {
     }
 
     /**
-     * Creates a ShopModel message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbshop.ShopModel
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbshop.ShopModel} ShopModel
-     */
+         * Creates a ShopModel message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbshop.ShopModel
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbshop.ShopModel} ShopModel
+         */
     ShopModel.fromObject = function fromObject(object) {
       if (object instanceof $root.pbshop.ShopModel) { return object }
       var message = new $root.pbshop.ShopModel()
@@ -15485,14 +15485,14 @@ $root.pbshop = (function() {
     }
 
     /**
-     * Creates a plain object from a ShopModel message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbshop.ShopModel
-     * @static
-     * @param {pbshop.ShopModel} message ShopModel
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from a ShopModel message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbshop.ShopModel
+         * @static
+         * @param {pbshop.ShopModel} message ShopModel
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     ShopModel.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -15533,24 +15533,24 @@ $root.pbshop = (function() {
     }
 
     /**
-     * Converts this ShopModel to JSON.
-     * @function toJSON
-     * @memberof pbshop.ShopModel
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this ShopModel to JSON.
+         * @function toJSON
+         * @memberof pbshop.ShopModel
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     ShopModel.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for ShopModel
-     * @function getTypeUrl
-     * @memberof pbshop.ShopModel
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for ShopModel
+         * @function getTypeUrl
+         * @memberof pbshop.ShopModel
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     ShopModel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -15562,15 +15562,15 @@ $root.pbshop = (function() {
   })()
 
   /**
-   * ShopStatusEnum enum.
-   * @name pbshop.ShopStatusEnum
-   * @enum {number}
-   * @property {number} UnKnown=0 UnKnown value
-   * @property {number} Unchecked=1 Unchecked value
-   * @property {number} Checked=2 Checked value
-   * @property {number} Deleted=3 Deleted value
-   * @property {number} UnUsed=4 UnUsed value
-   */
+     * ShopStatusEnum enum.
+     * @name pbshop.ShopStatusEnum
+     * @enum {number}
+     * @property {number} UnKnown=0 UnKnown value
+     * @property {number} Unchecked=1 Unchecked value
+     * @property {number} Checked=2 Checked value
+     * @property {number} Deleted=3 Deleted value
+     * @property {number} UnUsed=4 UnUsed value
+     */
   pbshop.ShopStatusEnum = (function() {
     var valuesById = {}; var values = Object.create(valuesById)
     values[valuesById[0] = 'UnKnown'] = 0
@@ -15583,21 +15583,21 @@ $root.pbshop = (function() {
 
   pbshop.FindShopArgs = (function() {
     /**
-     * Properties of a FindShopArgs.
-     * @memberof pbshop
-     * @interface IFindShopArgs
-     * @property {pbcommon.IPageInfo|null} [pageInfo] FindShopArgs pageInfo
-     * @property {pbshop.IShopModel|null} [query] FindShopArgs query
-     */
+         * Properties of a FindShopArgs.
+         * @memberof pbshop
+         * @interface IFindShopArgs
+         * @property {pbcommon.IPageInfo|null} [pageInfo] FindShopArgs pageInfo
+         * @property {pbshop.IShopModel|null} [query] FindShopArgs query
+         */
 
     /**
-     * Constructs a new FindShopArgs.
-     * @memberof pbshop
-     * @classdesc Represents a FindShopArgs.
-     * @implements IFindShopArgs
-     * @constructor
-     * @param {pbshop.IFindShopArgs=} [properties] Properties to set
-     */
+         * Constructs a new FindShopArgs.
+         * @memberof pbshop
+         * @classdesc Represents a FindShopArgs.
+         * @implements IFindShopArgs
+         * @constructor
+         * @param {pbshop.IFindShopArgs=} [properties] Properties to set
+         */
     function FindShopArgs(properties) {
       if (properties) {
         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
@@ -15607,42 +15607,42 @@ $root.pbshop = (function() {
     }
 
     /**
-     * FindShopArgs pageInfo.
-     * @member {pbcommon.IPageInfo|null|undefined} pageInfo
-     * @memberof pbshop.FindShopArgs
-     * @instance
-     */
+         * FindShopArgs pageInfo.
+         * @member {pbcommon.IPageInfo|null|undefined} pageInfo
+         * @memberof pbshop.FindShopArgs
+         * @instance
+         */
     FindShopArgs.prototype.pageInfo = null
 
     /**
-     * FindShopArgs query.
-     * @member {pbshop.IShopModel|null|undefined} query
-     * @memberof pbshop.FindShopArgs
-     * @instance
-     */
+         * FindShopArgs query.
+         * @member {pbshop.IShopModel|null|undefined} query
+         * @memberof pbshop.FindShopArgs
+         * @instance
+         */
     FindShopArgs.prototype.query = null
 
     /**
-     * Creates a new FindShopArgs instance using the specified properties.
-     * @function create
-     * @memberof pbshop.FindShopArgs
-     * @static
-     * @param {pbshop.IFindShopArgs=} [properties] Properties to set
-     * @returns {pbshop.FindShopArgs} FindShopArgs instance
-     */
+         * Creates a new FindShopArgs instance using the specified properties.
+         * @function create
+         * @memberof pbshop.FindShopArgs
+         * @static
+         * @param {pbshop.IFindShopArgs=} [properties] Properties to set
+         * @returns {pbshop.FindShopArgs} FindShopArgs instance
+         */
     FindShopArgs.create = function create(properties) {
       return new FindShopArgs(properties)
     }
 
     /**
-     * Encodes the specified FindShopArgs message. Does not implicitly {@link pbshop.FindShopArgs.verify|verify} messages.
-     * @function encode
-     * @memberof pbshop.FindShopArgs
-     * @static
-     * @param {pbshop.IFindShopArgs} message FindShopArgs message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindShopArgs message. Does not implicitly {@link pbshop.FindShopArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbshop.FindShopArgs
+         * @static
+         * @param {pbshop.IFindShopArgs} message FindShopArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindShopArgs.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.pageInfo != null && Object.hasOwnProperty.call(message, 'pageInfo')) { $root.pbcommon.PageInfo.encode(message.pageInfo, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim() }
@@ -15651,29 +15651,29 @@ $root.pbshop = (function() {
     }
 
     /**
-     * Encodes the specified FindShopArgs message, length delimited. Does not implicitly {@link pbshop.FindShopArgs.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbshop.FindShopArgs
-     * @static
-     * @param {pbshop.IFindShopArgs} message FindShopArgs message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindShopArgs message, length delimited. Does not implicitly {@link pbshop.FindShopArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbshop.FindShopArgs
+         * @static
+         * @param {pbshop.IFindShopArgs} message FindShopArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindShopArgs.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes a FindShopArgs message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbshop.FindShopArgs
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbshop.FindShopArgs} FindShopArgs
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindShopArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbshop.FindShopArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbshop.FindShopArgs} FindShopArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindShopArgs.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbshop.FindShopArgs()
@@ -15697,28 +15697,28 @@ $root.pbshop = (function() {
     }
 
     /**
-     * Decodes a FindShopArgs message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbshop.FindShopArgs
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbshop.FindShopArgs} FindShopArgs
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindShopArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbshop.FindShopArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbshop.FindShopArgs} FindShopArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindShopArgs.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies a FindShopArgs message.
-     * @function verify
-     * @memberof pbshop.FindShopArgs
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies a FindShopArgs message.
+         * @function verify
+         * @memberof pbshop.FindShopArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     FindShopArgs.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.pageInfo != null && message.hasOwnProperty('pageInfo')) {
@@ -15733,13 +15733,13 @@ $root.pbshop = (function() {
     }
 
     /**
-     * Creates a FindShopArgs message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbshop.FindShopArgs
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbshop.FindShopArgs} FindShopArgs
-     */
+         * Creates a FindShopArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbshop.FindShopArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbshop.FindShopArgs} FindShopArgs
+         */
     FindShopArgs.fromObject = function fromObject(object) {
       if (object instanceof $root.pbshop.FindShopArgs) { return object }
       var message = new $root.pbshop.FindShopArgs()
@@ -15755,14 +15755,14 @@ $root.pbshop = (function() {
     }
 
     /**
-     * Creates a plain object from a FindShopArgs message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbshop.FindShopArgs
-     * @static
-     * @param {pbshop.FindShopArgs} message FindShopArgs
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from a FindShopArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbshop.FindShopArgs
+         * @static
+         * @param {pbshop.FindShopArgs} message FindShopArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     FindShopArgs.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -15776,24 +15776,24 @@ $root.pbshop = (function() {
     }
 
     /**
-     * Converts this FindShopArgs to JSON.
-     * @function toJSON
-     * @memberof pbshop.FindShopArgs
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this FindShopArgs to JSON.
+         * @function toJSON
+         * @memberof pbshop.FindShopArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     FindShopArgs.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for FindShopArgs
-     * @function getTypeUrl
-     * @memberof pbshop.FindShopArgs
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for FindShopArgs
+         * @function getTypeUrl
+         * @memberof pbshop.FindShopArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     FindShopArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -15806,24 +15806,24 @@ $root.pbshop = (function() {
 
   pbshop.FindShopReply = (function() {
     /**
-     * Properties of a FindShopReply.
-     * @memberof pbshop
-     * @interface IFindShopReply
-     * @property {pbcommon.EnumCode|null} [code] FindShopReply code
-     * @property {string|null} [msg] FindShopReply msg
-     * @property {pbshop.IShopModel|null} [data] FindShopReply data
-     * @property {Array.<pbshop.IShopModel>|null} [list] FindShopReply list
-     * @property {number|Long|null} [total] FindShopReply total
-     */
+         * Properties of a FindShopReply.
+         * @memberof pbshop
+         * @interface IFindShopReply
+         * @property {pbcommon.EnumCode|null} [code] FindShopReply code
+         * @property {string|null} [msg] FindShopReply msg
+         * @property {pbshop.IShopModel|null} [data] FindShopReply data
+         * @property {Array.<pbshop.IShopModel>|null} [list] FindShopReply list
+         * @property {number|Long|null} [total] FindShopReply total
+         */
 
     /**
-     * Constructs a new FindShopReply.
-     * @memberof pbshop
-     * @classdesc Represents a FindShopReply.
-     * @implements IFindShopReply
-     * @constructor
-     * @param {pbshop.IFindShopReply=} [properties] Properties to set
-     */
+         * Constructs a new FindShopReply.
+         * @memberof pbshop
+         * @classdesc Represents a FindShopReply.
+         * @implements IFindShopReply
+         * @constructor
+         * @param {pbshop.IFindShopReply=} [properties] Properties to set
+         */
     function FindShopReply(properties) {
       this.list = []
       if (properties) {
@@ -15834,66 +15834,66 @@ $root.pbshop = (function() {
     }
 
     /**
-     * FindShopReply code.
-     * @member {pbcommon.EnumCode} code
-     * @memberof pbshop.FindShopReply
-     * @instance
-     */
+         * FindShopReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbshop.FindShopReply
+         * @instance
+         */
     FindShopReply.prototype.code = 0
 
     /**
-     * FindShopReply msg.
-     * @member {string} msg
-     * @memberof pbshop.FindShopReply
-     * @instance
-     */
+         * FindShopReply msg.
+         * @member {string} msg
+         * @memberof pbshop.FindShopReply
+         * @instance
+         */
     FindShopReply.prototype.msg = ''
 
     /**
-     * FindShopReply data.
-     * @member {pbshop.IShopModel|null|undefined} data
-     * @memberof pbshop.FindShopReply
-     * @instance
-     */
+         * FindShopReply data.
+         * @member {pbshop.IShopModel|null|undefined} data
+         * @memberof pbshop.FindShopReply
+         * @instance
+         */
     FindShopReply.prototype.data = null
 
     /**
-     * FindShopReply list.
-     * @member {Array.<pbshop.IShopModel>} list
-     * @memberof pbshop.FindShopReply
-     * @instance
-     */
+         * FindShopReply list.
+         * @member {Array.<pbshop.IShopModel>} list
+         * @memberof pbshop.FindShopReply
+         * @instance
+         */
     FindShopReply.prototype.list = $util.emptyArray
 
     /**
-     * FindShopReply total.
-     * @member {number|Long} total
-     * @memberof pbshop.FindShopReply
-     * @instance
-     */
+         * FindShopReply total.
+         * @member {number|Long} total
+         * @memberof pbshop.FindShopReply
+         * @instance
+         */
     FindShopReply.prototype.total = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * Creates a new FindShopReply instance using the specified properties.
-     * @function create
-     * @memberof pbshop.FindShopReply
-     * @static
-     * @param {pbshop.IFindShopReply=} [properties] Properties to set
-     * @returns {pbshop.FindShopReply} FindShopReply instance
-     */
+         * Creates a new FindShopReply instance using the specified properties.
+         * @function create
+         * @memberof pbshop.FindShopReply
+         * @static
+         * @param {pbshop.IFindShopReply=} [properties] Properties to set
+         * @returns {pbshop.FindShopReply} FindShopReply instance
+         */
     FindShopReply.create = function create(properties) {
       return new FindShopReply(properties)
     }
 
     /**
-     * Encodes the specified FindShopReply message. Does not implicitly {@link pbshop.FindShopReply.verify|verify} messages.
-     * @function encode
-     * @memberof pbshop.FindShopReply
-     * @static
-     * @param {pbshop.IFindShopReply} message FindShopReply message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindShopReply message. Does not implicitly {@link pbshop.FindShopReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbshop.FindShopReply
+         * @static
+         * @param {pbshop.IFindShopReply} message FindShopReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindShopReply.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.code != null && Object.hasOwnProperty.call(message, 'code')) { writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code) }
@@ -15907,29 +15907,29 @@ $root.pbshop = (function() {
     }
 
     /**
-     * Encodes the specified FindShopReply message, length delimited. Does not implicitly {@link pbshop.FindShopReply.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbshop.FindShopReply
-     * @static
-     * @param {pbshop.IFindShopReply} message FindShopReply message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindShopReply message, length delimited. Does not implicitly {@link pbshop.FindShopReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbshop.FindShopReply
+         * @static
+         * @param {pbshop.IFindShopReply} message FindShopReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindShopReply.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes a FindShopReply message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbshop.FindShopReply
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbshop.FindShopReply} FindShopReply
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindShopReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbshop.FindShopReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbshop.FindShopReply} FindShopReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindShopReply.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbshop.FindShopReply()
@@ -15966,28 +15966,28 @@ $root.pbshop = (function() {
     }
 
     /**
-     * Decodes a FindShopReply message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbshop.FindShopReply
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbshop.FindShopReply} FindShopReply
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindShopReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbshop.FindShopReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbshop.FindShopReply} FindShopReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindShopReply.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies a FindShopReply message.
-     * @function verify
-     * @memberof pbshop.FindShopReply
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies a FindShopReply message.
+         * @function verify
+         * @memberof pbshop.FindShopReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     FindShopReply.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.code != null && message.hasOwnProperty('code')) {
@@ -16043,13 +16043,13 @@ $root.pbshop = (function() {
     }
 
     /**
-     * Creates a FindShopReply message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbshop.FindShopReply
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbshop.FindShopReply} FindShopReply
-     */
+         * Creates a FindShopReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbshop.FindShopReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbshop.FindShopReply} FindShopReply
+         */
     FindShopReply.fromObject = function fromObject(object) {
       if (object instanceof $root.pbshop.FindShopReply) { return object }
       var message = new $root.pbshop.FindShopReply()
@@ -16181,14 +16181,14 @@ $root.pbshop = (function() {
     }
 
     /**
-     * Creates a plain object from a FindShopReply message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbshop.FindShopReply
-     * @static
-     * @param {pbshop.FindShopReply} message FindShopReply
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from a FindShopReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbshop.FindShopReply
+         * @static
+         * @param {pbshop.FindShopReply} message FindShopReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     FindShopReply.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -16216,24 +16216,24 @@ $root.pbshop = (function() {
     }
 
     /**
-     * Converts this FindShopReply to JSON.
-     * @function toJSON
-     * @memberof pbshop.FindShopReply
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this FindShopReply to JSON.
+         * @function toJSON
+         * @memberof pbshop.FindShopReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     FindShopReply.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for FindShopReply
-     * @function getTypeUrl
-     * @memberof pbshop.FindShopReply
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for FindShopReply
+         * @function getTypeUrl
+         * @memberof pbshop.FindShopReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     FindShopReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -16246,15 +16246,15 @@ $root.pbshop = (function() {
 
   pbshop.Shop = (function() {
     /**
-     * Constructs a new Shop service.
-     * @memberof pbshop
-     * @classdesc Represents a Shop
-     * @extends $protobuf.rpc.Service
-     * @constructor
-     * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
-     * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
-     * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
-     */
+         * Constructs a new Shop service.
+         * @memberof pbshop
+         * @classdesc Represents a Shop
+         * @extends $protobuf.rpc.Service
+         * @constructor
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         */
     function Shop(rpcImpl, requestDelimited, responseDelimited) {
       $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited)
     }
@@ -16262,183 +16262,183 @@ $root.pbshop = (function() {
     (Shop.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = Shop
 
     /**
-     * Creates new Shop service using the specified rpc implementation.
-     * @function create
-     * @memberof pbshop.Shop
-     * @static
-     * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
-     * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
-     * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
-     * @returns {Shop} RPC service. Useful where requests and/or responses are streamed.
-     */
+         * Creates new Shop service using the specified rpc implementation.
+         * @function create
+         * @memberof pbshop.Shop
+         * @static
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         * @returns {Shop} RPC service. Useful where requests and/or responses are streamed.
+         */
     Shop.create = function create(rpcImpl, requestDelimited, responseDelimited) {
       return new this(rpcImpl, requestDelimited, responseDelimited)
     }
 
     /**
-     * Callback as used by {@link pbshop.Shop#createShop}.
-     * @memberof pbshop.Shop
-     * @typedef CreateShopCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbcommon.CommonResult} [response] CommonResult
-     */
+         * Callback as used by {@link pbshop.Shop#createShop}.
+         * @memberof pbshop.Shop
+         * @typedef CreateShopCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
 
     /**
-     * Calls CreateShop.
-     * @function createShop
-     * @memberof pbshop.Shop
-     * @instance
-     * @param {pbshop.IShopModel} request ShopModel message or plain object
-     * @param {pbshop.Shop.CreateShopCallback} callback Node-style callback called with the error, if any, and CommonResult
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls CreateShop.
+         * @function createShop
+         * @memberof pbshop.Shop
+         * @instance
+         * @param {pbshop.IShopModel} request ShopModel message or plain object
+         * @param {pbshop.Shop.CreateShopCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(Shop.prototype.createShop = function createShop(request, callback) {
       return this.rpcCall(createShop, $root.pbshop.ShopModel, $root.pbcommon.CommonResult, request, callback)
     }, 'name', { value: 'CreateShop' })
 
     /**
-     * Calls CreateShop.
-     * @function createShop
-     * @memberof pbshop.Shop
-     * @instance
-     * @param {pbshop.IShopModel} request ShopModel message or plain object
-     * @returns {Promise<pbcommon.CommonResult>} Promise
-     * @variation 2
-     */
+         * Calls CreateShop.
+         * @function createShop
+         * @memberof pbshop.Shop
+         * @instance
+         * @param {pbshop.IShopModel} request ShopModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbshop.Shop#updateShop}.
-     * @memberof pbshop.Shop
-     * @typedef UpdateShopCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbcommon.CommonResult} [response] CommonResult
-     */
+         * Callback as used by {@link pbshop.Shop#updateShop}.
+         * @memberof pbshop.Shop
+         * @typedef UpdateShopCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
 
     /**
-     * Calls UpdateShop.
-     * @function updateShop
-     * @memberof pbshop.Shop
-     * @instance
-     * @param {pbshop.IShopModel} request ShopModel message or plain object
-     * @param {pbshop.Shop.UpdateShopCallback} callback Node-style callback called with the error, if any, and CommonResult
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls UpdateShop.
+         * @function updateShop
+         * @memberof pbshop.Shop
+         * @instance
+         * @param {pbshop.IShopModel} request ShopModel message or plain object
+         * @param {pbshop.Shop.UpdateShopCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(Shop.prototype.updateShop = function updateShop(request, callback) {
       return this.rpcCall(updateShop, $root.pbshop.ShopModel, $root.pbcommon.CommonResult, request, callback)
     }, 'name', { value: 'UpdateShop' })
 
     /**
-     * Calls UpdateShop.
-     * @function updateShop
-     * @memberof pbshop.Shop
-     * @instance
-     * @param {pbshop.IShopModel} request ShopModel message or plain object
-     * @returns {Promise<pbcommon.CommonResult>} Promise
-     * @variation 2
-     */
+         * Calls UpdateShop.
+         * @function updateShop
+         * @memberof pbshop.Shop
+         * @instance
+         * @param {pbshop.IShopModel} request ShopModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbshop.Shop#deleteShop}.
-     * @memberof pbshop.Shop
-     * @typedef DeleteShopCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbcommon.CommonResult} [response] CommonResult
-     */
+         * Callback as used by {@link pbshop.Shop#deleteShop}.
+         * @memberof pbshop.Shop
+         * @typedef DeleteShopCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
 
     /**
-     * Calls DeleteShop.
-     * @function deleteShop
-     * @memberof pbshop.Shop
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @param {pbshop.Shop.DeleteShopCallback} callback Node-style callback called with the error, if any, and CommonResult
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls DeleteShop.
+         * @function deleteShop
+         * @memberof pbshop.Shop
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbshop.Shop.DeleteShopCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(Shop.prototype.deleteShop = function deleteShop(request, callback) {
       return this.rpcCall(deleteShop, $root.pbcommon.IdArgs, $root.pbcommon.CommonResult, request, callback)
     }, 'name', { value: 'DeleteShop' })
 
     /**
-     * Calls DeleteShop.
-     * @function deleteShop
-     * @memberof pbshop.Shop
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @returns {Promise<pbcommon.CommonResult>} Promise
-     * @variation 2
-     */
+         * Calls DeleteShop.
+         * @function deleteShop
+         * @memberof pbshop.Shop
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbshop.Shop#findShopById}.
-     * @memberof pbshop.Shop
-     * @typedef FindShopByIdCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbshop.FindShopReply} [response] FindShopReply
-     */
+         * Callback as used by {@link pbshop.Shop#findShopById}.
+         * @memberof pbshop.Shop
+         * @typedef FindShopByIdCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbshop.FindShopReply} [response] FindShopReply
+         */
 
     /**
-     * Calls FindShopById.
-     * @function findShopById
-     * @memberof pbshop.Shop
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @param {pbshop.Shop.FindShopByIdCallback} callback Node-style callback called with the error, if any, and FindShopReply
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls FindShopById.
+         * @function findShopById
+         * @memberof pbshop.Shop
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbshop.Shop.FindShopByIdCallback} callback Node-style callback called with the error, if any, and FindShopReply
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(Shop.prototype.findShopById = function findShopById(request, callback) {
       return this.rpcCall(findShopById, $root.pbcommon.IdArgs, $root.pbshop.FindShopReply, request, callback)
     }, 'name', { value: 'FindShopById' })
 
     /**
-     * Calls FindShopById.
-     * @function findShopById
-     * @memberof pbshop.Shop
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @returns {Promise<pbshop.FindShopReply>} Promise
-     * @variation 2
-     */
+         * Calls FindShopById.
+         * @function findShopById
+         * @memberof pbshop.Shop
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbshop.FindShopReply>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbshop.Shop#findShopList}.
-     * @memberof pbshop.Shop
-     * @typedef FindShopListCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbshop.FindShopReply} [response] FindShopReply
-     */
+         * Callback as used by {@link pbshop.Shop#findShopList}.
+         * @memberof pbshop.Shop
+         * @typedef FindShopListCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbshop.FindShopReply} [response] FindShopReply
+         */
 
     /**
-     * Calls FindShopList.
-     * @function findShopList
-     * @memberof pbshop.Shop
-     * @instance
-     * @param {pbshop.IFindShopArgs} request FindShopArgs message or plain object
-     * @param {pbshop.Shop.FindShopListCallback} callback Node-style callback called with the error, if any, and FindShopReply
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls FindShopList.
+         * @function findShopList
+         * @memberof pbshop.Shop
+         * @instance
+         * @param {pbshop.IFindShopArgs} request FindShopArgs message or plain object
+         * @param {pbshop.Shop.FindShopListCallback} callback Node-style callback called with the error, if any, and FindShopReply
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(Shop.prototype.findShopList = function findShopList(request, callback) {
       return this.rpcCall(findShopList, $root.pbshop.FindShopArgs, $root.pbshop.FindShopReply, request, callback)
     }, 'name', { value: 'FindShopList' })
 
     /**
-     * Calls FindShopList.
-     * @function findShopList
-     * @memberof pbshop.Shop
-     * @instance
-     * @param {pbshop.IFindShopArgs} request FindShopArgs message or plain object
-     * @returns {Promise<pbshop.FindShopReply>} Promise
-     * @variation 2
-     */
+         * Calls FindShopList.
+         * @function findShopList
+         * @memberof pbshop.Shop
+         * @instance
+         * @param {pbshop.IFindShopArgs} request FindShopArgs message or plain object
+         * @returns {Promise<pbshop.FindShopReply>} Promise
+         * @variation 2
+         */
 
     return Shop
   })()
@@ -16448,44 +16448,44 @@ $root.pbshop = (function() {
 
 $root.pbactiveShop = (function() {
   /**
-   * Namespace pbactiveShop.
-   * @exports pbactiveShop
-   * @namespace
-   */
+     * Namespace pbactiveShop.
+     * @exports pbactiveShop
+     * @namespace
+     */
   var pbactiveShop = {}
 
   pbactiveShop.ActiveShopModel = (function() {
     /**
-     * Properties of an ActiveShopModel.
-     * @memberof pbactiveShop
-     * @interface IActiveShopModel
-     * @property {number|Long|null} [id] ActiveShopModel id
-     * @property {string|null} [createdAt] ActiveShopModel createdAt
-     * @property {string|null} [updatedAt] ActiveShopModel updatedAt
-     * @property {number|Long|null} [shopId] ActiveShopModel shopId
-     * @property {string|null} [shopName] ActiveShopModel shopName
-     * @property {string|null} [shopLogo] ActiveShopModel shopLogo
-     * @property {string|null} [videoUrl] ActiveShopModel videoUrl
-     * @property {string|null} [description] ActiveShopModel description
-     * @property {string|null} [address] ActiveShopModel address
-     * @property {string|null} [phone] ActiveShopModel phone
-     * @property {string|null} [tags] ActiveShopModel tags
-     * @property {string|null} [openTime] ActiveShopModel openTime
-     * @property {string|null} [closeTime] ActiveShopModel closeTime
-     * @property {number|null} [status] ActiveShopModel status
-     * @property {number|null} [sort] ActiveShopModel sort
-     * @property {string|null} [lat] ActiveShopModel lat
-     * @property {string|null} [lng] ActiveShopModel lng
-     */
+         * Properties of an ActiveShopModel.
+         * @memberof pbactiveShop
+         * @interface IActiveShopModel
+         * @property {number|Long|null} [id] ActiveShopModel id
+         * @property {string|null} [createdAt] ActiveShopModel createdAt
+         * @property {string|null} [updatedAt] ActiveShopModel updatedAt
+         * @property {number|Long|null} [shopId] ActiveShopModel shopId
+         * @property {string|null} [shopName] ActiveShopModel shopName
+         * @property {string|null} [shopLogo] ActiveShopModel shopLogo
+         * @property {string|null} [videoUrl] ActiveShopModel videoUrl
+         * @property {string|null} [description] ActiveShopModel description
+         * @property {string|null} [address] ActiveShopModel address
+         * @property {string|null} [phone] ActiveShopModel phone
+         * @property {string|null} [tags] ActiveShopModel tags
+         * @property {string|null} [openTime] ActiveShopModel openTime
+         * @property {string|null} [closeTime] ActiveShopModel closeTime
+         * @property {number|null} [status] ActiveShopModel status
+         * @property {number|null} [sort] ActiveShopModel sort
+         * @property {string|null} [lat] ActiveShopModel lat
+         * @property {string|null} [lng] ActiveShopModel lng
+         */
 
     /**
-     * Constructs a new ActiveShopModel.
-     * @memberof pbactiveShop
-     * @classdesc Represents an ActiveShopModel.
-     * @implements IActiveShopModel
-     * @constructor
-     * @param {pbactiveShop.IActiveShopModel=} [properties] Properties to set
-     */
+         * Constructs a new ActiveShopModel.
+         * @memberof pbactiveShop
+         * @classdesc Represents an ActiveShopModel.
+         * @implements IActiveShopModel
+         * @constructor
+         * @param {pbactiveShop.IActiveShopModel=} [properties] Properties to set
+         */
     function ActiveShopModel(properties) {
       if (properties) {
         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
@@ -16495,162 +16495,162 @@ $root.pbactiveShop = (function() {
     }
 
     /**
-     * ActiveShopModel id.
-     * @member {number|Long} id
-     * @memberof pbactiveShop.ActiveShopModel
-     * @instance
-     */
+         * ActiveShopModel id.
+         * @member {number|Long} id
+         * @memberof pbactiveShop.ActiveShopModel
+         * @instance
+         */
     ActiveShopModel.prototype.id = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * ActiveShopModel createdAt.
-     * @member {string} createdAt
-     * @memberof pbactiveShop.ActiveShopModel
-     * @instance
-     */
+         * ActiveShopModel createdAt.
+         * @member {string} createdAt
+         * @memberof pbactiveShop.ActiveShopModel
+         * @instance
+         */
     ActiveShopModel.prototype.createdAt = ''
 
     /**
-     * ActiveShopModel updatedAt.
-     * @member {string} updatedAt
-     * @memberof pbactiveShop.ActiveShopModel
-     * @instance
-     */
+         * ActiveShopModel updatedAt.
+         * @member {string} updatedAt
+         * @memberof pbactiveShop.ActiveShopModel
+         * @instance
+         */
     ActiveShopModel.prototype.updatedAt = ''
 
     /**
-     * ActiveShopModel shopId.
-     * @member {number|Long} shopId
-     * @memberof pbactiveShop.ActiveShopModel
-     * @instance
-     */
+         * ActiveShopModel shopId.
+         * @member {number|Long} shopId
+         * @memberof pbactiveShop.ActiveShopModel
+         * @instance
+         */
     ActiveShopModel.prototype.shopId = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * ActiveShopModel shopName.
-     * @member {string} shopName
-     * @memberof pbactiveShop.ActiveShopModel
-     * @instance
-     */
+         * ActiveShopModel shopName.
+         * @member {string} shopName
+         * @memberof pbactiveShop.ActiveShopModel
+         * @instance
+         */
     ActiveShopModel.prototype.shopName = ''
 
     /**
-     * ActiveShopModel shopLogo.
-     * @member {string} shopLogo
-     * @memberof pbactiveShop.ActiveShopModel
-     * @instance
-     */
+         * ActiveShopModel shopLogo.
+         * @member {string} shopLogo
+         * @memberof pbactiveShop.ActiveShopModel
+         * @instance
+         */
     ActiveShopModel.prototype.shopLogo = ''
 
     /**
-     * ActiveShopModel videoUrl.
-     * @member {string} videoUrl
-     * @memberof pbactiveShop.ActiveShopModel
-     * @instance
-     */
+         * ActiveShopModel videoUrl.
+         * @member {string} videoUrl
+         * @memberof pbactiveShop.ActiveShopModel
+         * @instance
+         */
     ActiveShopModel.prototype.videoUrl = ''
 
     /**
-     * ActiveShopModel description.
-     * @member {string} description
-     * @memberof pbactiveShop.ActiveShopModel
-     * @instance
-     */
+         * ActiveShopModel description.
+         * @member {string} description
+         * @memberof pbactiveShop.ActiveShopModel
+         * @instance
+         */
     ActiveShopModel.prototype.description = ''
 
     /**
-     * ActiveShopModel address.
-     * @member {string} address
-     * @memberof pbactiveShop.ActiveShopModel
-     * @instance
-     */
+         * ActiveShopModel address.
+         * @member {string} address
+         * @memberof pbactiveShop.ActiveShopModel
+         * @instance
+         */
     ActiveShopModel.prototype.address = ''
 
     /**
-     * ActiveShopModel phone.
-     * @member {string} phone
-     * @memberof pbactiveShop.ActiveShopModel
-     * @instance
-     */
+         * ActiveShopModel phone.
+         * @member {string} phone
+         * @memberof pbactiveShop.ActiveShopModel
+         * @instance
+         */
     ActiveShopModel.prototype.phone = ''
 
     /**
-     * ActiveShopModel tags.
-     * @member {string} tags
-     * @memberof pbactiveShop.ActiveShopModel
-     * @instance
-     */
+         * ActiveShopModel tags.
+         * @member {string} tags
+         * @memberof pbactiveShop.ActiveShopModel
+         * @instance
+         */
     ActiveShopModel.prototype.tags = ''
 
     /**
-     * ActiveShopModel openTime.
-     * @member {string} openTime
-     * @memberof pbactiveShop.ActiveShopModel
-     * @instance
-     */
+         * ActiveShopModel openTime.
+         * @member {string} openTime
+         * @memberof pbactiveShop.ActiveShopModel
+         * @instance
+         */
     ActiveShopModel.prototype.openTime = ''
 
     /**
-     * ActiveShopModel closeTime.
-     * @member {string} closeTime
-     * @memberof pbactiveShop.ActiveShopModel
-     * @instance
-     */
+         * ActiveShopModel closeTime.
+         * @member {string} closeTime
+         * @memberof pbactiveShop.ActiveShopModel
+         * @instance
+         */
     ActiveShopModel.prototype.closeTime = ''
 
     /**
-     * ActiveShopModel status.
-     * @member {number} status
-     * @memberof pbactiveShop.ActiveShopModel
-     * @instance
-     */
+         * ActiveShopModel status.
+         * @member {number} status
+         * @memberof pbactiveShop.ActiveShopModel
+         * @instance
+         */
     ActiveShopModel.prototype.status = 0
 
     /**
-     * ActiveShopModel sort.
-     * @member {number} sort
-     * @memberof pbactiveShop.ActiveShopModel
-     * @instance
-     */
+         * ActiveShopModel sort.
+         * @member {number} sort
+         * @memberof pbactiveShop.ActiveShopModel
+         * @instance
+         */
     ActiveShopModel.prototype.sort = 0
 
     /**
-     * ActiveShopModel lat.
-     * @member {string} lat
-     * @memberof pbactiveShop.ActiveShopModel
-     * @instance
-     */
+         * ActiveShopModel lat.
+         * @member {string} lat
+         * @memberof pbactiveShop.ActiveShopModel
+         * @instance
+         */
     ActiveShopModel.prototype.lat = ''
 
     /**
-     * ActiveShopModel lng.
-     * @member {string} lng
-     * @memberof pbactiveShop.ActiveShopModel
-     * @instance
-     */
+         * ActiveShopModel lng.
+         * @member {string} lng
+         * @memberof pbactiveShop.ActiveShopModel
+         * @instance
+         */
     ActiveShopModel.prototype.lng = ''
 
     /**
-     * Creates a new ActiveShopModel instance using the specified properties.
-     * @function create
-     * @memberof pbactiveShop.ActiveShopModel
-     * @static
-     * @param {pbactiveShop.IActiveShopModel=} [properties] Properties to set
-     * @returns {pbactiveShop.ActiveShopModel} ActiveShopModel instance
-     */
+         * Creates a new ActiveShopModel instance using the specified properties.
+         * @function create
+         * @memberof pbactiveShop.ActiveShopModel
+         * @static
+         * @param {pbactiveShop.IActiveShopModel=} [properties] Properties to set
+         * @returns {pbactiveShop.ActiveShopModel} ActiveShopModel instance
+         */
     ActiveShopModel.create = function create(properties) {
       return new ActiveShopModel(properties)
     }
 
     /**
-     * Encodes the specified ActiveShopModel message. Does not implicitly {@link pbactiveShop.ActiveShopModel.verify|verify} messages.
-     * @function encode
-     * @memberof pbactiveShop.ActiveShopModel
-     * @static
-     * @param {pbactiveShop.IActiveShopModel} message ActiveShopModel message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified ActiveShopModel message. Does not implicitly {@link pbactiveShop.ActiveShopModel.verify|verify} messages.
+         * @function encode
+         * @memberof pbactiveShop.ActiveShopModel
+         * @static
+         * @param {pbactiveShop.IActiveShopModel} message ActiveShopModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     ActiveShopModel.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.id != null && Object.hasOwnProperty.call(message, 'id')) { writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id) }
@@ -16674,29 +16674,29 @@ $root.pbactiveShop = (function() {
     }
 
     /**
-     * Encodes the specified ActiveShopModel message, length delimited. Does not implicitly {@link pbactiveShop.ActiveShopModel.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbactiveShop.ActiveShopModel
-     * @static
-     * @param {pbactiveShop.IActiveShopModel} message ActiveShopModel message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified ActiveShopModel message, length delimited. Does not implicitly {@link pbactiveShop.ActiveShopModel.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbactiveShop.ActiveShopModel
+         * @static
+         * @param {pbactiveShop.IActiveShopModel} message ActiveShopModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     ActiveShopModel.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes an ActiveShopModel message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbactiveShop.ActiveShopModel
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbactiveShop.ActiveShopModel} ActiveShopModel
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes an ActiveShopModel message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbactiveShop.ActiveShopModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbactiveShop.ActiveShopModel} ActiveShopModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     ActiveShopModel.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbactiveShop.ActiveShopModel()
@@ -16780,28 +16780,28 @@ $root.pbactiveShop = (function() {
     }
 
     /**
-     * Decodes an ActiveShopModel message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbactiveShop.ActiveShopModel
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbactiveShop.ActiveShopModel} ActiveShopModel
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes an ActiveShopModel message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbactiveShop.ActiveShopModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbactiveShop.ActiveShopModel} ActiveShopModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     ActiveShopModel.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies an ActiveShopModel message.
-     * @function verify
-     * @memberof pbactiveShop.ActiveShopModel
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies an ActiveShopModel message.
+         * @function verify
+         * @memberof pbactiveShop.ActiveShopModel
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     ActiveShopModel.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.id != null && message.hasOwnProperty('id')) {
@@ -16859,13 +16859,13 @@ $root.pbactiveShop = (function() {
     }
 
     /**
-     * Creates an ActiveShopModel message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbactiveShop.ActiveShopModel
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbactiveShop.ActiveShopModel} ActiveShopModel
-     */
+         * Creates an ActiveShopModel message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbactiveShop.ActiveShopModel
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbactiveShop.ActiveShopModel} ActiveShopModel
+         */
     ActiveShopModel.fromObject = function fromObject(object) {
       if (object instanceof $root.pbactiveShop.ActiveShopModel) { return object }
       var message = new $root.pbactiveShop.ActiveShopModel()
@@ -16894,14 +16894,14 @@ $root.pbactiveShop = (function() {
     }
 
     /**
-     * Creates a plain object from an ActiveShopModel message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbactiveShop.ActiveShopModel
-     * @static
-     * @param {pbactiveShop.ActiveShopModel} message ActiveShopModel
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from an ActiveShopModel message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbactiveShop.ActiveShopModel
+         * @static
+         * @param {pbactiveShop.ActiveShopModel} message ActiveShopModel
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     ActiveShopModel.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -16955,24 +16955,24 @@ $root.pbactiveShop = (function() {
     }
 
     /**
-     * Converts this ActiveShopModel to JSON.
-     * @function toJSON
-     * @memberof pbactiveShop.ActiveShopModel
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this ActiveShopModel to JSON.
+         * @function toJSON
+         * @memberof pbactiveShop.ActiveShopModel
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     ActiveShopModel.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for ActiveShopModel
-     * @function getTypeUrl
-     * @memberof pbactiveShop.ActiveShopModel
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for ActiveShopModel
+         * @function getTypeUrl
+         * @memberof pbactiveShop.ActiveShopModel
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     ActiveShopModel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -16985,21 +16985,21 @@ $root.pbactiveShop = (function() {
 
   pbactiveShop.FindActiveShopArgs = (function() {
     /**
-     * Properties of a FindActiveShopArgs.
-     * @memberof pbactiveShop
-     * @interface IFindActiveShopArgs
-     * @property {pbcommon.IPageInfo|null} [pageInfo] FindActiveShopArgs pageInfo
-     * @property {pbactiveShop.IActiveShopModel|null} [query] FindActiveShopArgs query
-     */
+         * Properties of a FindActiveShopArgs.
+         * @memberof pbactiveShop
+         * @interface IFindActiveShopArgs
+         * @property {pbcommon.IPageInfo|null} [pageInfo] FindActiveShopArgs pageInfo
+         * @property {pbactiveShop.IActiveShopModel|null} [query] FindActiveShopArgs query
+         */
 
     /**
-     * Constructs a new FindActiveShopArgs.
-     * @memberof pbactiveShop
-     * @classdesc Represents a FindActiveShopArgs.
-     * @implements IFindActiveShopArgs
-     * @constructor
-     * @param {pbactiveShop.IFindActiveShopArgs=} [properties] Properties to set
-     */
+         * Constructs a new FindActiveShopArgs.
+         * @memberof pbactiveShop
+         * @classdesc Represents a FindActiveShopArgs.
+         * @implements IFindActiveShopArgs
+         * @constructor
+         * @param {pbactiveShop.IFindActiveShopArgs=} [properties] Properties to set
+         */
     function FindActiveShopArgs(properties) {
       if (properties) {
         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
@@ -17009,42 +17009,42 @@ $root.pbactiveShop = (function() {
     }
 
     /**
-     * FindActiveShopArgs pageInfo.
-     * @member {pbcommon.IPageInfo|null|undefined} pageInfo
-     * @memberof pbactiveShop.FindActiveShopArgs
-     * @instance
-     */
+         * FindActiveShopArgs pageInfo.
+         * @member {pbcommon.IPageInfo|null|undefined} pageInfo
+         * @memberof pbactiveShop.FindActiveShopArgs
+         * @instance
+         */
     FindActiveShopArgs.prototype.pageInfo = null
 
     /**
-     * FindActiveShopArgs query.
-     * @member {pbactiveShop.IActiveShopModel|null|undefined} query
-     * @memberof pbactiveShop.FindActiveShopArgs
-     * @instance
-     */
+         * FindActiveShopArgs query.
+         * @member {pbactiveShop.IActiveShopModel|null|undefined} query
+         * @memberof pbactiveShop.FindActiveShopArgs
+         * @instance
+         */
     FindActiveShopArgs.prototype.query = null
 
     /**
-     * Creates a new FindActiveShopArgs instance using the specified properties.
-     * @function create
-     * @memberof pbactiveShop.FindActiveShopArgs
-     * @static
-     * @param {pbactiveShop.IFindActiveShopArgs=} [properties] Properties to set
-     * @returns {pbactiveShop.FindActiveShopArgs} FindActiveShopArgs instance
-     */
+         * Creates a new FindActiveShopArgs instance using the specified properties.
+         * @function create
+         * @memberof pbactiveShop.FindActiveShopArgs
+         * @static
+         * @param {pbactiveShop.IFindActiveShopArgs=} [properties] Properties to set
+         * @returns {pbactiveShop.FindActiveShopArgs} FindActiveShopArgs instance
+         */
     FindActiveShopArgs.create = function create(properties) {
       return new FindActiveShopArgs(properties)
     }
 
     /**
-     * Encodes the specified FindActiveShopArgs message. Does not implicitly {@link pbactiveShop.FindActiveShopArgs.verify|verify} messages.
-     * @function encode
-     * @memberof pbactiveShop.FindActiveShopArgs
-     * @static
-     * @param {pbactiveShop.IFindActiveShopArgs} message FindActiveShopArgs message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindActiveShopArgs message. Does not implicitly {@link pbactiveShop.FindActiveShopArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbactiveShop.FindActiveShopArgs
+         * @static
+         * @param {pbactiveShop.IFindActiveShopArgs} message FindActiveShopArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindActiveShopArgs.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.pageInfo != null && Object.hasOwnProperty.call(message, 'pageInfo')) { $root.pbcommon.PageInfo.encode(message.pageInfo, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim() }
@@ -17053,29 +17053,29 @@ $root.pbactiveShop = (function() {
     }
 
     /**
-     * Encodes the specified FindActiveShopArgs message, length delimited. Does not implicitly {@link pbactiveShop.FindActiveShopArgs.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbactiveShop.FindActiveShopArgs
-     * @static
-     * @param {pbactiveShop.IFindActiveShopArgs} message FindActiveShopArgs message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindActiveShopArgs message, length delimited. Does not implicitly {@link pbactiveShop.FindActiveShopArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbactiveShop.FindActiveShopArgs
+         * @static
+         * @param {pbactiveShop.IFindActiveShopArgs} message FindActiveShopArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindActiveShopArgs.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes a FindActiveShopArgs message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbactiveShop.FindActiveShopArgs
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbactiveShop.FindActiveShopArgs} FindActiveShopArgs
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindActiveShopArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbactiveShop.FindActiveShopArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbactiveShop.FindActiveShopArgs} FindActiveShopArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindActiveShopArgs.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbactiveShop.FindActiveShopArgs()
@@ -17099,28 +17099,28 @@ $root.pbactiveShop = (function() {
     }
 
     /**
-     * Decodes a FindActiveShopArgs message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbactiveShop.FindActiveShopArgs
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbactiveShop.FindActiveShopArgs} FindActiveShopArgs
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindActiveShopArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbactiveShop.FindActiveShopArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbactiveShop.FindActiveShopArgs} FindActiveShopArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindActiveShopArgs.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies a FindActiveShopArgs message.
-     * @function verify
-     * @memberof pbactiveShop.FindActiveShopArgs
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies a FindActiveShopArgs message.
+         * @function verify
+         * @memberof pbactiveShop.FindActiveShopArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     FindActiveShopArgs.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.pageInfo != null && message.hasOwnProperty('pageInfo')) {
@@ -17135,13 +17135,13 @@ $root.pbactiveShop = (function() {
     }
 
     /**
-     * Creates a FindActiveShopArgs message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbactiveShop.FindActiveShopArgs
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbactiveShop.FindActiveShopArgs} FindActiveShopArgs
-     */
+         * Creates a FindActiveShopArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbactiveShop.FindActiveShopArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbactiveShop.FindActiveShopArgs} FindActiveShopArgs
+         */
     FindActiveShopArgs.fromObject = function fromObject(object) {
       if (object instanceof $root.pbactiveShop.FindActiveShopArgs) { return object }
       var message = new $root.pbactiveShop.FindActiveShopArgs()
@@ -17157,14 +17157,14 @@ $root.pbactiveShop = (function() {
     }
 
     /**
-     * Creates a plain object from a FindActiveShopArgs message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbactiveShop.FindActiveShopArgs
-     * @static
-     * @param {pbactiveShop.FindActiveShopArgs} message FindActiveShopArgs
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from a FindActiveShopArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbactiveShop.FindActiveShopArgs
+         * @static
+         * @param {pbactiveShop.FindActiveShopArgs} message FindActiveShopArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     FindActiveShopArgs.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -17178,24 +17178,24 @@ $root.pbactiveShop = (function() {
     }
 
     /**
-     * Converts this FindActiveShopArgs to JSON.
-     * @function toJSON
-     * @memberof pbactiveShop.FindActiveShopArgs
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this FindActiveShopArgs to JSON.
+         * @function toJSON
+         * @memberof pbactiveShop.FindActiveShopArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     FindActiveShopArgs.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for FindActiveShopArgs
-     * @function getTypeUrl
-     * @memberof pbactiveShop.FindActiveShopArgs
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for FindActiveShopArgs
+         * @function getTypeUrl
+         * @memberof pbactiveShop.FindActiveShopArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     FindActiveShopArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -17208,24 +17208,24 @@ $root.pbactiveShop = (function() {
 
   pbactiveShop.FindActiveShopReply = (function() {
     /**
-     * Properties of a FindActiveShopReply.
-     * @memberof pbactiveShop
-     * @interface IFindActiveShopReply
-     * @property {pbcommon.EnumCode|null} [code] FindActiveShopReply code
-     * @property {string|null} [msg] FindActiveShopReply msg
-     * @property {pbactiveShop.IActiveShopModel|null} [data] FindActiveShopReply data
-     * @property {Array.<pbactiveShop.IActiveShopModel>|null} [list] FindActiveShopReply list
-     * @property {number|Long|null} [total] FindActiveShopReply total
-     */
+         * Properties of a FindActiveShopReply.
+         * @memberof pbactiveShop
+         * @interface IFindActiveShopReply
+         * @property {pbcommon.EnumCode|null} [code] FindActiveShopReply code
+         * @property {string|null} [msg] FindActiveShopReply msg
+         * @property {pbactiveShop.IActiveShopModel|null} [data] FindActiveShopReply data
+         * @property {Array.<pbactiveShop.IActiveShopModel>|null} [list] FindActiveShopReply list
+         * @property {number|Long|null} [total] FindActiveShopReply total
+         */
 
     /**
-     * Constructs a new FindActiveShopReply.
-     * @memberof pbactiveShop
-     * @classdesc Represents a FindActiveShopReply.
-     * @implements IFindActiveShopReply
-     * @constructor
-     * @param {pbactiveShop.IFindActiveShopReply=} [properties] Properties to set
-     */
+         * Constructs a new FindActiveShopReply.
+         * @memberof pbactiveShop
+         * @classdesc Represents a FindActiveShopReply.
+         * @implements IFindActiveShopReply
+         * @constructor
+         * @param {pbactiveShop.IFindActiveShopReply=} [properties] Properties to set
+         */
     function FindActiveShopReply(properties) {
       this.list = []
       if (properties) {
@@ -17236,66 +17236,66 @@ $root.pbactiveShop = (function() {
     }
 
     /**
-     * FindActiveShopReply code.
-     * @member {pbcommon.EnumCode} code
-     * @memberof pbactiveShop.FindActiveShopReply
-     * @instance
-     */
+         * FindActiveShopReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbactiveShop.FindActiveShopReply
+         * @instance
+         */
     FindActiveShopReply.prototype.code = 0
 
     /**
-     * FindActiveShopReply msg.
-     * @member {string} msg
-     * @memberof pbactiveShop.FindActiveShopReply
-     * @instance
-     */
+         * FindActiveShopReply msg.
+         * @member {string} msg
+         * @memberof pbactiveShop.FindActiveShopReply
+         * @instance
+         */
     FindActiveShopReply.prototype.msg = ''
 
     /**
-     * FindActiveShopReply data.
-     * @member {pbactiveShop.IActiveShopModel|null|undefined} data
-     * @memberof pbactiveShop.FindActiveShopReply
-     * @instance
-     */
+         * FindActiveShopReply data.
+         * @member {pbactiveShop.IActiveShopModel|null|undefined} data
+         * @memberof pbactiveShop.FindActiveShopReply
+         * @instance
+         */
     FindActiveShopReply.prototype.data = null
 
     /**
-     * FindActiveShopReply list.
-     * @member {Array.<pbactiveShop.IActiveShopModel>} list
-     * @memberof pbactiveShop.FindActiveShopReply
-     * @instance
-     */
+         * FindActiveShopReply list.
+         * @member {Array.<pbactiveShop.IActiveShopModel>} list
+         * @memberof pbactiveShop.FindActiveShopReply
+         * @instance
+         */
     FindActiveShopReply.prototype.list = $util.emptyArray
 
     /**
-     * FindActiveShopReply total.
-     * @member {number|Long} total
-     * @memberof pbactiveShop.FindActiveShopReply
-     * @instance
-     */
+         * FindActiveShopReply total.
+         * @member {number|Long} total
+         * @memberof pbactiveShop.FindActiveShopReply
+         * @instance
+         */
     FindActiveShopReply.prototype.total = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * Creates a new FindActiveShopReply instance using the specified properties.
-     * @function create
-     * @memberof pbactiveShop.FindActiveShopReply
-     * @static
-     * @param {pbactiveShop.IFindActiveShopReply=} [properties] Properties to set
-     * @returns {pbactiveShop.FindActiveShopReply} FindActiveShopReply instance
-     */
+         * Creates a new FindActiveShopReply instance using the specified properties.
+         * @function create
+         * @memberof pbactiveShop.FindActiveShopReply
+         * @static
+         * @param {pbactiveShop.IFindActiveShopReply=} [properties] Properties to set
+         * @returns {pbactiveShop.FindActiveShopReply} FindActiveShopReply instance
+         */
     FindActiveShopReply.create = function create(properties) {
       return new FindActiveShopReply(properties)
     }
 
     /**
-     * Encodes the specified FindActiveShopReply message. Does not implicitly {@link pbactiveShop.FindActiveShopReply.verify|verify} messages.
-     * @function encode
-     * @memberof pbactiveShop.FindActiveShopReply
-     * @static
-     * @param {pbactiveShop.IFindActiveShopReply} message FindActiveShopReply message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindActiveShopReply message. Does not implicitly {@link pbactiveShop.FindActiveShopReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbactiveShop.FindActiveShopReply
+         * @static
+         * @param {pbactiveShop.IFindActiveShopReply} message FindActiveShopReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindActiveShopReply.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.code != null && Object.hasOwnProperty.call(message, 'code')) { writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code) }
@@ -17309,29 +17309,29 @@ $root.pbactiveShop = (function() {
     }
 
     /**
-     * Encodes the specified FindActiveShopReply message, length delimited. Does not implicitly {@link pbactiveShop.FindActiveShopReply.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbactiveShop.FindActiveShopReply
-     * @static
-     * @param {pbactiveShop.IFindActiveShopReply} message FindActiveShopReply message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindActiveShopReply message, length delimited. Does not implicitly {@link pbactiveShop.FindActiveShopReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbactiveShop.FindActiveShopReply
+         * @static
+         * @param {pbactiveShop.IFindActiveShopReply} message FindActiveShopReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindActiveShopReply.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes a FindActiveShopReply message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbactiveShop.FindActiveShopReply
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbactiveShop.FindActiveShopReply} FindActiveShopReply
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindActiveShopReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbactiveShop.FindActiveShopReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbactiveShop.FindActiveShopReply} FindActiveShopReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindActiveShopReply.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbactiveShop.FindActiveShopReply()
@@ -17368,28 +17368,28 @@ $root.pbactiveShop = (function() {
     }
 
     /**
-     * Decodes a FindActiveShopReply message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbactiveShop.FindActiveShopReply
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbactiveShop.FindActiveShopReply} FindActiveShopReply
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindActiveShopReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbactiveShop.FindActiveShopReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbactiveShop.FindActiveShopReply} FindActiveShopReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindActiveShopReply.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies a FindActiveShopReply message.
-     * @function verify
-     * @memberof pbactiveShop.FindActiveShopReply
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies a FindActiveShopReply message.
+         * @function verify
+         * @memberof pbactiveShop.FindActiveShopReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     FindActiveShopReply.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.code != null && message.hasOwnProperty('code')) {
@@ -17445,13 +17445,13 @@ $root.pbactiveShop = (function() {
     }
 
     /**
-     * Creates a FindActiveShopReply message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbactiveShop.FindActiveShopReply
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbactiveShop.FindActiveShopReply} FindActiveShopReply
-     */
+         * Creates a FindActiveShopReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbactiveShop.FindActiveShopReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbactiveShop.FindActiveShopReply} FindActiveShopReply
+         */
     FindActiveShopReply.fromObject = function fromObject(object) {
       if (object instanceof $root.pbactiveShop.FindActiveShopReply) { return object }
       var message = new $root.pbactiveShop.FindActiveShopReply()
@@ -17583,14 +17583,14 @@ $root.pbactiveShop = (function() {
     }
 
     /**
-     * Creates a plain object from a FindActiveShopReply message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbactiveShop.FindActiveShopReply
-     * @static
-     * @param {pbactiveShop.FindActiveShopReply} message FindActiveShopReply
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from a FindActiveShopReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbactiveShop.FindActiveShopReply
+         * @static
+         * @param {pbactiveShop.FindActiveShopReply} message FindActiveShopReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     FindActiveShopReply.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -17618,24 +17618,24 @@ $root.pbactiveShop = (function() {
     }
 
     /**
-     * Converts this FindActiveShopReply to JSON.
-     * @function toJSON
-     * @memberof pbactiveShop.FindActiveShopReply
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this FindActiveShopReply to JSON.
+         * @function toJSON
+         * @memberof pbactiveShop.FindActiveShopReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     FindActiveShopReply.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for FindActiveShopReply
-     * @function getTypeUrl
-     * @memberof pbactiveShop.FindActiveShopReply
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for FindActiveShopReply
+         * @function getTypeUrl
+         * @memberof pbactiveShop.FindActiveShopReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     FindActiveShopReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -17648,15 +17648,15 @@ $root.pbactiveShop = (function() {
 
   pbactiveShop.ActiveShop = (function() {
     /**
-     * Constructs a new ActiveShop service.
-     * @memberof pbactiveShop
-     * @classdesc Represents an ActiveShop
-     * @extends $protobuf.rpc.Service
-     * @constructor
-     * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
-     * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
-     * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
-     */
+         * Constructs a new ActiveShop service.
+         * @memberof pbactiveShop
+         * @classdesc Represents an ActiveShop
+         * @extends $protobuf.rpc.Service
+         * @constructor
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         */
     function ActiveShop(rpcImpl, requestDelimited, responseDelimited) {
       $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited)
     }
@@ -17664,183 +17664,183 @@ $root.pbactiveShop = (function() {
     (ActiveShop.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = ActiveShop
 
     /**
-     * Creates new ActiveShop service using the specified rpc implementation.
-     * @function create
-     * @memberof pbactiveShop.ActiveShop
-     * @static
-     * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
-     * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
-     * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
-     * @returns {ActiveShop} RPC service. Useful where requests and/or responses are streamed.
-     */
+         * Creates new ActiveShop service using the specified rpc implementation.
+         * @function create
+         * @memberof pbactiveShop.ActiveShop
+         * @static
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         * @returns {ActiveShop} RPC service. Useful where requests and/or responses are streamed.
+         */
     ActiveShop.create = function create(rpcImpl, requestDelimited, responseDelimited) {
       return new this(rpcImpl, requestDelimited, responseDelimited)
     }
 
     /**
-     * Callback as used by {@link pbactiveShop.ActiveShop#createActiveShop}.
-     * @memberof pbactiveShop.ActiveShop
-     * @typedef CreateActiveShopCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbcommon.CommonResult} [response] CommonResult
-     */
+         * Callback as used by {@link pbactiveShop.ActiveShop#createActiveShop}.
+         * @memberof pbactiveShop.ActiveShop
+         * @typedef CreateActiveShopCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
 
     /**
-     * Calls CreateActiveShop.
-     * @function createActiveShop
-     * @memberof pbactiveShop.ActiveShop
-     * @instance
-     * @param {pbactiveShop.IActiveShopModel} request ActiveShopModel message or plain object
-     * @param {pbactiveShop.ActiveShop.CreateActiveShopCallback} callback Node-style callback called with the error, if any, and CommonResult
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls CreateActiveShop.
+         * @function createActiveShop
+         * @memberof pbactiveShop.ActiveShop
+         * @instance
+         * @param {pbactiveShop.IActiveShopModel} request ActiveShopModel message or plain object
+         * @param {pbactiveShop.ActiveShop.CreateActiveShopCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(ActiveShop.prototype.createActiveShop = function createActiveShop(request, callback) {
       return this.rpcCall(createActiveShop, $root.pbactiveShop.ActiveShopModel, $root.pbcommon.CommonResult, request, callback)
     }, 'name', { value: 'CreateActiveShop' })
 
     /**
-     * Calls CreateActiveShop.
-     * @function createActiveShop
-     * @memberof pbactiveShop.ActiveShop
-     * @instance
-     * @param {pbactiveShop.IActiveShopModel} request ActiveShopModel message or plain object
-     * @returns {Promise<pbcommon.CommonResult>} Promise
-     * @variation 2
-     */
+         * Calls CreateActiveShop.
+         * @function createActiveShop
+         * @memberof pbactiveShop.ActiveShop
+         * @instance
+         * @param {pbactiveShop.IActiveShopModel} request ActiveShopModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbactiveShop.ActiveShop#updateActiveShop}.
-     * @memberof pbactiveShop.ActiveShop
-     * @typedef UpdateActiveShopCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbcommon.CommonResult} [response] CommonResult
-     */
+         * Callback as used by {@link pbactiveShop.ActiveShop#updateActiveShop}.
+         * @memberof pbactiveShop.ActiveShop
+         * @typedef UpdateActiveShopCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
 
     /**
-     * Calls UpdateActiveShop.
-     * @function updateActiveShop
-     * @memberof pbactiveShop.ActiveShop
-     * @instance
-     * @param {pbactiveShop.IActiveShopModel} request ActiveShopModel message or plain object
-     * @param {pbactiveShop.ActiveShop.UpdateActiveShopCallback} callback Node-style callback called with the error, if any, and CommonResult
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls UpdateActiveShop.
+         * @function updateActiveShop
+         * @memberof pbactiveShop.ActiveShop
+         * @instance
+         * @param {pbactiveShop.IActiveShopModel} request ActiveShopModel message or plain object
+         * @param {pbactiveShop.ActiveShop.UpdateActiveShopCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(ActiveShop.prototype.updateActiveShop = function updateActiveShop(request, callback) {
       return this.rpcCall(updateActiveShop, $root.pbactiveShop.ActiveShopModel, $root.pbcommon.CommonResult, request, callback)
     }, 'name', { value: 'UpdateActiveShop' })
 
     /**
-     * Calls UpdateActiveShop.
-     * @function updateActiveShop
-     * @memberof pbactiveShop.ActiveShop
-     * @instance
-     * @param {pbactiveShop.IActiveShopModel} request ActiveShopModel message or plain object
-     * @returns {Promise<pbcommon.CommonResult>} Promise
-     * @variation 2
-     */
+         * Calls UpdateActiveShop.
+         * @function updateActiveShop
+         * @memberof pbactiveShop.ActiveShop
+         * @instance
+         * @param {pbactiveShop.IActiveShopModel} request ActiveShopModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbactiveShop.ActiveShop#deleteActiveShop}.
-     * @memberof pbactiveShop.ActiveShop
-     * @typedef DeleteActiveShopCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbcommon.CommonResult} [response] CommonResult
-     */
+         * Callback as used by {@link pbactiveShop.ActiveShop#deleteActiveShop}.
+         * @memberof pbactiveShop.ActiveShop
+         * @typedef DeleteActiveShopCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
 
     /**
-     * Calls DeleteActiveShop.
-     * @function deleteActiveShop
-     * @memberof pbactiveShop.ActiveShop
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @param {pbactiveShop.ActiveShop.DeleteActiveShopCallback} callback Node-style callback called with the error, if any, and CommonResult
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls DeleteActiveShop.
+         * @function deleteActiveShop
+         * @memberof pbactiveShop.ActiveShop
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbactiveShop.ActiveShop.DeleteActiveShopCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(ActiveShop.prototype.deleteActiveShop = function deleteActiveShop(request, callback) {
       return this.rpcCall(deleteActiveShop, $root.pbcommon.IdArgs, $root.pbcommon.CommonResult, request, callback)
     }, 'name', { value: 'DeleteActiveShop' })
 
     /**
-     * Calls DeleteActiveShop.
-     * @function deleteActiveShop
-     * @memberof pbactiveShop.ActiveShop
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @returns {Promise<pbcommon.CommonResult>} Promise
-     * @variation 2
-     */
+         * Calls DeleteActiveShop.
+         * @function deleteActiveShop
+         * @memberof pbactiveShop.ActiveShop
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbactiveShop.ActiveShop#findActiveShopById}.
-     * @memberof pbactiveShop.ActiveShop
-     * @typedef FindActiveShopByIdCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbactiveShop.FindActiveShopReply} [response] FindActiveShopReply
-     */
+         * Callback as used by {@link pbactiveShop.ActiveShop#findActiveShopById}.
+         * @memberof pbactiveShop.ActiveShop
+         * @typedef FindActiveShopByIdCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbactiveShop.FindActiveShopReply} [response] FindActiveShopReply
+         */
 
     /**
-     * Calls FindActiveShopById.
-     * @function findActiveShopById
-     * @memberof pbactiveShop.ActiveShop
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @param {pbactiveShop.ActiveShop.FindActiveShopByIdCallback} callback Node-style callback called with the error, if any, and FindActiveShopReply
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls FindActiveShopById.
+         * @function findActiveShopById
+         * @memberof pbactiveShop.ActiveShop
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbactiveShop.ActiveShop.FindActiveShopByIdCallback} callback Node-style callback called with the error, if any, and FindActiveShopReply
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(ActiveShop.prototype.findActiveShopById = function findActiveShopById(request, callback) {
       return this.rpcCall(findActiveShopById, $root.pbcommon.IdArgs, $root.pbactiveShop.FindActiveShopReply, request, callback)
     }, 'name', { value: 'FindActiveShopById' })
 
     /**
-     * Calls FindActiveShopById.
-     * @function findActiveShopById
-     * @memberof pbactiveShop.ActiveShop
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @returns {Promise<pbactiveShop.FindActiveShopReply>} Promise
-     * @variation 2
-     */
+         * Calls FindActiveShopById.
+         * @function findActiveShopById
+         * @memberof pbactiveShop.ActiveShop
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbactiveShop.FindActiveShopReply>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbactiveShop.ActiveShop#findActiveShopList}.
-     * @memberof pbactiveShop.ActiveShop
-     * @typedef FindActiveShopListCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbactiveShop.FindActiveShopReply} [response] FindActiveShopReply
-     */
+         * Callback as used by {@link pbactiveShop.ActiveShop#findActiveShopList}.
+         * @memberof pbactiveShop.ActiveShop
+         * @typedef FindActiveShopListCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbactiveShop.FindActiveShopReply} [response] FindActiveShopReply
+         */
 
     /**
-     * Calls FindActiveShopList.
-     * @function findActiveShopList
-     * @memberof pbactiveShop.ActiveShop
-     * @instance
-     * @param {pbactiveShop.IFindActiveShopArgs} request FindActiveShopArgs message or plain object
-     * @param {pbactiveShop.ActiveShop.FindActiveShopListCallback} callback Node-style callback called with the error, if any, and FindActiveShopReply
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls FindActiveShopList.
+         * @function findActiveShopList
+         * @memberof pbactiveShop.ActiveShop
+         * @instance
+         * @param {pbactiveShop.IFindActiveShopArgs} request FindActiveShopArgs message or plain object
+         * @param {pbactiveShop.ActiveShop.FindActiveShopListCallback} callback Node-style callback called with the error, if any, and FindActiveShopReply
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(ActiveShop.prototype.findActiveShopList = function findActiveShopList(request, callback) {
       return this.rpcCall(findActiveShopList, $root.pbactiveShop.FindActiveShopArgs, $root.pbactiveShop.FindActiveShopReply, request, callback)
     }, 'name', { value: 'FindActiveShopList' })
 
     /**
-     * Calls FindActiveShopList.
-     * @function findActiveShopList
-     * @memberof pbactiveShop.ActiveShop
-     * @instance
-     * @param {pbactiveShop.IFindActiveShopArgs} request FindActiveShopArgs message or plain object
-     * @returns {Promise<pbactiveShop.FindActiveShopReply>} Promise
-     * @variation 2
-     */
+         * Calls FindActiveShopList.
+         * @function findActiveShopList
+         * @memberof pbactiveShop.ActiveShop
+         * @instance
+         * @param {pbactiveShop.IFindActiveShopArgs} request FindActiveShopArgs message or plain object
+         * @returns {Promise<pbactiveShop.FindActiveShopReply>} Promise
+         * @variation 2
+         */
 
     return ActiveShop
   })()
@@ -17850,55 +17850,55 @@ $root.pbactiveShop = (function() {
 
 $root.pbgoods = (function() {
   /**
-   * Namespace pbgoods.
-   * @exports pbgoods
-   * @namespace
-   */
+     * Namespace pbgoods.
+     * @exports pbgoods
+     * @namespace
+     */
   var pbgoods = {}
 
   pbgoods.GoodsModel = (function() {
     /**
-     * Properties of a GoodsModel.
-     * @memberof pbgoods
-     * @interface IGoodsModel
-     * @property {number|Long|null} [id] GoodsModel id
-     * @property {string|null} [createdAt] GoodsModel createdAt
-     * @property {string|null} [updatedAt] GoodsModel updatedAt
-     * @property {string|null} [goodsName] GoodsModel goodsName
-     * @property {string|null} [goodsNo] GoodsModel goodsNo
-     * @property {number|Long|null} [videoId] GoodsModel videoId
-     * @property {number|Long|null} [videoCoverId] GoodsModel videoCoverId
-     * @property {string|null} [sellingPoint] GoodsModel sellingPoint
-     * @property {pbgoods.SpecType|null} [specType] GoodsModel specType
-     * @property {number|null} [goodsPriceMin] GoodsModel goodsPriceMin
-     * @property {number|null} [goodsPriceMax] GoodsModel goodsPriceMax
-     * @property {number|null} [linePriceMin] GoodsModel linePriceMin
-     * @property {number|null} [linePriceMax] GoodsModel linePriceMax
-     * @property {number|null} [stockTotal] GoodsModel stockTotal
-     * @property {pbgoods.DeductStockType|null} [deductStockType] GoodsModel deductStockType
-     * @property {string|null} [content] GoodsModel content
-     * @property {number|Long|null} [salesInitial] GoodsModel salesInitial
-     * @property {number|Long|null} [salesActual] GoodsModel salesActual
-     * @property {number|Long|null} [deliveryId] GoodsModel deliveryId
-     * @property {number|null} [isPointsGift] GoodsModel isPointsGift
-     * @property {number|null} [isPointsDiscount] GoodsModel isPointsDiscount
-     * @property {number|null} [isOnSiteService] GoodsModel isOnSiteService
-     * @property {number|null} [isRecommend] GoodsModel isRecommend
-     * @property {number|null} [isNew] GoodsModel isNew
-     * @property {number|null} [isHot] GoodsModel isHot
-     * @property {pbgoods.GoodsStatusType|null} [status] GoodsModel status
-     * @property {number|null} [sort] GoodsModel sort
-     * @property {number|Long|null} [shopId] GoodsModel shopId
-     */
+         * Properties of a GoodsModel.
+         * @memberof pbgoods
+         * @interface IGoodsModel
+         * @property {number|Long|null} [id] GoodsModel id
+         * @property {string|null} [createdAt] GoodsModel createdAt
+         * @property {string|null} [updatedAt] GoodsModel updatedAt
+         * @property {string|null} [goodsName] GoodsModel goodsName
+         * @property {string|null} [goodsNo] GoodsModel goodsNo
+         * @property {number|Long|null} [videoId] GoodsModel videoId
+         * @property {number|Long|null} [videoCoverId] GoodsModel videoCoverId
+         * @property {string|null} [sellingPoint] GoodsModel sellingPoint
+         * @property {pbgoods.SpecType|null} [specType] GoodsModel specType
+         * @property {number|null} [goodsPriceMin] GoodsModel goodsPriceMin
+         * @property {number|null} [goodsPriceMax] GoodsModel goodsPriceMax
+         * @property {number|null} [linePriceMin] GoodsModel linePriceMin
+         * @property {number|null} [linePriceMax] GoodsModel linePriceMax
+         * @property {number|null} [stockTotal] GoodsModel stockTotal
+         * @property {pbgoods.DeductStockType|null} [deductStockType] GoodsModel deductStockType
+         * @property {string|null} [content] GoodsModel content
+         * @property {number|Long|null} [salesInitial] GoodsModel salesInitial
+         * @property {number|Long|null} [salesActual] GoodsModel salesActual
+         * @property {number|Long|null} [deliveryId] GoodsModel deliveryId
+         * @property {number|null} [isPointsGift] GoodsModel isPointsGift
+         * @property {number|null} [isPointsDiscount] GoodsModel isPointsDiscount
+         * @property {number|null} [isOnSiteService] GoodsModel isOnSiteService
+         * @property {number|null} [isRecommend] GoodsModel isRecommend
+         * @property {number|null} [isNew] GoodsModel isNew
+         * @property {number|null} [isHot] GoodsModel isHot
+         * @property {pbgoods.GoodsStatusType|null} [status] GoodsModel status
+         * @property {number|null} [sort] GoodsModel sort
+         * @property {number|Long|null} [shopId] GoodsModel shopId
+         */
 
     /**
-     * Constructs a new GoodsModel.
-     * @memberof pbgoods
-     * @classdesc Represents a GoodsModel.
-     * @implements IGoodsModel
-     * @constructor
-     * @param {pbgoods.IGoodsModel=} [properties] Properties to set
-     */
+         * Constructs a new GoodsModel.
+         * @memberof pbgoods
+         * @classdesc Represents a GoodsModel.
+         * @implements IGoodsModel
+         * @constructor
+         * @param {pbgoods.IGoodsModel=} [properties] Properties to set
+         */
     function GoodsModel(properties) {
       if (properties) {
         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
@@ -17908,250 +17908,250 @@ $root.pbgoods = (function() {
     }
 
     /**
-     * GoodsModel id.
-     * @member {number|Long} id
-     * @memberof pbgoods.GoodsModel
-     * @instance
-     */
+         * GoodsModel id.
+         * @member {number|Long} id
+         * @memberof pbgoods.GoodsModel
+         * @instance
+         */
     GoodsModel.prototype.id = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * GoodsModel createdAt.
-     * @member {string} createdAt
-     * @memberof pbgoods.GoodsModel
-     * @instance
-     */
+         * GoodsModel createdAt.
+         * @member {string} createdAt
+         * @memberof pbgoods.GoodsModel
+         * @instance
+         */
     GoodsModel.prototype.createdAt = ''
 
     /**
-     * GoodsModel updatedAt.
-     * @member {string} updatedAt
-     * @memberof pbgoods.GoodsModel
-     * @instance
-     */
+         * GoodsModel updatedAt.
+         * @member {string} updatedAt
+         * @memberof pbgoods.GoodsModel
+         * @instance
+         */
     GoodsModel.prototype.updatedAt = ''
 
     /**
-     * GoodsModel goodsName.
-     * @member {string} goodsName
-     * @memberof pbgoods.GoodsModel
-     * @instance
-     */
+         * GoodsModel goodsName.
+         * @member {string} goodsName
+         * @memberof pbgoods.GoodsModel
+         * @instance
+         */
     GoodsModel.prototype.goodsName = ''
 
     /**
-     * GoodsModel goodsNo.
-     * @member {string} goodsNo
-     * @memberof pbgoods.GoodsModel
-     * @instance
-     */
+         * GoodsModel goodsNo.
+         * @member {string} goodsNo
+         * @memberof pbgoods.GoodsModel
+         * @instance
+         */
     GoodsModel.prototype.goodsNo = ''
 
     /**
-     * GoodsModel videoId.
-     * @member {number|Long} videoId
-     * @memberof pbgoods.GoodsModel
-     * @instance
-     */
+         * GoodsModel videoId.
+         * @member {number|Long} videoId
+         * @memberof pbgoods.GoodsModel
+         * @instance
+         */
     GoodsModel.prototype.videoId = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * GoodsModel videoCoverId.
-     * @member {number|Long} videoCoverId
-     * @memberof pbgoods.GoodsModel
-     * @instance
-     */
+         * GoodsModel videoCoverId.
+         * @member {number|Long} videoCoverId
+         * @memberof pbgoods.GoodsModel
+         * @instance
+         */
     GoodsModel.prototype.videoCoverId = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * GoodsModel sellingPoint.
-     * @member {string} sellingPoint
-     * @memberof pbgoods.GoodsModel
-     * @instance
-     */
+         * GoodsModel sellingPoint.
+         * @member {string} sellingPoint
+         * @memberof pbgoods.GoodsModel
+         * @instance
+         */
     GoodsModel.prototype.sellingPoint = ''
 
     /**
-     * GoodsModel specType.
-     * @member {pbgoods.SpecType} specType
-     * @memberof pbgoods.GoodsModel
-     * @instance
-     */
+         * GoodsModel specType.
+         * @member {pbgoods.SpecType} specType
+         * @memberof pbgoods.GoodsModel
+         * @instance
+         */
     GoodsModel.prototype.specType = 0
 
     /**
-     * GoodsModel goodsPriceMin.
-     * @member {number} goodsPriceMin
-     * @memberof pbgoods.GoodsModel
-     * @instance
-     */
+         * GoodsModel goodsPriceMin.
+         * @member {number} goodsPriceMin
+         * @memberof pbgoods.GoodsModel
+         * @instance
+         */
     GoodsModel.prototype.goodsPriceMin = 0
 
     /**
-     * GoodsModel goodsPriceMax.
-     * @member {number} goodsPriceMax
-     * @memberof pbgoods.GoodsModel
-     * @instance
-     */
+         * GoodsModel goodsPriceMax.
+         * @member {number} goodsPriceMax
+         * @memberof pbgoods.GoodsModel
+         * @instance
+         */
     GoodsModel.prototype.goodsPriceMax = 0
 
     /**
-     * GoodsModel linePriceMin.
-     * @member {number} linePriceMin
-     * @memberof pbgoods.GoodsModel
-     * @instance
-     */
+         * GoodsModel linePriceMin.
+         * @member {number} linePriceMin
+         * @memberof pbgoods.GoodsModel
+         * @instance
+         */
     GoodsModel.prototype.linePriceMin = 0
 
     /**
-     * GoodsModel linePriceMax.
-     * @member {number} linePriceMax
-     * @memberof pbgoods.GoodsModel
-     * @instance
-     */
+         * GoodsModel linePriceMax.
+         * @member {number} linePriceMax
+         * @memberof pbgoods.GoodsModel
+         * @instance
+         */
     GoodsModel.prototype.linePriceMax = 0
 
     /**
-     * GoodsModel stockTotal.
-     * @member {number} stockTotal
-     * @memberof pbgoods.GoodsModel
-     * @instance
-     */
+         * GoodsModel stockTotal.
+         * @member {number} stockTotal
+         * @memberof pbgoods.GoodsModel
+         * @instance
+         */
     GoodsModel.prototype.stockTotal = 0
 
     /**
-     * GoodsModel deductStockType.
-     * @member {pbgoods.DeductStockType} deductStockType
-     * @memberof pbgoods.GoodsModel
-     * @instance
-     */
+         * GoodsModel deductStockType.
+         * @member {pbgoods.DeductStockType} deductStockType
+         * @memberof pbgoods.GoodsModel
+         * @instance
+         */
     GoodsModel.prototype.deductStockType = 0
 
     /**
-     * GoodsModel content.
-     * @member {string} content
-     * @memberof pbgoods.GoodsModel
-     * @instance
-     */
+         * GoodsModel content.
+         * @member {string} content
+         * @memberof pbgoods.GoodsModel
+         * @instance
+         */
     GoodsModel.prototype.content = ''
 
     /**
-     * GoodsModel salesInitial.
-     * @member {number|Long} salesInitial
-     * @memberof pbgoods.GoodsModel
-     * @instance
-     */
+         * GoodsModel salesInitial.
+         * @member {number|Long} salesInitial
+         * @memberof pbgoods.GoodsModel
+         * @instance
+         */
     GoodsModel.prototype.salesInitial = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * GoodsModel salesActual.
-     * @member {number|Long} salesActual
-     * @memberof pbgoods.GoodsModel
-     * @instance
-     */
+         * GoodsModel salesActual.
+         * @member {number|Long} salesActual
+         * @memberof pbgoods.GoodsModel
+         * @instance
+         */
     GoodsModel.prototype.salesActual = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * GoodsModel deliveryId.
-     * @member {number|Long} deliveryId
-     * @memberof pbgoods.GoodsModel
-     * @instance
-     */
+         * GoodsModel deliveryId.
+         * @member {number|Long} deliveryId
+         * @memberof pbgoods.GoodsModel
+         * @instance
+         */
     GoodsModel.prototype.deliveryId = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * GoodsModel isPointsGift.
-     * @member {number} isPointsGift
-     * @memberof pbgoods.GoodsModel
-     * @instance
-     */
+         * GoodsModel isPointsGift.
+         * @member {number} isPointsGift
+         * @memberof pbgoods.GoodsModel
+         * @instance
+         */
     GoodsModel.prototype.isPointsGift = 0
 
     /**
-     * GoodsModel isPointsDiscount.
-     * @member {number} isPointsDiscount
-     * @memberof pbgoods.GoodsModel
-     * @instance
-     */
+         * GoodsModel isPointsDiscount.
+         * @member {number} isPointsDiscount
+         * @memberof pbgoods.GoodsModel
+         * @instance
+         */
     GoodsModel.prototype.isPointsDiscount = 0
 
     /**
-     * GoodsModel isOnSiteService.
-     * @member {number} isOnSiteService
-     * @memberof pbgoods.GoodsModel
-     * @instance
-     */
+         * GoodsModel isOnSiteService.
+         * @member {number} isOnSiteService
+         * @memberof pbgoods.GoodsModel
+         * @instance
+         */
     GoodsModel.prototype.isOnSiteService = 0
 
     /**
-     * GoodsModel isRecommend.
-     * @member {number} isRecommend
-     * @memberof pbgoods.GoodsModel
-     * @instance
-     */
+         * GoodsModel isRecommend.
+         * @member {number} isRecommend
+         * @memberof pbgoods.GoodsModel
+         * @instance
+         */
     GoodsModel.prototype.isRecommend = 0
 
     /**
-     * GoodsModel isNew.
-     * @member {number} isNew
-     * @memberof pbgoods.GoodsModel
-     * @instance
-     */
+         * GoodsModel isNew.
+         * @member {number} isNew
+         * @memberof pbgoods.GoodsModel
+         * @instance
+         */
     GoodsModel.prototype.isNew = 0
 
     /**
-     * GoodsModel isHot.
-     * @member {number} isHot
-     * @memberof pbgoods.GoodsModel
-     * @instance
-     */
+         * GoodsModel isHot.
+         * @member {number} isHot
+         * @memberof pbgoods.GoodsModel
+         * @instance
+         */
     GoodsModel.prototype.isHot = 0
 
     /**
-     * GoodsModel status.
-     * @member {pbgoods.GoodsStatusType} status
-     * @memberof pbgoods.GoodsModel
-     * @instance
-     */
+         * GoodsModel status.
+         * @member {pbgoods.GoodsStatusType} status
+         * @memberof pbgoods.GoodsModel
+         * @instance
+         */
     GoodsModel.prototype.status = 0
 
     /**
-     * GoodsModel sort.
-     * @member {number} sort
-     * @memberof pbgoods.GoodsModel
-     * @instance
-     */
+         * GoodsModel sort.
+         * @member {number} sort
+         * @memberof pbgoods.GoodsModel
+         * @instance
+         */
     GoodsModel.prototype.sort = 0
 
     /**
-     * GoodsModel shopId.
-     * @member {number|Long} shopId
-     * @memberof pbgoods.GoodsModel
-     * @instance
-     */
+         * GoodsModel shopId.
+         * @member {number|Long} shopId
+         * @memberof pbgoods.GoodsModel
+         * @instance
+         */
     GoodsModel.prototype.shopId = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * Creates a new GoodsModel instance using the specified properties.
-     * @function create
-     * @memberof pbgoods.GoodsModel
-     * @static
-     * @param {pbgoods.IGoodsModel=} [properties] Properties to set
-     * @returns {pbgoods.GoodsModel} GoodsModel instance
-     */
+         * Creates a new GoodsModel instance using the specified properties.
+         * @function create
+         * @memberof pbgoods.GoodsModel
+         * @static
+         * @param {pbgoods.IGoodsModel=} [properties] Properties to set
+         * @returns {pbgoods.GoodsModel} GoodsModel instance
+         */
     GoodsModel.create = function create(properties) {
       return new GoodsModel(properties)
     }
 
     /**
-     * Encodes the specified GoodsModel message. Does not implicitly {@link pbgoods.GoodsModel.verify|verify} messages.
-     * @function encode
-     * @memberof pbgoods.GoodsModel
-     * @static
-     * @param {pbgoods.IGoodsModel} message GoodsModel message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified GoodsModel message. Does not implicitly {@link pbgoods.GoodsModel.verify|verify} messages.
+         * @function encode
+         * @memberof pbgoods.GoodsModel
+         * @static
+         * @param {pbgoods.IGoodsModel} message GoodsModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     GoodsModel.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.id != null && Object.hasOwnProperty.call(message, 'id')) { writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id) }
@@ -18186,29 +18186,29 @@ $root.pbgoods = (function() {
     }
 
     /**
-     * Encodes the specified GoodsModel message, length delimited. Does not implicitly {@link pbgoods.GoodsModel.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbgoods.GoodsModel
-     * @static
-     * @param {pbgoods.IGoodsModel} message GoodsModel message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified GoodsModel message, length delimited. Does not implicitly {@link pbgoods.GoodsModel.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbgoods.GoodsModel
+         * @static
+         * @param {pbgoods.IGoodsModel} message GoodsModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     GoodsModel.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes a GoodsModel message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbgoods.GoodsModel
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbgoods.GoodsModel} GoodsModel
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a GoodsModel message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbgoods.GoodsModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbgoods.GoodsModel} GoodsModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     GoodsModel.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbgoods.GoodsModel()
@@ -18336,28 +18336,28 @@ $root.pbgoods = (function() {
     }
 
     /**
-     * Decodes a GoodsModel message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbgoods.GoodsModel
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbgoods.GoodsModel} GoodsModel
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a GoodsModel message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbgoods.GoodsModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbgoods.GoodsModel} GoodsModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     GoodsModel.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies a GoodsModel message.
-     * @function verify
-     * @memberof pbgoods.GoodsModel
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies a GoodsModel message.
+         * @function verify
+         * @memberof pbgoods.GoodsModel
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     GoodsModel.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.id != null && message.hasOwnProperty('id')) {
@@ -18469,13 +18469,13 @@ $root.pbgoods = (function() {
     }
 
     /**
-     * Creates a GoodsModel message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbgoods.GoodsModel
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbgoods.GoodsModel} GoodsModel
-     */
+         * Creates a GoodsModel message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbgoods.GoodsModel
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbgoods.GoodsModel} GoodsModel
+         */
     GoodsModel.fromObject = function fromObject(object) {
       if (object instanceof $root.pbgoods.GoodsModel) { return object }
       var message = new $root.pbgoods.GoodsModel()
@@ -18582,14 +18582,14 @@ $root.pbgoods = (function() {
     }
 
     /**
-     * Creates a plain object from a GoodsModel message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbgoods.GoodsModel
-     * @static
-     * @param {pbgoods.GoodsModel} message GoodsModel
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from a GoodsModel message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbgoods.GoodsModel
+         * @static
+         * @param {pbgoods.GoodsModel} message GoodsModel
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     GoodsModel.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -18690,24 +18690,24 @@ $root.pbgoods = (function() {
     }
 
     /**
-     * Converts this GoodsModel to JSON.
-     * @function toJSON
-     * @memberof pbgoods.GoodsModel
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this GoodsModel to JSON.
+         * @function toJSON
+         * @memberof pbgoods.GoodsModel
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     GoodsModel.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for GoodsModel
-     * @function getTypeUrl
-     * @memberof pbgoods.GoodsModel
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for GoodsModel
+         * @function getTypeUrl
+         * @memberof pbgoods.GoodsModel
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     GoodsModel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -18719,13 +18719,13 @@ $root.pbgoods = (function() {
   })()
 
   /**
-   * SpecType enum.
-   * @name pbgoods.SpecType
-   * @enum {number}
-   * @property {number} SpecTypeUnknown=0 SpecTypeUnknown value
-   * @property {number} Singleton=1 Singleton value
-   * @property {number} Multiple=2 Multiple value
-   */
+     * SpecType enum.
+     * @name pbgoods.SpecType
+     * @enum {number}
+     * @property {number} SpecTypeUnknown=0 SpecTypeUnknown value
+     * @property {number} Singleton=1 Singleton value
+     * @property {number} Multiple=2 Multiple value
+     */
   pbgoods.SpecType = (function() {
     var valuesById = {}; var values = Object.create(valuesById)
     values[valuesById[0] = 'SpecTypeUnknown'] = 0
@@ -18735,13 +18735,13 @@ $root.pbgoods = (function() {
   })()
 
   /**
-   * DeductStockType enum.
-   * @name pbgoods.DeductStockType
-   * @enum {number}
-   * @property {number} DeductStockTypeUnknown=0 DeductStockTypeUnknown value
-   * @property {number} OrderDeductStock=1 OrderDeductStock value
-   * @property {number} PayDeductStock=2 PayDeductStock value
-   */
+     * DeductStockType enum.
+     * @name pbgoods.DeductStockType
+     * @enum {number}
+     * @property {number} DeductStockTypeUnknown=0 DeductStockTypeUnknown value
+     * @property {number} OrderDeductStock=1 OrderDeductStock value
+     * @property {number} PayDeductStock=2 PayDeductStock value
+     */
   pbgoods.DeductStockType = (function() {
     var valuesById = {}; var values = Object.create(valuesById)
     values[valuesById[0] = 'DeductStockTypeUnknown'] = 0
@@ -18751,13 +18751,13 @@ $root.pbgoods = (function() {
   })()
 
   /**
-   * GoodsStatusType enum.
-   * @name pbgoods.GoodsStatusType
-   * @enum {number}
-   * @property {number} GoodsStatusTypeUnknown=0 GoodsStatusTypeUnknown value
-   * @property {number} GoodsStatusNormal=1 GoodsStatusNormal value
-   * @property {number} GoodsStatusOff=2 GoodsStatusOff value
-   */
+     * GoodsStatusType enum.
+     * @name pbgoods.GoodsStatusType
+     * @enum {number}
+     * @property {number} GoodsStatusTypeUnknown=0 GoodsStatusTypeUnknown value
+     * @property {number} GoodsStatusNormal=1 GoodsStatusNormal value
+     * @property {number} GoodsStatusOff=2 GoodsStatusOff value
+     */
   pbgoods.GoodsStatusType = (function() {
     var valuesById = {}; var values = Object.create(valuesById)
     values[valuesById[0] = 'GoodsStatusTypeUnknown'] = 0
@@ -18768,21 +18768,21 @@ $root.pbgoods = (function() {
 
   pbgoods.FindGoodsArgs = (function() {
     /**
-     * Properties of a FindGoodsArgs.
-     * @memberof pbgoods
-     * @interface IFindGoodsArgs
-     * @property {pbcommon.IPageInfo|null} [pageInfo] FindGoodsArgs pageInfo
-     * @property {pbgoods.IGoodsModel|null} [query] FindGoodsArgs query
-     */
+         * Properties of a FindGoodsArgs.
+         * @memberof pbgoods
+         * @interface IFindGoodsArgs
+         * @property {pbcommon.IPageInfo|null} [pageInfo] FindGoodsArgs pageInfo
+         * @property {pbgoods.IGoodsModel|null} [query] FindGoodsArgs query
+         */
 
     /**
-     * Constructs a new FindGoodsArgs.
-     * @memberof pbgoods
-     * @classdesc Represents a FindGoodsArgs.
-     * @implements IFindGoodsArgs
-     * @constructor
-     * @param {pbgoods.IFindGoodsArgs=} [properties] Properties to set
-     */
+         * Constructs a new FindGoodsArgs.
+         * @memberof pbgoods
+         * @classdesc Represents a FindGoodsArgs.
+         * @implements IFindGoodsArgs
+         * @constructor
+         * @param {pbgoods.IFindGoodsArgs=} [properties] Properties to set
+         */
     function FindGoodsArgs(properties) {
       if (properties) {
         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
@@ -18792,42 +18792,42 @@ $root.pbgoods = (function() {
     }
 
     /**
-     * FindGoodsArgs pageInfo.
-     * @member {pbcommon.IPageInfo|null|undefined} pageInfo
-     * @memberof pbgoods.FindGoodsArgs
-     * @instance
-     */
+         * FindGoodsArgs pageInfo.
+         * @member {pbcommon.IPageInfo|null|undefined} pageInfo
+         * @memberof pbgoods.FindGoodsArgs
+         * @instance
+         */
     FindGoodsArgs.prototype.pageInfo = null
 
     /**
-     * FindGoodsArgs query.
-     * @member {pbgoods.IGoodsModel|null|undefined} query
-     * @memberof pbgoods.FindGoodsArgs
-     * @instance
-     */
+         * FindGoodsArgs query.
+         * @member {pbgoods.IGoodsModel|null|undefined} query
+         * @memberof pbgoods.FindGoodsArgs
+         * @instance
+         */
     FindGoodsArgs.prototype.query = null
 
     /**
-     * Creates a new FindGoodsArgs instance using the specified properties.
-     * @function create
-     * @memberof pbgoods.FindGoodsArgs
-     * @static
-     * @param {pbgoods.IFindGoodsArgs=} [properties] Properties to set
-     * @returns {pbgoods.FindGoodsArgs} FindGoodsArgs instance
-     */
+         * Creates a new FindGoodsArgs instance using the specified properties.
+         * @function create
+         * @memberof pbgoods.FindGoodsArgs
+         * @static
+         * @param {pbgoods.IFindGoodsArgs=} [properties] Properties to set
+         * @returns {pbgoods.FindGoodsArgs} FindGoodsArgs instance
+         */
     FindGoodsArgs.create = function create(properties) {
       return new FindGoodsArgs(properties)
     }
 
     /**
-     * Encodes the specified FindGoodsArgs message. Does not implicitly {@link pbgoods.FindGoodsArgs.verify|verify} messages.
-     * @function encode
-     * @memberof pbgoods.FindGoodsArgs
-     * @static
-     * @param {pbgoods.IFindGoodsArgs} message FindGoodsArgs message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindGoodsArgs message. Does not implicitly {@link pbgoods.FindGoodsArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbgoods.FindGoodsArgs
+         * @static
+         * @param {pbgoods.IFindGoodsArgs} message FindGoodsArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindGoodsArgs.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.pageInfo != null && Object.hasOwnProperty.call(message, 'pageInfo')) { $root.pbcommon.PageInfo.encode(message.pageInfo, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim() }
@@ -18836,29 +18836,29 @@ $root.pbgoods = (function() {
     }
 
     /**
-     * Encodes the specified FindGoodsArgs message, length delimited. Does not implicitly {@link pbgoods.FindGoodsArgs.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbgoods.FindGoodsArgs
-     * @static
-     * @param {pbgoods.IFindGoodsArgs} message FindGoodsArgs message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindGoodsArgs message, length delimited. Does not implicitly {@link pbgoods.FindGoodsArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbgoods.FindGoodsArgs
+         * @static
+         * @param {pbgoods.IFindGoodsArgs} message FindGoodsArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindGoodsArgs.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes a FindGoodsArgs message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbgoods.FindGoodsArgs
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbgoods.FindGoodsArgs} FindGoodsArgs
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindGoodsArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbgoods.FindGoodsArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbgoods.FindGoodsArgs} FindGoodsArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindGoodsArgs.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbgoods.FindGoodsArgs()
@@ -18882,28 +18882,28 @@ $root.pbgoods = (function() {
     }
 
     /**
-     * Decodes a FindGoodsArgs message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbgoods.FindGoodsArgs
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbgoods.FindGoodsArgs} FindGoodsArgs
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindGoodsArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbgoods.FindGoodsArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbgoods.FindGoodsArgs} FindGoodsArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindGoodsArgs.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies a FindGoodsArgs message.
-     * @function verify
-     * @memberof pbgoods.FindGoodsArgs
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies a FindGoodsArgs message.
+         * @function verify
+         * @memberof pbgoods.FindGoodsArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     FindGoodsArgs.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.pageInfo != null && message.hasOwnProperty('pageInfo')) {
@@ -18918,13 +18918,13 @@ $root.pbgoods = (function() {
     }
 
     /**
-     * Creates a FindGoodsArgs message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbgoods.FindGoodsArgs
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbgoods.FindGoodsArgs} FindGoodsArgs
-     */
+         * Creates a FindGoodsArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbgoods.FindGoodsArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbgoods.FindGoodsArgs} FindGoodsArgs
+         */
     FindGoodsArgs.fromObject = function fromObject(object) {
       if (object instanceof $root.pbgoods.FindGoodsArgs) { return object }
       var message = new $root.pbgoods.FindGoodsArgs()
@@ -18940,14 +18940,14 @@ $root.pbgoods = (function() {
     }
 
     /**
-     * Creates a plain object from a FindGoodsArgs message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbgoods.FindGoodsArgs
-     * @static
-     * @param {pbgoods.FindGoodsArgs} message FindGoodsArgs
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from a FindGoodsArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbgoods.FindGoodsArgs
+         * @static
+         * @param {pbgoods.FindGoodsArgs} message FindGoodsArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     FindGoodsArgs.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -18961,24 +18961,24 @@ $root.pbgoods = (function() {
     }
 
     /**
-     * Converts this FindGoodsArgs to JSON.
-     * @function toJSON
-     * @memberof pbgoods.FindGoodsArgs
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this FindGoodsArgs to JSON.
+         * @function toJSON
+         * @memberof pbgoods.FindGoodsArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     FindGoodsArgs.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for FindGoodsArgs
-     * @function getTypeUrl
-     * @memberof pbgoods.FindGoodsArgs
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for FindGoodsArgs
+         * @function getTypeUrl
+         * @memberof pbgoods.FindGoodsArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     FindGoodsArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -18991,24 +18991,24 @@ $root.pbgoods = (function() {
 
   pbgoods.FindGoodsReply = (function() {
     /**
-     * Properties of a FindGoodsReply.
-     * @memberof pbgoods
-     * @interface IFindGoodsReply
-     * @property {pbcommon.EnumCode|null} [code] FindGoodsReply code
-     * @property {string|null} [msg] FindGoodsReply msg
-     * @property {pbgoods.IGoodsModel|null} [data] FindGoodsReply data
-     * @property {Array.<pbgoods.IGoodsModel>|null} [list] FindGoodsReply list
-     * @property {number|Long|null} [total] FindGoodsReply total
-     */
+         * Properties of a FindGoodsReply.
+         * @memberof pbgoods
+         * @interface IFindGoodsReply
+         * @property {pbcommon.EnumCode|null} [code] FindGoodsReply code
+         * @property {string|null} [msg] FindGoodsReply msg
+         * @property {pbgoods.IGoodsModel|null} [data] FindGoodsReply data
+         * @property {Array.<pbgoods.IGoodsModel>|null} [list] FindGoodsReply list
+         * @property {number|Long|null} [total] FindGoodsReply total
+         */
 
     /**
-     * Constructs a new FindGoodsReply.
-     * @memberof pbgoods
-     * @classdesc Represents a FindGoodsReply.
-     * @implements IFindGoodsReply
-     * @constructor
-     * @param {pbgoods.IFindGoodsReply=} [properties] Properties to set
-     */
+         * Constructs a new FindGoodsReply.
+         * @memberof pbgoods
+         * @classdesc Represents a FindGoodsReply.
+         * @implements IFindGoodsReply
+         * @constructor
+         * @param {pbgoods.IFindGoodsReply=} [properties] Properties to set
+         */
     function FindGoodsReply(properties) {
       this.list = []
       if (properties) {
@@ -19019,66 +19019,66 @@ $root.pbgoods = (function() {
     }
 
     /**
-     * FindGoodsReply code.
-     * @member {pbcommon.EnumCode} code
-     * @memberof pbgoods.FindGoodsReply
-     * @instance
-     */
+         * FindGoodsReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbgoods.FindGoodsReply
+         * @instance
+         */
     FindGoodsReply.prototype.code = 0
 
     /**
-     * FindGoodsReply msg.
-     * @member {string} msg
-     * @memberof pbgoods.FindGoodsReply
-     * @instance
-     */
+         * FindGoodsReply msg.
+         * @member {string} msg
+         * @memberof pbgoods.FindGoodsReply
+         * @instance
+         */
     FindGoodsReply.prototype.msg = ''
 
     /**
-     * FindGoodsReply data.
-     * @member {pbgoods.IGoodsModel|null|undefined} data
-     * @memberof pbgoods.FindGoodsReply
-     * @instance
-     */
+         * FindGoodsReply data.
+         * @member {pbgoods.IGoodsModel|null|undefined} data
+         * @memberof pbgoods.FindGoodsReply
+         * @instance
+         */
     FindGoodsReply.prototype.data = null
 
     /**
-     * FindGoodsReply list.
-     * @member {Array.<pbgoods.IGoodsModel>} list
-     * @memberof pbgoods.FindGoodsReply
-     * @instance
-     */
+         * FindGoodsReply list.
+         * @member {Array.<pbgoods.IGoodsModel>} list
+         * @memberof pbgoods.FindGoodsReply
+         * @instance
+         */
     FindGoodsReply.prototype.list = $util.emptyArray
 
     /**
-     * FindGoodsReply total.
-     * @member {number|Long} total
-     * @memberof pbgoods.FindGoodsReply
-     * @instance
-     */
+         * FindGoodsReply total.
+         * @member {number|Long} total
+         * @memberof pbgoods.FindGoodsReply
+         * @instance
+         */
     FindGoodsReply.prototype.total = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * Creates a new FindGoodsReply instance using the specified properties.
-     * @function create
-     * @memberof pbgoods.FindGoodsReply
-     * @static
-     * @param {pbgoods.IFindGoodsReply=} [properties] Properties to set
-     * @returns {pbgoods.FindGoodsReply} FindGoodsReply instance
-     */
+         * Creates a new FindGoodsReply instance using the specified properties.
+         * @function create
+         * @memberof pbgoods.FindGoodsReply
+         * @static
+         * @param {pbgoods.IFindGoodsReply=} [properties] Properties to set
+         * @returns {pbgoods.FindGoodsReply} FindGoodsReply instance
+         */
     FindGoodsReply.create = function create(properties) {
       return new FindGoodsReply(properties)
     }
 
     /**
-     * Encodes the specified FindGoodsReply message. Does not implicitly {@link pbgoods.FindGoodsReply.verify|verify} messages.
-     * @function encode
-     * @memberof pbgoods.FindGoodsReply
-     * @static
-     * @param {pbgoods.IFindGoodsReply} message FindGoodsReply message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindGoodsReply message. Does not implicitly {@link pbgoods.FindGoodsReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbgoods.FindGoodsReply
+         * @static
+         * @param {pbgoods.IFindGoodsReply} message FindGoodsReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindGoodsReply.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.code != null && Object.hasOwnProperty.call(message, 'code')) { writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code) }
@@ -19092,29 +19092,29 @@ $root.pbgoods = (function() {
     }
 
     /**
-     * Encodes the specified FindGoodsReply message, length delimited. Does not implicitly {@link pbgoods.FindGoodsReply.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbgoods.FindGoodsReply
-     * @static
-     * @param {pbgoods.IFindGoodsReply} message FindGoodsReply message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindGoodsReply message, length delimited. Does not implicitly {@link pbgoods.FindGoodsReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbgoods.FindGoodsReply
+         * @static
+         * @param {pbgoods.IFindGoodsReply} message FindGoodsReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindGoodsReply.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes a FindGoodsReply message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbgoods.FindGoodsReply
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbgoods.FindGoodsReply} FindGoodsReply
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindGoodsReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbgoods.FindGoodsReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbgoods.FindGoodsReply} FindGoodsReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindGoodsReply.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbgoods.FindGoodsReply()
@@ -19151,28 +19151,28 @@ $root.pbgoods = (function() {
     }
 
     /**
-     * Decodes a FindGoodsReply message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbgoods.FindGoodsReply
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbgoods.FindGoodsReply} FindGoodsReply
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindGoodsReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbgoods.FindGoodsReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbgoods.FindGoodsReply} FindGoodsReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindGoodsReply.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies a FindGoodsReply message.
-     * @function verify
-     * @memberof pbgoods.FindGoodsReply
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies a FindGoodsReply message.
+         * @function verify
+         * @memberof pbgoods.FindGoodsReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     FindGoodsReply.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.code != null && message.hasOwnProperty('code')) {
@@ -19228,13 +19228,13 @@ $root.pbgoods = (function() {
     }
 
     /**
-     * Creates a FindGoodsReply message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbgoods.FindGoodsReply
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbgoods.FindGoodsReply} FindGoodsReply
-     */
+         * Creates a FindGoodsReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbgoods.FindGoodsReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbgoods.FindGoodsReply} FindGoodsReply
+         */
     FindGoodsReply.fromObject = function fromObject(object) {
       if (object instanceof $root.pbgoods.FindGoodsReply) { return object }
       var message = new $root.pbgoods.FindGoodsReply()
@@ -19366,14 +19366,14 @@ $root.pbgoods = (function() {
     }
 
     /**
-     * Creates a plain object from a FindGoodsReply message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbgoods.FindGoodsReply
-     * @static
-     * @param {pbgoods.FindGoodsReply} message FindGoodsReply
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from a FindGoodsReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbgoods.FindGoodsReply
+         * @static
+         * @param {pbgoods.FindGoodsReply} message FindGoodsReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     FindGoodsReply.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -19401,24 +19401,24 @@ $root.pbgoods = (function() {
     }
 
     /**
-     * Converts this FindGoodsReply to JSON.
-     * @function toJSON
-     * @memberof pbgoods.FindGoodsReply
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this FindGoodsReply to JSON.
+         * @function toJSON
+         * @memberof pbgoods.FindGoodsReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     FindGoodsReply.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for FindGoodsReply
-     * @function getTypeUrl
-     * @memberof pbgoods.FindGoodsReply
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for FindGoodsReply
+         * @function getTypeUrl
+         * @memberof pbgoods.FindGoodsReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     FindGoodsReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -19431,15 +19431,15 @@ $root.pbgoods = (function() {
 
   pbgoods.Goods = (function() {
     /**
-     * Constructs a new Goods service.
-     * @memberof pbgoods
-     * @classdesc Represents a Goods
-     * @extends $protobuf.rpc.Service
-     * @constructor
-     * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
-     * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
-     * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
-     */
+         * Constructs a new Goods service.
+         * @memberof pbgoods
+         * @classdesc Represents a Goods
+         * @extends $protobuf.rpc.Service
+         * @constructor
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         */
     function Goods(rpcImpl, requestDelimited, responseDelimited) {
       $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited)
     }
@@ -19447,183 +19447,183 @@ $root.pbgoods = (function() {
     (Goods.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = Goods
 
     /**
-     * Creates new Goods service using the specified rpc implementation.
-     * @function create
-     * @memberof pbgoods.Goods
-     * @static
-     * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
-     * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
-     * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
-     * @returns {Goods} RPC service. Useful where requests and/or responses are streamed.
-     */
+         * Creates new Goods service using the specified rpc implementation.
+         * @function create
+         * @memberof pbgoods.Goods
+         * @static
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         * @returns {Goods} RPC service. Useful where requests and/or responses are streamed.
+         */
     Goods.create = function create(rpcImpl, requestDelimited, responseDelimited) {
       return new this(rpcImpl, requestDelimited, responseDelimited)
     }
 
     /**
-     * Callback as used by {@link pbgoods.Goods#createGoods}.
-     * @memberof pbgoods.Goods
-     * @typedef CreateGoodsCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbcommon.CommonResult} [response] CommonResult
-     */
+         * Callback as used by {@link pbgoods.Goods#createGoods}.
+         * @memberof pbgoods.Goods
+         * @typedef CreateGoodsCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
 
     /**
-     * Calls CreateGoods.
-     * @function createGoods
-     * @memberof pbgoods.Goods
-     * @instance
-     * @param {pbgoods.IGoodsModel} request GoodsModel message or plain object
-     * @param {pbgoods.Goods.CreateGoodsCallback} callback Node-style callback called with the error, if any, and CommonResult
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls CreateGoods.
+         * @function createGoods
+         * @memberof pbgoods.Goods
+         * @instance
+         * @param {pbgoods.IGoodsModel} request GoodsModel message or plain object
+         * @param {pbgoods.Goods.CreateGoodsCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(Goods.prototype.createGoods = function createGoods(request, callback) {
       return this.rpcCall(createGoods, $root.pbgoods.GoodsModel, $root.pbcommon.CommonResult, request, callback)
     }, 'name', { value: 'CreateGoods' })
 
     /**
-     * Calls CreateGoods.
-     * @function createGoods
-     * @memberof pbgoods.Goods
-     * @instance
-     * @param {pbgoods.IGoodsModel} request GoodsModel message or plain object
-     * @returns {Promise<pbcommon.CommonResult>} Promise
-     * @variation 2
-     */
+         * Calls CreateGoods.
+         * @function createGoods
+         * @memberof pbgoods.Goods
+         * @instance
+         * @param {pbgoods.IGoodsModel} request GoodsModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbgoods.Goods#updateGoods}.
-     * @memberof pbgoods.Goods
-     * @typedef UpdateGoodsCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbcommon.CommonResult} [response] CommonResult
-     */
+         * Callback as used by {@link pbgoods.Goods#updateGoods}.
+         * @memberof pbgoods.Goods
+         * @typedef UpdateGoodsCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
 
     /**
-     * Calls UpdateGoods.
-     * @function updateGoods
-     * @memberof pbgoods.Goods
-     * @instance
-     * @param {pbgoods.IGoodsModel} request GoodsModel message or plain object
-     * @param {pbgoods.Goods.UpdateGoodsCallback} callback Node-style callback called with the error, if any, and CommonResult
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls UpdateGoods.
+         * @function updateGoods
+         * @memberof pbgoods.Goods
+         * @instance
+         * @param {pbgoods.IGoodsModel} request GoodsModel message or plain object
+         * @param {pbgoods.Goods.UpdateGoodsCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(Goods.prototype.updateGoods = function updateGoods(request, callback) {
       return this.rpcCall(updateGoods, $root.pbgoods.GoodsModel, $root.pbcommon.CommonResult, request, callback)
     }, 'name', { value: 'UpdateGoods' })
 
     /**
-     * Calls UpdateGoods.
-     * @function updateGoods
-     * @memberof pbgoods.Goods
-     * @instance
-     * @param {pbgoods.IGoodsModel} request GoodsModel message or plain object
-     * @returns {Promise<pbcommon.CommonResult>} Promise
-     * @variation 2
-     */
+         * Calls UpdateGoods.
+         * @function updateGoods
+         * @memberof pbgoods.Goods
+         * @instance
+         * @param {pbgoods.IGoodsModel} request GoodsModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbgoods.Goods#deleteGoods}.
-     * @memberof pbgoods.Goods
-     * @typedef DeleteGoodsCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbcommon.CommonResult} [response] CommonResult
-     */
+         * Callback as used by {@link pbgoods.Goods#deleteGoods}.
+         * @memberof pbgoods.Goods
+         * @typedef DeleteGoodsCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
 
     /**
-     * Calls DeleteGoods.
-     * @function deleteGoods
-     * @memberof pbgoods.Goods
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @param {pbgoods.Goods.DeleteGoodsCallback} callback Node-style callback called with the error, if any, and CommonResult
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls DeleteGoods.
+         * @function deleteGoods
+         * @memberof pbgoods.Goods
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbgoods.Goods.DeleteGoodsCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(Goods.prototype.deleteGoods = function deleteGoods(request, callback) {
       return this.rpcCall(deleteGoods, $root.pbcommon.IdArgs, $root.pbcommon.CommonResult, request, callback)
     }, 'name', { value: 'DeleteGoods' })
 
     /**
-     * Calls DeleteGoods.
-     * @function deleteGoods
-     * @memberof pbgoods.Goods
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @returns {Promise<pbcommon.CommonResult>} Promise
-     * @variation 2
-     */
+         * Calls DeleteGoods.
+         * @function deleteGoods
+         * @memberof pbgoods.Goods
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbgoods.Goods#findGoodsById}.
-     * @memberof pbgoods.Goods
-     * @typedef FindGoodsByIdCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbgoods.FindGoodsReply} [response] FindGoodsReply
-     */
+         * Callback as used by {@link pbgoods.Goods#findGoodsById}.
+         * @memberof pbgoods.Goods
+         * @typedef FindGoodsByIdCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbgoods.FindGoodsReply} [response] FindGoodsReply
+         */
 
     /**
-     * Calls FindGoodsById.
-     * @function findGoodsById
-     * @memberof pbgoods.Goods
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @param {pbgoods.Goods.FindGoodsByIdCallback} callback Node-style callback called with the error, if any, and FindGoodsReply
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls FindGoodsById.
+         * @function findGoodsById
+         * @memberof pbgoods.Goods
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbgoods.Goods.FindGoodsByIdCallback} callback Node-style callback called with the error, if any, and FindGoodsReply
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(Goods.prototype.findGoodsById = function findGoodsById(request, callback) {
       return this.rpcCall(findGoodsById, $root.pbcommon.IdArgs, $root.pbgoods.FindGoodsReply, request, callback)
     }, 'name', { value: 'FindGoodsById' })
 
     /**
-     * Calls FindGoodsById.
-     * @function findGoodsById
-     * @memberof pbgoods.Goods
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @returns {Promise<pbgoods.FindGoodsReply>} Promise
-     * @variation 2
-     */
+         * Calls FindGoodsById.
+         * @function findGoodsById
+         * @memberof pbgoods.Goods
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbgoods.FindGoodsReply>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbgoods.Goods#findGoodsList}.
-     * @memberof pbgoods.Goods
-     * @typedef FindGoodsListCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbgoods.FindGoodsReply} [response] FindGoodsReply
-     */
+         * Callback as used by {@link pbgoods.Goods#findGoodsList}.
+         * @memberof pbgoods.Goods
+         * @typedef FindGoodsListCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbgoods.FindGoodsReply} [response] FindGoodsReply
+         */
 
     /**
-     * Calls FindGoodsList.
-     * @function findGoodsList
-     * @memberof pbgoods.Goods
-     * @instance
-     * @param {pbgoods.IFindGoodsArgs} request FindGoodsArgs message or plain object
-     * @param {pbgoods.Goods.FindGoodsListCallback} callback Node-style callback called with the error, if any, and FindGoodsReply
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls FindGoodsList.
+         * @function findGoodsList
+         * @memberof pbgoods.Goods
+         * @instance
+         * @param {pbgoods.IFindGoodsArgs} request FindGoodsArgs message or plain object
+         * @param {pbgoods.Goods.FindGoodsListCallback} callback Node-style callback called with the error, if any, and FindGoodsReply
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(Goods.prototype.findGoodsList = function findGoodsList(request, callback) {
       return this.rpcCall(findGoodsList, $root.pbgoods.FindGoodsArgs, $root.pbgoods.FindGoodsReply, request, callback)
     }, 'name', { value: 'FindGoodsList' })
 
     /**
-     * Calls FindGoodsList.
-     * @function findGoodsList
-     * @memberof pbgoods.Goods
-     * @instance
-     * @param {pbgoods.IFindGoodsArgs} request FindGoodsArgs message or plain object
-     * @returns {Promise<pbgoods.FindGoodsReply>} Promise
-     * @variation 2
-     */
+         * Calls FindGoodsList.
+         * @function findGoodsList
+         * @memberof pbgoods.Goods
+         * @instance
+         * @param {pbgoods.IFindGoodsArgs} request FindGoodsArgs message or plain object
+         * @returns {Promise<pbgoods.FindGoodsReply>} Promise
+         * @variation 2
+         */
 
     return Goods
   })()
@@ -19633,37 +19633,37 @@ $root.pbgoods = (function() {
 
 $root.pbemployee = (function() {
   /**
-   * Namespace pbemployee.
-   * @exports pbemployee
-   * @namespace
-   */
+     * Namespace pbemployee.
+     * @exports pbemployee
+     * @namespace
+     */
   var pbemployee = {}
 
   pbemployee.EmployeeModel = (function() {
     /**
-     * Properties of an EmployeeModel.
-     * @memberof pbemployee
-     * @interface IEmployeeModel
-     * @property {number|Long|null} [id] EmployeeModel id
-     * @property {string|null} [createdAt] EmployeeModel createdAt
-     * @property {string|null} [updatedAt] EmployeeModel updatedAt
-     * @property {string|null} [realName] EmployeeModel realName
-     * @property {string|null} [idNumber] EmployeeModel idNumber
-     * @property {string|null} [bankAccount] EmployeeModel bankAccount
-     * @property {string|null} [bankAddress] EmployeeModel bankAddress
-     * @property {number|null} [phone] EmployeeModel phone
-     * @property {string|null} [jieba] EmployeeModel jieba
-     * @property {string|null} [quanpin] EmployeeModel quanpin
-     */
+         * Properties of an EmployeeModel.
+         * @memberof pbemployee
+         * @interface IEmployeeModel
+         * @property {number|Long|null} [id] EmployeeModel id
+         * @property {string|null} [createdAt] EmployeeModel createdAt
+         * @property {string|null} [updatedAt] EmployeeModel updatedAt
+         * @property {string|null} [realName] EmployeeModel realName
+         * @property {string|null} [idNumber] EmployeeModel idNumber
+         * @property {string|null} [bankAccount] EmployeeModel bankAccount
+         * @property {string|null} [bankAddress] EmployeeModel bankAddress
+         * @property {number|Long|null} [phone] EmployeeModel phone
+         * @property {string|null} [jieba] EmployeeModel jieba
+         * @property {string|null} [quanpin] EmployeeModel quanpin
+         */
 
     /**
-     * Constructs a new EmployeeModel.
-     * @memberof pbemployee
-     * @classdesc Represents an EmployeeModel.
-     * @implements IEmployeeModel
-     * @constructor
-     * @param {pbemployee.IEmployeeModel=} [properties] Properties to set
-     */
+         * Constructs a new EmployeeModel.
+         * @memberof pbemployee
+         * @classdesc Represents an EmployeeModel.
+         * @implements IEmployeeModel
+         * @constructor
+         * @param {pbemployee.IEmployeeModel=} [properties] Properties to set
+         */
     function EmployeeModel(properties) {
       if (properties) {
         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
@@ -19673,106 +19673,106 @@ $root.pbemployee = (function() {
     }
 
     /**
-     * EmployeeModel id.
-     * @member {number|Long} id
-     * @memberof pbemployee.EmployeeModel
-     * @instance
-     */
+         * EmployeeModel id.
+         * @member {number|Long} id
+         * @memberof pbemployee.EmployeeModel
+         * @instance
+         */
     EmployeeModel.prototype.id = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * EmployeeModel createdAt.
-     * @member {string} createdAt
-     * @memberof pbemployee.EmployeeModel
-     * @instance
-     */
+         * EmployeeModel createdAt.
+         * @member {string} createdAt
+         * @memberof pbemployee.EmployeeModel
+         * @instance
+         */
     EmployeeModel.prototype.createdAt = ''
 
     /**
-     * EmployeeModel updatedAt.
-     * @member {string} updatedAt
-     * @memberof pbemployee.EmployeeModel
-     * @instance
-     */
+         * EmployeeModel updatedAt.
+         * @member {string} updatedAt
+         * @memberof pbemployee.EmployeeModel
+         * @instance
+         */
     EmployeeModel.prototype.updatedAt = ''
 
     /**
-     * EmployeeModel realName.
-     * @member {string} realName
-     * @memberof pbemployee.EmployeeModel
-     * @instance
-     */
+         * EmployeeModel realName.
+         * @member {string} realName
+         * @memberof pbemployee.EmployeeModel
+         * @instance
+         */
     EmployeeModel.prototype.realName = ''
 
     /**
-     * EmployeeModel idNumber.
-     * @member {string} idNumber
-     * @memberof pbemployee.EmployeeModel
-     * @instance
-     */
+         * EmployeeModel idNumber.
+         * @member {string} idNumber
+         * @memberof pbemployee.EmployeeModel
+         * @instance
+         */
     EmployeeModel.prototype.idNumber = ''
 
     /**
-     * EmployeeModel bankAccount.
-     * @member {string} bankAccount
-     * @memberof pbemployee.EmployeeModel
-     * @instance
-     */
+         * EmployeeModel bankAccount.
+         * @member {string} bankAccount
+         * @memberof pbemployee.EmployeeModel
+         * @instance
+         */
     EmployeeModel.prototype.bankAccount = ''
 
     /**
-     * EmployeeModel bankAddress.
-     * @member {string} bankAddress
-     * @memberof pbemployee.EmployeeModel
-     * @instance
-     */
+         * EmployeeModel bankAddress.
+         * @member {string} bankAddress
+         * @memberof pbemployee.EmployeeModel
+         * @instance
+         */
     EmployeeModel.prototype.bankAddress = ''
 
     /**
-     * EmployeeModel phone.
-     * @member {number} phone
-     * @memberof pbemployee.EmployeeModel
-     * @instance
-     */
-    EmployeeModel.prototype.phone = 0
+         * EmployeeModel phone.
+         * @member {number|Long} phone
+         * @memberof pbemployee.EmployeeModel
+         * @instance
+         */
+    EmployeeModel.prototype.phone = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * EmployeeModel jieba.
-     * @member {string} jieba
-     * @memberof pbemployee.EmployeeModel
-     * @instance
-     */
+         * EmployeeModel jieba.
+         * @member {string} jieba
+         * @memberof pbemployee.EmployeeModel
+         * @instance
+         */
     EmployeeModel.prototype.jieba = ''
 
     /**
-     * EmployeeModel quanpin.
-     * @member {string} quanpin
-     * @memberof pbemployee.EmployeeModel
-     * @instance
-     */
+         * EmployeeModel quanpin.
+         * @member {string} quanpin
+         * @memberof pbemployee.EmployeeModel
+         * @instance
+         */
     EmployeeModel.prototype.quanpin = ''
 
     /**
-     * Creates a new EmployeeModel instance using the specified properties.
-     * @function create
-     * @memberof pbemployee.EmployeeModel
-     * @static
-     * @param {pbemployee.IEmployeeModel=} [properties] Properties to set
-     * @returns {pbemployee.EmployeeModel} EmployeeModel instance
-     */
+         * Creates a new EmployeeModel instance using the specified properties.
+         * @function create
+         * @memberof pbemployee.EmployeeModel
+         * @static
+         * @param {pbemployee.IEmployeeModel=} [properties] Properties to set
+         * @returns {pbemployee.EmployeeModel} EmployeeModel instance
+         */
     EmployeeModel.create = function create(properties) {
       return new EmployeeModel(properties)
     }
 
     /**
-     * Encodes the specified EmployeeModel message. Does not implicitly {@link pbemployee.EmployeeModel.verify|verify} messages.
-     * @function encode
-     * @memberof pbemployee.EmployeeModel
-     * @static
-     * @param {pbemployee.IEmployeeModel} message EmployeeModel message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified EmployeeModel message. Does not implicitly {@link pbemployee.EmployeeModel.verify|verify} messages.
+         * @function encode
+         * @memberof pbemployee.EmployeeModel
+         * @static
+         * @param {pbemployee.IEmployeeModel} message EmployeeModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     EmployeeModel.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.id != null && Object.hasOwnProperty.call(message, 'id')) { writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id) }
@@ -19782,36 +19782,36 @@ $root.pbemployee = (function() {
       if (message.idNumber != null && Object.hasOwnProperty.call(message, 'idNumber')) { writer.uint32(/* id 5, wireType 2 =*/42).string(message.idNumber) }
       if (message.bankAccount != null && Object.hasOwnProperty.call(message, 'bankAccount')) { writer.uint32(/* id 6, wireType 2 =*/50).string(message.bankAccount) }
       if (message.bankAddress != null && Object.hasOwnProperty.call(message, 'bankAddress')) { writer.uint32(/* id 7, wireType 2 =*/58).string(message.bankAddress) }
-      if (message.phone != null && Object.hasOwnProperty.call(message, 'phone')) { writer.uint32(/* id 8, wireType 0 =*/64).int32(message.phone) }
+      if (message.phone != null && Object.hasOwnProperty.call(message, 'phone')) { writer.uint32(/* id 8, wireType 0 =*/64).int64(message.phone) }
       if (message.jieba != null && Object.hasOwnProperty.call(message, 'jieba')) { writer.uint32(/* id 9, wireType 2 =*/74).string(message.jieba) }
       if (message.quanpin != null && Object.hasOwnProperty.call(message, 'quanpin')) { writer.uint32(/* id 10, wireType 2 =*/82).string(message.quanpin) }
       return writer
     }
 
     /**
-     * Encodes the specified EmployeeModel message, length delimited. Does not implicitly {@link pbemployee.EmployeeModel.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbemployee.EmployeeModel
-     * @static
-     * @param {pbemployee.IEmployeeModel} message EmployeeModel message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified EmployeeModel message, length delimited. Does not implicitly {@link pbemployee.EmployeeModel.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbemployee.EmployeeModel
+         * @static
+         * @param {pbemployee.IEmployeeModel} message EmployeeModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     EmployeeModel.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes an EmployeeModel message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbemployee.EmployeeModel
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbemployee.EmployeeModel} EmployeeModel
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes an EmployeeModel message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbemployee.EmployeeModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbemployee.EmployeeModel} EmployeeModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     EmployeeModel.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbemployee.EmployeeModel()
@@ -19847,7 +19847,7 @@ $root.pbemployee = (function() {
             break
           }
           case 8: {
-            message.phone = reader.int32()
+            message.phone = reader.int64()
             break
           }
           case 9: {
@@ -19867,28 +19867,28 @@ $root.pbemployee = (function() {
     }
 
     /**
-     * Decodes an EmployeeModel message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbemployee.EmployeeModel
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbemployee.EmployeeModel} EmployeeModel
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes an EmployeeModel message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbemployee.EmployeeModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbemployee.EmployeeModel} EmployeeModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     EmployeeModel.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies an EmployeeModel message.
-     * @function verify
-     * @memberof pbemployee.EmployeeModel
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies an EmployeeModel message.
+         * @function verify
+         * @memberof pbemployee.EmployeeModel
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     EmployeeModel.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.id != null && message.hasOwnProperty('id')) {
@@ -19913,7 +19913,7 @@ $root.pbemployee = (function() {
         if (!$util.isString(message.bankAddress)) { return 'bankAddress: string expected' }
       }
       if (message.phone != null && message.hasOwnProperty('phone')) {
-        if (!$util.isInteger(message.phone)) { return 'phone: integer expected' }
+        if (!$util.isInteger(message.phone) && !(message.phone && $util.isInteger(message.phone.low) && $util.isInteger(message.phone.high))) { return 'phone: integer|Long expected' }
       }
       if (message.jieba != null && message.hasOwnProperty('jieba')) {
         if (!$util.isString(message.jieba)) { return 'jieba: string expected' }
@@ -19925,13 +19925,13 @@ $root.pbemployee = (function() {
     }
 
     /**
-     * Creates an EmployeeModel message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbemployee.EmployeeModel
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbemployee.EmployeeModel} EmployeeModel
-     */
+         * Creates an EmployeeModel message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbemployee.EmployeeModel
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbemployee.EmployeeModel} EmployeeModel
+         */
     EmployeeModel.fromObject = function fromObject(object) {
       if (object instanceof $root.pbemployee.EmployeeModel) { return object }
       var message = new $root.pbemployee.EmployeeModel()
@@ -19944,21 +19944,23 @@ $root.pbemployee = (function() {
       if (object.idNumber != null) { message.idNumber = String(object.idNumber) }
       if (object.bankAccount != null) { message.bankAccount = String(object.bankAccount) }
       if (object.bankAddress != null) { message.bankAddress = String(object.bankAddress) }
-      if (object.phone != null) { message.phone = object.phone | 0 }
+      if (object.phone != null) {
+        if ($util.Long) { (message.phone = $util.Long.fromValue(object.phone)).unsigned = false } else if (typeof object.phone === 'string') { message.phone = parseInt(object.phone, 10) } else if (typeof object.phone === 'number') { message.phone = object.phone } else if (typeof object.phone === 'object') { message.phone = new $util.LongBits(object.phone.low >>> 0, object.phone.high >>> 0).toNumber() }
+      }
       if (object.jieba != null) { message.jieba = String(object.jieba) }
       if (object.quanpin != null) { message.quanpin = String(object.quanpin) }
       return message
     }
 
     /**
-     * Creates a plain object from an EmployeeModel message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbemployee.EmployeeModel
-     * @static
-     * @param {pbemployee.EmployeeModel} message EmployeeModel
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from an EmployeeModel message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbemployee.EmployeeModel
+         * @static
+         * @param {pbemployee.EmployeeModel} message EmployeeModel
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     EmployeeModel.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -19973,7 +19975,10 @@ $root.pbemployee = (function() {
         object.idNumber = ''
         object.bankAccount = ''
         object.bankAddress = ''
-        object.phone = 0
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.phone = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.phone = options.longs === String ? '0' : 0 }
         object.jieba = ''
         object.quanpin = ''
       }
@@ -19986,31 +19991,33 @@ $root.pbemployee = (function() {
       if (message.idNumber != null && message.hasOwnProperty('idNumber')) { object.idNumber = message.idNumber }
       if (message.bankAccount != null && message.hasOwnProperty('bankAccount')) { object.bankAccount = message.bankAccount }
       if (message.bankAddress != null && message.hasOwnProperty('bankAddress')) { object.bankAddress = message.bankAddress }
-      if (message.phone != null && message.hasOwnProperty('phone')) { object.phone = message.phone }
+      if (message.phone != null && message.hasOwnProperty('phone')) {
+        if (typeof message.phone === 'number') { object.phone = options.longs === String ? String(message.phone) : message.phone } else { object.phone = options.longs === String ? $util.Long.prototype.toString.call(message.phone) : options.longs === Number ? new $util.LongBits(message.phone.low >>> 0, message.phone.high >>> 0).toNumber() : message.phone }
+      }
       if (message.jieba != null && message.hasOwnProperty('jieba')) { object.jieba = message.jieba }
       if (message.quanpin != null && message.hasOwnProperty('quanpin')) { object.quanpin = message.quanpin }
       return object
     }
 
     /**
-     * Converts this EmployeeModel to JSON.
-     * @function toJSON
-     * @memberof pbemployee.EmployeeModel
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this EmployeeModel to JSON.
+         * @function toJSON
+         * @memberof pbemployee.EmployeeModel
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     EmployeeModel.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for EmployeeModel
-     * @function getTypeUrl
-     * @memberof pbemployee.EmployeeModel
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for EmployeeModel
+         * @function getTypeUrl
+         * @memberof pbemployee.EmployeeModel
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     EmployeeModel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -20023,21 +20030,21 @@ $root.pbemployee = (function() {
 
   pbemployee.FindEmployeeArgs = (function() {
     /**
-     * Properties of a FindEmployeeArgs.
-     * @memberof pbemployee
-     * @interface IFindEmployeeArgs
-     * @property {pbcommon.IPageInfo|null} [pageInfo] FindEmployeeArgs pageInfo
-     * @property {pbemployee.IEmployeeModel|null} [query] FindEmployeeArgs query
-     */
+         * Properties of a FindEmployeeArgs.
+         * @memberof pbemployee
+         * @interface IFindEmployeeArgs
+         * @property {pbcommon.IPageInfo|null} [pageInfo] FindEmployeeArgs pageInfo
+         * @property {pbemployee.IEmployeeModel|null} [query] FindEmployeeArgs query
+         */
 
     /**
-     * Constructs a new FindEmployeeArgs.
-     * @memberof pbemployee
-     * @classdesc Represents a FindEmployeeArgs.
-     * @implements IFindEmployeeArgs
-     * @constructor
-     * @param {pbemployee.IFindEmployeeArgs=} [properties] Properties to set
-     */
+         * Constructs a new FindEmployeeArgs.
+         * @memberof pbemployee
+         * @classdesc Represents a FindEmployeeArgs.
+         * @implements IFindEmployeeArgs
+         * @constructor
+         * @param {pbemployee.IFindEmployeeArgs=} [properties] Properties to set
+         */
     function FindEmployeeArgs(properties) {
       if (properties) {
         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
@@ -20047,42 +20054,42 @@ $root.pbemployee = (function() {
     }
 
     /**
-     * FindEmployeeArgs pageInfo.
-     * @member {pbcommon.IPageInfo|null|undefined} pageInfo
-     * @memberof pbemployee.FindEmployeeArgs
-     * @instance
-     */
+         * FindEmployeeArgs pageInfo.
+         * @member {pbcommon.IPageInfo|null|undefined} pageInfo
+         * @memberof pbemployee.FindEmployeeArgs
+         * @instance
+         */
     FindEmployeeArgs.prototype.pageInfo = null
 
     /**
-     * FindEmployeeArgs query.
-     * @member {pbemployee.IEmployeeModel|null|undefined} query
-     * @memberof pbemployee.FindEmployeeArgs
-     * @instance
-     */
+         * FindEmployeeArgs query.
+         * @member {pbemployee.IEmployeeModel|null|undefined} query
+         * @memberof pbemployee.FindEmployeeArgs
+         * @instance
+         */
     FindEmployeeArgs.prototype.query = null
 
     /**
-     * Creates a new FindEmployeeArgs instance using the specified properties.
-     * @function create
-     * @memberof pbemployee.FindEmployeeArgs
-     * @static
-     * @param {pbemployee.IFindEmployeeArgs=} [properties] Properties to set
-     * @returns {pbemployee.FindEmployeeArgs} FindEmployeeArgs instance
-     */
+         * Creates a new FindEmployeeArgs instance using the specified properties.
+         * @function create
+         * @memberof pbemployee.FindEmployeeArgs
+         * @static
+         * @param {pbemployee.IFindEmployeeArgs=} [properties] Properties to set
+         * @returns {pbemployee.FindEmployeeArgs} FindEmployeeArgs instance
+         */
     FindEmployeeArgs.create = function create(properties) {
       return new FindEmployeeArgs(properties)
     }
 
     /**
-     * Encodes the specified FindEmployeeArgs message. Does not implicitly {@link pbemployee.FindEmployeeArgs.verify|verify} messages.
-     * @function encode
-     * @memberof pbemployee.FindEmployeeArgs
-     * @static
-     * @param {pbemployee.IFindEmployeeArgs} message FindEmployeeArgs message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindEmployeeArgs message. Does not implicitly {@link pbemployee.FindEmployeeArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbemployee.FindEmployeeArgs
+         * @static
+         * @param {pbemployee.IFindEmployeeArgs} message FindEmployeeArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindEmployeeArgs.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.pageInfo != null && Object.hasOwnProperty.call(message, 'pageInfo')) { $root.pbcommon.PageInfo.encode(message.pageInfo, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim() }
@@ -20091,29 +20098,29 @@ $root.pbemployee = (function() {
     }
 
     /**
-     * Encodes the specified FindEmployeeArgs message, length delimited. Does not implicitly {@link pbemployee.FindEmployeeArgs.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbemployee.FindEmployeeArgs
-     * @static
-     * @param {pbemployee.IFindEmployeeArgs} message FindEmployeeArgs message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindEmployeeArgs message, length delimited. Does not implicitly {@link pbemployee.FindEmployeeArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbemployee.FindEmployeeArgs
+         * @static
+         * @param {pbemployee.IFindEmployeeArgs} message FindEmployeeArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindEmployeeArgs.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes a FindEmployeeArgs message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbemployee.FindEmployeeArgs
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbemployee.FindEmployeeArgs} FindEmployeeArgs
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindEmployeeArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbemployee.FindEmployeeArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbemployee.FindEmployeeArgs} FindEmployeeArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindEmployeeArgs.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbemployee.FindEmployeeArgs()
@@ -20137,28 +20144,28 @@ $root.pbemployee = (function() {
     }
 
     /**
-     * Decodes a FindEmployeeArgs message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbemployee.FindEmployeeArgs
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbemployee.FindEmployeeArgs} FindEmployeeArgs
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindEmployeeArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbemployee.FindEmployeeArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbemployee.FindEmployeeArgs} FindEmployeeArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindEmployeeArgs.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies a FindEmployeeArgs message.
-     * @function verify
-     * @memberof pbemployee.FindEmployeeArgs
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies a FindEmployeeArgs message.
+         * @function verify
+         * @memberof pbemployee.FindEmployeeArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     FindEmployeeArgs.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.pageInfo != null && message.hasOwnProperty('pageInfo')) {
@@ -20173,13 +20180,13 @@ $root.pbemployee = (function() {
     }
 
     /**
-     * Creates a FindEmployeeArgs message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbemployee.FindEmployeeArgs
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbemployee.FindEmployeeArgs} FindEmployeeArgs
-     */
+         * Creates a FindEmployeeArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbemployee.FindEmployeeArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbemployee.FindEmployeeArgs} FindEmployeeArgs
+         */
     FindEmployeeArgs.fromObject = function fromObject(object) {
       if (object instanceof $root.pbemployee.FindEmployeeArgs) { return object }
       var message = new $root.pbemployee.FindEmployeeArgs()
@@ -20195,14 +20202,14 @@ $root.pbemployee = (function() {
     }
 
     /**
-     * Creates a plain object from a FindEmployeeArgs message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbemployee.FindEmployeeArgs
-     * @static
-     * @param {pbemployee.FindEmployeeArgs} message FindEmployeeArgs
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from a FindEmployeeArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbemployee.FindEmployeeArgs
+         * @static
+         * @param {pbemployee.FindEmployeeArgs} message FindEmployeeArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     FindEmployeeArgs.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -20216,24 +20223,24 @@ $root.pbemployee = (function() {
     }
 
     /**
-     * Converts this FindEmployeeArgs to JSON.
-     * @function toJSON
-     * @memberof pbemployee.FindEmployeeArgs
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this FindEmployeeArgs to JSON.
+         * @function toJSON
+         * @memberof pbemployee.FindEmployeeArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     FindEmployeeArgs.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for FindEmployeeArgs
-     * @function getTypeUrl
-     * @memberof pbemployee.FindEmployeeArgs
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for FindEmployeeArgs
+         * @function getTypeUrl
+         * @memberof pbemployee.FindEmployeeArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     FindEmployeeArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -20246,24 +20253,24 @@ $root.pbemployee = (function() {
 
   pbemployee.FindEmployeeReply = (function() {
     /**
-     * Properties of a FindEmployeeReply.
-     * @memberof pbemployee
-     * @interface IFindEmployeeReply
-     * @property {pbcommon.EnumCode|null} [code] FindEmployeeReply code
-     * @property {string|null} [msg] FindEmployeeReply msg
-     * @property {pbemployee.IEmployeeModel|null} [data] FindEmployeeReply data
-     * @property {Array.<pbemployee.IEmployeeModel>|null} [list] FindEmployeeReply list
-     * @property {number|Long|null} [total] FindEmployeeReply total
-     */
+         * Properties of a FindEmployeeReply.
+         * @memberof pbemployee
+         * @interface IFindEmployeeReply
+         * @property {pbcommon.EnumCode|null} [code] FindEmployeeReply code
+         * @property {string|null} [msg] FindEmployeeReply msg
+         * @property {pbemployee.IEmployeeModel|null} [data] FindEmployeeReply data
+         * @property {Array.<pbemployee.IEmployeeModel>|null} [list] FindEmployeeReply list
+         * @property {number|Long|null} [total] FindEmployeeReply total
+         */
 
     /**
-     * Constructs a new FindEmployeeReply.
-     * @memberof pbemployee
-     * @classdesc Represents a FindEmployeeReply.
-     * @implements IFindEmployeeReply
-     * @constructor
-     * @param {pbemployee.IFindEmployeeReply=} [properties] Properties to set
-     */
+         * Constructs a new FindEmployeeReply.
+         * @memberof pbemployee
+         * @classdesc Represents a FindEmployeeReply.
+         * @implements IFindEmployeeReply
+         * @constructor
+         * @param {pbemployee.IFindEmployeeReply=} [properties] Properties to set
+         */
     function FindEmployeeReply(properties) {
       this.list = []
       if (properties) {
@@ -20274,66 +20281,66 @@ $root.pbemployee = (function() {
     }
 
     /**
-     * FindEmployeeReply code.
-     * @member {pbcommon.EnumCode} code
-     * @memberof pbemployee.FindEmployeeReply
-     * @instance
-     */
+         * FindEmployeeReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbemployee.FindEmployeeReply
+         * @instance
+         */
     FindEmployeeReply.prototype.code = 0
 
     /**
-     * FindEmployeeReply msg.
-     * @member {string} msg
-     * @memberof pbemployee.FindEmployeeReply
-     * @instance
-     */
+         * FindEmployeeReply msg.
+         * @member {string} msg
+         * @memberof pbemployee.FindEmployeeReply
+         * @instance
+         */
     FindEmployeeReply.prototype.msg = ''
 
     /**
-     * FindEmployeeReply data.
-     * @member {pbemployee.IEmployeeModel|null|undefined} data
-     * @memberof pbemployee.FindEmployeeReply
-     * @instance
-     */
+         * FindEmployeeReply data.
+         * @member {pbemployee.IEmployeeModel|null|undefined} data
+         * @memberof pbemployee.FindEmployeeReply
+         * @instance
+         */
     FindEmployeeReply.prototype.data = null
 
     /**
-     * FindEmployeeReply list.
-     * @member {Array.<pbemployee.IEmployeeModel>} list
-     * @memberof pbemployee.FindEmployeeReply
-     * @instance
-     */
+         * FindEmployeeReply list.
+         * @member {Array.<pbemployee.IEmployeeModel>} list
+         * @memberof pbemployee.FindEmployeeReply
+         * @instance
+         */
     FindEmployeeReply.prototype.list = $util.emptyArray
 
     /**
-     * FindEmployeeReply total.
-     * @member {number|Long} total
-     * @memberof pbemployee.FindEmployeeReply
-     * @instance
-     */
+         * FindEmployeeReply total.
+         * @member {number|Long} total
+         * @memberof pbemployee.FindEmployeeReply
+         * @instance
+         */
     FindEmployeeReply.prototype.total = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * Creates a new FindEmployeeReply instance using the specified properties.
-     * @function create
-     * @memberof pbemployee.FindEmployeeReply
-     * @static
-     * @param {pbemployee.IFindEmployeeReply=} [properties] Properties to set
-     * @returns {pbemployee.FindEmployeeReply} FindEmployeeReply instance
-     */
+         * Creates a new FindEmployeeReply instance using the specified properties.
+         * @function create
+         * @memberof pbemployee.FindEmployeeReply
+         * @static
+         * @param {pbemployee.IFindEmployeeReply=} [properties] Properties to set
+         * @returns {pbemployee.FindEmployeeReply} FindEmployeeReply instance
+         */
     FindEmployeeReply.create = function create(properties) {
       return new FindEmployeeReply(properties)
     }
 
     /**
-     * Encodes the specified FindEmployeeReply message. Does not implicitly {@link pbemployee.FindEmployeeReply.verify|verify} messages.
-     * @function encode
-     * @memberof pbemployee.FindEmployeeReply
-     * @static
-     * @param {pbemployee.IFindEmployeeReply} message FindEmployeeReply message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindEmployeeReply message. Does not implicitly {@link pbemployee.FindEmployeeReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbemployee.FindEmployeeReply
+         * @static
+         * @param {pbemployee.IFindEmployeeReply} message FindEmployeeReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindEmployeeReply.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.code != null && Object.hasOwnProperty.call(message, 'code')) { writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code) }
@@ -20347,29 +20354,29 @@ $root.pbemployee = (function() {
     }
 
     /**
-     * Encodes the specified FindEmployeeReply message, length delimited. Does not implicitly {@link pbemployee.FindEmployeeReply.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbemployee.FindEmployeeReply
-     * @static
-     * @param {pbemployee.IFindEmployeeReply} message FindEmployeeReply message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindEmployeeReply message, length delimited. Does not implicitly {@link pbemployee.FindEmployeeReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbemployee.FindEmployeeReply
+         * @static
+         * @param {pbemployee.IFindEmployeeReply} message FindEmployeeReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindEmployeeReply.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes a FindEmployeeReply message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbemployee.FindEmployeeReply
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbemployee.FindEmployeeReply} FindEmployeeReply
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindEmployeeReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbemployee.FindEmployeeReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbemployee.FindEmployeeReply} FindEmployeeReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindEmployeeReply.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbemployee.FindEmployeeReply()
@@ -20406,28 +20413,28 @@ $root.pbemployee = (function() {
     }
 
     /**
-     * Decodes a FindEmployeeReply message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbemployee.FindEmployeeReply
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbemployee.FindEmployeeReply} FindEmployeeReply
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindEmployeeReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbemployee.FindEmployeeReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbemployee.FindEmployeeReply} FindEmployeeReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindEmployeeReply.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies a FindEmployeeReply message.
-     * @function verify
-     * @memberof pbemployee.FindEmployeeReply
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies a FindEmployeeReply message.
+         * @function verify
+         * @memberof pbemployee.FindEmployeeReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     FindEmployeeReply.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.code != null && message.hasOwnProperty('code')) {
@@ -20483,13 +20490,13 @@ $root.pbemployee = (function() {
     }
 
     /**
-     * Creates a FindEmployeeReply message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbemployee.FindEmployeeReply
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbemployee.FindEmployeeReply} FindEmployeeReply
-     */
+         * Creates a FindEmployeeReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbemployee.FindEmployeeReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbemployee.FindEmployeeReply} FindEmployeeReply
+         */
     FindEmployeeReply.fromObject = function fromObject(object) {
       if (object instanceof $root.pbemployee.FindEmployeeReply) { return object }
       var message = new $root.pbemployee.FindEmployeeReply()
@@ -20621,14 +20628,14 @@ $root.pbemployee = (function() {
     }
 
     /**
-     * Creates a plain object from a FindEmployeeReply message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbemployee.FindEmployeeReply
-     * @static
-     * @param {pbemployee.FindEmployeeReply} message FindEmployeeReply
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from a FindEmployeeReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbemployee.FindEmployeeReply
+         * @static
+         * @param {pbemployee.FindEmployeeReply} message FindEmployeeReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     FindEmployeeReply.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -20656,24 +20663,24 @@ $root.pbemployee = (function() {
     }
 
     /**
-     * Converts this FindEmployeeReply to JSON.
-     * @function toJSON
-     * @memberof pbemployee.FindEmployeeReply
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this FindEmployeeReply to JSON.
+         * @function toJSON
+         * @memberof pbemployee.FindEmployeeReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     FindEmployeeReply.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for FindEmployeeReply
-     * @function getTypeUrl
-     * @memberof pbemployee.FindEmployeeReply
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for FindEmployeeReply
+         * @function getTypeUrl
+         * @memberof pbemployee.FindEmployeeReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     FindEmployeeReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -20686,15 +20693,15 @@ $root.pbemployee = (function() {
 
   pbemployee.Employee = (function() {
     /**
-     * Constructs a new Employee service.
-     * @memberof pbemployee
-     * @classdesc Represents an Employee
-     * @extends $protobuf.rpc.Service
-     * @constructor
-     * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
-     * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
-     * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
-     */
+         * Constructs a new Employee service.
+         * @memberof pbemployee
+         * @classdesc Represents an Employee
+         * @extends $protobuf.rpc.Service
+         * @constructor
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         */
     function Employee(rpcImpl, requestDelimited, responseDelimited) {
       $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited)
     }
@@ -20702,183 +20709,183 @@ $root.pbemployee = (function() {
     (Employee.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = Employee
 
     /**
-     * Creates new Employee service using the specified rpc implementation.
-     * @function create
-     * @memberof pbemployee.Employee
-     * @static
-     * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
-     * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
-     * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
-     * @returns {Employee} RPC service. Useful where requests and/or responses are streamed.
-     */
+         * Creates new Employee service using the specified rpc implementation.
+         * @function create
+         * @memberof pbemployee.Employee
+         * @static
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         * @returns {Employee} RPC service. Useful where requests and/or responses are streamed.
+         */
     Employee.create = function create(rpcImpl, requestDelimited, responseDelimited) {
       return new this(rpcImpl, requestDelimited, responseDelimited)
     }
 
     /**
-     * Callback as used by {@link pbemployee.Employee#createEmployee}.
-     * @memberof pbemployee.Employee
-     * @typedef CreateEmployeeCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbcommon.CommonResult} [response] CommonResult
-     */
+         * Callback as used by {@link pbemployee.Employee#createEmployee}.
+         * @memberof pbemployee.Employee
+         * @typedef CreateEmployeeCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
 
     /**
-     * Calls CreateEmployee.
-     * @function createEmployee
-     * @memberof pbemployee.Employee
-     * @instance
-     * @param {pbemployee.IEmployeeModel} request EmployeeModel message or plain object
-     * @param {pbemployee.Employee.CreateEmployeeCallback} callback Node-style callback called with the error, if any, and CommonResult
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls CreateEmployee.
+         * @function createEmployee
+         * @memberof pbemployee.Employee
+         * @instance
+         * @param {pbemployee.IEmployeeModel} request EmployeeModel message or plain object
+         * @param {pbemployee.Employee.CreateEmployeeCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(Employee.prototype.createEmployee = function createEmployee(request, callback) {
       return this.rpcCall(createEmployee, $root.pbemployee.EmployeeModel, $root.pbcommon.CommonResult, request, callback)
     }, 'name', { value: 'CreateEmployee' })
 
     /**
-     * Calls CreateEmployee.
-     * @function createEmployee
-     * @memberof pbemployee.Employee
-     * @instance
-     * @param {pbemployee.IEmployeeModel} request EmployeeModel message or plain object
-     * @returns {Promise<pbcommon.CommonResult>} Promise
-     * @variation 2
-     */
+         * Calls CreateEmployee.
+         * @function createEmployee
+         * @memberof pbemployee.Employee
+         * @instance
+         * @param {pbemployee.IEmployeeModel} request EmployeeModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbemployee.Employee#updateEmployee}.
-     * @memberof pbemployee.Employee
-     * @typedef UpdateEmployeeCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbcommon.CommonResult} [response] CommonResult
-     */
+         * Callback as used by {@link pbemployee.Employee#updateEmployee}.
+         * @memberof pbemployee.Employee
+         * @typedef UpdateEmployeeCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
 
     /**
-     * Calls UpdateEmployee.
-     * @function updateEmployee
-     * @memberof pbemployee.Employee
-     * @instance
-     * @param {pbemployee.IEmployeeModel} request EmployeeModel message or plain object
-     * @param {pbemployee.Employee.UpdateEmployeeCallback} callback Node-style callback called with the error, if any, and CommonResult
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls UpdateEmployee.
+         * @function updateEmployee
+         * @memberof pbemployee.Employee
+         * @instance
+         * @param {pbemployee.IEmployeeModel} request EmployeeModel message or plain object
+         * @param {pbemployee.Employee.UpdateEmployeeCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(Employee.prototype.updateEmployee = function updateEmployee(request, callback) {
       return this.rpcCall(updateEmployee, $root.pbemployee.EmployeeModel, $root.pbcommon.CommonResult, request, callback)
     }, 'name', { value: 'UpdateEmployee' })
 
     /**
-     * Calls UpdateEmployee.
-     * @function updateEmployee
-     * @memberof pbemployee.Employee
-     * @instance
-     * @param {pbemployee.IEmployeeModel} request EmployeeModel message or plain object
-     * @returns {Promise<pbcommon.CommonResult>} Promise
-     * @variation 2
-     */
+         * Calls UpdateEmployee.
+         * @function updateEmployee
+         * @memberof pbemployee.Employee
+         * @instance
+         * @param {pbemployee.IEmployeeModel} request EmployeeModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbemployee.Employee#deleteEmployee}.
-     * @memberof pbemployee.Employee
-     * @typedef DeleteEmployeeCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbcommon.CommonResult} [response] CommonResult
-     */
+         * Callback as used by {@link pbemployee.Employee#deleteEmployee}.
+         * @memberof pbemployee.Employee
+         * @typedef DeleteEmployeeCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
 
     /**
-     * Calls DeleteEmployee.
-     * @function deleteEmployee
-     * @memberof pbemployee.Employee
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @param {pbemployee.Employee.DeleteEmployeeCallback} callback Node-style callback called with the error, if any, and CommonResult
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls DeleteEmployee.
+         * @function deleteEmployee
+         * @memberof pbemployee.Employee
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbemployee.Employee.DeleteEmployeeCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(Employee.prototype.deleteEmployee = function deleteEmployee(request, callback) {
       return this.rpcCall(deleteEmployee, $root.pbcommon.IdArgs, $root.pbcommon.CommonResult, request, callback)
     }, 'name', { value: 'DeleteEmployee' })
 
     /**
-     * Calls DeleteEmployee.
-     * @function deleteEmployee
-     * @memberof pbemployee.Employee
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @returns {Promise<pbcommon.CommonResult>} Promise
-     * @variation 2
-     */
+         * Calls DeleteEmployee.
+         * @function deleteEmployee
+         * @memberof pbemployee.Employee
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbemployee.Employee#findEmployeeById}.
-     * @memberof pbemployee.Employee
-     * @typedef FindEmployeeByIdCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbemployee.FindEmployeeReply} [response] FindEmployeeReply
-     */
+         * Callback as used by {@link pbemployee.Employee#findEmployeeById}.
+         * @memberof pbemployee.Employee
+         * @typedef FindEmployeeByIdCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbemployee.FindEmployeeReply} [response] FindEmployeeReply
+         */
 
     /**
-     * Calls FindEmployeeById.
-     * @function findEmployeeById
-     * @memberof pbemployee.Employee
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @param {pbemployee.Employee.FindEmployeeByIdCallback} callback Node-style callback called with the error, if any, and FindEmployeeReply
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls FindEmployeeById.
+         * @function findEmployeeById
+         * @memberof pbemployee.Employee
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbemployee.Employee.FindEmployeeByIdCallback} callback Node-style callback called with the error, if any, and FindEmployeeReply
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(Employee.prototype.findEmployeeById = function findEmployeeById(request, callback) {
       return this.rpcCall(findEmployeeById, $root.pbcommon.IdArgs, $root.pbemployee.FindEmployeeReply, request, callback)
     }, 'name', { value: 'FindEmployeeById' })
 
     /**
-     * Calls FindEmployeeById.
-     * @function findEmployeeById
-     * @memberof pbemployee.Employee
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @returns {Promise<pbemployee.FindEmployeeReply>} Promise
-     * @variation 2
-     */
+         * Calls FindEmployeeById.
+         * @function findEmployeeById
+         * @memberof pbemployee.Employee
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbemployee.FindEmployeeReply>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbemployee.Employee#findEmployeeList}.
-     * @memberof pbemployee.Employee
-     * @typedef FindEmployeeListCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbemployee.FindEmployeeReply} [response] FindEmployeeReply
-     */
+         * Callback as used by {@link pbemployee.Employee#findEmployeeList}.
+         * @memberof pbemployee.Employee
+         * @typedef FindEmployeeListCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbemployee.FindEmployeeReply} [response] FindEmployeeReply
+         */
 
     /**
-     * Calls FindEmployeeList.
-     * @function findEmployeeList
-     * @memberof pbemployee.Employee
-     * @instance
-     * @param {pbemployee.IFindEmployeeArgs} request FindEmployeeArgs message or plain object
-     * @param {pbemployee.Employee.FindEmployeeListCallback} callback Node-style callback called with the error, if any, and FindEmployeeReply
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls FindEmployeeList.
+         * @function findEmployeeList
+         * @memberof pbemployee.Employee
+         * @instance
+         * @param {pbemployee.IFindEmployeeArgs} request FindEmployeeArgs message or plain object
+         * @param {pbemployee.Employee.FindEmployeeListCallback} callback Node-style callback called with the error, if any, and FindEmployeeReply
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(Employee.prototype.findEmployeeList = function findEmployeeList(request, callback) {
       return this.rpcCall(findEmployeeList, $root.pbemployee.FindEmployeeArgs, $root.pbemployee.FindEmployeeReply, request, callback)
     }, 'name', { value: 'FindEmployeeList' })
 
     /**
-     * Calls FindEmployeeList.
-     * @function findEmployeeList
-     * @memberof pbemployee.Employee
-     * @instance
-     * @param {pbemployee.IFindEmployeeArgs} request FindEmployeeArgs message or plain object
-     * @returns {Promise<pbemployee.FindEmployeeReply>} Promise
-     * @variation 2
-     */
+         * Calls FindEmployeeList.
+         * @function findEmployeeList
+         * @memberof pbemployee.Employee
+         * @instance
+         * @param {pbemployee.IFindEmployeeArgs} request FindEmployeeArgs message or plain object
+         * @returns {Promise<pbemployee.FindEmployeeReply>} Promise
+         * @variation 2
+         */
 
     return Employee
   })()
@@ -20888,37 +20895,39 @@ $root.pbemployee = (function() {
 
 $root.pbsalary = (function() {
   /**
-   * Namespace pbsalary.
-   * @exports pbsalary
-   * @namespace
-   */
+     * Namespace pbsalary.
+     * @exports pbsalary
+     * @namespace
+     */
   var pbsalary = {}
 
   pbsalary.SalaryModel = (function() {
     /**
-     * Properties of a SalaryModel.
-     * @memberof pbsalary
-     * @interface ISalaryModel
-     * @property {number|Long|null} [id] SalaryModel id
-     * @property {string|null} [createdAt] SalaryModel createdAt
-     * @property {string|null} [updatedAt] SalaryModel updatedAt
-     * @property {number|null} [days] SalaryModel days
-     * @property {number|null} [unitPrice] SalaryModel unitPrice
-     * @property {number|null} [extraPrice] SalaryModel extraPrice
-     * @property {number|null} [totalPrice] SalaryModel totalPrice
-     * @property {number|null} [tax] SalaryModel tax
-     * @property {number|null} [afterTaxPrice] SalaryModel afterTaxPrice
-     * @property {string|null} [date] SalaryModel date
-     */
+         * Properties of a SalaryModel.
+         * @memberof pbsalary
+         * @interface ISalaryModel
+         * @property {number|Long|null} [id] SalaryModel id
+         * @property {string|null} [createdAt] SalaryModel createdAt
+         * @property {string|null} [updatedAt] SalaryModel updatedAt
+         * @property {number|null} [days] SalaryModel days
+         * @property {number|null} [unitPrice] SalaryModel unitPrice
+         * @property {number|null} [extraPrice] SalaryModel extraPrice
+         * @property {number|null} [totalPrice] SalaryModel totalPrice
+         * @property {number|null} [tax] SalaryModel tax
+         * @property {number|null} [afterTaxPrice] SalaryModel afterTaxPrice
+         * @property {string|null} [date] SalaryModel date
+         * @property {number|Long|null} [employeeId] SalaryModel employeeId
+         * @property {pbemployee.IEmployeeModel|null} [employee] SalaryModel employee
+         */
 
     /**
-     * Constructs a new SalaryModel.
-     * @memberof pbsalary
-     * @classdesc Represents a SalaryModel.
-     * @implements ISalaryModel
-     * @constructor
-     * @param {pbsalary.ISalaryModel=} [properties] Properties to set
-     */
+         * Constructs a new SalaryModel.
+         * @memberof pbsalary
+         * @classdesc Represents a SalaryModel.
+         * @implements ISalaryModel
+         * @constructor
+         * @param {pbsalary.ISalaryModel=} [properties] Properties to set
+         */
     function SalaryModel(properties) {
       if (properties) {
         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
@@ -20928,145 +20937,163 @@ $root.pbsalary = (function() {
     }
 
     /**
-     * SalaryModel id.
-     * @member {number|Long} id
-     * @memberof pbsalary.SalaryModel
-     * @instance
-     */
+         * SalaryModel id.
+         * @member {number|Long} id
+         * @memberof pbsalary.SalaryModel
+         * @instance
+         */
     SalaryModel.prototype.id = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * SalaryModel createdAt.
-     * @member {string} createdAt
-     * @memberof pbsalary.SalaryModel
-     * @instance
-     */
+         * SalaryModel createdAt.
+         * @member {string} createdAt
+         * @memberof pbsalary.SalaryModel
+         * @instance
+         */
     SalaryModel.prototype.createdAt = ''
 
     /**
-     * SalaryModel updatedAt.
-     * @member {string} updatedAt
-     * @memberof pbsalary.SalaryModel
-     * @instance
-     */
+         * SalaryModel updatedAt.
+         * @member {string} updatedAt
+         * @memberof pbsalary.SalaryModel
+         * @instance
+         */
     SalaryModel.prototype.updatedAt = ''
 
     /**
-     * SalaryModel days.
-     * @member {number} days
-     * @memberof pbsalary.SalaryModel
-     * @instance
-     */
+         * SalaryModel days.
+         * @member {number} days
+         * @memberof pbsalary.SalaryModel
+         * @instance
+         */
     SalaryModel.prototype.days = 0
 
     /**
-     * SalaryModel unitPrice.
-     * @member {number} unitPrice
-     * @memberof pbsalary.SalaryModel
-     * @instance
-     */
+         * SalaryModel unitPrice.
+         * @member {number} unitPrice
+         * @memberof pbsalary.SalaryModel
+         * @instance
+         */
     SalaryModel.prototype.unitPrice = 0
 
     /**
-     * SalaryModel extraPrice.
-     * @member {number} extraPrice
-     * @memberof pbsalary.SalaryModel
-     * @instance
-     */
+         * SalaryModel extraPrice.
+         * @member {number} extraPrice
+         * @memberof pbsalary.SalaryModel
+         * @instance
+         */
     SalaryModel.prototype.extraPrice = 0
 
     /**
-     * SalaryModel totalPrice.
-     * @member {number} totalPrice
-     * @memberof pbsalary.SalaryModel
-     * @instance
-     */
+         * SalaryModel totalPrice.
+         * @member {number} totalPrice
+         * @memberof pbsalary.SalaryModel
+         * @instance
+         */
     SalaryModel.prototype.totalPrice = 0
 
     /**
-     * SalaryModel tax.
-     * @member {number} tax
-     * @memberof pbsalary.SalaryModel
-     * @instance
-     */
+         * SalaryModel tax.
+         * @member {number} tax
+         * @memberof pbsalary.SalaryModel
+         * @instance
+         */
     SalaryModel.prototype.tax = 0
 
     /**
-     * SalaryModel afterTaxPrice.
-     * @member {number} afterTaxPrice
-     * @memberof pbsalary.SalaryModel
-     * @instance
-     */
+         * SalaryModel afterTaxPrice.
+         * @member {number} afterTaxPrice
+         * @memberof pbsalary.SalaryModel
+         * @instance
+         */
     SalaryModel.prototype.afterTaxPrice = 0
 
     /**
-     * SalaryModel date.
-     * @member {string} date
-     * @memberof pbsalary.SalaryModel
-     * @instance
-     */
+         * SalaryModel date.
+         * @member {string} date
+         * @memberof pbsalary.SalaryModel
+         * @instance
+         */
     SalaryModel.prototype.date = ''
 
     /**
-     * Creates a new SalaryModel instance using the specified properties.
-     * @function create
-     * @memberof pbsalary.SalaryModel
-     * @static
-     * @param {pbsalary.ISalaryModel=} [properties] Properties to set
-     * @returns {pbsalary.SalaryModel} SalaryModel instance
-     */
+         * SalaryModel employeeId.
+         * @member {number|Long} employeeId
+         * @memberof pbsalary.SalaryModel
+         * @instance
+         */
+    SalaryModel.prototype.employeeId = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+
+    /**
+         * SalaryModel employee.
+         * @member {pbemployee.IEmployeeModel|null|undefined} employee
+         * @memberof pbsalary.SalaryModel
+         * @instance
+         */
+    SalaryModel.prototype.employee = null
+
+    /**
+         * Creates a new SalaryModel instance using the specified properties.
+         * @function create
+         * @memberof pbsalary.SalaryModel
+         * @static
+         * @param {pbsalary.ISalaryModel=} [properties] Properties to set
+         * @returns {pbsalary.SalaryModel} SalaryModel instance
+         */
     SalaryModel.create = function create(properties) {
       return new SalaryModel(properties)
     }
 
     /**
-     * Encodes the specified SalaryModel message. Does not implicitly {@link pbsalary.SalaryModel.verify|verify} messages.
-     * @function encode
-     * @memberof pbsalary.SalaryModel
-     * @static
-     * @param {pbsalary.ISalaryModel} message SalaryModel message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified SalaryModel message. Does not implicitly {@link pbsalary.SalaryModel.verify|verify} messages.
+         * @function encode
+         * @memberof pbsalary.SalaryModel
+         * @static
+         * @param {pbsalary.ISalaryModel} message SalaryModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     SalaryModel.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.id != null && Object.hasOwnProperty.call(message, 'id')) { writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id) }
       if (message.createdAt != null && Object.hasOwnProperty.call(message, 'createdAt')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.createdAt) }
       if (message.updatedAt != null && Object.hasOwnProperty.call(message, 'updatedAt')) { writer.uint32(/* id 3, wireType 2 =*/26).string(message.updatedAt) }
-      if (message.days != null && Object.hasOwnProperty.call(message, 'days')) { writer.uint32(/* id 4, wireType 5 =*/37).float(message.days) }
+      if (message.days != null && Object.hasOwnProperty.call(message, 'days')) { writer.uint32(/* id 4, wireType 1 =*/33).double(message.days) }
       if (message.unitPrice != null && Object.hasOwnProperty.call(message, 'unitPrice')) { writer.uint32(/* id 5, wireType 0 =*/40).int32(message.unitPrice) }
       if (message.extraPrice != null && Object.hasOwnProperty.call(message, 'extraPrice')) { writer.uint32(/* id 6, wireType 0 =*/48).int32(message.extraPrice) }
-      if (message.totalPrice != null && Object.hasOwnProperty.call(message, 'totalPrice')) { writer.uint32(/* id 7, wireType 0 =*/56).int32(message.totalPrice) }
+      if (message.totalPrice != null && Object.hasOwnProperty.call(message, 'totalPrice')) { writer.uint32(/* id 7, wireType 1 =*/57).double(message.totalPrice) }
       if (message.tax != null && Object.hasOwnProperty.call(message, 'tax')) { writer.uint32(/* id 8, wireType 0 =*/64).int32(message.tax) }
       if (message.afterTaxPrice != null && Object.hasOwnProperty.call(message, 'afterTaxPrice')) { writer.uint32(/* id 9, wireType 0 =*/72).int32(message.afterTaxPrice) }
       if (message.date != null && Object.hasOwnProperty.call(message, 'date')) { writer.uint32(/* id 10, wireType 2 =*/82).string(message.date) }
+      if (message.employeeId != null && Object.hasOwnProperty.call(message, 'employeeId')) { writer.uint32(/* id 11, wireType 0 =*/88).int64(message.employeeId) }
+      if (message.employee != null && Object.hasOwnProperty.call(message, 'employee')) { $root.pbemployee.EmployeeModel.encode(message.employee, writer.uint32(/* id 12, wireType 2 =*/98).fork()).ldelim() }
       return writer
     }
 
     /**
-     * Encodes the specified SalaryModel message, length delimited. Does not implicitly {@link pbsalary.SalaryModel.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbsalary.SalaryModel
-     * @static
-     * @param {pbsalary.ISalaryModel} message SalaryModel message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified SalaryModel message, length delimited. Does not implicitly {@link pbsalary.SalaryModel.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbsalary.SalaryModel
+         * @static
+         * @param {pbsalary.ISalaryModel} message SalaryModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     SalaryModel.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes a SalaryModel message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbsalary.SalaryModel
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbsalary.SalaryModel} SalaryModel
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a SalaryModel message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbsalary.SalaryModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbsalary.SalaryModel} SalaryModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     SalaryModel.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbsalary.SalaryModel()
@@ -21086,7 +21113,7 @@ $root.pbsalary = (function() {
             break
           }
           case 4: {
-            message.days = reader.float()
+            message.days = reader.double()
             break
           }
           case 5: {
@@ -21098,7 +21125,7 @@ $root.pbsalary = (function() {
             break
           }
           case 7: {
-            message.totalPrice = reader.int32()
+            message.totalPrice = reader.double()
             break
           }
           case 8: {
@@ -21113,6 +21140,14 @@ $root.pbsalary = (function() {
             message.date = reader.string()
             break
           }
+          case 11: {
+            message.employeeId = reader.int64()
+            break
+          }
+          case 12: {
+            message.employee = $root.pbemployee.EmployeeModel.decode(reader, reader.uint32())
+            break
+          }
           default:
             reader.skipType(tag & 7)
             break
@@ -21122,28 +21157,28 @@ $root.pbsalary = (function() {
     }
 
     /**
-     * Decodes a SalaryModel message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbsalary.SalaryModel
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbsalary.SalaryModel} SalaryModel
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a SalaryModel message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbsalary.SalaryModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbsalary.SalaryModel} SalaryModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     SalaryModel.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies a SalaryModel message.
-     * @function verify
-     * @memberof pbsalary.SalaryModel
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies a SalaryModel message.
+         * @function verify
+         * @memberof pbsalary.SalaryModel
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     SalaryModel.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.id != null && message.hasOwnProperty('id')) {
@@ -21165,7 +21200,7 @@ $root.pbsalary = (function() {
         if (!$util.isInteger(message.extraPrice)) { return 'extraPrice: integer expected' }
       }
       if (message.totalPrice != null && message.hasOwnProperty('totalPrice')) {
-        if (!$util.isInteger(message.totalPrice)) { return 'totalPrice: integer expected' }
+        if (typeof message.totalPrice !== 'number') { return 'totalPrice: number expected' }
       }
       if (message.tax != null && message.hasOwnProperty('tax')) {
         if (!$util.isInteger(message.tax)) { return 'tax: integer expected' }
@@ -21176,17 +21211,24 @@ $root.pbsalary = (function() {
       if (message.date != null && message.hasOwnProperty('date')) {
         if (!$util.isString(message.date)) { return 'date: string expected' }
       }
+      if (message.employeeId != null && message.hasOwnProperty('employeeId')) {
+        if (!$util.isInteger(message.employeeId) && !(message.employeeId && $util.isInteger(message.employeeId.low) && $util.isInteger(message.employeeId.high))) { return 'employeeId: integer|Long expected' }
+      }
+      if (message.employee != null && message.hasOwnProperty('employee')) {
+        var error = $root.pbemployee.EmployeeModel.verify(message.employee)
+        if (error) { return 'employee.' + error }
+      }
       return null
     }
 
     /**
-     * Creates a SalaryModel message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbsalary.SalaryModel
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbsalary.SalaryModel} SalaryModel
-     */
+         * Creates a SalaryModel message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbsalary.SalaryModel
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbsalary.SalaryModel} SalaryModel
+         */
     SalaryModel.fromObject = function fromObject(object) {
       if (object instanceof $root.pbsalary.SalaryModel) { return object }
       var message = new $root.pbsalary.SalaryModel()
@@ -21198,22 +21240,29 @@ $root.pbsalary = (function() {
       if (object.days != null) { message.days = Number(object.days) }
       if (object.unitPrice != null) { message.unitPrice = object.unitPrice | 0 }
       if (object.extraPrice != null) { message.extraPrice = object.extraPrice | 0 }
-      if (object.totalPrice != null) { message.totalPrice = object.totalPrice | 0 }
+      if (object.totalPrice != null) { message.totalPrice = Number(object.totalPrice) }
       if (object.tax != null) { message.tax = object.tax | 0 }
       if (object.afterTaxPrice != null) { message.afterTaxPrice = object.afterTaxPrice | 0 }
       if (object.date != null) { message.date = String(object.date) }
+      if (object.employeeId != null) {
+        if ($util.Long) { (message.employeeId = $util.Long.fromValue(object.employeeId)).unsigned = false } else if (typeof object.employeeId === 'string') { message.employeeId = parseInt(object.employeeId, 10) } else if (typeof object.employeeId === 'number') { message.employeeId = object.employeeId } else if (typeof object.employeeId === 'object') { message.employeeId = new $util.LongBits(object.employeeId.low >>> 0, object.employeeId.high >>> 0).toNumber() }
+      }
+      if (object.employee != null) {
+        if (typeof object.employee !== 'object') { throw TypeError('.pbsalary.SalaryModel.employee: object expected') }
+        message.employee = $root.pbemployee.EmployeeModel.fromObject(object.employee)
+      }
       return message
     }
 
     /**
-     * Creates a plain object from a SalaryModel message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbsalary.SalaryModel
-     * @static
-     * @param {pbsalary.SalaryModel} message SalaryModel
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from a SalaryModel message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbsalary.SalaryModel
+         * @static
+         * @param {pbsalary.SalaryModel} message SalaryModel
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     SalaryModel.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -21231,6 +21280,11 @@ $root.pbsalary = (function() {
         object.tax = 0
         object.afterTaxPrice = 0
         object.date = ''
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.employeeId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.employeeId = options.longs === String ? '0' : 0 }
+        object.employee = null
       }
       if (message.id != null && message.hasOwnProperty('id')) {
         if (typeof message.id === 'number') { object.id = options.longs === String ? String(message.id) : message.id } else { object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id }
@@ -21240,32 +21294,36 @@ $root.pbsalary = (function() {
       if (message.days != null && message.hasOwnProperty('days')) { object.days = options.json && !isFinite(message.days) ? String(message.days) : message.days }
       if (message.unitPrice != null && message.hasOwnProperty('unitPrice')) { object.unitPrice = message.unitPrice }
       if (message.extraPrice != null && message.hasOwnProperty('extraPrice')) { object.extraPrice = message.extraPrice }
-      if (message.totalPrice != null && message.hasOwnProperty('totalPrice')) { object.totalPrice = message.totalPrice }
+      if (message.totalPrice != null && message.hasOwnProperty('totalPrice')) { object.totalPrice = options.json && !isFinite(message.totalPrice) ? String(message.totalPrice) : message.totalPrice }
       if (message.tax != null && message.hasOwnProperty('tax')) { object.tax = message.tax }
       if (message.afterTaxPrice != null && message.hasOwnProperty('afterTaxPrice')) { object.afterTaxPrice = message.afterTaxPrice }
       if (message.date != null && message.hasOwnProperty('date')) { object.date = message.date }
+      if (message.employeeId != null && message.hasOwnProperty('employeeId')) {
+        if (typeof message.employeeId === 'number') { object.employeeId = options.longs === String ? String(message.employeeId) : message.employeeId } else { object.employeeId = options.longs === String ? $util.Long.prototype.toString.call(message.employeeId) : options.longs === Number ? new $util.LongBits(message.employeeId.low >>> 0, message.employeeId.high >>> 0).toNumber() : message.employeeId }
+      }
+      if (message.employee != null && message.hasOwnProperty('employee')) { object.employee = $root.pbemployee.EmployeeModel.toObject(message.employee, options) }
       return object
     }
 
     /**
-     * Converts this SalaryModel to JSON.
-     * @function toJSON
-     * @memberof pbsalary.SalaryModel
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this SalaryModel to JSON.
+         * @function toJSON
+         * @memberof pbsalary.SalaryModel
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     SalaryModel.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for SalaryModel
-     * @function getTypeUrl
-     * @memberof pbsalary.SalaryModel
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for SalaryModel
+         * @function getTypeUrl
+         * @memberof pbsalary.SalaryModel
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     SalaryModel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -21278,21 +21336,21 @@ $root.pbsalary = (function() {
 
   pbsalary.FindSalaryArgs = (function() {
     /**
-     * Properties of a FindSalaryArgs.
-     * @memberof pbsalary
-     * @interface IFindSalaryArgs
-     * @property {pbcommon.IPageInfo|null} [pageInfo] FindSalaryArgs pageInfo
-     * @property {pbsalary.ISalaryModel|null} [query] FindSalaryArgs query
-     */
+         * Properties of a FindSalaryArgs.
+         * @memberof pbsalary
+         * @interface IFindSalaryArgs
+         * @property {pbcommon.IPageInfo|null} [pageInfo] FindSalaryArgs pageInfo
+         * @property {pbsalary.ISalaryModel|null} [query] FindSalaryArgs query
+         */
 
     /**
-     * Constructs a new FindSalaryArgs.
-     * @memberof pbsalary
-     * @classdesc Represents a FindSalaryArgs.
-     * @implements IFindSalaryArgs
-     * @constructor
-     * @param {pbsalary.IFindSalaryArgs=} [properties] Properties to set
-     */
+         * Constructs a new FindSalaryArgs.
+         * @memberof pbsalary
+         * @classdesc Represents a FindSalaryArgs.
+         * @implements IFindSalaryArgs
+         * @constructor
+         * @param {pbsalary.IFindSalaryArgs=} [properties] Properties to set
+         */
     function FindSalaryArgs(properties) {
       if (properties) {
         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
@@ -21302,42 +21360,42 @@ $root.pbsalary = (function() {
     }
 
     /**
-     * FindSalaryArgs pageInfo.
-     * @member {pbcommon.IPageInfo|null|undefined} pageInfo
-     * @memberof pbsalary.FindSalaryArgs
-     * @instance
-     */
+         * FindSalaryArgs pageInfo.
+         * @member {pbcommon.IPageInfo|null|undefined} pageInfo
+         * @memberof pbsalary.FindSalaryArgs
+         * @instance
+         */
     FindSalaryArgs.prototype.pageInfo = null
 
     /**
-     * FindSalaryArgs query.
-     * @member {pbsalary.ISalaryModel|null|undefined} query
-     * @memberof pbsalary.FindSalaryArgs
-     * @instance
-     */
+         * FindSalaryArgs query.
+         * @member {pbsalary.ISalaryModel|null|undefined} query
+         * @memberof pbsalary.FindSalaryArgs
+         * @instance
+         */
     FindSalaryArgs.prototype.query = null
 
     /**
-     * Creates a new FindSalaryArgs instance using the specified properties.
-     * @function create
-     * @memberof pbsalary.FindSalaryArgs
-     * @static
-     * @param {pbsalary.IFindSalaryArgs=} [properties] Properties to set
-     * @returns {pbsalary.FindSalaryArgs} FindSalaryArgs instance
-     */
+         * Creates a new FindSalaryArgs instance using the specified properties.
+         * @function create
+         * @memberof pbsalary.FindSalaryArgs
+         * @static
+         * @param {pbsalary.IFindSalaryArgs=} [properties] Properties to set
+         * @returns {pbsalary.FindSalaryArgs} FindSalaryArgs instance
+         */
     FindSalaryArgs.create = function create(properties) {
       return new FindSalaryArgs(properties)
     }
 
     /**
-     * Encodes the specified FindSalaryArgs message. Does not implicitly {@link pbsalary.FindSalaryArgs.verify|verify} messages.
-     * @function encode
-     * @memberof pbsalary.FindSalaryArgs
-     * @static
-     * @param {pbsalary.IFindSalaryArgs} message FindSalaryArgs message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindSalaryArgs message. Does not implicitly {@link pbsalary.FindSalaryArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbsalary.FindSalaryArgs
+         * @static
+         * @param {pbsalary.IFindSalaryArgs} message FindSalaryArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindSalaryArgs.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.pageInfo != null && Object.hasOwnProperty.call(message, 'pageInfo')) { $root.pbcommon.PageInfo.encode(message.pageInfo, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim() }
@@ -21346,29 +21404,29 @@ $root.pbsalary = (function() {
     }
 
     /**
-     * Encodes the specified FindSalaryArgs message, length delimited. Does not implicitly {@link pbsalary.FindSalaryArgs.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbsalary.FindSalaryArgs
-     * @static
-     * @param {pbsalary.IFindSalaryArgs} message FindSalaryArgs message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindSalaryArgs message, length delimited. Does not implicitly {@link pbsalary.FindSalaryArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbsalary.FindSalaryArgs
+         * @static
+         * @param {pbsalary.IFindSalaryArgs} message FindSalaryArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindSalaryArgs.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes a FindSalaryArgs message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbsalary.FindSalaryArgs
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbsalary.FindSalaryArgs} FindSalaryArgs
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindSalaryArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbsalary.FindSalaryArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbsalary.FindSalaryArgs} FindSalaryArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindSalaryArgs.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbsalary.FindSalaryArgs()
@@ -21392,28 +21450,28 @@ $root.pbsalary = (function() {
     }
 
     /**
-     * Decodes a FindSalaryArgs message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbsalary.FindSalaryArgs
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbsalary.FindSalaryArgs} FindSalaryArgs
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindSalaryArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbsalary.FindSalaryArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbsalary.FindSalaryArgs} FindSalaryArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindSalaryArgs.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies a FindSalaryArgs message.
-     * @function verify
-     * @memberof pbsalary.FindSalaryArgs
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies a FindSalaryArgs message.
+         * @function verify
+         * @memberof pbsalary.FindSalaryArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     FindSalaryArgs.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.pageInfo != null && message.hasOwnProperty('pageInfo')) {
@@ -21428,13 +21486,13 @@ $root.pbsalary = (function() {
     }
 
     /**
-     * Creates a FindSalaryArgs message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbsalary.FindSalaryArgs
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbsalary.FindSalaryArgs} FindSalaryArgs
-     */
+         * Creates a FindSalaryArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbsalary.FindSalaryArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbsalary.FindSalaryArgs} FindSalaryArgs
+         */
     FindSalaryArgs.fromObject = function fromObject(object) {
       if (object instanceof $root.pbsalary.FindSalaryArgs) { return object }
       var message = new $root.pbsalary.FindSalaryArgs()
@@ -21450,14 +21508,14 @@ $root.pbsalary = (function() {
     }
 
     /**
-     * Creates a plain object from a FindSalaryArgs message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbsalary.FindSalaryArgs
-     * @static
-     * @param {pbsalary.FindSalaryArgs} message FindSalaryArgs
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from a FindSalaryArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbsalary.FindSalaryArgs
+         * @static
+         * @param {pbsalary.FindSalaryArgs} message FindSalaryArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     FindSalaryArgs.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -21471,24 +21529,24 @@ $root.pbsalary = (function() {
     }
 
     /**
-     * Converts this FindSalaryArgs to JSON.
-     * @function toJSON
-     * @memberof pbsalary.FindSalaryArgs
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this FindSalaryArgs to JSON.
+         * @function toJSON
+         * @memberof pbsalary.FindSalaryArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     FindSalaryArgs.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for FindSalaryArgs
-     * @function getTypeUrl
-     * @memberof pbsalary.FindSalaryArgs
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for FindSalaryArgs
+         * @function getTypeUrl
+         * @memberof pbsalary.FindSalaryArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     FindSalaryArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -21501,24 +21559,24 @@ $root.pbsalary = (function() {
 
   pbsalary.FindSalaryReply = (function() {
     /**
-     * Properties of a FindSalaryReply.
-     * @memberof pbsalary
-     * @interface IFindSalaryReply
-     * @property {pbcommon.EnumCode|null} [code] FindSalaryReply code
-     * @property {string|null} [msg] FindSalaryReply msg
-     * @property {pbsalary.ISalaryModel|null} [data] FindSalaryReply data
-     * @property {Array.<pbsalary.ISalaryModel>|null} [list] FindSalaryReply list
-     * @property {number|Long|null} [total] FindSalaryReply total
-     */
+         * Properties of a FindSalaryReply.
+         * @memberof pbsalary
+         * @interface IFindSalaryReply
+         * @property {pbcommon.EnumCode|null} [code] FindSalaryReply code
+         * @property {string|null} [msg] FindSalaryReply msg
+         * @property {pbsalary.ISalaryModel|null} [data] FindSalaryReply data
+         * @property {Array.<pbsalary.ISalaryModel>|null} [list] FindSalaryReply list
+         * @property {number|Long|null} [total] FindSalaryReply total
+         */
 
     /**
-     * Constructs a new FindSalaryReply.
-     * @memberof pbsalary
-     * @classdesc Represents a FindSalaryReply.
-     * @implements IFindSalaryReply
-     * @constructor
-     * @param {pbsalary.IFindSalaryReply=} [properties] Properties to set
-     */
+         * Constructs a new FindSalaryReply.
+         * @memberof pbsalary
+         * @classdesc Represents a FindSalaryReply.
+         * @implements IFindSalaryReply
+         * @constructor
+         * @param {pbsalary.IFindSalaryReply=} [properties] Properties to set
+         */
     function FindSalaryReply(properties) {
       this.list = []
       if (properties) {
@@ -21529,66 +21587,66 @@ $root.pbsalary = (function() {
     }
 
     /**
-     * FindSalaryReply code.
-     * @member {pbcommon.EnumCode} code
-     * @memberof pbsalary.FindSalaryReply
-     * @instance
-     */
+         * FindSalaryReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbsalary.FindSalaryReply
+         * @instance
+         */
     FindSalaryReply.prototype.code = 0
 
     /**
-     * FindSalaryReply msg.
-     * @member {string} msg
-     * @memberof pbsalary.FindSalaryReply
-     * @instance
-     */
+         * FindSalaryReply msg.
+         * @member {string} msg
+         * @memberof pbsalary.FindSalaryReply
+         * @instance
+         */
     FindSalaryReply.prototype.msg = ''
 
     /**
-     * FindSalaryReply data.
-     * @member {pbsalary.ISalaryModel|null|undefined} data
-     * @memberof pbsalary.FindSalaryReply
-     * @instance
-     */
+         * FindSalaryReply data.
+         * @member {pbsalary.ISalaryModel|null|undefined} data
+         * @memberof pbsalary.FindSalaryReply
+         * @instance
+         */
     FindSalaryReply.prototype.data = null
 
     /**
-     * FindSalaryReply list.
-     * @member {Array.<pbsalary.ISalaryModel>} list
-     * @memberof pbsalary.FindSalaryReply
-     * @instance
-     */
+         * FindSalaryReply list.
+         * @member {Array.<pbsalary.ISalaryModel>} list
+         * @memberof pbsalary.FindSalaryReply
+         * @instance
+         */
     FindSalaryReply.prototype.list = $util.emptyArray
 
     /**
-     * FindSalaryReply total.
-     * @member {number|Long} total
-     * @memberof pbsalary.FindSalaryReply
-     * @instance
-     */
+         * FindSalaryReply total.
+         * @member {number|Long} total
+         * @memberof pbsalary.FindSalaryReply
+         * @instance
+         */
     FindSalaryReply.prototype.total = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-     * Creates a new FindSalaryReply instance using the specified properties.
-     * @function create
-     * @memberof pbsalary.FindSalaryReply
-     * @static
-     * @param {pbsalary.IFindSalaryReply=} [properties] Properties to set
-     * @returns {pbsalary.FindSalaryReply} FindSalaryReply instance
-     */
+         * Creates a new FindSalaryReply instance using the specified properties.
+         * @function create
+         * @memberof pbsalary.FindSalaryReply
+         * @static
+         * @param {pbsalary.IFindSalaryReply=} [properties] Properties to set
+         * @returns {pbsalary.FindSalaryReply} FindSalaryReply instance
+         */
     FindSalaryReply.create = function create(properties) {
       return new FindSalaryReply(properties)
     }
 
     /**
-     * Encodes the specified FindSalaryReply message. Does not implicitly {@link pbsalary.FindSalaryReply.verify|verify} messages.
-     * @function encode
-     * @memberof pbsalary.FindSalaryReply
-     * @static
-     * @param {pbsalary.IFindSalaryReply} message FindSalaryReply message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindSalaryReply message. Does not implicitly {@link pbsalary.FindSalaryReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbsalary.FindSalaryReply
+         * @static
+         * @param {pbsalary.IFindSalaryReply} message FindSalaryReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindSalaryReply.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
       if (message.code != null && Object.hasOwnProperty.call(message, 'code')) { writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code) }
@@ -21602,29 +21660,29 @@ $root.pbsalary = (function() {
     }
 
     /**
-     * Encodes the specified FindSalaryReply message, length delimited. Does not implicitly {@link pbsalary.FindSalaryReply.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof pbsalary.FindSalaryReply
-     * @static
-     * @param {pbsalary.IFindSalaryReply} message FindSalaryReply message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
+         * Encodes the specified FindSalaryReply message, length delimited. Does not implicitly {@link pbsalary.FindSalaryReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbsalary.FindSalaryReply
+         * @static
+         * @param {pbsalary.IFindSalaryReply} message FindSalaryReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
     FindSalaryReply.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-     * Decodes a FindSalaryReply message from the specified reader or buffer.
-     * @function decode
-     * @memberof pbsalary.FindSalaryReply
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {pbsalary.FindSalaryReply} FindSalaryReply
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindSalaryReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbsalary.FindSalaryReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbsalary.FindSalaryReply} FindSalaryReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindSalaryReply.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
       var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbsalary.FindSalaryReply()
@@ -21661,28 +21719,28 @@ $root.pbsalary = (function() {
     }
 
     /**
-     * Decodes a FindSalaryReply message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof pbsalary.FindSalaryReply
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {pbsalary.FindSalaryReply} FindSalaryReply
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
+         * Decodes a FindSalaryReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbsalary.FindSalaryReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbsalary.FindSalaryReply} FindSalaryReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
     FindSalaryReply.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-     * Verifies a FindSalaryReply message.
-     * @function verify
-     * @memberof pbsalary.FindSalaryReply
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
+         * Verifies a FindSalaryReply message.
+         * @function verify
+         * @memberof pbsalary.FindSalaryReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
     FindSalaryReply.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.code != null && message.hasOwnProperty('code')) {
@@ -21738,13 +21796,13 @@ $root.pbsalary = (function() {
     }
 
     /**
-     * Creates a FindSalaryReply message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof pbsalary.FindSalaryReply
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {pbsalary.FindSalaryReply} FindSalaryReply
-     */
+         * Creates a FindSalaryReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbsalary.FindSalaryReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbsalary.FindSalaryReply} FindSalaryReply
+         */
     FindSalaryReply.fromObject = function fromObject(object) {
       if (object instanceof $root.pbsalary.FindSalaryReply) { return object }
       var message = new $root.pbsalary.FindSalaryReply()
@@ -21876,14 +21934,14 @@ $root.pbsalary = (function() {
     }
 
     /**
-     * Creates a plain object from a FindSalaryReply message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof pbsalary.FindSalaryReply
-     * @static
-     * @param {pbsalary.FindSalaryReply} message FindSalaryReply
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
+         * Creates a plain object from a FindSalaryReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbsalary.FindSalaryReply
+         * @static
+         * @param {pbsalary.FindSalaryReply} message FindSalaryReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
     FindSalaryReply.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
@@ -21911,24 +21969,24 @@ $root.pbsalary = (function() {
     }
 
     /**
-     * Converts this FindSalaryReply to JSON.
-     * @function toJSON
-     * @memberof pbsalary.FindSalaryReply
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
+         * Converts this FindSalaryReply to JSON.
+         * @function toJSON
+         * @memberof pbsalary.FindSalaryReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
     FindSalaryReply.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-     * Gets the default type url for FindSalaryReply
-     * @function getTypeUrl
-     * @memberof pbsalary.FindSalaryReply
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
+         * Gets the default type url for FindSalaryReply
+         * @function getTypeUrl
+         * @memberof pbsalary.FindSalaryReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
     FindSalaryReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
@@ -21941,15 +21999,15 @@ $root.pbsalary = (function() {
 
   pbsalary.Salary = (function() {
     /**
-     * Constructs a new Salary service.
-     * @memberof pbsalary
-     * @classdesc Represents a Salary
-     * @extends $protobuf.rpc.Service
-     * @constructor
-     * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
-     * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
-     * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
-     */
+         * Constructs a new Salary service.
+         * @memberof pbsalary
+         * @classdesc Represents a Salary
+         * @extends $protobuf.rpc.Service
+         * @constructor
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         */
     function Salary(rpcImpl, requestDelimited, responseDelimited) {
       $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited)
     }
@@ -21957,183 +22015,183 @@ $root.pbsalary = (function() {
     (Salary.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = Salary
 
     /**
-     * Creates new Salary service using the specified rpc implementation.
-     * @function create
-     * @memberof pbsalary.Salary
-     * @static
-     * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
-     * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
-     * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
-     * @returns {Salary} RPC service. Useful where requests and/or responses are streamed.
-     */
+         * Creates new Salary service using the specified rpc implementation.
+         * @function create
+         * @memberof pbsalary.Salary
+         * @static
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         * @returns {Salary} RPC service. Useful where requests and/or responses are streamed.
+         */
     Salary.create = function create(rpcImpl, requestDelimited, responseDelimited) {
       return new this(rpcImpl, requestDelimited, responseDelimited)
     }
 
     /**
-     * Callback as used by {@link pbsalary.Salary#createSalary}.
-     * @memberof pbsalary.Salary
-     * @typedef CreateSalaryCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbcommon.CommonResult} [response] CommonResult
-     */
+         * Callback as used by {@link pbsalary.Salary#createSalary}.
+         * @memberof pbsalary.Salary
+         * @typedef CreateSalaryCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
 
     /**
-     * Calls CreateSalary.
-     * @function createSalary
-     * @memberof pbsalary.Salary
-     * @instance
-     * @param {pbsalary.ISalaryModel} request SalaryModel message or plain object
-     * @param {pbsalary.Salary.CreateSalaryCallback} callback Node-style callback called with the error, if any, and CommonResult
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls CreateSalary.
+         * @function createSalary
+         * @memberof pbsalary.Salary
+         * @instance
+         * @param {pbsalary.ISalaryModel} request SalaryModel message or plain object
+         * @param {pbsalary.Salary.CreateSalaryCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(Salary.prototype.createSalary = function createSalary(request, callback) {
       return this.rpcCall(createSalary, $root.pbsalary.SalaryModel, $root.pbcommon.CommonResult, request, callback)
     }, 'name', { value: 'CreateSalary' })
 
     /**
-     * Calls CreateSalary.
-     * @function createSalary
-     * @memberof pbsalary.Salary
-     * @instance
-     * @param {pbsalary.ISalaryModel} request SalaryModel message or plain object
-     * @returns {Promise<pbcommon.CommonResult>} Promise
-     * @variation 2
-     */
+         * Calls CreateSalary.
+         * @function createSalary
+         * @memberof pbsalary.Salary
+         * @instance
+         * @param {pbsalary.ISalaryModel} request SalaryModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbsalary.Salary#updateSalary}.
-     * @memberof pbsalary.Salary
-     * @typedef UpdateSalaryCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbcommon.CommonResult} [response] CommonResult
-     */
+         * Callback as used by {@link pbsalary.Salary#updateSalary}.
+         * @memberof pbsalary.Salary
+         * @typedef UpdateSalaryCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
 
     /**
-     * Calls UpdateSalary.
-     * @function updateSalary
-     * @memberof pbsalary.Salary
-     * @instance
-     * @param {pbsalary.ISalaryModel} request SalaryModel message or plain object
-     * @param {pbsalary.Salary.UpdateSalaryCallback} callback Node-style callback called with the error, if any, and CommonResult
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls UpdateSalary.
+         * @function updateSalary
+         * @memberof pbsalary.Salary
+         * @instance
+         * @param {pbsalary.ISalaryModel} request SalaryModel message or plain object
+         * @param {pbsalary.Salary.UpdateSalaryCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(Salary.prototype.updateSalary = function updateSalary(request, callback) {
       return this.rpcCall(updateSalary, $root.pbsalary.SalaryModel, $root.pbcommon.CommonResult, request, callback)
     }, 'name', { value: 'UpdateSalary' })
 
     /**
-     * Calls UpdateSalary.
-     * @function updateSalary
-     * @memberof pbsalary.Salary
-     * @instance
-     * @param {pbsalary.ISalaryModel} request SalaryModel message or plain object
-     * @returns {Promise<pbcommon.CommonResult>} Promise
-     * @variation 2
-     */
+         * Calls UpdateSalary.
+         * @function updateSalary
+         * @memberof pbsalary.Salary
+         * @instance
+         * @param {pbsalary.ISalaryModel} request SalaryModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbsalary.Salary#deleteSalary}.
-     * @memberof pbsalary.Salary
-     * @typedef DeleteSalaryCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbcommon.CommonResult} [response] CommonResult
-     */
+         * Callback as used by {@link pbsalary.Salary#deleteSalary}.
+         * @memberof pbsalary.Salary
+         * @typedef DeleteSalaryCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
 
     /**
-     * Calls DeleteSalary.
-     * @function deleteSalary
-     * @memberof pbsalary.Salary
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @param {pbsalary.Salary.DeleteSalaryCallback} callback Node-style callback called with the error, if any, and CommonResult
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls DeleteSalary.
+         * @function deleteSalary
+         * @memberof pbsalary.Salary
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbsalary.Salary.DeleteSalaryCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(Salary.prototype.deleteSalary = function deleteSalary(request, callback) {
       return this.rpcCall(deleteSalary, $root.pbcommon.IdArgs, $root.pbcommon.CommonResult, request, callback)
     }, 'name', { value: 'DeleteSalary' })
 
     /**
-     * Calls DeleteSalary.
-     * @function deleteSalary
-     * @memberof pbsalary.Salary
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @returns {Promise<pbcommon.CommonResult>} Promise
-     * @variation 2
-     */
+         * Calls DeleteSalary.
+         * @function deleteSalary
+         * @memberof pbsalary.Salary
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbsalary.Salary#findSalaryById}.
-     * @memberof pbsalary.Salary
-     * @typedef FindSalaryByIdCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbsalary.FindSalaryReply} [response] FindSalaryReply
-     */
+         * Callback as used by {@link pbsalary.Salary#findSalaryById}.
+         * @memberof pbsalary.Salary
+         * @typedef FindSalaryByIdCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbsalary.FindSalaryReply} [response] FindSalaryReply
+         */
 
     /**
-     * Calls FindSalaryById.
-     * @function findSalaryById
-     * @memberof pbsalary.Salary
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @param {pbsalary.Salary.FindSalaryByIdCallback} callback Node-style callback called with the error, if any, and FindSalaryReply
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls FindSalaryById.
+         * @function findSalaryById
+         * @memberof pbsalary.Salary
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbsalary.Salary.FindSalaryByIdCallback} callback Node-style callback called with the error, if any, and FindSalaryReply
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(Salary.prototype.findSalaryById = function findSalaryById(request, callback) {
       return this.rpcCall(findSalaryById, $root.pbcommon.IdArgs, $root.pbsalary.FindSalaryReply, request, callback)
     }, 'name', { value: 'FindSalaryById' })
 
     /**
-     * Calls FindSalaryById.
-     * @function findSalaryById
-     * @memberof pbsalary.Salary
-     * @instance
-     * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-     * @returns {Promise<pbsalary.FindSalaryReply>} Promise
-     * @variation 2
-     */
+         * Calls FindSalaryById.
+         * @function findSalaryById
+         * @memberof pbsalary.Salary
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbsalary.FindSalaryReply>} Promise
+         * @variation 2
+         */
 
     /**
-     * Callback as used by {@link pbsalary.Salary#findSalaryList}.
-     * @memberof pbsalary.Salary
-     * @typedef FindSalaryListCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {pbsalary.FindSalaryReply} [response] FindSalaryReply
-     */
+         * Callback as used by {@link pbsalary.Salary#findSalaryList}.
+         * @memberof pbsalary.Salary
+         * @typedef FindSalaryListCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbsalary.FindSalaryReply} [response] FindSalaryReply
+         */
 
     /**
-     * Calls FindSalaryList.
-     * @function findSalaryList
-     * @memberof pbsalary.Salary
-     * @instance
-     * @param {pbsalary.IFindSalaryArgs} request FindSalaryArgs message or plain object
-     * @param {pbsalary.Salary.FindSalaryListCallback} callback Node-style callback called with the error, if any, and FindSalaryReply
-     * @returns {undefined}
-     * @variation 1
-     */
+         * Calls FindSalaryList.
+         * @function findSalaryList
+         * @memberof pbsalary.Salary
+         * @instance
+         * @param {pbsalary.IFindSalaryArgs} request FindSalaryArgs message or plain object
+         * @param {pbsalary.Salary.FindSalaryListCallback} callback Node-style callback called with the error, if any, and FindSalaryReply
+         * @returns {undefined}
+         * @variation 1
+         */
     Object.defineProperty(Salary.prototype.findSalaryList = function findSalaryList(request, callback) {
       return this.rpcCall(findSalaryList, $root.pbsalary.FindSalaryArgs, $root.pbsalary.FindSalaryReply, request, callback)
     }, 'name', { value: 'FindSalaryList' })
 
     /**
-     * Calls FindSalaryList.
-     * @function findSalaryList
-     * @memberof pbsalary.Salary
-     * @instance
-     * @param {pbsalary.IFindSalaryArgs} request FindSalaryArgs message or plain object
-     * @returns {Promise<pbsalary.FindSalaryReply>} Promise
-     * @variation 2
-     */
+         * Calls FindSalaryList.
+         * @function findSalaryList
+         * @memberof pbsalary.Salary
+         * @instance
+         * @param {pbsalary.IFindSalaryArgs} request FindSalaryArgs message or plain object
+         * @returns {Promise<pbsalary.FindSalaryReply>} Promise
+         * @variation 2
+         */
 
     return Salary
   })()
