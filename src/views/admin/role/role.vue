@@ -66,15 +66,21 @@
     <pagination v-show="total > 0" :total="total" :page.sync="page" :limit.sync="pageSize" @pagination="getTableData" />
     <el-dialog title="设置api权限" :visible.sync="dialogFormVisible2">
       <div style="margin-top: 20px">
-        <el-checkbox
-          v-for="item in apisData"
-          :key="item.id"
-          v-model="item.isSelected"
-          :label="item.name"
-          border
-          size="medium"
+        <!-- <el-form-item label="Apis"> -->
+        <el-tree
+          ref="tree"
+          :check-strictly="checkStrictly"
+          :data="apisTreeData"
+          :default-expand-all="true"
+          :props="defaultProps"
+          :default-checked-keys="defaultCheckedKeys"
+          show-checkbox
+          node-key="id"
+          class="permission-tree"
         />
+        <!-- </el-form-item> -->
       </div>
+
       <div style="margin-top: 20px">
         <el-button @click="dialogFormVisible2 = false">
           取消
@@ -145,6 +151,13 @@ export default {
       listApi: findRoleList,
       tableKey: 0,
       apisData: [],
+      apisTreeData: [{ children: [], title: 'HTTP' }, { children: [], title: 'CMD' }],
+      defaultCheckedKeys: [],
+      defaultProps: {
+        children: 'children',
+        label: 'title'
+      },
+      checkStrictly: false,
       role: '',
       temp: {
         id: undefined,
@@ -180,14 +193,55 @@ export default {
     async handleApis(id) {
       this.apisData = []
       this.role = id
+      this.defaultCheckedKeys = []
+      this.apisTreeData = [{ children: [], title: 'HTTP' }, { children: [], title: 'CMD' }]
       const res = await findApiByCasbinRole({ role: id })
       if (res.code === 'Success') {
         this.apisData = res.list
+        await this.setApisTreeData(res.list)
         this.dialogFormVisible2 = true
-        console.log(this.apisData)
       }
     },
+    async setApisTreeData(list) {
+      const treeData = [{ children: [], title: 'HTTP' }, { children: [], title: 'CMD' }]
+      const httpGroupMap = {}
+      let httpGroupIndex = 0
+      const cmdGroupMap = {}
+      let cmdGroupIndex = 0
+      list.forEach(api => {
+        if (api.isSelected) {
+          this.defaultCheckedKeys.push(api.id)
+        }
+        if (api.type === 'HTTP') {
+          if (!(httpGroupMap[api.group] >= 0)) {
+            treeData[0].children.push({ children: [], title: api.group })
+            httpGroupMap[api.group] = httpGroupIndex
+            httpGroupIndex++
+          }
+          treeData[0].children[httpGroupMap[api.group]].children.push({
+            id: api.id,
+            title: api.name
+          })
+        } else if (api.type === 'CMD') {
+          console.log(cmdGroupMap[api.group])
+          if (!(cmdGroupMap[api.group] >= 0)) {
+            treeData[1].children.push({ children: [], title: api.group })
+            cmdGroupMap[api.group] = cmdGroupIndex
+            cmdGroupIndex++
+          }
+          treeData[1].children[cmdGroupMap[api.group]].children.push({
+            id: api.id,
+            title: api.method + '-' + api.name
+          })
+        }
+      })
+      this.apisTreeData = treeData
+    },
     async updateApisData() {
+      this.defaultCheckedKeys = this.$refs.tree.getCheckedKeys()
+      console.log(this.defaultCheckedKeys)
+      await this.updateApisDataByChecked()
+      console.log(this.apisData)
       const res = await setApiByCasbinRole({ role: this.role, list: this.apisData })
       if (res.code === 'Success') {
         this.dialogFormVisible2 = false
@@ -200,6 +254,18 @@ export default {
       }
       this.apisData = []
       this.role = ''
+      this.defaultCheckedKeys = []
+      this.apisTreeData = [{ children: [], title: 'HTTP' }, { children: [], title: 'CMD' }]
+    },
+    async updateApisDataByChecked() {
+      this.apisData.map(v => {
+        if (this.defaultCheckedKeys.indexOf(v.id) >= 0) {
+          v.isSelected = true
+        } else {
+          v.isSelected = false
+        }
+        return v
+      })
     },
     handleFilter() {
       this.page = 1
