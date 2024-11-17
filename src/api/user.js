@@ -1,4 +1,5 @@
 import request from '@/utils/request'
+import protoRoot from '@/proto/proto.js'
 
 export function createUser(data) {
   var buffer = this.$protoRoot.pbuser.UserModel.encode(data).finish().slice().buffer
@@ -51,7 +52,13 @@ export function findUserList(data) {
 }
 
 export function login2(data) {
-  var buffer = this.$protoRoot.pbauth.AdminLoginArgs.encode(data).finish().slice().buffer
+  console.log('login2 called')
+  try {
+    var buffer = protoRoot.pbauth.AdminLoginArgs.encode(data).finish().slice().buffer
+  } catch (error) {
+    console.log(error)
+  }
+  console.log(buffer)
   return request({
     url: '/v2/auth/adminLogin',
     method: 'post',

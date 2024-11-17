@@ -180,7 +180,7 @@ export const asyncRoutes = [
       },
       {
         path: 'permission',
-        component: () => import('@/views/admin/api/api'),
+        component: () => import('@/views/admin/permission/permission'),
         name: 'adminPermission',
         meta: {
           title: '权限管理',

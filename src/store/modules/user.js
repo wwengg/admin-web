@@ -41,6 +41,7 @@ const actions = {
     //   setToken(data.token)
     // }
     return new Promise((resolve, reject) => {
+      console.log(username.trim())
       login2({ username: username.trim(), password: password }).then(
         res => {
           if (res.code === 'Success') {
