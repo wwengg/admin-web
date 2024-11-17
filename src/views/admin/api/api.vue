@@ -69,8 +69,11 @@
         style="width: 450px; margin-left:50px;"
       >
         <el-form-item label="Type" prop="type">
-          <el-input v-model="temp.type" />
+          <el-select v-model="temp.type" placeholder="请选择" @change="typeChangeHandle">
+            <el-option v-for="item in typeOptions" :key="item.label" :label="item.label" :value="item.label" />
+          </el-select>
         </el-form-item>
+
         <el-form-item label="Path" prop="path">
           <el-input v-model="temp.path" />
         </el-form-item>
@@ -127,6 +130,7 @@ export default {
     return {
       listApi: findApiList,
       tableKey: 0,
+      typeOptions: [{ label: 'HTTP' }, { label: 'CMD' }],
       temp: {
         id: undefined,
         createdAt: '',
@@ -155,6 +159,13 @@ export default {
     this.getTableData()
   },
   methods: {
+    typeChangeHandle(v) {
+      if (v === 'HTTP') {
+        this.temp.method = 'POST'
+      } else {
+        this.temp.method = ''
+      }
+    },
     handleFilter() {
       this.page = 1
       this.getTableData()
