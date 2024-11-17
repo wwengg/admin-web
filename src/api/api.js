@@ -1,8 +1,7 @@
 import request from '@/utils/request'
-import protoRoot from '@/proto/proto.js'
 
 export function createApi(data) {
-  var buffer = protoRoot.pbapi.ApiModel.encode(data).finish().slice().buffer
+  var buffer = this.$protoRoot.pbapi.ApiModel.encode(data).finish().slice().buffer
   return request({
     url: '/v2/api/createApi',
     method: 'post',
@@ -12,7 +11,7 @@ export function createApi(data) {
 }
 
 export function updateApi(data) {
-  var buffer = protoRoot.pbapi.ApiModel.encode(data).finish().slice().buffer
+  var buffer = this.$protoRoot.pbapi.ApiModel.encode(data).finish().slice().buffer
   return request({
     url: '/v2/api/updateApi',
     method: 'post',
@@ -22,7 +21,7 @@ export function updateApi(data) {
 }
 
 export function deleteApi(data) {
-  var buffer = protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
+  var buffer = this.$protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
   return request({
     url: '/v2/api/deleteApi',
     method: 'post',
@@ -32,7 +31,7 @@ export function deleteApi(data) {
 }
 
 export function findApiById(data) {
-  var buffer = protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
+  var buffer = this.$protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
   return request({
     url: '/v2/api/findApiById',
     method: 'post',
@@ -42,7 +41,7 @@ export function findApiById(data) {
 }
 
 export function findApiList(data) {
-  var buffer = protoRoot.pbapi.FindApiArgs.encode(data).finish().slice().buffer
+  var buffer = this.$protoRoot.pbapi.FindApiArgs.encode(data).finish().slice().buffer
   return request({
     url: '/v2/api/findApiList',
     method: 'post',
@@ -52,7 +51,7 @@ export function findApiList(data) {
 }
 
 export function findApiByCasbinRole(data) {
-  var buffer = protoRoot.pbapi.FindApiByCasbinRoleArgs.encode(data).finish().slice().buffer
+  var buffer = this.$protoRoot.pbapi.FindApiByCasbinRoleArgs.encode(data).finish().slice().buffer
   return request({
     url: '/v2/api/findApiByCasbinRole',
     method: 'post',
@@ -62,7 +61,7 @@ export function findApiByCasbinRole(data) {
 }
 
 export function setApiByCasbinRole(data) {
-  var buffer = protoRoot.pbapi.SetApiByCasbinRoleArgs.encode(data).finish().slice().buffer
+  var buffer = this.$protoRoot.pbapi.SetApiByCasbinRoleArgs.encode(data).finish().slice().buffer
   return request({
     url: '/v2/api/setApiByCasbinRole',
     method: 'post',

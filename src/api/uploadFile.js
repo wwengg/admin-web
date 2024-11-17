@@ -1,8 +1,7 @@
 import request from '@/utils/request'
-import protoRoot from '@/proto/proto.js'
 
 export function createUploadFile(data) {
-  var buffer = protoRoot.pbuploadFile.UploadFileModel.encode(data).finish().slice().buffer
+  var buffer = this.$protoRoot.pbuploadFile.UploadFileModel.encode(data).finish().slice().buffer
   return request({
     url: '/v2/uploadFile/createUploadFile',
     method: 'post',
@@ -12,7 +11,7 @@ export function createUploadFile(data) {
 }
 
 export function updateUploadFile(data) {
-  var buffer = protoRoot.pbuploadFile.UploadFileModel.encode(data).finish().slice().buffer
+  var buffer = this.$protoRoot.pbuploadFile.UploadFileModel.encode(data).finish().slice().buffer
   return request({
     url: '/v2/uploadFile/updateUploadFile',
     method: 'post',
@@ -22,7 +21,7 @@ export function updateUploadFile(data) {
 }
 
 export function deleteUploadFile(data) {
-  var buffer = protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
+  var buffer = this.$protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
   return request({
     url: '/v2/uploadFile/deleteUploadFile',
     method: 'post',
@@ -32,7 +31,7 @@ export function deleteUploadFile(data) {
 }
 
 export function findUploadFileById(data) {
-  var buffer = protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
+  var buffer = this.$protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
   return request({
     url: '/v2/uploadFile/findUploadFileById',
     method: 'post',
@@ -42,7 +41,7 @@ export function findUploadFileById(data) {
 }
 
 export function findUploadFileList(data) {
-  var buffer = protoRoot.pbuploadFile.FindUploadFileArgs.encode(data).finish().slice().buffer
+  var buffer = this.$protoRoot.pbuploadFile.FindUploadFileArgs.encode(data).finish().slice().buffer
   return request({
     url: '/v2/uploadFile/findUploadFileList',
     method: 'post',

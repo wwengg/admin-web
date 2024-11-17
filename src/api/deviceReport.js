@@ -1,8 +1,7 @@
 import request from '@/utils/request'
-import protoRoot from '@/proto/proto.js'
 
 export function createDeviceReport(data) {
-  var buffer = protoRoot.pbdeviceReport.DeviceReportModel.encode(data).finish().slice().buffer
+  var buffer = this.$protoRoot.pbdeviceReport.DeviceReportModel.encode(data).finish().slice().buffer
   return request({
     url: '/v2/deviceReport/createDeviceReport',
     method: 'post',
@@ -12,7 +11,7 @@ export function createDeviceReport(data) {
 }
 
 export function updateDeviceReport(data) {
-  var buffer = protoRoot.pbdeviceReport.DeviceReportModel.encode(data).finish().slice().buffer
+  var buffer = this.$protoRoot.pbdeviceReport.DeviceReportModel.encode(data).finish().slice().buffer
   return request({
     url: '/v2/deviceReport/updateDeviceReport',
     method: 'post',
@@ -22,7 +21,7 @@ export function updateDeviceReport(data) {
 }
 
 export function deleteDeviceReport(data) {
-  var buffer = protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
+  var buffer = this.$protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
   return request({
     url: '/v2/deviceReport/deleteDeviceReport',
     method: 'post',
@@ -32,7 +31,7 @@ export function deleteDeviceReport(data) {
 }
 
 export function findDeviceReportById(data) {
-  var buffer = protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
+  var buffer = this.$protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
   return request({
     url: '/v2/deviceReport/findDeviceReportById',
     method: 'post',
@@ -42,7 +41,7 @@ export function findDeviceReportById(data) {
 }
 
 export function findDeviceReportList(data) {
-  var buffer = protoRoot.pbdeviceReport.FindDeviceReportArgs.encode(data).finish().slice().buffer
+  var buffer = this.$protoRoot.pbdeviceReport.FindDeviceReportArgs.encode(data).finish().slice().buffer
   return request({
     url: '/v2/deviceReport/findDeviceReportList',
     method: 'post',
@@ -52,7 +51,7 @@ export function findDeviceReportList(data) {
 }
 
 export function aepReport(data) {
-  var buffer = protoRoot.pbdeviceReport.AepReportArgs.encode(data).finish().slice().buffer
+  var buffer = this.$protoRoot.pbdeviceReport.AepReportArgs.encode(data).finish().slice().buffer
   return request({
     url: '/v2/deviceReport/aepReport',
     method: 'post',

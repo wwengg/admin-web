@@ -1,8 +1,7 @@
 import request from '@/utils/request'
-import protoRoot from '@/proto/proto.js'
 
 export function createShop(data) {
-  var buffer = protoRoot.pbshop.ShopModel.encode(data).finish().slice().buffer
+  var buffer = this.$protoRoot.pbshop.ShopModel.encode(data).finish().slice().buffer
   return request({
     url: '/v2/shop/createShop',
     method: 'post',
@@ -12,7 +11,7 @@ export function createShop(data) {
 }
 
 export function updateShop(data) {
-  var buffer = protoRoot.pbshop.ShopModel.encode(data).finish().slice().buffer
+  var buffer = this.$protoRoot.pbshop.ShopModel.encode(data).finish().slice().buffer
   return request({
     url: '/v2/shop/updateShop',
     method: 'post',
@@ -22,7 +21,7 @@ export function updateShop(data) {
 }
 
 export function deleteShop(data) {
-  var buffer = protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
+  var buffer = this.$protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
   return request({
     url: '/v2/shop/deleteShop',
     method: 'post',
@@ -32,7 +31,7 @@ export function deleteShop(data) {
 }
 
 export function findShopById(data) {
-  var buffer = protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
+  var buffer = this.$protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
   return request({
     url: '/v2/shop/findShopById',
     method: 'post',
@@ -42,7 +41,7 @@ export function findShopById(data) {
 }
 
 export function findShopList(data) {
-  var buffer = protoRoot.pbshop.FindShopArgs.encode(data).finish().slice().buffer
+  var buffer = this.$protoRoot.pbshop.FindShopArgs.encode(data).finish().slice().buffer
   return request({
     url: '/v2/shop/findShopList',
     method: 'post',

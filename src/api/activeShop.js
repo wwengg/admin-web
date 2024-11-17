@@ -1,8 +1,7 @@
 import request from '@/utils/request'
-import protoRoot from '@/proto/proto.js'
 
 export function createActiveShop(data) {
-  var buffer = protoRoot.pbactiveShop.ActiveShopModel.encode(data).finish().slice().buffer
+  var buffer = this.$protoRoot.pbactiveShop.ActiveShopModel.encode(data).finish().slice().buffer
   return request({
     url: '/v2/activeShop/createActiveShop',
     method: 'post',
@@ -12,7 +11,7 @@ export function createActiveShop(data) {
 }
 
 export function updateActiveShop(data) {
-  var buffer = protoRoot.pbactiveShop.ActiveShopModel.encode(data).finish().slice().buffer
+  var buffer = this.$protoRoot.pbactiveShop.ActiveShopModel.encode(data).finish().slice().buffer
   return request({
     url: '/v2/activeShop/updateActiveShop',
     method: 'post',
@@ -22,7 +21,7 @@ export function updateActiveShop(data) {
 }
 
 export function deleteActiveShop(data) {
-  var buffer = protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
+  var buffer = this.$protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
   return request({
     url: '/v2/activeShop/deleteActiveShop',
     method: 'post',
@@ -32,7 +31,7 @@ export function deleteActiveShop(data) {
 }
 
 export function findActiveShopById(data) {
-  var buffer = protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
+  var buffer = this.$protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
   return request({
     url: '/v2/activeShop/findActiveShopById',
     method: 'post',
@@ -42,7 +41,7 @@ export function findActiveShopById(data) {
 }
 
 export function findActiveShopList(data) {
-  var buffer = protoRoot.pbactiveShop.FindActiveShopArgs.encode(data).finish().slice().buffer
+  var buffer = this.$protoRoot.pbactiveShop.FindActiveShopArgs.encode(data).finish().slice().buffer
   return request({
     url: '/v2/activeShop/findActiveShopList',
     method: 'post',

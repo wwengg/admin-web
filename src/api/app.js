@@ -1,8 +1,7 @@
 import request from '@/utils/request'
-import protoRoot from '@/proto/proto.js'
 
 export function createApp(data) {
-  var buffer = protoRoot.pbapp.AppModel.encode(data).finish().slice().buffer
+  var buffer = this.$protoRoot.pbapp.AppModel.encode(data).finish().slice().buffer
   return request({
     url: '/v2/app/createApp',
     method: 'post',
@@ -12,7 +11,7 @@ export function createApp(data) {
 }
 
 export function updateApp(data) {
-  var buffer = protoRoot.pbapp.AppModel.encode(data).finish().slice().buffer
+  var buffer = this.$protoRoot.pbapp.AppModel.encode(data).finish().slice().buffer
   return request({
     url: '/v2/app/updateApp',
     method: 'post',
@@ -22,7 +21,7 @@ export function updateApp(data) {
 }
 
 export function deleteApp(data) {
-  var buffer = protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
+  var buffer = this.$protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
   return request({
     url: '/v2/app/deleteApp',
     method: 'post',
@@ -32,7 +31,7 @@ export function deleteApp(data) {
 }
 
 export function findAppById(data) {
-  var buffer = protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
+  var buffer = this.$protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
   return request({
     url: '/v2/app/findAppById',
     method: 'post',
@@ -42,7 +41,7 @@ export function findAppById(data) {
 }
 
 export function findAppList(data) {
-  var buffer = protoRoot.pbapp.FindAppArgs.encode(data).finish().slice().buffer
+  var buffer = this.$protoRoot.pbapp.FindAppArgs.encode(data).finish().slice().buffer
   return request({
     url: '/v2/app/findAppList',
     method: 'post',

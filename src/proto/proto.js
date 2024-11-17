@@ -3,10 +3,6 @@
 
 var $protobuf = require('protobufjs/minimal')
 
-var Long = require('long')
-$protobuf.util.Long = Long
-$protobuf.configure()
-
 // Common aliases
 var $Reader = $protobuf.Reader; var $Writer = $protobuf.Writer; var $util = $protobuf.util
 
@@ -27,6 +23,7 @@ $root.pbcommon = (function() {
      * @enum {number}
      * @property {number} None=0 None value
      * @property {number} Success=200 Success value
+     * @property {number} Forbidden=403 Forbidden value
      * @property {number} Fail=500 Fail value
      * @property {number} Unknown=501 Unknown value
      * @property {number} Internal=502 Internal value
@@ -50,11 +47,17 @@ $root.pbcommon = (function() {
      * @property {number} LoginInvalidEmail=2012 LoginInvalidEmail value
      * @property {number} LoginInvalidPhone=2013 LoginInvalidPhone value
      * @property {number} LoginInvalidUsernameOrEmail=2014 LoginInvalidUsernameOrEmail value
+     * @property {number} RoleIsNotExist=3001 RoleIsNotExist value
+     * @property {number} UserIsExist=3002 UserIsExist value
+     * @property {number} UserIsBan=3003 UserIsBan value
+     * @property {number} TalkIsBan=5001 TalkIsBan value
+     * @property {number} EnterRoomErr=5002 EnterRoomErr value
      */
   pbcommon.EnumCode = (function() {
     var valuesById = {}; var values = Object.create(valuesById)
     values[valuesById[0] = 'None'] = 0
     values[valuesById[200] = 'Success'] = 200
+    values[valuesById[403] = 'Forbidden'] = 403
     values[valuesById[500] = 'Fail'] = 500
     values[valuesById[501] = 'Unknown'] = 501
     values[valuesById[502] = 'Internal'] = 502
@@ -78,6 +81,11 @@ $root.pbcommon = (function() {
     values[valuesById[2012] = 'LoginInvalidEmail'] = 2012
     values[valuesById[2013] = 'LoginInvalidPhone'] = 2013
     values[valuesById[2014] = 'LoginInvalidUsernameOrEmail'] = 2014
+    values[valuesById[3001] = 'RoleIsNotExist'] = 3001
+    values[valuesById[3002] = 'UserIsExist'] = 3002
+    values[valuesById[3003] = 'UserIsBan'] = 3003
+    values[valuesById[5001] = 'TalkIsBan'] = 5001
+    values[valuesById[5002] = 'EnterRoomErr'] = 5002
     return values
   })()
 
@@ -227,6 +235,7 @@ $root.pbcommon = (function() {
             return 'code: enum value expected'
           case 0:
           case 200:
+          case 403:
           case 500:
           case 501:
           case 502:
@@ -250,6 +259,11 @@ $root.pbcommon = (function() {
           case 2012:
           case 2013:
           case 2014:
+          case 3001:
+          case 3002:
+          case 3003:
+          case 5001:
+          case 5002:
             break
         }
       }
@@ -284,6 +298,10 @@ $root.pbcommon = (function() {
         case 'Success':
         case 200:
           message.code = 200
+          break
+        case 'Forbidden':
+        case 403:
+          message.code = 403
           break
         case 'Fail':
         case 500:
@@ -376,6 +394,26 @@ $root.pbcommon = (function() {
         case 'LoginInvalidUsernameOrEmail':
         case 2014:
           message.code = 2014
+          break
+        case 'RoleIsNotExist':
+        case 3001:
+          message.code = 3001
+          break
+        case 'UserIsExist':
+        case 3002:
+          message.code = 3002
+          break
+        case 'UserIsBan':
+        case 3003:
+          message.code = 3003
+          break
+        case 'TalkIsBan':
+        case 5001:
+          message.code = 5001
+          break
+        case 'EnterRoomErr':
+        case 5002:
+          message.code = 5002
           break
       }
       if (object.msg != null) { message.msg = String(object.msg) }
@@ -948,6 +986,701 @@ $root.pbcommon = (function() {
     return PageInfo
   })()
 
+  pbcommon.IdArgsWithPageInfo = (function() {
+    /**
+         * Properties of an IdArgsWithPageInfo.
+         * @memberof pbcommon
+         * @interface IIdArgsWithPageInfo
+         * @property {pbcommon.IIdArgs|null} [idArgs] IdArgsWithPageInfo idArgs
+         * @property {pbcommon.IPageInfo|null} [pageInfo] IdArgsWithPageInfo pageInfo
+         */
+
+    /**
+         * Constructs a new IdArgsWithPageInfo.
+         * @memberof pbcommon
+         * @classdesc Represents an IdArgsWithPageInfo.
+         * @implements IIdArgsWithPageInfo
+         * @constructor
+         * @param {pbcommon.IIdArgsWithPageInfo=} [properties] Properties to set
+         */
+    function IdArgsWithPageInfo(properties) {
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * IdArgsWithPageInfo idArgs.
+         * @member {pbcommon.IIdArgs|null|undefined} idArgs
+         * @memberof pbcommon.IdArgsWithPageInfo
+         * @instance
+         */
+    IdArgsWithPageInfo.prototype.idArgs = null
+
+    /**
+         * IdArgsWithPageInfo pageInfo.
+         * @member {pbcommon.IPageInfo|null|undefined} pageInfo
+         * @memberof pbcommon.IdArgsWithPageInfo
+         * @instance
+         */
+    IdArgsWithPageInfo.prototype.pageInfo = null
+
+    /**
+         * Creates a new IdArgsWithPageInfo instance using the specified properties.
+         * @function create
+         * @memberof pbcommon.IdArgsWithPageInfo
+         * @static
+         * @param {pbcommon.IIdArgsWithPageInfo=} [properties] Properties to set
+         * @returns {pbcommon.IdArgsWithPageInfo} IdArgsWithPageInfo instance
+         */
+    IdArgsWithPageInfo.create = function create(properties) {
+      return new IdArgsWithPageInfo(properties)
+    }
+
+    /**
+         * Encodes the specified IdArgsWithPageInfo message. Does not implicitly {@link pbcommon.IdArgsWithPageInfo.verify|verify} messages.
+         * @function encode
+         * @memberof pbcommon.IdArgsWithPageInfo
+         * @static
+         * @param {pbcommon.IIdArgsWithPageInfo} message IdArgsWithPageInfo message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    IdArgsWithPageInfo.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.idArgs != null && Object.hasOwnProperty.call(message, 'idArgs')) { $root.pbcommon.IdArgs.encode(message.idArgs, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim() }
+      if (message.pageInfo != null && Object.hasOwnProperty.call(message, 'pageInfo')) { $root.pbcommon.PageInfo.encode(message.pageInfo, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim() }
+      return writer
+    }
+
+    /**
+         * Encodes the specified IdArgsWithPageInfo message, length delimited. Does not implicitly {@link pbcommon.IdArgsWithPageInfo.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbcommon.IdArgsWithPageInfo
+         * @static
+         * @param {pbcommon.IIdArgsWithPageInfo} message IdArgsWithPageInfo message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    IdArgsWithPageInfo.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes an IdArgsWithPageInfo message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbcommon.IdArgsWithPageInfo
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbcommon.IdArgsWithPageInfo} IdArgsWithPageInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    IdArgsWithPageInfo.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbcommon.IdArgsWithPageInfo()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            message.idArgs = $root.pbcommon.IdArgs.decode(reader, reader.uint32())
+            break
+          }
+          case 2: {
+            message.pageInfo = $root.pbcommon.PageInfo.decode(reader, reader.uint32())
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes an IdArgsWithPageInfo message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbcommon.IdArgsWithPageInfo
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbcommon.IdArgsWithPageInfo} IdArgsWithPageInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    IdArgsWithPageInfo.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies an IdArgsWithPageInfo message.
+         * @function verify
+         * @memberof pbcommon.IdArgsWithPageInfo
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    IdArgsWithPageInfo.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.idArgs != null && message.hasOwnProperty('idArgs')) {
+        var error = $root.pbcommon.IdArgs.verify(message.idArgs)
+        if (error) { return 'idArgs.' + error }
+      }
+      if (message.pageInfo != null && message.hasOwnProperty('pageInfo')) {
+        var error = $root.pbcommon.PageInfo.verify(message.pageInfo)
+        if (error) { return 'pageInfo.' + error }
+      }
+      return null
+    }
+
+    /**
+         * Creates an IdArgsWithPageInfo message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbcommon.IdArgsWithPageInfo
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbcommon.IdArgsWithPageInfo} IdArgsWithPageInfo
+         */
+    IdArgsWithPageInfo.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbcommon.IdArgsWithPageInfo) { return object }
+      var message = new $root.pbcommon.IdArgsWithPageInfo()
+      if (object.idArgs != null) {
+        if (typeof object.idArgs !== 'object') { throw TypeError('.pbcommon.IdArgsWithPageInfo.idArgs: object expected') }
+        message.idArgs = $root.pbcommon.IdArgs.fromObject(object.idArgs)
+      }
+      if (object.pageInfo != null) {
+        if (typeof object.pageInfo !== 'object') { throw TypeError('.pbcommon.IdArgsWithPageInfo.pageInfo: object expected') }
+        message.pageInfo = $root.pbcommon.PageInfo.fromObject(object.pageInfo)
+      }
+      return message
+    }
+
+    /**
+         * Creates a plain object from an IdArgsWithPageInfo message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbcommon.IdArgsWithPageInfo
+         * @static
+         * @param {pbcommon.IdArgsWithPageInfo} message IdArgsWithPageInfo
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    IdArgsWithPageInfo.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.defaults) {
+        object.idArgs = null
+        object.pageInfo = null
+      }
+      if (message.idArgs != null && message.hasOwnProperty('idArgs')) { object.idArgs = $root.pbcommon.IdArgs.toObject(message.idArgs, options) }
+      if (message.pageInfo != null && message.hasOwnProperty('pageInfo')) { object.pageInfo = $root.pbcommon.PageInfo.toObject(message.pageInfo, options) }
+      return object
+    }
+
+    /**
+         * Converts this IdArgsWithPageInfo to JSON.
+         * @function toJSON
+         * @memberof pbcommon.IdArgsWithPageInfo
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    IdArgsWithPageInfo.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for IdArgsWithPageInfo
+         * @function getTypeUrl
+         * @memberof pbcommon.IdArgsWithPageInfo
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    IdArgsWithPageInfo.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/pbcommon.IdArgsWithPageInfo'
+    }
+
+    return IdArgsWithPageInfo
+  })()
+
+  pbcommon.Empty = (function() {
+    /**
+         * Properties of an Empty.
+         * @memberof pbcommon
+         * @interface IEmpty
+         */
+
+    /**
+         * Constructs a new Empty.
+         * @memberof pbcommon
+         * @classdesc Represents an Empty.
+         * @implements IEmpty
+         * @constructor
+         * @param {pbcommon.IEmpty=} [properties] Properties to set
+         */
+    function Empty(properties) {
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * Creates a new Empty instance using the specified properties.
+         * @function create
+         * @memberof pbcommon.Empty
+         * @static
+         * @param {pbcommon.IEmpty=} [properties] Properties to set
+         * @returns {pbcommon.Empty} Empty instance
+         */
+    Empty.create = function create(properties) {
+      return new Empty(properties)
+    }
+
+    /**
+         * Encodes the specified Empty message. Does not implicitly {@link pbcommon.Empty.verify|verify} messages.
+         * @function encode
+         * @memberof pbcommon.Empty
+         * @static
+         * @param {pbcommon.IEmpty} message Empty message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    Empty.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      return writer
+    }
+
+    /**
+         * Encodes the specified Empty message, length delimited. Does not implicitly {@link pbcommon.Empty.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbcommon.Empty
+         * @static
+         * @param {pbcommon.IEmpty} message Empty message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    Empty.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes an Empty message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbcommon.Empty
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbcommon.Empty} Empty
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    Empty.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbcommon.Empty()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes an Empty message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbcommon.Empty
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbcommon.Empty} Empty
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    Empty.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies an Empty message.
+         * @function verify
+         * @memberof pbcommon.Empty
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    Empty.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      return null
+    }
+
+    /**
+         * Creates an Empty message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbcommon.Empty
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbcommon.Empty} Empty
+         */
+    Empty.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbcommon.Empty) { return object }
+      return new $root.pbcommon.Empty()
+    }
+
+    /**
+         * Creates a plain object from an Empty message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbcommon.Empty
+         * @static
+         * @param {pbcommon.Empty} message Empty
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    Empty.toObject = function toObject() {
+      return {}
+    }
+
+    /**
+         * Converts this Empty to JSON.
+         * @function toJSON
+         * @memberof pbcommon.Empty
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    Empty.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for Empty
+         * @function getTypeUrl
+         * @memberof pbcommon.Empty
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    Empty.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/pbcommon.Empty'
+    }
+
+    return Empty
+  })()
+
+  pbcommon.PrivilegeTip = (function() {
+    /**
+         * Properties of a PrivilegeTip.
+         * @memberof pbcommon
+         * @interface IPrivilegeTip
+         * @property {string|null} [title] PrivilegeTip title
+         * @property {string|null} [beginTime] PrivilegeTip beginTime
+         * @property {number|Long|null} [duration] PrivilegeTip duration
+         * @property {string|null} [reason] PrivilegeTip reason
+         * @property {string|null} [deviceUuid] PrivilegeTip deviceUuid
+         * @property {string|null} [endTime] PrivilegeTip endTime
+         */
+
+    /**
+         * Constructs a new PrivilegeTip.
+         * @memberof pbcommon
+         * @classdesc Represents a PrivilegeTip.
+         * @implements IPrivilegeTip
+         * @constructor
+         * @param {pbcommon.IPrivilegeTip=} [properties] Properties to set
+         */
+    function PrivilegeTip(properties) {
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * PrivilegeTip title.
+         * @member {string} title
+         * @memberof pbcommon.PrivilegeTip
+         * @instance
+         */
+    PrivilegeTip.prototype.title = ''
+
+    /**
+         * PrivilegeTip beginTime.
+         * @member {string} beginTime
+         * @memberof pbcommon.PrivilegeTip
+         * @instance
+         */
+    PrivilegeTip.prototype.beginTime = ''
+
+    /**
+         * PrivilegeTip duration.
+         * @member {number|Long} duration
+         * @memberof pbcommon.PrivilegeTip
+         * @instance
+         */
+    PrivilegeTip.prototype.duration = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+
+    /**
+         * PrivilegeTip reason.
+         * @member {string} reason
+         * @memberof pbcommon.PrivilegeTip
+         * @instance
+         */
+    PrivilegeTip.prototype.reason = ''
+
+    /**
+         * PrivilegeTip deviceUuid.
+         * @member {string} deviceUuid
+         * @memberof pbcommon.PrivilegeTip
+         * @instance
+         */
+    PrivilegeTip.prototype.deviceUuid = ''
+
+    /**
+         * PrivilegeTip endTime.
+         * @member {string} endTime
+         * @memberof pbcommon.PrivilegeTip
+         * @instance
+         */
+    PrivilegeTip.prototype.endTime = ''
+
+    /**
+         * Creates a new PrivilegeTip instance using the specified properties.
+         * @function create
+         * @memberof pbcommon.PrivilegeTip
+         * @static
+         * @param {pbcommon.IPrivilegeTip=} [properties] Properties to set
+         * @returns {pbcommon.PrivilegeTip} PrivilegeTip instance
+         */
+    PrivilegeTip.create = function create(properties) {
+      return new PrivilegeTip(properties)
+    }
+
+    /**
+         * Encodes the specified PrivilegeTip message. Does not implicitly {@link pbcommon.PrivilegeTip.verify|verify} messages.
+         * @function encode
+         * @memberof pbcommon.PrivilegeTip
+         * @static
+         * @param {pbcommon.IPrivilegeTip} message PrivilegeTip message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    PrivilegeTip.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.title != null && Object.hasOwnProperty.call(message, 'title')) { writer.uint32(/* id 1, wireType 2 =*/10).string(message.title) }
+      if (message.beginTime != null && Object.hasOwnProperty.call(message, 'beginTime')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.beginTime) }
+      if (message.duration != null && Object.hasOwnProperty.call(message, 'duration')) { writer.uint32(/* id 3, wireType 0 =*/24).int64(message.duration) }
+      if (message.reason != null && Object.hasOwnProperty.call(message, 'reason')) { writer.uint32(/* id 4, wireType 2 =*/34).string(message.reason) }
+      if (message.deviceUuid != null && Object.hasOwnProperty.call(message, 'deviceUuid')) { writer.uint32(/* id 5, wireType 2 =*/42).string(message.deviceUuid) }
+      if (message.endTime != null && Object.hasOwnProperty.call(message, 'endTime')) { writer.uint32(/* id 6, wireType 2 =*/50).string(message.endTime) }
+      return writer
+    }
+
+    /**
+         * Encodes the specified PrivilegeTip message, length delimited. Does not implicitly {@link pbcommon.PrivilegeTip.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbcommon.PrivilegeTip
+         * @static
+         * @param {pbcommon.IPrivilegeTip} message PrivilegeTip message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    PrivilegeTip.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes a PrivilegeTip message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbcommon.PrivilegeTip
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbcommon.PrivilegeTip} PrivilegeTip
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    PrivilegeTip.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbcommon.PrivilegeTip()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            message.title = reader.string()
+            break
+          }
+          case 2: {
+            message.beginTime = reader.string()
+            break
+          }
+          case 3: {
+            message.duration = reader.int64()
+            break
+          }
+          case 4: {
+            message.reason = reader.string()
+            break
+          }
+          case 5: {
+            message.deviceUuid = reader.string()
+            break
+          }
+          case 6: {
+            message.endTime = reader.string()
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes a PrivilegeTip message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbcommon.PrivilegeTip
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbcommon.PrivilegeTip} PrivilegeTip
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    PrivilegeTip.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies a PrivilegeTip message.
+         * @function verify
+         * @memberof pbcommon.PrivilegeTip
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    PrivilegeTip.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.title != null && message.hasOwnProperty('title')) {
+        if (!$util.isString(message.title)) { return 'title: string expected' }
+      }
+      if (message.beginTime != null && message.hasOwnProperty('beginTime')) {
+        if (!$util.isString(message.beginTime)) { return 'beginTime: string expected' }
+      }
+      if (message.duration != null && message.hasOwnProperty('duration')) {
+        if (!$util.isInteger(message.duration) && !(message.duration && $util.isInteger(message.duration.low) && $util.isInteger(message.duration.high))) { return 'duration: integer|Long expected' }
+      }
+      if (message.reason != null && message.hasOwnProperty('reason')) {
+        if (!$util.isString(message.reason)) { return 'reason: string expected' }
+      }
+      if (message.deviceUuid != null && message.hasOwnProperty('deviceUuid')) {
+        if (!$util.isString(message.deviceUuid)) { return 'deviceUuid: string expected' }
+      }
+      if (message.endTime != null && message.hasOwnProperty('endTime')) {
+        if (!$util.isString(message.endTime)) { return 'endTime: string expected' }
+      }
+      return null
+    }
+
+    /**
+         * Creates a PrivilegeTip message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbcommon.PrivilegeTip
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbcommon.PrivilegeTip} PrivilegeTip
+         */
+    PrivilegeTip.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbcommon.PrivilegeTip) { return object }
+      var message = new $root.pbcommon.PrivilegeTip()
+      if (object.title != null) { message.title = String(object.title) }
+      if (object.beginTime != null) { message.beginTime = String(object.beginTime) }
+      if (object.duration != null) {
+        if ($util.Long) { (message.duration = $util.Long.fromValue(object.duration)).unsigned = false } else if (typeof object.duration === 'string') { message.duration = parseInt(object.duration, 10) } else if (typeof object.duration === 'number') { message.duration = object.duration } else if (typeof object.duration === 'object') { message.duration = new $util.LongBits(object.duration.low >>> 0, object.duration.high >>> 0).toNumber() }
+      }
+      if (object.reason != null) { message.reason = String(object.reason) }
+      if (object.deviceUuid != null) { message.deviceUuid = String(object.deviceUuid) }
+      if (object.endTime != null) { message.endTime = String(object.endTime) }
+      return message
+    }
+
+    /**
+         * Creates a plain object from a PrivilegeTip message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbcommon.PrivilegeTip
+         * @static
+         * @param {pbcommon.PrivilegeTip} message PrivilegeTip
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    PrivilegeTip.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.defaults) {
+        object.title = ''
+        object.beginTime = ''
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.duration = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.duration = options.longs === String ? '0' : 0 }
+        object.reason = ''
+        object.deviceUuid = ''
+        object.endTime = ''
+      }
+      if (message.title != null && message.hasOwnProperty('title')) { object.title = message.title }
+      if (message.beginTime != null && message.hasOwnProperty('beginTime')) { object.beginTime = message.beginTime }
+      if (message.duration != null && message.hasOwnProperty('duration')) {
+        if (typeof message.duration === 'number') { object.duration = options.longs === String ? String(message.duration) : message.duration } else { object.duration = options.longs === String ? $util.Long.prototype.toString.call(message.duration) : options.longs === Number ? new $util.LongBits(message.duration.low >>> 0, message.duration.high >>> 0).toNumber() : message.duration }
+      }
+      if (message.reason != null && message.hasOwnProperty('reason')) { object.reason = message.reason }
+      if (message.deviceUuid != null && message.hasOwnProperty('deviceUuid')) { object.deviceUuid = message.deviceUuid }
+      if (message.endTime != null && message.hasOwnProperty('endTime')) { object.endTime = message.endTime }
+      return object
+    }
+
+    /**
+         * Converts this PrivilegeTip to JSON.
+         * @function toJSON
+         * @memberof pbcommon.PrivilegeTip
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    PrivilegeTip.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for PrivilegeTip
+         * @function getTypeUrl
+         * @memberof pbcommon.PrivilegeTip
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    PrivilegeTip.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/pbcommon.PrivilegeTip'
+    }
+
+    return PrivilegeTip
+  })()
+
   return pbcommon
 })()
 
@@ -973,6 +1706,8 @@ $root.pbapi = (function() {
          * @property {string|null} [name] ApiModel name
          * @property {string|null} [group] ApiModel group
          * @property {boolean|null} [isSelected] ApiModel isSelected
+         * @property {number|null} [cmd] ApiModel cmd
+         * @property {number|null} [oneway] ApiModel oneway
          */
 
     /**
@@ -1064,6 +1799,22 @@ $root.pbapi = (function() {
     ApiModel.prototype.isSelected = false
 
     /**
+         * ApiModel cmd.
+         * @member {number} cmd
+         * @memberof pbapi.ApiModel
+         * @instance
+         */
+    ApiModel.prototype.cmd = 0
+
+    /**
+         * ApiModel oneway.
+         * @member {number} oneway
+         * @memberof pbapi.ApiModel
+         * @instance
+         */
+    ApiModel.prototype.oneway = 0
+
+    /**
          * Creates a new ApiModel instance using the specified properties.
          * @function create
          * @memberof pbapi.ApiModel
@@ -1095,6 +1846,8 @@ $root.pbapi = (function() {
       if (message.name != null && Object.hasOwnProperty.call(message, 'name')) { writer.uint32(/* id 7, wireType 2 =*/58).string(message.name) }
       if (message.group != null && Object.hasOwnProperty.call(message, 'group')) { writer.uint32(/* id 8, wireType 2 =*/66).string(message.group) }
       if (message.isSelected != null && Object.hasOwnProperty.call(message, 'isSelected')) { writer.uint32(/* id 9, wireType 0 =*/72).bool(message.isSelected) }
+      if (message.cmd != null && Object.hasOwnProperty.call(message, 'cmd')) { writer.uint32(/* id 10, wireType 0 =*/80).int32(message.cmd) }
+      if (message.oneway != null && Object.hasOwnProperty.call(message, 'oneway')) { writer.uint32(/* id 11, wireType 0 =*/88).int32(message.oneway) }
       return writer
     }
 
@@ -1164,6 +1917,14 @@ $root.pbapi = (function() {
             message.isSelected = reader.bool()
             break
           }
+          case 10: {
+            message.cmd = reader.int32()
+            break
+          }
+          case 11: {
+            message.oneway = reader.int32()
+            break
+          }
           default:
             reader.skipType(tag & 7)
             break
@@ -1224,6 +1985,12 @@ $root.pbapi = (function() {
       if (message.isSelected != null && message.hasOwnProperty('isSelected')) {
         if (typeof message.isSelected !== 'boolean') { return 'isSelected: boolean expected' }
       }
+      if (message.cmd != null && message.hasOwnProperty('cmd')) {
+        if (!$util.isInteger(message.cmd)) { return 'cmd: integer expected' }
+      }
+      if (message.oneway != null && message.hasOwnProperty('oneway')) {
+        if (!$util.isInteger(message.oneway)) { return 'oneway: integer expected' }
+      }
       return null
     }
 
@@ -1249,6 +2016,8 @@ $root.pbapi = (function() {
       if (object.name != null) { message.name = String(object.name) }
       if (object.group != null) { message.group = String(object.group) }
       if (object.isSelected != null) { message.isSelected = Boolean(object.isSelected) }
+      if (object.cmd != null) { message.cmd = object.cmd | 0 }
+      if (object.oneway != null) { message.oneway = object.oneway | 0 }
       return message
     }
 
@@ -1277,6 +2046,8 @@ $root.pbapi = (function() {
         object.name = ''
         object.group = ''
         object.isSelected = false
+        object.cmd = 0
+        object.oneway = 0
       }
       if (message.id != null && message.hasOwnProperty('id')) {
         if (typeof message.id === 'number') { object.id = options.longs === String ? String(message.id) : message.id } else { object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id }
@@ -1289,6 +2060,8 @@ $root.pbapi = (function() {
       if (message.name != null && message.hasOwnProperty('name')) { object.name = message.name }
       if (message.group != null && message.hasOwnProperty('group')) { object.group = message.group }
       if (message.isSelected != null && message.hasOwnProperty('isSelected')) { object.isSelected = message.isSelected }
+      if (message.cmd != null && message.hasOwnProperty('cmd')) { object.cmd = message.cmd }
+      if (message.oneway != null && message.hasOwnProperty('oneway')) { object.oneway = message.oneway }
       return object
     }
 
@@ -1736,6 +2509,7 @@ $root.pbapi = (function() {
             return 'code: enum value expected'
           case 0:
           case 200:
+          case 403:
           case 500:
           case 501:
           case 502:
@@ -1759,6 +2533,11 @@ $root.pbapi = (function() {
           case 2012:
           case 2013:
           case 2014:
+          case 3001:
+          case 3002:
+          case 3003:
+          case 5001:
+          case 5002:
             break
         }
       }
@@ -1807,6 +2586,10 @@ $root.pbapi = (function() {
         case 'Success':
         case 200:
           message.code = 200
+          break
+        case 'Forbidden':
+        case 403:
+          message.code = 403
           break
         case 'Fail':
         case 500:
@@ -1899,6 +2682,26 @@ $root.pbapi = (function() {
         case 'LoginInvalidUsernameOrEmail':
         case 2014:
           message.code = 2014
+          break
+        case 'RoleIsNotExist':
+        case 3001:
+          message.code = 3001
+          break
+        case 'UserIsExist':
+        case 3002:
+          message.code = 3002
+          break
+        case 'UserIsBan':
+        case 3003:
+          message.code = 3003
+          break
+        case 'TalkIsBan':
+        case 5001:
+          message.code = 5001
+          break
+        case 'EnterRoomErr':
+        case 5002:
+          message.code = 5002
           break
       }
       if (object.msg != null) { message.msg = String(object.msg) }
@@ -2350,6 +3153,7 @@ $root.pbapi = (function() {
             return 'code: enum value expected'
           case 0:
           case 200:
+          case 403:
           case 500:
           case 501:
           case 502:
@@ -2373,6 +3177,11 @@ $root.pbapi = (function() {
           case 2012:
           case 2013:
           case 2014:
+          case 3001:
+          case 3002:
+          case 3003:
+          case 5001:
+          case 5002:
             break
         }
       }
@@ -2414,6 +3223,10 @@ $root.pbapi = (function() {
         case 'Success':
         case 200:
           message.code = 200
+          break
+        case 'Forbidden':
+        case 403:
+          message.code = 403
           break
         case 'Fail':
         case 500:
@@ -2506,6 +3319,26 @@ $root.pbapi = (function() {
         case 'LoginInvalidUsernameOrEmail':
         case 2014:
           message.code = 2014
+          break
+        case 'RoleIsNotExist':
+        case 3001:
+          message.code = 3001
+          break
+        case 'UserIsExist':
+        case 3002:
+          message.code = 3002
+          break
+        case 'UserIsBan':
+        case 3003:
+          message.code = 3003
+          break
+        case 'TalkIsBan':
+        case 5001:
+          message.code = 5001
+          break
+        case 'EnterRoomErr':
+        case 5002:
+          message.code = 5002
           break
       }
       if (object.msg != null) { message.msg = String(object.msg) }
@@ -4024,6 +4857,7 @@ $root.pbpermission = (function() {
             return 'code: enum value expected'
           case 0:
           case 200:
+          case 403:
           case 500:
           case 501:
           case 502:
@@ -4047,6 +4881,11 @@ $root.pbpermission = (function() {
           case 2012:
           case 2013:
           case 2014:
+          case 3001:
+          case 3002:
+          case 3003:
+          case 5001:
+          case 5002:
             break
         }
       }
@@ -4095,6 +4934,10 @@ $root.pbpermission = (function() {
         case 'Success':
         case 200:
           message.code = 200
+          break
+        case 'Forbidden':
+        case 403:
+          message.code = 403
           break
         case 'Fail':
         case 500:
@@ -4187,6 +5030,26 @@ $root.pbpermission = (function() {
         case 'LoginInvalidUsernameOrEmail':
         case 2014:
           message.code = 2014
+          break
+        case 'RoleIsNotExist':
+        case 3001:
+          message.code = 3001
+          break
+        case 'UserIsExist':
+        case 3002:
+          message.code = 3002
+          break
+        case 'UserIsBan':
+        case 3003:
+          message.code = 3003
+          break
+        case 'TalkIsBan':
+        case 5001:
+          message.code = 5001
+          break
+        case 'EnterRoomErr':
+        case 5002:
+          message.code = 5002
           break
       }
       if (object.msg != null) { message.msg = String(object.msg) }
@@ -5346,6 +6209,7 @@ $root.pbrole = (function() {
             return 'code: enum value expected'
           case 0:
           case 200:
+          case 403:
           case 500:
           case 501:
           case 502:
@@ -5369,6 +6233,11 @@ $root.pbrole = (function() {
           case 2012:
           case 2013:
           case 2014:
+          case 3001:
+          case 3002:
+          case 3003:
+          case 5001:
+          case 5002:
             break
         }
       }
@@ -5417,6 +6286,10 @@ $root.pbrole = (function() {
         case 'Success':
         case 200:
           message.code = 200
+          break
+        case 'Forbidden':
+        case 403:
+          message.code = 403
           break
         case 'Fail':
         case 500:
@@ -5509,6 +6382,26 @@ $root.pbrole = (function() {
         case 'LoginInvalidUsernameOrEmail':
         case 2014:
           message.code = 2014
+          break
+        case 'RoleIsNotExist':
+        case 3001:
+          message.code = 3001
+          break
+        case 'UserIsExist':
+        case 3002:
+          message.code = 3002
+          break
+        case 'UserIsBan':
+        case 3003:
+          message.code = 3003
+          break
+        case 'TalkIsBan':
+        case 5001:
+          message.code = 5001
+          break
+        case 'EnterRoomErr':
+        case 5002:
+          message.code = 5002
           break
       }
       if (object.msg != null) { message.msg = String(object.msg) }
@@ -5964,6 +6857,7 @@ $root.pbauth = (function() {
             return 'code: enum value expected'
           case 0:
           case 200:
+          case 403:
           case 500:
           case 501:
           case 502:
@@ -5987,6 +6881,11 @@ $root.pbauth = (function() {
           case 2012:
           case 2013:
           case 2014:
+          case 3001:
+          case 3002:
+          case 3003:
+          case 5001:
+          case 5002:
             break
         }
       }
@@ -6025,6 +6924,10 @@ $root.pbauth = (function() {
         case 'Success':
         case 200:
           message.code = 200
+          break
+        case 'Forbidden':
+        case 403:
+          message.code = 403
           break
         case 'Fail':
         case 500:
@@ -6118,6 +7021,26 @@ $root.pbauth = (function() {
         case 2014:
           message.code = 2014
           break
+        case 'RoleIsNotExist':
+        case 3001:
+          message.code = 3001
+          break
+        case 'UserIsExist':
+        case 3002:
+          message.code = 3002
+          break
+        case 'UserIsBan':
+        case 3003:
+          message.code = 3003
+          break
+        case 'TalkIsBan':
+        case 5001:
+          message.code = 5001
+          break
+        case 'EnterRoomErr':
+        case 5002:
+          message.code = 5002
+          break
       }
       if (object.token != null) { message.token = String(object.token) }
       if (object.user != null) {
@@ -6177,6 +7100,387 @@ $root.pbauth = (function() {
     }
 
     return AuthLoginReply
+  })()
+
+  pbauth.UploadCodeReply = (function() {
+    /**
+         * Properties of an UploadCodeReply.
+         * @memberof pbauth
+         * @interface IUploadCodeReply
+         * @property {pbcommon.EnumCode|null} [code] UploadCodeReply code
+         * @property {string|null} [uploadCode] UploadCodeReply uploadCode
+         */
+
+    /**
+         * Constructs a new UploadCodeReply.
+         * @memberof pbauth
+         * @classdesc Represents an UploadCodeReply.
+         * @implements IUploadCodeReply
+         * @constructor
+         * @param {pbauth.IUploadCodeReply=} [properties] Properties to set
+         */
+    function UploadCodeReply(properties) {
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * UploadCodeReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbauth.UploadCodeReply
+         * @instance
+         */
+    UploadCodeReply.prototype.code = 0
+
+    /**
+         * UploadCodeReply uploadCode.
+         * @member {string} uploadCode
+         * @memberof pbauth.UploadCodeReply
+         * @instance
+         */
+    UploadCodeReply.prototype.uploadCode = ''
+
+    /**
+         * Creates a new UploadCodeReply instance using the specified properties.
+         * @function create
+         * @memberof pbauth.UploadCodeReply
+         * @static
+         * @param {pbauth.IUploadCodeReply=} [properties] Properties to set
+         * @returns {pbauth.UploadCodeReply} UploadCodeReply instance
+         */
+    UploadCodeReply.create = function create(properties) {
+      return new UploadCodeReply(properties)
+    }
+
+    /**
+         * Encodes the specified UploadCodeReply message. Does not implicitly {@link pbauth.UploadCodeReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbauth.UploadCodeReply
+         * @static
+         * @param {pbauth.IUploadCodeReply} message UploadCodeReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    UploadCodeReply.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.code != null && Object.hasOwnProperty.call(message, 'code')) { writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code) }
+      if (message.uploadCode != null && Object.hasOwnProperty.call(message, 'uploadCode')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.uploadCode) }
+      return writer
+    }
+
+    /**
+         * Encodes the specified UploadCodeReply message, length delimited. Does not implicitly {@link pbauth.UploadCodeReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbauth.UploadCodeReply
+         * @static
+         * @param {pbauth.IUploadCodeReply} message UploadCodeReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    UploadCodeReply.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes an UploadCodeReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbauth.UploadCodeReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbauth.UploadCodeReply} UploadCodeReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    UploadCodeReply.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbauth.UploadCodeReply()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            message.code = reader.int32()
+            break
+          }
+          case 2: {
+            message.uploadCode = reader.string()
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes an UploadCodeReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbauth.UploadCodeReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbauth.UploadCodeReply} UploadCodeReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    UploadCodeReply.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies an UploadCodeReply message.
+         * @function verify
+         * @memberof pbauth.UploadCodeReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    UploadCodeReply.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.code != null && message.hasOwnProperty('code')) {
+        switch (message.code) {
+          default:
+            return 'code: enum value expected'
+          case 0:
+          case 200:
+          case 403:
+          case 500:
+          case 501:
+          case 502:
+          case 503:
+          case 504:
+          case 505:
+          case 1001:
+          case 1002:
+          case 1003:
+          case 1004:
+          case 2002:
+          case 2003:
+          case 2004:
+          case 2005:
+          case 2006:
+          case 2007:
+          case 2008:
+          case 2009:
+          case 2010:
+          case 2011:
+          case 2012:
+          case 2013:
+          case 2014:
+          case 3001:
+          case 3002:
+          case 3003:
+          case 5001:
+          case 5002:
+            break
+        }
+      }
+      if (message.uploadCode != null && message.hasOwnProperty('uploadCode')) {
+        if (!$util.isString(message.uploadCode)) { return 'uploadCode: string expected' }
+      }
+      return null
+    }
+
+    /**
+         * Creates an UploadCodeReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbauth.UploadCodeReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbauth.UploadCodeReply} UploadCodeReply
+         */
+    UploadCodeReply.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbauth.UploadCodeReply) { return object }
+      var message = new $root.pbauth.UploadCodeReply()
+      switch (object.code) {
+        default:
+          if (typeof object.code === 'number') {
+            message.code = object.code
+            break
+          }
+          break
+        case 'None':
+        case 0:
+          message.code = 0
+          break
+        case 'Success':
+        case 200:
+          message.code = 200
+          break
+        case 'Forbidden':
+        case 403:
+          message.code = 403
+          break
+        case 'Fail':
+        case 500:
+          message.code = 500
+          break
+        case 'Unknown':
+        case 501:
+          message.code = 501
+          break
+        case 'Internal':
+        case 502:
+          message.code = 502
+          break
+        case 'Invalid':
+        case 503:
+          message.code = 503
+          break
+        case 'InvalidParam':
+        case 504:
+          message.code = 504
+          break
+        case 'ParamError':
+        case 505:
+          message.code = 505
+          break
+        case 'FindError':
+        case 1001:
+          message.code = 1001
+          break
+        case 'CreateError':
+        case 1002:
+          message.code = 1002
+          break
+        case 'DeleteError':
+        case 1003:
+          message.code = 1003
+          break
+        case 'UpdateError':
+        case 1004:
+          message.code = 1004
+          break
+        case 'InvalidToken':
+        case 2002:
+          message.code = 2002
+          break
+        case 'InvalidSign':
+        case 2003:
+          message.code = 2003
+          break
+        case 'NotLogin':
+        case 2004:
+          message.code = 2004
+          break
+        case 'LoginTimeout':
+        case 2005:
+          message.code = 2005
+          break
+        case 'LoginError':
+        case 2006:
+          message.code = 2006
+          break
+        case 'LoginForbidden':
+        case 2007:
+          message.code = 2007
+          break
+        case 'LoginExpired':
+        case 2008:
+          message.code = 2008
+          break
+        case 'LoginInvalid':
+        case 2009:
+          message.code = 2009
+          break
+        case 'LoginInvalidPassword':
+        case 2010:
+          message.code = 2010
+          break
+        case 'LoginInvalidUsername':
+        case 2011:
+          message.code = 2011
+          break
+        case 'LoginInvalidEmail':
+        case 2012:
+          message.code = 2012
+          break
+        case 'LoginInvalidPhone':
+        case 2013:
+          message.code = 2013
+          break
+        case 'LoginInvalidUsernameOrEmail':
+        case 2014:
+          message.code = 2014
+          break
+        case 'RoleIsNotExist':
+        case 3001:
+          message.code = 3001
+          break
+        case 'UserIsExist':
+        case 3002:
+          message.code = 3002
+          break
+        case 'UserIsBan':
+        case 3003:
+          message.code = 3003
+          break
+        case 'TalkIsBan':
+        case 5001:
+          message.code = 5001
+          break
+        case 'EnterRoomErr':
+        case 5002:
+          message.code = 5002
+          break
+      }
+      if (object.uploadCode != null) { message.uploadCode = String(object.uploadCode) }
+      return message
+    }
+
+    /**
+         * Creates a plain object from an UploadCodeReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbauth.UploadCodeReply
+         * @static
+         * @param {pbauth.UploadCodeReply} message UploadCodeReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    UploadCodeReply.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.defaults) {
+        object.code = options.enums === String ? 'None' : 0
+        object.uploadCode = ''
+      }
+      if (message.code != null && message.hasOwnProperty('code')) { object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code }
+      if (message.uploadCode != null && message.hasOwnProperty('uploadCode')) { object.uploadCode = message.uploadCode }
+      return object
+    }
+
+    /**
+         * Converts this UploadCodeReply to JSON.
+         * @function toJSON
+         * @memberof pbauth.UploadCodeReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    UploadCodeReply.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for UploadCodeReply
+         * @function getTypeUrl
+         * @memberof pbauth.UploadCodeReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    UploadCodeReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/pbauth.UploadCodeReply'
+    }
+
+    return UploadCodeReply
   })()
 
   pbauth.AdminLoginArgs = (function() {
@@ -6434,27 +7738,24 @@ $root.pbauth = (function() {
     return AdminLoginArgs
   })()
 
-  pbauth.WxLogin = (function() {
+  pbauth.PhoneLoginArgs = (function() {
     /**
-         * Properties of a WxLogin.
+         * Properties of a PhoneLoginArgs.
          * @memberof pbauth
-         * @interface IWxLogin
-         * @property {string|null} [code] WxLogin code
-         * @property {string|null} [encryptedData] WxLogin encryptedData
-         * @property {string|null} [iv] WxLogin iv
-         * @property {string|null} [rawData] WxLogin rawData
-         * @property {string|null} [signature] WxLogin signature
+         * @interface IPhoneLoginArgs
+         * @property {string|null} [phone] PhoneLoginArgs phone
+         * @property {string|null} [password] PhoneLoginArgs password
          */
 
     /**
-         * Constructs a new WxLogin.
+         * Constructs a new PhoneLoginArgs.
          * @memberof pbauth
-         * @classdesc Represents a WxLogin.
-         * @implements IWxLogin
+         * @classdesc Represents a PhoneLoginArgs.
+         * @implements IPhoneLoginArgs
          * @constructor
-         * @param {pbauth.IWxLogin=} [properties] Properties to set
+         * @param {pbauth.IPhoneLoginArgs=} [properties] Properties to set
          */
-    function WxLogin(properties) {
+    function PhoneLoginArgs(properties) {
       if (properties) {
         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
           if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
@@ -6463,103 +7764,281 @@ $root.pbauth = (function() {
     }
 
     /**
-         * WxLogin code.
-         * @member {string} code
-         * @memberof pbauth.WxLogin
+         * PhoneLoginArgs phone.
+         * @member {string} phone
+         * @memberof pbauth.PhoneLoginArgs
          * @instance
          */
-    WxLogin.prototype.code = ''
+    PhoneLoginArgs.prototype.phone = ''
 
     /**
-         * WxLogin encryptedData.
-         * @member {string} encryptedData
-         * @memberof pbauth.WxLogin
+         * PhoneLoginArgs password.
+         * @member {string} password
+         * @memberof pbauth.PhoneLoginArgs
          * @instance
          */
-    WxLogin.prototype.encryptedData = ''
+    PhoneLoginArgs.prototype.password = ''
 
     /**
-         * WxLogin iv.
-         * @member {string} iv
-         * @memberof pbauth.WxLogin
-         * @instance
-         */
-    WxLogin.prototype.iv = ''
-
-    /**
-         * WxLogin rawData.
-         * @member {string} rawData
-         * @memberof pbauth.WxLogin
-         * @instance
-         */
-    WxLogin.prototype.rawData = ''
-
-    /**
-         * WxLogin signature.
-         * @member {string} signature
-         * @memberof pbauth.WxLogin
-         * @instance
-         */
-    WxLogin.prototype.signature = ''
-
-    /**
-         * Creates a new WxLogin instance using the specified properties.
+         * Creates a new PhoneLoginArgs instance using the specified properties.
          * @function create
-         * @memberof pbauth.WxLogin
+         * @memberof pbauth.PhoneLoginArgs
          * @static
-         * @param {pbauth.IWxLogin=} [properties] Properties to set
-         * @returns {pbauth.WxLogin} WxLogin instance
+         * @param {pbauth.IPhoneLoginArgs=} [properties] Properties to set
+         * @returns {pbauth.PhoneLoginArgs} PhoneLoginArgs instance
          */
-    WxLogin.create = function create(properties) {
-      return new WxLogin(properties)
+    PhoneLoginArgs.create = function create(properties) {
+      return new PhoneLoginArgs(properties)
     }
 
     /**
-         * Encodes the specified WxLogin message. Does not implicitly {@link pbauth.WxLogin.verify|verify} messages.
+         * Encodes the specified PhoneLoginArgs message. Does not implicitly {@link pbauth.PhoneLoginArgs.verify|verify} messages.
          * @function encode
-         * @memberof pbauth.WxLogin
+         * @memberof pbauth.PhoneLoginArgs
          * @static
-         * @param {pbauth.IWxLogin} message WxLogin message or plain object to encode
+         * @param {pbauth.IPhoneLoginArgs} message PhoneLoginArgs message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-    WxLogin.encode = function encode(message, writer) {
+    PhoneLoginArgs.encode = function encode(message, writer) {
       if (!writer) { writer = $Writer.create() }
-      if (message.code != null && Object.hasOwnProperty.call(message, 'code')) { writer.uint32(/* id 1, wireType 2 =*/10).string(message.code) }
-      if (message.encryptedData != null && Object.hasOwnProperty.call(message, 'encryptedData')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.encryptedData) }
-      if (message.iv != null && Object.hasOwnProperty.call(message, 'iv')) { writer.uint32(/* id 3, wireType 2 =*/26).string(message.iv) }
-      if (message.rawData != null && Object.hasOwnProperty.call(message, 'rawData')) { writer.uint32(/* id 4, wireType 2 =*/34).string(message.rawData) }
-      if (message.signature != null && Object.hasOwnProperty.call(message, 'signature')) { writer.uint32(/* id 5, wireType 2 =*/42).string(message.signature) }
+      if (message.phone != null && Object.hasOwnProperty.call(message, 'phone')) { writer.uint32(/* id 1, wireType 2 =*/10).string(message.phone) }
+      if (message.password != null && Object.hasOwnProperty.call(message, 'password')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.password) }
       return writer
     }
 
     /**
-         * Encodes the specified WxLogin message, length delimited. Does not implicitly {@link pbauth.WxLogin.verify|verify} messages.
+         * Encodes the specified PhoneLoginArgs message, length delimited. Does not implicitly {@link pbauth.PhoneLoginArgs.verify|verify} messages.
          * @function encodeDelimited
-         * @memberof pbauth.WxLogin
+         * @memberof pbauth.PhoneLoginArgs
          * @static
-         * @param {pbauth.IWxLogin} message WxLogin message or plain object to encode
+         * @param {pbauth.IPhoneLoginArgs} message PhoneLoginArgs message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-    WxLogin.encodeDelimited = function encodeDelimited(message, writer) {
+    PhoneLoginArgs.encodeDelimited = function encodeDelimited(message, writer) {
       return this.encode(message, writer).ldelim()
     }
 
     /**
-         * Decodes a WxLogin message from the specified reader or buffer.
+         * Decodes a PhoneLoginArgs message from the specified reader or buffer.
          * @function decode
-         * @memberof pbauth.WxLogin
+         * @memberof pbauth.PhoneLoginArgs
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {pbauth.WxLogin} WxLogin
+         * @returns {pbauth.PhoneLoginArgs} PhoneLoginArgs
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-    WxLogin.decode = function decode(reader, length) {
+    PhoneLoginArgs.decode = function decode(reader, length) {
       if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
-      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbauth.WxLogin()
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbauth.PhoneLoginArgs()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            message.phone = reader.string()
+            break
+          }
+          case 2: {
+            message.password = reader.string()
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes a PhoneLoginArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbauth.PhoneLoginArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbauth.PhoneLoginArgs} PhoneLoginArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    PhoneLoginArgs.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies a PhoneLoginArgs message.
+         * @function verify
+         * @memberof pbauth.PhoneLoginArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    PhoneLoginArgs.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.phone != null && message.hasOwnProperty('phone')) {
+        if (!$util.isString(message.phone)) { return 'phone: string expected' }
+      }
+      if (message.password != null && message.hasOwnProperty('password')) {
+        if (!$util.isString(message.password)) { return 'password: string expected' }
+      }
+      return null
+    }
+
+    /**
+         * Creates a PhoneLoginArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbauth.PhoneLoginArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbauth.PhoneLoginArgs} PhoneLoginArgs
+         */
+    PhoneLoginArgs.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbauth.PhoneLoginArgs) { return object }
+      var message = new $root.pbauth.PhoneLoginArgs()
+      if (object.phone != null) { message.phone = String(object.phone) }
+      if (object.password != null) { message.password = String(object.password) }
+      return message
+    }
+
+    /**
+         * Creates a plain object from a PhoneLoginArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbauth.PhoneLoginArgs
+         * @static
+         * @param {pbauth.PhoneLoginArgs} message PhoneLoginArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    PhoneLoginArgs.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.defaults) {
+        object.phone = ''
+        object.password = ''
+      }
+      if (message.phone != null && message.hasOwnProperty('phone')) { object.phone = message.phone }
+      if (message.password != null && message.hasOwnProperty('password')) { object.password = message.password }
+      return object
+    }
+
+    /**
+         * Converts this PhoneLoginArgs to JSON.
+         * @function toJSON
+         * @memberof pbauth.PhoneLoginArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    PhoneLoginArgs.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for PhoneLoginArgs
+         * @function getTypeUrl
+         * @memberof pbauth.PhoneLoginArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    PhoneLoginArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/pbauth.PhoneLoginArgs'
+    }
+
+    return PhoneLoginArgs
+  })()
+
+  pbauth.WxLoginArgs = (function() {
+    /**
+         * Properties of a WxLoginArgs.
+         * @memberof pbauth
+         * @interface IWxLoginArgs
+         * @property {string|null} [code] WxLoginArgs code
+         */
+
+    /**
+         * Constructs a new WxLoginArgs.
+         * @memberof pbauth
+         * @classdesc Represents a WxLoginArgs.
+         * @implements IWxLoginArgs
+         * @constructor
+         * @param {pbauth.IWxLoginArgs=} [properties] Properties to set
+         */
+    function WxLoginArgs(properties) {
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * WxLoginArgs code.
+         * @member {string} code
+         * @memberof pbauth.WxLoginArgs
+         * @instance
+         */
+    WxLoginArgs.prototype.code = ''
+
+    /**
+         * Creates a new WxLoginArgs instance using the specified properties.
+         * @function create
+         * @memberof pbauth.WxLoginArgs
+         * @static
+         * @param {pbauth.IWxLoginArgs=} [properties] Properties to set
+         * @returns {pbauth.WxLoginArgs} WxLoginArgs instance
+         */
+    WxLoginArgs.create = function create(properties) {
+      return new WxLoginArgs(properties)
+    }
+
+    /**
+         * Encodes the specified WxLoginArgs message. Does not implicitly {@link pbauth.WxLoginArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbauth.WxLoginArgs
+         * @static
+         * @param {pbauth.IWxLoginArgs} message WxLoginArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    WxLoginArgs.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.code != null && Object.hasOwnProperty.call(message, 'code')) { writer.uint32(/* id 1, wireType 2 =*/10).string(message.code) }
+      return writer
+    }
+
+    /**
+         * Encodes the specified WxLoginArgs message, length delimited. Does not implicitly {@link pbauth.WxLoginArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbauth.WxLoginArgs
+         * @static
+         * @param {pbauth.IWxLoginArgs} message WxLoginArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    WxLoginArgs.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes a WxLoginArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbauth.WxLoginArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbauth.WxLoginArgs} WxLoginArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    WxLoginArgs.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbauth.WxLoginArgs()
       while (reader.pos < end) {
         var tag = reader.uint32()
         switch (tag >>> 3) {
@@ -6567,22 +8046,6 @@ $root.pbauth = (function() {
             message.code = reader.string()
             break
           }
-          case 2: {
-            message.encryptedData = reader.string()
-            break
-          }
-          case 3: {
-            message.iv = reader.string()
-            break
-          }
-          case 4: {
-            message.rawData = reader.string()
-            break
-          }
-          case 5: {
-            message.signature = reader.string()
-            break
-          }
           default:
             reader.skipType(tag & 7)
             break
@@ -6592,939 +8055,95 @@ $root.pbauth = (function() {
     }
 
     /**
-         * Decodes a WxLogin message from the specified reader or buffer, length delimited.
+         * Decodes a WxLoginArgs message from the specified reader or buffer, length delimited.
          * @function decodeDelimited
-         * @memberof pbauth.WxLogin
+         * @memberof pbauth.WxLoginArgs
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {pbauth.WxLogin} WxLogin
+         * @returns {pbauth.WxLoginArgs} WxLoginArgs
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-    WxLogin.decodeDelimited = function decodeDelimited(reader) {
+    WxLoginArgs.decodeDelimited = function decodeDelimited(reader) {
       if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
       return this.decode(reader, reader.uint32())
     }
 
     /**
-         * Verifies a WxLogin message.
+         * Verifies a WxLoginArgs message.
          * @function verify
-         * @memberof pbauth.WxLogin
+         * @memberof pbauth.WxLoginArgs
          * @static
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-    WxLogin.verify = function verify(message) {
+    WxLoginArgs.verify = function verify(message) {
       if (typeof message !== 'object' || message === null) { return 'object expected' }
       if (message.code != null && message.hasOwnProperty('code')) {
         if (!$util.isString(message.code)) { return 'code: string expected' }
       }
-      if (message.encryptedData != null && message.hasOwnProperty('encryptedData')) {
-        if (!$util.isString(message.encryptedData)) { return 'encryptedData: string expected' }
-      }
-      if (message.iv != null && message.hasOwnProperty('iv')) {
-        if (!$util.isString(message.iv)) { return 'iv: string expected' }
-      }
-      if (message.rawData != null && message.hasOwnProperty('rawData')) {
-        if (!$util.isString(message.rawData)) { return 'rawData: string expected' }
-      }
-      if (message.signature != null && message.hasOwnProperty('signature')) {
-        if (!$util.isString(message.signature)) { return 'signature: string expected' }
-      }
       return null
     }
 
     /**
-         * Creates a WxLogin message from a plain object. Also converts values to their respective internal types.
+         * Creates a WxLoginArgs message from a plain object. Also converts values to their respective internal types.
          * @function fromObject
-         * @memberof pbauth.WxLogin
+         * @memberof pbauth.WxLoginArgs
          * @static
          * @param {Object.<string,*>} object Plain object
-         * @returns {pbauth.WxLogin} WxLogin
+         * @returns {pbauth.WxLoginArgs} WxLoginArgs
          */
-    WxLogin.fromObject = function fromObject(object) {
-      if (object instanceof $root.pbauth.WxLogin) { return object }
-      var message = new $root.pbauth.WxLogin()
+    WxLoginArgs.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbauth.WxLoginArgs) { return object }
+      var message = new $root.pbauth.WxLoginArgs()
       if (object.code != null) { message.code = String(object.code) }
-      if (object.encryptedData != null) { message.encryptedData = String(object.encryptedData) }
-      if (object.iv != null) { message.iv = String(object.iv) }
-      if (object.rawData != null) { message.rawData = String(object.rawData) }
-      if (object.signature != null) { message.signature = String(object.signature) }
       return message
     }
 
     /**
-         * Creates a plain object from a WxLogin message. Also converts values to other types if specified.
+         * Creates a plain object from a WxLoginArgs message. Also converts values to other types if specified.
          * @function toObject
-         * @memberof pbauth.WxLogin
+         * @memberof pbauth.WxLoginArgs
          * @static
-         * @param {pbauth.WxLogin} message WxLogin
+         * @param {pbauth.WxLoginArgs} message WxLoginArgs
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-    WxLogin.toObject = function toObject(message, options) {
+    WxLoginArgs.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
-      if (options.defaults) {
-        object.code = ''
-        object.encryptedData = ''
-        object.iv = ''
-        object.rawData = ''
-        object.signature = ''
-      }
+      if (options.defaults) { object.code = '' }
       if (message.code != null && message.hasOwnProperty('code')) { object.code = message.code }
-      if (message.encryptedData != null && message.hasOwnProperty('encryptedData')) { object.encryptedData = message.encryptedData }
-      if (message.iv != null && message.hasOwnProperty('iv')) { object.iv = message.iv }
-      if (message.rawData != null && message.hasOwnProperty('rawData')) { object.rawData = message.rawData }
-      if (message.signature != null && message.hasOwnProperty('signature')) { object.signature = message.signature }
       return object
     }
 
     /**
-         * Converts this WxLogin to JSON.
+         * Converts this WxLoginArgs to JSON.
          * @function toJSON
-         * @memberof pbauth.WxLogin
+         * @memberof pbauth.WxLoginArgs
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-    WxLogin.prototype.toJSON = function toJSON() {
+    WxLoginArgs.prototype.toJSON = function toJSON() {
       return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
     }
 
     /**
-         * Gets the default type url for WxLogin
+         * Gets the default type url for WxLoginArgs
          * @function getTypeUrl
-         * @memberof pbauth.WxLogin
+         * @memberof pbauth.WxLoginArgs
          * @static
          * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns {string} The default type url
          */
-    WxLogin.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+    WxLoginArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
       if (typeUrlPrefix === undefined) {
         typeUrlPrefix = 'type.googleapis.com'
       }
-      return typeUrlPrefix + '/pbauth.WxLogin'
+      return typeUrlPrefix + '/pbauth.WxLoginArgs'
     }
 
-    return WxLogin
-  })()
-
-  pbauth.WxLoginReply = (function() {
-    /**
-         * Properties of a WxLoginReply.
-         * @memberof pbauth
-         * @interface IWxLoginReply
-         * @property {string|null} [openid] WxLoginReply openid
-         */
-
-    /**
-         * Constructs a new WxLoginReply.
-         * @memberof pbauth
-         * @classdesc Represents a WxLoginReply.
-         * @implements IWxLoginReply
-         * @constructor
-         * @param {pbauth.IWxLoginReply=} [properties] Properties to set
-         */
-    function WxLoginReply(properties) {
-      if (properties) {
-        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
-          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
-        }
-      }
-    }
-
-    /**
-         * WxLoginReply openid.
-         * @member {string} openid
-         * @memberof pbauth.WxLoginReply
-         * @instance
-         */
-    WxLoginReply.prototype.openid = ''
-
-    /**
-         * Creates a new WxLoginReply instance using the specified properties.
-         * @function create
-         * @memberof pbauth.WxLoginReply
-         * @static
-         * @param {pbauth.IWxLoginReply=} [properties] Properties to set
-         * @returns {pbauth.WxLoginReply} WxLoginReply instance
-         */
-    WxLoginReply.create = function create(properties) {
-      return new WxLoginReply(properties)
-    }
-
-    /**
-         * Encodes the specified WxLoginReply message. Does not implicitly {@link pbauth.WxLoginReply.verify|verify} messages.
-         * @function encode
-         * @memberof pbauth.WxLoginReply
-         * @static
-         * @param {pbauth.IWxLoginReply} message WxLoginReply message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-    WxLoginReply.encode = function encode(message, writer) {
-      if (!writer) { writer = $Writer.create() }
-      if (message.openid != null && Object.hasOwnProperty.call(message, 'openid')) { writer.uint32(/* id 1, wireType 2 =*/10).string(message.openid) }
-      return writer
-    }
-
-    /**
-         * Encodes the specified WxLoginReply message, length delimited. Does not implicitly {@link pbauth.WxLoginReply.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof pbauth.WxLoginReply
-         * @static
-         * @param {pbauth.IWxLoginReply} message WxLoginReply message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-    WxLoginReply.encodeDelimited = function encodeDelimited(message, writer) {
-      return this.encode(message, writer).ldelim()
-    }
-
-    /**
-         * Decodes a WxLoginReply message from the specified reader or buffer.
-         * @function decode
-         * @memberof pbauth.WxLoginReply
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {pbauth.WxLoginReply} WxLoginReply
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-    WxLoginReply.decode = function decode(reader, length) {
-      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
-      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbauth.WxLoginReply()
-      while (reader.pos < end) {
-        var tag = reader.uint32()
-        switch (tag >>> 3) {
-          case 1: {
-            message.openid = reader.string()
-            break
-          }
-          default:
-            reader.skipType(tag & 7)
-            break
-        }
-      }
-      return message
-    }
-
-    /**
-         * Decodes a WxLoginReply message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof pbauth.WxLoginReply
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {pbauth.WxLoginReply} WxLoginReply
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-    WxLoginReply.decodeDelimited = function decodeDelimited(reader) {
-      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
-      return this.decode(reader, reader.uint32())
-    }
-
-    /**
-         * Verifies a WxLoginReply message.
-         * @function verify
-         * @memberof pbauth.WxLoginReply
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-    WxLoginReply.verify = function verify(message) {
-      if (typeof message !== 'object' || message === null) { return 'object expected' }
-      if (message.openid != null && message.hasOwnProperty('openid')) {
-        if (!$util.isString(message.openid)) { return 'openid: string expected' }
-      }
-      return null
-    }
-
-    /**
-         * Creates a WxLoginReply message from a plain object. Also converts values to their respective internal types.
-         * @function fromObject
-         * @memberof pbauth.WxLoginReply
-         * @static
-         * @param {Object.<string,*>} object Plain object
-         * @returns {pbauth.WxLoginReply} WxLoginReply
-         */
-    WxLoginReply.fromObject = function fromObject(object) {
-      if (object instanceof $root.pbauth.WxLoginReply) { return object }
-      var message = new $root.pbauth.WxLoginReply()
-      if (object.openid != null) { message.openid = String(object.openid) }
-      return message
-    }
-
-    /**
-         * Creates a plain object from a WxLoginReply message. Also converts values to other types if specified.
-         * @function toObject
-         * @memberof pbauth.WxLoginReply
-         * @static
-         * @param {pbauth.WxLoginReply} message WxLoginReply
-         * @param {$protobuf.IConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-    WxLoginReply.toObject = function toObject(message, options) {
-      if (!options) { options = {} }
-      var object = {}
-      if (options.defaults) { object.openid = '' }
-      if (message.openid != null && message.hasOwnProperty('openid')) { object.openid = message.openid }
-      return object
-    }
-
-    /**
-         * Converts this WxLoginReply to JSON.
-         * @function toJSON
-         * @memberof pbauth.WxLoginReply
-         * @instance
-         * @returns {Object.<string,*>} JSON object
-         */
-    WxLoginReply.prototype.toJSON = function toJSON() {
-      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
-    }
-
-    /**
-         * Gets the default type url for WxLoginReply
-         * @function getTypeUrl
-         * @memberof pbauth.WxLoginReply
-         * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
-         */
-    WxLoginReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-      if (typeUrlPrefix === undefined) {
-        typeUrlPrefix = 'type.googleapis.com'
-      }
-      return typeUrlPrefix + '/pbauth.WxLoginReply'
-    }
-
-    return WxLoginReply
-  })()
-
-  pbauth.ParseTokenArgs = (function() {
-    /**
-         * Properties of a ParseTokenArgs.
-         * @memberof pbauth
-         * @interface IParseTokenArgs
-         * @property {string|null} [token] ParseTokenArgs token
-         */
-
-    /**
-         * Constructs a new ParseTokenArgs.
-         * @memberof pbauth
-         * @classdesc Represents a ParseTokenArgs.
-         * @implements IParseTokenArgs
-         * @constructor
-         * @param {pbauth.IParseTokenArgs=} [properties] Properties to set
-         */
-    function ParseTokenArgs(properties) {
-      if (properties) {
-        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
-          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
-        }
-      }
-    }
-
-    /**
-         * ParseTokenArgs token.
-         * @member {string} token
-         * @memberof pbauth.ParseTokenArgs
-         * @instance
-         */
-    ParseTokenArgs.prototype.token = ''
-
-    /**
-         * Creates a new ParseTokenArgs instance using the specified properties.
-         * @function create
-         * @memberof pbauth.ParseTokenArgs
-         * @static
-         * @param {pbauth.IParseTokenArgs=} [properties] Properties to set
-         * @returns {pbauth.ParseTokenArgs} ParseTokenArgs instance
-         */
-    ParseTokenArgs.create = function create(properties) {
-      return new ParseTokenArgs(properties)
-    }
-
-    /**
-         * Encodes the specified ParseTokenArgs message. Does not implicitly {@link pbauth.ParseTokenArgs.verify|verify} messages.
-         * @function encode
-         * @memberof pbauth.ParseTokenArgs
-         * @static
-         * @param {pbauth.IParseTokenArgs} message ParseTokenArgs message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-    ParseTokenArgs.encode = function encode(message, writer) {
-      if (!writer) { writer = $Writer.create() }
-      if (message.token != null && Object.hasOwnProperty.call(message, 'token')) { writer.uint32(/* id 1, wireType 2 =*/10).string(message.token) }
-      return writer
-    }
-
-    /**
-         * Encodes the specified ParseTokenArgs message, length delimited. Does not implicitly {@link pbauth.ParseTokenArgs.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof pbauth.ParseTokenArgs
-         * @static
-         * @param {pbauth.IParseTokenArgs} message ParseTokenArgs message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-    ParseTokenArgs.encodeDelimited = function encodeDelimited(message, writer) {
-      return this.encode(message, writer).ldelim()
-    }
-
-    /**
-         * Decodes a ParseTokenArgs message from the specified reader or buffer.
-         * @function decode
-         * @memberof pbauth.ParseTokenArgs
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {pbauth.ParseTokenArgs} ParseTokenArgs
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-    ParseTokenArgs.decode = function decode(reader, length) {
-      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
-      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbauth.ParseTokenArgs()
-      while (reader.pos < end) {
-        var tag = reader.uint32()
-        switch (tag >>> 3) {
-          case 1: {
-            message.token = reader.string()
-            break
-          }
-          default:
-            reader.skipType(tag & 7)
-            break
-        }
-      }
-      return message
-    }
-
-    /**
-         * Decodes a ParseTokenArgs message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof pbauth.ParseTokenArgs
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {pbauth.ParseTokenArgs} ParseTokenArgs
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-    ParseTokenArgs.decodeDelimited = function decodeDelimited(reader) {
-      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
-      return this.decode(reader, reader.uint32())
-    }
-
-    /**
-         * Verifies a ParseTokenArgs message.
-         * @function verify
-         * @memberof pbauth.ParseTokenArgs
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-    ParseTokenArgs.verify = function verify(message) {
-      if (typeof message !== 'object' || message === null) { return 'object expected' }
-      if (message.token != null && message.hasOwnProperty('token')) {
-        if (!$util.isString(message.token)) { return 'token: string expected' }
-      }
-      return null
-    }
-
-    /**
-         * Creates a ParseTokenArgs message from a plain object. Also converts values to their respective internal types.
-         * @function fromObject
-         * @memberof pbauth.ParseTokenArgs
-         * @static
-         * @param {Object.<string,*>} object Plain object
-         * @returns {pbauth.ParseTokenArgs} ParseTokenArgs
-         */
-    ParseTokenArgs.fromObject = function fromObject(object) {
-      if (object instanceof $root.pbauth.ParseTokenArgs) { return object }
-      var message = new $root.pbauth.ParseTokenArgs()
-      if (object.token != null) { message.token = String(object.token) }
-      return message
-    }
-
-    /**
-         * Creates a plain object from a ParseTokenArgs message. Also converts values to other types if specified.
-         * @function toObject
-         * @memberof pbauth.ParseTokenArgs
-         * @static
-         * @param {pbauth.ParseTokenArgs} message ParseTokenArgs
-         * @param {$protobuf.IConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-    ParseTokenArgs.toObject = function toObject(message, options) {
-      if (!options) { options = {} }
-      var object = {}
-      if (options.defaults) { object.token = '' }
-      if (message.token != null && message.hasOwnProperty('token')) { object.token = message.token }
-      return object
-    }
-
-    /**
-         * Converts this ParseTokenArgs to JSON.
-         * @function toJSON
-         * @memberof pbauth.ParseTokenArgs
-         * @instance
-         * @returns {Object.<string,*>} JSON object
-         */
-    ParseTokenArgs.prototype.toJSON = function toJSON() {
-      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
-    }
-
-    /**
-         * Gets the default type url for ParseTokenArgs
-         * @function getTypeUrl
-         * @memberof pbauth.ParseTokenArgs
-         * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
-         */
-    ParseTokenArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-      if (typeUrlPrefix === undefined) {
-        typeUrlPrefix = 'type.googleapis.com'
-      }
-      return typeUrlPrefix + '/pbauth.ParseTokenArgs'
-    }
-
-    return ParseTokenArgs
-  })()
-
-  pbauth.ParseTokenReply = (function() {
-    /**
-         * Properties of a ParseTokenReply.
-         * @memberof pbauth
-         * @interface IParseTokenReply
-         * @property {pbcommon.EnumCode|null} [code] ParseTokenReply code
-         * @property {string|null} [newToken] ParseTokenReply newToken
-         * @property {number|Long|null} [id] ParseTokenReply id
-         * @property {number|Long|null} [roleId] ParseTokenReply roleId
-         * @property {number|Long|null} [appId] ParseTokenReply appId
-         */
-
-    /**
-         * Constructs a new ParseTokenReply.
-         * @memberof pbauth
-         * @classdesc Represents a ParseTokenReply.
-         * @implements IParseTokenReply
-         * @constructor
-         * @param {pbauth.IParseTokenReply=} [properties] Properties to set
-         */
-    function ParseTokenReply(properties) {
-      if (properties) {
-        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
-          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
-        }
-      }
-    }
-
-    /**
-         * ParseTokenReply code.
-         * @member {pbcommon.EnumCode} code
-         * @memberof pbauth.ParseTokenReply
-         * @instance
-         */
-    ParseTokenReply.prototype.code = 0
-
-    /**
-         * ParseTokenReply newToken.
-         * @member {string} newToken
-         * @memberof pbauth.ParseTokenReply
-         * @instance
-         */
-    ParseTokenReply.prototype.newToken = ''
-
-    /**
-         * ParseTokenReply id.
-         * @member {number|Long} id
-         * @memberof pbauth.ParseTokenReply
-         * @instance
-         */
-    ParseTokenReply.prototype.id = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
-
-    /**
-         * ParseTokenReply roleId.
-         * @member {number|Long} roleId
-         * @memberof pbauth.ParseTokenReply
-         * @instance
-         */
-    ParseTokenReply.prototype.roleId = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
-
-    /**
-         * ParseTokenReply appId.
-         * @member {number|Long} appId
-         * @memberof pbauth.ParseTokenReply
-         * @instance
-         */
-    ParseTokenReply.prototype.appId = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
-
-    /**
-         * Creates a new ParseTokenReply instance using the specified properties.
-         * @function create
-         * @memberof pbauth.ParseTokenReply
-         * @static
-         * @param {pbauth.IParseTokenReply=} [properties] Properties to set
-         * @returns {pbauth.ParseTokenReply} ParseTokenReply instance
-         */
-    ParseTokenReply.create = function create(properties) {
-      return new ParseTokenReply(properties)
-    }
-
-    /**
-         * Encodes the specified ParseTokenReply message. Does not implicitly {@link pbauth.ParseTokenReply.verify|verify} messages.
-         * @function encode
-         * @memberof pbauth.ParseTokenReply
-         * @static
-         * @param {pbauth.IParseTokenReply} message ParseTokenReply message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-    ParseTokenReply.encode = function encode(message, writer) {
-      if (!writer) { writer = $Writer.create() }
-      if (message.code != null && Object.hasOwnProperty.call(message, 'code')) { writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code) }
-      if (message.newToken != null && Object.hasOwnProperty.call(message, 'newToken')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.newToken) }
-      if (message.id != null && Object.hasOwnProperty.call(message, 'id')) { writer.uint32(/* id 3, wireType 0 =*/24).int64(message.id) }
-      if (message.roleId != null && Object.hasOwnProperty.call(message, 'roleId')) { writer.uint32(/* id 4, wireType 0 =*/32).int64(message.roleId) }
-      if (message.appId != null && Object.hasOwnProperty.call(message, 'appId')) { writer.uint32(/* id 5, wireType 0 =*/40).int64(message.appId) }
-      return writer
-    }
-
-    /**
-         * Encodes the specified ParseTokenReply message, length delimited. Does not implicitly {@link pbauth.ParseTokenReply.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof pbauth.ParseTokenReply
-         * @static
-         * @param {pbauth.IParseTokenReply} message ParseTokenReply message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-    ParseTokenReply.encodeDelimited = function encodeDelimited(message, writer) {
-      return this.encode(message, writer).ldelim()
-    }
-
-    /**
-         * Decodes a ParseTokenReply message from the specified reader or buffer.
-         * @function decode
-         * @memberof pbauth.ParseTokenReply
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {pbauth.ParseTokenReply} ParseTokenReply
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-    ParseTokenReply.decode = function decode(reader, length) {
-      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
-      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbauth.ParseTokenReply()
-      while (reader.pos < end) {
-        var tag = reader.uint32()
-        switch (tag >>> 3) {
-          case 1: {
-            message.code = reader.int32()
-            break
-          }
-          case 2: {
-            message.newToken = reader.string()
-            break
-          }
-          case 3: {
-            message.id = reader.int64()
-            break
-          }
-          case 4: {
-            message.roleId = reader.int64()
-            break
-          }
-          case 5: {
-            message.appId = reader.int64()
-            break
-          }
-          default:
-            reader.skipType(tag & 7)
-            break
-        }
-      }
-      return message
-    }
-
-    /**
-         * Decodes a ParseTokenReply message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof pbauth.ParseTokenReply
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {pbauth.ParseTokenReply} ParseTokenReply
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-    ParseTokenReply.decodeDelimited = function decodeDelimited(reader) {
-      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
-      return this.decode(reader, reader.uint32())
-    }
-
-    /**
-         * Verifies a ParseTokenReply message.
-         * @function verify
-         * @memberof pbauth.ParseTokenReply
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-    ParseTokenReply.verify = function verify(message) {
-      if (typeof message !== 'object' || message === null) { return 'object expected' }
-      if (message.code != null && message.hasOwnProperty('code')) {
-        switch (message.code) {
-          default:
-            return 'code: enum value expected'
-          case 0:
-          case 200:
-          case 500:
-          case 501:
-          case 502:
-          case 503:
-          case 504:
-          case 505:
-          case 1001:
-          case 1002:
-          case 1003:
-          case 1004:
-          case 2002:
-          case 2003:
-          case 2004:
-          case 2005:
-          case 2006:
-          case 2007:
-          case 2008:
-          case 2009:
-          case 2010:
-          case 2011:
-          case 2012:
-          case 2013:
-          case 2014:
-            break
-        }
-      }
-      if (message.newToken != null && message.hasOwnProperty('newToken')) {
-        if (!$util.isString(message.newToken)) { return 'newToken: string expected' }
-      }
-      if (message.id != null && message.hasOwnProperty('id')) {
-        if (!$util.isInteger(message.id) && !(message.id && $util.isInteger(message.id.low) && $util.isInteger(message.id.high))) { return 'id: integer|Long expected' }
-      }
-      if (message.roleId != null && message.hasOwnProperty('roleId')) {
-        if (!$util.isInteger(message.roleId) && !(message.roleId && $util.isInteger(message.roleId.low) && $util.isInteger(message.roleId.high))) { return 'roleId: integer|Long expected' }
-      }
-      if (message.appId != null && message.hasOwnProperty('appId')) {
-        if (!$util.isInteger(message.appId) && !(message.appId && $util.isInteger(message.appId.low) && $util.isInteger(message.appId.high))) { return 'appId: integer|Long expected' }
-      }
-      return null
-    }
-
-    /**
-         * Creates a ParseTokenReply message from a plain object. Also converts values to their respective internal types.
-         * @function fromObject
-         * @memberof pbauth.ParseTokenReply
-         * @static
-         * @param {Object.<string,*>} object Plain object
-         * @returns {pbauth.ParseTokenReply} ParseTokenReply
-         */
-    ParseTokenReply.fromObject = function fromObject(object) {
-      if (object instanceof $root.pbauth.ParseTokenReply) { return object }
-      var message = new $root.pbauth.ParseTokenReply()
-      switch (object.code) {
-        default:
-          if (typeof object.code === 'number') {
-            message.code = object.code
-            break
-          }
-          break
-        case 'None':
-        case 0:
-          message.code = 0
-          break
-        case 'Success':
-        case 200:
-          message.code = 200
-          break
-        case 'Fail':
-        case 500:
-          message.code = 500
-          break
-        case 'Unknown':
-        case 501:
-          message.code = 501
-          break
-        case 'Internal':
-        case 502:
-          message.code = 502
-          break
-        case 'Invalid':
-        case 503:
-          message.code = 503
-          break
-        case 'InvalidParam':
-        case 504:
-          message.code = 504
-          break
-        case 'ParamError':
-        case 505:
-          message.code = 505
-          break
-        case 'FindError':
-        case 1001:
-          message.code = 1001
-          break
-        case 'CreateError':
-        case 1002:
-          message.code = 1002
-          break
-        case 'DeleteError':
-        case 1003:
-          message.code = 1003
-          break
-        case 'UpdateError':
-        case 1004:
-          message.code = 1004
-          break
-        case 'InvalidToken':
-        case 2002:
-          message.code = 2002
-          break
-        case 'InvalidSign':
-        case 2003:
-          message.code = 2003
-          break
-        case 'NotLogin':
-        case 2004:
-          message.code = 2004
-          break
-        case 'LoginTimeout':
-        case 2005:
-          message.code = 2005
-          break
-        case 'LoginError':
-        case 2006:
-          message.code = 2006
-          break
-        case 'LoginForbidden':
-        case 2007:
-          message.code = 2007
-          break
-        case 'LoginExpired':
-        case 2008:
-          message.code = 2008
-          break
-        case 'LoginInvalid':
-        case 2009:
-          message.code = 2009
-          break
-        case 'LoginInvalidPassword':
-        case 2010:
-          message.code = 2010
-          break
-        case 'LoginInvalidUsername':
-        case 2011:
-          message.code = 2011
-          break
-        case 'LoginInvalidEmail':
-        case 2012:
-          message.code = 2012
-          break
-        case 'LoginInvalidPhone':
-        case 2013:
-          message.code = 2013
-          break
-        case 'LoginInvalidUsernameOrEmail':
-        case 2014:
-          message.code = 2014
-          break
-      }
-      if (object.newToken != null) { message.newToken = String(object.newToken) }
-      if (object.id != null) {
-        if ($util.Long) { (message.id = $util.Long.fromValue(object.id)).unsigned = false } else if (typeof object.id === 'string') { message.id = parseInt(object.id, 10) } else if (typeof object.id === 'number') { message.id = object.id } else if (typeof object.id === 'object') { message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber() }
-      }
-      if (object.roleId != null) {
-        if ($util.Long) { (message.roleId = $util.Long.fromValue(object.roleId)).unsigned = false } else if (typeof object.roleId === 'string') { message.roleId = parseInt(object.roleId, 10) } else if (typeof object.roleId === 'number') { message.roleId = object.roleId } else if (typeof object.roleId === 'object') { message.roleId = new $util.LongBits(object.roleId.low >>> 0, object.roleId.high >>> 0).toNumber() }
-      }
-      if (object.appId != null) {
-        if ($util.Long) { (message.appId = $util.Long.fromValue(object.appId)).unsigned = false } else if (typeof object.appId === 'string') { message.appId = parseInt(object.appId, 10) } else if (typeof object.appId === 'number') { message.appId = object.appId } else if (typeof object.appId === 'object') { message.appId = new $util.LongBits(object.appId.low >>> 0, object.appId.high >>> 0).toNumber() }
-      }
-      return message
-    }
-
-    /**
-         * Creates a plain object from a ParseTokenReply message. Also converts values to other types if specified.
-         * @function toObject
-         * @memberof pbauth.ParseTokenReply
-         * @static
-         * @param {pbauth.ParseTokenReply} message ParseTokenReply
-         * @param {$protobuf.IConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-    ParseTokenReply.toObject = function toObject(message, options) {
-      if (!options) { options = {} }
-      var object = {}
-      if (options.defaults) {
-        object.code = options.enums === String ? 'None' : 0
-        object.newToken = ''
-        if ($util.Long) {
-          var long = new $util.Long(0, 0, false)
-          object.id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
-        } else { object.id = options.longs === String ? '0' : 0 }
-        if ($util.Long) {
-          var long = new $util.Long(0, 0, false)
-          object.roleId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
-        } else { object.roleId = options.longs === String ? '0' : 0 }
-        if ($util.Long) {
-          var long = new $util.Long(0, 0, false)
-          object.appId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
-        } else { object.appId = options.longs === String ? '0' : 0 }
-      }
-      if (message.code != null && message.hasOwnProperty('code')) { object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code }
-      if (message.newToken != null && message.hasOwnProperty('newToken')) { object.newToken = message.newToken }
-      if (message.id != null && message.hasOwnProperty('id')) {
-        if (typeof message.id === 'number') { object.id = options.longs === String ? String(message.id) : message.id } else { object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id }
-      }
-      if (message.roleId != null && message.hasOwnProperty('roleId')) {
-        if (typeof message.roleId === 'number') { object.roleId = options.longs === String ? String(message.roleId) : message.roleId } else { object.roleId = options.longs === String ? $util.Long.prototype.toString.call(message.roleId) : options.longs === Number ? new $util.LongBits(message.roleId.low >>> 0, message.roleId.high >>> 0).toNumber() : message.roleId }
-      }
-      if (message.appId != null && message.hasOwnProperty('appId')) {
-        if (typeof message.appId === 'number') { object.appId = options.longs === String ? String(message.appId) : message.appId } else { object.appId = options.longs === String ? $util.Long.prototype.toString.call(message.appId) : options.longs === Number ? new $util.LongBits(message.appId.low >>> 0, message.appId.high >>> 0).toNumber() : message.appId }
-      }
-      return object
-    }
-
-    /**
-         * Converts this ParseTokenReply to JSON.
-         * @function toJSON
-         * @memberof pbauth.ParseTokenReply
-         * @instance
-         * @returns {Object.<string,*>} JSON object
-         */
-    ParseTokenReply.prototype.toJSON = function toJSON() {
-      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
-    }
-
-    /**
-         * Gets the default type url for ParseTokenReply
-         * @function getTypeUrl
-         * @memberof pbauth.ParseTokenReply
-         * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
-         */
-    ParseTokenReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-      if (typeUrlPrefix === undefined) {
-        typeUrlPrefix = 'type.googleapis.com'
-      }
-      return typeUrlPrefix + '/pbauth.ParseTokenReply'
-    }
-
-    return ParseTokenReply
+    return WxLoginArgs
   })()
 
   pbauth.Auth = (function() {
@@ -7592,35 +8211,68 @@ $root.pbauth = (function() {
          */
 
     /**
-         * Callback as used by {@link pbauth.Auth#parseToken}.
+         * Callback as used by {@link pbauth.Auth#phoneLogin}.
          * @memberof pbauth.Auth
-         * @typedef ParseTokenCallback
+         * @typedef PhoneLoginCallback
          * @type {function}
          * @param {Error|null} error Error, if any
-         * @param {pbauth.ParseTokenReply} [response] ParseTokenReply
+         * @param {pbauth.AuthLoginReply} [response] AuthLoginReply
          */
 
     /**
-         * Calls ParseToken.
-         * @function parseToken
+         * Calls PhoneLogin.
+         * @function phoneLogin
          * @memberof pbauth.Auth
          * @instance
-         * @param {pbauth.IParseTokenArgs} request ParseTokenArgs message or plain object
-         * @param {pbauth.Auth.ParseTokenCallback} callback Node-style callback called with the error, if any, and ParseTokenReply
+         * @param {pbauth.IPhoneLoginArgs} request PhoneLoginArgs message or plain object
+         * @param {pbauth.Auth.PhoneLoginCallback} callback Node-style callback called with the error, if any, and AuthLoginReply
          * @returns {undefined}
          * @variation 1
          */
-    Object.defineProperty(Auth.prototype.parseToken = function parseToken(request, callback) {
-      return this.rpcCall(parseToken, $root.pbauth.ParseTokenArgs, $root.pbauth.ParseTokenReply, request, callback)
-    }, 'name', { value: 'ParseToken' })
+    Object.defineProperty(Auth.prototype.phoneLogin = function phoneLogin(request, callback) {
+      return this.rpcCall(phoneLogin, $root.pbauth.PhoneLoginArgs, $root.pbauth.AuthLoginReply, request, callback)
+    }, 'name', { value: 'PhoneLogin' })
 
     /**
-         * Calls ParseToken.
-         * @function parseToken
+         * Calls PhoneLogin.
+         * @function phoneLogin
          * @memberof pbauth.Auth
          * @instance
-         * @param {pbauth.IParseTokenArgs} request ParseTokenArgs message or plain object
-         * @returns {Promise<pbauth.ParseTokenReply>} Promise
+         * @param {pbauth.IPhoneLoginArgs} request PhoneLoginArgs message or plain object
+         * @returns {Promise<pbauth.AuthLoginReply>} Promise
+         * @variation 2
+         */
+
+    /**
+         * Callback as used by {@link pbauth.Auth#wxLogin}.
+         * @memberof pbauth.Auth
+         * @typedef WxLoginCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbauth.AuthLoginReply} [response] AuthLoginReply
+         */
+
+    /**
+         * Calls WxLogin.
+         * @function wxLogin
+         * @memberof pbauth.Auth
+         * @instance
+         * @param {pbauth.IWxLoginArgs} request WxLoginArgs message or plain object
+         * @param {pbauth.Auth.WxLoginCallback} callback Node-style callback called with the error, if any, and AuthLoginReply
+         * @returns {undefined}
+         * @variation 1
+         */
+    Object.defineProperty(Auth.prototype.wxLogin = function wxLogin(request, callback) {
+      return this.rpcCall(wxLogin, $root.pbauth.WxLoginArgs, $root.pbauth.AuthLoginReply, request, callback)
+    }, 'name', { value: 'WxLogin' })
+
+    /**
+         * Calls WxLogin.
+         * @function wxLogin
+         * @memberof pbauth.Auth
+         * @instance
+         * @param {pbauth.IWxLoginArgs} request WxLoginArgs message or plain object
+         * @returns {Promise<pbauth.AuthLoginReply>} Promise
          * @variation 2
          */
 
@@ -7675,11 +8327,14 @@ $root.pbuser = (function() {
          * @property {string|null} [devUuid] UserModel devUuid
          * @property {string|null} [ver] UserModel ver
          * @property {number|null} [isRobt] UserModel isRobt
-         * @property {string|null} [regDate] UserModel regDate
          * @property {string|null} [certName] UserModel certName
          * @property {string|null} [certNo] UserModel certNo
          * @property {boolean|null} [first] UserModel first
          * @property {boolean|null} [isYoungMod] UserModel isYoungMod
+         * @property {pbrole.IRoleModel|null} [roleModel] UserModel roleModel
+         * @property {Array.<pbrole.IRoleModel>|null} [roles] UserModel roles
+         * @property {Array.<pbuser.IUserModel>|null} [fans] UserModel fans
+         * @property {Array.<pbuser.IUserModel>|null} [follows] UserModel follows
          */
 
     /**
@@ -7691,6 +8346,9 @@ $root.pbuser = (function() {
          * @param {pbuser.IUserModel=} [properties] Properties to set
          */
     function UserModel(properties) {
+      this.roles = []
+      this.fans = []
+      this.follows = []
       if (properties) {
         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
           if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
@@ -7955,14 +8613,6 @@ $root.pbuser = (function() {
     UserModel.prototype.isRobt = 0
 
     /**
-         * UserModel regDate.
-         * @member {string} regDate
-         * @memberof pbuser.UserModel
-         * @instance
-         */
-    UserModel.prototype.regDate = ''
-
-    /**
          * UserModel certName.
          * @member {string} certName
          * @memberof pbuser.UserModel
@@ -7993,6 +8643,38 @@ $root.pbuser = (function() {
          * @instance
          */
     UserModel.prototype.isYoungMod = false
+
+    /**
+         * UserModel roleModel.
+         * @member {pbrole.IRoleModel|null|undefined} roleModel
+         * @memberof pbuser.UserModel
+         * @instance
+         */
+    UserModel.prototype.roleModel = null
+
+    /**
+         * UserModel roles.
+         * @member {Array.<pbrole.IRoleModel>} roles
+         * @memberof pbuser.UserModel
+         * @instance
+         */
+    UserModel.prototype.roles = $util.emptyArray
+
+    /**
+         * UserModel fans.
+         * @member {Array.<pbuser.IUserModel>} fans
+         * @memberof pbuser.UserModel
+         * @instance
+         */
+    UserModel.prototype.fans = $util.emptyArray
+
+    /**
+         * UserModel follows.
+         * @member {Array.<pbuser.IUserModel>} follows
+         * @memberof pbuser.UserModel
+         * @instance
+         */
+    UserModel.prototype.follows = $util.emptyArray
 
     /**
          * Creates a new UserModel instance using the specified properties.
@@ -8049,11 +8731,20 @@ $root.pbuser = (function() {
       if (message.devUuid != null && Object.hasOwnProperty.call(message, 'devUuid')) { writer.uint32(/* id 30, wireType 2 =*/242).string(message.devUuid) }
       if (message.ver != null && Object.hasOwnProperty.call(message, 'ver')) { writer.uint32(/* id 31, wireType 2 =*/250).string(message.ver) }
       if (message.isRobt != null && Object.hasOwnProperty.call(message, 'isRobt')) { writer.uint32(/* id 32, wireType 0 =*/256).int32(message.isRobt) }
-      if (message.regDate != null && Object.hasOwnProperty.call(message, 'regDate')) { writer.uint32(/* id 33, wireType 2 =*/266).string(message.regDate) }
       if (message.certName != null && Object.hasOwnProperty.call(message, 'certName')) { writer.uint32(/* id 34, wireType 2 =*/274).string(message.certName) }
       if (message.certNo != null && Object.hasOwnProperty.call(message, 'certNo')) { writer.uint32(/* id 35, wireType 2 =*/282).string(message.certNo) }
       if (message.first != null && Object.hasOwnProperty.call(message, 'first')) { writer.uint32(/* id 36, wireType 0 =*/288).bool(message.first) }
       if (message.isYoungMod != null && Object.hasOwnProperty.call(message, 'isYoungMod')) { writer.uint32(/* id 37, wireType 0 =*/296).bool(message.isYoungMod) }
+      if (message.roleModel != null && Object.hasOwnProperty.call(message, 'roleModel')) { $root.pbrole.RoleModel.encode(message.roleModel, writer.uint32(/* id 38, wireType 2 =*/306).fork()).ldelim() }
+      if (message.roles != null && message.roles.length) {
+        for (var i = 0; i < message.roles.length; ++i) { $root.pbrole.RoleModel.encode(message.roles[i], writer.uint32(/* id 39, wireType 2 =*/314).fork()).ldelim() }
+      }
+      if (message.fans != null && message.fans.length) {
+        for (var i = 0; i < message.fans.length; ++i) { $root.pbuser.UserModel.encode(message.fans[i], writer.uint32(/* id 40, wireType 2 =*/322).fork()).ldelim() }
+      }
+      if (message.follows != null && message.follows.length) {
+        for (var i = 0; i < message.follows.length; ++i) { $root.pbuser.UserModel.encode(message.follows[i], writer.uint32(/* id 41, wireType 2 =*/330).fork()).ldelim() }
+      }
       return writer
     }
 
@@ -8215,10 +8906,6 @@ $root.pbuser = (function() {
             message.isRobt = reader.int32()
             break
           }
-          case 33: {
-            message.regDate = reader.string()
-            break
-          }
           case 34: {
             message.certName = reader.string()
             break
@@ -8233,6 +8920,25 @@ $root.pbuser = (function() {
           }
           case 37: {
             message.isYoungMod = reader.bool()
+            break
+          }
+          case 38: {
+            message.roleModel = $root.pbrole.RoleModel.decode(reader, reader.uint32())
+            break
+          }
+          case 39: {
+            if (!(message.roles && message.roles.length)) { message.roles = [] }
+            message.roles.push($root.pbrole.RoleModel.decode(reader, reader.uint32()))
+            break
+          }
+          case 40: {
+            if (!(message.fans && message.fans.length)) { message.fans = [] }
+            message.fans.push($root.pbuser.UserModel.decode(reader, reader.uint32()))
+            break
+          }
+          case 41: {
+            if (!(message.follows && message.follows.length)) { message.follows = [] }
+            message.follows.push($root.pbuser.UserModel.decode(reader, reader.uint32()))
             break
           }
           default:
@@ -8371,9 +9077,6 @@ $root.pbuser = (function() {
       if (message.isRobt != null && message.hasOwnProperty('isRobt')) {
         if (!$util.isInteger(message.isRobt)) { return 'isRobt: integer expected' }
       }
-      if (message.regDate != null && message.hasOwnProperty('regDate')) {
-        if (!$util.isString(message.regDate)) { return 'regDate: string expected' }
-      }
       if (message.certName != null && message.hasOwnProperty('certName')) {
         if (!$util.isString(message.certName)) { return 'certName: string expected' }
       }
@@ -8385,6 +9088,31 @@ $root.pbuser = (function() {
       }
       if (message.isYoungMod != null && message.hasOwnProperty('isYoungMod')) {
         if (typeof message.isYoungMod !== 'boolean') { return 'isYoungMod: boolean expected' }
+      }
+      if (message.roleModel != null && message.hasOwnProperty('roleModel')) {
+        var error = $root.pbrole.RoleModel.verify(message.roleModel)
+        if (error) { return 'roleModel.' + error }
+      }
+      if (message.roles != null && message.hasOwnProperty('roles')) {
+        if (!Array.isArray(message.roles)) { return 'roles: array expected' }
+        for (var i = 0; i < message.roles.length; ++i) {
+          var error = $root.pbrole.RoleModel.verify(message.roles[i])
+          if (error) { return 'roles.' + error }
+        }
+      }
+      if (message.fans != null && message.hasOwnProperty('fans')) {
+        if (!Array.isArray(message.fans)) { return 'fans: array expected' }
+        for (var i = 0; i < message.fans.length; ++i) {
+          var error = $root.pbuser.UserModel.verify(message.fans[i])
+          if (error) { return 'fans.' + error }
+        }
+      }
+      if (message.follows != null && message.hasOwnProperty('follows')) {
+        if (!Array.isArray(message.follows)) { return 'follows: array expected' }
+        for (var i = 0; i < message.follows.length; ++i) {
+          var error = $root.pbuser.UserModel.verify(message.follows[i])
+          if (error) { return 'follows.' + error }
+        }
       }
       return null
     }
@@ -8463,11 +9191,38 @@ $root.pbuser = (function() {
       if (object.devUuid != null) { message.devUuid = String(object.devUuid) }
       if (object.ver != null) { message.ver = String(object.ver) }
       if (object.isRobt != null) { message.isRobt = object.isRobt | 0 }
-      if (object.regDate != null) { message.regDate = String(object.regDate) }
       if (object.certName != null) { message.certName = String(object.certName) }
       if (object.certNo != null) { message.certNo = String(object.certNo) }
       if (object.first != null) { message.first = Boolean(object.first) }
       if (object.isYoungMod != null) { message.isYoungMod = Boolean(object.isYoungMod) }
+      if (object.roleModel != null) {
+        if (typeof object.roleModel !== 'object') { throw TypeError('.pbuser.UserModel.roleModel: object expected') }
+        message.roleModel = $root.pbrole.RoleModel.fromObject(object.roleModel)
+      }
+      if (object.roles) {
+        if (!Array.isArray(object.roles)) { throw TypeError('.pbuser.UserModel.roles: array expected') }
+        message.roles = []
+        for (var i = 0; i < object.roles.length; ++i) {
+          if (typeof object.roles[i] !== 'object') { throw TypeError('.pbuser.UserModel.roles: object expected') }
+          message.roles[i] = $root.pbrole.RoleModel.fromObject(object.roles[i])
+        }
+      }
+      if (object.fans) {
+        if (!Array.isArray(object.fans)) { throw TypeError('.pbuser.UserModel.fans: array expected') }
+        message.fans = []
+        for (var i = 0; i < object.fans.length; ++i) {
+          if (typeof object.fans[i] !== 'object') { throw TypeError('.pbuser.UserModel.fans: object expected') }
+          message.fans[i] = $root.pbuser.UserModel.fromObject(object.fans[i])
+        }
+      }
+      if (object.follows) {
+        if (!Array.isArray(object.follows)) { throw TypeError('.pbuser.UserModel.follows: array expected') }
+        message.follows = []
+        for (var i = 0; i < object.follows.length; ++i) {
+          if (typeof object.follows[i] !== 'object') { throw TypeError('.pbuser.UserModel.follows: object expected') }
+          message.follows[i] = $root.pbuser.UserModel.fromObject(object.follows[i])
+        }
+      }
       return message
     }
 
@@ -8483,6 +9238,11 @@ $root.pbuser = (function() {
     UserModel.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
+      if (options.arrays || options.defaults) {
+        object.roles = []
+        object.fans = []
+        object.follows = []
+      }
       if (options.defaults) {
         if ($util.Long) {
           var long = new $util.Long(0, 0, false)
@@ -8534,11 +9294,11 @@ $root.pbuser = (function() {
         object.devUuid = ''
         object.ver = ''
         object.isRobt = 0
-        object.regDate = ''
         object.certName = ''
         object.certNo = ''
         object.first = false
         object.isYoungMod = false
+        object.roleModel = null
       }
       if (message.id != null && message.hasOwnProperty('id')) {
         if (typeof message.id === 'number') { object.id = options.longs === String ? String(message.id) : message.id } else { object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id }
@@ -8584,11 +9344,23 @@ $root.pbuser = (function() {
       if (message.devUuid != null && message.hasOwnProperty('devUuid')) { object.devUuid = message.devUuid }
       if (message.ver != null && message.hasOwnProperty('ver')) { object.ver = message.ver }
       if (message.isRobt != null && message.hasOwnProperty('isRobt')) { object.isRobt = message.isRobt }
-      if (message.regDate != null && message.hasOwnProperty('regDate')) { object.regDate = message.regDate }
       if (message.certName != null && message.hasOwnProperty('certName')) { object.certName = message.certName }
       if (message.certNo != null && message.hasOwnProperty('certNo')) { object.certNo = message.certNo }
       if (message.first != null && message.hasOwnProperty('first')) { object.first = message.first }
       if (message.isYoungMod != null && message.hasOwnProperty('isYoungMod')) { object.isYoungMod = message.isYoungMod }
+      if (message.roleModel != null && message.hasOwnProperty('roleModel')) { object.roleModel = $root.pbrole.RoleModel.toObject(message.roleModel, options) }
+      if (message.roles && message.roles.length) {
+        object.roles = []
+        for (var j = 0; j < message.roles.length; ++j) { object.roles[j] = $root.pbrole.RoleModel.toObject(message.roles[j], options) }
+      }
+      if (message.fans && message.fans.length) {
+        object.fans = []
+        for (var j = 0; j < message.fans.length; ++j) { object.fans[j] = $root.pbuser.UserModel.toObject(message.fans[j], options) }
+      }
+      if (message.follows && message.follows.length) {
+        object.follows = []
+        for (var j = 0; j < message.follows.length; ++j) { object.follows[j] = $root.pbuser.UserModel.toObject(message.follows[j], options) }
+      }
       return object
     }
 
@@ -8646,6 +9418,7 @@ $root.pbuser = (function() {
      * @property {number} Phone=2 Phone value
      * @property {number} Email=3 Email value
      * @property {number} Admin=4 Admin value
+     * @property {number} Anonymously=5 Anonymously value
      */
   pbuser.AccountType = (function() {
     var valuesById = {}; var values = Object.create(valuesById)
@@ -8654,6 +9427,7 @@ $root.pbuser = (function() {
     values[valuesById[2] = 'Phone'] = 2
     values[valuesById[3] = 'Email'] = 3
     values[valuesById[4] = 'Admin'] = 4
+    values[valuesById[5] = 'Anonymously'] = 5
     return values
   })()
 
@@ -9072,6 +9846,7 @@ $root.pbuser = (function() {
             return 'code: enum value expected'
           case 0:
           case 200:
+          case 403:
           case 500:
           case 501:
           case 502:
@@ -9095,6 +9870,11 @@ $root.pbuser = (function() {
           case 2012:
           case 2013:
           case 2014:
+          case 3001:
+          case 3002:
+          case 3003:
+          case 5001:
+          case 5002:
             break
         }
       }
@@ -9143,6 +9923,10 @@ $root.pbuser = (function() {
         case 'Success':
         case 200:
           message.code = 200
+          break
+        case 'Forbidden':
+        case 403:
+          message.code = 403
           break
         case 'Fail':
         case 500:
@@ -9236,6 +10020,26 @@ $root.pbuser = (function() {
         case 2014:
           message.code = 2014
           break
+        case 'RoleIsNotExist':
+        case 3001:
+          message.code = 3001
+          break
+        case 'UserIsExist':
+        case 3002:
+          message.code = 3002
+          break
+        case 'UserIsBan':
+        case 3003:
+          message.code = 3003
+          break
+        case 'TalkIsBan':
+        case 5001:
+          message.code = 5001
+          break
+        case 'EnterRoomErr':
+        case 5002:
+          message.code = 5002
+          break
       }
       if (object.msg != null) { message.msg = String(object.msg) }
       if (object.data != null) {
@@ -9318,6 +10122,307 @@ $root.pbuser = (function() {
     }
 
     return FindUserReply
+  })()
+
+  pbuser.FindUserFansAndFollowsArgs = (function() {
+    /**
+         * Properties of a FindUserFansAndFollowsArgs.
+         * @memberof pbuser
+         * @interface IFindUserFansAndFollowsArgs
+         * @property {pbcommon.IPageInfo|null} [pageInfo] FindUserFansAndFollowsArgs pageInfo
+         * @property {number|Long|null} [userId] FindUserFansAndFollowsArgs userId
+         * @property {pbuser.FindUserFansAndFollowsArgs.findType|null} [type] FindUserFansAndFollowsArgs type
+         * @property {string|null} [query] FindUserFansAndFollowsArgs query
+         */
+
+    /**
+         * Constructs a new FindUserFansAndFollowsArgs.
+         * @memberof pbuser
+         * @classdesc Represents a FindUserFansAndFollowsArgs.
+         * @implements IFindUserFansAndFollowsArgs
+         * @constructor
+         * @param {pbuser.IFindUserFansAndFollowsArgs=} [properties] Properties to set
+         */
+    function FindUserFansAndFollowsArgs(properties) {
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * FindUserFansAndFollowsArgs pageInfo.
+         * @member {pbcommon.IPageInfo|null|undefined} pageInfo
+         * @memberof pbuser.FindUserFansAndFollowsArgs
+         * @instance
+         */
+    FindUserFansAndFollowsArgs.prototype.pageInfo = null
+
+    /**
+         * FindUserFansAndFollowsArgs userId.
+         * @member {number|Long} userId
+         * @memberof pbuser.FindUserFansAndFollowsArgs
+         * @instance
+         */
+    FindUserFansAndFollowsArgs.prototype.userId = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+
+    /**
+         * FindUserFansAndFollowsArgs type.
+         * @member {pbuser.FindUserFansAndFollowsArgs.findType} type
+         * @memberof pbuser.FindUserFansAndFollowsArgs
+         * @instance
+         */
+    FindUserFansAndFollowsArgs.prototype.type = 0
+
+    /**
+         * FindUserFansAndFollowsArgs query.
+         * @member {string} query
+         * @memberof pbuser.FindUserFansAndFollowsArgs
+         * @instance
+         */
+    FindUserFansAndFollowsArgs.prototype.query = ''
+
+    /**
+         * Creates a new FindUserFansAndFollowsArgs instance using the specified properties.
+         * @function create
+         * @memberof pbuser.FindUserFansAndFollowsArgs
+         * @static
+         * @param {pbuser.IFindUserFansAndFollowsArgs=} [properties] Properties to set
+         * @returns {pbuser.FindUserFansAndFollowsArgs} FindUserFansAndFollowsArgs instance
+         */
+    FindUserFansAndFollowsArgs.create = function create(properties) {
+      return new FindUserFansAndFollowsArgs(properties)
+    }
+
+    /**
+         * Encodes the specified FindUserFansAndFollowsArgs message. Does not implicitly {@link pbuser.FindUserFansAndFollowsArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbuser.FindUserFansAndFollowsArgs
+         * @static
+         * @param {pbuser.IFindUserFansAndFollowsArgs} message FindUserFansAndFollowsArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    FindUserFansAndFollowsArgs.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.pageInfo != null && Object.hasOwnProperty.call(message, 'pageInfo')) { $root.pbcommon.PageInfo.encode(message.pageInfo, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim() }
+      if (message.userId != null && Object.hasOwnProperty.call(message, 'userId')) { writer.uint32(/* id 2, wireType 0 =*/16).int64(message.userId) }
+      if (message.type != null && Object.hasOwnProperty.call(message, 'type')) { writer.uint32(/* id 3, wireType 0 =*/24).int32(message.type) }
+      if (message.query != null && Object.hasOwnProperty.call(message, 'query')) { writer.uint32(/* id 4, wireType 2 =*/34).string(message.query) }
+      return writer
+    }
+
+    /**
+         * Encodes the specified FindUserFansAndFollowsArgs message, length delimited. Does not implicitly {@link pbuser.FindUserFansAndFollowsArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbuser.FindUserFansAndFollowsArgs
+         * @static
+         * @param {pbuser.IFindUserFansAndFollowsArgs} message FindUserFansAndFollowsArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    FindUserFansAndFollowsArgs.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes a FindUserFansAndFollowsArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbuser.FindUserFansAndFollowsArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbuser.FindUserFansAndFollowsArgs} FindUserFansAndFollowsArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    FindUserFansAndFollowsArgs.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbuser.FindUserFansAndFollowsArgs()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            message.pageInfo = $root.pbcommon.PageInfo.decode(reader, reader.uint32())
+            break
+          }
+          case 2: {
+            message.userId = reader.int64()
+            break
+          }
+          case 3: {
+            message.type = reader.int32()
+            break
+          }
+          case 4: {
+            message.query = reader.string()
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes a FindUserFansAndFollowsArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbuser.FindUserFansAndFollowsArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbuser.FindUserFansAndFollowsArgs} FindUserFansAndFollowsArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    FindUserFansAndFollowsArgs.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies a FindUserFansAndFollowsArgs message.
+         * @function verify
+         * @memberof pbuser.FindUserFansAndFollowsArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    FindUserFansAndFollowsArgs.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.pageInfo != null && message.hasOwnProperty('pageInfo')) {
+        var error = $root.pbcommon.PageInfo.verify(message.pageInfo)
+        if (error) { return 'pageInfo.' + error }
+      }
+      if (message.userId != null && message.hasOwnProperty('userId')) {
+        if (!$util.isInteger(message.userId) && !(message.userId && $util.isInteger(message.userId.low) && $util.isInteger(message.userId.high))) { return 'userId: integer|Long expected' }
+      }
+      if (message.type != null && message.hasOwnProperty('type')) {
+        switch (message.type) {
+          default:
+            return 'type: enum value expected'
+          case 0:
+          case 1:
+            break
+        }
+      }
+      if (message.query != null && message.hasOwnProperty('query')) {
+        if (!$util.isString(message.query)) { return 'query: string expected' }
+      }
+      return null
+    }
+
+    /**
+         * Creates a FindUserFansAndFollowsArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbuser.FindUserFansAndFollowsArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbuser.FindUserFansAndFollowsArgs} FindUserFansAndFollowsArgs
+         */
+    FindUserFansAndFollowsArgs.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbuser.FindUserFansAndFollowsArgs) { return object }
+      var message = new $root.pbuser.FindUserFansAndFollowsArgs()
+      if (object.pageInfo != null) {
+        if (typeof object.pageInfo !== 'object') { throw TypeError('.pbuser.FindUserFansAndFollowsArgs.pageInfo: object expected') }
+        message.pageInfo = $root.pbcommon.PageInfo.fromObject(object.pageInfo)
+      }
+      if (object.userId != null) {
+        if ($util.Long) { (message.userId = $util.Long.fromValue(object.userId)).unsigned = false } else if (typeof object.userId === 'string') { message.userId = parseInt(object.userId, 10) } else if (typeof object.userId === 'number') { message.userId = object.userId } else if (typeof object.userId === 'object') { message.userId = new $util.LongBits(object.userId.low >>> 0, object.userId.high >>> 0).toNumber() }
+      }
+      switch (object.type) {
+        default:
+          if (typeof object.type === 'number') {
+            message.type = object.type
+            break
+          }
+          break
+        case 'fans':
+        case 0:
+          message.type = 0
+          break
+        case 'follows':
+        case 1:
+          message.type = 1
+          break
+      }
+      if (object.query != null) { message.query = String(object.query) }
+      return message
+    }
+
+    /**
+         * Creates a plain object from a FindUserFansAndFollowsArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbuser.FindUserFansAndFollowsArgs
+         * @static
+         * @param {pbuser.FindUserFansAndFollowsArgs} message FindUserFansAndFollowsArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    FindUserFansAndFollowsArgs.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.defaults) {
+        object.pageInfo = null
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.userId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.userId = options.longs === String ? '0' : 0 }
+        object.type = options.enums === String ? 'fans' : 0
+        object.query = ''
+      }
+      if (message.pageInfo != null && message.hasOwnProperty('pageInfo')) { object.pageInfo = $root.pbcommon.PageInfo.toObject(message.pageInfo, options) }
+      if (message.userId != null && message.hasOwnProperty('userId')) {
+        if (typeof message.userId === 'number') { object.userId = options.longs === String ? String(message.userId) : message.userId } else { object.userId = options.longs === String ? $util.Long.prototype.toString.call(message.userId) : options.longs === Number ? new $util.LongBits(message.userId.low >>> 0, message.userId.high >>> 0).toNumber() : message.userId }
+      }
+      if (message.type != null && message.hasOwnProperty('type')) { object.type = options.enums === String ? $root.pbuser.FindUserFansAndFollowsArgs.findType[message.type] === undefined ? message.type : $root.pbuser.FindUserFansAndFollowsArgs.findType[message.type] : message.type }
+      if (message.query != null && message.hasOwnProperty('query')) { object.query = message.query }
+      return object
+    }
+
+    /**
+         * Converts this FindUserFansAndFollowsArgs to JSON.
+         * @function toJSON
+         * @memberof pbuser.FindUserFansAndFollowsArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    FindUserFansAndFollowsArgs.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for FindUserFansAndFollowsArgs
+         * @function getTypeUrl
+         * @memberof pbuser.FindUserFansAndFollowsArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    FindUserFansAndFollowsArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/pbuser.FindUserFansAndFollowsArgs'
+    }
+
+    /**
+         * findType enum.
+         * @name pbuser.FindUserFansAndFollowsArgs.findType
+         * @enum {number}
+         * @property {number} fans=0 fans value
+         * @property {number} follows=1 follows value
+         */
+    FindUserFansAndFollowsArgs.findType = (function() {
+      var valuesById = {}; var values = Object.create(valuesById)
+      values[valuesById[0] = 'fans'] = 0
+      values[valuesById[1] = 'follows'] = 1
+      return values
+    })()
+
+    return FindUserFansAndFollowsArgs
   })()
 
   pbuser.User = (function() {
@@ -9479,6 +10584,39 @@ $root.pbuser = (function() {
          * @memberof pbuser.User
          * @instance
          * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbuser.FindUserReply>} Promise
+         * @variation 2
+         */
+
+    /**
+         * Callback as used by {@link pbuser.User#findUser}.
+         * @memberof pbuser.User
+         * @typedef FindUserCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbuser.FindUserReply} [response] FindUserReply
+         */
+
+    /**
+         * Calls FindUser.
+         * @function findUser
+         * @memberof pbuser.User
+         * @instance
+         * @param {pbcommon.IEmpty} request Empty message or plain object
+         * @param {pbuser.User.FindUserCallback} callback Node-style callback called with the error, if any, and FindUserReply
+         * @returns {undefined}
+         * @variation 1
+         */
+    Object.defineProperty(User.prototype.findUser = function findUser(request, callback) {
+      return this.rpcCall(findUser, $root.pbcommon.Empty, $root.pbuser.FindUserReply, request, callback)
+    }, 'name', { value: 'FindUser' })
+
+    /**
+         * Calls FindUser.
+         * @function findUser
+         * @memberof pbuser.User
+         * @instance
+         * @param {pbcommon.IEmpty} request Empty message or plain object
          * @returns {Promise<pbuser.FindUserReply>} Promise
          * @variation 2
          */
@@ -9858,7 +10996,6 @@ $root.httpgate = (function() {
          * @property {pbcommon.EnumCode|null} [code] HttpResponse code
          * @property {string|null} [msg] HttpResponse msg
          * @property {Uint8Array|null} [data] HttpResponse data
-         * @property {string|null} [newToken] HttpResponse newToken
          */
 
     /**
@@ -9902,14 +11039,6 @@ $root.httpgate = (function() {
     HttpResponse.prototype.data = $util.newBuffer([])
 
     /**
-         * HttpResponse newToken.
-         * @member {string} newToken
-         * @memberof httpgate.HttpResponse
-         * @instance
-         */
-    HttpResponse.prototype.newToken = ''
-
-    /**
          * Creates a new HttpResponse instance using the specified properties.
          * @function create
          * @memberof httpgate.HttpResponse
@@ -9935,7 +11064,6 @@ $root.httpgate = (function() {
       if (message.code != null && Object.hasOwnProperty.call(message, 'code')) { writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code) }
       if (message.msg != null && Object.hasOwnProperty.call(message, 'msg')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg) }
       if (message.data != null && Object.hasOwnProperty.call(message, 'data')) { writer.uint32(/* id 3, wireType 2 =*/26).bytes(message.data) }
-      if (message.newToken != null && Object.hasOwnProperty.call(message, 'newToken')) { writer.uint32(/* id 4, wireType 2 =*/34).string(message.newToken) }
       return writer
     }
 
@@ -9981,10 +11109,6 @@ $root.httpgate = (function() {
             message.data = reader.bytes()
             break
           }
-          case 4: {
-            message.newToken = reader.string()
-            break
-          }
           default:
             reader.skipType(tag & 7)
             break
@@ -10024,6 +11148,7 @@ $root.httpgate = (function() {
             return 'code: enum value expected'
           case 0:
           case 200:
+          case 403:
           case 500:
           case 501:
           case 502:
@@ -10047,6 +11172,11 @@ $root.httpgate = (function() {
           case 2012:
           case 2013:
           case 2014:
+          case 3001:
+          case 3002:
+          case 3003:
+          case 5001:
+          case 5002:
             break
         }
       }
@@ -10055,9 +11185,6 @@ $root.httpgate = (function() {
       }
       if (message.data != null && message.hasOwnProperty('data')) {
         if (!(message.data && typeof message.data.length === 'number' || $util.isString(message.data))) { return 'data: buffer expected' }
-      }
-      if (message.newToken != null && message.hasOwnProperty('newToken')) {
-        if (!$util.isString(message.newToken)) { return 'newToken: string expected' }
       }
       return null
     }
@@ -10087,6 +11214,10 @@ $root.httpgate = (function() {
         case 'Success':
         case 200:
           message.code = 200
+          break
+        case 'Forbidden':
+        case 403:
+          message.code = 403
           break
         case 'Fail':
         case 500:
@@ -10180,12 +11311,31 @@ $root.httpgate = (function() {
         case 2014:
           message.code = 2014
           break
+        case 'RoleIsNotExist':
+        case 3001:
+          message.code = 3001
+          break
+        case 'UserIsExist':
+        case 3002:
+          message.code = 3002
+          break
+        case 'UserIsBan':
+        case 3003:
+          message.code = 3003
+          break
+        case 'TalkIsBan':
+        case 5001:
+          message.code = 5001
+          break
+        case 'EnterRoomErr':
+        case 5002:
+          message.code = 5002
+          break
       }
       if (object.msg != null) { message.msg = String(object.msg) }
       if (object.data != null) {
         if (typeof object.data === 'string') { $util.base64.decode(object.data, message.data = $util.newBuffer($util.base64.length(object.data)), 0) } else if (object.data.length >= 0) { message.data = object.data }
       }
-      if (object.newToken != null) { message.newToken = String(object.newToken) }
       return message
     }
 
@@ -10208,12 +11358,10 @@ $root.httpgate = (function() {
           object.data = []
           if (options.bytes !== Array) { object.data = $util.newBuffer(object.data) }
         }
-        object.newToken = ''
       }
       if (message.code != null && message.hasOwnProperty('code')) { object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code }
       if (message.msg != null && message.hasOwnProperty('msg')) { object.msg = message.msg }
       if (message.data != null && message.hasOwnProperty('data')) { object.data = options.bytes === String ? $util.base64.encode(message.data, 0, message.data.length) : options.bytes === Array ? Array.prototype.slice.call(message.data) : message.data }
-      if (message.newToken != null && message.hasOwnProperty('newToken')) { object.newToken = message.newToken }
       return object
     }
 
@@ -10269,6 +11417,7 @@ $root.pbuserOauth = (function() {
          * @property {string|null} [openId] UserOauthModel openId
          * @property {string|null} [unionId] UserOauthModel unionId
          * @property {number|Long|null} [appId] UserOauthModel appId
+         * @property {number|Long|null} [userId] UserOauthModel userId
          */
 
     /**
@@ -10344,6 +11493,14 @@ $root.pbuserOauth = (function() {
     UserOauthModel.prototype.appId = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
+         * UserOauthModel userId.
+         * @member {number|Long} userId
+         * @memberof pbuserOauth.UserOauthModel
+         * @instance
+         */
+    UserOauthModel.prototype.userId = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+
+    /**
          * Creates a new UserOauthModel instance using the specified properties.
          * @function create
          * @memberof pbuserOauth.UserOauthModel
@@ -10373,6 +11530,7 @@ $root.pbuserOauth = (function() {
       if (message.openId != null && Object.hasOwnProperty.call(message, 'openId')) { writer.uint32(/* id 5, wireType 2 =*/42).string(message.openId) }
       if (message.unionId != null && Object.hasOwnProperty.call(message, 'unionId')) { writer.uint32(/* id 6, wireType 2 =*/50).string(message.unionId) }
       if (message.appId != null && Object.hasOwnProperty.call(message, 'appId')) { writer.uint32(/* id 7, wireType 0 =*/56).int64(message.appId) }
+      if (message.userId != null && Object.hasOwnProperty.call(message, 'userId')) { writer.uint32(/* id 8, wireType 0 =*/64).int64(message.userId) }
       return writer
     }
 
@@ -10432,6 +11590,10 @@ $root.pbuserOauth = (function() {
           }
           case 7: {
             message.appId = reader.int64()
+            break
+          }
+          case 8: {
+            message.userId = reader.int64()
             break
           }
           default:
@@ -10495,6 +11657,9 @@ $root.pbuserOauth = (function() {
       if (message.appId != null && message.hasOwnProperty('appId')) {
         if (!$util.isInteger(message.appId) && !(message.appId && $util.isInteger(message.appId.low) && $util.isInteger(message.appId.high))) { return 'appId: integer|Long expected' }
       }
+      if (message.userId != null && message.hasOwnProperty('userId')) {
+        if (!$util.isInteger(message.userId) && !(message.userId && $util.isInteger(message.userId.low) && $util.isInteger(message.userId.high))) { return 'userId: integer|Long expected' }
+      }
       return null
     }
 
@@ -10539,6 +11704,9 @@ $root.pbuserOauth = (function() {
       if (object.appId != null) {
         if ($util.Long) { (message.appId = $util.Long.fromValue(object.appId)).unsigned = false } else if (typeof object.appId === 'string') { message.appId = parseInt(object.appId, 10) } else if (typeof object.appId === 'number') { message.appId = object.appId } else if (typeof object.appId === 'object') { message.appId = new $util.LongBits(object.appId.low >>> 0, object.appId.high >>> 0).toNumber() }
       }
+      if (object.userId != null) {
+        if ($util.Long) { (message.userId = $util.Long.fromValue(object.userId)).unsigned = false } else if (typeof object.userId === 'string') { message.userId = parseInt(object.userId, 10) } else if (typeof object.userId === 'number') { message.userId = object.userId } else if (typeof object.userId === 'object') { message.userId = new $util.LongBits(object.userId.low >>> 0, object.userId.high >>> 0).toNumber() }
+      }
       return message
     }
 
@@ -10568,6 +11736,10 @@ $root.pbuserOauth = (function() {
           var long = new $util.Long(0, 0, false)
           object.appId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
         } else { object.appId = options.longs === String ? '0' : 0 }
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.userId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.userId = options.longs === String ? '0' : 0 }
       }
       if (message.id != null && message.hasOwnProperty('id')) {
         if (typeof message.id === 'number') { object.id = options.longs === String ? String(message.id) : message.id } else { object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id }
@@ -10579,6 +11751,9 @@ $root.pbuserOauth = (function() {
       if (message.unionId != null && message.hasOwnProperty('unionId')) { object.unionId = message.unionId }
       if (message.appId != null && message.hasOwnProperty('appId')) {
         if (typeof message.appId === 'number') { object.appId = options.longs === String ? String(message.appId) : message.appId } else { object.appId = options.longs === String ? $util.Long.prototype.toString.call(message.appId) : options.longs === Number ? new $util.LongBits(message.appId.low >>> 0, message.appId.high >>> 0).toNumber() : message.appId }
+      }
+      if (message.userId != null && message.hasOwnProperty('userId')) {
+        if (typeof message.userId === 'number') { object.userId = options.longs === String ? String(message.userId) : message.userId } else { object.userId = options.longs === String ? $util.Long.prototype.toString.call(message.userId) : options.longs === Number ? new $util.LongBits(message.userId.low >>> 0, message.userId.high >>> 0).toNumber() : message.userId }
       }
       return object
     }
@@ -11043,6 +12218,7 @@ $root.pbuserOauth = (function() {
             return 'code: enum value expected'
           case 0:
           case 200:
+          case 403:
           case 500:
           case 501:
           case 502:
@@ -11066,6 +12242,11 @@ $root.pbuserOauth = (function() {
           case 2012:
           case 2013:
           case 2014:
+          case 3001:
+          case 3002:
+          case 3003:
+          case 5001:
+          case 5002:
             break
         }
       }
@@ -11114,6 +12295,10 @@ $root.pbuserOauth = (function() {
         case 'Success':
         case 200:
           message.code = 200
+          break
+        case 'Forbidden':
+        case 403:
+          message.code = 403
           break
         case 'Fail':
         case 500:
@@ -11207,6 +12392,26 @@ $root.pbuserOauth = (function() {
         case 2014:
           message.code = 2014
           break
+        case 'RoleIsNotExist':
+        case 3001:
+          message.code = 3001
+          break
+        case 'UserIsExist':
+        case 3002:
+          message.code = 3002
+          break
+        case 'UserIsBan':
+        case 3003:
+          message.code = 3003
+          break
+        case 'TalkIsBan':
+        case 5001:
+          message.code = 5001
+          break
+        case 'EnterRoomErr':
+        case 5002:
+          message.code = 5002
+          break
       }
       if (object.msg != null) { message.msg = String(object.msg) }
       if (object.data != null) {
@@ -11289,6 +12494,391 @@ $root.pbuserOauth = (function() {
     }
 
     return FindUserOauthReply
+  })()
+
+  pbuserOauth.FirstOrCreateUserOauthReply = (function() {
+    /**
+         * Properties of a FirstOrCreateUserOauthReply.
+         * @memberof pbuserOauth
+         * @interface IFirstOrCreateUserOauthReply
+         * @property {pbcommon.EnumCode|null} [code] FirstOrCreateUserOauthReply code
+         * @property {pbuserOauth.IUserOauthModel|null} [userOauth] FirstOrCreateUserOauthReply userOauth
+         */
+
+    /**
+         * Constructs a new FirstOrCreateUserOauthReply.
+         * @memberof pbuserOauth
+         * @classdesc Represents a FirstOrCreateUserOauthReply.
+         * @implements IFirstOrCreateUserOauthReply
+         * @constructor
+         * @param {pbuserOauth.IFirstOrCreateUserOauthReply=} [properties] Properties to set
+         */
+    function FirstOrCreateUserOauthReply(properties) {
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * FirstOrCreateUserOauthReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbuserOauth.FirstOrCreateUserOauthReply
+         * @instance
+         */
+    FirstOrCreateUserOauthReply.prototype.code = 0
+
+    /**
+         * FirstOrCreateUserOauthReply userOauth.
+         * @member {pbuserOauth.IUserOauthModel|null|undefined} userOauth
+         * @memberof pbuserOauth.FirstOrCreateUserOauthReply
+         * @instance
+         */
+    FirstOrCreateUserOauthReply.prototype.userOauth = null
+
+    /**
+         * Creates a new FirstOrCreateUserOauthReply instance using the specified properties.
+         * @function create
+         * @memberof pbuserOauth.FirstOrCreateUserOauthReply
+         * @static
+         * @param {pbuserOauth.IFirstOrCreateUserOauthReply=} [properties] Properties to set
+         * @returns {pbuserOauth.FirstOrCreateUserOauthReply} FirstOrCreateUserOauthReply instance
+         */
+    FirstOrCreateUserOauthReply.create = function create(properties) {
+      return new FirstOrCreateUserOauthReply(properties)
+    }
+
+    /**
+         * Encodes the specified FirstOrCreateUserOauthReply message. Does not implicitly {@link pbuserOauth.FirstOrCreateUserOauthReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbuserOauth.FirstOrCreateUserOauthReply
+         * @static
+         * @param {pbuserOauth.IFirstOrCreateUserOauthReply} message FirstOrCreateUserOauthReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    FirstOrCreateUserOauthReply.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.code != null && Object.hasOwnProperty.call(message, 'code')) { writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code) }
+      if (message.userOauth != null && Object.hasOwnProperty.call(message, 'userOauth')) { $root.pbuserOauth.UserOauthModel.encode(message.userOauth, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim() }
+      return writer
+    }
+
+    /**
+         * Encodes the specified FirstOrCreateUserOauthReply message, length delimited. Does not implicitly {@link pbuserOauth.FirstOrCreateUserOauthReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbuserOauth.FirstOrCreateUserOauthReply
+         * @static
+         * @param {pbuserOauth.IFirstOrCreateUserOauthReply} message FirstOrCreateUserOauthReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    FirstOrCreateUserOauthReply.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes a FirstOrCreateUserOauthReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbuserOauth.FirstOrCreateUserOauthReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbuserOauth.FirstOrCreateUserOauthReply} FirstOrCreateUserOauthReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    FirstOrCreateUserOauthReply.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbuserOauth.FirstOrCreateUserOauthReply()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            message.code = reader.int32()
+            break
+          }
+          case 2: {
+            message.userOauth = $root.pbuserOauth.UserOauthModel.decode(reader, reader.uint32())
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes a FirstOrCreateUserOauthReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbuserOauth.FirstOrCreateUserOauthReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbuserOauth.FirstOrCreateUserOauthReply} FirstOrCreateUserOauthReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    FirstOrCreateUserOauthReply.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies a FirstOrCreateUserOauthReply message.
+         * @function verify
+         * @memberof pbuserOauth.FirstOrCreateUserOauthReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    FirstOrCreateUserOauthReply.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.code != null && message.hasOwnProperty('code')) {
+        switch (message.code) {
+          default:
+            return 'code: enum value expected'
+          case 0:
+          case 200:
+          case 403:
+          case 500:
+          case 501:
+          case 502:
+          case 503:
+          case 504:
+          case 505:
+          case 1001:
+          case 1002:
+          case 1003:
+          case 1004:
+          case 2002:
+          case 2003:
+          case 2004:
+          case 2005:
+          case 2006:
+          case 2007:
+          case 2008:
+          case 2009:
+          case 2010:
+          case 2011:
+          case 2012:
+          case 2013:
+          case 2014:
+          case 3001:
+          case 3002:
+          case 3003:
+          case 5001:
+          case 5002:
+            break
+        }
+      }
+      if (message.userOauth != null && message.hasOwnProperty('userOauth')) {
+        var error = $root.pbuserOauth.UserOauthModel.verify(message.userOauth)
+        if (error) { return 'userOauth.' + error }
+      }
+      return null
+    }
+
+    /**
+         * Creates a FirstOrCreateUserOauthReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbuserOauth.FirstOrCreateUserOauthReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbuserOauth.FirstOrCreateUserOauthReply} FirstOrCreateUserOauthReply
+         */
+    FirstOrCreateUserOauthReply.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbuserOauth.FirstOrCreateUserOauthReply) { return object }
+      var message = new $root.pbuserOauth.FirstOrCreateUserOauthReply()
+      switch (object.code) {
+        default:
+          if (typeof object.code === 'number') {
+            message.code = object.code
+            break
+          }
+          break
+        case 'None':
+        case 0:
+          message.code = 0
+          break
+        case 'Success':
+        case 200:
+          message.code = 200
+          break
+        case 'Forbidden':
+        case 403:
+          message.code = 403
+          break
+        case 'Fail':
+        case 500:
+          message.code = 500
+          break
+        case 'Unknown':
+        case 501:
+          message.code = 501
+          break
+        case 'Internal':
+        case 502:
+          message.code = 502
+          break
+        case 'Invalid':
+        case 503:
+          message.code = 503
+          break
+        case 'InvalidParam':
+        case 504:
+          message.code = 504
+          break
+        case 'ParamError':
+        case 505:
+          message.code = 505
+          break
+        case 'FindError':
+        case 1001:
+          message.code = 1001
+          break
+        case 'CreateError':
+        case 1002:
+          message.code = 1002
+          break
+        case 'DeleteError':
+        case 1003:
+          message.code = 1003
+          break
+        case 'UpdateError':
+        case 1004:
+          message.code = 1004
+          break
+        case 'InvalidToken':
+        case 2002:
+          message.code = 2002
+          break
+        case 'InvalidSign':
+        case 2003:
+          message.code = 2003
+          break
+        case 'NotLogin':
+        case 2004:
+          message.code = 2004
+          break
+        case 'LoginTimeout':
+        case 2005:
+          message.code = 2005
+          break
+        case 'LoginError':
+        case 2006:
+          message.code = 2006
+          break
+        case 'LoginForbidden':
+        case 2007:
+          message.code = 2007
+          break
+        case 'LoginExpired':
+        case 2008:
+          message.code = 2008
+          break
+        case 'LoginInvalid':
+        case 2009:
+          message.code = 2009
+          break
+        case 'LoginInvalidPassword':
+        case 2010:
+          message.code = 2010
+          break
+        case 'LoginInvalidUsername':
+        case 2011:
+          message.code = 2011
+          break
+        case 'LoginInvalidEmail':
+        case 2012:
+          message.code = 2012
+          break
+        case 'LoginInvalidPhone':
+        case 2013:
+          message.code = 2013
+          break
+        case 'LoginInvalidUsernameOrEmail':
+        case 2014:
+          message.code = 2014
+          break
+        case 'RoleIsNotExist':
+        case 3001:
+          message.code = 3001
+          break
+        case 'UserIsExist':
+        case 3002:
+          message.code = 3002
+          break
+        case 'UserIsBan':
+        case 3003:
+          message.code = 3003
+          break
+        case 'TalkIsBan':
+        case 5001:
+          message.code = 5001
+          break
+        case 'EnterRoomErr':
+        case 5002:
+          message.code = 5002
+          break
+      }
+      if (object.userOauth != null) {
+        if (typeof object.userOauth !== 'object') { throw TypeError('.pbuserOauth.FirstOrCreateUserOauthReply.userOauth: object expected') }
+        message.userOauth = $root.pbuserOauth.UserOauthModel.fromObject(object.userOauth)
+      }
+      return message
+    }
+
+    /**
+         * Creates a plain object from a FirstOrCreateUserOauthReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbuserOauth.FirstOrCreateUserOauthReply
+         * @static
+         * @param {pbuserOauth.FirstOrCreateUserOauthReply} message FirstOrCreateUserOauthReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    FirstOrCreateUserOauthReply.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.defaults) {
+        object.code = options.enums === String ? 'None' : 0
+        object.userOauth = null
+      }
+      if (message.code != null && message.hasOwnProperty('code')) { object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code }
+      if (message.userOauth != null && message.hasOwnProperty('userOauth')) { object.userOauth = $root.pbuserOauth.UserOauthModel.toObject(message.userOauth, options) }
+      return object
+    }
+
+    /**
+         * Converts this FirstOrCreateUserOauthReply to JSON.
+         * @function toJSON
+         * @memberof pbuserOauth.FirstOrCreateUserOauthReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    FirstOrCreateUserOauthReply.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for FirstOrCreateUserOauthReply
+         * @function getTypeUrl
+         * @memberof pbuserOauth.FirstOrCreateUserOauthReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    FirstOrCreateUserOauthReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/pbuserOauth.FirstOrCreateUserOauthReply'
+    }
+
+    return FirstOrCreateUserOauthReply
   })()
 
   pbuserOauth.UserOauth = (function() {
@@ -12498,6 +14088,7 @@ $root.pbapp = (function() {
             return 'code: enum value expected'
           case 0:
           case 200:
+          case 403:
           case 500:
           case 501:
           case 502:
@@ -12521,6 +14112,11 @@ $root.pbapp = (function() {
           case 2012:
           case 2013:
           case 2014:
+          case 3001:
+          case 3002:
+          case 3003:
+          case 5001:
+          case 5002:
             break
         }
       }
@@ -12569,6 +14165,10 @@ $root.pbapp = (function() {
         case 'Success':
         case 200:
           message.code = 200
+          break
+        case 'Forbidden':
+        case 403:
+          message.code = 403
           break
         case 'Fail':
         case 500:
@@ -12661,6 +14261,26 @@ $root.pbapp = (function() {
         case 'LoginInvalidUsernameOrEmail':
         case 2014:
           message.code = 2014
+          break
+        case 'RoleIsNotExist':
+        case 3001:
+          message.code = 3001
+          break
+        case 'UserIsExist':
+        case 3002:
+          message.code = 3002
+          break
+        case 'UserIsBan':
+        case 3003:
+          message.code = 3003
+          break
+        case 'TalkIsBan':
+        case 5001:
+          message.code = 5001
+          break
+        case 'EnterRoomErr':
+        case 5002:
+          message.code = 5002
           break
       }
       if (object.msg != null) { message.msg = String(object.msg) }
@@ -13913,6 +15533,7 @@ $root.pbdeviceReport = (function() {
             return 'code: enum value expected'
           case 0:
           case 200:
+          case 403:
           case 500:
           case 501:
           case 502:
@@ -13936,6 +15557,11 @@ $root.pbdeviceReport = (function() {
           case 2012:
           case 2013:
           case 2014:
+          case 3001:
+          case 3002:
+          case 3003:
+          case 5001:
+          case 5002:
             break
         }
       }
@@ -13984,6 +15610,10 @@ $root.pbdeviceReport = (function() {
         case 'Success':
         case 200:
           message.code = 200
+          break
+        case 'Forbidden':
+        case 403:
+          message.code = 403
           break
         case 'Fail':
         case 500:
@@ -14076,6 +15706,26 @@ $root.pbdeviceReport = (function() {
         case 'LoginInvalidUsernameOrEmail':
         case 2014:
           message.code = 2014
+          break
+        case 'RoleIsNotExist':
+        case 3001:
+          message.code = 3001
+          break
+        case 'UserIsExist':
+        case 3002:
+          message.code = 3002
+          break
+        case 'UserIsBan':
+        case 3003:
+          message.code = 3003
+          break
+        case 'TalkIsBan':
+        case 5001:
+          message.code = 5001
+          break
+        case 'EnterRoomErr':
+        case 5002:
+          message.code = 5002
           break
       }
       if (object.msg != null) { message.msg = String(object.msg) }
@@ -14840,6 +16490,587 @@ $root.pbdeviceReport = (function() {
     return AepReportArgs
   })()
 
+  pbdeviceReport.CommandRequest = (function() {
+    /**
+         * Properties of a CommandRequest.
+         * @memberof pbdeviceReport
+         * @interface ICommandRequest
+         * @property {number|Long|null} [timestamp] CommandRequest timestamp
+         * @property {string|null} [tenantId] CommandRequest tenantId
+         * @property {number|null} [taskId] CommandRequest taskId
+         * @property {pbdeviceReport.CommandRequest.IResult|null} [result] CommandRequest result
+         * @property {string|null} [protocol] CommandRequest protocol
+         * @property {string|null} [productId] CommandRequest productId
+         * @property {string|null} [messageType] CommandRequest messageType
+         * @property {string|null} [deviceId] CommandRequest deviceId
+         * @property {string|null} [imei] CommandRequest imei
+         */
+
+    /**
+         * Constructs a new CommandRequest.
+         * @memberof pbdeviceReport
+         * @classdesc Represents a CommandRequest.
+         * @implements ICommandRequest
+         * @constructor
+         * @param {pbdeviceReport.ICommandRequest=} [properties] Properties to set
+         */
+    function CommandRequest(properties) {
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * CommandRequest timestamp.
+         * @member {number|Long} timestamp
+         * @memberof pbdeviceReport.CommandRequest
+         * @instance
+         */
+    CommandRequest.prototype.timestamp = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+
+    /**
+         * CommandRequest tenantId.
+         * @member {string} tenantId
+         * @memberof pbdeviceReport.CommandRequest
+         * @instance
+         */
+    CommandRequest.prototype.tenantId = ''
+
+    /**
+         * CommandRequest taskId.
+         * @member {number} taskId
+         * @memberof pbdeviceReport.CommandRequest
+         * @instance
+         */
+    CommandRequest.prototype.taskId = 0
+
+    /**
+         * CommandRequest result.
+         * @member {pbdeviceReport.CommandRequest.IResult|null|undefined} result
+         * @memberof pbdeviceReport.CommandRequest
+         * @instance
+         */
+    CommandRequest.prototype.result = null
+
+    /**
+         * CommandRequest protocol.
+         * @member {string} protocol
+         * @memberof pbdeviceReport.CommandRequest
+         * @instance
+         */
+    CommandRequest.prototype.protocol = ''
+
+    /**
+         * CommandRequest productId.
+         * @member {string} productId
+         * @memberof pbdeviceReport.CommandRequest
+         * @instance
+         */
+    CommandRequest.prototype.productId = ''
+
+    /**
+         * CommandRequest messageType.
+         * @member {string} messageType
+         * @memberof pbdeviceReport.CommandRequest
+         * @instance
+         */
+    CommandRequest.prototype.messageType = ''
+
+    /**
+         * CommandRequest deviceId.
+         * @member {string} deviceId
+         * @memberof pbdeviceReport.CommandRequest
+         * @instance
+         */
+    CommandRequest.prototype.deviceId = ''
+
+    /**
+         * CommandRequest imei.
+         * @member {string} imei
+         * @memberof pbdeviceReport.CommandRequest
+         * @instance
+         */
+    CommandRequest.prototype.imei = ''
+
+    /**
+         * Creates a new CommandRequest instance using the specified properties.
+         * @function create
+         * @memberof pbdeviceReport.CommandRequest
+         * @static
+         * @param {pbdeviceReport.ICommandRequest=} [properties] Properties to set
+         * @returns {pbdeviceReport.CommandRequest} CommandRequest instance
+         */
+    CommandRequest.create = function create(properties) {
+      return new CommandRequest(properties)
+    }
+
+    /**
+         * Encodes the specified CommandRequest message. Does not implicitly {@link pbdeviceReport.CommandRequest.verify|verify} messages.
+         * @function encode
+         * @memberof pbdeviceReport.CommandRequest
+         * @static
+         * @param {pbdeviceReport.ICommandRequest} message CommandRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    CommandRequest.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.timestamp != null && Object.hasOwnProperty.call(message, 'timestamp')) { writer.uint32(/* id 1, wireType 0 =*/8).int64(message.timestamp) }
+      if (message.tenantId != null && Object.hasOwnProperty.call(message, 'tenantId')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.tenantId) }
+      if (message.taskId != null && Object.hasOwnProperty.call(message, 'taskId')) { writer.uint32(/* id 3, wireType 0 =*/24).int32(message.taskId) }
+      if (message.result != null && Object.hasOwnProperty.call(message, 'result')) { $root.pbdeviceReport.CommandRequest.Result.encode(message.result, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim() }
+      if (message.protocol != null && Object.hasOwnProperty.call(message, 'protocol')) { writer.uint32(/* id 5, wireType 2 =*/42).string(message.protocol) }
+      if (message.productId != null && Object.hasOwnProperty.call(message, 'productId')) { writer.uint32(/* id 6, wireType 2 =*/50).string(message.productId) }
+      if (message.messageType != null && Object.hasOwnProperty.call(message, 'messageType')) { writer.uint32(/* id 7, wireType 2 =*/58).string(message.messageType) }
+      if (message.deviceId != null && Object.hasOwnProperty.call(message, 'deviceId')) { writer.uint32(/* id 8, wireType 2 =*/66).string(message.deviceId) }
+      if (message.imei != null && Object.hasOwnProperty.call(message, 'imei')) { writer.uint32(/* id 9, wireType 2 =*/74).string(message.imei) }
+      return writer
+    }
+
+    /**
+         * Encodes the specified CommandRequest message, length delimited. Does not implicitly {@link pbdeviceReport.CommandRequest.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbdeviceReport.CommandRequest
+         * @static
+         * @param {pbdeviceReport.ICommandRequest} message CommandRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    CommandRequest.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes a CommandRequest message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbdeviceReport.CommandRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbdeviceReport.CommandRequest} CommandRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    CommandRequest.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbdeviceReport.CommandRequest()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            message.timestamp = reader.int64()
+            break
+          }
+          case 2: {
+            message.tenantId = reader.string()
+            break
+          }
+          case 3: {
+            message.taskId = reader.int32()
+            break
+          }
+          case 4: {
+            message.result = $root.pbdeviceReport.CommandRequest.Result.decode(reader, reader.uint32())
+            break
+          }
+          case 5: {
+            message.protocol = reader.string()
+            break
+          }
+          case 6: {
+            message.productId = reader.string()
+            break
+          }
+          case 7: {
+            message.messageType = reader.string()
+            break
+          }
+          case 8: {
+            message.deviceId = reader.string()
+            break
+          }
+          case 9: {
+            message.imei = reader.string()
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes a CommandRequest message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbdeviceReport.CommandRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbdeviceReport.CommandRequest} CommandRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    CommandRequest.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies a CommandRequest message.
+         * @function verify
+         * @memberof pbdeviceReport.CommandRequest
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    CommandRequest.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.timestamp != null && message.hasOwnProperty('timestamp')) {
+        if (!$util.isInteger(message.timestamp) && !(message.timestamp && $util.isInteger(message.timestamp.low) && $util.isInteger(message.timestamp.high))) { return 'timestamp: integer|Long expected' }
+      }
+      if (message.tenantId != null && message.hasOwnProperty('tenantId')) {
+        if (!$util.isString(message.tenantId)) { return 'tenantId: string expected' }
+      }
+      if (message.taskId != null && message.hasOwnProperty('taskId')) {
+        if (!$util.isInteger(message.taskId)) { return 'taskId: integer expected' }
+      }
+      if (message.result != null && message.hasOwnProperty('result')) {
+        var error = $root.pbdeviceReport.CommandRequest.Result.verify(message.result)
+        if (error) { return 'result.' + error }
+      }
+      if (message.protocol != null && message.hasOwnProperty('protocol')) {
+        if (!$util.isString(message.protocol)) { return 'protocol: string expected' }
+      }
+      if (message.productId != null && message.hasOwnProperty('productId')) {
+        if (!$util.isString(message.productId)) { return 'productId: string expected' }
+      }
+      if (message.messageType != null && message.hasOwnProperty('messageType')) {
+        if (!$util.isString(message.messageType)) { return 'messageType: string expected' }
+      }
+      if (message.deviceId != null && message.hasOwnProperty('deviceId')) {
+        if (!$util.isString(message.deviceId)) { return 'deviceId: string expected' }
+      }
+      if (message.imei != null && message.hasOwnProperty('imei')) {
+        if (!$util.isString(message.imei)) { return 'imei: string expected' }
+      }
+      return null
+    }
+
+    /**
+         * Creates a CommandRequest message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbdeviceReport.CommandRequest
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbdeviceReport.CommandRequest} CommandRequest
+         */
+    CommandRequest.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbdeviceReport.CommandRequest) { return object }
+      var message = new $root.pbdeviceReport.CommandRequest()
+      if (object.timestamp != null) {
+        if ($util.Long) { (message.timestamp = $util.Long.fromValue(object.timestamp)).unsigned = false } else if (typeof object.timestamp === 'string') { message.timestamp = parseInt(object.timestamp, 10) } else if (typeof object.timestamp === 'number') { message.timestamp = object.timestamp } else if (typeof object.timestamp === 'object') { message.timestamp = new $util.LongBits(object.timestamp.low >>> 0, object.timestamp.high >>> 0).toNumber() }
+      }
+      if (object.tenantId != null) { message.tenantId = String(object.tenantId) }
+      if (object.taskId != null) { message.taskId = object.taskId | 0 }
+      if (object.result != null) {
+        if (typeof object.result !== 'object') { throw TypeError('.pbdeviceReport.CommandRequest.result: object expected') }
+        message.result = $root.pbdeviceReport.CommandRequest.Result.fromObject(object.result)
+      }
+      if (object.protocol != null) { message.protocol = String(object.protocol) }
+      if (object.productId != null) { message.productId = String(object.productId) }
+      if (object.messageType != null) { message.messageType = String(object.messageType) }
+      if (object.deviceId != null) { message.deviceId = String(object.deviceId) }
+      if (object.imei != null) { message.imei = String(object.imei) }
+      return message
+    }
+
+    /**
+         * Creates a plain object from a CommandRequest message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbdeviceReport.CommandRequest
+         * @static
+         * @param {pbdeviceReport.CommandRequest} message CommandRequest
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    CommandRequest.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.defaults) {
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.timestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.timestamp = options.longs === String ? '0' : 0 }
+        object.tenantId = ''
+        object.taskId = 0
+        object.result = null
+        object.protocol = ''
+        object.productId = ''
+        object.messageType = ''
+        object.deviceId = ''
+        object.imei = ''
+      }
+      if (message.timestamp != null && message.hasOwnProperty('timestamp')) {
+        if (typeof message.timestamp === 'number') { object.timestamp = options.longs === String ? String(message.timestamp) : message.timestamp } else { object.timestamp = options.longs === String ? $util.Long.prototype.toString.call(message.timestamp) : options.longs === Number ? new $util.LongBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0).toNumber() : message.timestamp }
+      }
+      if (message.tenantId != null && message.hasOwnProperty('tenantId')) { object.tenantId = message.tenantId }
+      if (message.taskId != null && message.hasOwnProperty('taskId')) { object.taskId = message.taskId }
+      if (message.result != null && message.hasOwnProperty('result')) { object.result = $root.pbdeviceReport.CommandRequest.Result.toObject(message.result, options) }
+      if (message.protocol != null && message.hasOwnProperty('protocol')) { object.protocol = message.protocol }
+      if (message.productId != null && message.hasOwnProperty('productId')) { object.productId = message.productId }
+      if (message.messageType != null && message.hasOwnProperty('messageType')) { object.messageType = message.messageType }
+      if (message.deviceId != null && message.hasOwnProperty('deviceId')) { object.deviceId = message.deviceId }
+      if (message.imei != null && message.hasOwnProperty('imei')) { object.imei = message.imei }
+      return object
+    }
+
+    /**
+         * Converts this CommandRequest to JSON.
+         * @function toJSON
+         * @memberof pbdeviceReport.CommandRequest
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    CommandRequest.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for CommandRequest
+         * @function getTypeUrl
+         * @memberof pbdeviceReport.CommandRequest
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    CommandRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/pbdeviceReport.CommandRequest'
+    }
+
+    CommandRequest.Result = (function() {
+      /**
+             * Properties of a Result.
+             * @memberof pbdeviceReport.CommandRequest
+             * @interface IResult
+             * @property {string|null} [resultDetail] Result resultDetail
+             * @property {string|null} [resultCode] Result resultCode
+             */
+
+      /**
+             * Constructs a new Result.
+             * @memberof pbdeviceReport.CommandRequest
+             * @classdesc Represents a Result.
+             * @implements IResult
+             * @constructor
+             * @param {pbdeviceReport.CommandRequest.IResult=} [properties] Properties to set
+             */
+      function Result(properties) {
+        if (properties) {
+          for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+            if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+          }
+        }
+      }
+
+      /**
+             * Result resultDetail.
+             * @member {string} resultDetail
+             * @memberof pbdeviceReport.CommandRequest.Result
+             * @instance
+             */
+      Result.prototype.resultDetail = ''
+
+      /**
+             * Result resultCode.
+             * @member {string} resultCode
+             * @memberof pbdeviceReport.CommandRequest.Result
+             * @instance
+             */
+      Result.prototype.resultCode = ''
+
+      /**
+             * Creates a new Result instance using the specified properties.
+             * @function create
+             * @memberof pbdeviceReport.CommandRequest.Result
+             * @static
+             * @param {pbdeviceReport.CommandRequest.IResult=} [properties] Properties to set
+             * @returns {pbdeviceReport.CommandRequest.Result} Result instance
+             */
+      Result.create = function create(properties) {
+        return new Result(properties)
+      }
+
+      /**
+             * Encodes the specified Result message. Does not implicitly {@link pbdeviceReport.CommandRequest.Result.verify|verify} messages.
+             * @function encode
+             * @memberof pbdeviceReport.CommandRequest.Result
+             * @static
+             * @param {pbdeviceReport.CommandRequest.IResult} message Result message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+      Result.encode = function encode(message, writer) {
+        if (!writer) { writer = $Writer.create() }
+        if (message.resultDetail != null && Object.hasOwnProperty.call(message, 'resultDetail')) { writer.uint32(/* id 1, wireType 2 =*/10).string(message.resultDetail) }
+        if (message.resultCode != null && Object.hasOwnProperty.call(message, 'resultCode')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.resultCode) }
+        return writer
+      }
+
+      /**
+             * Encodes the specified Result message, length delimited. Does not implicitly {@link pbdeviceReport.CommandRequest.Result.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof pbdeviceReport.CommandRequest.Result
+             * @static
+             * @param {pbdeviceReport.CommandRequest.IResult} message Result message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+      Result.encodeDelimited = function encodeDelimited(message, writer) {
+        return this.encode(message, writer).ldelim()
+      }
+
+      /**
+             * Decodes a Result message from the specified reader or buffer.
+             * @function decode
+             * @memberof pbdeviceReport.CommandRequest.Result
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {pbdeviceReport.CommandRequest.Result} Result
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+      Result.decode = function decode(reader, length) {
+        if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+        var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbdeviceReport.CommandRequest.Result()
+        while (reader.pos < end) {
+          var tag = reader.uint32()
+          switch (tag >>> 3) {
+            case 1: {
+              message.resultDetail = reader.string()
+              break
+            }
+            case 2: {
+              message.resultCode = reader.string()
+              break
+            }
+            default:
+              reader.skipType(tag & 7)
+              break
+          }
+        }
+        return message
+      }
+
+      /**
+             * Decodes a Result message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof pbdeviceReport.CommandRequest.Result
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {pbdeviceReport.CommandRequest.Result} Result
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+      Result.decodeDelimited = function decodeDelimited(reader) {
+        if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+        return this.decode(reader, reader.uint32())
+      }
+
+      /**
+             * Verifies a Result message.
+             * @function verify
+             * @memberof pbdeviceReport.CommandRequest.Result
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+      Result.verify = function verify(message) {
+        if (typeof message !== 'object' || message === null) { return 'object expected' }
+        if (message.resultDetail != null && message.hasOwnProperty('resultDetail')) {
+          if (!$util.isString(message.resultDetail)) { return 'resultDetail: string expected' }
+        }
+        if (message.resultCode != null && message.hasOwnProperty('resultCode')) {
+          if (!$util.isString(message.resultCode)) { return 'resultCode: string expected' }
+        }
+        return null
+      }
+
+      /**
+             * Creates a Result message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof pbdeviceReport.CommandRequest.Result
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {pbdeviceReport.CommandRequest.Result} Result
+             */
+      Result.fromObject = function fromObject(object) {
+        if (object instanceof $root.pbdeviceReport.CommandRequest.Result) { return object }
+        var message = new $root.pbdeviceReport.CommandRequest.Result()
+        if (object.resultDetail != null) { message.resultDetail = String(object.resultDetail) }
+        if (object.resultCode != null) { message.resultCode = String(object.resultCode) }
+        return message
+      }
+
+      /**
+             * Creates a plain object from a Result message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof pbdeviceReport.CommandRequest.Result
+             * @static
+             * @param {pbdeviceReport.CommandRequest.Result} message Result
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+      Result.toObject = function toObject(message, options) {
+        if (!options) { options = {} }
+        var object = {}
+        if (options.defaults) {
+          object.resultDetail = ''
+          object.resultCode = ''
+        }
+        if (message.resultDetail != null && message.hasOwnProperty('resultDetail')) { object.resultDetail = message.resultDetail }
+        if (message.resultCode != null && message.hasOwnProperty('resultCode')) { object.resultCode = message.resultCode }
+        return object
+      }
+
+      /**
+             * Converts this Result to JSON.
+             * @function toJSON
+             * @memberof pbdeviceReport.CommandRequest.Result
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+      Result.prototype.toJSON = function toJSON() {
+        return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+      }
+
+      /**
+             * Gets the default type url for Result
+             * @function getTypeUrl
+             * @memberof pbdeviceReport.CommandRequest.Result
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+      Result.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+          typeUrlPrefix = 'type.googleapis.com'
+        }
+        return typeUrlPrefix + '/pbdeviceReport.CommandRequest.Result'
+      }
+
+      return Result
+    })()
+
+    return CommandRequest
+  })()
+
   pbdeviceReport.DeviceReport = (function() {
     /**
          * Constructs a new DeviceReport service.
@@ -15069,4566 +17300,43 @@ $root.pbdeviceReport = (function() {
          * @variation 2
          */
 
+    /**
+         * Callback as used by {@link pbdeviceReport.DeviceReport#aepCmdResp}.
+         * @memberof pbdeviceReport.DeviceReport
+         * @typedef AepCmdRespCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+    /**
+         * Calls AepCmdResp.
+         * @function aepCmdResp
+         * @memberof pbdeviceReport.DeviceReport
+         * @instance
+         * @param {pbdeviceReport.ICommandRequest} request CommandRequest message or plain object
+         * @param {pbdeviceReport.DeviceReport.AepCmdRespCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+    Object.defineProperty(DeviceReport.prototype.aepCmdResp = function aepCmdResp(request, callback) {
+      return this.rpcCall(aepCmdResp, $root.pbdeviceReport.CommandRequest, $root.pbcommon.CommonResult, request, callback)
+    }, 'name', { value: 'AepCmdResp' })
+
+    /**
+         * Calls AepCmdResp.
+         * @function aepCmdResp
+         * @memberof pbdeviceReport.DeviceReport
+         * @instance
+         * @param {pbdeviceReport.ICommandRequest} request CommandRequest message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
     return DeviceReport
   })()
 
   return pbdeviceReport
-})()
-
-$root.pbshop = (function() {
-  /**
-     * Namespace pbshop.
-     * @exports pbshop
-     * @namespace
-     */
-  var pbshop = {}
-
-  pbshop.ShopModel = (function() {
-    /**
-         * Properties of a ShopModel.
-         * @memberof pbshop
-         * @interface IShopModel
-         * @property {number|Long|null} [id] ShopModel id
-         * @property {string|null} [createdAt] ShopModel createdAt
-         * @property {string|null} [updatedAt] ShopModel updatedAt
-         * @property {string|null} [name] ShopModel name
-         * @property {string|null} [address] ShopModel address
-         * @property {string|null} [phone] ShopModel phone
-         * @property {string|null} [businessLicenceUrl] ShopModel businessLicenceUrl
-         * @property {string|null} [idcard1] ShopModel idcard1
-         * @property {string|null} [idcard2] ShopModel idcard2
-         * @property {pbshop.ShopStatusEnum|null} [status] ShopModel status
-         * @property {string|null} [remark] ShopModel remark
-         * @property {string|null} [creator] ShopModel creator
-         * @property {string|null} [updater] ShopModel updater
-         */
-
-    /**
-         * Constructs a new ShopModel.
-         * @memberof pbshop
-         * @classdesc Represents a ShopModel.
-         * @implements IShopModel
-         * @constructor
-         * @param {pbshop.IShopModel=} [properties] Properties to set
-         */
-    function ShopModel(properties) {
-      if (properties) {
-        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
-          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
-        }
-      }
-    }
-
-    /**
-         * ShopModel id.
-         * @member {number|Long} id
-         * @memberof pbshop.ShopModel
-         * @instance
-         */
-    ShopModel.prototype.id = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
-
-    /**
-         * ShopModel createdAt.
-         * @member {string} createdAt
-         * @memberof pbshop.ShopModel
-         * @instance
-         */
-    ShopModel.prototype.createdAt = ''
-
-    /**
-         * ShopModel updatedAt.
-         * @member {string} updatedAt
-         * @memberof pbshop.ShopModel
-         * @instance
-         */
-    ShopModel.prototype.updatedAt = ''
-
-    /**
-         * ShopModel name.
-         * @member {string} name
-         * @memberof pbshop.ShopModel
-         * @instance
-         */
-    ShopModel.prototype.name = ''
-
-    /**
-         * ShopModel address.
-         * @member {string} address
-         * @memberof pbshop.ShopModel
-         * @instance
-         */
-    ShopModel.prototype.address = ''
-
-    /**
-         * ShopModel phone.
-         * @member {string} phone
-         * @memberof pbshop.ShopModel
-         * @instance
-         */
-    ShopModel.prototype.phone = ''
-
-    /**
-         * ShopModel businessLicenceUrl.
-         * @member {string} businessLicenceUrl
-         * @memberof pbshop.ShopModel
-         * @instance
-         */
-    ShopModel.prototype.businessLicenceUrl = ''
-
-    /**
-         * ShopModel idcard1.
-         * @member {string} idcard1
-         * @memberof pbshop.ShopModel
-         * @instance
-         */
-    ShopModel.prototype.idcard1 = ''
-
-    /**
-         * ShopModel idcard2.
-         * @member {string} idcard2
-         * @memberof pbshop.ShopModel
-         * @instance
-         */
-    ShopModel.prototype.idcard2 = ''
-
-    /**
-         * ShopModel status.
-         * @member {pbshop.ShopStatusEnum} status
-         * @memberof pbshop.ShopModel
-         * @instance
-         */
-    ShopModel.prototype.status = 0
-
-    /**
-         * ShopModel remark.
-         * @member {string} remark
-         * @memberof pbshop.ShopModel
-         * @instance
-         */
-    ShopModel.prototype.remark = ''
-
-    /**
-         * ShopModel creator.
-         * @member {string} creator
-         * @memberof pbshop.ShopModel
-         * @instance
-         */
-    ShopModel.prototype.creator = ''
-
-    /**
-         * ShopModel updater.
-         * @member {string} updater
-         * @memberof pbshop.ShopModel
-         * @instance
-         */
-    ShopModel.prototype.updater = ''
-
-    /**
-         * Creates a new ShopModel instance using the specified properties.
-         * @function create
-         * @memberof pbshop.ShopModel
-         * @static
-         * @param {pbshop.IShopModel=} [properties] Properties to set
-         * @returns {pbshop.ShopModel} ShopModel instance
-         */
-    ShopModel.create = function create(properties) {
-      return new ShopModel(properties)
-    }
-
-    /**
-         * Encodes the specified ShopModel message. Does not implicitly {@link pbshop.ShopModel.verify|verify} messages.
-         * @function encode
-         * @memberof pbshop.ShopModel
-         * @static
-         * @param {pbshop.IShopModel} message ShopModel message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-    ShopModel.encode = function encode(message, writer) {
-      if (!writer) { writer = $Writer.create() }
-      if (message.id != null && Object.hasOwnProperty.call(message, 'id')) { writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id) }
-      if (message.createdAt != null && Object.hasOwnProperty.call(message, 'createdAt')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.createdAt) }
-      if (message.updatedAt != null && Object.hasOwnProperty.call(message, 'updatedAt')) { writer.uint32(/* id 3, wireType 2 =*/26).string(message.updatedAt) }
-      if (message.name != null && Object.hasOwnProperty.call(message, 'name')) { writer.uint32(/* id 4, wireType 2 =*/34).string(message.name) }
-      if (message.address != null && Object.hasOwnProperty.call(message, 'address')) { writer.uint32(/* id 5, wireType 2 =*/42).string(message.address) }
-      if (message.phone != null && Object.hasOwnProperty.call(message, 'phone')) { writer.uint32(/* id 6, wireType 2 =*/50).string(message.phone) }
-      if (message.businessLicenceUrl != null && Object.hasOwnProperty.call(message, 'businessLicenceUrl')) { writer.uint32(/* id 7, wireType 2 =*/58).string(message.businessLicenceUrl) }
-      if (message.idcard1 != null && Object.hasOwnProperty.call(message, 'idcard1')) { writer.uint32(/* id 8, wireType 2 =*/66).string(message.idcard1) }
-      if (message.idcard2 != null && Object.hasOwnProperty.call(message, 'idcard2')) { writer.uint32(/* id 9, wireType 2 =*/74).string(message.idcard2) }
-      if (message.status != null && Object.hasOwnProperty.call(message, 'status')) { writer.uint32(/* id 10, wireType 0 =*/80).int32(message.status) }
-      if (message.remark != null && Object.hasOwnProperty.call(message, 'remark')) { writer.uint32(/* id 11, wireType 2 =*/90).string(message.remark) }
-      if (message.creator != null && Object.hasOwnProperty.call(message, 'creator')) { writer.uint32(/* id 12, wireType 2 =*/98).string(message.creator) }
-      if (message.updater != null && Object.hasOwnProperty.call(message, 'updater')) { writer.uint32(/* id 13, wireType 2 =*/106).string(message.updater) }
-      return writer
-    }
-
-    /**
-         * Encodes the specified ShopModel message, length delimited. Does not implicitly {@link pbshop.ShopModel.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof pbshop.ShopModel
-         * @static
-         * @param {pbshop.IShopModel} message ShopModel message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-    ShopModel.encodeDelimited = function encodeDelimited(message, writer) {
-      return this.encode(message, writer).ldelim()
-    }
-
-    /**
-         * Decodes a ShopModel message from the specified reader or buffer.
-         * @function decode
-         * @memberof pbshop.ShopModel
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {pbshop.ShopModel} ShopModel
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-    ShopModel.decode = function decode(reader, length) {
-      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
-      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbshop.ShopModel()
-      while (reader.pos < end) {
-        var tag = reader.uint32()
-        switch (tag >>> 3) {
-          case 1: {
-            message.id = reader.int64()
-            break
-          }
-          case 2: {
-            message.createdAt = reader.string()
-            break
-          }
-          case 3: {
-            message.updatedAt = reader.string()
-            break
-          }
-          case 4: {
-            message.name = reader.string()
-            break
-          }
-          case 5: {
-            message.address = reader.string()
-            break
-          }
-          case 6: {
-            message.phone = reader.string()
-            break
-          }
-          case 7: {
-            message.businessLicenceUrl = reader.string()
-            break
-          }
-          case 8: {
-            message.idcard1 = reader.string()
-            break
-          }
-          case 9: {
-            message.idcard2 = reader.string()
-            break
-          }
-          case 10: {
-            message.status = reader.int32()
-            break
-          }
-          case 11: {
-            message.remark = reader.string()
-            break
-          }
-          case 12: {
-            message.creator = reader.string()
-            break
-          }
-          case 13: {
-            message.updater = reader.string()
-            break
-          }
-          default:
-            reader.skipType(tag & 7)
-            break
-        }
-      }
-      return message
-    }
-
-    /**
-         * Decodes a ShopModel message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof pbshop.ShopModel
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {pbshop.ShopModel} ShopModel
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-    ShopModel.decodeDelimited = function decodeDelimited(reader) {
-      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
-      return this.decode(reader, reader.uint32())
-    }
-
-    /**
-         * Verifies a ShopModel message.
-         * @function verify
-         * @memberof pbshop.ShopModel
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-    ShopModel.verify = function verify(message) {
-      if (typeof message !== 'object' || message === null) { return 'object expected' }
-      if (message.id != null && message.hasOwnProperty('id')) {
-        if (!$util.isInteger(message.id) && !(message.id && $util.isInteger(message.id.low) && $util.isInteger(message.id.high))) { return 'id: integer|Long expected' }
-      }
-      if (message.createdAt != null && message.hasOwnProperty('createdAt')) {
-        if (!$util.isString(message.createdAt)) { return 'createdAt: string expected' }
-      }
-      if (message.updatedAt != null && message.hasOwnProperty('updatedAt')) {
-        if (!$util.isString(message.updatedAt)) { return 'updatedAt: string expected' }
-      }
-      if (message.name != null && message.hasOwnProperty('name')) {
-        if (!$util.isString(message.name)) { return 'name: string expected' }
-      }
-      if (message.address != null && message.hasOwnProperty('address')) {
-        if (!$util.isString(message.address)) { return 'address: string expected' }
-      }
-      if (message.phone != null && message.hasOwnProperty('phone')) {
-        if (!$util.isString(message.phone)) { return 'phone: string expected' }
-      }
-      if (message.businessLicenceUrl != null && message.hasOwnProperty('businessLicenceUrl')) {
-        if (!$util.isString(message.businessLicenceUrl)) { return 'businessLicenceUrl: string expected' }
-      }
-      if (message.idcard1 != null && message.hasOwnProperty('idcard1')) {
-        if (!$util.isString(message.idcard1)) { return 'idcard1: string expected' }
-      }
-      if (message.idcard2 != null && message.hasOwnProperty('idcard2')) {
-        if (!$util.isString(message.idcard2)) { return 'idcard2: string expected' }
-      }
-      if (message.status != null && message.hasOwnProperty('status')) {
-        switch (message.status) {
-          default:
-            return 'status: enum value expected'
-          case 0:
-          case 1:
-          case 2:
-          case 3:
-          case 4:
-            break
-        }
-      }
-      if (message.remark != null && message.hasOwnProperty('remark')) {
-        if (!$util.isString(message.remark)) { return 'remark: string expected' }
-      }
-      if (message.creator != null && message.hasOwnProperty('creator')) {
-        if (!$util.isString(message.creator)) { return 'creator: string expected' }
-      }
-      if (message.updater != null && message.hasOwnProperty('updater')) {
-        if (!$util.isString(message.updater)) { return 'updater: string expected' }
-      }
-      return null
-    }
-
-    /**
-         * Creates a ShopModel message from a plain object. Also converts values to their respective internal types.
-         * @function fromObject
-         * @memberof pbshop.ShopModel
-         * @static
-         * @param {Object.<string,*>} object Plain object
-         * @returns {pbshop.ShopModel} ShopModel
-         */
-    ShopModel.fromObject = function fromObject(object) {
-      if (object instanceof $root.pbshop.ShopModel) { return object }
-      var message = new $root.pbshop.ShopModel()
-      if (object.id != null) {
-        if ($util.Long) { (message.id = $util.Long.fromValue(object.id)).unsigned = false } else if (typeof object.id === 'string') { message.id = parseInt(object.id, 10) } else if (typeof object.id === 'number') { message.id = object.id } else if (typeof object.id === 'object') { message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber() }
-      }
-      if (object.createdAt != null) { message.createdAt = String(object.createdAt) }
-      if (object.updatedAt != null) { message.updatedAt = String(object.updatedAt) }
-      if (object.name != null) { message.name = String(object.name) }
-      if (object.address != null) { message.address = String(object.address) }
-      if (object.phone != null) { message.phone = String(object.phone) }
-      if (object.businessLicenceUrl != null) { message.businessLicenceUrl = String(object.businessLicenceUrl) }
-      if (object.idcard1 != null) { message.idcard1 = String(object.idcard1) }
-      if (object.idcard2 != null) { message.idcard2 = String(object.idcard2) }
-      switch (object.status) {
-        default:
-          if (typeof object.status === 'number') {
-            message.status = object.status
-            break
-          }
-          break
-        case 'UnKnown':
-        case 0:
-          message.status = 0
-          break
-        case 'Unchecked':
-        case 1:
-          message.status = 1
-          break
-        case 'Checked':
-        case 2:
-          message.status = 2
-          break
-        case 'Deleted':
-        case 3:
-          message.status = 3
-          break
-        case 'UnUsed':
-        case 4:
-          message.status = 4
-          break
-      }
-      if (object.remark != null) { message.remark = String(object.remark) }
-      if (object.creator != null) { message.creator = String(object.creator) }
-      if (object.updater != null) { message.updater = String(object.updater) }
-      return message
-    }
-
-    /**
-         * Creates a plain object from a ShopModel message. Also converts values to other types if specified.
-         * @function toObject
-         * @memberof pbshop.ShopModel
-         * @static
-         * @param {pbshop.ShopModel} message ShopModel
-         * @param {$protobuf.IConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-    ShopModel.toObject = function toObject(message, options) {
-      if (!options) { options = {} }
-      var object = {}
-      if (options.defaults) {
-        if ($util.Long) {
-          var long = new $util.Long(0, 0, false)
-          object.id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
-        } else { object.id = options.longs === String ? '0' : 0 }
-        object.createdAt = ''
-        object.updatedAt = ''
-        object.name = ''
-        object.address = ''
-        object.phone = ''
-        object.businessLicenceUrl = ''
-        object.idcard1 = ''
-        object.idcard2 = ''
-        object.status = options.enums === String ? 'UnKnown' : 0
-        object.remark = ''
-        object.creator = ''
-        object.updater = ''
-      }
-      if (message.id != null && message.hasOwnProperty('id')) {
-        if (typeof message.id === 'number') { object.id = options.longs === String ? String(message.id) : message.id } else { object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id }
-      }
-      if (message.createdAt != null && message.hasOwnProperty('createdAt')) { object.createdAt = message.createdAt }
-      if (message.updatedAt != null && message.hasOwnProperty('updatedAt')) { object.updatedAt = message.updatedAt }
-      if (message.name != null && message.hasOwnProperty('name')) { object.name = message.name }
-      if (message.address != null && message.hasOwnProperty('address')) { object.address = message.address }
-      if (message.phone != null && message.hasOwnProperty('phone')) { object.phone = message.phone }
-      if (message.businessLicenceUrl != null && message.hasOwnProperty('businessLicenceUrl')) { object.businessLicenceUrl = message.businessLicenceUrl }
-      if (message.idcard1 != null && message.hasOwnProperty('idcard1')) { object.idcard1 = message.idcard1 }
-      if (message.idcard2 != null && message.hasOwnProperty('idcard2')) { object.idcard2 = message.idcard2 }
-      if (message.status != null && message.hasOwnProperty('status')) { object.status = options.enums === String ? $root.pbshop.ShopStatusEnum[message.status] === undefined ? message.status : $root.pbshop.ShopStatusEnum[message.status] : message.status }
-      if (message.remark != null && message.hasOwnProperty('remark')) { object.remark = message.remark }
-      if (message.creator != null && message.hasOwnProperty('creator')) { object.creator = message.creator }
-      if (message.updater != null && message.hasOwnProperty('updater')) { object.updater = message.updater }
-      return object
-    }
-
-    /**
-         * Converts this ShopModel to JSON.
-         * @function toJSON
-         * @memberof pbshop.ShopModel
-         * @instance
-         * @returns {Object.<string,*>} JSON object
-         */
-    ShopModel.prototype.toJSON = function toJSON() {
-      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
-    }
-
-    /**
-         * Gets the default type url for ShopModel
-         * @function getTypeUrl
-         * @memberof pbshop.ShopModel
-         * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
-         */
-    ShopModel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-      if (typeUrlPrefix === undefined) {
-        typeUrlPrefix = 'type.googleapis.com'
-      }
-      return typeUrlPrefix + '/pbshop.ShopModel'
-    }
-
-    return ShopModel
-  })()
-
-  /**
-     * ShopStatusEnum enum.
-     * @name pbshop.ShopStatusEnum
-     * @enum {number}
-     * @property {number} UnKnown=0 UnKnown value
-     * @property {number} Unchecked=1 Unchecked value
-     * @property {number} Checked=2 Checked value
-     * @property {number} Deleted=3 Deleted value
-     * @property {number} UnUsed=4 UnUsed value
-     */
-  pbshop.ShopStatusEnum = (function() {
-    var valuesById = {}; var values = Object.create(valuesById)
-    values[valuesById[0] = 'UnKnown'] = 0
-    values[valuesById[1] = 'Unchecked'] = 1
-    values[valuesById[2] = 'Checked'] = 2
-    values[valuesById[3] = 'Deleted'] = 3
-    values[valuesById[4] = 'UnUsed'] = 4
-    return values
-  })()
-
-  pbshop.FindShopArgs = (function() {
-    /**
-         * Properties of a FindShopArgs.
-         * @memberof pbshop
-         * @interface IFindShopArgs
-         * @property {pbcommon.IPageInfo|null} [pageInfo] FindShopArgs pageInfo
-         * @property {pbshop.IShopModel|null} [query] FindShopArgs query
-         */
-
-    /**
-         * Constructs a new FindShopArgs.
-         * @memberof pbshop
-         * @classdesc Represents a FindShopArgs.
-         * @implements IFindShopArgs
-         * @constructor
-         * @param {pbshop.IFindShopArgs=} [properties] Properties to set
-         */
-    function FindShopArgs(properties) {
-      if (properties) {
-        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
-          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
-        }
-      }
-    }
-
-    /**
-         * FindShopArgs pageInfo.
-         * @member {pbcommon.IPageInfo|null|undefined} pageInfo
-         * @memberof pbshop.FindShopArgs
-         * @instance
-         */
-    FindShopArgs.prototype.pageInfo = null
-
-    /**
-         * FindShopArgs query.
-         * @member {pbshop.IShopModel|null|undefined} query
-         * @memberof pbshop.FindShopArgs
-         * @instance
-         */
-    FindShopArgs.prototype.query = null
-
-    /**
-         * Creates a new FindShopArgs instance using the specified properties.
-         * @function create
-         * @memberof pbshop.FindShopArgs
-         * @static
-         * @param {pbshop.IFindShopArgs=} [properties] Properties to set
-         * @returns {pbshop.FindShopArgs} FindShopArgs instance
-         */
-    FindShopArgs.create = function create(properties) {
-      return new FindShopArgs(properties)
-    }
-
-    /**
-         * Encodes the specified FindShopArgs message. Does not implicitly {@link pbshop.FindShopArgs.verify|verify} messages.
-         * @function encode
-         * @memberof pbshop.FindShopArgs
-         * @static
-         * @param {pbshop.IFindShopArgs} message FindShopArgs message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-    FindShopArgs.encode = function encode(message, writer) {
-      if (!writer) { writer = $Writer.create() }
-      if (message.pageInfo != null && Object.hasOwnProperty.call(message, 'pageInfo')) { $root.pbcommon.PageInfo.encode(message.pageInfo, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim() }
-      if (message.query != null && Object.hasOwnProperty.call(message, 'query')) { $root.pbshop.ShopModel.encode(message.query, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim() }
-      return writer
-    }
-
-    /**
-         * Encodes the specified FindShopArgs message, length delimited. Does not implicitly {@link pbshop.FindShopArgs.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof pbshop.FindShopArgs
-         * @static
-         * @param {pbshop.IFindShopArgs} message FindShopArgs message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-    FindShopArgs.encodeDelimited = function encodeDelimited(message, writer) {
-      return this.encode(message, writer).ldelim()
-    }
-
-    /**
-         * Decodes a FindShopArgs message from the specified reader or buffer.
-         * @function decode
-         * @memberof pbshop.FindShopArgs
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {pbshop.FindShopArgs} FindShopArgs
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-    FindShopArgs.decode = function decode(reader, length) {
-      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
-      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbshop.FindShopArgs()
-      while (reader.pos < end) {
-        var tag = reader.uint32()
-        switch (tag >>> 3) {
-          case 1: {
-            message.pageInfo = $root.pbcommon.PageInfo.decode(reader, reader.uint32())
-            break
-          }
-          case 2: {
-            message.query = $root.pbshop.ShopModel.decode(reader, reader.uint32())
-            break
-          }
-          default:
-            reader.skipType(tag & 7)
-            break
-        }
-      }
-      return message
-    }
-
-    /**
-         * Decodes a FindShopArgs message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof pbshop.FindShopArgs
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {pbshop.FindShopArgs} FindShopArgs
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-    FindShopArgs.decodeDelimited = function decodeDelimited(reader) {
-      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
-      return this.decode(reader, reader.uint32())
-    }
-
-    /**
-         * Verifies a FindShopArgs message.
-         * @function verify
-         * @memberof pbshop.FindShopArgs
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-    FindShopArgs.verify = function verify(message) {
-      if (typeof message !== 'object' || message === null) { return 'object expected' }
-      if (message.pageInfo != null && message.hasOwnProperty('pageInfo')) {
-        var error = $root.pbcommon.PageInfo.verify(message.pageInfo)
-        if (error) { return 'pageInfo.' + error }
-      }
-      if (message.query != null && message.hasOwnProperty('query')) {
-        var error = $root.pbshop.ShopModel.verify(message.query)
-        if (error) { return 'query.' + error }
-      }
-      return null
-    }
-
-    /**
-         * Creates a FindShopArgs message from a plain object. Also converts values to their respective internal types.
-         * @function fromObject
-         * @memberof pbshop.FindShopArgs
-         * @static
-         * @param {Object.<string,*>} object Plain object
-         * @returns {pbshop.FindShopArgs} FindShopArgs
-         */
-    FindShopArgs.fromObject = function fromObject(object) {
-      if (object instanceof $root.pbshop.FindShopArgs) { return object }
-      var message = new $root.pbshop.FindShopArgs()
-      if (object.pageInfo != null) {
-        if (typeof object.pageInfo !== 'object') { throw TypeError('.pbshop.FindShopArgs.pageInfo: object expected') }
-        message.pageInfo = $root.pbcommon.PageInfo.fromObject(object.pageInfo)
-      }
-      if (object.query != null) {
-        if (typeof object.query !== 'object') { throw TypeError('.pbshop.FindShopArgs.query: object expected') }
-        message.query = $root.pbshop.ShopModel.fromObject(object.query)
-      }
-      return message
-    }
-
-    /**
-         * Creates a plain object from a FindShopArgs message. Also converts values to other types if specified.
-         * @function toObject
-         * @memberof pbshop.FindShopArgs
-         * @static
-         * @param {pbshop.FindShopArgs} message FindShopArgs
-         * @param {$protobuf.IConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-    FindShopArgs.toObject = function toObject(message, options) {
-      if (!options) { options = {} }
-      var object = {}
-      if (options.defaults) {
-        object.pageInfo = null
-        object.query = null
-      }
-      if (message.pageInfo != null && message.hasOwnProperty('pageInfo')) { object.pageInfo = $root.pbcommon.PageInfo.toObject(message.pageInfo, options) }
-      if (message.query != null && message.hasOwnProperty('query')) { object.query = $root.pbshop.ShopModel.toObject(message.query, options) }
-      return object
-    }
-
-    /**
-         * Converts this FindShopArgs to JSON.
-         * @function toJSON
-         * @memberof pbshop.FindShopArgs
-         * @instance
-         * @returns {Object.<string,*>} JSON object
-         */
-    FindShopArgs.prototype.toJSON = function toJSON() {
-      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
-    }
-
-    /**
-         * Gets the default type url for FindShopArgs
-         * @function getTypeUrl
-         * @memberof pbshop.FindShopArgs
-         * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
-         */
-    FindShopArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-      if (typeUrlPrefix === undefined) {
-        typeUrlPrefix = 'type.googleapis.com'
-      }
-      return typeUrlPrefix + '/pbshop.FindShopArgs'
-    }
-
-    return FindShopArgs
-  })()
-
-  pbshop.FindShopReply = (function() {
-    /**
-         * Properties of a FindShopReply.
-         * @memberof pbshop
-         * @interface IFindShopReply
-         * @property {pbcommon.EnumCode|null} [code] FindShopReply code
-         * @property {string|null} [msg] FindShopReply msg
-         * @property {pbshop.IShopModel|null} [data] FindShopReply data
-         * @property {Array.<pbshop.IShopModel>|null} [list] FindShopReply list
-         * @property {number|Long|null} [total] FindShopReply total
-         */
-
-    /**
-         * Constructs a new FindShopReply.
-         * @memberof pbshop
-         * @classdesc Represents a FindShopReply.
-         * @implements IFindShopReply
-         * @constructor
-         * @param {pbshop.IFindShopReply=} [properties] Properties to set
-         */
-    function FindShopReply(properties) {
-      this.list = []
-      if (properties) {
-        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
-          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
-        }
-      }
-    }
-
-    /**
-         * FindShopReply code.
-         * @member {pbcommon.EnumCode} code
-         * @memberof pbshop.FindShopReply
-         * @instance
-         */
-    FindShopReply.prototype.code = 0
-
-    /**
-         * FindShopReply msg.
-         * @member {string} msg
-         * @memberof pbshop.FindShopReply
-         * @instance
-         */
-    FindShopReply.prototype.msg = ''
-
-    /**
-         * FindShopReply data.
-         * @member {pbshop.IShopModel|null|undefined} data
-         * @memberof pbshop.FindShopReply
-         * @instance
-         */
-    FindShopReply.prototype.data = null
-
-    /**
-         * FindShopReply list.
-         * @member {Array.<pbshop.IShopModel>} list
-         * @memberof pbshop.FindShopReply
-         * @instance
-         */
-    FindShopReply.prototype.list = $util.emptyArray
-
-    /**
-         * FindShopReply total.
-         * @member {number|Long} total
-         * @memberof pbshop.FindShopReply
-         * @instance
-         */
-    FindShopReply.prototype.total = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
-
-    /**
-         * Creates a new FindShopReply instance using the specified properties.
-         * @function create
-         * @memberof pbshop.FindShopReply
-         * @static
-         * @param {pbshop.IFindShopReply=} [properties] Properties to set
-         * @returns {pbshop.FindShopReply} FindShopReply instance
-         */
-    FindShopReply.create = function create(properties) {
-      return new FindShopReply(properties)
-    }
-
-    /**
-         * Encodes the specified FindShopReply message. Does not implicitly {@link pbshop.FindShopReply.verify|verify} messages.
-         * @function encode
-         * @memberof pbshop.FindShopReply
-         * @static
-         * @param {pbshop.IFindShopReply} message FindShopReply message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-    FindShopReply.encode = function encode(message, writer) {
-      if (!writer) { writer = $Writer.create() }
-      if (message.code != null && Object.hasOwnProperty.call(message, 'code')) { writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code) }
-      if (message.msg != null && Object.hasOwnProperty.call(message, 'msg')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg) }
-      if (message.data != null && Object.hasOwnProperty.call(message, 'data')) { $root.pbshop.ShopModel.encode(message.data, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim() }
-      if (message.list != null && message.list.length) {
-        for (var i = 0; i < message.list.length; ++i) { $root.pbshop.ShopModel.encode(message.list[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim() }
-      }
-      if (message.total != null && Object.hasOwnProperty.call(message, 'total')) { writer.uint32(/* id 5, wireType 0 =*/40).int64(message.total) }
-      return writer
-    }
-
-    /**
-         * Encodes the specified FindShopReply message, length delimited. Does not implicitly {@link pbshop.FindShopReply.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof pbshop.FindShopReply
-         * @static
-         * @param {pbshop.IFindShopReply} message FindShopReply message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-    FindShopReply.encodeDelimited = function encodeDelimited(message, writer) {
-      return this.encode(message, writer).ldelim()
-    }
-
-    /**
-         * Decodes a FindShopReply message from the specified reader or buffer.
-         * @function decode
-         * @memberof pbshop.FindShopReply
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {pbshop.FindShopReply} FindShopReply
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-    FindShopReply.decode = function decode(reader, length) {
-      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
-      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbshop.FindShopReply()
-      while (reader.pos < end) {
-        var tag = reader.uint32()
-        switch (tag >>> 3) {
-          case 1: {
-            message.code = reader.int32()
-            break
-          }
-          case 2: {
-            message.msg = reader.string()
-            break
-          }
-          case 3: {
-            message.data = $root.pbshop.ShopModel.decode(reader, reader.uint32())
-            break
-          }
-          case 4: {
-            if (!(message.list && message.list.length)) { message.list = [] }
-            message.list.push($root.pbshop.ShopModel.decode(reader, reader.uint32()))
-            break
-          }
-          case 5: {
-            message.total = reader.int64()
-            break
-          }
-          default:
-            reader.skipType(tag & 7)
-            break
-        }
-      }
-      return message
-    }
-
-    /**
-         * Decodes a FindShopReply message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof pbshop.FindShopReply
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {pbshop.FindShopReply} FindShopReply
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-    FindShopReply.decodeDelimited = function decodeDelimited(reader) {
-      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
-      return this.decode(reader, reader.uint32())
-    }
-
-    /**
-         * Verifies a FindShopReply message.
-         * @function verify
-         * @memberof pbshop.FindShopReply
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-    FindShopReply.verify = function verify(message) {
-      if (typeof message !== 'object' || message === null) { return 'object expected' }
-      if (message.code != null && message.hasOwnProperty('code')) {
-        switch (message.code) {
-          default:
-            return 'code: enum value expected'
-          case 0:
-          case 200:
-          case 500:
-          case 501:
-          case 502:
-          case 503:
-          case 504:
-          case 505:
-          case 1001:
-          case 1002:
-          case 1003:
-          case 1004:
-          case 2002:
-          case 2003:
-          case 2004:
-          case 2005:
-          case 2006:
-          case 2007:
-          case 2008:
-          case 2009:
-          case 2010:
-          case 2011:
-          case 2012:
-          case 2013:
-          case 2014:
-            break
-        }
-      }
-      if (message.msg != null && message.hasOwnProperty('msg')) {
-        if (!$util.isString(message.msg)) { return 'msg: string expected' }
-      }
-      if (message.data != null && message.hasOwnProperty('data')) {
-        var error = $root.pbshop.ShopModel.verify(message.data)
-        if (error) { return 'data.' + error }
-      }
-      if (message.list != null && message.hasOwnProperty('list')) {
-        if (!Array.isArray(message.list)) { return 'list: array expected' }
-        for (var i = 0; i < message.list.length; ++i) {
-          var error = $root.pbshop.ShopModel.verify(message.list[i])
-          if (error) { return 'list.' + error }
-        }
-      }
-      if (message.total != null && message.hasOwnProperty('total')) {
-        if (!$util.isInteger(message.total) && !(message.total && $util.isInteger(message.total.low) && $util.isInteger(message.total.high))) { return 'total: integer|Long expected' }
-      }
-      return null
-    }
-
-    /**
-         * Creates a FindShopReply message from a plain object. Also converts values to their respective internal types.
-         * @function fromObject
-         * @memberof pbshop.FindShopReply
-         * @static
-         * @param {Object.<string,*>} object Plain object
-         * @returns {pbshop.FindShopReply} FindShopReply
-         */
-    FindShopReply.fromObject = function fromObject(object) {
-      if (object instanceof $root.pbshop.FindShopReply) { return object }
-      var message = new $root.pbshop.FindShopReply()
-      switch (object.code) {
-        default:
-          if (typeof object.code === 'number') {
-            message.code = object.code
-            break
-          }
-          break
-        case 'None':
-        case 0:
-          message.code = 0
-          break
-        case 'Success':
-        case 200:
-          message.code = 200
-          break
-        case 'Fail':
-        case 500:
-          message.code = 500
-          break
-        case 'Unknown':
-        case 501:
-          message.code = 501
-          break
-        case 'Internal':
-        case 502:
-          message.code = 502
-          break
-        case 'Invalid':
-        case 503:
-          message.code = 503
-          break
-        case 'InvalidParam':
-        case 504:
-          message.code = 504
-          break
-        case 'ParamError':
-        case 505:
-          message.code = 505
-          break
-        case 'FindError':
-        case 1001:
-          message.code = 1001
-          break
-        case 'CreateError':
-        case 1002:
-          message.code = 1002
-          break
-        case 'DeleteError':
-        case 1003:
-          message.code = 1003
-          break
-        case 'UpdateError':
-        case 1004:
-          message.code = 1004
-          break
-        case 'InvalidToken':
-        case 2002:
-          message.code = 2002
-          break
-        case 'InvalidSign':
-        case 2003:
-          message.code = 2003
-          break
-        case 'NotLogin':
-        case 2004:
-          message.code = 2004
-          break
-        case 'LoginTimeout':
-        case 2005:
-          message.code = 2005
-          break
-        case 'LoginError':
-        case 2006:
-          message.code = 2006
-          break
-        case 'LoginForbidden':
-        case 2007:
-          message.code = 2007
-          break
-        case 'LoginExpired':
-        case 2008:
-          message.code = 2008
-          break
-        case 'LoginInvalid':
-        case 2009:
-          message.code = 2009
-          break
-        case 'LoginInvalidPassword':
-        case 2010:
-          message.code = 2010
-          break
-        case 'LoginInvalidUsername':
-        case 2011:
-          message.code = 2011
-          break
-        case 'LoginInvalidEmail':
-        case 2012:
-          message.code = 2012
-          break
-        case 'LoginInvalidPhone':
-        case 2013:
-          message.code = 2013
-          break
-        case 'LoginInvalidUsernameOrEmail':
-        case 2014:
-          message.code = 2014
-          break
-      }
-      if (object.msg != null) { message.msg = String(object.msg) }
-      if (object.data != null) {
-        if (typeof object.data !== 'object') { throw TypeError('.pbshop.FindShopReply.data: object expected') }
-        message.data = $root.pbshop.ShopModel.fromObject(object.data)
-      }
-      if (object.list) {
-        if (!Array.isArray(object.list)) { throw TypeError('.pbshop.FindShopReply.list: array expected') }
-        message.list = []
-        for (var i = 0; i < object.list.length; ++i) {
-          if (typeof object.list[i] !== 'object') { throw TypeError('.pbshop.FindShopReply.list: object expected') }
-          message.list[i] = $root.pbshop.ShopModel.fromObject(object.list[i])
-        }
-      }
-      if (object.total != null) {
-        if ($util.Long) { (message.total = $util.Long.fromValue(object.total)).unsigned = false } else if (typeof object.total === 'string') { message.total = parseInt(object.total, 10) } else if (typeof object.total === 'number') { message.total = object.total } else if (typeof object.total === 'object') { message.total = new $util.LongBits(object.total.low >>> 0, object.total.high >>> 0).toNumber() }
-      }
-      return message
-    }
-
-    /**
-         * Creates a plain object from a FindShopReply message. Also converts values to other types if specified.
-         * @function toObject
-         * @memberof pbshop.FindShopReply
-         * @static
-         * @param {pbshop.FindShopReply} message FindShopReply
-         * @param {$protobuf.IConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-    FindShopReply.toObject = function toObject(message, options) {
-      if (!options) { options = {} }
-      var object = {}
-      if (options.arrays || options.defaults) { object.list = [] }
-      if (options.defaults) {
-        object.code = options.enums === String ? 'None' : 0
-        object.msg = ''
-        object.data = null
-        if ($util.Long) {
-          var long = new $util.Long(0, 0, false)
-          object.total = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
-        } else { object.total = options.longs === String ? '0' : 0 }
-      }
-      if (message.code != null && message.hasOwnProperty('code')) { object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code }
-      if (message.msg != null && message.hasOwnProperty('msg')) { object.msg = message.msg }
-      if (message.data != null && message.hasOwnProperty('data')) { object.data = $root.pbshop.ShopModel.toObject(message.data, options) }
-      if (message.list && message.list.length) {
-        object.list = []
-        for (var j = 0; j < message.list.length; ++j) { object.list[j] = $root.pbshop.ShopModel.toObject(message.list[j], options) }
-      }
-      if (message.total != null && message.hasOwnProperty('total')) {
-        if (typeof message.total === 'number') { object.total = options.longs === String ? String(message.total) : message.total } else { object.total = options.longs === String ? $util.Long.prototype.toString.call(message.total) : options.longs === Number ? new $util.LongBits(message.total.low >>> 0, message.total.high >>> 0).toNumber() : message.total }
-      }
-      return object
-    }
-
-    /**
-         * Converts this FindShopReply to JSON.
-         * @function toJSON
-         * @memberof pbshop.FindShopReply
-         * @instance
-         * @returns {Object.<string,*>} JSON object
-         */
-    FindShopReply.prototype.toJSON = function toJSON() {
-      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
-    }
-
-    /**
-         * Gets the default type url for FindShopReply
-         * @function getTypeUrl
-         * @memberof pbshop.FindShopReply
-         * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
-         */
-    FindShopReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-      if (typeUrlPrefix === undefined) {
-        typeUrlPrefix = 'type.googleapis.com'
-      }
-      return typeUrlPrefix + '/pbshop.FindShopReply'
-    }
-
-    return FindShopReply
-  })()
-
-  pbshop.Shop = (function() {
-    /**
-         * Constructs a new Shop service.
-         * @memberof pbshop
-         * @classdesc Represents a Shop
-         * @extends $protobuf.rpc.Service
-         * @constructor
-         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
-         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
-         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
-         */
-    function Shop(rpcImpl, requestDelimited, responseDelimited) {
-      $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited)
-    }
-
-    (Shop.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = Shop
-
-    /**
-         * Creates new Shop service using the specified rpc implementation.
-         * @function create
-         * @memberof pbshop.Shop
-         * @static
-         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
-         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
-         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
-         * @returns {Shop} RPC service. Useful where requests and/or responses are streamed.
-         */
-    Shop.create = function create(rpcImpl, requestDelimited, responseDelimited) {
-      return new this(rpcImpl, requestDelimited, responseDelimited)
-    }
-
-    /**
-         * Callback as used by {@link pbshop.Shop#createShop}.
-         * @memberof pbshop.Shop
-         * @typedef CreateShopCallback
-         * @type {function}
-         * @param {Error|null} error Error, if any
-         * @param {pbcommon.CommonResult} [response] CommonResult
-         */
-
-    /**
-         * Calls CreateShop.
-         * @function createShop
-         * @memberof pbshop.Shop
-         * @instance
-         * @param {pbshop.IShopModel} request ShopModel message or plain object
-         * @param {pbshop.Shop.CreateShopCallback} callback Node-style callback called with the error, if any, and CommonResult
-         * @returns {undefined}
-         * @variation 1
-         */
-    Object.defineProperty(Shop.prototype.createShop = function createShop(request, callback) {
-      return this.rpcCall(createShop, $root.pbshop.ShopModel, $root.pbcommon.CommonResult, request, callback)
-    }, 'name', { value: 'CreateShop' })
-
-    /**
-         * Calls CreateShop.
-         * @function createShop
-         * @memberof pbshop.Shop
-         * @instance
-         * @param {pbshop.IShopModel} request ShopModel message or plain object
-         * @returns {Promise<pbcommon.CommonResult>} Promise
-         * @variation 2
-         */
-
-    /**
-         * Callback as used by {@link pbshop.Shop#updateShop}.
-         * @memberof pbshop.Shop
-         * @typedef UpdateShopCallback
-         * @type {function}
-         * @param {Error|null} error Error, if any
-         * @param {pbcommon.CommonResult} [response] CommonResult
-         */
-
-    /**
-         * Calls UpdateShop.
-         * @function updateShop
-         * @memberof pbshop.Shop
-         * @instance
-         * @param {pbshop.IShopModel} request ShopModel message or plain object
-         * @param {pbshop.Shop.UpdateShopCallback} callback Node-style callback called with the error, if any, and CommonResult
-         * @returns {undefined}
-         * @variation 1
-         */
-    Object.defineProperty(Shop.prototype.updateShop = function updateShop(request, callback) {
-      return this.rpcCall(updateShop, $root.pbshop.ShopModel, $root.pbcommon.CommonResult, request, callback)
-    }, 'name', { value: 'UpdateShop' })
-
-    /**
-         * Calls UpdateShop.
-         * @function updateShop
-         * @memberof pbshop.Shop
-         * @instance
-         * @param {pbshop.IShopModel} request ShopModel message or plain object
-         * @returns {Promise<pbcommon.CommonResult>} Promise
-         * @variation 2
-         */
-
-    /**
-         * Callback as used by {@link pbshop.Shop#deleteShop}.
-         * @memberof pbshop.Shop
-         * @typedef DeleteShopCallback
-         * @type {function}
-         * @param {Error|null} error Error, if any
-         * @param {pbcommon.CommonResult} [response] CommonResult
-         */
-
-    /**
-         * Calls DeleteShop.
-         * @function deleteShop
-         * @memberof pbshop.Shop
-         * @instance
-         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-         * @param {pbshop.Shop.DeleteShopCallback} callback Node-style callback called with the error, if any, and CommonResult
-         * @returns {undefined}
-         * @variation 1
-         */
-    Object.defineProperty(Shop.prototype.deleteShop = function deleteShop(request, callback) {
-      return this.rpcCall(deleteShop, $root.pbcommon.IdArgs, $root.pbcommon.CommonResult, request, callback)
-    }, 'name', { value: 'DeleteShop' })
-
-    /**
-         * Calls DeleteShop.
-         * @function deleteShop
-         * @memberof pbshop.Shop
-         * @instance
-         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-         * @returns {Promise<pbcommon.CommonResult>} Promise
-         * @variation 2
-         */
-
-    /**
-         * Callback as used by {@link pbshop.Shop#findShopById}.
-         * @memberof pbshop.Shop
-         * @typedef FindShopByIdCallback
-         * @type {function}
-         * @param {Error|null} error Error, if any
-         * @param {pbshop.FindShopReply} [response] FindShopReply
-         */
-
-    /**
-         * Calls FindShopById.
-         * @function findShopById
-         * @memberof pbshop.Shop
-         * @instance
-         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-         * @param {pbshop.Shop.FindShopByIdCallback} callback Node-style callback called with the error, if any, and FindShopReply
-         * @returns {undefined}
-         * @variation 1
-         */
-    Object.defineProperty(Shop.prototype.findShopById = function findShopById(request, callback) {
-      return this.rpcCall(findShopById, $root.pbcommon.IdArgs, $root.pbshop.FindShopReply, request, callback)
-    }, 'name', { value: 'FindShopById' })
-
-    /**
-         * Calls FindShopById.
-         * @function findShopById
-         * @memberof pbshop.Shop
-         * @instance
-         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-         * @returns {Promise<pbshop.FindShopReply>} Promise
-         * @variation 2
-         */
-
-    /**
-         * Callback as used by {@link pbshop.Shop#findShopList}.
-         * @memberof pbshop.Shop
-         * @typedef FindShopListCallback
-         * @type {function}
-         * @param {Error|null} error Error, if any
-         * @param {pbshop.FindShopReply} [response] FindShopReply
-         */
-
-    /**
-         * Calls FindShopList.
-         * @function findShopList
-         * @memberof pbshop.Shop
-         * @instance
-         * @param {pbshop.IFindShopArgs} request FindShopArgs message or plain object
-         * @param {pbshop.Shop.FindShopListCallback} callback Node-style callback called with the error, if any, and FindShopReply
-         * @returns {undefined}
-         * @variation 1
-         */
-    Object.defineProperty(Shop.prototype.findShopList = function findShopList(request, callback) {
-      return this.rpcCall(findShopList, $root.pbshop.FindShopArgs, $root.pbshop.FindShopReply, request, callback)
-    }, 'name', { value: 'FindShopList' })
-
-    /**
-         * Calls FindShopList.
-         * @function findShopList
-         * @memberof pbshop.Shop
-         * @instance
-         * @param {pbshop.IFindShopArgs} request FindShopArgs message or plain object
-         * @returns {Promise<pbshop.FindShopReply>} Promise
-         * @variation 2
-         */
-
-    return Shop
-  })()
-
-  return pbshop
-})()
-
-$root.pbactiveShop = (function() {
-  /**
-     * Namespace pbactiveShop.
-     * @exports pbactiveShop
-     * @namespace
-     */
-  var pbactiveShop = {}
-
-  pbactiveShop.ActiveShopModel = (function() {
-    /**
-         * Properties of an ActiveShopModel.
-         * @memberof pbactiveShop
-         * @interface IActiveShopModel
-         * @property {number|Long|null} [id] ActiveShopModel id
-         * @property {string|null} [createdAt] ActiveShopModel createdAt
-         * @property {string|null} [updatedAt] ActiveShopModel updatedAt
-         * @property {number|Long|null} [shopId] ActiveShopModel shopId
-         * @property {string|null} [shopName] ActiveShopModel shopName
-         * @property {string|null} [shopLogo] ActiveShopModel shopLogo
-         * @property {string|null} [videoUrl] ActiveShopModel videoUrl
-         * @property {string|null} [description] ActiveShopModel description
-         * @property {string|null} [address] ActiveShopModel address
-         * @property {string|null} [phone] ActiveShopModel phone
-         * @property {string|null} [tags] ActiveShopModel tags
-         * @property {string|null} [openTime] ActiveShopModel openTime
-         * @property {string|null} [closeTime] ActiveShopModel closeTime
-         * @property {number|null} [status] ActiveShopModel status
-         * @property {number|null} [sort] ActiveShopModel sort
-         * @property {string|null} [lat] ActiveShopModel lat
-         * @property {string|null} [lng] ActiveShopModel lng
-         */
-
-    /**
-         * Constructs a new ActiveShopModel.
-         * @memberof pbactiveShop
-         * @classdesc Represents an ActiveShopModel.
-         * @implements IActiveShopModel
-         * @constructor
-         * @param {pbactiveShop.IActiveShopModel=} [properties] Properties to set
-         */
-    function ActiveShopModel(properties) {
-      if (properties) {
-        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
-          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
-        }
-      }
-    }
-
-    /**
-         * ActiveShopModel id.
-         * @member {number|Long} id
-         * @memberof pbactiveShop.ActiveShopModel
-         * @instance
-         */
-    ActiveShopModel.prototype.id = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
-
-    /**
-         * ActiveShopModel createdAt.
-         * @member {string} createdAt
-         * @memberof pbactiveShop.ActiveShopModel
-         * @instance
-         */
-    ActiveShopModel.prototype.createdAt = ''
-
-    /**
-         * ActiveShopModel updatedAt.
-         * @member {string} updatedAt
-         * @memberof pbactiveShop.ActiveShopModel
-         * @instance
-         */
-    ActiveShopModel.prototype.updatedAt = ''
-
-    /**
-         * ActiveShopModel shopId.
-         * @member {number|Long} shopId
-         * @memberof pbactiveShop.ActiveShopModel
-         * @instance
-         */
-    ActiveShopModel.prototype.shopId = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
-
-    /**
-         * ActiveShopModel shopName.
-         * @member {string} shopName
-         * @memberof pbactiveShop.ActiveShopModel
-         * @instance
-         */
-    ActiveShopModel.prototype.shopName = ''
-
-    /**
-         * ActiveShopModel shopLogo.
-         * @member {string} shopLogo
-         * @memberof pbactiveShop.ActiveShopModel
-         * @instance
-         */
-    ActiveShopModel.prototype.shopLogo = ''
-
-    /**
-         * ActiveShopModel videoUrl.
-         * @member {string} videoUrl
-         * @memberof pbactiveShop.ActiveShopModel
-         * @instance
-         */
-    ActiveShopModel.prototype.videoUrl = ''
-
-    /**
-         * ActiveShopModel description.
-         * @member {string} description
-         * @memberof pbactiveShop.ActiveShopModel
-         * @instance
-         */
-    ActiveShopModel.prototype.description = ''
-
-    /**
-         * ActiveShopModel address.
-         * @member {string} address
-         * @memberof pbactiveShop.ActiveShopModel
-         * @instance
-         */
-    ActiveShopModel.prototype.address = ''
-
-    /**
-         * ActiveShopModel phone.
-         * @member {string} phone
-         * @memberof pbactiveShop.ActiveShopModel
-         * @instance
-         */
-    ActiveShopModel.prototype.phone = ''
-
-    /**
-         * ActiveShopModel tags.
-         * @member {string} tags
-         * @memberof pbactiveShop.ActiveShopModel
-         * @instance
-         */
-    ActiveShopModel.prototype.tags = ''
-
-    /**
-         * ActiveShopModel openTime.
-         * @member {string} openTime
-         * @memberof pbactiveShop.ActiveShopModel
-         * @instance
-         */
-    ActiveShopModel.prototype.openTime = ''
-
-    /**
-         * ActiveShopModel closeTime.
-         * @member {string} closeTime
-         * @memberof pbactiveShop.ActiveShopModel
-         * @instance
-         */
-    ActiveShopModel.prototype.closeTime = ''
-
-    /**
-         * ActiveShopModel status.
-         * @member {number} status
-         * @memberof pbactiveShop.ActiveShopModel
-         * @instance
-         */
-    ActiveShopModel.prototype.status = 0
-
-    /**
-         * ActiveShopModel sort.
-         * @member {number} sort
-         * @memberof pbactiveShop.ActiveShopModel
-         * @instance
-         */
-    ActiveShopModel.prototype.sort = 0
-
-    /**
-         * ActiveShopModel lat.
-         * @member {string} lat
-         * @memberof pbactiveShop.ActiveShopModel
-         * @instance
-         */
-    ActiveShopModel.prototype.lat = ''
-
-    /**
-         * ActiveShopModel lng.
-         * @member {string} lng
-         * @memberof pbactiveShop.ActiveShopModel
-         * @instance
-         */
-    ActiveShopModel.prototype.lng = ''
-
-    /**
-         * Creates a new ActiveShopModel instance using the specified properties.
-         * @function create
-         * @memberof pbactiveShop.ActiveShopModel
-         * @static
-         * @param {pbactiveShop.IActiveShopModel=} [properties] Properties to set
-         * @returns {pbactiveShop.ActiveShopModel} ActiveShopModel instance
-         */
-    ActiveShopModel.create = function create(properties) {
-      return new ActiveShopModel(properties)
-    }
-
-    /**
-         * Encodes the specified ActiveShopModel message. Does not implicitly {@link pbactiveShop.ActiveShopModel.verify|verify} messages.
-         * @function encode
-         * @memberof pbactiveShop.ActiveShopModel
-         * @static
-         * @param {pbactiveShop.IActiveShopModel} message ActiveShopModel message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-    ActiveShopModel.encode = function encode(message, writer) {
-      if (!writer) { writer = $Writer.create() }
-      if (message.id != null && Object.hasOwnProperty.call(message, 'id')) { writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id) }
-      if (message.createdAt != null && Object.hasOwnProperty.call(message, 'createdAt')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.createdAt) }
-      if (message.updatedAt != null && Object.hasOwnProperty.call(message, 'updatedAt')) { writer.uint32(/* id 3, wireType 2 =*/26).string(message.updatedAt) }
-      if (message.shopId != null && Object.hasOwnProperty.call(message, 'shopId')) { writer.uint32(/* id 4, wireType 0 =*/32).int64(message.shopId) }
-      if (message.shopName != null && Object.hasOwnProperty.call(message, 'shopName')) { writer.uint32(/* id 5, wireType 2 =*/42).string(message.shopName) }
-      if (message.shopLogo != null && Object.hasOwnProperty.call(message, 'shopLogo')) { writer.uint32(/* id 6, wireType 2 =*/50).string(message.shopLogo) }
-      if (message.videoUrl != null && Object.hasOwnProperty.call(message, 'videoUrl')) { writer.uint32(/* id 7, wireType 2 =*/58).string(message.videoUrl) }
-      if (message.description != null && Object.hasOwnProperty.call(message, 'description')) { writer.uint32(/* id 8, wireType 2 =*/66).string(message.description) }
-      if (message.address != null && Object.hasOwnProperty.call(message, 'address')) { writer.uint32(/* id 9, wireType 2 =*/74).string(message.address) }
-      if (message.phone != null && Object.hasOwnProperty.call(message, 'phone')) { writer.uint32(/* id 10, wireType 2 =*/82).string(message.phone) }
-      if (message.tags != null && Object.hasOwnProperty.call(message, 'tags')) { writer.uint32(/* id 11, wireType 2 =*/90).string(message.tags) }
-      if (message.openTime != null && Object.hasOwnProperty.call(message, 'openTime')) { writer.uint32(/* id 12, wireType 2 =*/98).string(message.openTime) }
-      if (message.closeTime != null && Object.hasOwnProperty.call(message, 'closeTime')) { writer.uint32(/* id 13, wireType 2 =*/106).string(message.closeTime) }
-      if (message.status != null && Object.hasOwnProperty.call(message, 'status')) { writer.uint32(/* id 14, wireType 0 =*/112).int32(message.status) }
-      if (message.sort != null && Object.hasOwnProperty.call(message, 'sort')) { writer.uint32(/* id 15, wireType 0 =*/120).int32(message.sort) }
-      if (message.lat != null && Object.hasOwnProperty.call(message, 'lat')) { writer.uint32(/* id 16, wireType 2 =*/130).string(message.lat) }
-      if (message.lng != null && Object.hasOwnProperty.call(message, 'lng')) { writer.uint32(/* id 17, wireType 2 =*/138).string(message.lng) }
-      return writer
-    }
-
-    /**
-         * Encodes the specified ActiveShopModel message, length delimited. Does not implicitly {@link pbactiveShop.ActiveShopModel.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof pbactiveShop.ActiveShopModel
-         * @static
-         * @param {pbactiveShop.IActiveShopModel} message ActiveShopModel message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-    ActiveShopModel.encodeDelimited = function encodeDelimited(message, writer) {
-      return this.encode(message, writer).ldelim()
-    }
-
-    /**
-         * Decodes an ActiveShopModel message from the specified reader or buffer.
-         * @function decode
-         * @memberof pbactiveShop.ActiveShopModel
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {pbactiveShop.ActiveShopModel} ActiveShopModel
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-    ActiveShopModel.decode = function decode(reader, length) {
-      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
-      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbactiveShop.ActiveShopModel()
-      while (reader.pos < end) {
-        var tag = reader.uint32()
-        switch (tag >>> 3) {
-          case 1: {
-            message.id = reader.int64()
-            break
-          }
-          case 2: {
-            message.createdAt = reader.string()
-            break
-          }
-          case 3: {
-            message.updatedAt = reader.string()
-            break
-          }
-          case 4: {
-            message.shopId = reader.int64()
-            break
-          }
-          case 5: {
-            message.shopName = reader.string()
-            break
-          }
-          case 6: {
-            message.shopLogo = reader.string()
-            break
-          }
-          case 7: {
-            message.videoUrl = reader.string()
-            break
-          }
-          case 8: {
-            message.description = reader.string()
-            break
-          }
-          case 9: {
-            message.address = reader.string()
-            break
-          }
-          case 10: {
-            message.phone = reader.string()
-            break
-          }
-          case 11: {
-            message.tags = reader.string()
-            break
-          }
-          case 12: {
-            message.openTime = reader.string()
-            break
-          }
-          case 13: {
-            message.closeTime = reader.string()
-            break
-          }
-          case 14: {
-            message.status = reader.int32()
-            break
-          }
-          case 15: {
-            message.sort = reader.int32()
-            break
-          }
-          case 16: {
-            message.lat = reader.string()
-            break
-          }
-          case 17: {
-            message.lng = reader.string()
-            break
-          }
-          default:
-            reader.skipType(tag & 7)
-            break
-        }
-      }
-      return message
-    }
-
-    /**
-         * Decodes an ActiveShopModel message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof pbactiveShop.ActiveShopModel
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {pbactiveShop.ActiveShopModel} ActiveShopModel
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-    ActiveShopModel.decodeDelimited = function decodeDelimited(reader) {
-      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
-      return this.decode(reader, reader.uint32())
-    }
-
-    /**
-         * Verifies an ActiveShopModel message.
-         * @function verify
-         * @memberof pbactiveShop.ActiveShopModel
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-    ActiveShopModel.verify = function verify(message) {
-      if (typeof message !== 'object' || message === null) { return 'object expected' }
-      if (message.id != null && message.hasOwnProperty('id')) {
-        if (!$util.isInteger(message.id) && !(message.id && $util.isInteger(message.id.low) && $util.isInteger(message.id.high))) { return 'id: integer|Long expected' }
-      }
-      if (message.createdAt != null && message.hasOwnProperty('createdAt')) {
-        if (!$util.isString(message.createdAt)) { return 'createdAt: string expected' }
-      }
-      if (message.updatedAt != null && message.hasOwnProperty('updatedAt')) {
-        if (!$util.isString(message.updatedAt)) { return 'updatedAt: string expected' }
-      }
-      if (message.shopId != null && message.hasOwnProperty('shopId')) {
-        if (!$util.isInteger(message.shopId) && !(message.shopId && $util.isInteger(message.shopId.low) && $util.isInteger(message.shopId.high))) { return 'shopId: integer|Long expected' }
-      }
-      if (message.shopName != null && message.hasOwnProperty('shopName')) {
-        if (!$util.isString(message.shopName)) { return 'shopName: string expected' }
-      }
-      if (message.shopLogo != null && message.hasOwnProperty('shopLogo')) {
-        if (!$util.isString(message.shopLogo)) { return 'shopLogo: string expected' }
-      }
-      if (message.videoUrl != null && message.hasOwnProperty('videoUrl')) {
-        if (!$util.isString(message.videoUrl)) { return 'videoUrl: string expected' }
-      }
-      if (message.description != null && message.hasOwnProperty('description')) {
-        if (!$util.isString(message.description)) { return 'description: string expected' }
-      }
-      if (message.address != null && message.hasOwnProperty('address')) {
-        if (!$util.isString(message.address)) { return 'address: string expected' }
-      }
-      if (message.phone != null && message.hasOwnProperty('phone')) {
-        if (!$util.isString(message.phone)) { return 'phone: string expected' }
-      }
-      if (message.tags != null && message.hasOwnProperty('tags')) {
-        if (!$util.isString(message.tags)) { return 'tags: string expected' }
-      }
-      if (message.openTime != null && message.hasOwnProperty('openTime')) {
-        if (!$util.isString(message.openTime)) { return 'openTime: string expected' }
-      }
-      if (message.closeTime != null && message.hasOwnProperty('closeTime')) {
-        if (!$util.isString(message.closeTime)) { return 'closeTime: string expected' }
-      }
-      if (message.status != null && message.hasOwnProperty('status')) {
-        if (!$util.isInteger(message.status)) { return 'status: integer expected' }
-      }
-      if (message.sort != null && message.hasOwnProperty('sort')) {
-        if (!$util.isInteger(message.sort)) { return 'sort: integer expected' }
-      }
-      if (message.lat != null && message.hasOwnProperty('lat')) {
-        if (!$util.isString(message.lat)) { return 'lat: string expected' }
-      }
-      if (message.lng != null && message.hasOwnProperty('lng')) {
-        if (!$util.isString(message.lng)) { return 'lng: string expected' }
-      }
-      return null
-    }
-
-    /**
-         * Creates an ActiveShopModel message from a plain object. Also converts values to their respective internal types.
-         * @function fromObject
-         * @memberof pbactiveShop.ActiveShopModel
-         * @static
-         * @param {Object.<string,*>} object Plain object
-         * @returns {pbactiveShop.ActiveShopModel} ActiveShopModel
-         */
-    ActiveShopModel.fromObject = function fromObject(object) {
-      if (object instanceof $root.pbactiveShop.ActiveShopModel) { return object }
-      var message = new $root.pbactiveShop.ActiveShopModel()
-      if (object.id != null) {
-        if ($util.Long) { (message.id = $util.Long.fromValue(object.id)).unsigned = false } else if (typeof object.id === 'string') { message.id = parseInt(object.id, 10) } else if (typeof object.id === 'number') { message.id = object.id } else if (typeof object.id === 'object') { message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber() }
-      }
-      if (object.createdAt != null) { message.createdAt = String(object.createdAt) }
-      if (object.updatedAt != null) { message.updatedAt = String(object.updatedAt) }
-      if (object.shopId != null) {
-        if ($util.Long) { (message.shopId = $util.Long.fromValue(object.shopId)).unsigned = false } else if (typeof object.shopId === 'string') { message.shopId = parseInt(object.shopId, 10) } else if (typeof object.shopId === 'number') { message.shopId = object.shopId } else if (typeof object.shopId === 'object') { message.shopId = new $util.LongBits(object.shopId.low >>> 0, object.shopId.high >>> 0).toNumber() }
-      }
-      if (object.shopName != null) { message.shopName = String(object.shopName) }
-      if (object.shopLogo != null) { message.shopLogo = String(object.shopLogo) }
-      if (object.videoUrl != null) { message.videoUrl = String(object.videoUrl) }
-      if (object.description != null) { message.description = String(object.description) }
-      if (object.address != null) { message.address = String(object.address) }
-      if (object.phone != null) { message.phone = String(object.phone) }
-      if (object.tags != null) { message.tags = String(object.tags) }
-      if (object.openTime != null) { message.openTime = String(object.openTime) }
-      if (object.closeTime != null) { message.closeTime = String(object.closeTime) }
-      if (object.status != null) { message.status = object.status | 0 }
-      if (object.sort != null) { message.sort = object.sort | 0 }
-      if (object.lat != null) { message.lat = String(object.lat) }
-      if (object.lng != null) { message.lng = String(object.lng) }
-      return message
-    }
-
-    /**
-         * Creates a plain object from an ActiveShopModel message. Also converts values to other types if specified.
-         * @function toObject
-         * @memberof pbactiveShop.ActiveShopModel
-         * @static
-         * @param {pbactiveShop.ActiveShopModel} message ActiveShopModel
-         * @param {$protobuf.IConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-    ActiveShopModel.toObject = function toObject(message, options) {
-      if (!options) { options = {} }
-      var object = {}
-      if (options.defaults) {
-        if ($util.Long) {
-          var long = new $util.Long(0, 0, false)
-          object.id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
-        } else { object.id = options.longs === String ? '0' : 0 }
-        object.createdAt = ''
-        object.updatedAt = ''
-        if ($util.Long) {
-          var long = new $util.Long(0, 0, false)
-          object.shopId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
-        } else { object.shopId = options.longs === String ? '0' : 0 }
-        object.shopName = ''
-        object.shopLogo = ''
-        object.videoUrl = ''
-        object.description = ''
-        object.address = ''
-        object.phone = ''
-        object.tags = ''
-        object.openTime = ''
-        object.closeTime = ''
-        object.status = 0
-        object.sort = 0
-        object.lat = ''
-        object.lng = ''
-      }
-      if (message.id != null && message.hasOwnProperty('id')) {
-        if (typeof message.id === 'number') { object.id = options.longs === String ? String(message.id) : message.id } else { object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id }
-      }
-      if (message.createdAt != null && message.hasOwnProperty('createdAt')) { object.createdAt = message.createdAt }
-      if (message.updatedAt != null && message.hasOwnProperty('updatedAt')) { object.updatedAt = message.updatedAt }
-      if (message.shopId != null && message.hasOwnProperty('shopId')) {
-        if (typeof message.shopId === 'number') { object.shopId = options.longs === String ? String(message.shopId) : message.shopId } else { object.shopId = options.longs === String ? $util.Long.prototype.toString.call(message.shopId) : options.longs === Number ? new $util.LongBits(message.shopId.low >>> 0, message.shopId.high >>> 0).toNumber() : message.shopId }
-      }
-      if (message.shopName != null && message.hasOwnProperty('shopName')) { object.shopName = message.shopName }
-      if (message.shopLogo != null && message.hasOwnProperty('shopLogo')) { object.shopLogo = message.shopLogo }
-      if (message.videoUrl != null && message.hasOwnProperty('videoUrl')) { object.videoUrl = message.videoUrl }
-      if (message.description != null && message.hasOwnProperty('description')) { object.description = message.description }
-      if (message.address != null && message.hasOwnProperty('address')) { object.address = message.address }
-      if (message.phone != null && message.hasOwnProperty('phone')) { object.phone = message.phone }
-      if (message.tags != null && message.hasOwnProperty('tags')) { object.tags = message.tags }
-      if (message.openTime != null && message.hasOwnProperty('openTime')) { object.openTime = message.openTime }
-      if (message.closeTime != null && message.hasOwnProperty('closeTime')) { object.closeTime = message.closeTime }
-      if (message.status != null && message.hasOwnProperty('status')) { object.status = message.status }
-      if (message.sort != null && message.hasOwnProperty('sort')) { object.sort = message.sort }
-      if (message.lat != null && message.hasOwnProperty('lat')) { object.lat = message.lat }
-      if (message.lng != null && message.hasOwnProperty('lng')) { object.lng = message.lng }
-      return object
-    }
-
-    /**
-         * Converts this ActiveShopModel to JSON.
-         * @function toJSON
-         * @memberof pbactiveShop.ActiveShopModel
-         * @instance
-         * @returns {Object.<string,*>} JSON object
-         */
-    ActiveShopModel.prototype.toJSON = function toJSON() {
-      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
-    }
-
-    /**
-         * Gets the default type url for ActiveShopModel
-         * @function getTypeUrl
-         * @memberof pbactiveShop.ActiveShopModel
-         * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
-         */
-    ActiveShopModel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-      if (typeUrlPrefix === undefined) {
-        typeUrlPrefix = 'type.googleapis.com'
-      }
-      return typeUrlPrefix + '/pbactiveShop.ActiveShopModel'
-    }
-
-    return ActiveShopModel
-  })()
-
-  pbactiveShop.FindActiveShopArgs = (function() {
-    /**
-         * Properties of a FindActiveShopArgs.
-         * @memberof pbactiveShop
-         * @interface IFindActiveShopArgs
-         * @property {pbcommon.IPageInfo|null} [pageInfo] FindActiveShopArgs pageInfo
-         * @property {pbactiveShop.IActiveShopModel|null} [query] FindActiveShopArgs query
-         */
-
-    /**
-         * Constructs a new FindActiveShopArgs.
-         * @memberof pbactiveShop
-         * @classdesc Represents a FindActiveShopArgs.
-         * @implements IFindActiveShopArgs
-         * @constructor
-         * @param {pbactiveShop.IFindActiveShopArgs=} [properties] Properties to set
-         */
-    function FindActiveShopArgs(properties) {
-      if (properties) {
-        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
-          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
-        }
-      }
-    }
-
-    /**
-         * FindActiveShopArgs pageInfo.
-         * @member {pbcommon.IPageInfo|null|undefined} pageInfo
-         * @memberof pbactiveShop.FindActiveShopArgs
-         * @instance
-         */
-    FindActiveShopArgs.prototype.pageInfo = null
-
-    /**
-         * FindActiveShopArgs query.
-         * @member {pbactiveShop.IActiveShopModel|null|undefined} query
-         * @memberof pbactiveShop.FindActiveShopArgs
-         * @instance
-         */
-    FindActiveShopArgs.prototype.query = null
-
-    /**
-         * Creates a new FindActiveShopArgs instance using the specified properties.
-         * @function create
-         * @memberof pbactiveShop.FindActiveShopArgs
-         * @static
-         * @param {pbactiveShop.IFindActiveShopArgs=} [properties] Properties to set
-         * @returns {pbactiveShop.FindActiveShopArgs} FindActiveShopArgs instance
-         */
-    FindActiveShopArgs.create = function create(properties) {
-      return new FindActiveShopArgs(properties)
-    }
-
-    /**
-         * Encodes the specified FindActiveShopArgs message. Does not implicitly {@link pbactiveShop.FindActiveShopArgs.verify|verify} messages.
-         * @function encode
-         * @memberof pbactiveShop.FindActiveShopArgs
-         * @static
-         * @param {pbactiveShop.IFindActiveShopArgs} message FindActiveShopArgs message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-    FindActiveShopArgs.encode = function encode(message, writer) {
-      if (!writer) { writer = $Writer.create() }
-      if (message.pageInfo != null && Object.hasOwnProperty.call(message, 'pageInfo')) { $root.pbcommon.PageInfo.encode(message.pageInfo, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim() }
-      if (message.query != null && Object.hasOwnProperty.call(message, 'query')) { $root.pbactiveShop.ActiveShopModel.encode(message.query, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim() }
-      return writer
-    }
-
-    /**
-         * Encodes the specified FindActiveShopArgs message, length delimited. Does not implicitly {@link pbactiveShop.FindActiveShopArgs.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof pbactiveShop.FindActiveShopArgs
-         * @static
-         * @param {pbactiveShop.IFindActiveShopArgs} message FindActiveShopArgs message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-    FindActiveShopArgs.encodeDelimited = function encodeDelimited(message, writer) {
-      return this.encode(message, writer).ldelim()
-    }
-
-    /**
-         * Decodes a FindActiveShopArgs message from the specified reader or buffer.
-         * @function decode
-         * @memberof pbactiveShop.FindActiveShopArgs
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {pbactiveShop.FindActiveShopArgs} FindActiveShopArgs
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-    FindActiveShopArgs.decode = function decode(reader, length) {
-      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
-      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbactiveShop.FindActiveShopArgs()
-      while (reader.pos < end) {
-        var tag = reader.uint32()
-        switch (tag >>> 3) {
-          case 1: {
-            message.pageInfo = $root.pbcommon.PageInfo.decode(reader, reader.uint32())
-            break
-          }
-          case 2: {
-            message.query = $root.pbactiveShop.ActiveShopModel.decode(reader, reader.uint32())
-            break
-          }
-          default:
-            reader.skipType(tag & 7)
-            break
-        }
-      }
-      return message
-    }
-
-    /**
-         * Decodes a FindActiveShopArgs message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof pbactiveShop.FindActiveShopArgs
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {pbactiveShop.FindActiveShopArgs} FindActiveShopArgs
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-    FindActiveShopArgs.decodeDelimited = function decodeDelimited(reader) {
-      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
-      return this.decode(reader, reader.uint32())
-    }
-
-    /**
-         * Verifies a FindActiveShopArgs message.
-         * @function verify
-         * @memberof pbactiveShop.FindActiveShopArgs
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-    FindActiveShopArgs.verify = function verify(message) {
-      if (typeof message !== 'object' || message === null) { return 'object expected' }
-      if (message.pageInfo != null && message.hasOwnProperty('pageInfo')) {
-        var error = $root.pbcommon.PageInfo.verify(message.pageInfo)
-        if (error) { return 'pageInfo.' + error }
-      }
-      if (message.query != null && message.hasOwnProperty('query')) {
-        var error = $root.pbactiveShop.ActiveShopModel.verify(message.query)
-        if (error) { return 'query.' + error }
-      }
-      return null
-    }
-
-    /**
-         * Creates a FindActiveShopArgs message from a plain object. Also converts values to their respective internal types.
-         * @function fromObject
-         * @memberof pbactiveShop.FindActiveShopArgs
-         * @static
-         * @param {Object.<string,*>} object Plain object
-         * @returns {pbactiveShop.FindActiveShopArgs} FindActiveShopArgs
-         */
-    FindActiveShopArgs.fromObject = function fromObject(object) {
-      if (object instanceof $root.pbactiveShop.FindActiveShopArgs) { return object }
-      var message = new $root.pbactiveShop.FindActiveShopArgs()
-      if (object.pageInfo != null) {
-        if (typeof object.pageInfo !== 'object') { throw TypeError('.pbactiveShop.FindActiveShopArgs.pageInfo: object expected') }
-        message.pageInfo = $root.pbcommon.PageInfo.fromObject(object.pageInfo)
-      }
-      if (object.query != null) {
-        if (typeof object.query !== 'object') { throw TypeError('.pbactiveShop.FindActiveShopArgs.query: object expected') }
-        message.query = $root.pbactiveShop.ActiveShopModel.fromObject(object.query)
-      }
-      return message
-    }
-
-    /**
-         * Creates a plain object from a FindActiveShopArgs message. Also converts values to other types if specified.
-         * @function toObject
-         * @memberof pbactiveShop.FindActiveShopArgs
-         * @static
-         * @param {pbactiveShop.FindActiveShopArgs} message FindActiveShopArgs
-         * @param {$protobuf.IConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-    FindActiveShopArgs.toObject = function toObject(message, options) {
-      if (!options) { options = {} }
-      var object = {}
-      if (options.defaults) {
-        object.pageInfo = null
-        object.query = null
-      }
-      if (message.pageInfo != null && message.hasOwnProperty('pageInfo')) { object.pageInfo = $root.pbcommon.PageInfo.toObject(message.pageInfo, options) }
-      if (message.query != null && message.hasOwnProperty('query')) { object.query = $root.pbactiveShop.ActiveShopModel.toObject(message.query, options) }
-      return object
-    }
-
-    /**
-         * Converts this FindActiveShopArgs to JSON.
-         * @function toJSON
-         * @memberof pbactiveShop.FindActiveShopArgs
-         * @instance
-         * @returns {Object.<string,*>} JSON object
-         */
-    FindActiveShopArgs.prototype.toJSON = function toJSON() {
-      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
-    }
-
-    /**
-         * Gets the default type url for FindActiveShopArgs
-         * @function getTypeUrl
-         * @memberof pbactiveShop.FindActiveShopArgs
-         * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
-         */
-    FindActiveShopArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-      if (typeUrlPrefix === undefined) {
-        typeUrlPrefix = 'type.googleapis.com'
-      }
-      return typeUrlPrefix + '/pbactiveShop.FindActiveShopArgs'
-    }
-
-    return FindActiveShopArgs
-  })()
-
-  pbactiveShop.FindActiveShopReply = (function() {
-    /**
-         * Properties of a FindActiveShopReply.
-         * @memberof pbactiveShop
-         * @interface IFindActiveShopReply
-         * @property {pbcommon.EnumCode|null} [code] FindActiveShopReply code
-         * @property {string|null} [msg] FindActiveShopReply msg
-         * @property {pbactiveShop.IActiveShopModel|null} [data] FindActiveShopReply data
-         * @property {Array.<pbactiveShop.IActiveShopModel>|null} [list] FindActiveShopReply list
-         * @property {number|Long|null} [total] FindActiveShopReply total
-         */
-
-    /**
-         * Constructs a new FindActiveShopReply.
-         * @memberof pbactiveShop
-         * @classdesc Represents a FindActiveShopReply.
-         * @implements IFindActiveShopReply
-         * @constructor
-         * @param {pbactiveShop.IFindActiveShopReply=} [properties] Properties to set
-         */
-    function FindActiveShopReply(properties) {
-      this.list = []
-      if (properties) {
-        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
-          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
-        }
-      }
-    }
-
-    /**
-         * FindActiveShopReply code.
-         * @member {pbcommon.EnumCode} code
-         * @memberof pbactiveShop.FindActiveShopReply
-         * @instance
-         */
-    FindActiveShopReply.prototype.code = 0
-
-    /**
-         * FindActiveShopReply msg.
-         * @member {string} msg
-         * @memberof pbactiveShop.FindActiveShopReply
-         * @instance
-         */
-    FindActiveShopReply.prototype.msg = ''
-
-    /**
-         * FindActiveShopReply data.
-         * @member {pbactiveShop.IActiveShopModel|null|undefined} data
-         * @memberof pbactiveShop.FindActiveShopReply
-         * @instance
-         */
-    FindActiveShopReply.prototype.data = null
-
-    /**
-         * FindActiveShopReply list.
-         * @member {Array.<pbactiveShop.IActiveShopModel>} list
-         * @memberof pbactiveShop.FindActiveShopReply
-         * @instance
-         */
-    FindActiveShopReply.prototype.list = $util.emptyArray
-
-    /**
-         * FindActiveShopReply total.
-         * @member {number|Long} total
-         * @memberof pbactiveShop.FindActiveShopReply
-         * @instance
-         */
-    FindActiveShopReply.prototype.total = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
-
-    /**
-         * Creates a new FindActiveShopReply instance using the specified properties.
-         * @function create
-         * @memberof pbactiveShop.FindActiveShopReply
-         * @static
-         * @param {pbactiveShop.IFindActiveShopReply=} [properties] Properties to set
-         * @returns {pbactiveShop.FindActiveShopReply} FindActiveShopReply instance
-         */
-    FindActiveShopReply.create = function create(properties) {
-      return new FindActiveShopReply(properties)
-    }
-
-    /**
-         * Encodes the specified FindActiveShopReply message. Does not implicitly {@link pbactiveShop.FindActiveShopReply.verify|verify} messages.
-         * @function encode
-         * @memberof pbactiveShop.FindActiveShopReply
-         * @static
-         * @param {pbactiveShop.IFindActiveShopReply} message FindActiveShopReply message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-    FindActiveShopReply.encode = function encode(message, writer) {
-      if (!writer) { writer = $Writer.create() }
-      if (message.code != null && Object.hasOwnProperty.call(message, 'code')) { writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code) }
-      if (message.msg != null && Object.hasOwnProperty.call(message, 'msg')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg) }
-      if (message.data != null && Object.hasOwnProperty.call(message, 'data')) { $root.pbactiveShop.ActiveShopModel.encode(message.data, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim() }
-      if (message.list != null && message.list.length) {
-        for (var i = 0; i < message.list.length; ++i) { $root.pbactiveShop.ActiveShopModel.encode(message.list[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim() }
-      }
-      if (message.total != null && Object.hasOwnProperty.call(message, 'total')) { writer.uint32(/* id 5, wireType 0 =*/40).int64(message.total) }
-      return writer
-    }
-
-    /**
-         * Encodes the specified FindActiveShopReply message, length delimited. Does not implicitly {@link pbactiveShop.FindActiveShopReply.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof pbactiveShop.FindActiveShopReply
-         * @static
-         * @param {pbactiveShop.IFindActiveShopReply} message FindActiveShopReply message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-    FindActiveShopReply.encodeDelimited = function encodeDelimited(message, writer) {
-      return this.encode(message, writer).ldelim()
-    }
-
-    /**
-         * Decodes a FindActiveShopReply message from the specified reader or buffer.
-         * @function decode
-         * @memberof pbactiveShop.FindActiveShopReply
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {pbactiveShop.FindActiveShopReply} FindActiveShopReply
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-    FindActiveShopReply.decode = function decode(reader, length) {
-      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
-      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbactiveShop.FindActiveShopReply()
-      while (reader.pos < end) {
-        var tag = reader.uint32()
-        switch (tag >>> 3) {
-          case 1: {
-            message.code = reader.int32()
-            break
-          }
-          case 2: {
-            message.msg = reader.string()
-            break
-          }
-          case 3: {
-            message.data = $root.pbactiveShop.ActiveShopModel.decode(reader, reader.uint32())
-            break
-          }
-          case 4: {
-            if (!(message.list && message.list.length)) { message.list = [] }
-            message.list.push($root.pbactiveShop.ActiveShopModel.decode(reader, reader.uint32()))
-            break
-          }
-          case 5: {
-            message.total = reader.int64()
-            break
-          }
-          default:
-            reader.skipType(tag & 7)
-            break
-        }
-      }
-      return message
-    }
-
-    /**
-         * Decodes a FindActiveShopReply message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof pbactiveShop.FindActiveShopReply
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {pbactiveShop.FindActiveShopReply} FindActiveShopReply
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-    FindActiveShopReply.decodeDelimited = function decodeDelimited(reader) {
-      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
-      return this.decode(reader, reader.uint32())
-    }
-
-    /**
-         * Verifies a FindActiveShopReply message.
-         * @function verify
-         * @memberof pbactiveShop.FindActiveShopReply
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-    FindActiveShopReply.verify = function verify(message) {
-      if (typeof message !== 'object' || message === null) { return 'object expected' }
-      if (message.code != null && message.hasOwnProperty('code')) {
-        switch (message.code) {
-          default:
-            return 'code: enum value expected'
-          case 0:
-          case 200:
-          case 500:
-          case 501:
-          case 502:
-          case 503:
-          case 504:
-          case 505:
-          case 1001:
-          case 1002:
-          case 1003:
-          case 1004:
-          case 2002:
-          case 2003:
-          case 2004:
-          case 2005:
-          case 2006:
-          case 2007:
-          case 2008:
-          case 2009:
-          case 2010:
-          case 2011:
-          case 2012:
-          case 2013:
-          case 2014:
-            break
-        }
-      }
-      if (message.msg != null && message.hasOwnProperty('msg')) {
-        if (!$util.isString(message.msg)) { return 'msg: string expected' }
-      }
-      if (message.data != null && message.hasOwnProperty('data')) {
-        var error = $root.pbactiveShop.ActiveShopModel.verify(message.data)
-        if (error) { return 'data.' + error }
-      }
-      if (message.list != null && message.hasOwnProperty('list')) {
-        if (!Array.isArray(message.list)) { return 'list: array expected' }
-        for (var i = 0; i < message.list.length; ++i) {
-          var error = $root.pbactiveShop.ActiveShopModel.verify(message.list[i])
-          if (error) { return 'list.' + error }
-        }
-      }
-      if (message.total != null && message.hasOwnProperty('total')) {
-        if (!$util.isInteger(message.total) && !(message.total && $util.isInteger(message.total.low) && $util.isInteger(message.total.high))) { return 'total: integer|Long expected' }
-      }
-      return null
-    }
-
-    /**
-         * Creates a FindActiveShopReply message from a plain object. Also converts values to their respective internal types.
-         * @function fromObject
-         * @memberof pbactiveShop.FindActiveShopReply
-         * @static
-         * @param {Object.<string,*>} object Plain object
-         * @returns {pbactiveShop.FindActiveShopReply} FindActiveShopReply
-         */
-    FindActiveShopReply.fromObject = function fromObject(object) {
-      if (object instanceof $root.pbactiveShop.FindActiveShopReply) { return object }
-      var message = new $root.pbactiveShop.FindActiveShopReply()
-      switch (object.code) {
-        default:
-          if (typeof object.code === 'number') {
-            message.code = object.code
-            break
-          }
-          break
-        case 'None':
-        case 0:
-          message.code = 0
-          break
-        case 'Success':
-        case 200:
-          message.code = 200
-          break
-        case 'Fail':
-        case 500:
-          message.code = 500
-          break
-        case 'Unknown':
-        case 501:
-          message.code = 501
-          break
-        case 'Internal':
-        case 502:
-          message.code = 502
-          break
-        case 'Invalid':
-        case 503:
-          message.code = 503
-          break
-        case 'InvalidParam':
-        case 504:
-          message.code = 504
-          break
-        case 'ParamError':
-        case 505:
-          message.code = 505
-          break
-        case 'FindError':
-        case 1001:
-          message.code = 1001
-          break
-        case 'CreateError':
-        case 1002:
-          message.code = 1002
-          break
-        case 'DeleteError':
-        case 1003:
-          message.code = 1003
-          break
-        case 'UpdateError':
-        case 1004:
-          message.code = 1004
-          break
-        case 'InvalidToken':
-        case 2002:
-          message.code = 2002
-          break
-        case 'InvalidSign':
-        case 2003:
-          message.code = 2003
-          break
-        case 'NotLogin':
-        case 2004:
-          message.code = 2004
-          break
-        case 'LoginTimeout':
-        case 2005:
-          message.code = 2005
-          break
-        case 'LoginError':
-        case 2006:
-          message.code = 2006
-          break
-        case 'LoginForbidden':
-        case 2007:
-          message.code = 2007
-          break
-        case 'LoginExpired':
-        case 2008:
-          message.code = 2008
-          break
-        case 'LoginInvalid':
-        case 2009:
-          message.code = 2009
-          break
-        case 'LoginInvalidPassword':
-        case 2010:
-          message.code = 2010
-          break
-        case 'LoginInvalidUsername':
-        case 2011:
-          message.code = 2011
-          break
-        case 'LoginInvalidEmail':
-        case 2012:
-          message.code = 2012
-          break
-        case 'LoginInvalidPhone':
-        case 2013:
-          message.code = 2013
-          break
-        case 'LoginInvalidUsernameOrEmail':
-        case 2014:
-          message.code = 2014
-          break
-      }
-      if (object.msg != null) { message.msg = String(object.msg) }
-      if (object.data != null) {
-        if (typeof object.data !== 'object') { throw TypeError('.pbactiveShop.FindActiveShopReply.data: object expected') }
-        message.data = $root.pbactiveShop.ActiveShopModel.fromObject(object.data)
-      }
-      if (object.list) {
-        if (!Array.isArray(object.list)) { throw TypeError('.pbactiveShop.FindActiveShopReply.list: array expected') }
-        message.list = []
-        for (var i = 0; i < object.list.length; ++i) {
-          if (typeof object.list[i] !== 'object') { throw TypeError('.pbactiveShop.FindActiveShopReply.list: object expected') }
-          message.list[i] = $root.pbactiveShop.ActiveShopModel.fromObject(object.list[i])
-        }
-      }
-      if (object.total != null) {
-        if ($util.Long) { (message.total = $util.Long.fromValue(object.total)).unsigned = false } else if (typeof object.total === 'string') { message.total = parseInt(object.total, 10) } else if (typeof object.total === 'number') { message.total = object.total } else if (typeof object.total === 'object') { message.total = new $util.LongBits(object.total.low >>> 0, object.total.high >>> 0).toNumber() }
-      }
-      return message
-    }
-
-    /**
-         * Creates a plain object from a FindActiveShopReply message. Also converts values to other types if specified.
-         * @function toObject
-         * @memberof pbactiveShop.FindActiveShopReply
-         * @static
-         * @param {pbactiveShop.FindActiveShopReply} message FindActiveShopReply
-         * @param {$protobuf.IConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-    FindActiveShopReply.toObject = function toObject(message, options) {
-      if (!options) { options = {} }
-      var object = {}
-      if (options.arrays || options.defaults) { object.list = [] }
-      if (options.defaults) {
-        object.code = options.enums === String ? 'None' : 0
-        object.msg = ''
-        object.data = null
-        if ($util.Long) {
-          var long = new $util.Long(0, 0, false)
-          object.total = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
-        } else { object.total = options.longs === String ? '0' : 0 }
-      }
-      if (message.code != null && message.hasOwnProperty('code')) { object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code }
-      if (message.msg != null && message.hasOwnProperty('msg')) { object.msg = message.msg }
-      if (message.data != null && message.hasOwnProperty('data')) { object.data = $root.pbactiveShop.ActiveShopModel.toObject(message.data, options) }
-      if (message.list && message.list.length) {
-        object.list = []
-        for (var j = 0; j < message.list.length; ++j) { object.list[j] = $root.pbactiveShop.ActiveShopModel.toObject(message.list[j], options) }
-      }
-      if (message.total != null && message.hasOwnProperty('total')) {
-        if (typeof message.total === 'number') { object.total = options.longs === String ? String(message.total) : message.total } else { object.total = options.longs === String ? $util.Long.prototype.toString.call(message.total) : options.longs === Number ? new $util.LongBits(message.total.low >>> 0, message.total.high >>> 0).toNumber() : message.total }
-      }
-      return object
-    }
-
-    /**
-         * Converts this FindActiveShopReply to JSON.
-         * @function toJSON
-         * @memberof pbactiveShop.FindActiveShopReply
-         * @instance
-         * @returns {Object.<string,*>} JSON object
-         */
-    FindActiveShopReply.prototype.toJSON = function toJSON() {
-      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
-    }
-
-    /**
-         * Gets the default type url for FindActiveShopReply
-         * @function getTypeUrl
-         * @memberof pbactiveShop.FindActiveShopReply
-         * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
-         */
-    FindActiveShopReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-      if (typeUrlPrefix === undefined) {
-        typeUrlPrefix = 'type.googleapis.com'
-      }
-      return typeUrlPrefix + '/pbactiveShop.FindActiveShopReply'
-    }
-
-    return FindActiveShopReply
-  })()
-
-  pbactiveShop.ActiveShop = (function() {
-    /**
-         * Constructs a new ActiveShop service.
-         * @memberof pbactiveShop
-         * @classdesc Represents an ActiveShop
-         * @extends $protobuf.rpc.Service
-         * @constructor
-         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
-         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
-         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
-         */
-    function ActiveShop(rpcImpl, requestDelimited, responseDelimited) {
-      $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited)
-    }
-
-    (ActiveShop.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = ActiveShop
-
-    /**
-         * Creates new ActiveShop service using the specified rpc implementation.
-         * @function create
-         * @memberof pbactiveShop.ActiveShop
-         * @static
-         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
-         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
-         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
-         * @returns {ActiveShop} RPC service. Useful where requests and/or responses are streamed.
-         */
-    ActiveShop.create = function create(rpcImpl, requestDelimited, responseDelimited) {
-      return new this(rpcImpl, requestDelimited, responseDelimited)
-    }
-
-    /**
-         * Callback as used by {@link pbactiveShop.ActiveShop#createActiveShop}.
-         * @memberof pbactiveShop.ActiveShop
-         * @typedef CreateActiveShopCallback
-         * @type {function}
-         * @param {Error|null} error Error, if any
-         * @param {pbcommon.CommonResult} [response] CommonResult
-         */
-
-    /**
-         * Calls CreateActiveShop.
-         * @function createActiveShop
-         * @memberof pbactiveShop.ActiveShop
-         * @instance
-         * @param {pbactiveShop.IActiveShopModel} request ActiveShopModel message or plain object
-         * @param {pbactiveShop.ActiveShop.CreateActiveShopCallback} callback Node-style callback called with the error, if any, and CommonResult
-         * @returns {undefined}
-         * @variation 1
-         */
-    Object.defineProperty(ActiveShop.prototype.createActiveShop = function createActiveShop(request, callback) {
-      return this.rpcCall(createActiveShop, $root.pbactiveShop.ActiveShopModel, $root.pbcommon.CommonResult, request, callback)
-    }, 'name', { value: 'CreateActiveShop' })
-
-    /**
-         * Calls CreateActiveShop.
-         * @function createActiveShop
-         * @memberof pbactiveShop.ActiveShop
-         * @instance
-         * @param {pbactiveShop.IActiveShopModel} request ActiveShopModel message or plain object
-         * @returns {Promise<pbcommon.CommonResult>} Promise
-         * @variation 2
-         */
-
-    /**
-         * Callback as used by {@link pbactiveShop.ActiveShop#updateActiveShop}.
-         * @memberof pbactiveShop.ActiveShop
-         * @typedef UpdateActiveShopCallback
-         * @type {function}
-         * @param {Error|null} error Error, if any
-         * @param {pbcommon.CommonResult} [response] CommonResult
-         */
-
-    /**
-         * Calls UpdateActiveShop.
-         * @function updateActiveShop
-         * @memberof pbactiveShop.ActiveShop
-         * @instance
-         * @param {pbactiveShop.IActiveShopModel} request ActiveShopModel message or plain object
-         * @param {pbactiveShop.ActiveShop.UpdateActiveShopCallback} callback Node-style callback called with the error, if any, and CommonResult
-         * @returns {undefined}
-         * @variation 1
-         */
-    Object.defineProperty(ActiveShop.prototype.updateActiveShop = function updateActiveShop(request, callback) {
-      return this.rpcCall(updateActiveShop, $root.pbactiveShop.ActiveShopModel, $root.pbcommon.CommonResult, request, callback)
-    }, 'name', { value: 'UpdateActiveShop' })
-
-    /**
-         * Calls UpdateActiveShop.
-         * @function updateActiveShop
-         * @memberof pbactiveShop.ActiveShop
-         * @instance
-         * @param {pbactiveShop.IActiveShopModel} request ActiveShopModel message or plain object
-         * @returns {Promise<pbcommon.CommonResult>} Promise
-         * @variation 2
-         */
-
-    /**
-         * Callback as used by {@link pbactiveShop.ActiveShop#deleteActiveShop}.
-         * @memberof pbactiveShop.ActiveShop
-         * @typedef DeleteActiveShopCallback
-         * @type {function}
-         * @param {Error|null} error Error, if any
-         * @param {pbcommon.CommonResult} [response] CommonResult
-         */
-
-    /**
-         * Calls DeleteActiveShop.
-         * @function deleteActiveShop
-         * @memberof pbactiveShop.ActiveShop
-         * @instance
-         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-         * @param {pbactiveShop.ActiveShop.DeleteActiveShopCallback} callback Node-style callback called with the error, if any, and CommonResult
-         * @returns {undefined}
-         * @variation 1
-         */
-    Object.defineProperty(ActiveShop.prototype.deleteActiveShop = function deleteActiveShop(request, callback) {
-      return this.rpcCall(deleteActiveShop, $root.pbcommon.IdArgs, $root.pbcommon.CommonResult, request, callback)
-    }, 'name', { value: 'DeleteActiveShop' })
-
-    /**
-         * Calls DeleteActiveShop.
-         * @function deleteActiveShop
-         * @memberof pbactiveShop.ActiveShop
-         * @instance
-         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-         * @returns {Promise<pbcommon.CommonResult>} Promise
-         * @variation 2
-         */
-
-    /**
-         * Callback as used by {@link pbactiveShop.ActiveShop#findActiveShopById}.
-         * @memberof pbactiveShop.ActiveShop
-         * @typedef FindActiveShopByIdCallback
-         * @type {function}
-         * @param {Error|null} error Error, if any
-         * @param {pbactiveShop.FindActiveShopReply} [response] FindActiveShopReply
-         */
-
-    /**
-         * Calls FindActiveShopById.
-         * @function findActiveShopById
-         * @memberof pbactiveShop.ActiveShop
-         * @instance
-         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-         * @param {pbactiveShop.ActiveShop.FindActiveShopByIdCallback} callback Node-style callback called with the error, if any, and FindActiveShopReply
-         * @returns {undefined}
-         * @variation 1
-         */
-    Object.defineProperty(ActiveShop.prototype.findActiveShopById = function findActiveShopById(request, callback) {
-      return this.rpcCall(findActiveShopById, $root.pbcommon.IdArgs, $root.pbactiveShop.FindActiveShopReply, request, callback)
-    }, 'name', { value: 'FindActiveShopById' })
-
-    /**
-         * Calls FindActiveShopById.
-         * @function findActiveShopById
-         * @memberof pbactiveShop.ActiveShop
-         * @instance
-         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-         * @returns {Promise<pbactiveShop.FindActiveShopReply>} Promise
-         * @variation 2
-         */
-
-    /**
-         * Callback as used by {@link pbactiveShop.ActiveShop#findActiveShopList}.
-         * @memberof pbactiveShop.ActiveShop
-         * @typedef FindActiveShopListCallback
-         * @type {function}
-         * @param {Error|null} error Error, if any
-         * @param {pbactiveShop.FindActiveShopReply} [response] FindActiveShopReply
-         */
-
-    /**
-         * Calls FindActiveShopList.
-         * @function findActiveShopList
-         * @memberof pbactiveShop.ActiveShop
-         * @instance
-         * @param {pbactiveShop.IFindActiveShopArgs} request FindActiveShopArgs message or plain object
-         * @param {pbactiveShop.ActiveShop.FindActiveShopListCallback} callback Node-style callback called with the error, if any, and FindActiveShopReply
-         * @returns {undefined}
-         * @variation 1
-         */
-    Object.defineProperty(ActiveShop.prototype.findActiveShopList = function findActiveShopList(request, callback) {
-      return this.rpcCall(findActiveShopList, $root.pbactiveShop.FindActiveShopArgs, $root.pbactiveShop.FindActiveShopReply, request, callback)
-    }, 'name', { value: 'FindActiveShopList' })
-
-    /**
-         * Calls FindActiveShopList.
-         * @function findActiveShopList
-         * @memberof pbactiveShop.ActiveShop
-         * @instance
-         * @param {pbactiveShop.IFindActiveShopArgs} request FindActiveShopArgs message or plain object
-         * @returns {Promise<pbactiveShop.FindActiveShopReply>} Promise
-         * @variation 2
-         */
-
-    return ActiveShop
-  })()
-
-  return pbactiveShop
-})()
-
-$root.pbgoods = (function() {
-  /**
-     * Namespace pbgoods.
-     * @exports pbgoods
-     * @namespace
-     */
-  var pbgoods = {}
-
-  pbgoods.GoodsModel = (function() {
-    /**
-         * Properties of a GoodsModel.
-         * @memberof pbgoods
-         * @interface IGoodsModel
-         * @property {number|Long|null} [id] GoodsModel id
-         * @property {string|null} [createdAt] GoodsModel createdAt
-         * @property {string|null} [updatedAt] GoodsModel updatedAt
-         * @property {string|null} [goodsName] GoodsModel goodsName
-         * @property {string|null} [goodsNo] GoodsModel goodsNo
-         * @property {number|Long|null} [videoId] GoodsModel videoId
-         * @property {number|Long|null} [videoCoverId] GoodsModel videoCoverId
-         * @property {string|null} [sellingPoint] GoodsModel sellingPoint
-         * @property {pbgoods.SpecType|null} [specType] GoodsModel specType
-         * @property {number|null} [goodsPriceMin] GoodsModel goodsPriceMin
-         * @property {number|null} [goodsPriceMax] GoodsModel goodsPriceMax
-         * @property {number|null} [linePriceMin] GoodsModel linePriceMin
-         * @property {number|null} [linePriceMax] GoodsModel linePriceMax
-         * @property {number|null} [stockTotal] GoodsModel stockTotal
-         * @property {pbgoods.DeductStockType|null} [deductStockType] GoodsModel deductStockType
-         * @property {string|null} [content] GoodsModel content
-         * @property {number|Long|null} [salesInitial] GoodsModel salesInitial
-         * @property {number|Long|null} [salesActual] GoodsModel salesActual
-         * @property {number|Long|null} [deliveryId] GoodsModel deliveryId
-         * @property {number|null} [isPointsGift] GoodsModel isPointsGift
-         * @property {number|null} [isPointsDiscount] GoodsModel isPointsDiscount
-         * @property {number|null} [isOnSiteService] GoodsModel isOnSiteService
-         * @property {number|null} [isRecommend] GoodsModel isRecommend
-         * @property {number|null} [isNew] GoodsModel isNew
-         * @property {number|null} [isHot] GoodsModel isHot
-         * @property {pbgoods.GoodsStatusType|null} [status] GoodsModel status
-         * @property {number|null} [sort] GoodsModel sort
-         * @property {number|Long|null} [shopId] GoodsModel shopId
-         */
-
-    /**
-         * Constructs a new GoodsModel.
-         * @memberof pbgoods
-         * @classdesc Represents a GoodsModel.
-         * @implements IGoodsModel
-         * @constructor
-         * @param {pbgoods.IGoodsModel=} [properties] Properties to set
-         */
-    function GoodsModel(properties) {
-      if (properties) {
-        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
-          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
-        }
-      }
-    }
-
-    /**
-         * GoodsModel id.
-         * @member {number|Long} id
-         * @memberof pbgoods.GoodsModel
-         * @instance
-         */
-    GoodsModel.prototype.id = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
-
-    /**
-         * GoodsModel createdAt.
-         * @member {string} createdAt
-         * @memberof pbgoods.GoodsModel
-         * @instance
-         */
-    GoodsModel.prototype.createdAt = ''
-
-    /**
-         * GoodsModel updatedAt.
-         * @member {string} updatedAt
-         * @memberof pbgoods.GoodsModel
-         * @instance
-         */
-    GoodsModel.prototype.updatedAt = ''
-
-    /**
-         * GoodsModel goodsName.
-         * @member {string} goodsName
-         * @memberof pbgoods.GoodsModel
-         * @instance
-         */
-    GoodsModel.prototype.goodsName = ''
-
-    /**
-         * GoodsModel goodsNo.
-         * @member {string} goodsNo
-         * @memberof pbgoods.GoodsModel
-         * @instance
-         */
-    GoodsModel.prototype.goodsNo = ''
-
-    /**
-         * GoodsModel videoId.
-         * @member {number|Long} videoId
-         * @memberof pbgoods.GoodsModel
-         * @instance
-         */
-    GoodsModel.prototype.videoId = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
-
-    /**
-         * GoodsModel videoCoverId.
-         * @member {number|Long} videoCoverId
-         * @memberof pbgoods.GoodsModel
-         * @instance
-         */
-    GoodsModel.prototype.videoCoverId = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
-
-    /**
-         * GoodsModel sellingPoint.
-         * @member {string} sellingPoint
-         * @memberof pbgoods.GoodsModel
-         * @instance
-         */
-    GoodsModel.prototype.sellingPoint = ''
-
-    /**
-         * GoodsModel specType.
-         * @member {pbgoods.SpecType} specType
-         * @memberof pbgoods.GoodsModel
-         * @instance
-         */
-    GoodsModel.prototype.specType = 0
-
-    /**
-         * GoodsModel goodsPriceMin.
-         * @member {number} goodsPriceMin
-         * @memberof pbgoods.GoodsModel
-         * @instance
-         */
-    GoodsModel.prototype.goodsPriceMin = 0
-
-    /**
-         * GoodsModel goodsPriceMax.
-         * @member {number} goodsPriceMax
-         * @memberof pbgoods.GoodsModel
-         * @instance
-         */
-    GoodsModel.prototype.goodsPriceMax = 0
-
-    /**
-         * GoodsModel linePriceMin.
-         * @member {number} linePriceMin
-         * @memberof pbgoods.GoodsModel
-         * @instance
-         */
-    GoodsModel.prototype.linePriceMin = 0
-
-    /**
-         * GoodsModel linePriceMax.
-         * @member {number} linePriceMax
-         * @memberof pbgoods.GoodsModel
-         * @instance
-         */
-    GoodsModel.prototype.linePriceMax = 0
-
-    /**
-         * GoodsModel stockTotal.
-         * @member {number} stockTotal
-         * @memberof pbgoods.GoodsModel
-         * @instance
-         */
-    GoodsModel.prototype.stockTotal = 0
-
-    /**
-         * GoodsModel deductStockType.
-         * @member {pbgoods.DeductStockType} deductStockType
-         * @memberof pbgoods.GoodsModel
-         * @instance
-         */
-    GoodsModel.prototype.deductStockType = 0
-
-    /**
-         * GoodsModel content.
-         * @member {string} content
-         * @memberof pbgoods.GoodsModel
-         * @instance
-         */
-    GoodsModel.prototype.content = ''
-
-    /**
-         * GoodsModel salesInitial.
-         * @member {number|Long} salesInitial
-         * @memberof pbgoods.GoodsModel
-         * @instance
-         */
-    GoodsModel.prototype.salesInitial = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
-
-    /**
-         * GoodsModel salesActual.
-         * @member {number|Long} salesActual
-         * @memberof pbgoods.GoodsModel
-         * @instance
-         */
-    GoodsModel.prototype.salesActual = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
-
-    /**
-         * GoodsModel deliveryId.
-         * @member {number|Long} deliveryId
-         * @memberof pbgoods.GoodsModel
-         * @instance
-         */
-    GoodsModel.prototype.deliveryId = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
-
-    /**
-         * GoodsModel isPointsGift.
-         * @member {number} isPointsGift
-         * @memberof pbgoods.GoodsModel
-         * @instance
-         */
-    GoodsModel.prototype.isPointsGift = 0
-
-    /**
-         * GoodsModel isPointsDiscount.
-         * @member {number} isPointsDiscount
-         * @memberof pbgoods.GoodsModel
-         * @instance
-         */
-    GoodsModel.prototype.isPointsDiscount = 0
-
-    /**
-         * GoodsModel isOnSiteService.
-         * @member {number} isOnSiteService
-         * @memberof pbgoods.GoodsModel
-         * @instance
-         */
-    GoodsModel.prototype.isOnSiteService = 0
-
-    /**
-         * GoodsModel isRecommend.
-         * @member {number} isRecommend
-         * @memberof pbgoods.GoodsModel
-         * @instance
-         */
-    GoodsModel.prototype.isRecommend = 0
-
-    /**
-         * GoodsModel isNew.
-         * @member {number} isNew
-         * @memberof pbgoods.GoodsModel
-         * @instance
-         */
-    GoodsModel.prototype.isNew = 0
-
-    /**
-         * GoodsModel isHot.
-         * @member {number} isHot
-         * @memberof pbgoods.GoodsModel
-         * @instance
-         */
-    GoodsModel.prototype.isHot = 0
-
-    /**
-         * GoodsModel status.
-         * @member {pbgoods.GoodsStatusType} status
-         * @memberof pbgoods.GoodsModel
-         * @instance
-         */
-    GoodsModel.prototype.status = 0
-
-    /**
-         * GoodsModel sort.
-         * @member {number} sort
-         * @memberof pbgoods.GoodsModel
-         * @instance
-         */
-    GoodsModel.prototype.sort = 0
-
-    /**
-         * GoodsModel shopId.
-         * @member {number|Long} shopId
-         * @memberof pbgoods.GoodsModel
-         * @instance
-         */
-    GoodsModel.prototype.shopId = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
-
-    /**
-         * Creates a new GoodsModel instance using the specified properties.
-         * @function create
-         * @memberof pbgoods.GoodsModel
-         * @static
-         * @param {pbgoods.IGoodsModel=} [properties] Properties to set
-         * @returns {pbgoods.GoodsModel} GoodsModel instance
-         */
-    GoodsModel.create = function create(properties) {
-      return new GoodsModel(properties)
-    }
-
-    /**
-         * Encodes the specified GoodsModel message. Does not implicitly {@link pbgoods.GoodsModel.verify|verify} messages.
-         * @function encode
-         * @memberof pbgoods.GoodsModel
-         * @static
-         * @param {pbgoods.IGoodsModel} message GoodsModel message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-    GoodsModel.encode = function encode(message, writer) {
-      if (!writer) { writer = $Writer.create() }
-      if (message.id != null && Object.hasOwnProperty.call(message, 'id')) { writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id) }
-      if (message.createdAt != null && Object.hasOwnProperty.call(message, 'createdAt')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.createdAt) }
-      if (message.updatedAt != null && Object.hasOwnProperty.call(message, 'updatedAt')) { writer.uint32(/* id 3, wireType 2 =*/26).string(message.updatedAt) }
-      if (message.goodsName != null && Object.hasOwnProperty.call(message, 'goodsName')) { writer.uint32(/* id 4, wireType 2 =*/34).string(message.goodsName) }
-      if (message.goodsNo != null && Object.hasOwnProperty.call(message, 'goodsNo')) { writer.uint32(/* id 5, wireType 2 =*/42).string(message.goodsNo) }
-      if (message.videoId != null && Object.hasOwnProperty.call(message, 'videoId')) { writer.uint32(/* id 6, wireType 0 =*/48).int64(message.videoId) }
-      if (message.videoCoverId != null && Object.hasOwnProperty.call(message, 'videoCoverId')) { writer.uint32(/* id 7, wireType 0 =*/56).int64(message.videoCoverId) }
-      if (message.sellingPoint != null && Object.hasOwnProperty.call(message, 'sellingPoint')) { writer.uint32(/* id 8, wireType 2 =*/66).string(message.sellingPoint) }
-      if (message.specType != null && Object.hasOwnProperty.call(message, 'specType')) { writer.uint32(/* id 9, wireType 0 =*/72).int32(message.specType) }
-      if (message.goodsPriceMin != null && Object.hasOwnProperty.call(message, 'goodsPriceMin')) { writer.uint32(/* id 10, wireType 0 =*/80).int32(message.goodsPriceMin) }
-      if (message.goodsPriceMax != null && Object.hasOwnProperty.call(message, 'goodsPriceMax')) { writer.uint32(/* id 11, wireType 0 =*/88).int32(message.goodsPriceMax) }
-      if (message.linePriceMin != null && Object.hasOwnProperty.call(message, 'linePriceMin')) { writer.uint32(/* id 12, wireType 0 =*/96).int32(message.linePriceMin) }
-      if (message.linePriceMax != null && Object.hasOwnProperty.call(message, 'linePriceMax')) { writer.uint32(/* id 13, wireType 0 =*/104).int32(message.linePriceMax) }
-      if (message.stockTotal != null && Object.hasOwnProperty.call(message, 'stockTotal')) { writer.uint32(/* id 14, wireType 0 =*/112).int32(message.stockTotal) }
-      if (message.deductStockType != null && Object.hasOwnProperty.call(message, 'deductStockType')) { writer.uint32(/* id 15, wireType 0 =*/120).int32(message.deductStockType) }
-      if (message.content != null && Object.hasOwnProperty.call(message, 'content')) { writer.uint32(/* id 16, wireType 2 =*/130).string(message.content) }
-      if (message.salesInitial != null && Object.hasOwnProperty.call(message, 'salesInitial')) { writer.uint32(/* id 17, wireType 0 =*/136).int64(message.salesInitial) }
-      if (message.salesActual != null && Object.hasOwnProperty.call(message, 'salesActual')) { writer.uint32(/* id 18, wireType 0 =*/144).int64(message.salesActual) }
-      if (message.deliveryId != null && Object.hasOwnProperty.call(message, 'deliveryId')) { writer.uint32(/* id 19, wireType 0 =*/152).int64(message.deliveryId) }
-      if (message.isPointsGift != null && Object.hasOwnProperty.call(message, 'isPointsGift')) { writer.uint32(/* id 20, wireType 0 =*/160).int32(message.isPointsGift) }
-      if (message.isPointsDiscount != null && Object.hasOwnProperty.call(message, 'isPointsDiscount')) { writer.uint32(/* id 21, wireType 0 =*/168).int32(message.isPointsDiscount) }
-      if (message.isOnSiteService != null && Object.hasOwnProperty.call(message, 'isOnSiteService')) { writer.uint32(/* id 22, wireType 0 =*/176).int32(message.isOnSiteService) }
-      if (message.isRecommend != null && Object.hasOwnProperty.call(message, 'isRecommend')) { writer.uint32(/* id 23, wireType 0 =*/184).int32(message.isRecommend) }
-      if (message.isNew != null && Object.hasOwnProperty.call(message, 'isNew')) { writer.uint32(/* id 24, wireType 0 =*/192).int32(message.isNew) }
-      if (message.isHot != null && Object.hasOwnProperty.call(message, 'isHot')) { writer.uint32(/* id 25, wireType 0 =*/200).int32(message.isHot) }
-      if (message.status != null && Object.hasOwnProperty.call(message, 'status')) { writer.uint32(/* id 26, wireType 0 =*/208).int32(message.status) }
-      if (message.sort != null && Object.hasOwnProperty.call(message, 'sort')) { writer.uint32(/* id 27, wireType 0 =*/216).int32(message.sort) }
-      if (message.shopId != null && Object.hasOwnProperty.call(message, 'shopId')) { writer.uint32(/* id 28, wireType 0 =*/224).int64(message.shopId) }
-      return writer
-    }
-
-    /**
-         * Encodes the specified GoodsModel message, length delimited. Does not implicitly {@link pbgoods.GoodsModel.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof pbgoods.GoodsModel
-         * @static
-         * @param {pbgoods.IGoodsModel} message GoodsModel message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-    GoodsModel.encodeDelimited = function encodeDelimited(message, writer) {
-      return this.encode(message, writer).ldelim()
-    }
-
-    /**
-         * Decodes a GoodsModel message from the specified reader or buffer.
-         * @function decode
-         * @memberof pbgoods.GoodsModel
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {pbgoods.GoodsModel} GoodsModel
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-    GoodsModel.decode = function decode(reader, length) {
-      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
-      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbgoods.GoodsModel()
-      while (reader.pos < end) {
-        var tag = reader.uint32()
-        switch (tag >>> 3) {
-          case 1: {
-            message.id = reader.int64()
-            break
-          }
-          case 2: {
-            message.createdAt = reader.string()
-            break
-          }
-          case 3: {
-            message.updatedAt = reader.string()
-            break
-          }
-          case 4: {
-            message.goodsName = reader.string()
-            break
-          }
-          case 5: {
-            message.goodsNo = reader.string()
-            break
-          }
-          case 6: {
-            message.videoId = reader.int64()
-            break
-          }
-          case 7: {
-            message.videoCoverId = reader.int64()
-            break
-          }
-          case 8: {
-            message.sellingPoint = reader.string()
-            break
-          }
-          case 9: {
-            message.specType = reader.int32()
-            break
-          }
-          case 10: {
-            message.goodsPriceMin = reader.int32()
-            break
-          }
-          case 11: {
-            message.goodsPriceMax = reader.int32()
-            break
-          }
-          case 12: {
-            message.linePriceMin = reader.int32()
-            break
-          }
-          case 13: {
-            message.linePriceMax = reader.int32()
-            break
-          }
-          case 14: {
-            message.stockTotal = reader.int32()
-            break
-          }
-          case 15: {
-            message.deductStockType = reader.int32()
-            break
-          }
-          case 16: {
-            message.content = reader.string()
-            break
-          }
-          case 17: {
-            message.salesInitial = reader.int64()
-            break
-          }
-          case 18: {
-            message.salesActual = reader.int64()
-            break
-          }
-          case 19: {
-            message.deliveryId = reader.int64()
-            break
-          }
-          case 20: {
-            message.isPointsGift = reader.int32()
-            break
-          }
-          case 21: {
-            message.isPointsDiscount = reader.int32()
-            break
-          }
-          case 22: {
-            message.isOnSiteService = reader.int32()
-            break
-          }
-          case 23: {
-            message.isRecommend = reader.int32()
-            break
-          }
-          case 24: {
-            message.isNew = reader.int32()
-            break
-          }
-          case 25: {
-            message.isHot = reader.int32()
-            break
-          }
-          case 26: {
-            message.status = reader.int32()
-            break
-          }
-          case 27: {
-            message.sort = reader.int32()
-            break
-          }
-          case 28: {
-            message.shopId = reader.int64()
-            break
-          }
-          default:
-            reader.skipType(tag & 7)
-            break
-        }
-      }
-      return message
-    }
-
-    /**
-         * Decodes a GoodsModel message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof pbgoods.GoodsModel
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {pbgoods.GoodsModel} GoodsModel
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-    GoodsModel.decodeDelimited = function decodeDelimited(reader) {
-      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
-      return this.decode(reader, reader.uint32())
-    }
-
-    /**
-         * Verifies a GoodsModel message.
-         * @function verify
-         * @memberof pbgoods.GoodsModel
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-    GoodsModel.verify = function verify(message) {
-      if (typeof message !== 'object' || message === null) { return 'object expected' }
-      if (message.id != null && message.hasOwnProperty('id')) {
-        if (!$util.isInteger(message.id) && !(message.id && $util.isInteger(message.id.low) && $util.isInteger(message.id.high))) { return 'id: integer|Long expected' }
-      }
-      if (message.createdAt != null && message.hasOwnProperty('createdAt')) {
-        if (!$util.isString(message.createdAt)) { return 'createdAt: string expected' }
-      }
-      if (message.updatedAt != null && message.hasOwnProperty('updatedAt')) {
-        if (!$util.isString(message.updatedAt)) { return 'updatedAt: string expected' }
-      }
-      if (message.goodsName != null && message.hasOwnProperty('goodsName')) {
-        if (!$util.isString(message.goodsName)) { return 'goodsName: string expected' }
-      }
-      if (message.goodsNo != null && message.hasOwnProperty('goodsNo')) {
-        if (!$util.isString(message.goodsNo)) { return 'goodsNo: string expected' }
-      }
-      if (message.videoId != null && message.hasOwnProperty('videoId')) {
-        if (!$util.isInteger(message.videoId) && !(message.videoId && $util.isInteger(message.videoId.low) && $util.isInteger(message.videoId.high))) { return 'videoId: integer|Long expected' }
-      }
-      if (message.videoCoverId != null && message.hasOwnProperty('videoCoverId')) {
-        if (!$util.isInteger(message.videoCoverId) && !(message.videoCoverId && $util.isInteger(message.videoCoverId.low) && $util.isInteger(message.videoCoverId.high))) { return 'videoCoverId: integer|Long expected' }
-      }
-      if (message.sellingPoint != null && message.hasOwnProperty('sellingPoint')) {
-        if (!$util.isString(message.sellingPoint)) { return 'sellingPoint: string expected' }
-      }
-      if (message.specType != null && message.hasOwnProperty('specType')) {
-        switch (message.specType) {
-          default:
-            return 'specType: enum value expected'
-          case 0:
-          case 1:
-          case 2:
-            break
-        }
-      }
-      if (message.goodsPriceMin != null && message.hasOwnProperty('goodsPriceMin')) {
-        if (!$util.isInteger(message.goodsPriceMin)) { return 'goodsPriceMin: integer expected' }
-      }
-      if (message.goodsPriceMax != null && message.hasOwnProperty('goodsPriceMax')) {
-        if (!$util.isInteger(message.goodsPriceMax)) { return 'goodsPriceMax: integer expected' }
-      }
-      if (message.linePriceMin != null && message.hasOwnProperty('linePriceMin')) {
-        if (!$util.isInteger(message.linePriceMin)) { return 'linePriceMin: integer expected' }
-      }
-      if (message.linePriceMax != null && message.hasOwnProperty('linePriceMax')) {
-        if (!$util.isInteger(message.linePriceMax)) { return 'linePriceMax: integer expected' }
-      }
-      if (message.stockTotal != null && message.hasOwnProperty('stockTotal')) {
-        if (!$util.isInteger(message.stockTotal)) { return 'stockTotal: integer expected' }
-      }
-      if (message.deductStockType != null && message.hasOwnProperty('deductStockType')) {
-        switch (message.deductStockType) {
-          default:
-            return 'deductStockType: enum value expected'
-          case 0:
-          case 1:
-          case 2:
-            break
-        }
-      }
-      if (message.content != null && message.hasOwnProperty('content')) {
-        if (!$util.isString(message.content)) { return 'content: string expected' }
-      }
-      if (message.salesInitial != null && message.hasOwnProperty('salesInitial')) {
-        if (!$util.isInteger(message.salesInitial) && !(message.salesInitial && $util.isInteger(message.salesInitial.low) && $util.isInteger(message.salesInitial.high))) { return 'salesInitial: integer|Long expected' }
-      }
-      if (message.salesActual != null && message.hasOwnProperty('salesActual')) {
-        if (!$util.isInteger(message.salesActual) && !(message.salesActual && $util.isInteger(message.salesActual.low) && $util.isInteger(message.salesActual.high))) { return 'salesActual: integer|Long expected' }
-      }
-      if (message.deliveryId != null && message.hasOwnProperty('deliveryId')) {
-        if (!$util.isInteger(message.deliveryId) && !(message.deliveryId && $util.isInteger(message.deliveryId.low) && $util.isInteger(message.deliveryId.high))) { return 'deliveryId: integer|Long expected' }
-      }
-      if (message.isPointsGift != null && message.hasOwnProperty('isPointsGift')) {
-        if (!$util.isInteger(message.isPointsGift)) { return 'isPointsGift: integer expected' }
-      }
-      if (message.isPointsDiscount != null && message.hasOwnProperty('isPointsDiscount')) {
-        if (!$util.isInteger(message.isPointsDiscount)) { return 'isPointsDiscount: integer expected' }
-      }
-      if (message.isOnSiteService != null && message.hasOwnProperty('isOnSiteService')) {
-        if (!$util.isInteger(message.isOnSiteService)) { return 'isOnSiteService: integer expected' }
-      }
-      if (message.isRecommend != null && message.hasOwnProperty('isRecommend')) {
-        if (!$util.isInteger(message.isRecommend)) { return 'isRecommend: integer expected' }
-      }
-      if (message.isNew != null && message.hasOwnProperty('isNew')) {
-        if (!$util.isInteger(message.isNew)) { return 'isNew: integer expected' }
-      }
-      if (message.isHot != null && message.hasOwnProperty('isHot')) {
-        if (!$util.isInteger(message.isHot)) { return 'isHot: integer expected' }
-      }
-      if (message.status != null && message.hasOwnProperty('status')) {
-        switch (message.status) {
-          default:
-            return 'status: enum value expected'
-          case 0:
-          case 1:
-          case 2:
-            break
-        }
-      }
-      if (message.sort != null && message.hasOwnProperty('sort')) {
-        if (!$util.isInteger(message.sort)) { return 'sort: integer expected' }
-      }
-      if (message.shopId != null && message.hasOwnProperty('shopId')) {
-        if (!$util.isInteger(message.shopId) && !(message.shopId && $util.isInteger(message.shopId.low) && $util.isInteger(message.shopId.high))) { return 'shopId: integer|Long expected' }
-      }
-      return null
-    }
-
-    /**
-         * Creates a GoodsModel message from a plain object. Also converts values to their respective internal types.
-         * @function fromObject
-         * @memberof pbgoods.GoodsModel
-         * @static
-         * @param {Object.<string,*>} object Plain object
-         * @returns {pbgoods.GoodsModel} GoodsModel
-         */
-    GoodsModel.fromObject = function fromObject(object) {
-      if (object instanceof $root.pbgoods.GoodsModel) { return object }
-      var message = new $root.pbgoods.GoodsModel()
-      if (object.id != null) {
-        if ($util.Long) { (message.id = $util.Long.fromValue(object.id)).unsigned = false } else if (typeof object.id === 'string') { message.id = parseInt(object.id, 10) } else if (typeof object.id === 'number') { message.id = object.id } else if (typeof object.id === 'object') { message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber() }
-      }
-      if (object.createdAt != null) { message.createdAt = String(object.createdAt) }
-      if (object.updatedAt != null) { message.updatedAt = String(object.updatedAt) }
-      if (object.goodsName != null) { message.goodsName = String(object.goodsName) }
-      if (object.goodsNo != null) { message.goodsNo = String(object.goodsNo) }
-      if (object.videoId != null) {
-        if ($util.Long) { (message.videoId = $util.Long.fromValue(object.videoId)).unsigned = false } else if (typeof object.videoId === 'string') { message.videoId = parseInt(object.videoId, 10) } else if (typeof object.videoId === 'number') { message.videoId = object.videoId } else if (typeof object.videoId === 'object') { message.videoId = new $util.LongBits(object.videoId.low >>> 0, object.videoId.high >>> 0).toNumber() }
-      }
-      if (object.videoCoverId != null) {
-        if ($util.Long) { (message.videoCoverId = $util.Long.fromValue(object.videoCoverId)).unsigned = false } else if (typeof object.videoCoverId === 'string') { message.videoCoverId = parseInt(object.videoCoverId, 10) } else if (typeof object.videoCoverId === 'number') { message.videoCoverId = object.videoCoverId } else if (typeof object.videoCoverId === 'object') { message.videoCoverId = new $util.LongBits(object.videoCoverId.low >>> 0, object.videoCoverId.high >>> 0).toNumber() }
-      }
-      if (object.sellingPoint != null) { message.sellingPoint = String(object.sellingPoint) }
-      switch (object.specType) {
-        default:
-          if (typeof object.specType === 'number') {
-            message.specType = object.specType
-            break
-          }
-          break
-        case 'SpecTypeUnknown':
-        case 0:
-          message.specType = 0
-          break
-        case 'Singleton':
-        case 1:
-          message.specType = 1
-          break
-        case 'Multiple':
-        case 2:
-          message.specType = 2
-          break
-      }
-      if (object.goodsPriceMin != null) { message.goodsPriceMin = object.goodsPriceMin | 0 }
-      if (object.goodsPriceMax != null) { message.goodsPriceMax = object.goodsPriceMax | 0 }
-      if (object.linePriceMin != null) { message.linePriceMin = object.linePriceMin | 0 }
-      if (object.linePriceMax != null) { message.linePriceMax = object.linePriceMax | 0 }
-      if (object.stockTotal != null) { message.stockTotal = object.stockTotal | 0 }
-      switch (object.deductStockType) {
-        default:
-          if (typeof object.deductStockType === 'number') {
-            message.deductStockType = object.deductStockType
-            break
-          }
-          break
-        case 'DeductStockTypeUnknown':
-        case 0:
-          message.deductStockType = 0
-          break
-        case 'OrderDeductStock':
-        case 1:
-          message.deductStockType = 1
-          break
-        case 'PayDeductStock':
-        case 2:
-          message.deductStockType = 2
-          break
-      }
-      if (object.content != null) { message.content = String(object.content) }
-      if (object.salesInitial != null) {
-        if ($util.Long) { (message.salesInitial = $util.Long.fromValue(object.salesInitial)).unsigned = false } else if (typeof object.salesInitial === 'string') { message.salesInitial = parseInt(object.salesInitial, 10) } else if (typeof object.salesInitial === 'number') { message.salesInitial = object.salesInitial } else if (typeof object.salesInitial === 'object') { message.salesInitial = new $util.LongBits(object.salesInitial.low >>> 0, object.salesInitial.high >>> 0).toNumber() }
-      }
-      if (object.salesActual != null) {
-        if ($util.Long) { (message.salesActual = $util.Long.fromValue(object.salesActual)).unsigned = false } else if (typeof object.salesActual === 'string') { message.salesActual = parseInt(object.salesActual, 10) } else if (typeof object.salesActual === 'number') { message.salesActual = object.salesActual } else if (typeof object.salesActual === 'object') { message.salesActual = new $util.LongBits(object.salesActual.low >>> 0, object.salesActual.high >>> 0).toNumber() }
-      }
-      if (object.deliveryId != null) {
-        if ($util.Long) { (message.deliveryId = $util.Long.fromValue(object.deliveryId)).unsigned = false } else if (typeof object.deliveryId === 'string') { message.deliveryId = parseInt(object.deliveryId, 10) } else if (typeof object.deliveryId === 'number') { message.deliveryId = object.deliveryId } else if (typeof object.deliveryId === 'object') { message.deliveryId = new $util.LongBits(object.deliveryId.low >>> 0, object.deliveryId.high >>> 0).toNumber() }
-      }
-      if (object.isPointsGift != null) { message.isPointsGift = object.isPointsGift | 0 }
-      if (object.isPointsDiscount != null) { message.isPointsDiscount = object.isPointsDiscount | 0 }
-      if (object.isOnSiteService != null) { message.isOnSiteService = object.isOnSiteService | 0 }
-      if (object.isRecommend != null) { message.isRecommend = object.isRecommend | 0 }
-      if (object.isNew != null) { message.isNew = object.isNew | 0 }
-      if (object.isHot != null) { message.isHot = object.isHot | 0 }
-      switch (object.status) {
-        default:
-          if (typeof object.status === 'number') {
-            message.status = object.status
-            break
-          }
-          break
-        case 'GoodsStatusTypeUnknown':
-        case 0:
-          message.status = 0
-          break
-        case 'GoodsStatusNormal':
-        case 1:
-          message.status = 1
-          break
-        case 'GoodsStatusOff':
-        case 2:
-          message.status = 2
-          break
-      }
-      if (object.sort != null) { message.sort = object.sort | 0 }
-      if (object.shopId != null) {
-        if ($util.Long) { (message.shopId = $util.Long.fromValue(object.shopId)).unsigned = false } else if (typeof object.shopId === 'string') { message.shopId = parseInt(object.shopId, 10) } else if (typeof object.shopId === 'number') { message.shopId = object.shopId } else if (typeof object.shopId === 'object') { message.shopId = new $util.LongBits(object.shopId.low >>> 0, object.shopId.high >>> 0).toNumber() }
-      }
-      return message
-    }
-
-    /**
-         * Creates a plain object from a GoodsModel message. Also converts values to other types if specified.
-         * @function toObject
-         * @memberof pbgoods.GoodsModel
-         * @static
-         * @param {pbgoods.GoodsModel} message GoodsModel
-         * @param {$protobuf.IConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-    GoodsModel.toObject = function toObject(message, options) {
-      if (!options) { options = {} }
-      var object = {}
-      if (options.defaults) {
-        if ($util.Long) {
-          var long = new $util.Long(0, 0, false)
-          object.id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
-        } else { object.id = options.longs === String ? '0' : 0 }
-        object.createdAt = ''
-        object.updatedAt = ''
-        object.goodsName = ''
-        object.goodsNo = ''
-        if ($util.Long) {
-          var long = new $util.Long(0, 0, false)
-          object.videoId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
-        } else { object.videoId = options.longs === String ? '0' : 0 }
-        if ($util.Long) {
-          var long = new $util.Long(0, 0, false)
-          object.videoCoverId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
-        } else { object.videoCoverId = options.longs === String ? '0' : 0 }
-        object.sellingPoint = ''
-        object.specType = options.enums === String ? 'SpecTypeUnknown' : 0
-        object.goodsPriceMin = 0
-        object.goodsPriceMax = 0
-        object.linePriceMin = 0
-        object.linePriceMax = 0
-        object.stockTotal = 0
-        object.deductStockType = options.enums === String ? 'DeductStockTypeUnknown' : 0
-        object.content = ''
-        if ($util.Long) {
-          var long = new $util.Long(0, 0, false)
-          object.salesInitial = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
-        } else { object.salesInitial = options.longs === String ? '0' : 0 }
-        if ($util.Long) {
-          var long = new $util.Long(0, 0, false)
-          object.salesActual = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
-        } else { object.salesActual = options.longs === String ? '0' : 0 }
-        if ($util.Long) {
-          var long = new $util.Long(0, 0, false)
-          object.deliveryId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
-        } else { object.deliveryId = options.longs === String ? '0' : 0 }
-        object.isPointsGift = 0
-        object.isPointsDiscount = 0
-        object.isOnSiteService = 0
-        object.isRecommend = 0
-        object.isNew = 0
-        object.isHot = 0
-        object.status = options.enums === String ? 'GoodsStatusTypeUnknown' : 0
-        object.sort = 0
-        if ($util.Long) {
-          var long = new $util.Long(0, 0, false)
-          object.shopId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
-        } else { object.shopId = options.longs === String ? '0' : 0 }
-      }
-      if (message.id != null && message.hasOwnProperty('id')) {
-        if (typeof message.id === 'number') { object.id = options.longs === String ? String(message.id) : message.id } else { object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id }
-      }
-      if (message.createdAt != null && message.hasOwnProperty('createdAt')) { object.createdAt = message.createdAt }
-      if (message.updatedAt != null && message.hasOwnProperty('updatedAt')) { object.updatedAt = message.updatedAt }
-      if (message.goodsName != null && message.hasOwnProperty('goodsName')) { object.goodsName = message.goodsName }
-      if (message.goodsNo != null && message.hasOwnProperty('goodsNo')) { object.goodsNo = message.goodsNo }
-      if (message.videoId != null && message.hasOwnProperty('videoId')) {
-        if (typeof message.videoId === 'number') { object.videoId = options.longs === String ? String(message.videoId) : message.videoId } else { object.videoId = options.longs === String ? $util.Long.prototype.toString.call(message.videoId) : options.longs === Number ? new $util.LongBits(message.videoId.low >>> 0, message.videoId.high >>> 0).toNumber() : message.videoId }
-      }
-      if (message.videoCoverId != null && message.hasOwnProperty('videoCoverId')) {
-        if (typeof message.videoCoverId === 'number') { object.videoCoverId = options.longs === String ? String(message.videoCoverId) : message.videoCoverId } else { object.videoCoverId = options.longs === String ? $util.Long.prototype.toString.call(message.videoCoverId) : options.longs === Number ? new $util.LongBits(message.videoCoverId.low >>> 0, message.videoCoverId.high >>> 0).toNumber() : message.videoCoverId }
-      }
-      if (message.sellingPoint != null && message.hasOwnProperty('sellingPoint')) { object.sellingPoint = message.sellingPoint }
-      if (message.specType != null && message.hasOwnProperty('specType')) { object.specType = options.enums === String ? $root.pbgoods.SpecType[message.specType] === undefined ? message.specType : $root.pbgoods.SpecType[message.specType] : message.specType }
-      if (message.goodsPriceMin != null && message.hasOwnProperty('goodsPriceMin')) { object.goodsPriceMin = message.goodsPriceMin }
-      if (message.goodsPriceMax != null && message.hasOwnProperty('goodsPriceMax')) { object.goodsPriceMax = message.goodsPriceMax }
-      if (message.linePriceMin != null && message.hasOwnProperty('linePriceMin')) { object.linePriceMin = message.linePriceMin }
-      if (message.linePriceMax != null && message.hasOwnProperty('linePriceMax')) { object.linePriceMax = message.linePriceMax }
-      if (message.stockTotal != null && message.hasOwnProperty('stockTotal')) { object.stockTotal = message.stockTotal }
-      if (message.deductStockType != null && message.hasOwnProperty('deductStockType')) { object.deductStockType = options.enums === String ? $root.pbgoods.DeductStockType[message.deductStockType] === undefined ? message.deductStockType : $root.pbgoods.DeductStockType[message.deductStockType] : message.deductStockType }
-      if (message.content != null && message.hasOwnProperty('content')) { object.content = message.content }
-      if (message.salesInitial != null && message.hasOwnProperty('salesInitial')) {
-        if (typeof message.salesInitial === 'number') { object.salesInitial = options.longs === String ? String(message.salesInitial) : message.salesInitial } else { object.salesInitial = options.longs === String ? $util.Long.prototype.toString.call(message.salesInitial) : options.longs === Number ? new $util.LongBits(message.salesInitial.low >>> 0, message.salesInitial.high >>> 0).toNumber() : message.salesInitial }
-      }
-      if (message.salesActual != null && message.hasOwnProperty('salesActual')) {
-        if (typeof message.salesActual === 'number') { object.salesActual = options.longs === String ? String(message.salesActual) : message.salesActual } else { object.salesActual = options.longs === String ? $util.Long.prototype.toString.call(message.salesActual) : options.longs === Number ? new $util.LongBits(message.salesActual.low >>> 0, message.salesActual.high >>> 0).toNumber() : message.salesActual }
-      }
-      if (message.deliveryId != null && message.hasOwnProperty('deliveryId')) {
-        if (typeof message.deliveryId === 'number') { object.deliveryId = options.longs === String ? String(message.deliveryId) : message.deliveryId } else { object.deliveryId = options.longs === String ? $util.Long.prototype.toString.call(message.deliveryId) : options.longs === Number ? new $util.LongBits(message.deliveryId.low >>> 0, message.deliveryId.high >>> 0).toNumber() : message.deliveryId }
-      }
-      if (message.isPointsGift != null && message.hasOwnProperty('isPointsGift')) { object.isPointsGift = message.isPointsGift }
-      if (message.isPointsDiscount != null && message.hasOwnProperty('isPointsDiscount')) { object.isPointsDiscount = message.isPointsDiscount }
-      if (message.isOnSiteService != null && message.hasOwnProperty('isOnSiteService')) { object.isOnSiteService = message.isOnSiteService }
-      if (message.isRecommend != null && message.hasOwnProperty('isRecommend')) { object.isRecommend = message.isRecommend }
-      if (message.isNew != null && message.hasOwnProperty('isNew')) { object.isNew = message.isNew }
-      if (message.isHot != null && message.hasOwnProperty('isHot')) { object.isHot = message.isHot }
-      if (message.status != null && message.hasOwnProperty('status')) { object.status = options.enums === String ? $root.pbgoods.GoodsStatusType[message.status] === undefined ? message.status : $root.pbgoods.GoodsStatusType[message.status] : message.status }
-      if (message.sort != null && message.hasOwnProperty('sort')) { object.sort = message.sort }
-      if (message.shopId != null && message.hasOwnProperty('shopId')) {
-        if (typeof message.shopId === 'number') { object.shopId = options.longs === String ? String(message.shopId) : message.shopId } else { object.shopId = options.longs === String ? $util.Long.prototype.toString.call(message.shopId) : options.longs === Number ? new $util.LongBits(message.shopId.low >>> 0, message.shopId.high >>> 0).toNumber() : message.shopId }
-      }
-      return object
-    }
-
-    /**
-         * Converts this GoodsModel to JSON.
-         * @function toJSON
-         * @memberof pbgoods.GoodsModel
-         * @instance
-         * @returns {Object.<string,*>} JSON object
-         */
-    GoodsModel.prototype.toJSON = function toJSON() {
-      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
-    }
-
-    /**
-         * Gets the default type url for GoodsModel
-         * @function getTypeUrl
-         * @memberof pbgoods.GoodsModel
-         * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
-         */
-    GoodsModel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-      if (typeUrlPrefix === undefined) {
-        typeUrlPrefix = 'type.googleapis.com'
-      }
-      return typeUrlPrefix + '/pbgoods.GoodsModel'
-    }
-
-    return GoodsModel
-  })()
-
-  /**
-     * SpecType enum.
-     * @name pbgoods.SpecType
-     * @enum {number}
-     * @property {number} SpecTypeUnknown=0 SpecTypeUnknown value
-     * @property {number} Singleton=1 Singleton value
-     * @property {number} Multiple=2 Multiple value
-     */
-  pbgoods.SpecType = (function() {
-    var valuesById = {}; var values = Object.create(valuesById)
-    values[valuesById[0] = 'SpecTypeUnknown'] = 0
-    values[valuesById[1] = 'Singleton'] = 1
-    values[valuesById[2] = 'Multiple'] = 2
-    return values
-  })()
-
-  /**
-     * DeductStockType enum.
-     * @name pbgoods.DeductStockType
-     * @enum {number}
-     * @property {number} DeductStockTypeUnknown=0 DeductStockTypeUnknown value
-     * @property {number} OrderDeductStock=1 OrderDeductStock value
-     * @property {number} PayDeductStock=2 PayDeductStock value
-     */
-  pbgoods.DeductStockType = (function() {
-    var valuesById = {}; var values = Object.create(valuesById)
-    values[valuesById[0] = 'DeductStockTypeUnknown'] = 0
-    values[valuesById[1] = 'OrderDeductStock'] = 1
-    values[valuesById[2] = 'PayDeductStock'] = 2
-    return values
-  })()
-
-  /**
-     * GoodsStatusType enum.
-     * @name pbgoods.GoodsStatusType
-     * @enum {number}
-     * @property {number} GoodsStatusTypeUnknown=0 GoodsStatusTypeUnknown value
-     * @property {number} GoodsStatusNormal=1 GoodsStatusNormal value
-     * @property {number} GoodsStatusOff=2 GoodsStatusOff value
-     */
-  pbgoods.GoodsStatusType = (function() {
-    var valuesById = {}; var values = Object.create(valuesById)
-    values[valuesById[0] = 'GoodsStatusTypeUnknown'] = 0
-    values[valuesById[1] = 'GoodsStatusNormal'] = 1
-    values[valuesById[2] = 'GoodsStatusOff'] = 2
-    return values
-  })()
-
-  pbgoods.FindGoodsArgs = (function() {
-    /**
-         * Properties of a FindGoodsArgs.
-         * @memberof pbgoods
-         * @interface IFindGoodsArgs
-         * @property {pbcommon.IPageInfo|null} [pageInfo] FindGoodsArgs pageInfo
-         * @property {pbgoods.IGoodsModel|null} [query] FindGoodsArgs query
-         */
-
-    /**
-         * Constructs a new FindGoodsArgs.
-         * @memberof pbgoods
-         * @classdesc Represents a FindGoodsArgs.
-         * @implements IFindGoodsArgs
-         * @constructor
-         * @param {pbgoods.IFindGoodsArgs=} [properties] Properties to set
-         */
-    function FindGoodsArgs(properties) {
-      if (properties) {
-        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
-          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
-        }
-      }
-    }
-
-    /**
-         * FindGoodsArgs pageInfo.
-         * @member {pbcommon.IPageInfo|null|undefined} pageInfo
-         * @memberof pbgoods.FindGoodsArgs
-         * @instance
-         */
-    FindGoodsArgs.prototype.pageInfo = null
-
-    /**
-         * FindGoodsArgs query.
-         * @member {pbgoods.IGoodsModel|null|undefined} query
-         * @memberof pbgoods.FindGoodsArgs
-         * @instance
-         */
-    FindGoodsArgs.prototype.query = null
-
-    /**
-         * Creates a new FindGoodsArgs instance using the specified properties.
-         * @function create
-         * @memberof pbgoods.FindGoodsArgs
-         * @static
-         * @param {pbgoods.IFindGoodsArgs=} [properties] Properties to set
-         * @returns {pbgoods.FindGoodsArgs} FindGoodsArgs instance
-         */
-    FindGoodsArgs.create = function create(properties) {
-      return new FindGoodsArgs(properties)
-    }
-
-    /**
-         * Encodes the specified FindGoodsArgs message. Does not implicitly {@link pbgoods.FindGoodsArgs.verify|verify} messages.
-         * @function encode
-         * @memberof pbgoods.FindGoodsArgs
-         * @static
-         * @param {pbgoods.IFindGoodsArgs} message FindGoodsArgs message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-    FindGoodsArgs.encode = function encode(message, writer) {
-      if (!writer) { writer = $Writer.create() }
-      if (message.pageInfo != null && Object.hasOwnProperty.call(message, 'pageInfo')) { $root.pbcommon.PageInfo.encode(message.pageInfo, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim() }
-      if (message.query != null && Object.hasOwnProperty.call(message, 'query')) { $root.pbgoods.GoodsModel.encode(message.query, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim() }
-      return writer
-    }
-
-    /**
-         * Encodes the specified FindGoodsArgs message, length delimited. Does not implicitly {@link pbgoods.FindGoodsArgs.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof pbgoods.FindGoodsArgs
-         * @static
-         * @param {pbgoods.IFindGoodsArgs} message FindGoodsArgs message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-    FindGoodsArgs.encodeDelimited = function encodeDelimited(message, writer) {
-      return this.encode(message, writer).ldelim()
-    }
-
-    /**
-         * Decodes a FindGoodsArgs message from the specified reader or buffer.
-         * @function decode
-         * @memberof pbgoods.FindGoodsArgs
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {pbgoods.FindGoodsArgs} FindGoodsArgs
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-    FindGoodsArgs.decode = function decode(reader, length) {
-      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
-      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbgoods.FindGoodsArgs()
-      while (reader.pos < end) {
-        var tag = reader.uint32()
-        switch (tag >>> 3) {
-          case 1: {
-            message.pageInfo = $root.pbcommon.PageInfo.decode(reader, reader.uint32())
-            break
-          }
-          case 2: {
-            message.query = $root.pbgoods.GoodsModel.decode(reader, reader.uint32())
-            break
-          }
-          default:
-            reader.skipType(tag & 7)
-            break
-        }
-      }
-      return message
-    }
-
-    /**
-         * Decodes a FindGoodsArgs message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof pbgoods.FindGoodsArgs
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {pbgoods.FindGoodsArgs} FindGoodsArgs
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-    FindGoodsArgs.decodeDelimited = function decodeDelimited(reader) {
-      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
-      return this.decode(reader, reader.uint32())
-    }
-
-    /**
-         * Verifies a FindGoodsArgs message.
-         * @function verify
-         * @memberof pbgoods.FindGoodsArgs
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-    FindGoodsArgs.verify = function verify(message) {
-      if (typeof message !== 'object' || message === null) { return 'object expected' }
-      if (message.pageInfo != null && message.hasOwnProperty('pageInfo')) {
-        var error = $root.pbcommon.PageInfo.verify(message.pageInfo)
-        if (error) { return 'pageInfo.' + error }
-      }
-      if (message.query != null && message.hasOwnProperty('query')) {
-        var error = $root.pbgoods.GoodsModel.verify(message.query)
-        if (error) { return 'query.' + error }
-      }
-      return null
-    }
-
-    /**
-         * Creates a FindGoodsArgs message from a plain object. Also converts values to their respective internal types.
-         * @function fromObject
-         * @memberof pbgoods.FindGoodsArgs
-         * @static
-         * @param {Object.<string,*>} object Plain object
-         * @returns {pbgoods.FindGoodsArgs} FindGoodsArgs
-         */
-    FindGoodsArgs.fromObject = function fromObject(object) {
-      if (object instanceof $root.pbgoods.FindGoodsArgs) { return object }
-      var message = new $root.pbgoods.FindGoodsArgs()
-      if (object.pageInfo != null) {
-        if (typeof object.pageInfo !== 'object') { throw TypeError('.pbgoods.FindGoodsArgs.pageInfo: object expected') }
-        message.pageInfo = $root.pbcommon.PageInfo.fromObject(object.pageInfo)
-      }
-      if (object.query != null) {
-        if (typeof object.query !== 'object') { throw TypeError('.pbgoods.FindGoodsArgs.query: object expected') }
-        message.query = $root.pbgoods.GoodsModel.fromObject(object.query)
-      }
-      return message
-    }
-
-    /**
-         * Creates a plain object from a FindGoodsArgs message. Also converts values to other types if specified.
-         * @function toObject
-         * @memberof pbgoods.FindGoodsArgs
-         * @static
-         * @param {pbgoods.FindGoodsArgs} message FindGoodsArgs
-         * @param {$protobuf.IConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-    FindGoodsArgs.toObject = function toObject(message, options) {
-      if (!options) { options = {} }
-      var object = {}
-      if (options.defaults) {
-        object.pageInfo = null
-        object.query = null
-      }
-      if (message.pageInfo != null && message.hasOwnProperty('pageInfo')) { object.pageInfo = $root.pbcommon.PageInfo.toObject(message.pageInfo, options) }
-      if (message.query != null && message.hasOwnProperty('query')) { object.query = $root.pbgoods.GoodsModel.toObject(message.query, options) }
-      return object
-    }
-
-    /**
-         * Converts this FindGoodsArgs to JSON.
-         * @function toJSON
-         * @memberof pbgoods.FindGoodsArgs
-         * @instance
-         * @returns {Object.<string,*>} JSON object
-         */
-    FindGoodsArgs.prototype.toJSON = function toJSON() {
-      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
-    }
-
-    /**
-         * Gets the default type url for FindGoodsArgs
-         * @function getTypeUrl
-         * @memberof pbgoods.FindGoodsArgs
-         * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
-         */
-    FindGoodsArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-      if (typeUrlPrefix === undefined) {
-        typeUrlPrefix = 'type.googleapis.com'
-      }
-      return typeUrlPrefix + '/pbgoods.FindGoodsArgs'
-    }
-
-    return FindGoodsArgs
-  })()
-
-  pbgoods.FindGoodsReply = (function() {
-    /**
-         * Properties of a FindGoodsReply.
-         * @memberof pbgoods
-         * @interface IFindGoodsReply
-         * @property {pbcommon.EnumCode|null} [code] FindGoodsReply code
-         * @property {string|null} [msg] FindGoodsReply msg
-         * @property {pbgoods.IGoodsModel|null} [data] FindGoodsReply data
-         * @property {Array.<pbgoods.IGoodsModel>|null} [list] FindGoodsReply list
-         * @property {number|Long|null} [total] FindGoodsReply total
-         */
-
-    /**
-         * Constructs a new FindGoodsReply.
-         * @memberof pbgoods
-         * @classdesc Represents a FindGoodsReply.
-         * @implements IFindGoodsReply
-         * @constructor
-         * @param {pbgoods.IFindGoodsReply=} [properties] Properties to set
-         */
-    function FindGoodsReply(properties) {
-      this.list = []
-      if (properties) {
-        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
-          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
-        }
-      }
-    }
-
-    /**
-         * FindGoodsReply code.
-         * @member {pbcommon.EnumCode} code
-         * @memberof pbgoods.FindGoodsReply
-         * @instance
-         */
-    FindGoodsReply.prototype.code = 0
-
-    /**
-         * FindGoodsReply msg.
-         * @member {string} msg
-         * @memberof pbgoods.FindGoodsReply
-         * @instance
-         */
-    FindGoodsReply.prototype.msg = ''
-
-    /**
-         * FindGoodsReply data.
-         * @member {pbgoods.IGoodsModel|null|undefined} data
-         * @memberof pbgoods.FindGoodsReply
-         * @instance
-         */
-    FindGoodsReply.prototype.data = null
-
-    /**
-         * FindGoodsReply list.
-         * @member {Array.<pbgoods.IGoodsModel>} list
-         * @memberof pbgoods.FindGoodsReply
-         * @instance
-         */
-    FindGoodsReply.prototype.list = $util.emptyArray
-
-    /**
-         * FindGoodsReply total.
-         * @member {number|Long} total
-         * @memberof pbgoods.FindGoodsReply
-         * @instance
-         */
-    FindGoodsReply.prototype.total = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
-
-    /**
-         * Creates a new FindGoodsReply instance using the specified properties.
-         * @function create
-         * @memberof pbgoods.FindGoodsReply
-         * @static
-         * @param {pbgoods.IFindGoodsReply=} [properties] Properties to set
-         * @returns {pbgoods.FindGoodsReply} FindGoodsReply instance
-         */
-    FindGoodsReply.create = function create(properties) {
-      return new FindGoodsReply(properties)
-    }
-
-    /**
-         * Encodes the specified FindGoodsReply message. Does not implicitly {@link pbgoods.FindGoodsReply.verify|verify} messages.
-         * @function encode
-         * @memberof pbgoods.FindGoodsReply
-         * @static
-         * @param {pbgoods.IFindGoodsReply} message FindGoodsReply message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-    FindGoodsReply.encode = function encode(message, writer) {
-      if (!writer) { writer = $Writer.create() }
-      if (message.code != null && Object.hasOwnProperty.call(message, 'code')) { writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code) }
-      if (message.msg != null && Object.hasOwnProperty.call(message, 'msg')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg) }
-      if (message.data != null && Object.hasOwnProperty.call(message, 'data')) { $root.pbgoods.GoodsModel.encode(message.data, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim() }
-      if (message.list != null && message.list.length) {
-        for (var i = 0; i < message.list.length; ++i) { $root.pbgoods.GoodsModel.encode(message.list[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim() }
-      }
-      if (message.total != null && Object.hasOwnProperty.call(message, 'total')) { writer.uint32(/* id 5, wireType 0 =*/40).int64(message.total) }
-      return writer
-    }
-
-    /**
-         * Encodes the specified FindGoodsReply message, length delimited. Does not implicitly {@link pbgoods.FindGoodsReply.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof pbgoods.FindGoodsReply
-         * @static
-         * @param {pbgoods.IFindGoodsReply} message FindGoodsReply message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-    FindGoodsReply.encodeDelimited = function encodeDelimited(message, writer) {
-      return this.encode(message, writer).ldelim()
-    }
-
-    /**
-         * Decodes a FindGoodsReply message from the specified reader or buffer.
-         * @function decode
-         * @memberof pbgoods.FindGoodsReply
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {pbgoods.FindGoodsReply} FindGoodsReply
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-    FindGoodsReply.decode = function decode(reader, length) {
-      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
-      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbgoods.FindGoodsReply()
-      while (reader.pos < end) {
-        var tag = reader.uint32()
-        switch (tag >>> 3) {
-          case 1: {
-            message.code = reader.int32()
-            break
-          }
-          case 2: {
-            message.msg = reader.string()
-            break
-          }
-          case 3: {
-            message.data = $root.pbgoods.GoodsModel.decode(reader, reader.uint32())
-            break
-          }
-          case 4: {
-            if (!(message.list && message.list.length)) { message.list = [] }
-            message.list.push($root.pbgoods.GoodsModel.decode(reader, reader.uint32()))
-            break
-          }
-          case 5: {
-            message.total = reader.int64()
-            break
-          }
-          default:
-            reader.skipType(tag & 7)
-            break
-        }
-      }
-      return message
-    }
-
-    /**
-         * Decodes a FindGoodsReply message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof pbgoods.FindGoodsReply
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {pbgoods.FindGoodsReply} FindGoodsReply
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-    FindGoodsReply.decodeDelimited = function decodeDelimited(reader) {
-      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
-      return this.decode(reader, reader.uint32())
-    }
-
-    /**
-         * Verifies a FindGoodsReply message.
-         * @function verify
-         * @memberof pbgoods.FindGoodsReply
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-    FindGoodsReply.verify = function verify(message) {
-      if (typeof message !== 'object' || message === null) { return 'object expected' }
-      if (message.code != null && message.hasOwnProperty('code')) {
-        switch (message.code) {
-          default:
-            return 'code: enum value expected'
-          case 0:
-          case 200:
-          case 500:
-          case 501:
-          case 502:
-          case 503:
-          case 504:
-          case 505:
-          case 1001:
-          case 1002:
-          case 1003:
-          case 1004:
-          case 2002:
-          case 2003:
-          case 2004:
-          case 2005:
-          case 2006:
-          case 2007:
-          case 2008:
-          case 2009:
-          case 2010:
-          case 2011:
-          case 2012:
-          case 2013:
-          case 2014:
-            break
-        }
-      }
-      if (message.msg != null && message.hasOwnProperty('msg')) {
-        if (!$util.isString(message.msg)) { return 'msg: string expected' }
-      }
-      if (message.data != null && message.hasOwnProperty('data')) {
-        var error = $root.pbgoods.GoodsModel.verify(message.data)
-        if (error) { return 'data.' + error }
-      }
-      if (message.list != null && message.hasOwnProperty('list')) {
-        if (!Array.isArray(message.list)) { return 'list: array expected' }
-        for (var i = 0; i < message.list.length; ++i) {
-          var error = $root.pbgoods.GoodsModel.verify(message.list[i])
-          if (error) { return 'list.' + error }
-        }
-      }
-      if (message.total != null && message.hasOwnProperty('total')) {
-        if (!$util.isInteger(message.total) && !(message.total && $util.isInteger(message.total.low) && $util.isInteger(message.total.high))) { return 'total: integer|Long expected' }
-      }
-      return null
-    }
-
-    /**
-         * Creates a FindGoodsReply message from a plain object. Also converts values to their respective internal types.
-         * @function fromObject
-         * @memberof pbgoods.FindGoodsReply
-         * @static
-         * @param {Object.<string,*>} object Plain object
-         * @returns {pbgoods.FindGoodsReply} FindGoodsReply
-         */
-    FindGoodsReply.fromObject = function fromObject(object) {
-      if (object instanceof $root.pbgoods.FindGoodsReply) { return object }
-      var message = new $root.pbgoods.FindGoodsReply()
-      switch (object.code) {
-        default:
-          if (typeof object.code === 'number') {
-            message.code = object.code
-            break
-          }
-          break
-        case 'None':
-        case 0:
-          message.code = 0
-          break
-        case 'Success':
-        case 200:
-          message.code = 200
-          break
-        case 'Fail':
-        case 500:
-          message.code = 500
-          break
-        case 'Unknown':
-        case 501:
-          message.code = 501
-          break
-        case 'Internal':
-        case 502:
-          message.code = 502
-          break
-        case 'Invalid':
-        case 503:
-          message.code = 503
-          break
-        case 'InvalidParam':
-        case 504:
-          message.code = 504
-          break
-        case 'ParamError':
-        case 505:
-          message.code = 505
-          break
-        case 'FindError':
-        case 1001:
-          message.code = 1001
-          break
-        case 'CreateError':
-        case 1002:
-          message.code = 1002
-          break
-        case 'DeleteError':
-        case 1003:
-          message.code = 1003
-          break
-        case 'UpdateError':
-        case 1004:
-          message.code = 1004
-          break
-        case 'InvalidToken':
-        case 2002:
-          message.code = 2002
-          break
-        case 'InvalidSign':
-        case 2003:
-          message.code = 2003
-          break
-        case 'NotLogin':
-        case 2004:
-          message.code = 2004
-          break
-        case 'LoginTimeout':
-        case 2005:
-          message.code = 2005
-          break
-        case 'LoginError':
-        case 2006:
-          message.code = 2006
-          break
-        case 'LoginForbidden':
-        case 2007:
-          message.code = 2007
-          break
-        case 'LoginExpired':
-        case 2008:
-          message.code = 2008
-          break
-        case 'LoginInvalid':
-        case 2009:
-          message.code = 2009
-          break
-        case 'LoginInvalidPassword':
-        case 2010:
-          message.code = 2010
-          break
-        case 'LoginInvalidUsername':
-        case 2011:
-          message.code = 2011
-          break
-        case 'LoginInvalidEmail':
-        case 2012:
-          message.code = 2012
-          break
-        case 'LoginInvalidPhone':
-        case 2013:
-          message.code = 2013
-          break
-        case 'LoginInvalidUsernameOrEmail':
-        case 2014:
-          message.code = 2014
-          break
-      }
-      if (object.msg != null) { message.msg = String(object.msg) }
-      if (object.data != null) {
-        if (typeof object.data !== 'object') { throw TypeError('.pbgoods.FindGoodsReply.data: object expected') }
-        message.data = $root.pbgoods.GoodsModel.fromObject(object.data)
-      }
-      if (object.list) {
-        if (!Array.isArray(object.list)) { throw TypeError('.pbgoods.FindGoodsReply.list: array expected') }
-        message.list = []
-        for (var i = 0; i < object.list.length; ++i) {
-          if (typeof object.list[i] !== 'object') { throw TypeError('.pbgoods.FindGoodsReply.list: object expected') }
-          message.list[i] = $root.pbgoods.GoodsModel.fromObject(object.list[i])
-        }
-      }
-      if (object.total != null) {
-        if ($util.Long) { (message.total = $util.Long.fromValue(object.total)).unsigned = false } else if (typeof object.total === 'string') { message.total = parseInt(object.total, 10) } else if (typeof object.total === 'number') { message.total = object.total } else if (typeof object.total === 'object') { message.total = new $util.LongBits(object.total.low >>> 0, object.total.high >>> 0).toNumber() }
-      }
-      return message
-    }
-
-    /**
-         * Creates a plain object from a FindGoodsReply message. Also converts values to other types if specified.
-         * @function toObject
-         * @memberof pbgoods.FindGoodsReply
-         * @static
-         * @param {pbgoods.FindGoodsReply} message FindGoodsReply
-         * @param {$protobuf.IConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-    FindGoodsReply.toObject = function toObject(message, options) {
-      if (!options) { options = {} }
-      var object = {}
-      if (options.arrays || options.defaults) { object.list = [] }
-      if (options.defaults) {
-        object.code = options.enums === String ? 'None' : 0
-        object.msg = ''
-        object.data = null
-        if ($util.Long) {
-          var long = new $util.Long(0, 0, false)
-          object.total = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
-        } else { object.total = options.longs === String ? '0' : 0 }
-      }
-      if (message.code != null && message.hasOwnProperty('code')) { object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code }
-      if (message.msg != null && message.hasOwnProperty('msg')) { object.msg = message.msg }
-      if (message.data != null && message.hasOwnProperty('data')) { object.data = $root.pbgoods.GoodsModel.toObject(message.data, options) }
-      if (message.list && message.list.length) {
-        object.list = []
-        for (var j = 0; j < message.list.length; ++j) { object.list[j] = $root.pbgoods.GoodsModel.toObject(message.list[j], options) }
-      }
-      if (message.total != null && message.hasOwnProperty('total')) {
-        if (typeof message.total === 'number') { object.total = options.longs === String ? String(message.total) : message.total } else { object.total = options.longs === String ? $util.Long.prototype.toString.call(message.total) : options.longs === Number ? new $util.LongBits(message.total.low >>> 0, message.total.high >>> 0).toNumber() : message.total }
-      }
-      return object
-    }
-
-    /**
-         * Converts this FindGoodsReply to JSON.
-         * @function toJSON
-         * @memberof pbgoods.FindGoodsReply
-         * @instance
-         * @returns {Object.<string,*>} JSON object
-         */
-    FindGoodsReply.prototype.toJSON = function toJSON() {
-      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
-    }
-
-    /**
-         * Gets the default type url for FindGoodsReply
-         * @function getTypeUrl
-         * @memberof pbgoods.FindGoodsReply
-         * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
-         */
-    FindGoodsReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-      if (typeUrlPrefix === undefined) {
-        typeUrlPrefix = 'type.googleapis.com'
-      }
-      return typeUrlPrefix + '/pbgoods.FindGoodsReply'
-    }
-
-    return FindGoodsReply
-  })()
-
-  pbgoods.Goods = (function() {
-    /**
-         * Constructs a new Goods service.
-         * @memberof pbgoods
-         * @classdesc Represents a Goods
-         * @extends $protobuf.rpc.Service
-         * @constructor
-         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
-         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
-         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
-         */
-    function Goods(rpcImpl, requestDelimited, responseDelimited) {
-      $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited)
-    }
-
-    (Goods.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = Goods
-
-    /**
-         * Creates new Goods service using the specified rpc implementation.
-         * @function create
-         * @memberof pbgoods.Goods
-         * @static
-         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
-         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
-         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
-         * @returns {Goods} RPC service. Useful where requests and/or responses are streamed.
-         */
-    Goods.create = function create(rpcImpl, requestDelimited, responseDelimited) {
-      return new this(rpcImpl, requestDelimited, responseDelimited)
-    }
-
-    /**
-         * Callback as used by {@link pbgoods.Goods#createGoods}.
-         * @memberof pbgoods.Goods
-         * @typedef CreateGoodsCallback
-         * @type {function}
-         * @param {Error|null} error Error, if any
-         * @param {pbcommon.CommonResult} [response] CommonResult
-         */
-
-    /**
-         * Calls CreateGoods.
-         * @function createGoods
-         * @memberof pbgoods.Goods
-         * @instance
-         * @param {pbgoods.IGoodsModel} request GoodsModel message or plain object
-         * @param {pbgoods.Goods.CreateGoodsCallback} callback Node-style callback called with the error, if any, and CommonResult
-         * @returns {undefined}
-         * @variation 1
-         */
-    Object.defineProperty(Goods.prototype.createGoods = function createGoods(request, callback) {
-      return this.rpcCall(createGoods, $root.pbgoods.GoodsModel, $root.pbcommon.CommonResult, request, callback)
-    }, 'name', { value: 'CreateGoods' })
-
-    /**
-         * Calls CreateGoods.
-         * @function createGoods
-         * @memberof pbgoods.Goods
-         * @instance
-         * @param {pbgoods.IGoodsModel} request GoodsModel message or plain object
-         * @returns {Promise<pbcommon.CommonResult>} Promise
-         * @variation 2
-         */
-
-    /**
-         * Callback as used by {@link pbgoods.Goods#updateGoods}.
-         * @memberof pbgoods.Goods
-         * @typedef UpdateGoodsCallback
-         * @type {function}
-         * @param {Error|null} error Error, if any
-         * @param {pbcommon.CommonResult} [response] CommonResult
-         */
-
-    /**
-         * Calls UpdateGoods.
-         * @function updateGoods
-         * @memberof pbgoods.Goods
-         * @instance
-         * @param {pbgoods.IGoodsModel} request GoodsModel message or plain object
-         * @param {pbgoods.Goods.UpdateGoodsCallback} callback Node-style callback called with the error, if any, and CommonResult
-         * @returns {undefined}
-         * @variation 1
-         */
-    Object.defineProperty(Goods.prototype.updateGoods = function updateGoods(request, callback) {
-      return this.rpcCall(updateGoods, $root.pbgoods.GoodsModel, $root.pbcommon.CommonResult, request, callback)
-    }, 'name', { value: 'UpdateGoods' })
-
-    /**
-         * Calls UpdateGoods.
-         * @function updateGoods
-         * @memberof pbgoods.Goods
-         * @instance
-         * @param {pbgoods.IGoodsModel} request GoodsModel message or plain object
-         * @returns {Promise<pbcommon.CommonResult>} Promise
-         * @variation 2
-         */
-
-    /**
-         * Callback as used by {@link pbgoods.Goods#deleteGoods}.
-         * @memberof pbgoods.Goods
-         * @typedef DeleteGoodsCallback
-         * @type {function}
-         * @param {Error|null} error Error, if any
-         * @param {pbcommon.CommonResult} [response] CommonResult
-         */
-
-    /**
-         * Calls DeleteGoods.
-         * @function deleteGoods
-         * @memberof pbgoods.Goods
-         * @instance
-         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-         * @param {pbgoods.Goods.DeleteGoodsCallback} callback Node-style callback called with the error, if any, and CommonResult
-         * @returns {undefined}
-         * @variation 1
-         */
-    Object.defineProperty(Goods.prototype.deleteGoods = function deleteGoods(request, callback) {
-      return this.rpcCall(deleteGoods, $root.pbcommon.IdArgs, $root.pbcommon.CommonResult, request, callback)
-    }, 'name', { value: 'DeleteGoods' })
-
-    /**
-         * Calls DeleteGoods.
-         * @function deleteGoods
-         * @memberof pbgoods.Goods
-         * @instance
-         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-         * @returns {Promise<pbcommon.CommonResult>} Promise
-         * @variation 2
-         */
-
-    /**
-         * Callback as used by {@link pbgoods.Goods#findGoodsById}.
-         * @memberof pbgoods.Goods
-         * @typedef FindGoodsByIdCallback
-         * @type {function}
-         * @param {Error|null} error Error, if any
-         * @param {pbgoods.FindGoodsReply} [response] FindGoodsReply
-         */
-
-    /**
-         * Calls FindGoodsById.
-         * @function findGoodsById
-         * @memberof pbgoods.Goods
-         * @instance
-         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-         * @param {pbgoods.Goods.FindGoodsByIdCallback} callback Node-style callback called with the error, if any, and FindGoodsReply
-         * @returns {undefined}
-         * @variation 1
-         */
-    Object.defineProperty(Goods.prototype.findGoodsById = function findGoodsById(request, callback) {
-      return this.rpcCall(findGoodsById, $root.pbcommon.IdArgs, $root.pbgoods.FindGoodsReply, request, callback)
-    }, 'name', { value: 'FindGoodsById' })
-
-    /**
-         * Calls FindGoodsById.
-         * @function findGoodsById
-         * @memberof pbgoods.Goods
-         * @instance
-         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
-         * @returns {Promise<pbgoods.FindGoodsReply>} Promise
-         * @variation 2
-         */
-
-    /**
-         * Callback as used by {@link pbgoods.Goods#findGoodsList}.
-         * @memberof pbgoods.Goods
-         * @typedef FindGoodsListCallback
-         * @type {function}
-         * @param {Error|null} error Error, if any
-         * @param {pbgoods.FindGoodsReply} [response] FindGoodsReply
-         */
-
-    /**
-         * Calls FindGoodsList.
-         * @function findGoodsList
-         * @memberof pbgoods.Goods
-         * @instance
-         * @param {pbgoods.IFindGoodsArgs} request FindGoodsArgs message or plain object
-         * @param {pbgoods.Goods.FindGoodsListCallback} callback Node-style callback called with the error, if any, and FindGoodsReply
-         * @returns {undefined}
-         * @variation 1
-         */
-    Object.defineProperty(Goods.prototype.findGoodsList = function findGoodsList(request, callback) {
-      return this.rpcCall(findGoodsList, $root.pbgoods.FindGoodsArgs, $root.pbgoods.FindGoodsReply, request, callback)
-    }, 'name', { value: 'FindGoodsList' })
-
-    /**
-         * Calls FindGoodsList.
-         * @function findGoodsList
-         * @memberof pbgoods.Goods
-         * @instance
-         * @param {pbgoods.IFindGoodsArgs} request FindGoodsArgs message or plain object
-         * @returns {Promise<pbgoods.FindGoodsReply>} Promise
-         * @variation 2
-         */
-
-    return Goods
-  })()
-
-  return pbgoods
 })()
 
 $root.pbemployee = (function() {
@@ -20443,6 +18151,7 @@ $root.pbemployee = (function() {
             return 'code: enum value expected'
           case 0:
           case 200:
+          case 403:
           case 500:
           case 501:
           case 502:
@@ -20466,6 +18175,11 @@ $root.pbemployee = (function() {
           case 2012:
           case 2013:
           case 2014:
+          case 3001:
+          case 3002:
+          case 3003:
+          case 5001:
+          case 5002:
             break
         }
       }
@@ -20514,6 +18228,10 @@ $root.pbemployee = (function() {
         case 'Success':
         case 200:
           message.code = 200
+          break
+        case 'Forbidden':
+        case 403:
+          message.code = 403
           break
         case 'Fail':
         case 500:
@@ -20606,6 +18324,26 @@ $root.pbemployee = (function() {
         case 'LoginInvalidUsernameOrEmail':
         case 2014:
           message.code = 2014
+          break
+        case 'RoleIsNotExist':
+        case 3001:
+          message.code = 3001
+          break
+        case 'UserIsExist':
+        case 3002:
+          message.code = 3002
+          break
+        case 'UserIsBan':
+        case 3003:
+          message.code = 3003
+          break
+        case 'TalkIsBan':
+        case 5001:
+          message.code = 5001
+          break
+        case 'EnterRoomErr':
+        case 5002:
+          message.code = 5002
           break
       }
       if (object.msg != null) { message.msg = String(object.msg) }
@@ -21749,6 +19487,7 @@ $root.pbsalary = (function() {
             return 'code: enum value expected'
           case 0:
           case 200:
+          case 403:
           case 500:
           case 501:
           case 502:
@@ -21772,6 +19511,11 @@ $root.pbsalary = (function() {
           case 2012:
           case 2013:
           case 2014:
+          case 3001:
+          case 3002:
+          case 3003:
+          case 5001:
+          case 5002:
             break
         }
       }
@@ -21820,6 +19564,10 @@ $root.pbsalary = (function() {
         case 'Success':
         case 200:
           message.code = 200
+          break
+        case 'Forbidden':
+        case 403:
+          message.code = 403
           break
         case 'Fail':
         case 500:
@@ -21912,6 +19660,26 @@ $root.pbsalary = (function() {
         case 'LoginInvalidUsernameOrEmail':
         case 2014:
           message.code = 2014
+          break
+        case 'RoleIsNotExist':
+        case 3001:
+          message.code = 3001
+          break
+        case 'UserIsExist':
+        case 3002:
+          message.code = 3002
+          break
+        case 'UserIsBan':
+        case 3003:
+          message.code = 3003
+          break
+        case 'TalkIsBan':
+        case 5001:
+          message.code = 5001
+          break
+        case 'EnterRoomErr':
+        case 5002:
+          message.code = 5002
           break
       }
       if (object.msg != null) { message.msg = String(object.msg) }

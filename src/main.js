@@ -47,6 +47,10 @@ Object.keys(filters).forEach(key => {
 Vue.config.productionTip = false
 
 import protoRoot from '@/proto/proto.js'
+var $protobuf = require('protobufjs/minimal')
+var Long = require('long')
+$protobuf.util.Long = Long
+$protobuf.configure()
 Vue.prototype.$protoRoot = protoRoot
 
 new Vue({
