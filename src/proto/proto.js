@@ -3933,7 +3933,7 @@ $root.pbpermission = (function() {
          * @property {string|null} [createdAt] PermissionModel createdAt
          * @property {string|null} [updatedAt] PermissionModel updatedAt
          * @property {number|Long|null} [parentId] PermissionModel parentId
-         * @property {pbpermission.PermissionType|null} [PermissionType] PermissionModel PermissionType
+         * @property {pbpermission.PermissionType|null} [permissionType] PermissionModel permissionType
          * @property {string|null} [path] PermissionModel path
          * @property {string|null} [name] PermissionModel name
          * @property {boolean|null} [hidden] PermissionModel hidden
@@ -3943,6 +3943,7 @@ $root.pbpermission = (function() {
          * @property {boolean|null} [keepalive] PermissionModel keepalive
          * @property {string|null} [title] PermissionModel title
          * @property {number|Long|null} [appId] PermissionModel appId
+         * @property {Array.<pbpermission.IPermissionModel>|null} [children] PermissionModel children
          */
 
     /**
@@ -3954,6 +3955,7 @@ $root.pbpermission = (function() {
          * @param {pbpermission.IPermissionModel=} [properties] Properties to set
          */
     function PermissionModel(properties) {
+      this.children = []
       if (properties) {
         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
           if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
@@ -3994,12 +3996,12 @@ $root.pbpermission = (function() {
     PermissionModel.prototype.parentId = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
-         * PermissionModel PermissionType.
-         * @member {pbpermission.PermissionType} PermissionType
+         * PermissionModel permissionType.
+         * @member {pbpermission.PermissionType} permissionType
          * @memberof pbpermission.PermissionModel
          * @instance
          */
-    PermissionModel.prototype.PermissionType = 0
+    PermissionModel.prototype.permissionType = 0
 
     /**
          * PermissionModel path.
@@ -4074,6 +4076,14 @@ $root.pbpermission = (function() {
     PermissionModel.prototype.appId = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
+         * PermissionModel children.
+         * @member {Array.<pbpermission.IPermissionModel>} children
+         * @memberof pbpermission.PermissionModel
+         * @instance
+         */
+    PermissionModel.prototype.children = $util.emptyArray
+
+    /**
          * Creates a new PermissionModel instance using the specified properties.
          * @function create
          * @memberof pbpermission.PermissionModel
@@ -4100,7 +4110,7 @@ $root.pbpermission = (function() {
       if (message.createdAt != null && Object.hasOwnProperty.call(message, 'createdAt')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.createdAt) }
       if (message.updatedAt != null && Object.hasOwnProperty.call(message, 'updatedAt')) { writer.uint32(/* id 3, wireType 2 =*/26).string(message.updatedAt) }
       if (message.parentId != null && Object.hasOwnProperty.call(message, 'parentId')) { writer.uint32(/* id 4, wireType 0 =*/32).int64(message.parentId) }
-      if (message.PermissionType != null && Object.hasOwnProperty.call(message, 'PermissionType')) { writer.uint32(/* id 5, wireType 0 =*/40).int32(message.PermissionType) }
+      if (message.permissionType != null && Object.hasOwnProperty.call(message, 'permissionType')) { writer.uint32(/* id 5, wireType 0 =*/40).int32(message.permissionType) }
       if (message.path != null && Object.hasOwnProperty.call(message, 'path')) { writer.uint32(/* id 6, wireType 2 =*/50).string(message.path) }
       if (message.name != null && Object.hasOwnProperty.call(message, 'name')) { writer.uint32(/* id 7, wireType 2 =*/58).string(message.name) }
       if (message.hidden != null && Object.hasOwnProperty.call(message, 'hidden')) { writer.uint32(/* id 8, wireType 0 =*/64).bool(message.hidden) }
@@ -4110,6 +4120,9 @@ $root.pbpermission = (function() {
       if (message.keepalive != null && Object.hasOwnProperty.call(message, 'keepalive')) { writer.uint32(/* id 12, wireType 0 =*/96).bool(message.keepalive) }
       if (message.title != null && Object.hasOwnProperty.call(message, 'title')) { writer.uint32(/* id 13, wireType 2 =*/106).string(message.title) }
       if (message.appId != null && Object.hasOwnProperty.call(message, 'appId')) { writer.uint32(/* id 14, wireType 0 =*/112).int64(message.appId) }
+      if (message.children != null && message.children.length) {
+        for (var i = 0; i < message.children.length; ++i) { $root.pbpermission.PermissionModel.encode(message.children[i], writer.uint32(/* id 15, wireType 2 =*/122).fork()).ldelim() }
+      }
       return writer
     }
 
@@ -4160,7 +4173,7 @@ $root.pbpermission = (function() {
             break
           }
           case 5: {
-            message.PermissionType = reader.int32()
+            message.permissionType = reader.int32()
             break
           }
           case 6: {
@@ -4197,6 +4210,11 @@ $root.pbpermission = (function() {
           }
           case 14: {
             message.appId = reader.int64()
+            break
+          }
+          case 15: {
+            if (!(message.children && message.children.length)) { message.children = [] }
+            message.children.push($root.pbpermission.PermissionModel.decode(reader, reader.uint32()))
             break
           }
           default:
@@ -4244,10 +4262,10 @@ $root.pbpermission = (function() {
       if (message.parentId != null && message.hasOwnProperty('parentId')) {
         if (!$util.isInteger(message.parentId) && !(message.parentId && $util.isInteger(message.parentId.low) && $util.isInteger(message.parentId.high))) { return 'parentId: integer|Long expected' }
       }
-      if (message.PermissionType != null && message.hasOwnProperty('PermissionType')) {
-        switch (message.PermissionType) {
+      if (message.permissionType != null && message.hasOwnProperty('permissionType')) {
+        switch (message.permissionType) {
           default:
-            return 'PermissionType: enum value expected'
+            return 'permissionType: enum value expected'
           case 0:
           case 1:
           case 2:
@@ -4281,6 +4299,13 @@ $root.pbpermission = (function() {
       if (message.appId != null && message.hasOwnProperty('appId')) {
         if (!$util.isInteger(message.appId) && !(message.appId && $util.isInteger(message.appId.low) && $util.isInteger(message.appId.high))) { return 'appId: integer|Long expected' }
       }
+      if (message.children != null && message.hasOwnProperty('children')) {
+        if (!Array.isArray(message.children)) { return 'children: array expected' }
+        for (var i = 0; i < message.children.length; ++i) {
+          var error = $root.pbpermission.PermissionModel.verify(message.children[i])
+          if (error) { return 'children.' + error }
+        }
+      }
       return null
     }
 
@@ -4303,24 +4328,24 @@ $root.pbpermission = (function() {
       if (object.parentId != null) {
         if ($util.Long) { (message.parentId = $util.Long.fromValue(object.parentId)).unsigned = false } else if (typeof object.parentId === 'string') { message.parentId = parseInt(object.parentId, 10) } else if (typeof object.parentId === 'number') { message.parentId = object.parentId } else if (typeof object.parentId === 'object') { message.parentId = new $util.LongBits(object.parentId.low >>> 0, object.parentId.high >>> 0).toNumber() }
       }
-      switch (object.PermissionType) {
+      switch (object.permissionType) {
         default:
-          if (typeof object.PermissionType === 'number') {
-            message.PermissionType = object.PermissionType
+          if (typeof object.permissionType === 'number') {
+            message.permissionType = object.permissionType
             break
           }
           break
         case 'PermissionTypeNone':
         case 0:
-          message.PermissionType = 0
+          message.permissionType = 0
           break
         case 'MENU':
         case 1:
-          message.PermissionType = 1
+          message.permissionType = 1
           break
         case 'BUTTON':
         case 2:
-          message.PermissionType = 2
+          message.permissionType = 2
           break
       }
       if (object.path != null) { message.path = String(object.path) }
@@ -4333,6 +4358,14 @@ $root.pbpermission = (function() {
       if (object.title != null) { message.title = String(object.title) }
       if (object.appId != null) {
         if ($util.Long) { (message.appId = $util.Long.fromValue(object.appId)).unsigned = false } else if (typeof object.appId === 'string') { message.appId = parseInt(object.appId, 10) } else if (typeof object.appId === 'number') { message.appId = object.appId } else if (typeof object.appId === 'object') { message.appId = new $util.LongBits(object.appId.low >>> 0, object.appId.high >>> 0).toNumber() }
+      }
+      if (object.children) {
+        if (!Array.isArray(object.children)) { throw TypeError('.pbpermission.PermissionModel.children: array expected') }
+        message.children = []
+        for (var i = 0; i < object.children.length; ++i) {
+          if (typeof object.children[i] !== 'object') { throw TypeError('.pbpermission.PermissionModel.children: object expected') }
+          message.children[i] = $root.pbpermission.PermissionModel.fromObject(object.children[i])
+        }
       }
       return message
     }
@@ -4349,6 +4382,7 @@ $root.pbpermission = (function() {
     PermissionModel.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
+      if (options.arrays || options.defaults) { object.children = [] }
       if (options.defaults) {
         if ($util.Long) {
           var long = new $util.Long(0, 0, false)
@@ -4360,7 +4394,7 @@ $root.pbpermission = (function() {
           var long = new $util.Long(0, 0, false)
           object.parentId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
         } else { object.parentId = options.longs === String ? '0' : 0 }
-        object.PermissionType = options.enums === String ? 'PermissionTypeNone' : 0
+        object.permissionType = options.enums === String ? 'PermissionTypeNone' : 0
         object.path = ''
         object.name = ''
         object.hidden = false
@@ -4382,7 +4416,7 @@ $root.pbpermission = (function() {
       if (message.parentId != null && message.hasOwnProperty('parentId')) {
         if (typeof message.parentId === 'number') { object.parentId = options.longs === String ? String(message.parentId) : message.parentId } else { object.parentId = options.longs === String ? $util.Long.prototype.toString.call(message.parentId) : options.longs === Number ? new $util.LongBits(message.parentId.low >>> 0, message.parentId.high >>> 0).toNumber() : message.parentId }
       }
-      if (message.PermissionType != null && message.hasOwnProperty('PermissionType')) { object.PermissionType = options.enums === String ? $root.pbpermission.PermissionType[message.PermissionType] === undefined ? message.PermissionType : $root.pbpermission.PermissionType[message.PermissionType] : message.PermissionType }
+      if (message.permissionType != null && message.hasOwnProperty('permissionType')) { object.permissionType = options.enums === String ? $root.pbpermission.PermissionType[message.permissionType] === undefined ? message.permissionType : $root.pbpermission.PermissionType[message.permissionType] : message.permissionType }
       if (message.path != null && message.hasOwnProperty('path')) { object.path = message.path }
       if (message.name != null && message.hasOwnProperty('name')) { object.name = message.name }
       if (message.hidden != null && message.hasOwnProperty('hidden')) { object.hidden = message.hidden }
@@ -4393,6 +4427,10 @@ $root.pbpermission = (function() {
       if (message.title != null && message.hasOwnProperty('title')) { object.title = message.title }
       if (message.appId != null && message.hasOwnProperty('appId')) {
         if (typeof message.appId === 'number') { object.appId = options.longs === String ? String(message.appId) : message.appId } else { object.appId = options.longs === String ? $util.Long.prototype.toString.call(message.appId) : options.longs === Number ? new $util.LongBits(message.appId.low >>> 0, message.appId.high >>> 0).toNumber() : message.appId }
+      }
+      if (message.children && message.children.length) {
+        object.children = []
+        for (var j = 0; j < message.children.length; ++j) { object.children[j] = $root.pbpermission.PermissionModel.toObject(message.children[j], options) }
       }
       return object
     }
@@ -4675,6 +4713,7 @@ $root.pbpermission = (function() {
          * @property {pbpermission.IPermissionModel|null} [data] FindPermissionReply data
          * @property {Array.<pbpermission.IPermissionModel>|null} [list] FindPermissionReply list
          * @property {number|Long|null} [total] FindPermissionReply total
+         * @property {Array.<number|Long>|null} [selectedItem] FindPermissionReply selectedItem
          */
 
     /**
@@ -4687,6 +4726,7 @@ $root.pbpermission = (function() {
          */
     function FindPermissionReply(properties) {
       this.list = []
+      this.selectedItem = []
       if (properties) {
         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
           if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
@@ -4735,6 +4775,14 @@ $root.pbpermission = (function() {
     FindPermissionReply.prototype.total = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
 
     /**
+         * FindPermissionReply selectedItem.
+         * @member {Array.<number|Long>} selectedItem
+         * @memberof pbpermission.FindPermissionReply
+         * @instance
+         */
+    FindPermissionReply.prototype.selectedItem = $util.emptyArray
+
+    /**
          * Creates a new FindPermissionReply instance using the specified properties.
          * @function create
          * @memberof pbpermission.FindPermissionReply
@@ -4764,6 +4812,11 @@ $root.pbpermission = (function() {
         for (var i = 0; i < message.list.length; ++i) { $root.pbpermission.PermissionModel.encode(message.list[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim() }
       }
       if (message.total != null && Object.hasOwnProperty.call(message, 'total')) { writer.uint32(/* id 5, wireType 0 =*/40).int64(message.total) }
+      if (message.selectedItem != null && message.selectedItem.length) {
+        writer.uint32(/* id 6, wireType 2 =*/50).fork()
+        for (var i = 0; i < message.selectedItem.length; ++i) { writer.int64(message.selectedItem[i]) }
+        writer.ldelim()
+      }
       return writer
     }
 
@@ -4816,6 +4869,14 @@ $root.pbpermission = (function() {
           }
           case 5: {
             message.total = reader.int64()
+            break
+          }
+          case 6: {
+            if (!(message.selectedItem && message.selectedItem.length)) { message.selectedItem = [] }
+            if ((tag & 7) === 2) {
+              var end2 = reader.uint32() + reader.pos
+              while (reader.pos < end2) { message.selectedItem.push(reader.int64()) }
+            } else { message.selectedItem.push(reader.int64()) }
             break
           }
           default:
@@ -4905,6 +4966,12 @@ $root.pbpermission = (function() {
       }
       if (message.total != null && message.hasOwnProperty('total')) {
         if (!$util.isInteger(message.total) && !(message.total && $util.isInteger(message.total.low) && $util.isInteger(message.total.high))) { return 'total: integer|Long expected' }
+      }
+      if (message.selectedItem != null && message.hasOwnProperty('selectedItem')) {
+        if (!Array.isArray(message.selectedItem)) { return 'selectedItem: array expected' }
+        for (var i = 0; i < message.selectedItem.length; ++i) {
+          if (!$util.isInteger(message.selectedItem[i]) && !(message.selectedItem[i] && $util.isInteger(message.selectedItem[i].low) && $util.isInteger(message.selectedItem[i].high))) { return 'selectedItem: integer|Long[] expected' }
+        }
       }
       return null
     }
@@ -5068,6 +5135,13 @@ $root.pbpermission = (function() {
       if (object.total != null) {
         if ($util.Long) { (message.total = $util.Long.fromValue(object.total)).unsigned = false } else if (typeof object.total === 'string') { message.total = parseInt(object.total, 10) } else if (typeof object.total === 'number') { message.total = object.total } else if (typeof object.total === 'object') { message.total = new $util.LongBits(object.total.low >>> 0, object.total.high >>> 0).toNumber() }
       }
+      if (object.selectedItem) {
+        if (!Array.isArray(object.selectedItem)) { throw TypeError('.pbpermission.FindPermissionReply.selectedItem: array expected') }
+        message.selectedItem = []
+        for (var i = 0; i < object.selectedItem.length; ++i) {
+          if ($util.Long) { (message.selectedItem[i] = $util.Long.fromValue(object.selectedItem[i])).unsigned = false } else if (typeof object.selectedItem[i] === 'string') { message.selectedItem[i] = parseInt(object.selectedItem[i], 10) } else if (typeof object.selectedItem[i] === 'number') { message.selectedItem[i] = object.selectedItem[i] } else if (typeof object.selectedItem[i] === 'object') { message.selectedItem[i] = new $util.LongBits(object.selectedItem[i].low >>> 0, object.selectedItem[i].high >>> 0).toNumber() }
+        }
+      }
       return message
     }
 
@@ -5083,7 +5157,10 @@ $root.pbpermission = (function() {
     FindPermissionReply.toObject = function toObject(message, options) {
       if (!options) { options = {} }
       var object = {}
-      if (options.arrays || options.defaults) { object.list = [] }
+      if (options.arrays || options.defaults) {
+        object.list = []
+        object.selectedItem = []
+      }
       if (options.defaults) {
         object.code = options.enums === String ? 'None' : 0
         object.msg = ''
@@ -5102,6 +5179,12 @@ $root.pbpermission = (function() {
       }
       if (message.total != null && message.hasOwnProperty('total')) {
         if (typeof message.total === 'number') { object.total = options.longs === String ? String(message.total) : message.total } else { object.total = options.longs === String ? $util.Long.prototype.toString.call(message.total) : options.longs === Number ? new $util.LongBits(message.total.low >>> 0, message.total.high >>> 0).toNumber() : message.total }
+      }
+      if (message.selectedItem && message.selectedItem.length) {
+        object.selectedItem = []
+        for (var j = 0; j < message.selectedItem.length; ++j) {
+          if (typeof message.selectedItem[j] === 'number') { object.selectedItem[j] = options.longs === String ? String(message.selectedItem[j]) : message.selectedItem[j] } else { object.selectedItem[j] = options.longs === String ? $util.Long.prototype.toString.call(message.selectedItem[j]) : options.longs === Number ? new $util.LongBits(message.selectedItem[j].low >>> 0, message.selectedItem[j].high >>> 0).toNumber() : message.selectedItem[j] }
+        }
       }
       return object
     }
@@ -5327,6 +5410,72 @@ $root.pbpermission = (function() {
          * @memberof pbpermission.Permission
          * @instance
          * @param {pbpermission.IFindPermissionArgs} request FindPermissionArgs message or plain object
+         * @returns {Promise<pbpermission.FindPermissionReply>} Promise
+         * @variation 2
+         */
+
+    /**
+         * Callback as used by {@link pbpermission.Permission#findPermissionTree}.
+         * @memberof pbpermission.Permission
+         * @typedef FindPermissionTreeCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbpermission.FindPermissionReply} [response] FindPermissionReply
+         */
+
+    /**
+         * Calls FindPermissionTree.
+         * @function findPermissionTree
+         * @memberof pbpermission.Permission
+         * @instance
+         * @param {pbpermission.IFindPermissionArgs} request FindPermissionArgs message or plain object
+         * @param {pbpermission.Permission.FindPermissionTreeCallback} callback Node-style callback called with the error, if any, and FindPermissionReply
+         * @returns {undefined}
+         * @variation 1
+         */
+    Object.defineProperty(Permission.prototype.findPermissionTree = function findPermissionTree(request, callback) {
+      return this.rpcCall(findPermissionTree, $root.pbpermission.FindPermissionArgs, $root.pbpermission.FindPermissionReply, request, callback)
+    }, 'name', { value: 'FindPermissionTree' })
+
+    /**
+         * Calls FindPermissionTree.
+         * @function findPermissionTree
+         * @memberof pbpermission.Permission
+         * @instance
+         * @param {pbpermission.IFindPermissionArgs} request FindPermissionArgs message or plain object
+         * @returns {Promise<pbpermission.FindPermissionReply>} Promise
+         * @variation 2
+         */
+
+    /**
+         * Callback as used by {@link pbpermission.Permission#findPermissionTreeByRole}.
+         * @memberof pbpermission.Permission
+         * @typedef FindPermissionTreeByRoleCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbpermission.FindPermissionReply} [response] FindPermissionReply
+         */
+
+    /**
+         * Calls FindPermissionTreeByRole.
+         * @function findPermissionTreeByRole
+         * @memberof pbpermission.Permission
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbpermission.Permission.FindPermissionTreeByRoleCallback} callback Node-style callback called with the error, if any, and FindPermissionReply
+         * @returns {undefined}
+         * @variation 1
+         */
+    Object.defineProperty(Permission.prototype.findPermissionTreeByRole = function findPermissionTreeByRole(request, callback) {
+      return this.rpcCall(findPermissionTreeByRole, $root.pbcommon.IdArgs, $root.pbpermission.FindPermissionReply, request, callback)
+    }, 'name', { value: 'FindPermissionTreeByRole' })
+
+    /**
+         * Calls FindPermissionTreeByRole.
+         * @function findPermissionTreeByRole
+         * @memberof pbpermission.Permission
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
          * @returns {Promise<pbpermission.FindPermissionReply>} Promise
          * @variation 2
          */
@@ -19965,6 +20114,1034 @@ $root.pbsalary = (function() {
   })()
 
   return pbsalary
+})()
+
+$root.pbsystemlog = (function() {
+  /**
+     * Namespace pbsystemlog.
+     * @exports pbsystemlog
+     * @namespace
+     */
+  var pbsystemlog = {}
+
+  pbsystemlog.SystemlogModel = (function() {
+    /**
+         * Properties of a SystemlogModel.
+         * @memberof pbsystemlog
+         * @interface ISystemlogModel
+         * @property {number|Long|null} [id] SystemlogModel id
+         * @property {string|null} [createdAt] SystemlogModel createdAt
+         * @property {string|null} [updatedAt] SystemlogModel updatedAt
+         * @property {string|null} [text] SystemlogModel text
+         * @property {string|null} [type] SystemlogModel type
+         * @property {string|null} [date] SystemlogModel date
+         * @property {number|null} [lines] SystemlogModel lines
+         */
+
+    /**
+         * Constructs a new SystemlogModel.
+         * @memberof pbsystemlog
+         * @classdesc Represents a SystemlogModel.
+         * @implements ISystemlogModel
+         * @constructor
+         * @param {pbsystemlog.ISystemlogModel=} [properties] Properties to set
+         */
+    function SystemlogModel(properties) {
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * SystemlogModel id.
+         * @member {number|Long} id
+         * @memberof pbsystemlog.SystemlogModel
+         * @instance
+         */
+    SystemlogModel.prototype.id = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+
+    /**
+         * SystemlogModel createdAt.
+         * @member {string} createdAt
+         * @memberof pbsystemlog.SystemlogModel
+         * @instance
+         */
+    SystemlogModel.prototype.createdAt = ''
+
+    /**
+         * SystemlogModel updatedAt.
+         * @member {string} updatedAt
+         * @memberof pbsystemlog.SystemlogModel
+         * @instance
+         */
+    SystemlogModel.prototype.updatedAt = ''
+
+    /**
+         * SystemlogModel text.
+         * @member {string} text
+         * @memberof pbsystemlog.SystemlogModel
+         * @instance
+         */
+    SystemlogModel.prototype.text = ''
+
+    /**
+         * SystemlogModel type.
+         * @member {string} type
+         * @memberof pbsystemlog.SystemlogModel
+         * @instance
+         */
+    SystemlogModel.prototype.type = ''
+
+    /**
+         * SystemlogModel date.
+         * @member {string} date
+         * @memberof pbsystemlog.SystemlogModel
+         * @instance
+         */
+    SystemlogModel.prototype.date = ''
+
+    /**
+         * SystemlogModel lines.
+         * @member {number} lines
+         * @memberof pbsystemlog.SystemlogModel
+         * @instance
+         */
+    SystemlogModel.prototype.lines = 0
+
+    /**
+         * Creates a new SystemlogModel instance using the specified properties.
+         * @function create
+         * @memberof pbsystemlog.SystemlogModel
+         * @static
+         * @param {pbsystemlog.ISystemlogModel=} [properties] Properties to set
+         * @returns {pbsystemlog.SystemlogModel} SystemlogModel instance
+         */
+    SystemlogModel.create = function create(properties) {
+      return new SystemlogModel(properties)
+    }
+
+    /**
+         * Encodes the specified SystemlogModel message. Does not implicitly {@link pbsystemlog.SystemlogModel.verify|verify} messages.
+         * @function encode
+         * @memberof pbsystemlog.SystemlogModel
+         * @static
+         * @param {pbsystemlog.ISystemlogModel} message SystemlogModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    SystemlogModel.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.id != null && Object.hasOwnProperty.call(message, 'id')) { writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id) }
+      if (message.createdAt != null && Object.hasOwnProperty.call(message, 'createdAt')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.createdAt) }
+      if (message.updatedAt != null && Object.hasOwnProperty.call(message, 'updatedAt')) { writer.uint32(/* id 3, wireType 2 =*/26).string(message.updatedAt) }
+      if (message.text != null && Object.hasOwnProperty.call(message, 'text')) { writer.uint32(/* id 4, wireType 2 =*/34).string(message.text) }
+      if (message.type != null && Object.hasOwnProperty.call(message, 'type')) { writer.uint32(/* id 5, wireType 2 =*/42).string(message.type) }
+      if (message.date != null && Object.hasOwnProperty.call(message, 'date')) { writer.uint32(/* id 6, wireType 2 =*/50).string(message.date) }
+      if (message.lines != null && Object.hasOwnProperty.call(message, 'lines')) { writer.uint32(/* id 7, wireType 0 =*/56).int32(message.lines) }
+      return writer
+    }
+
+    /**
+         * Encodes the specified SystemlogModel message, length delimited. Does not implicitly {@link pbsystemlog.SystemlogModel.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbsystemlog.SystemlogModel
+         * @static
+         * @param {pbsystemlog.ISystemlogModel} message SystemlogModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    SystemlogModel.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes a SystemlogModel message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbsystemlog.SystemlogModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbsystemlog.SystemlogModel} SystemlogModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    SystemlogModel.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbsystemlog.SystemlogModel()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            message.id = reader.int64()
+            break
+          }
+          case 2: {
+            message.createdAt = reader.string()
+            break
+          }
+          case 3: {
+            message.updatedAt = reader.string()
+            break
+          }
+          case 4: {
+            message.text = reader.string()
+            break
+          }
+          case 5: {
+            message.type = reader.string()
+            break
+          }
+          case 6: {
+            message.date = reader.string()
+            break
+          }
+          case 7: {
+            message.lines = reader.int32()
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes a SystemlogModel message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbsystemlog.SystemlogModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbsystemlog.SystemlogModel} SystemlogModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    SystemlogModel.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies a SystemlogModel message.
+         * @function verify
+         * @memberof pbsystemlog.SystemlogModel
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    SystemlogModel.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.id != null && message.hasOwnProperty('id')) {
+        if (!$util.isInteger(message.id) && !(message.id && $util.isInteger(message.id.low) && $util.isInteger(message.id.high))) { return 'id: integer|Long expected' }
+      }
+      if (message.createdAt != null && message.hasOwnProperty('createdAt')) {
+        if (!$util.isString(message.createdAt)) { return 'createdAt: string expected' }
+      }
+      if (message.updatedAt != null && message.hasOwnProperty('updatedAt')) {
+        if (!$util.isString(message.updatedAt)) { return 'updatedAt: string expected' }
+      }
+      if (message.text != null && message.hasOwnProperty('text')) {
+        if (!$util.isString(message.text)) { return 'text: string expected' }
+      }
+      if (message.type != null && message.hasOwnProperty('type')) {
+        if (!$util.isString(message.type)) { return 'type: string expected' }
+      }
+      if (message.date != null && message.hasOwnProperty('date')) {
+        if (!$util.isString(message.date)) { return 'date: string expected' }
+      }
+      if (message.lines != null && message.hasOwnProperty('lines')) {
+        if (!$util.isInteger(message.lines)) { return 'lines: integer expected' }
+      }
+      return null
+    }
+
+    /**
+         * Creates a SystemlogModel message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbsystemlog.SystemlogModel
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbsystemlog.SystemlogModel} SystemlogModel
+         */
+    SystemlogModel.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbsystemlog.SystemlogModel) { return object }
+      var message = new $root.pbsystemlog.SystemlogModel()
+      if (object.id != null) {
+        if ($util.Long) { (message.id = $util.Long.fromValue(object.id)).unsigned = false } else if (typeof object.id === 'string') { message.id = parseInt(object.id, 10) } else if (typeof object.id === 'number') { message.id = object.id } else if (typeof object.id === 'object') { message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber() }
+      }
+      if (object.createdAt != null) { message.createdAt = String(object.createdAt) }
+      if (object.updatedAt != null) { message.updatedAt = String(object.updatedAt) }
+      if (object.text != null) { message.text = String(object.text) }
+      if (object.type != null) { message.type = String(object.type) }
+      if (object.date != null) { message.date = String(object.date) }
+      if (object.lines != null) { message.lines = object.lines | 0 }
+      return message
+    }
+
+    /**
+         * Creates a plain object from a SystemlogModel message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbsystemlog.SystemlogModel
+         * @static
+         * @param {pbsystemlog.SystemlogModel} message SystemlogModel
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    SystemlogModel.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.defaults) {
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.id = options.longs === String ? '0' : 0 }
+        object.createdAt = ''
+        object.updatedAt = ''
+        object.text = ''
+        object.type = ''
+        object.date = ''
+        object.lines = 0
+      }
+      if (message.id != null && message.hasOwnProperty('id')) {
+        if (typeof message.id === 'number') { object.id = options.longs === String ? String(message.id) : message.id } else { object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id }
+      }
+      if (message.createdAt != null && message.hasOwnProperty('createdAt')) { object.createdAt = message.createdAt }
+      if (message.updatedAt != null && message.hasOwnProperty('updatedAt')) { object.updatedAt = message.updatedAt }
+      if (message.text != null && message.hasOwnProperty('text')) { object.text = message.text }
+      if (message.type != null && message.hasOwnProperty('type')) { object.type = message.type }
+      if (message.date != null && message.hasOwnProperty('date')) { object.date = message.date }
+      if (message.lines != null && message.hasOwnProperty('lines')) { object.lines = message.lines }
+      return object
+    }
+
+    /**
+         * Converts this SystemlogModel to JSON.
+         * @function toJSON
+         * @memberof pbsystemlog.SystemlogModel
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    SystemlogModel.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for SystemlogModel
+         * @function getTypeUrl
+         * @memberof pbsystemlog.SystemlogModel
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    SystemlogModel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/pbsystemlog.SystemlogModel'
+    }
+
+    return SystemlogModel
+  })()
+
+  pbsystemlog.FindSystemlogArgs = (function() {
+    /**
+         * Properties of a FindSystemlogArgs.
+         * @memberof pbsystemlog
+         * @interface IFindSystemlogArgs
+         * @property {pbcommon.IPageInfo|null} [pageInfo] FindSystemlogArgs pageInfo
+         * @property {pbsystemlog.ISystemlogModel|null} [query] FindSystemlogArgs query
+         */
+
+    /**
+         * Constructs a new FindSystemlogArgs.
+         * @memberof pbsystemlog
+         * @classdesc Represents a FindSystemlogArgs.
+         * @implements IFindSystemlogArgs
+         * @constructor
+         * @param {pbsystemlog.IFindSystemlogArgs=} [properties] Properties to set
+         */
+    function FindSystemlogArgs(properties) {
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * FindSystemlogArgs pageInfo.
+         * @member {pbcommon.IPageInfo|null|undefined} pageInfo
+         * @memberof pbsystemlog.FindSystemlogArgs
+         * @instance
+         */
+    FindSystemlogArgs.prototype.pageInfo = null
+
+    /**
+         * FindSystemlogArgs query.
+         * @member {pbsystemlog.ISystemlogModel|null|undefined} query
+         * @memberof pbsystemlog.FindSystemlogArgs
+         * @instance
+         */
+    FindSystemlogArgs.prototype.query = null
+
+    /**
+         * Creates a new FindSystemlogArgs instance using the specified properties.
+         * @function create
+         * @memberof pbsystemlog.FindSystemlogArgs
+         * @static
+         * @param {pbsystemlog.IFindSystemlogArgs=} [properties] Properties to set
+         * @returns {pbsystemlog.FindSystemlogArgs} FindSystemlogArgs instance
+         */
+    FindSystemlogArgs.create = function create(properties) {
+      return new FindSystemlogArgs(properties)
+    }
+
+    /**
+         * Encodes the specified FindSystemlogArgs message. Does not implicitly {@link pbsystemlog.FindSystemlogArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbsystemlog.FindSystemlogArgs
+         * @static
+         * @param {pbsystemlog.IFindSystemlogArgs} message FindSystemlogArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    FindSystemlogArgs.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.pageInfo != null && Object.hasOwnProperty.call(message, 'pageInfo')) { $root.pbcommon.PageInfo.encode(message.pageInfo, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim() }
+      if (message.query != null && Object.hasOwnProperty.call(message, 'query')) { $root.pbsystemlog.SystemlogModel.encode(message.query, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim() }
+      return writer
+    }
+
+    /**
+         * Encodes the specified FindSystemlogArgs message, length delimited. Does not implicitly {@link pbsystemlog.FindSystemlogArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbsystemlog.FindSystemlogArgs
+         * @static
+         * @param {pbsystemlog.IFindSystemlogArgs} message FindSystemlogArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    FindSystemlogArgs.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes a FindSystemlogArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbsystemlog.FindSystemlogArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbsystemlog.FindSystemlogArgs} FindSystemlogArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    FindSystemlogArgs.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbsystemlog.FindSystemlogArgs()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            message.pageInfo = $root.pbcommon.PageInfo.decode(reader, reader.uint32())
+            break
+          }
+          case 2: {
+            message.query = $root.pbsystemlog.SystemlogModel.decode(reader, reader.uint32())
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes a FindSystemlogArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbsystemlog.FindSystemlogArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbsystemlog.FindSystemlogArgs} FindSystemlogArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    FindSystemlogArgs.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies a FindSystemlogArgs message.
+         * @function verify
+         * @memberof pbsystemlog.FindSystemlogArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    FindSystemlogArgs.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.pageInfo != null && message.hasOwnProperty('pageInfo')) {
+        var error = $root.pbcommon.PageInfo.verify(message.pageInfo)
+        if (error) { return 'pageInfo.' + error }
+      }
+      if (message.query != null && message.hasOwnProperty('query')) {
+        var error = $root.pbsystemlog.SystemlogModel.verify(message.query)
+        if (error) { return 'query.' + error }
+      }
+      return null
+    }
+
+    /**
+         * Creates a FindSystemlogArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbsystemlog.FindSystemlogArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbsystemlog.FindSystemlogArgs} FindSystemlogArgs
+         */
+    FindSystemlogArgs.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbsystemlog.FindSystemlogArgs) { return object }
+      var message = new $root.pbsystemlog.FindSystemlogArgs()
+      if (object.pageInfo != null) {
+        if (typeof object.pageInfo !== 'object') { throw TypeError('.pbsystemlog.FindSystemlogArgs.pageInfo: object expected') }
+        message.pageInfo = $root.pbcommon.PageInfo.fromObject(object.pageInfo)
+      }
+      if (object.query != null) {
+        if (typeof object.query !== 'object') { throw TypeError('.pbsystemlog.FindSystemlogArgs.query: object expected') }
+        message.query = $root.pbsystemlog.SystemlogModel.fromObject(object.query)
+      }
+      return message
+    }
+
+    /**
+         * Creates a plain object from a FindSystemlogArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbsystemlog.FindSystemlogArgs
+         * @static
+         * @param {pbsystemlog.FindSystemlogArgs} message FindSystemlogArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    FindSystemlogArgs.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.defaults) {
+        object.pageInfo = null
+        object.query = null
+      }
+      if (message.pageInfo != null && message.hasOwnProperty('pageInfo')) { object.pageInfo = $root.pbcommon.PageInfo.toObject(message.pageInfo, options) }
+      if (message.query != null && message.hasOwnProperty('query')) { object.query = $root.pbsystemlog.SystemlogModel.toObject(message.query, options) }
+      return object
+    }
+
+    /**
+         * Converts this FindSystemlogArgs to JSON.
+         * @function toJSON
+         * @memberof pbsystemlog.FindSystemlogArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    FindSystemlogArgs.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for FindSystemlogArgs
+         * @function getTypeUrl
+         * @memberof pbsystemlog.FindSystemlogArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    FindSystemlogArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/pbsystemlog.FindSystemlogArgs'
+    }
+
+    return FindSystemlogArgs
+  })()
+
+  pbsystemlog.FindSystemlogReply = (function() {
+    /**
+         * Properties of a FindSystemlogReply.
+         * @memberof pbsystemlog
+         * @interface IFindSystemlogReply
+         * @property {pbcommon.EnumCode|null} [code] FindSystemlogReply code
+         * @property {string|null} [msg] FindSystemlogReply msg
+         * @property {pbsystemlog.ISystemlogModel|null} [data] FindSystemlogReply data
+         */
+
+    /**
+         * Constructs a new FindSystemlogReply.
+         * @memberof pbsystemlog
+         * @classdesc Represents a FindSystemlogReply.
+         * @implements IFindSystemlogReply
+         * @constructor
+         * @param {pbsystemlog.IFindSystemlogReply=} [properties] Properties to set
+         */
+    function FindSystemlogReply(properties) {
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * FindSystemlogReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbsystemlog.FindSystemlogReply
+         * @instance
+         */
+    FindSystemlogReply.prototype.code = 0
+
+    /**
+         * FindSystemlogReply msg.
+         * @member {string} msg
+         * @memberof pbsystemlog.FindSystemlogReply
+         * @instance
+         */
+    FindSystemlogReply.prototype.msg = ''
+
+    /**
+         * FindSystemlogReply data.
+         * @member {pbsystemlog.ISystemlogModel|null|undefined} data
+         * @memberof pbsystemlog.FindSystemlogReply
+         * @instance
+         */
+    FindSystemlogReply.prototype.data = null
+
+    /**
+         * Creates a new FindSystemlogReply instance using the specified properties.
+         * @function create
+         * @memberof pbsystemlog.FindSystemlogReply
+         * @static
+         * @param {pbsystemlog.IFindSystemlogReply=} [properties] Properties to set
+         * @returns {pbsystemlog.FindSystemlogReply} FindSystemlogReply instance
+         */
+    FindSystemlogReply.create = function create(properties) {
+      return new FindSystemlogReply(properties)
+    }
+
+    /**
+         * Encodes the specified FindSystemlogReply message. Does not implicitly {@link pbsystemlog.FindSystemlogReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbsystemlog.FindSystemlogReply
+         * @static
+         * @param {pbsystemlog.IFindSystemlogReply} message FindSystemlogReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    FindSystemlogReply.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.code != null && Object.hasOwnProperty.call(message, 'code')) { writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code) }
+      if (message.msg != null && Object.hasOwnProperty.call(message, 'msg')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg) }
+      if (message.data != null && Object.hasOwnProperty.call(message, 'data')) { $root.pbsystemlog.SystemlogModel.encode(message.data, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim() }
+      return writer
+    }
+
+    /**
+         * Encodes the specified FindSystemlogReply message, length delimited. Does not implicitly {@link pbsystemlog.FindSystemlogReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbsystemlog.FindSystemlogReply
+         * @static
+         * @param {pbsystemlog.IFindSystemlogReply} message FindSystemlogReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    FindSystemlogReply.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes a FindSystemlogReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbsystemlog.FindSystemlogReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbsystemlog.FindSystemlogReply} FindSystemlogReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    FindSystemlogReply.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbsystemlog.FindSystemlogReply()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            message.code = reader.int32()
+            break
+          }
+          case 2: {
+            message.msg = reader.string()
+            break
+          }
+          case 3: {
+            message.data = $root.pbsystemlog.SystemlogModel.decode(reader, reader.uint32())
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes a FindSystemlogReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbsystemlog.FindSystemlogReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbsystemlog.FindSystemlogReply} FindSystemlogReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    FindSystemlogReply.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies a FindSystemlogReply message.
+         * @function verify
+         * @memberof pbsystemlog.FindSystemlogReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    FindSystemlogReply.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.code != null && message.hasOwnProperty('code')) {
+        switch (message.code) {
+          default:
+            return 'code: enum value expected'
+          case 0:
+          case 200:
+          case 403:
+          case 500:
+          case 501:
+          case 502:
+          case 503:
+          case 504:
+          case 505:
+          case 1001:
+          case 1002:
+          case 1003:
+          case 1004:
+          case 2002:
+          case 2003:
+          case 2004:
+          case 2005:
+          case 2006:
+          case 2007:
+          case 2008:
+          case 2009:
+          case 2010:
+          case 2011:
+          case 2012:
+          case 2013:
+          case 2014:
+          case 3001:
+          case 3002:
+          case 3003:
+          case 5001:
+          case 5002:
+            break
+        }
+      }
+      if (message.msg != null && message.hasOwnProperty('msg')) {
+        if (!$util.isString(message.msg)) { return 'msg: string expected' }
+      }
+      if (message.data != null && message.hasOwnProperty('data')) {
+        var error = $root.pbsystemlog.SystemlogModel.verify(message.data)
+        if (error) { return 'data.' + error }
+      }
+      return null
+    }
+
+    /**
+         * Creates a FindSystemlogReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbsystemlog.FindSystemlogReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbsystemlog.FindSystemlogReply} FindSystemlogReply
+         */
+    FindSystemlogReply.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbsystemlog.FindSystemlogReply) { return object }
+      var message = new $root.pbsystemlog.FindSystemlogReply()
+      switch (object.code) {
+        default:
+          if (typeof object.code === 'number') {
+            message.code = object.code
+            break
+          }
+          break
+        case 'None':
+        case 0:
+          message.code = 0
+          break
+        case 'Success':
+        case 200:
+          message.code = 200
+          break
+        case 'Forbidden':
+        case 403:
+          message.code = 403
+          break
+        case 'Fail':
+        case 500:
+          message.code = 500
+          break
+        case 'Unknown':
+        case 501:
+          message.code = 501
+          break
+        case 'Internal':
+        case 502:
+          message.code = 502
+          break
+        case 'Invalid':
+        case 503:
+          message.code = 503
+          break
+        case 'InvalidParam':
+        case 504:
+          message.code = 504
+          break
+        case 'ParamError':
+        case 505:
+          message.code = 505
+          break
+        case 'FindError':
+        case 1001:
+          message.code = 1001
+          break
+        case 'CreateError':
+        case 1002:
+          message.code = 1002
+          break
+        case 'DeleteError':
+        case 1003:
+          message.code = 1003
+          break
+        case 'UpdateError':
+        case 1004:
+          message.code = 1004
+          break
+        case 'InvalidToken':
+        case 2002:
+          message.code = 2002
+          break
+        case 'InvalidSign':
+        case 2003:
+          message.code = 2003
+          break
+        case 'NotLogin':
+        case 2004:
+          message.code = 2004
+          break
+        case 'LoginTimeout':
+        case 2005:
+          message.code = 2005
+          break
+        case 'LoginError':
+        case 2006:
+          message.code = 2006
+          break
+        case 'LoginForbidden':
+        case 2007:
+          message.code = 2007
+          break
+        case 'LoginExpired':
+        case 2008:
+          message.code = 2008
+          break
+        case 'LoginInvalid':
+        case 2009:
+          message.code = 2009
+          break
+        case 'LoginInvalidPassword':
+        case 2010:
+          message.code = 2010
+          break
+        case 'LoginInvalidUsername':
+        case 2011:
+          message.code = 2011
+          break
+        case 'LoginInvalidEmail':
+        case 2012:
+          message.code = 2012
+          break
+        case 'LoginInvalidPhone':
+        case 2013:
+          message.code = 2013
+          break
+        case 'LoginInvalidUsernameOrEmail':
+        case 2014:
+          message.code = 2014
+          break
+        case 'RoleIsNotExist':
+        case 3001:
+          message.code = 3001
+          break
+        case 'UserIsExist':
+        case 3002:
+          message.code = 3002
+          break
+        case 'UserIsBan':
+        case 3003:
+          message.code = 3003
+          break
+        case 'TalkIsBan':
+        case 5001:
+          message.code = 5001
+          break
+        case 'EnterRoomErr':
+        case 5002:
+          message.code = 5002
+          break
+      }
+      if (object.msg != null) { message.msg = String(object.msg) }
+      if (object.data != null) {
+        if (typeof object.data !== 'object') { throw TypeError('.pbsystemlog.FindSystemlogReply.data: object expected') }
+        message.data = $root.pbsystemlog.SystemlogModel.fromObject(object.data)
+      }
+      return message
+    }
+
+    /**
+         * Creates a plain object from a FindSystemlogReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbsystemlog.FindSystemlogReply
+         * @static
+         * @param {pbsystemlog.FindSystemlogReply} message FindSystemlogReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    FindSystemlogReply.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.defaults) {
+        object.code = options.enums === String ? 'None' : 0
+        object.msg = ''
+        object.data = null
+      }
+      if (message.code != null && message.hasOwnProperty('code')) { object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code }
+      if (message.msg != null && message.hasOwnProperty('msg')) { object.msg = message.msg }
+      if (message.data != null && message.hasOwnProperty('data')) { object.data = $root.pbsystemlog.SystemlogModel.toObject(message.data, options) }
+      return object
+    }
+
+    /**
+         * Converts this FindSystemlogReply to JSON.
+         * @function toJSON
+         * @memberof pbsystemlog.FindSystemlogReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    FindSystemlogReply.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for FindSystemlogReply
+         * @function getTypeUrl
+         * @memberof pbsystemlog.FindSystemlogReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    FindSystemlogReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/pbsystemlog.FindSystemlogReply'
+    }
+
+    return FindSystemlogReply
+  })()
+
+  pbsystemlog.Systemlog = (function() {
+    /**
+         * Constructs a new Systemlog service.
+         * @memberof pbsystemlog
+         * @classdesc Represents a Systemlog
+         * @extends $protobuf.rpc.Service
+         * @constructor
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         */
+    function Systemlog(rpcImpl, requestDelimited, responseDelimited) {
+      $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited)
+    }
+
+    (Systemlog.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = Systemlog
+
+    /**
+         * Creates new Systemlog service using the specified rpc implementation.
+         * @function create
+         * @memberof pbsystemlog.Systemlog
+         * @static
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         * @returns {Systemlog} RPC service. Useful where requests and/or responses are streamed.
+         */
+    Systemlog.create = function create(rpcImpl, requestDelimited, responseDelimited) {
+      return new this(rpcImpl, requestDelimited, responseDelimited)
+    }
+
+    /**
+         * Callback as used by {@link pbsystemlog.Systemlog#findSystemlog}.
+         * @memberof pbsystemlog.Systemlog
+         * @typedef FindSystemlogCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbsystemlog.FindSystemlogReply} [response] FindSystemlogReply
+         */
+
+    /**
+         * Calls FindSystemlog.
+         * @function findSystemlog
+         * @memberof pbsystemlog.Systemlog
+         * @instance
+         * @param {pbsystemlog.IFindSystemlogArgs} request FindSystemlogArgs message or plain object
+         * @param {pbsystemlog.Systemlog.FindSystemlogCallback} callback Node-style callback called with the error, if any, and FindSystemlogReply
+         * @returns {undefined}
+         * @variation 1
+         */
+    Object.defineProperty(Systemlog.prototype.findSystemlog = function findSystemlog(request, callback) {
+      return this.rpcCall(findSystemlog, $root.pbsystemlog.FindSystemlogArgs, $root.pbsystemlog.FindSystemlogReply, request, callback)
+    }, 'name', { value: 'FindSystemlog' })
+
+    /**
+         * Calls FindSystemlog.
+         * @function findSystemlog
+         * @memberof pbsystemlog.Systemlog
+         * @instance
+         * @param {pbsystemlog.IFindSystemlogArgs} request FindSystemlogArgs message or plain object
+         * @returns {Promise<pbsystemlog.FindSystemlogReply>} Promise
+         * @variation 2
+         */
+
+    return Systemlog
+  })()
+
+  return pbsystemlog
 })()
 
 module.exports = $root

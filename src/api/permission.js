@@ -51,3 +51,12 @@ export function findPermissionList(data) {
   })
 }
 
+export function findPermissionTree(data) {
+  var buffer = protoRoot.pbpermission.FindPermissionArgs.encode(data).finish().slice().buffer
+  return request({
+    url: '/v2/permission/findPermissionTree',
+    method: 'post',
+    buffer,
+    pb: 'pbpermission.FindPermissionReply'
+  })
+}

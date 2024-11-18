@@ -31,9 +31,13 @@
       :key="tableKey"
       v-loading="listLoading"
       :data="tableData"
+      row-key="id"
+      :indent="16"
+      :default-expand-all="true"
       border
       fit
       highlight-current-row
+      :tree-props="{children: 'children', hasChildren: 'hasChildren'}"
       style="width: 100%;"
     >
       <el-table-column
@@ -69,8 +73,12 @@
         label="PermissionType"
         width="150px"
         align="center"
-        prop="PermissionType"
-      />
+        prop="permissionType"
+      >
+        <template slot-scope="{row}">
+          <span>{{ row.permissionType }}</span>
+        </template>
+      </el-table-column>
       <el-table-column
         label="Path"
         width="150px"
@@ -88,7 +96,11 @@
         width="150px"
         align="center"
         prop="hidden"
-      />
+      >
+        <template slot-scope="{row}">
+          <span>{{ row.hidden?"隐藏":"显示" }}</span>
+        </template>
+      </el-table-column>
       <el-table-column
         label="Component"
         width="150px"
@@ -112,7 +124,11 @@
         width="150px"
         align="center"
         prop="keepalive"
-      />
+      >
+        <template slot-scope="{row}">
+          <span>{{ row.keepalive?"缓存页面":"不缓存页面" }}</span>
+        </template>
+      </el-table-column>
       <el-table-column
         label="Title"
         width="150px"
@@ -132,6 +148,13 @@
         class-name="small-padding fixed-width"
       >
         <template slot-scope="{row}">
+          <el-button
+            type="warn"
+            size="mini"
+            @click="handleCreateByParentId(row.id)"
+          >
+            新建子菜单
+          </el-button>
           <el-button
             type="primary"
             size="mini"
@@ -189,13 +212,23 @@
           label="ParentId"
           prop="parentId"
         >
-          <el-input v-model="temp.parentId" />
+          <el-input v-model="temp.parentId" :disbaled="tempParentIdLock" />
         </el-form-item>
         <el-form-item
           label="PermissionType"
           prop="PermissionType"
         >
-          <el-input v-model="temp.PermissionType" />
+          <el-select
+            v-model="temp.permissionType"
+            placeholder="请选择"
+          >
+            <el-option
+              v-for="item in permissionTypeOptions"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            />
+          </el-select>
         </el-form-item>
         <el-form-item
           label="Path"
@@ -292,7 +325,7 @@
 </template>
 
 <script>
-import { createPermission, updatePermission, deletePermission, findPermissionById, findPermissionList } from '@/api/permission'
+import { createPermission, updatePermission, deletePermission, findPermissionById, findPermissionTree } from '@/api/permission'
 import waves from '@/directive/waves' // waves directive
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
 import tableList from '@/mixins/tableList'
@@ -304,15 +337,14 @@ export default {
   mixins: [tableList],
   data() {
     return {
-      listApi: findPermissionList,
+      listApi: findPermissionTree,
       tableKey: 0,
       temp: {
         id: undefined,
         createdAt: '',
         updatedAt: '',
-
         parentId: 0,
-        PermissionType: '',
+        permissionType: 1,
         path: '',
         name: '',
         hidden: '',
@@ -323,6 +355,7 @@ export default {
         title: '',
         appId: 0
       },
+      tempParentIdLock: false,
       dialogFormVisible: false,
       dialogStatus: '',
       textMap: {
@@ -330,6 +363,7 @@ export default {
         create: '创建'
       },
       boolOptions: [{ value: true, label: '是' }, { value: false, label: '否' }],
+      permissionTypeOptions: [{ value: 1, label: 'MENU' }, { value: 2, label: 'BUTTON' }],
       rules: {
         //   type: [{ required: true, message: 'type is required', trigger: 'change' }],
         //   timestamp: [{ type: 'date', required: true, message: 'timestamp is required', trigger: 'change' }],
@@ -358,17 +392,22 @@ export default {
         createdAt: '',
         updatedAt: '',
         parentId: 0,
-        PermissionType: '',
-        path: '',
+        PermissionType: 1,
+        path: '/',
         name: '',
-        hidden: '',
-        component: '',
+        hidden: false,
+        component: 'views/',
         redirect: '',
         icon: '',
-        keepalive: '',
+        keepalive: true,
         title: '',
         appId: 0
       }
+    },
+    handleCreateByParentId(parentId) {
+      this.handleCreate()
+      this.tempParentIdLock = true
+      this.temp.parentId = parentId
     },
     handleCreate() {
       this.resetTemp()
@@ -396,9 +435,7 @@ export default {
       })
     },
     async handleUpdate(row) {
-      console.log(row)
       const res = await findPermissionById({ id: row.id })
-      console.log(res)
       if (res.code === 'Success') {
         this.temp = res.data
         this.dialogStatus = 'update'
