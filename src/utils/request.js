@@ -32,7 +32,6 @@ service.interceptors.request.use(
     messageData['appId'] = process.env.VUE_APP_BASE_APPID
     if (config.pb) {
       messageData['data'] = new Uint8Array(config.buffer)
-      console.log(messageData)
       config.data = protoRoot.httpgate.HttpRequest.encode(messageData).finish().slice().buffer
     }
     return config

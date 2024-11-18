@@ -1,7 +1,8 @@
 import request from '@/utils/request'
+import protoRoot from '@/proto/proto.js'
 
 export function createEmployee(data) {
-  var buffer = this.$protoRoot.pbemployee.EmployeeModel.encode(data).finish().slice().buffer
+  var buffer = protoRoot.pbemployee.EmployeeModel.encode(data).finish().slice().buffer
   return request({
     url: '/v2/employee/createEmployee',
     method: 'post',
@@ -11,7 +12,7 @@ export function createEmployee(data) {
 }
 
 export function updateEmployee(data) {
-  var buffer = this.$protoRoot.pbemployee.EmployeeModel.encode(data).finish().slice().buffer
+  var buffer = protoRoot.pbemployee.EmployeeModel.encode(data).finish().slice().buffer
   return request({
     url: '/v2/employee/updateEmployee',
     method: 'post',
@@ -21,7 +22,7 @@ export function updateEmployee(data) {
 }
 
 export function deleteEmployee(data) {
-  var buffer = this.$protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
+  var buffer = protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
   return request({
     url: '/v2/employee/deleteEmployee',
     method: 'post',
@@ -31,7 +32,7 @@ export function deleteEmployee(data) {
 }
 
 export function findEmployeeById(data) {
-  var buffer = this.$protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
+  var buffer = protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
   return request({
     url: '/v2/employee/findEmployeeById',
     method: 'post',
@@ -41,7 +42,7 @@ export function findEmployeeById(data) {
 }
 
 export function findEmployeeList(data) {
-  var buffer = this.$protoRoot.pbemployee.FindEmployeeArgs.encode(data).finish().slice().buffer
+  var buffer = protoRoot.pbemployee.FindEmployeeArgs.encode(data).finish().slice().buffer
   return request({
     url: '/v2/employee/findEmployeeList',
     method: 'post',

@@ -1,7 +1,8 @@
 import request from '@/utils/request'
+import protoRoot from '@/proto/proto.js'
 
 export function createPermission(data) {
-  var buffer = this.$protoRoot.pbpermission.PermissionModel.encode(data).finish().slice().buffer
+  var buffer = protoRoot.pbpermission.PermissionModel.encode(data).finish().slice().buffer
   return request({
     url: '/v2/permission/createPermission',
     method: 'post',
@@ -11,7 +12,7 @@ export function createPermission(data) {
 }
 
 export function updatePermission(data) {
-  var buffer = this.$protoRoot.pbpermission.PermissionModel.encode(data).finish().slice().buffer
+  var buffer = protoRoot.pbpermission.PermissionModel.encode(data).finish().slice().buffer
   return request({
     url: '/v2/permission/updatePermission',
     method: 'post',
@@ -21,7 +22,7 @@ export function updatePermission(data) {
 }
 
 export function deletePermission(data) {
-  var buffer = this.$protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
+  var buffer = protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
   return request({
     url: '/v2/permission/deletePermission',
     method: 'post',
@@ -31,7 +32,7 @@ export function deletePermission(data) {
 }
 
 export function findPermissionById(data) {
-  var buffer = this.$protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
+  var buffer = protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
   return request({
     url: '/v2/permission/findPermissionById',
     method: 'post',
@@ -41,7 +42,7 @@ export function findPermissionById(data) {
 }
 
 export function findPermissionList(data) {
-  var buffer = this.$protoRoot.pbpermission.FindPermissionArgs.encode(data).finish().slice().buffer
+  var buffer = protoRoot.pbpermission.FindPermissionArgs.encode(data).finish().slice().buffer
   return request({
     url: '/v2/permission/findPermissionList',
     method: 'post',

@@ -1,7 +1,8 @@
 import request from '@/utils/request'
+import protoRoot from '@/proto/proto.js'
 
 export function createRole(data) {
-  var buffer = this.$protoRoot.pbrole.RoleModel.encode(data).finish().slice().buffer
+  var buffer = protoRoot.pbrole.RoleModel.encode(data).finish().slice().buffer
   return request({
     url: '/v2/role/createRole',
     method: 'post',
@@ -11,7 +12,7 @@ export function createRole(data) {
 }
 
 export function updateRole2(data) {
-  var buffer = this.$protoRoot.pbrole.RoleModel.encode(data).finish().slice().buffer
+  var buffer = protoRoot.pbrole.RoleModel.encode(data).finish().slice().buffer
   return request({
     url: '/v2/role/updateRole',
     method: 'post',
@@ -21,7 +22,7 @@ export function updateRole2(data) {
 }
 
 export function deleteRole2(data) {
-  var buffer = this.$protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
+  var buffer = protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
   return request({
     url: '/v2/role/deleteRole',
     method: 'post',
@@ -31,7 +32,7 @@ export function deleteRole2(data) {
 }
 
 export function findRoleById(data) {
-  var buffer = this.$protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
+  var buffer = protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
   return request({
     url: '/v2/role/findRoleById',
     method: 'post',
@@ -41,7 +42,7 @@ export function findRoleById(data) {
 }
 
 export function findRoleList(data) {
-  var buffer = this.$protoRoot.pbrole.FindRoleArgs.encode(data).finish().slice().buffer
+  var buffer = protoRoot.pbrole.FindRoleArgs.encode(data).finish().slice().buffer
   return request({
     url: '/v2/role/findRoleList',
     method: 'post',

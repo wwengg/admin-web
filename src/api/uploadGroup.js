@@ -1,7 +1,8 @@
 import request from '@/utils/request'
+import protoRoot from '@/proto/proto.js'
 
 export function createUploadGroup(data) {
-  var buffer = this.$protoRoot.pbuploadGroup.UploadGroupModel.encode(data).finish().slice().buffer
+  var buffer = protoRoot.pbuploadGroup.UploadGroupModel.encode(data).finish().slice().buffer
   return request({
     url: '/v2/uploadGroup/createUploadGroup',
     method: 'post',
@@ -11,7 +12,7 @@ export function createUploadGroup(data) {
 }
 
 export function updateUploadGroup(data) {
-  var buffer = this.$protoRoot.pbuploadGroup.UploadGroupModel.encode(data).finish().slice().buffer
+  var buffer = protoRoot.pbuploadGroup.UploadGroupModel.encode(data).finish().slice().buffer
   return request({
     url: '/v2/uploadGroup/updateUploadGroup',
     method: 'post',
@@ -21,7 +22,7 @@ export function updateUploadGroup(data) {
 }
 
 export function deleteUploadGroup(data) {
-  var buffer = this.$protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
+  var buffer = protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
   return request({
     url: '/v2/uploadGroup/deleteUploadGroup',
     method: 'post',
@@ -31,7 +32,7 @@ export function deleteUploadGroup(data) {
 }
 
 export function findUploadGroupById(data) {
-  var buffer = this.$protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
+  var buffer = protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
   return request({
     url: '/v2/uploadGroup/findUploadGroupById',
     method: 'post',
@@ -41,7 +42,7 @@ export function findUploadGroupById(data) {
 }
 
 export function findUploadGroupList(data) {
-  var buffer = this.$protoRoot.pbuploadGroup.FindUploadGroupArgs.encode(data).finish().slice().buffer
+  var buffer = protoRoot.pbuploadGroup.FindUploadGroupArgs.encode(data).finish().slice().buffer
   return request({
     url: '/v2/uploadGroup/findUploadGroupList',
     method: 'post',

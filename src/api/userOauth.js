@@ -1,7 +1,8 @@
 import request from '@/utils/request'
+import protoRoot from '@/proto/proto.js'
 
 export function createUserOauth(data) {
-  var buffer = this.$protoRoot.pbuserOauth.UserOauthModel.encode(data).finish().slice().buffer
+  var buffer = protoRoot.pbuserOauth.UserOauthModel.encode(data).finish().slice().buffer
   return request({
     url: '/v2/userOauth/createUserOauth',
     method: 'post',
@@ -11,7 +12,7 @@ export function createUserOauth(data) {
 }
 
 export function updateUserOauth(data) {
-  var buffer = this.$protoRoot.pbuserOauth.UserOauthModel.encode(data).finish().slice().buffer
+  var buffer = protoRoot.pbuserOauth.UserOauthModel.encode(data).finish().slice().buffer
   return request({
     url: '/v2/userOauth/updateUserOauth',
     method: 'post',
@@ -21,7 +22,7 @@ export function updateUserOauth(data) {
 }
 
 export function deleteUserOauth(data) {
-  var buffer = this.$protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
+  var buffer = protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
   return request({
     url: '/v2/userOauth/deleteUserOauth',
     method: 'post',
@@ -31,7 +32,7 @@ export function deleteUserOauth(data) {
 }
 
 export function findUserOauthById(data) {
-  var buffer = this.$protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
+  var buffer = protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
   return request({
     url: '/v2/userOauth/findUserOauthById',
     method: 'post',
@@ -41,7 +42,7 @@ export function findUserOauthById(data) {
 }
 
 export function findUserOauthList(data) {
-  var buffer = this.$protoRoot.pbuserOauth.FindUserOauthArgs.encode(data).finish().slice().buffer
+  var buffer = protoRoot.pbuserOauth.FindUserOauthArgs.encode(data).finish().slice().buffer
   return request({
     url: '/v2/userOauth/findUserOauthList',
     method: 'post',
