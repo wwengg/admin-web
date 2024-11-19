@@ -388,10 +388,34 @@ export default {
         this.permissionsTreeData = res.list
         const res2 = await findPermissionTreeByRole({ id: id })
         if (res2.code === 'Success') {
-          this.permissionsCheckedKeys = res2.selectedItem
+          const menus = await this.handlePermissionsCheckedKeys(res2.list)
+          const arr = []
+          if (menus) {
+            const menus2 = res2.list.concat(menus)
+            // 防止直接选中父级造成全选
+            menus2.forEach(item => {
+              if (!menus2.some(same => same.parentId === item.id)) {
+                arr.push(item.id)
+              }
+            })
+          }
+          this.permissionsCheckedKeys = arr
           this.dialogFormVisible3 = true
         }
       }
+    },
+    async handlePermissionsCheckedKeys(treeData) {
+      if (treeData.length === 0) return
+      let list = []
+      treeData.forEach(item => {
+        if (item.children.length > 0) {
+          list = list.concat(item.children)
+        }
+      })
+      const childList = await this.handlePermissionsCheckedKeys(list)
+      if (childList) {
+        return list.concat(childList)
+      } else return list
     },
     async setApisTreeData(list) {
       const treeData = [{ children: [], title: 'HTTP' }, { children: [], title: 'CMD' }]
