@@ -129,163 +129,163 @@ export const constantRoutes = [
  * the routes that need to be dynamically loaded based on user roles
  */
 export const asyncRoutes = [
-  {
-    path: '/admin',
-    component: Layout,
-    redirect: '/admin/user',
-    alwaysShow: true, // will always show the root menu
-    name: 'admin',
-    meta: {
-      title: '超级管理员',
-      icon: 'lock',
-      roles: ['admin'] // you can set roles in root nav
-    },
-    children: [
-      {
-        path: 'user',
-        component: () => import('@/views/admin/user/table'),
-        name: 'adminUser',
-        meta: {
-          title: '用户管理',
-          roles: ['admin'] // or you can only set roles in sub nav
-        }
-      },
-      {
-        path: 'app',
-        component: () => import('@/views/admin/app/app'),
-        name: 'adminApp',
-        meta: {
-          title: '应用管理',
-          roles: ['admin'] // or you can only set roles in sub nav
-        }
-      },
+  // {
+  //   path: '/admin',
+  //   component: Layout,
+  //   redirect: '/admin/user',
+  //   alwaysShow: true, // will always show the root menu
+  //   name: 'admin',
+  //   meta: {
+  //     title: '超级管理员',
+  //     icon: 'lock',
+  //     roles: ['admin'] // you can set roles in root nav
+  //   },
+  //   children: [
+  //     {
+  //       path: 'user',
+  //       component: () => import('@/views/admin/user/table'),
+  //       name: 'adminUser',
+  //       meta: {
+  //         title: '用户管理',
+  //         roles: ['admin'] // or you can only set roles in sub nav
+  //       }
+  //     },
+  //     {
+  //       path: 'app',
+  //       component: () => import('@/views/admin/app/app'),
+  //       name: 'adminApp',
+  //       meta: {
+  //         title: '应用管理',
+  //         roles: ['admin'] // or you can only set roles in sub nav
+  //       }
+  //     },
 
-      {
-        path: 'role',
-        component: () => import('@/views/admin/role/role'),
-        name: 'adminRole',
-        meta: {
-          title: '角色管理',
-          roles: ['admin'] // or you can only set roles in sub nav
-        }
-      },
-      {
-        path: 'api',
-        component: () => import('@/views/admin/api/api'),
-        name: 'adminApi',
-        meta: {
-          title: 'api管理',
-          roles: ['admin'] // or you can only set roles in sub nav
-        }
-      },
-      {
-        path: 'permission',
-        component: () => import('@/views/admin/permission/permission'),
-        name: 'adminPermission',
-        meta: {
-          title: '权限管理',
-          roles: ['admin'] // or you can only set roles in sub nav
-        }
-      }
+  //     {
+  //       path: 'role',
+  //       component: () => import('@/views/admin/role/role'),
+  //       name: 'adminRole',
+  //       meta: {
+  //         title: '角色管理',
+  //         roles: ['admin'] // or you can only set roles in sub nav
+  //       }
+  //     },
+  //     {
+  //       path: 'api',
+  //       component: () => import('@/views/admin/api/api'),
+  //       name: 'adminApi',
+  //       meta: {
+  //         title: 'api管理',
+  //         roles: ['admin'] // or you can only set roles in sub nav
+  //       }
+  //     },
+  //     {
+  //       path: 'permission',
+  //       component: () => import('@/views/admin/permission/permission'),
+  //       name: 'adminPermission',
+  //       meta: {
+  //         title: '权限管理',
+  //         roles: ['admin'] // or you can only set roles in sub nav
+  //       }
+  //     }
 
-    ]
-  },
-  {
-    path: '/shop',
-    component: Layout,
-    redirect: '/shop/shop',
-    alwaysShow: true, // will always show the root menu
-    name: 'shop',
-    meta: {
-      title: '商户管理',
-      icon: 'lock',
-      roles: ['admin'] // you can set roles in root nav
-    },
-    children: [
-      {
-        path: 'shop',
-        component: () => import('@/views/shop/shop/shop'),
-        name: 'shopShop',
-        meta: {
-          title: '商户审核',
-          roles: ['admin'] // or you can only set roles in sub nav
-        }
-      },
-      {
-        path: 'activeShop',
-        component: () => import('@/views/shop/activeShop/activeShop'),
-        name: 'activeShop',
-        meta: {
-          title: '商户列表',
-          roles: ['admin'] // or you can only set roles in sub nav
-        }
-      },
-      {
-        path: 'goods',
-        component: () => import('@/views/shop/goods/goods'),
-        name: 'goods',
-        meta: {
-          title: '商品列表',
-          roles: ['admin'] // or you can only set roles in sub nav
-        }
-      }
-    ]
-  },
-  {
-    path: '/nb',
-    component: Layout,
-    redirect: '/nb/deviceReport',
-    alwaysShow: true, // will always show the root menu
-    name: 'nb',
-    meta: {
-      title: 'NB',
-      icon: 'lock',
-      roles: ['admin'] // you can set roles in root nav
-    },
-    children: [
-      {
-        path: 'deviceReport',
-        component: () => import('@/views/nb/deviceReport/deviceReport'),
-        name: 'deviceReport',
-        meta: {
-          title: '数据上报查询',
-          roles: ['admin'] // or you can only set roles in sub nav
-        }
-      }
-    ]
-  },
-  {
-    path: '/oa',
-    component: Layout,
-    redirect: '/oa/employee',
-    alwaysShow: true, // will always show the root menu
-    name: 'oa',
-    meta: {
-      title: 'OA',
-      icon: 'el-icon-user',
-      roles: ['admin'] // you can set roles in root nav
-    },
-    children: [
-      {
-        path: 'employee',
-        component: () => import('@/views/oa/employee/employee'),
-        name: 'adminEmployee',
-        meta: {
-          title: '雇员管理',
-          roles: ['admin'] // or you can only set roles in sub nav
-        }
-      },
-      {
-        path: 'salary',
-        component: () => import('@/views/oa/salary/salary'),
-        name: 'adminSalary',
-        meta: {
-          title: '工资管理',
-          roles: ['admin'] // or you can only set roles in sub nav
-        }
-      }
-    ]
-  },
+  //   ]
+  // },
+  // {
+  //   path: '/shop',
+  //   component: Layout,
+  //   redirect: '/shop/shop',
+  //   alwaysShow: true, // will always show the root menu
+  //   name: 'shop',
+  //   meta: {
+  //     title: '商户管理',
+  //     icon: 'lock',
+  //     roles: ['admin'] // you can set roles in root nav
+  //   },
+  //   children: [
+  //     {
+  //       path: 'shop',
+  //       component: () => import('@/views/shop/shop/shop'),
+  //       name: 'shopShop',
+  //       meta: {
+  //         title: '商户审核',
+  //         roles: ['admin'] // or you can only set roles in sub nav
+  //       }
+  //     },
+  //     {
+  //       path: 'activeShop',
+  //       component: () => import('@/views/shop/activeShop/activeShop'),
+  //       name: 'activeShop',
+  //       meta: {
+  //         title: '商户列表',
+  //         roles: ['admin'] // or you can only set roles in sub nav
+  //       }
+  //     },
+  //     {
+  //       path: 'goods',
+  //       component: () => import('@/views/shop/goods/goods'),
+  //       name: 'goods',
+  //       meta: {
+  //         title: '商品列表',
+  //         roles: ['admin'] // or you can only set roles in sub nav
+  //       }
+  //     }
+  //   ]
+  // },
+  // {
+  //   path: '/nb',
+  //   component: Layout,
+  //   redirect: '/nb/deviceReport',
+  //   alwaysShow: true, // will always show the root menu
+  //   name: 'nb',
+  //   meta: {
+  //     title: 'NB',
+  //     icon: 'lock',
+  //     roles: ['admin'] // you can set roles in root nav
+  //   },
+  //   children: [
+  //     {
+  //       path: 'deviceReport',
+  //       component: () => import('@/views/nb/deviceReport/deviceReport'),
+  //       name: 'deviceReport',
+  //       meta: {
+  //         title: '数据上报查询',
+  //         roles: ['admin'] // or you can only set roles in sub nav
+  //       }
+  //     }
+  //   ]
+  // },
+  // {
+  //   path: '/oa',
+  //   component: Layout,
+  //   redirect: '/oa/employee',
+  //   alwaysShow: true, // will always show the root menu
+  //   name: 'oa',
+  //   meta: {
+  //     title: 'OA',
+  //     icon: 'el-icon-user',
+  //     roles: ['admin'] // you can set roles in root nav
+  //   },
+  //   children: [
+  //     {
+  //       path: 'employee',
+  //       component: () => import('@/views/oa/employee/employee'),
+  //       name: 'adminEmployee',
+  //       meta: {
+  //         title: '雇员管理',
+  //         roles: ['admin'] // or you can only set roles in sub nav
+  //       }
+  //     },
+  //     {
+  //       path: 'salary',
+  //       component: () => import('@/views/oa/salary/salary'),
+  //       name: 'adminSalary',
+  //       meta: {
+  //         title: '工资管理',
+  //         roles: ['admin'] // or you can only set roles in sub nav
+  //       }
+  //     }
+  //   ]
+  // },
   {
     path: '/permission',
     component: Layout,
@@ -543,6 +543,56 @@ export const asyncRoutes = [
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
+
+const _import = require('./_import') // 获取组件的方法
+
+export function routerData2Router(list) {
+  return list.map(item => {
+    // if (item.component && !item.hidden) {
+    //   item.component = dynamicImport(modules, item.component)
+    // } else {
+    //   delete item['component']
+    // }
+    // console.log(item.meta)
+    // if(item.meta && !item.meta.keepAlive){
+    //   item.meta.keepAlive = false
+    // }
+    // if (item.children) {
+    //   routerData2Router(item.children)
+    // }
+    const newItem = {}
+    if (item.permissionType === 'MENU') {
+      newItem.path = item.path
+      console.log(newItem)
+      if (item.hidden) {
+        newItem.hidden = true
+      }
+      if (item.name) {
+        newItem.name = item.name
+      }
+      if (item.component && item.component.length > 0) {
+        // const component = (resolve) => require([`@/${item.component}`], resolve)
+
+        newItem.component = _import(item.component)
+      } else {
+        newItem.component = Layout
+        newItem.alwaysShow = true
+      }
+      if (item.redirect && item.redirect.length > 0) {
+        newItem.redirect = item.redirect
+      }
+      newItem.meta = {}
+      newItem.meta.title = item.title
+      newItem.meta.icon = item.icon
+      if (item.children && item.children.length > 0) {
+        newItem.children = routerData2Router(item.children)
+      }
+      return newItem
+    } else if (item.permissionType === 'BUTTON') {
+      return item
+    }
+  })
+}
 
 const createRouter = () => new Router({
   // mode: 'history', // require service support

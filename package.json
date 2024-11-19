@@ -10,7 +10,7 @@
     "build:stage": "vue-cli-service build --mode staging",
     "preview": "node build/index.js --preview",
     "new": "plop",
-    "svgo": "svgo -f src/icons/svg --config=src/icons/svgo.yml",
+    "svgo": "svgo -f src/icons/svg --config=svgo.yml",
     "test:unit": "jest --clearCache && vue-cli-service test:unit",
     "test:ci": "npm run lint && npm run test:unit",
     "proto": "pbjs -t static-module -p src/proto -w commonjs -o src/proto/proto.js pbcommon/pbcommon.proto pbapi/pbapi.proto pbpermission/pbpermission.proto pbrole/pbrole.proto pbauth/pbauth.proto httpgate/httpgate.proto pbuser/pbuser.proto pbuserOauth/pbuserOauth.proto pbapp/pbapp.proto pbdeviceReport/pbdeviceReport.proto pbshop/pbshop.proto pbactiveShop/pbactiveShop.proto pbgoods/pbgoods.proto pbemployee/pbemployee.proto pbsalary/pbsalary.proto" 

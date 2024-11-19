@@ -41,6 +41,16 @@ export function findUserById(data) {
   })
 }
 
+export function findUser(data) {
+  var buffer = protoRoot.pbcommon.Empty.encode(data).finish().slice().buffer
+  return request({
+    url: '/v2/user/findUser',
+    method: 'post',
+    buffer,
+    pb: 'pbuser.FindUserReply'
+  })
+}
+
 export function findUserList(data) {
   var buffer = protoRoot.pbuser.FindUserArgs.encode(data).finish().slice().buffer
   return request({

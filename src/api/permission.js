@@ -71,6 +71,16 @@ export function findPermissionTreeByRole(data) {
   })
 }
 
+export function getPermissionTree(data) {
+  var buffer = protoRoot.pbcommon.Empty.encode(data).finish().slice().buffer
+  return request({
+    url: '/v2/permission/getPermissionTree',
+    method: 'post',
+    buffer,
+    pb: 'pbpermission.FindPermissionReply'
+  })
+}
+
 export function setPermissionTreeByRole(data) {
   var buffer = protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
   return request({

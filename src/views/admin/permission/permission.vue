@@ -408,7 +408,7 @@ export default {
         createdAt: '',
         updatedAt: '',
         parentId: 0,
-        PermissionType: 1,
+        permissionType: 1,
         path: '/',
         name: '',
         hidden: false,
@@ -454,7 +454,14 @@ export default {
     async handleUpdate(row) {
       const res = await findPermissionById({ id: row.id })
       if (res.code === 'Success') {
-        this.temp = res.data
+        const temp = res.data
+        if (temp.permissionType === 'MENU') {
+          temp.permissionType = 1
+        } else if (temp.permissionType === 'BUTTON') {
+          temp.permissionType = 2
+        }
+        this.temp = temp
+        console.log(this.temp)
         this.dialogStatus = 'update'
         this.dialogFormVisible = true
         this.$nextTick(() => {
