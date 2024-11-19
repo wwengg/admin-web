@@ -48,7 +48,7 @@ const mutations = {
 }
 
 const actions = {
-  generateRoutes({ commit }) {
+  generateRoutes({ commit }, role) {
     return new Promise(resolve => {
       let accessedRoutes = []
       // if (roles.includes('admin')) {
@@ -63,6 +63,7 @@ const actions = {
             accessedRoutes = routerData2Router(res.list)
           }
         }
+        // accessedRoutes.concat(asyncRoutes)
         console.log(accessedRoutes)
         commit('SET_ROUTES', accessedRoutes)
         resolve(accessedRoutes)
