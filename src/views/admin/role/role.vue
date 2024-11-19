@@ -8,7 +8,13 @@
         class="filter-item"
         @keyup.enter.native="handleFilter"
       />
-      <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">
+      <el-button
+        v-waves
+        class="filter-item"
+        type="primary"
+        icon="el-icon-search"
+        @click="handleFilter"
+      >
         搜索
       </el-button>
       <el-button
@@ -30,41 +36,137 @@
       highlight-current-row
       style="width: 100%;"
     >
-      <el-table-column label="ID" prop="id" sortable="custom" align="center" width="80">
+      <el-table-column
+        label="ID"
+        prop="id"
+        sortable="custom"
+        align="center"
+        width="80"
+      >
         <template slot-scope="{row}">
           <span>{{ row.id }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="CreatedAt" width="150px" align="center" prop="createdAt" />
-      <el-table-column label="UpdatedAt" width="150px" align="center" prop="updatedAt" />
-      <el-table-column label="ParentId" width="150px" align="center" prop="parentId" />
-      <el-table-column label="RoleName" width="150px" align="center" prop="roleName" />
-      <el-table-column label="RoleCode" width="150px" align="center" prop="roleCode" />
-      <el-table-column label="RoleDesc" width="150px" align="center" prop="roleDesc" />
-      <el-table-column label="RoleType" width="150px" align="center" prop="roleType" />
-      <el-table-column label="RoleStatus" width="150px" align="center" prop="roleStatus" />
-      <el-table-column label="Permissions" width="150px" align="center" prop="permissions" />
-      <el-table-column label="操作" align="center" width="230" class-name="small-padding fixed-width">
+      <el-table-column
+        label="CreatedAt"
+        width="150px"
+        align="center"
+        prop="createdAt"
+      />
+      <el-table-column
+        label="UpdatedAt"
+        width="150px"
+        align="center"
+        prop="updatedAt"
+      />
+      <el-table-column
+        label="ParentId"
+        width="150px"
+        align="center"
+        prop="parentId"
+      />
+      <el-table-column
+        label="RoleName"
+        width="150px"
+        align="center"
+        prop="roleName"
+      />
+      <el-table-column
+        label="RoleCode"
+        width="150px"
+        align="center"
+        prop="roleCode"
+      />
+      <el-table-column
+        label="RoleDesc"
+        width="150px"
+        align="center"
+        prop="roleDesc"
+      />
+      <el-table-column
+        label="RoleType"
+        width="150px"
+        align="center"
+        prop="roleType"
+      />
+      <el-table-column
+        label="RoleStatus"
+        width="150px"
+        align="center"
+        prop="roleStatus"
+      />
+      <el-table-column
+        label="Permissions"
+        width="150px"
+        align="center"
+        prop="permissions"
+      />
+      <el-table-column
+        label="操作"
+        align="center"
+        width="230"
+        class-name="small-padding fixed-width"
+      >
         <template slot-scope="{row}">
-          <el-button type="primary" size="mini" @click="handleApis(row.id)">
-            设置api权限
+          <el-button
+            type="primary"
+            size="mini"
+            @click="handlePermission(row.id)"
+          >
+            设置权限
           </el-button>
-          <el-button type="primary" size="mini" @click="handleUpdate(row)">
+          <el-button
+            type="primary"
+            size="mini"
+            @click="handleApis(row.id)"
+          >
+            设置api
+          </el-button>
+          <el-button
+            type="primary"
+            size="mini"
+            @click="handleUpdate(row)"
+          >
             编辑
           </el-button>
-          <el-popover v-model="row.visible" placement="top" width="160">
+          <el-popover
+            v-model="row.visible"
+            placement="top"
+            width="160"
+          >
             <p>确定要删除此用户吗</p>
             <div style="text-align: right; margin: 0">
-              <el-button size="mini" type="text" @click="row.visible = false">取消</el-button>
-              <el-button type="primary" size="mini" @click="handleDelete(row)">确定</el-button>
+              <el-button
+                size="mini"
+                type="text"
+                @click="row.visible = false"
+              >取消</el-button>
+              <el-button
+                type="primary"
+                size="mini"
+                @click="handleDelete(row)"
+              >确定</el-button>
             </div>
-            <el-button slot="reference" size="mini" type="danger">删除</el-button>
+            <el-button
+              slot="reference"
+              size="mini"
+              type="danger"
+            >删除</el-button>
           </el-popover>
         </template>
       </el-table-column>
     </el-table>
-    <pagination v-show="total > 0" :total="total" :page.sync="page" :limit.sync="pageSize" @pagination="getTableData" />
-    <el-dialog title="设置api权限" :visible.sync="dialogFormVisible2">
+    <pagination
+      v-show="total > 0"
+      :total="total"
+      :page.sync="page"
+      :limit.sync="pageSize"
+      @pagination="getTableData"
+    />
+    <el-dialog
+      title="设置api权限"
+      :visible.sync="dialogFormVisible2"
+    >
       <div style="margin-top: 20px">
         <!-- <el-form-item label="Apis"> -->
         <el-tree
@@ -85,13 +187,56 @@
         <el-button @click="dialogFormVisible2 = false">
           取消
         </el-button>
-        <el-button type="primary" @click="updateApisData()">
+        <el-button
+          type="primary"
+          @click="updateApisData()"
+        >
           完成
         </el-button>
       </div>
 
     </el-dialog>
-    <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
+
+    <el-dialog
+      title="设置权限"
+      :visible.sync="dialogFormVisible3"
+    >
+      <div style="margin-top: 20px">
+        <!-- <el-form-item label="Apis"> -->
+        <el-tree
+          ref="tree2"
+          :check-strictly="checkStrictly"
+          :data="permissionsTreeData"
+          :default-expand-all="true"
+          :props="{
+            children: 'children',
+            label: 'title'
+          }"
+          :default-checked-keys="permissionsCheckedKeys"
+          show-checkbox
+          node-key="id"
+          class="permission-tree"
+        />
+        <!-- </el-form-item> -->
+      </div>
+
+      <div style="margin-top: 20px">
+        <el-button @click="dialogFormVisible3 = false">
+          取消
+        </el-button>
+        <el-button
+          type="primary"
+          @click="updatePermissionsData()"
+        >
+          完成
+        </el-button>
+      </div>
+
+    </el-dialog>
+    <el-dialog
+      :title="textMap[dialogStatus]"
+      :visible.sync="dialogFormVisible"
+    >
       <el-form
         ref="dataForm"
         :rules="rules"
@@ -100,33 +245,60 @@
         label-width="120px"
         style="width: 450px; margin-left:50px;"
       >
-        <el-form-item label="ParentId" prop="parentId">
+        <el-form-item
+          label="ParentId"
+          prop="parentId"
+        >
           <el-input v-model="temp.parentId" />
         </el-form-item>
-        <el-form-item label="RoleName" prop="roleName">
+        <el-form-item
+          label="RoleName"
+          prop="roleName"
+        >
           <el-input v-model="temp.roleName" />
         </el-form-item>
-        <el-form-item label="RoleCode" prop="roleCode">
+        <el-form-item
+          label="RoleCode"
+          prop="roleCode"
+        >
           <el-input v-model="temp.roleCode" />
         </el-form-item>
-        <el-form-item label="RoleDesc" prop="roleDesc">
+        <el-form-item
+          label="RoleDesc"
+          prop="roleDesc"
+        >
           <el-input v-model="temp.roleDesc" />
         </el-form-item>
-        <el-form-item label="RoleType" prop="roleType">
+        <el-form-item
+          label="RoleType"
+          prop="roleType"
+        >
           <el-input v-model="temp.roleType" />
         </el-form-item>
-        <el-form-item label="RoleStatus" prop="roleStatus">
+        <el-form-item
+          label="RoleStatus"
+          prop="roleStatus"
+        >
           <el-input v-model="temp.roleStatus" />
         </el-form-item>
-        <el-form-item label="Permissions" prop="permissions">
+        <el-form-item
+          label="Permissions"
+          prop="permissions"
+        >
           <el-input v-model="temp.permissions" />
         </el-form-item>
       </el-form>
-      <div slot="footer" class="dialog-footer">
+      <div
+        slot="footer"
+        class="dialog-footer"
+      >
         <el-button @click="dialogFormVisible = false">
           取消
         </el-button>
-        <el-button type="primary" @click="dialogStatus === 'create' ? createData() : updateData()">
+        <el-button
+          type="primary"
+          @click="dialogStatus === 'create' ? createData() : updateData()"
+        >
           完成
         </el-button>
       </div>
@@ -136,6 +308,7 @@
 
 <script>
 import { createRole, updateRole2, deleteRole2, findRoleById, findRoleList } from '@/api/role'
+import { findPermissionTree, findPermissionTreeByRole, setPermissionTreeByRole } from '@/api/permission'
 import { findApiByCasbinRole, setApiByCasbinRole } from '@/api/api'
 import waves from '@/directive/waves' // waves directive
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
@@ -153,6 +326,8 @@ export default {
       apisData: [],
       apisTreeData: [{ children: [], title: 'HTTP' }, { children: [], title: 'CMD' }],
       defaultCheckedKeys: [],
+      permissionsTreeData: [],
+      permissionsCheckedKeys: [],
       defaultProps: {
         children: 'children',
         label: 'title'
@@ -174,6 +349,7 @@ export default {
       },
       dialogFormVisible: false,
       dialogFormVisible2: false,
+      dialogFormVisible3: false,
       dialogStatus: '',
       textMap: {
         update: '编辑',
@@ -200,6 +376,21 @@ export default {
         this.apisData = res.list
         await this.setApisTreeData(res.list)
         this.dialogFormVisible2 = true
+      }
+    },
+
+    async handlePermission(id) {
+      this.role = id
+      this.permissionsCheckedKeys = []
+      this.permissionsTreeData = []
+      const res = await findPermissionTree({ query: { parentId: 0 }})
+      if (res.code === 'Success') {
+        this.permissionsTreeData = res.list
+        const res2 = await findPermissionTreeByRole({ id: id })
+        if (res2.code === 'Success') {
+          this.permissionsCheckedKeys = res2.selectedItem
+          this.dialogFormVisible3 = true
+        }
       }
     },
     async setApisTreeData(list) {
@@ -236,6 +427,24 @@ export default {
         }
       })
       this.apisTreeData = treeData
+    },
+    async updatePermissionsData() {
+      let keys = this.$refs.tree2.getHalfCheckedKeys()
+      keys = keys.concat(this.$refs.tree2.getCheckedKeys())
+      //
+      console.log(keys)
+      const res = await setPermissionTreeByRole({ id: this.role, ids: keys })
+      if (res.code === 'Success') {
+        this.dialogFormVisible3 = false
+        this.$notify({
+          title: 'Success',
+          message: '设置成功',
+          type: 'success',
+          duration: 2000
+        })
+        this.role = ''
+        this.permissionsCheckedKeys = []
+      }
     },
     async updateApisData() {
       this.defaultCheckedKeys = this.$refs.tree.getCheckedKeys()

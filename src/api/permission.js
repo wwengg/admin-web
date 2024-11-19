@@ -60,3 +60,23 @@ export function findPermissionTree(data) {
     pb: 'pbpermission.FindPermissionReply'
   })
 }
+
+export function findPermissionTreeByRole(data) {
+  var buffer = protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
+  return request({
+    url: '/v2/permission/findPermissionTreeByRole',
+    method: 'post',
+    buffer,
+    pb: 'pbpermission.FindPermissionReply'
+  })
+}
+
+export function setPermissionTreeByRole(data) {
+  var buffer = protoRoot.pbcommon.IdArgs.encode(data).finish().slice().buffer
+  return request({
+    url: '/v2/permission/setPermissionTreeByRole',
+    method: 'post',
+    buffer,
+    pb: 'pbcommon.CommonResult'
+  })
+}

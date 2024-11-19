@@ -136,6 +136,12 @@
         prop="title"
       />
       <el-table-column
+        label="Sort"
+        width="150px"
+        align="center"
+        prop="sort"
+      />
+      <el-table-column
         label="AppId"
         width="150px"
         align="center"
@@ -212,7 +218,10 @@
           label="ParentId"
           prop="parentId"
         >
-          <el-input v-model="temp.parentId" :disbaled="tempParentIdLock" />
+          <el-input
+            v-model="temp.parentId"
+            :disbaled="tempParentIdLock"
+          />
         </el-form-item>
         <el-form-item
           label="PermissionType"
@@ -305,6 +314,12 @@
         >
           <el-input v-model="temp.appId" />
         </el-form-item>
+        <el-form-item
+          label="Sort"
+          prop="sort"
+        >
+          <el-input v-model="temp.sort" />
+        </el-form-item>
       </el-form>
       <div
         slot="footer"
@@ -353,7 +368,8 @@ export default {
         icon: '',
         keepalive: '',
         title: '',
-        appId: 0
+        appId: 0,
+        sort: 0
       },
       tempParentIdLock: false,
       dialogFormVisible: false,
@@ -401,7 +417,8 @@ export default {
         icon: '',
         keepalive: true,
         title: '',
-        appId: 0
+        appId: 0,
+        sort: 0
       }
     },
     handleCreateByParentId(parentId) {
