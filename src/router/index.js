@@ -84,6 +84,19 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/child',
+    component: Layout,
+    redirect: '/child/app',
+    children: [
+      {
+        path: '/child/app',
+        component: () => import('@/layout/components/vue2'),
+        name: 'childApp',
+        meta: { title: '子应用', icon: 'dashboard', affix: true }
+      }
+    ]
+  },
+  {
     path: '/profile',
     component: Layout,
     redirect: '/profile/index',
