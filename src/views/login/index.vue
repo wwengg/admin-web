@@ -142,7 +142,9 @@ export default {
         const query = route.query
         if (query) {
           this.redirect = query.redirect
+          window.localStorage.setItem('redirect', query.redirect)
           this.otherQuery = this.getOtherQuery(query)
+          window.localStorage.setItem('other_query', query)
         }
       },
       immediate: true
@@ -150,6 +152,7 @@ export default {
   },
   created() {
     // window.addEventListener('storage', this.afterQRScan)
+    window.location.href = this.getSigninUrl()
   },
   mounted() {
     if (this.loginForm.username === '') {
@@ -180,7 +183,7 @@ export default {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true
-          this.$store.dispatch('user/login', this.loginForm)
+          this.$store.dispatch('user/login2', this.loginForm)
             .then(() => {
               this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
               this.loading = false

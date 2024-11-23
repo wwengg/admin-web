@@ -8,9 +8,15 @@ importers:
 
   .:
     dependencies:
+      '@vue/composition-api':
+        specifier: ^1.7.2
+        version: 1.7.2(vue@2.6.10)
       axios:
         specifier: 0.18.1
         version: 0.18.1
+      casdoor-vue-sdk:
+        specifier: ^1.6.0
+        version: 1.6.0(@vue/composition-api@1.7.2(vue@2.6.10))(vue@2.6.10)
       clipboard:
         specifier: 2.0.4
         version: 2.0.4
@@ -68,9 +74,6 @@ importers:
       script-loader:
         specifier: 0.7.2
         version: 0.7.2
-      social-login-buttons:
-        specifier: ^0.0.4
-        version: 0.0.4
       sortablejs:
         specifier: 1.8.4
         version: 1.8.4
@@ -1138,6 +1141,11 @@ packages:
   '@vue/component-compiler-utils@3.3.0':
     resolution: {integrity: sha512-97sfH2mYNU+2PzGrmK2haqffDpVASuib9/w2/noxiFi31Z54hW+q3izKQXXQZSNhtiUpAI36uSuYepeBe4wpHQ==}
 
+  '@vue/composition-api@1.7.2':
+    resolution: {integrity: sha512-M8jm9J/laYrYT02665HkZ5l2fWTK4dcVg3BsDHm/pfz+MjDYwX+9FUaZyGwEyXEDonQYRCo0H7aLgdklcIELjw==}
+    peerDependencies:
+      vue: '>= 2.5 < 2.7'
+
   '@vue/preload-webpack-plugin@1.1.2':
     resolution: {integrity: sha512-LIZMuJk38pk9U9Ur4YzHjlIyMuxPlACdBIHH9/nGYVTsaGKOSnSuELiE8vS9wa+dJpIYspYUOqk+L1Q4pgHQHQ==}
     engines: {node: '>=6.0.0'}
@@ -1836,6 +1844,18 @@ packages:
     resolution: {integrity: sha512-PiT/hQmTonHhl/HFGN+Lx3JJUznrVYJ3+AQsnthneZbvW7x+f08Tk7yLJTLEOUvBTbduLeeBkxEaYXUOUrRq6g==}
     engines: {node: 6.* || 8.* || >= 10.*}
 
+  casdoor-js-sdk@0.8.0:
+    resolution: {integrity: sha512-sxriNa3kG7AIkmJaRnQ554dZozRx+JOCcbqNvp9gxJmbdnMKYSGjg2SU/HaRpnyKtd1GW+ntfK+f2y/wYmnxRg==}
+
+  casdoor-vue-sdk@1.6.0:
+    resolution: {integrity: sha512-MEamUJnTIq4gjJlKco8hXSEc7GdyLJ/OXlzmT4M1ntUucYox4UA77iCyEtNoJTNTzYjwl0IVFDVQHU/rq+aRxw==}
+    peerDependencies:
+      '@vue/composition-api': ^1.3.0
+      vue: ^2.0.0 || >=3.0.0-rc.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+
   case-sensitive-paths-webpack-plugin@2.4.0:
     resolution: {integrity: sha512-roIFONhcxog0JSSWbvVAh3OocukmSgpqOH6YpMkCvav/ySIV3JKg4Dc8vYtQjYi/UxpNE36r/9v+VqTQqgkYmw==}
     engines: {node: '>=4'}
@@ -2302,6 +2322,9 @@ packages:
   core-js@2.6.12:
     resolution: {integrity: sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ==}
     deprecated: core-js@<3.23.3 is no longer maintained and not recommended for usage due to the number of issues. Because of the V8 engine whims, feature detection in old core-js versions could cause a slowdown up to 100x even if nothing is polyfilled. Some versions have web compatibility issues. Please, upgrade your dependencies to the actual version of core-js.
+
+  core-js@3.39.0:
+    resolution: {integrity: sha512-raM0ew0/jJUqkJ0E6e8UDtl+y/7ktFivgWvqw8dNSQeNWoSDLvQ1H/RN3aPXB9tBd4/FhyR4RDPGhsNIMsAn7g==}
 
   core-js@3.6.5:
     resolution: {integrity: sha512-vZVEEwZoIsI+vPEuoF9Iqf5H7/M3eeQqWlQnYa8FSKKePuYTf5MWnxb5SDAzCa60b3JBRS5g9b+Dq7b1y/RCrA==}
@@ -3267,7 +3290,7 @@ packages:
     resolution: {integrity: sha512-oWb1Z6mkHIskLzEJ/XWX0srkpkTQ7vaopMQkyaEIoq0fmtFVxOthb8cCxeT+p3ynTdkk/RZwbgG4brR5BeWECw==}
     engines: {node: '>= 4.0'}
     os: [darwin]
-    deprecated: The v1 package contains DANGEROUS / INSECURE binaries. Upgrade to safe fsevents v2
+    deprecated: Upgrade to fsevents v2 to mitigate potential security issues
 
   fsevents@2.3.3:
     resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
@@ -6175,9 +6198,6 @@ packages:
     resolution: {integrity: sha512-FtyOnWN/wCHTVXOMwvSv26d+ko5vWlIDD6zoUJ7LW8vh+ZBC8QdljveRP+crNrtBwioEUWy/4dMtbBjA4ioNlg==}
     engines: {node: '>=0.10.0'}
 
-  social-login-buttons@0.0.4:
-    resolution: {integrity: sha512-iuywZ33oOcO6ClnHL1b+dioygGZoFPQ8LT6/WW4DWb30GDCB3++aMiWo4B08CTPtvvFwIJ0bvbb/Bj60+VVpDQ==}
-
   sockjs-client@1.6.1:
     resolution: {integrity: sha512-2g0tjOR+fRs0amxENLi/q5TiJTqY+WXFOzb5UwXndlK6TO3U/mirZznpx6w34HVMoc3g7cY24yC/ZMIYnDlfkw==}
     engines: {node: '>=12'}
@@ -6921,6 +6941,17 @@ packages:
 
   vue-count-to@1.0.13:
     resolution: {integrity: sha512-6R4OVBVNtQTlcbXu6SJ8ENR35M2/CdWt3Jmv57jOUM+1ojiFmjVGvZPH8DfHpMDSA+ITs+EW5V6qthADxeyYOQ==}
+
+  vue-demi@0.14.10:
+    resolution: {integrity: sha512-nMZBOwuzabUO0nLgIcc6rycZEebF6eeUfaiQx9+WSk8e29IbLvPU9feI6tqW4kTo3hvoYAJkMh8n8D0fuISphg==}
+    engines: {node: '>=12'}
+    hasBin: true
+    peerDependencies:
+      '@vue/composition-api': ^1.0.0-rc.1
+      vue: ^3.0.0-0 || ^2.6.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
 
   vue-eslint-parser@7.11.0:
     resolution: {integrity: sha512-qh3VhDLeh773wjgNTl7ss0VejY9bMMa0GoDG2fQVyDzRFdiU3L7fw74tWZDHNQXdZqxO3EveQroa9ct39D2nqg==}
@@ -8084,9 +8115,7 @@ snapshots:
       source-map: 0.6.1
       string-length: 2.0.0
     transitivePeerDependencies:
-      - bufferutil
       - supports-color
-      - utf-8-validate
 
   '@jest/source-map@24.9.0':
     dependencies:
@@ -8737,6 +8766,10 @@ snapshots:
       - velocityjs
       - walrus
       - whiskers
+
+  '@vue/composition-api@1.7.2(vue@2.6.10)':
+    dependencies:
+      vue: 2.6.10
 
   '@vue/preload-webpack-plugin@1.1.2(html-webpack-plugin@3.2.0(webpack@4.47.0))(webpack@4.47.0)':
     dependencies:
@@ -9605,6 +9638,18 @@ snapshots:
     dependencies:
       rsvp: 4.8.5
 
+  casdoor-js-sdk@0.8.0: {}
+
+  casdoor-vue-sdk@1.6.0(@vue/composition-api@1.7.2(vue@2.6.10))(vue@2.6.10):
+    dependencies:
+      '@babel/runtime': 7.26.0
+      casdoor-js-sdk: 0.8.0
+      core-js: 3.39.0
+      vue: 2.6.10
+      vue-demi: 0.14.10(@vue/composition-api@1.7.2(vue@2.6.10))(vue@2.6.10)
+    optionalDependencies:
+      '@vue/composition-api': 1.7.2(vue@2.6.10)
+
   case-sensitive-paths-webpack-plugin@2.4.0: {}
 
   caseless@0.12.0: {}
@@ -9999,6 +10044,8 @@ snapshots:
       browserslist: 4.24.2
 
   core-js@2.6.12: {}
+
+  core-js@3.39.0: {}
 
   core-js@3.6.5: {}
 
@@ -12255,9 +12302,7 @@ snapshots:
       pretty-format: 24.9.0
       throat: 4.1.0
     transitivePeerDependencies:
-      - bufferutil
       - supports-color
-      - utf-8-validate
 
   jest-leak-detector@24.9.0:
     dependencies:
@@ -14721,8 +14766,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  social-login-buttons@0.0.4: {}
-
   sockjs-client@1.6.1(supports-color@6.1.0):
     dependencies:
       debug: 3.2.7(supports-color@6.1.0)
@@ -15572,6 +15615,12 @@ snapshots:
   vm-browserify@1.1.2: {}
 
   vue-count-to@1.0.13: {}
+
+  vue-demi@0.14.10(@vue/composition-api@1.7.2(vue@2.6.10))(vue@2.6.10):
+    dependencies:
+      vue: 2.6.10
+    optionalDependencies:
+      '@vue/composition-api': 1.7.2(vue@2.6.10)
 
   vue-eslint-parser@7.11.0(eslint@6.7.2):
     dependencies:

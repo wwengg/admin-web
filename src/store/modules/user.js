@@ -1,4 +1,4 @@
-import { login2, logout, getInfo } from '@/api/user'
+import { login2, logout, getInfo, login3 } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import router, { resetRouter } from '@/router'
 
@@ -30,7 +30,7 @@ const mutations = {
 
 const actions = {
   // user login
-  async login({ commit }, userInfo) {
+  async login2({ commit }, userInfo) {
     const { username, password } = userInfo
     // console.log(userInfo)
     // username = username.trim()
@@ -64,6 +64,35 @@ const actions = {
     })
   },
 
+  async login3({ commit }, userInfo) {
+    const { code, state, type } = userInfo
+    console.log(process.env.VUE_APP_BASE_APPNAME)
+    return new Promise((resolve, reject) => {
+      login3({ code: code, state: state, type: type, applicationName: process.env.VUE_APP_BASE_APPNAME }).then(
+        res => {
+          if (res.code === 'Success') {
+            console.log(res)
+            commit('SET_TOKEN', res.token)
+            setToken(res.token)
+            commit('SET_NAME', res.user.username)
+            commit('SET_AVATAR', res.user.avatar)
+            resolve()
+          } else {
+            reject(res)
+          }
+        }
+      )
+      // login({ username: username.trim(), password: password }).then(response => {
+      //   const { data } = response
+      //   commit('SET_TOKEN', data.token)
+      //   setToken(data.token)
+      //   resolve()
+      // }).catch(error => {
+      //   reject(error)
+      // })
+    })
+  },
+
   // get user info
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
@@ -74,7 +103,7 @@ const actions = {
           reject('Verification failed, please Login again.')
         }
 
-        const { roles, name, avatar, introduction } = data
+        const { roles, avatar, introduction } = data
 
         // roles must be a non-empty array
         if (!roles || roles.length <= 0) {
@@ -82,7 +111,6 @@ const actions = {
         }
 
         commit('SET_ROLES', roles)
-        commit('SET_NAME', name)
         commit('SET_AVATAR', avatar)
         commit('SET_INTRODUCTION', introduction)
         resolve(data)

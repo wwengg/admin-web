@@ -19,7 +19,19 @@
       Github
     </div>
 
+    <div
+      class="sign-btn"
+      @click="wwenggHandleClick('casdoor')"
+    >
+      <span class="wx-svg-container"><svg-icon
+        icon-class="wechat"
+        class="icon"
+      /></span>
+      Casdoor
+    </div>
+
   </div>
+
 </template>
 
 <script>
@@ -33,6 +45,9 @@ export default {
       // a91f990e68340cc829ee7dabb21be39c19dedb4d
       const url = getAuthUrl({ name: 'wwengg' }, { type: 'GitHub', name: 'github_wwengg_provider', clientId: 'Iv23liQjM8phwyKzg5R3' }, 'SignUp')
       window.location.href = url
+    },
+    wwenggHandleClick() {
+      window.location.href = this.getSigninUrl()
     },
     wechatHandleClick(thirdpart) {
       alert('ok')

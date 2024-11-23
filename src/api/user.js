@@ -71,6 +71,16 @@ export function login2(data) {
   })
 }
 
+export function login3(data) {
+  var buffer = protoRoot.pbauth.LoginArgs.encode(data).finish().slice().buffer
+  return request({
+    url: '/v2/auth/login',
+    method: 'post',
+    buffer,
+    pb: 'pbauth.AuthLoginReply'
+  })
+}
+
 export function login(data) {
   return request({
     url: '/vue-element-admin/user/login',
