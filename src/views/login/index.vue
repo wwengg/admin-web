@@ -152,7 +152,7 @@ export default {
   },
   created() {
     // window.addEventListener('storage', this.afterQRScan)
-    window.location.href = this.getSigninUrl()
+    // window.location.href = this.getSigninUrl()
   },
   mounted() {
     if (this.loginForm.username === '') {
@@ -165,6 +165,9 @@ export default {
     // window.removeEventListener('storage', this.afterQRScan)
   },
   methods: {
+    loginCasdorr() {
+      window.location.href = this.getSigninUrl()
+    },
     checkCapslock(e) {
       const { key } = e
       this.capsTooltip = key && key.length === 1 && (key >= 'A' && key <= 'Z')

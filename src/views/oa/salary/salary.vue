@@ -87,7 +87,7 @@
       >
         <template slot-scope="{row}">
           <el-button type="primary" size="mini" @click="handleUpdate(row)">
-            {{ row.id === 0 ? '发放' : '修改' }}
+            {{ row.id === "0" ? '发放' : '修改' }}
           </el-button>
           <el-popover v-model="row.visible" placement="top" width="160">
             <p>确定要删除该条数据吗</p>
@@ -343,7 +343,8 @@ export default {
       }
     },
     async handleUpdate(row) {
-      if (row.id === 0) {
+      console.log(row)
+      if (row.id === '0') {
         this.resetTemp()
         this.dialogStatus = 'create'
         this.dialogFormVisible = true

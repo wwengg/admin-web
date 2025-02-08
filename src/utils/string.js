@@ -1,5 +1,3 @@
 export default function capitalizeFirstLetter(string) {
-  return string.toLowerCase().replace(/\b[a-z]/g, function(match) {
-    return match.toUpperCase()
-  })
+  return string.replace(/^[A-Z]/, char => char.toLowerCase())
 }

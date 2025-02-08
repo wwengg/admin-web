@@ -361,27 +361,28 @@ export default {
       if (this.temp.group === '') {
         return
       }
-      const upperName = capitalizeFirstLetter(this.temp.group)
+      // const upperName = capitalizeFirstLetter(this.temp.group)
+      const lowerName = capitalizeFirstLetter(this.temp.group)
       switch (type) {
         case 0:
-          this.temp.name = `创建${upperName}`
-          this.temp.path = `/v2/${this.temp.group}/create${upperName}`
+          this.temp.name = `创建${this.temp.group}`
+          this.temp.path = `/v2/${lowerName}/create${this.temp.group}`
           break
         case 1:
-          this.temp.name = `更新${upperName}`
-          this.temp.path = `/v2/${this.temp.group}/update${upperName}`
+          this.temp.name = `更新${this.temp.group}`
+          this.temp.path = `/v2/${lowerName}/update${this.temp.group}`
           break
         case 2:
-          this.temp.name = `删除${upperName}`
-          this.temp.path = `/v2/${this.temp.group}/delete${upperName}`
+          this.temp.name = `删除${this.temp.group}`
+          this.temp.path = `/v2/${lowerName}/delete${this.temp.group}`
           break
         case 3:
-          this.temp.name = `查询${upperName}`
-          this.temp.path = `/v2/${this.temp.group}/find${upperName}ById`
+          this.temp.name = `查询${this.temp.group}`
+          this.temp.path = `/v2/${lowerName}/find${this.temp.group}ById`
           break
         case 4:
-          this.temp.name = `查询${upperName}列表`
-          this.temp.path = `/v2/${this.temp.group}/find${upperName}List`
+          this.temp.name = `查询${this.temp.group}列表`
+          this.temp.path = `/v2/${lowerName}/find${this.temp.group}List`
           break
 
         default:
