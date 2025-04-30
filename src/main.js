@@ -13,7 +13,6 @@ import '@/styles/index.scss' // global css
 import App from './App'
 import store from './store'
 import router from './router'
-import protobufPlugin from './proto/protobuf-plugin'
 
 import './icons' // icon
 import './permission' // permission control
@@ -63,17 +62,32 @@ Object.keys(filters).forEach(key => {
 
 Vue.config.productionTip = false
 
+import protobufPlugin from './proto/protobuf-plugin'
 import protoRoot from '@/proto/proto.js'
 var $protobuf = require('protobufjs/minimal')
 var Long = require('long')
 $protobuf.util.Long = Long
 $protobuf.configure()
 Vue.prototype.$protoRoot = protoRoot
+if (window.__POWERED_BY_WUJIE__) {
+  let instance
+  window.__WUJIE_MOUNT = () => {
+    instance = new Vue({ router, store, protobufPlugin, render: (h) => h(App) }).$mount('#app')
+  }
+  window.__WUJIE_UNMOUNT = () => {
+    instance.$destroy()
+  }
+} else {
+  new Vue({
+    router, store,
+    protobufPlugin, render: (h) => h(App)
+  }).$mount('#app')
+}
 
-new Vue({
-  el: '#app',
-  router,
-  store,
-  protobufPlugin,
-  render: h => h(App)
-})
+// new Vue({
+//   el: '#app',
+//   router,
+//   store,
+//   protobufPlugin,
+//   render: h => h(App)
+// })

@@ -62,6 +62,7 @@ export function findApiByCasbinRole(data) {
 }
 
 export function setApiByCasbinRole(data) {
+  console.log('setApiByCasbinRole', data)
   var buffer = protoRoot.pbapi.SetApiByCasbinRoleArgs.encode(data).finish().slice().buffer
   return request({
     url: '/v2/api/setApiByCasbinRole',

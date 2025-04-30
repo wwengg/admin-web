@@ -54,6 +54,7 @@ $root.pbcommon = (function() {
      * @property {number} TalkIsBan=5001 TalkIsBan value
      * @property {number} EnterRoomErr=5002 EnterRoomErr value
      * @property {number} HalaChatNeedBuy=10001 HalaChatNeedBuy value
+     * @property {number} HalaPriceOutRange=10002 HalaPriceOutRange value
      */
   pbcommon.EnumCode = (function() {
     var valuesById = {}; var values = Object.create(valuesById)
@@ -90,6 +91,7 @@ $root.pbcommon = (function() {
     values[valuesById[5001] = 'TalkIsBan'] = 5001
     values[valuesById[5002] = 'EnterRoomErr'] = 5002
     values[valuesById[10001] = 'HalaChatNeedBuy'] = 10001
+    values[valuesById[10002] = 'HalaPriceOutRange'] = 10002
     return values
   })()
 
@@ -270,6 +272,7 @@ $root.pbcommon = (function() {
           case 5001:
           case 5002:
           case 10001:
+          case 10002:
             break
         }
       }
@@ -428,6 +431,10 @@ $root.pbcommon = (function() {
         case 'HalaChatNeedBuy':
         case 10001:
           message.code = 10001
+          break
+        case 'HalaPriceOutRange':
+        case 10002:
+          message.code = 10002
           break
       }
       if (object.msg != null) { message.msg = String(object.msg) }
@@ -2554,6 +2561,7 @@ $root.pbapi = (function() {
           case 5001:
           case 5002:
           case 10001:
+          case 10002:
             break
         }
       }
@@ -2726,6 +2734,10 @@ $root.pbapi = (function() {
         case 'HalaChatNeedBuy':
         case 10001:
           message.code = 10001
+          break
+        case 'HalaPriceOutRange':
+        case 10002:
+          message.code = 10002
           break
       }
       if (object.msg != null) { message.msg = String(object.msg) }
@@ -3208,6 +3220,7 @@ $root.pbapi = (function() {
           case 5001:
           case 5002:
           case 10001:
+          case 10002:
             break
         }
       }
@@ -3373,6 +3386,10 @@ $root.pbapi = (function() {
         case 'HalaChatNeedBuy':
         case 10001:
           message.code = 10001
+          break
+        case 'HalaPriceOutRange':
+        case 10002:
+          message.code = 10002
           break
       }
       if (object.msg != null) { message.msg = String(object.msg) }
@@ -5003,6 +5020,7 @@ $root.pbpermission = (function() {
           case 5001:
           case 5002:
           case 10001:
+          case 10002:
             break
         }
       }
@@ -5181,6 +5199,10 @@ $root.pbpermission = (function() {
         case 'HalaChatNeedBuy':
         case 10001:
           message.code = 10001
+          break
+        case 'HalaPriceOutRange':
+        case 10002:
+          message.code = 10002
           break
       }
       if (object.msg != null) { message.msg = String(object.msg) }
@@ -6453,6 +6475,7 @@ $root.pbrole = (function() {
           case 5001:
           case 5002:
           case 10001:
+          case 10002:
             break
         }
       }
@@ -6625,6 +6648,10 @@ $root.pbrole = (function() {
         case 'HalaChatNeedBuy':
         case 10001:
           message.code = 10001
+          break
+        case 'HalaPriceOutRange':
+        case 10002:
+          message.code = 10002
           break
       }
       if (object.msg != null) { message.msg = String(object.msg) }
@@ -7111,6 +7138,7 @@ $root.pbauth = (function() {
           case 5001:
           case 5002:
           case 10001:
+          case 10002:
             break
         }
       }
@@ -7273,6 +7301,10 @@ $root.pbauth = (function() {
         case 'HalaChatNeedBuy':
         case 10001:
           message.code = 10001
+          break
+        case 'HalaPriceOutRange':
+        case 10002:
+          message.code = 10002
           break
       }
       if (object.token != null) { message.token = String(object.token) }
@@ -7512,6 +7544,7 @@ $root.pbauth = (function() {
           case 5001:
           case 5002:
           case 10001:
+          case 10002:
             break
         }
       }
@@ -7670,6 +7703,10 @@ $root.pbauth = (function() {
         case 'HalaChatNeedBuy':
         case 10001:
           message.code = 10001
+          break
+        case 'HalaPriceOutRange':
+        case 10002:
+          message.code = 10002
           break
       }
       if (object.uploadCode != null) { message.uploadCode = String(object.uploadCode) }
@@ -10612,6 +10649,7 @@ $root.pbuser = (function() {
           case 5001:
           case 5002:
           case 10001:
+          case 10002:
             break
         }
       }
@@ -10784,6 +10822,10 @@ $root.pbuser = (function() {
         case 'HalaChatNeedBuy':
         case 10001:
           message.code = 10001
+          break
+        case 'HalaPriceOutRange':
+        case 10002:
+          message.code = 10002
           break
       }
       if (object.msg != null) { message.msg = String(object.msg) }
@@ -12264,6 +12306,7 @@ $root.pbuserOauth = (function() {
           case 5001:
           case 5002:
           case 10001:
+          case 10002:
             break
         }
       }
@@ -12436,6 +12479,10 @@ $root.pbuserOauth = (function() {
         case 'HalaChatNeedBuy':
         case 10001:
           message.code = 10001
+          break
+        case 'HalaPriceOutRange':
+        case 10002:
+          message.code = 10002
           break
       }
       if (object.msg != null) { message.msg = String(object.msg) }
@@ -12698,6 +12745,7 @@ $root.pbuserOauth = (function() {
           case 5001:
           case 5002:
           case 10001:
+          case 10002:
             break
         }
       }
@@ -12857,6 +12905,10 @@ $root.pbuserOauth = (function() {
         case 'HalaChatNeedBuy':
         case 10001:
           message.code = 10001
+          break
+        case 'HalaPriceOutRange':
+        case 10002:
+          message.code = 10002
           break
       }
       if (object.userOauth != null) {
@@ -13446,6 +13498,203 @@ $root.httpgate = (function() {
     return HttpRequest
   })()
 
+  httpgate.HttpV3Request = (function() {
+    /**
+         * Properties of a HttpV3Request.
+         * @memberof httpgate
+         * @interface IHttpV3Request
+         * @property {pbbase.IOyeBaseReq|null} [base] HttpV3Request base
+         */
+
+    /**
+         * Constructs a new HttpV3Request.
+         * @memberof httpgate
+         * @classdesc Represents a HttpV3Request.
+         * @implements IHttpV3Request
+         * @constructor
+         * @param {httpgate.IHttpV3Request=} [properties] Properties to set
+         */
+    function HttpV3Request(properties) {
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * HttpV3Request base.
+         * @member {pbbase.IOyeBaseReq|null|undefined} base
+         * @memberof httpgate.HttpV3Request
+         * @instance
+         */
+    HttpV3Request.prototype.base = null
+
+    /**
+         * Creates a new HttpV3Request instance using the specified properties.
+         * @function create
+         * @memberof httpgate.HttpV3Request
+         * @static
+         * @param {httpgate.IHttpV3Request=} [properties] Properties to set
+         * @returns {httpgate.HttpV3Request} HttpV3Request instance
+         */
+    HttpV3Request.create = function create(properties) {
+      return new HttpV3Request(properties)
+    }
+
+    /**
+         * Encodes the specified HttpV3Request message. Does not implicitly {@link httpgate.HttpV3Request.verify|verify} messages.
+         * @function encode
+         * @memberof httpgate.HttpV3Request
+         * @static
+         * @param {httpgate.IHttpV3Request} message HttpV3Request message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    HttpV3Request.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.base != null && Object.hasOwnProperty.call(message, 'base')) { $root.pbbase.OyeBaseReq.encode(message.base, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim() }
+      return writer
+    }
+
+    /**
+         * Encodes the specified HttpV3Request message, length delimited. Does not implicitly {@link httpgate.HttpV3Request.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof httpgate.HttpV3Request
+         * @static
+         * @param {httpgate.IHttpV3Request} message HttpV3Request message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    HttpV3Request.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes a HttpV3Request message from the specified reader or buffer.
+         * @function decode
+         * @memberof httpgate.HttpV3Request
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {httpgate.HttpV3Request} HttpV3Request
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    HttpV3Request.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.httpgate.HttpV3Request()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            message.base = $root.pbbase.OyeBaseReq.decode(reader, reader.uint32())
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes a HttpV3Request message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof httpgate.HttpV3Request
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {httpgate.HttpV3Request} HttpV3Request
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    HttpV3Request.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies a HttpV3Request message.
+         * @function verify
+         * @memberof httpgate.HttpV3Request
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    HttpV3Request.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.base != null && message.hasOwnProperty('base')) {
+        var error = $root.pbbase.OyeBaseReq.verify(message.base)
+        if (error) { return 'base.' + error }
+      }
+      return null
+    }
+
+    /**
+         * Creates a HttpV3Request message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof httpgate.HttpV3Request
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {httpgate.HttpV3Request} HttpV3Request
+         */
+    HttpV3Request.fromObject = function fromObject(object) {
+      if (object instanceof $root.httpgate.HttpV3Request) { return object }
+      var message = new $root.httpgate.HttpV3Request()
+      if (object.base != null) {
+        if (typeof object.base !== 'object') { throw TypeError('.httpgate.HttpV3Request.base: object expected') }
+        message.base = $root.pbbase.OyeBaseReq.fromObject(object.base)
+      }
+      return message
+    }
+
+    /**
+         * Creates a plain object from a HttpV3Request message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof httpgate.HttpV3Request
+         * @static
+         * @param {httpgate.HttpV3Request} message HttpV3Request
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    HttpV3Request.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.defaults) { object.base = null }
+      if (message.base != null && message.hasOwnProperty('base')) { object.base = $root.pbbase.OyeBaseReq.toObject(message.base, options) }
+      return object
+    }
+
+    /**
+         * Converts this HttpV3Request to JSON.
+         * @function toJSON
+         * @memberof httpgate.HttpV3Request
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    HttpV3Request.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for HttpV3Request
+         * @function getTypeUrl
+         * @memberof httpgate.HttpV3Request
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    HttpV3Request.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/httpgate.HttpV3Request'
+    }
+
+    return HttpV3Request
+  })()
+
   httpgate.HttpResponse = (function() {
     /**
          * Properties of a HttpResponse.
@@ -13637,6 +13886,7 @@ $root.httpgate = (function() {
           case 5001:
           case 5002:
           case 10001:
+          case 10002:
             break
         }
       }
@@ -13799,6 +14049,10 @@ $root.httpgate = (function() {
         case 10001:
           message.code = 10001
           break
+        case 'HalaPriceOutRange':
+        case 10002:
+          message.code = 10002
+          break
       }
       if (object.msg != null) { message.msg = String(object.msg) }
       if (object.data != null) {
@@ -13863,6 +14117,960 @@ $root.httpgate = (function() {
   })()
 
   return httpgate
+})()
+
+$root.pbbase = (function() {
+  /**
+     * Namespace pbbase.
+     * @exports pbbase
+     * @namespace
+     */
+  var pbbase = {}
+
+  pbbase.OyeBaseReq = (function() {
+    /**
+         * Properties of an OyeBaseReq.
+         * @memberof pbbase
+         * @interface IOyeBaseReq
+         * @property {string|null} [key] OyeBaseReq key
+         * @property {number|Long|null} [timestamp] OyeBaseReq timestamp
+         * @property {number|Long|null} [nonce] OyeBaseReq nonce
+         * @property {string|null} [token] OyeBaseReq token
+         * @property {number|Long|null} [myUid] OyeBaseReq myUid
+         * @property {string|null} [devDesc] OyeBaseReq devDesc
+         * @property {string|null} [devUuid] OyeBaseReq devUuid
+         * @property {string|null} [flavors] OyeBaseReq flavors
+         * @property {string|null} [ver] OyeBaseReq ver
+         * @property {string|null} [language] OyeBaseReq language
+         * @property {string|null} [platform] OyeBaseReq platform
+         * @property {string|null} [bundleId] OyeBaseReq bundleId
+         * @property {string|null} [appId] OyeBaseReq appId
+         * @property {pbbase.OyeBaseReq.PackageType|null} [pkgType] OyeBaseReq pkgType
+         * @property {string|null} [shumeiDeviceId] OyeBaseReq shumeiDeviceId
+         */
+
+    /**
+         * Constructs a new OyeBaseReq.
+         * @memberof pbbase
+         * @classdesc Represents an OyeBaseReq.
+         * @implements IOyeBaseReq
+         * @constructor
+         * @param {pbbase.IOyeBaseReq=} [properties] Properties to set
+         */
+    function OyeBaseReq(properties) {
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * OyeBaseReq key.
+         * @member {string} key
+         * @memberof pbbase.OyeBaseReq
+         * @instance
+         */
+    OyeBaseReq.prototype.key = ''
+
+    /**
+         * OyeBaseReq timestamp.
+         * @member {number|Long} timestamp
+         * @memberof pbbase.OyeBaseReq
+         * @instance
+         */
+    OyeBaseReq.prototype.timestamp = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+
+    /**
+         * OyeBaseReq nonce.
+         * @member {number|Long} nonce
+         * @memberof pbbase.OyeBaseReq
+         * @instance
+         */
+    OyeBaseReq.prototype.nonce = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+
+    /**
+         * OyeBaseReq token.
+         * @member {string} token
+         * @memberof pbbase.OyeBaseReq
+         * @instance
+         */
+    OyeBaseReq.prototype.token = ''
+
+    /**
+         * OyeBaseReq myUid.
+         * @member {number|Long} myUid
+         * @memberof pbbase.OyeBaseReq
+         * @instance
+         */
+    OyeBaseReq.prototype.myUid = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+
+    /**
+         * OyeBaseReq devDesc.
+         * @member {string} devDesc
+         * @memberof pbbase.OyeBaseReq
+         * @instance
+         */
+    OyeBaseReq.prototype.devDesc = ''
+
+    /**
+         * OyeBaseReq devUuid.
+         * @member {string} devUuid
+         * @memberof pbbase.OyeBaseReq
+         * @instance
+         */
+    OyeBaseReq.prototype.devUuid = ''
+
+    /**
+         * OyeBaseReq flavors.
+         * @member {string} flavors
+         * @memberof pbbase.OyeBaseReq
+         * @instance
+         */
+    OyeBaseReq.prototype.flavors = ''
+
+    /**
+         * OyeBaseReq ver.
+         * @member {string} ver
+         * @memberof pbbase.OyeBaseReq
+         * @instance
+         */
+    OyeBaseReq.prototype.ver = ''
+
+    /**
+         * OyeBaseReq language.
+         * @member {string} language
+         * @memberof pbbase.OyeBaseReq
+         * @instance
+         */
+    OyeBaseReq.prototype.language = ''
+
+    /**
+         * OyeBaseReq platform.
+         * @member {string} platform
+         * @memberof pbbase.OyeBaseReq
+         * @instance
+         */
+    OyeBaseReq.prototype.platform = ''
+
+    /**
+         * OyeBaseReq bundleId.
+         * @member {string} bundleId
+         * @memberof pbbase.OyeBaseReq
+         * @instance
+         */
+    OyeBaseReq.prototype.bundleId = ''
+
+    /**
+         * OyeBaseReq appId.
+         * @member {string} appId
+         * @memberof pbbase.OyeBaseReq
+         * @instance
+         */
+    OyeBaseReq.prototype.appId = ''
+
+    /**
+         * OyeBaseReq pkgType.
+         * @member {pbbase.OyeBaseReq.PackageType} pkgType
+         * @memberof pbbase.OyeBaseReq
+         * @instance
+         */
+    OyeBaseReq.prototype.pkgType = 0
+
+    /**
+         * OyeBaseReq shumeiDeviceId.
+         * @member {string} shumeiDeviceId
+         * @memberof pbbase.OyeBaseReq
+         * @instance
+         */
+    OyeBaseReq.prototype.shumeiDeviceId = ''
+
+    /**
+         * Creates a new OyeBaseReq instance using the specified properties.
+         * @function create
+         * @memberof pbbase.OyeBaseReq
+         * @static
+         * @param {pbbase.IOyeBaseReq=} [properties] Properties to set
+         * @returns {pbbase.OyeBaseReq} OyeBaseReq instance
+         */
+    OyeBaseReq.create = function create(properties) {
+      return new OyeBaseReq(properties)
+    }
+
+    /**
+         * Encodes the specified OyeBaseReq message. Does not implicitly {@link pbbase.OyeBaseReq.verify|verify} messages.
+         * @function encode
+         * @memberof pbbase.OyeBaseReq
+         * @static
+         * @param {pbbase.IOyeBaseReq} message OyeBaseReq message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    OyeBaseReq.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.key != null && Object.hasOwnProperty.call(message, 'key')) { writer.uint32(/* id 1, wireType 2 =*/10).string(message.key) }
+      if (message.timestamp != null && Object.hasOwnProperty.call(message, 'timestamp')) { writer.uint32(/* id 2, wireType 0 =*/16).int64(message.timestamp) }
+      if (message.nonce != null && Object.hasOwnProperty.call(message, 'nonce')) { writer.uint32(/* id 3, wireType 0 =*/24).int64(message.nonce) }
+      if (message.token != null && Object.hasOwnProperty.call(message, 'token')) { writer.uint32(/* id 4, wireType 2 =*/34).string(message.token) }
+      if (message.myUid != null && Object.hasOwnProperty.call(message, 'myUid')) { writer.uint32(/* id 5, wireType 0 =*/40).int64(message.myUid) }
+      if (message.devDesc != null && Object.hasOwnProperty.call(message, 'devDesc')) { writer.uint32(/* id 6, wireType 2 =*/50).string(message.devDesc) }
+      if (message.devUuid != null && Object.hasOwnProperty.call(message, 'devUuid')) { writer.uint32(/* id 7, wireType 2 =*/58).string(message.devUuid) }
+      if (message.flavors != null && Object.hasOwnProperty.call(message, 'flavors')) { writer.uint32(/* id 8, wireType 2 =*/66).string(message.flavors) }
+      if (message.ver != null && Object.hasOwnProperty.call(message, 'ver')) { writer.uint32(/* id 9, wireType 2 =*/74).string(message.ver) }
+      if (message.language != null && Object.hasOwnProperty.call(message, 'language')) { writer.uint32(/* id 10, wireType 2 =*/82).string(message.language) }
+      if (message.platform != null && Object.hasOwnProperty.call(message, 'platform')) { writer.uint32(/* id 11, wireType 2 =*/90).string(message.platform) }
+      if (message.bundleId != null && Object.hasOwnProperty.call(message, 'bundleId')) { writer.uint32(/* id 12, wireType 2 =*/98).string(message.bundleId) }
+      if (message.appId != null && Object.hasOwnProperty.call(message, 'appId')) { writer.uint32(/* id 13, wireType 2 =*/106).string(message.appId) }
+      if (message.pkgType != null && Object.hasOwnProperty.call(message, 'pkgType')) { writer.uint32(/* id 14, wireType 0 =*/112).int32(message.pkgType) }
+      if (message.shumeiDeviceId != null && Object.hasOwnProperty.call(message, 'shumeiDeviceId')) { writer.uint32(/* id 15, wireType 2 =*/122).string(message.shumeiDeviceId) }
+      return writer
+    }
+
+    /**
+         * Encodes the specified OyeBaseReq message, length delimited. Does not implicitly {@link pbbase.OyeBaseReq.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbase.OyeBaseReq
+         * @static
+         * @param {pbbase.IOyeBaseReq} message OyeBaseReq message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    OyeBaseReq.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes an OyeBaseReq message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbase.OyeBaseReq
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbase.OyeBaseReq} OyeBaseReq
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    OyeBaseReq.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbbase.OyeBaseReq()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            message.key = reader.string()
+            break
+          }
+          case 2: {
+            message.timestamp = reader.int64()
+            break
+          }
+          case 3: {
+            message.nonce = reader.int64()
+            break
+          }
+          case 4: {
+            message.token = reader.string()
+            break
+          }
+          case 5: {
+            message.myUid = reader.int64()
+            break
+          }
+          case 6: {
+            message.devDesc = reader.string()
+            break
+          }
+          case 7: {
+            message.devUuid = reader.string()
+            break
+          }
+          case 8: {
+            message.flavors = reader.string()
+            break
+          }
+          case 9: {
+            message.ver = reader.string()
+            break
+          }
+          case 10: {
+            message.language = reader.string()
+            break
+          }
+          case 11: {
+            message.platform = reader.string()
+            break
+          }
+          case 12: {
+            message.bundleId = reader.string()
+            break
+          }
+          case 13: {
+            message.appId = reader.string()
+            break
+          }
+          case 14: {
+            message.pkgType = reader.int32()
+            break
+          }
+          case 15: {
+            message.shumeiDeviceId = reader.string()
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes an OyeBaseReq message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbase.OyeBaseReq
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbase.OyeBaseReq} OyeBaseReq
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    OyeBaseReq.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies an OyeBaseReq message.
+         * @function verify
+         * @memberof pbbase.OyeBaseReq
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    OyeBaseReq.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.key != null && message.hasOwnProperty('key')) {
+        if (!$util.isString(message.key)) { return 'key: string expected' }
+      }
+      if (message.timestamp != null && message.hasOwnProperty('timestamp')) {
+        if (!$util.isInteger(message.timestamp) && !(message.timestamp && $util.isInteger(message.timestamp.low) && $util.isInteger(message.timestamp.high))) { return 'timestamp: integer|Long expected' }
+      }
+      if (message.nonce != null && message.hasOwnProperty('nonce')) {
+        if (!$util.isInteger(message.nonce) && !(message.nonce && $util.isInteger(message.nonce.low) && $util.isInteger(message.nonce.high))) { return 'nonce: integer|Long expected' }
+      }
+      if (message.token != null && message.hasOwnProperty('token')) {
+        if (!$util.isString(message.token)) { return 'token: string expected' }
+      }
+      if (message.myUid != null && message.hasOwnProperty('myUid')) {
+        if (!$util.isInteger(message.myUid) && !(message.myUid && $util.isInteger(message.myUid.low) && $util.isInteger(message.myUid.high))) { return 'myUid: integer|Long expected' }
+      }
+      if (message.devDesc != null && message.hasOwnProperty('devDesc')) {
+        if (!$util.isString(message.devDesc)) { return 'devDesc: string expected' }
+      }
+      if (message.devUuid != null && message.hasOwnProperty('devUuid')) {
+        if (!$util.isString(message.devUuid)) { return 'devUuid: string expected' }
+      }
+      if (message.flavors != null && message.hasOwnProperty('flavors')) {
+        if (!$util.isString(message.flavors)) { return 'flavors: string expected' }
+      }
+      if (message.ver != null && message.hasOwnProperty('ver')) {
+        if (!$util.isString(message.ver)) { return 'ver: string expected' }
+      }
+      if (message.language != null && message.hasOwnProperty('language')) {
+        if (!$util.isString(message.language)) { return 'language: string expected' }
+      }
+      if (message.platform != null && message.hasOwnProperty('platform')) {
+        if (!$util.isString(message.platform)) { return 'platform: string expected' }
+      }
+      if (message.bundleId != null && message.hasOwnProperty('bundleId')) {
+        if (!$util.isString(message.bundleId)) { return 'bundleId: string expected' }
+      }
+      if (message.appId != null && message.hasOwnProperty('appId')) {
+        if (!$util.isString(message.appId)) { return 'appId: string expected' }
+      }
+      if (message.pkgType != null && message.hasOwnProperty('pkgType')) {
+        switch (message.pkgType) {
+          default:
+            return 'pkgType: enum value expected'
+          case 0:
+          case 1:
+            break
+        }
+      }
+      if (message.shumeiDeviceId != null && message.hasOwnProperty('shumeiDeviceId')) {
+        if (!$util.isString(message.shumeiDeviceId)) { return 'shumeiDeviceId: string expected' }
+      }
+      return null
+    }
+
+    /**
+         * Creates an OyeBaseReq message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbase.OyeBaseReq
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbase.OyeBaseReq} OyeBaseReq
+         */
+    OyeBaseReq.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbbase.OyeBaseReq) { return object }
+      var message = new $root.pbbase.OyeBaseReq()
+      if (object.key != null) { message.key = String(object.key) }
+      if (object.timestamp != null) {
+        if ($util.Long) { (message.timestamp = $util.Long.fromValue(object.timestamp)).unsigned = false } else if (typeof object.timestamp === 'string') { message.timestamp = parseInt(object.timestamp, 10) } else if (typeof object.timestamp === 'number') { message.timestamp = object.timestamp } else if (typeof object.timestamp === 'object') { message.timestamp = new $util.LongBits(object.timestamp.low >>> 0, object.timestamp.high >>> 0).toNumber() }
+      }
+      if (object.nonce != null) {
+        if ($util.Long) { (message.nonce = $util.Long.fromValue(object.nonce)).unsigned = false } else if (typeof object.nonce === 'string') { message.nonce = parseInt(object.nonce, 10) } else if (typeof object.nonce === 'number') { message.nonce = object.nonce } else if (typeof object.nonce === 'object') { message.nonce = new $util.LongBits(object.nonce.low >>> 0, object.nonce.high >>> 0).toNumber() }
+      }
+      if (object.token != null) { message.token = String(object.token) }
+      if (object.myUid != null) {
+        if ($util.Long) { (message.myUid = $util.Long.fromValue(object.myUid)).unsigned = false } else if (typeof object.myUid === 'string') { message.myUid = parseInt(object.myUid, 10) } else if (typeof object.myUid === 'number') { message.myUid = object.myUid } else if (typeof object.myUid === 'object') { message.myUid = new $util.LongBits(object.myUid.low >>> 0, object.myUid.high >>> 0).toNumber() }
+      }
+      if (object.devDesc != null) { message.devDesc = String(object.devDesc) }
+      if (object.devUuid != null) { message.devUuid = String(object.devUuid) }
+      if (object.flavors != null) { message.flavors = String(object.flavors) }
+      if (object.ver != null) { message.ver = String(object.ver) }
+      if (object.language != null) { message.language = String(object.language) }
+      if (object.platform != null) { message.platform = String(object.platform) }
+      if (object.bundleId != null) { message.bundleId = String(object.bundleId) }
+      if (object.appId != null) { message.appId = String(object.appId) }
+      switch (object.pkgType) {
+        default:
+          if (typeof object.pkgType === 'number') {
+            message.pkgType = object.pkgType
+            break
+          }
+          break
+        case 'UnKnow':
+        case 0:
+          message.pkgType = 0
+          break
+        case 'CN':
+        case 1:
+          message.pkgType = 1
+          break
+      }
+      if (object.shumeiDeviceId != null) { message.shumeiDeviceId = String(object.shumeiDeviceId) }
+      return message
+    }
+
+    /**
+         * Creates a plain object from an OyeBaseReq message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbase.OyeBaseReq
+         * @static
+         * @param {pbbase.OyeBaseReq} message OyeBaseReq
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    OyeBaseReq.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.defaults) {
+        object.key = ''
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.timestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.timestamp = options.longs === String ? '0' : 0 }
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.nonce = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.nonce = options.longs === String ? '0' : 0 }
+        object.token = ''
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.myUid = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.myUid = options.longs === String ? '0' : 0 }
+        object.devDesc = ''
+        object.devUuid = ''
+        object.flavors = ''
+        object.ver = ''
+        object.language = ''
+        object.platform = ''
+        object.bundleId = ''
+        object.appId = ''
+        object.pkgType = options.enums === String ? 'UnKnow' : 0
+        object.shumeiDeviceId = ''
+      }
+      if (message.key != null && message.hasOwnProperty('key')) { object.key = message.key }
+      if (message.timestamp != null && message.hasOwnProperty('timestamp')) {
+        if (typeof message.timestamp === 'number') { object.timestamp = options.longs === String ? String(message.timestamp) : message.timestamp } else { object.timestamp = options.longs === String ? $util.Long.prototype.toString.call(message.timestamp) : options.longs === Number ? new $util.LongBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0).toNumber() : message.timestamp }
+      }
+      if (message.nonce != null && message.hasOwnProperty('nonce')) {
+        if (typeof message.nonce === 'number') { object.nonce = options.longs === String ? String(message.nonce) : message.nonce } else { object.nonce = options.longs === String ? $util.Long.prototype.toString.call(message.nonce) : options.longs === Number ? new $util.LongBits(message.nonce.low >>> 0, message.nonce.high >>> 0).toNumber() : message.nonce }
+      }
+      if (message.token != null && message.hasOwnProperty('token')) { object.token = message.token }
+      if (message.myUid != null && message.hasOwnProperty('myUid')) {
+        if (typeof message.myUid === 'number') { object.myUid = options.longs === String ? String(message.myUid) : message.myUid } else { object.myUid = options.longs === String ? $util.Long.prototype.toString.call(message.myUid) : options.longs === Number ? new $util.LongBits(message.myUid.low >>> 0, message.myUid.high >>> 0).toNumber() : message.myUid }
+      }
+      if (message.devDesc != null && message.hasOwnProperty('devDesc')) { object.devDesc = message.devDesc }
+      if (message.devUuid != null && message.hasOwnProperty('devUuid')) { object.devUuid = message.devUuid }
+      if (message.flavors != null && message.hasOwnProperty('flavors')) { object.flavors = message.flavors }
+      if (message.ver != null && message.hasOwnProperty('ver')) { object.ver = message.ver }
+      if (message.language != null && message.hasOwnProperty('language')) { object.language = message.language }
+      if (message.platform != null && message.hasOwnProperty('platform')) { object.platform = message.platform }
+      if (message.bundleId != null && message.hasOwnProperty('bundleId')) { object.bundleId = message.bundleId }
+      if (message.appId != null && message.hasOwnProperty('appId')) { object.appId = message.appId }
+      if (message.pkgType != null && message.hasOwnProperty('pkgType')) { object.pkgType = options.enums === String ? $root.pbbase.OyeBaseReq.PackageType[message.pkgType] === undefined ? message.pkgType : $root.pbbase.OyeBaseReq.PackageType[message.pkgType] : message.pkgType }
+      if (message.shumeiDeviceId != null && message.hasOwnProperty('shumeiDeviceId')) { object.shumeiDeviceId = message.shumeiDeviceId }
+      return object
+    }
+
+    /**
+         * Converts this OyeBaseReq to JSON.
+         * @function toJSON
+         * @memberof pbbase.OyeBaseReq
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    OyeBaseReq.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for OyeBaseReq
+         * @function getTypeUrl
+         * @memberof pbbase.OyeBaseReq
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    OyeBaseReq.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/pbbase.OyeBaseReq'
+    }
+
+    /**
+         * PackageType enum.
+         * @name pbbase.OyeBaseReq.PackageType
+         * @enum {number}
+         * @property {number} UnKnow=0 UnKnow value
+         * @property {number} CN=1 CN value
+         */
+    OyeBaseReq.PackageType = (function() {
+      var valuesById = {}; var values = Object.create(valuesById)
+      values[valuesById[0] = 'UnKnow'] = 0
+      values[valuesById[1] = 'CN'] = 1
+      return values
+    })()
+
+    return OyeBaseReq
+  })()
+
+  pbbase.OyeBaseRsp = (function() {
+    /**
+         * Properties of an OyeBaseRsp.
+         * @memberof pbbase
+         * @interface IOyeBaseRsp
+         * @property {number|null} [errCode] OyeBaseRsp errCode
+         * @property {string|null} [errMsg] OyeBaseRsp errMsg
+         */
+
+    /**
+         * Constructs a new OyeBaseRsp.
+         * @memberof pbbase
+         * @classdesc Represents an OyeBaseRsp.
+         * @implements IOyeBaseRsp
+         * @constructor
+         * @param {pbbase.IOyeBaseRsp=} [properties] Properties to set
+         */
+    function OyeBaseRsp(properties) {
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * OyeBaseRsp errCode.
+         * @member {number} errCode
+         * @memberof pbbase.OyeBaseRsp
+         * @instance
+         */
+    OyeBaseRsp.prototype.errCode = 0
+
+    /**
+         * OyeBaseRsp errMsg.
+         * @member {string} errMsg
+         * @memberof pbbase.OyeBaseRsp
+         * @instance
+         */
+    OyeBaseRsp.prototype.errMsg = ''
+
+    /**
+         * Creates a new OyeBaseRsp instance using the specified properties.
+         * @function create
+         * @memberof pbbase.OyeBaseRsp
+         * @static
+         * @param {pbbase.IOyeBaseRsp=} [properties] Properties to set
+         * @returns {pbbase.OyeBaseRsp} OyeBaseRsp instance
+         */
+    OyeBaseRsp.create = function create(properties) {
+      return new OyeBaseRsp(properties)
+    }
+
+    /**
+         * Encodes the specified OyeBaseRsp message. Does not implicitly {@link pbbase.OyeBaseRsp.verify|verify} messages.
+         * @function encode
+         * @memberof pbbase.OyeBaseRsp
+         * @static
+         * @param {pbbase.IOyeBaseRsp} message OyeBaseRsp message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    OyeBaseRsp.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.errCode != null && Object.hasOwnProperty.call(message, 'errCode')) { writer.uint32(/* id 1, wireType 0 =*/8).int32(message.errCode) }
+      if (message.errMsg != null && Object.hasOwnProperty.call(message, 'errMsg')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.errMsg) }
+      return writer
+    }
+
+    /**
+         * Encodes the specified OyeBaseRsp message, length delimited. Does not implicitly {@link pbbase.OyeBaseRsp.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbase.OyeBaseRsp
+         * @static
+         * @param {pbbase.IOyeBaseRsp} message OyeBaseRsp message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    OyeBaseRsp.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes an OyeBaseRsp message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbase.OyeBaseRsp
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbase.OyeBaseRsp} OyeBaseRsp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    OyeBaseRsp.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbbase.OyeBaseRsp()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            message.errCode = reader.int32()
+            break
+          }
+          case 2: {
+            message.errMsg = reader.string()
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes an OyeBaseRsp message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbase.OyeBaseRsp
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbase.OyeBaseRsp} OyeBaseRsp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    OyeBaseRsp.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies an OyeBaseRsp message.
+         * @function verify
+         * @memberof pbbase.OyeBaseRsp
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    OyeBaseRsp.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.errCode != null && message.hasOwnProperty('errCode')) {
+        if (!$util.isInteger(message.errCode)) { return 'errCode: integer expected' }
+      }
+      if (message.errMsg != null && message.hasOwnProperty('errMsg')) {
+        if (!$util.isString(message.errMsg)) { return 'errMsg: string expected' }
+      }
+      return null
+    }
+
+    /**
+         * Creates an OyeBaseRsp message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbase.OyeBaseRsp
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbase.OyeBaseRsp} OyeBaseRsp
+         */
+    OyeBaseRsp.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbbase.OyeBaseRsp) { return object }
+      var message = new $root.pbbase.OyeBaseRsp()
+      if (object.errCode != null) { message.errCode = object.errCode | 0 }
+      if (object.errMsg != null) { message.errMsg = String(object.errMsg) }
+      return message
+    }
+
+    /**
+         * Creates a plain object from an OyeBaseRsp message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbase.OyeBaseRsp
+         * @static
+         * @param {pbbase.OyeBaseRsp} message OyeBaseRsp
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    OyeBaseRsp.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.defaults) {
+        object.errCode = 0
+        object.errMsg = ''
+      }
+      if (message.errCode != null && message.hasOwnProperty('errCode')) { object.errCode = message.errCode }
+      if (message.errMsg != null && message.hasOwnProperty('errMsg')) { object.errMsg = message.errMsg }
+      return object
+    }
+
+    /**
+         * Converts this OyeBaseRsp to JSON.
+         * @function toJSON
+         * @memberof pbbase.OyeBaseRsp
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    OyeBaseRsp.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for OyeBaseRsp
+         * @function getTypeUrl
+         * @memberof pbbase.OyeBaseRsp
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    OyeBaseRsp.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/pbbase.OyeBaseRsp'
+    }
+
+    return OyeBaseRsp
+  })()
+
+  pbbase.commonResult = (function() {
+    /**
+         * Properties of a commonResult.
+         * @memberof pbbase
+         * @interface IcommonResult
+         * @property {pbbase.IOyeBaseRsp|null} [base] commonResult base
+         */
+
+    /**
+         * Constructs a new commonResult.
+         * @memberof pbbase
+         * @classdesc Represents a commonResult.
+         * @implements IcommonResult
+         * @constructor
+         * @param {pbbase.IcommonResult=} [properties] Properties to set
+         */
+    function commonResult(properties) {
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * commonResult base.
+         * @member {pbbase.IOyeBaseRsp|null|undefined} base
+         * @memberof pbbase.commonResult
+         * @instance
+         */
+    commonResult.prototype.base = null
+
+    /**
+         * Creates a new commonResult instance using the specified properties.
+         * @function create
+         * @memberof pbbase.commonResult
+         * @static
+         * @param {pbbase.IcommonResult=} [properties] Properties to set
+         * @returns {pbbase.commonResult} commonResult instance
+         */
+    commonResult.create = function create(properties) {
+      return new commonResult(properties)
+    }
+
+    /**
+         * Encodes the specified commonResult message. Does not implicitly {@link pbbase.commonResult.verify|verify} messages.
+         * @function encode
+         * @memberof pbbase.commonResult
+         * @static
+         * @param {pbbase.IcommonResult} message commonResult message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    commonResult.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.base != null && Object.hasOwnProperty.call(message, 'base')) { $root.pbbase.OyeBaseRsp.encode(message.base, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim() }
+      return writer
+    }
+
+    /**
+         * Encodes the specified commonResult message, length delimited. Does not implicitly {@link pbbase.commonResult.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbase.commonResult
+         * @static
+         * @param {pbbase.IcommonResult} message commonResult message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    commonResult.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes a commonResult message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbase.commonResult
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbase.commonResult} commonResult
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    commonResult.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pbbase.commonResult()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            message.base = $root.pbbase.OyeBaseRsp.decode(reader, reader.uint32())
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes a commonResult message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbase.commonResult
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbase.commonResult} commonResult
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    commonResult.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies a commonResult message.
+         * @function verify
+         * @memberof pbbase.commonResult
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    commonResult.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.base != null && message.hasOwnProperty('base')) {
+        var error = $root.pbbase.OyeBaseRsp.verify(message.base)
+        if (error) { return 'base.' + error }
+      }
+      return null
+    }
+
+    /**
+         * Creates a commonResult message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbase.commonResult
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbase.commonResult} commonResult
+         */
+    commonResult.fromObject = function fromObject(object) {
+      if (object instanceof $root.pbbase.commonResult) { return object }
+      var message = new $root.pbbase.commonResult()
+      if (object.base != null) {
+        if (typeof object.base !== 'object') { throw TypeError('.pbbase.commonResult.base: object expected') }
+        message.base = $root.pbbase.OyeBaseRsp.fromObject(object.base)
+      }
+      return message
+    }
+
+    /**
+         * Creates a plain object from a commonResult message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbase.commonResult
+         * @static
+         * @param {pbbase.commonResult} message commonResult
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    commonResult.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.defaults) { object.base = null }
+      if (message.base != null && message.hasOwnProperty('base')) { object.base = $root.pbbase.OyeBaseRsp.toObject(message.base, options) }
+      return object
+    }
+
+    /**
+         * Converts this commonResult to JSON.
+         * @function toJSON
+         * @memberof pbbase.commonResult
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    commonResult.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for commonResult
+         * @function getTypeUrl
+         * @memberof pbbase.commonResult
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    commonResult.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/pbbase.commonResult'
+    }
+
+    return commonResult
+  })()
+
+  return pbbase
 })()
 
 $root.pbapp = (function() {
@@ -14901,6 +16109,7 @@ $root.pbapp = (function() {
           case 5001:
           case 5002:
           case 10001:
+          case 10002:
             break
         }
       }
@@ -15073,6 +16282,10 @@ $root.pbapp = (function() {
         case 'HalaChatNeedBuy':
         case 10001:
           message.code = 10001
+          break
+        case 'HalaPriceOutRange':
+        case 10002:
+          message.code = 10002
           break
       }
       if (object.msg != null) { message.msg = String(object.msg) }
@@ -16356,6 +17569,7 @@ $root.pbdeviceReport = (function() {
           case 5001:
           case 5002:
           case 10001:
+          case 10002:
             break
         }
       }
@@ -16528,6 +17742,10 @@ $root.pbdeviceReport = (function() {
         case 'HalaChatNeedBuy':
         case 10001:
           message.code = 10001
+          break
+        case 'HalaPriceOutRange':
+        case 10002:
+          message.code = 10002
           break
       }
       if (object.msg != null) { message.msg = String(object.msg) }
@@ -18984,6 +20202,7 @@ $root.pbemployee = (function() {
           case 5001:
           case 5002:
           case 10001:
+          case 10002:
             break
         }
       }
@@ -19156,6 +20375,10 @@ $root.pbemployee = (function() {
         case 'HalaChatNeedBuy':
         case 10001:
           message.code = 10001
+          break
+        case 'HalaPriceOutRange':
+        case 10002:
+          message.code = 10002
           break
       }
       if (object.msg != null) { message.msg = String(object.msg) }
@@ -20330,6 +21553,7 @@ $root.pbsalary = (function() {
           case 5001:
           case 5002:
           case 10001:
+          case 10002:
             break
         }
       }
@@ -20502,6 +21726,10 @@ $root.pbsalary = (function() {
         case 'HalaChatNeedBuy':
         case 10001:
           message.code = 10001
+          break
+        case 'HalaPriceOutRange':
+        case 10002:
+          message.code = 10002
           break
       }
       if (object.msg != null) { message.msg = String(object.msg) }
@@ -21533,6 +22761,7 @@ $root.pbsystemlog = (function() {
           case 5001:
           case 5002:
           case 10001:
+          case 10002:
             break
         }
       }
@@ -21695,6 +22924,10 @@ $root.pbsystemlog = (function() {
         case 'HalaChatNeedBuy':
         case 10001:
           message.code = 10001
+          break
+        case 'HalaPriceOutRange':
+        case 10002:
+          message.code = 10002
           break
       }
       if (object.msg != null) { message.msg = String(object.msg) }
@@ -22972,6 +24205,7 @@ $root.pbmoment = (function() {
           case 5001:
           case 5002:
           case 10001:
+          case 10002:
             break
         }
       }
@@ -23144,6 +24378,10 @@ $root.pbmoment = (function() {
         case 'HalaChatNeedBuy':
         case 10001:
           message.code = 10001
+          break
+        case 'HalaPriceOutRange':
+        case 10002:
+          message.code = 10002
           break
       }
       if (object.msg != null) { message.msg = String(object.msg) }
@@ -24330,6 +25568,7 @@ $root.pbmomentMedia = (function() {
           case 5001:
           case 5002:
           case 10001:
+          case 10002:
             break
         }
       }
@@ -24502,6 +25741,10 @@ $root.pbmomentMedia = (function() {
         case 'HalaChatNeedBuy':
         case 10001:
           message.code = 10001
+          break
+        case 'HalaPriceOutRange':
+        case 10002:
+          message.code = 10002
           break
       }
       if (object.msg != null) { message.msg = String(object.msg) }
@@ -25718,6 +26961,7 @@ $root.pbmomentComment = (function() {
           case 5001:
           case 5002:
           case 10001:
+          case 10002:
             break
         }
       }
@@ -25890,6 +27134,10 @@ $root.pbmomentComment = (function() {
         case 'HalaChatNeedBuy':
         case 10001:
           message.code = 10001
+          break
+        case 'HalaPriceOutRange':
+        case 10002:
+          message.code = 10002
           break
       }
       if (object.msg != null) { message.msg = String(object.msg) }
@@ -26971,6 +28219,7 @@ $root.pbmomentLike = (function() {
           case 5001:
           case 5002:
           case 10001:
+          case 10002:
             break
         }
       }
@@ -27143,6 +28392,10 @@ $root.pbmomentLike = (function() {
         case 'HalaChatNeedBuy':
         case 10001:
           message.code = 10001
+          break
+        case 'HalaPriceOutRange':
+        case 10002:
+          message.code = 10002
           break
       }
       if (object.msg != null) { message.msg = String(object.msg) }
@@ -27428,6 +28681,969 @@ $root.pbmomentLike = (function() {
   })()
 
   return pbmomentLike
+})()
+
+$root.pblogic = (function() {
+  /**
+     * Namespace pblogic.
+     * @exports pblogic
+     * @namespace
+     */
+  var pblogic = {}
+
+  pblogic.ConnInfo = (function() {
+    /**
+         * Properties of a ConnInfo.
+         * @memberof pblogic
+         * @interface IConnInfo
+         * @property {number|Long|null} [beginTime] ConnInfo beginTime
+         * @property {number|Long|null} [lastPushTime] ConnInfo lastPushTime
+         * @property {number|Long|null} [lostTime] ConnInfo lostTime
+         * @property {number|Long|null} [connId] ConnInfo connId
+         * @property {number|Long|null} [roomId] ConnInfo roomId
+         * @property {number|Long|null} [userId] ConnInfo userId
+         * @property {number|Long|null} [appId] ConnInfo appId
+         * @property {string|null} [addr] ConnInfo addr
+         * @property {number|Long|null} [nodeId] ConnInfo nodeId
+         * @property {string|null} [head] ConnInfo head
+         * @property {string|null} [nickname] ConnInfo nickname
+         */
+
+    /**
+         * Constructs a new ConnInfo.
+         * @memberof pblogic
+         * @classdesc Represents a ConnInfo.
+         * @implements IConnInfo
+         * @constructor
+         * @param {pblogic.IConnInfo=} [properties] Properties to set
+         */
+    function ConnInfo(properties) {
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * ConnInfo beginTime.
+         * @member {number|Long} beginTime
+         * @memberof pblogic.ConnInfo
+         * @instance
+         */
+    ConnInfo.prototype.beginTime = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+
+    /**
+         * ConnInfo lastPushTime.
+         * @member {number|Long} lastPushTime
+         * @memberof pblogic.ConnInfo
+         * @instance
+         */
+    ConnInfo.prototype.lastPushTime = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+
+    /**
+         * ConnInfo lostTime.
+         * @member {number|Long} lostTime
+         * @memberof pblogic.ConnInfo
+         * @instance
+         */
+    ConnInfo.prototype.lostTime = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+
+    /**
+         * ConnInfo connId.
+         * @member {number|Long} connId
+         * @memberof pblogic.ConnInfo
+         * @instance
+         */
+    ConnInfo.prototype.connId = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+
+    /**
+         * ConnInfo roomId.
+         * @member {number|Long} roomId
+         * @memberof pblogic.ConnInfo
+         * @instance
+         */
+    ConnInfo.prototype.roomId = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+
+    /**
+         * ConnInfo userId.
+         * @member {number|Long} userId
+         * @memberof pblogic.ConnInfo
+         * @instance
+         */
+    ConnInfo.prototype.userId = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+
+    /**
+         * ConnInfo appId.
+         * @member {number|Long} appId
+         * @memberof pblogic.ConnInfo
+         * @instance
+         */
+    ConnInfo.prototype.appId = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+
+    /**
+         * ConnInfo addr.
+         * @member {string} addr
+         * @memberof pblogic.ConnInfo
+         * @instance
+         */
+    ConnInfo.prototype.addr = ''
+
+    /**
+         * ConnInfo nodeId.
+         * @member {number|Long} nodeId
+         * @memberof pblogic.ConnInfo
+         * @instance
+         */
+    ConnInfo.prototype.nodeId = $util.Long ? $util.Long.fromBits(0, 0, false) : 0
+
+    /**
+         * ConnInfo head.
+         * @member {string} head
+         * @memberof pblogic.ConnInfo
+         * @instance
+         */
+    ConnInfo.prototype.head = ''
+
+    /**
+         * ConnInfo nickname.
+         * @member {string} nickname
+         * @memberof pblogic.ConnInfo
+         * @instance
+         */
+    ConnInfo.prototype.nickname = ''
+
+    /**
+         * Creates a new ConnInfo instance using the specified properties.
+         * @function create
+         * @memberof pblogic.ConnInfo
+         * @static
+         * @param {pblogic.IConnInfo=} [properties] Properties to set
+         * @returns {pblogic.ConnInfo} ConnInfo instance
+         */
+    ConnInfo.create = function create(properties) {
+      return new ConnInfo(properties)
+    }
+
+    /**
+         * Encodes the specified ConnInfo message. Does not implicitly {@link pblogic.ConnInfo.verify|verify} messages.
+         * @function encode
+         * @memberof pblogic.ConnInfo
+         * @static
+         * @param {pblogic.IConnInfo} message ConnInfo message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    ConnInfo.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.beginTime != null && Object.hasOwnProperty.call(message, 'beginTime')) { writer.uint32(/* id 1, wireType 0 =*/8).int64(message.beginTime) }
+      if (message.lastPushTime != null && Object.hasOwnProperty.call(message, 'lastPushTime')) { writer.uint32(/* id 2, wireType 0 =*/16).int64(message.lastPushTime) }
+      if (message.lostTime != null && Object.hasOwnProperty.call(message, 'lostTime')) { writer.uint32(/* id 3, wireType 0 =*/24).int64(message.lostTime) }
+      if (message.connId != null && Object.hasOwnProperty.call(message, 'connId')) { writer.uint32(/* id 4, wireType 0 =*/32).int64(message.connId) }
+      if (message.roomId != null && Object.hasOwnProperty.call(message, 'roomId')) { writer.uint32(/* id 5, wireType 0 =*/40).int64(message.roomId) }
+      if (message.userId != null && Object.hasOwnProperty.call(message, 'userId')) { writer.uint32(/* id 6, wireType 0 =*/48).int64(message.userId) }
+      if (message.appId != null && Object.hasOwnProperty.call(message, 'appId')) { writer.uint32(/* id 7, wireType 0 =*/56).int64(message.appId) }
+      if (message.addr != null && Object.hasOwnProperty.call(message, 'addr')) { writer.uint32(/* id 8, wireType 2 =*/66).string(message.addr) }
+      if (message.nodeId != null && Object.hasOwnProperty.call(message, 'nodeId')) { writer.uint32(/* id 9, wireType 0 =*/72).int64(message.nodeId) }
+      if (message.head != null && Object.hasOwnProperty.call(message, 'head')) { writer.uint32(/* id 10, wireType 2 =*/82).string(message.head) }
+      if (message.nickname != null && Object.hasOwnProperty.call(message, 'nickname')) { writer.uint32(/* id 11, wireType 2 =*/90).string(message.nickname) }
+      return writer
+    }
+
+    /**
+         * Encodes the specified ConnInfo message, length delimited. Does not implicitly {@link pblogic.ConnInfo.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pblogic.ConnInfo
+         * @static
+         * @param {pblogic.IConnInfo} message ConnInfo message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    ConnInfo.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes a ConnInfo message from the specified reader or buffer.
+         * @function decode
+         * @memberof pblogic.ConnInfo
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pblogic.ConnInfo} ConnInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    ConnInfo.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pblogic.ConnInfo()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            message.beginTime = reader.int64()
+            break
+          }
+          case 2: {
+            message.lastPushTime = reader.int64()
+            break
+          }
+          case 3: {
+            message.lostTime = reader.int64()
+            break
+          }
+          case 4: {
+            message.connId = reader.int64()
+            break
+          }
+          case 5: {
+            message.roomId = reader.int64()
+            break
+          }
+          case 6: {
+            message.userId = reader.int64()
+            break
+          }
+          case 7: {
+            message.appId = reader.int64()
+            break
+          }
+          case 8: {
+            message.addr = reader.string()
+            break
+          }
+          case 9: {
+            message.nodeId = reader.int64()
+            break
+          }
+          case 10: {
+            message.head = reader.string()
+            break
+          }
+          case 11: {
+            message.nickname = reader.string()
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes a ConnInfo message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pblogic.ConnInfo
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pblogic.ConnInfo} ConnInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    ConnInfo.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies a ConnInfo message.
+         * @function verify
+         * @memberof pblogic.ConnInfo
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    ConnInfo.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.beginTime != null && message.hasOwnProperty('beginTime')) {
+        if (!$util.isInteger(message.beginTime) && !(message.beginTime && $util.isInteger(message.beginTime.low) && $util.isInteger(message.beginTime.high))) { return 'beginTime: integer|Long expected' }
+      }
+      if (message.lastPushTime != null && message.hasOwnProperty('lastPushTime')) {
+        if (!$util.isInteger(message.lastPushTime) && !(message.lastPushTime && $util.isInteger(message.lastPushTime.low) && $util.isInteger(message.lastPushTime.high))) { return 'lastPushTime: integer|Long expected' }
+      }
+      if (message.lostTime != null && message.hasOwnProperty('lostTime')) {
+        if (!$util.isInteger(message.lostTime) && !(message.lostTime && $util.isInteger(message.lostTime.low) && $util.isInteger(message.lostTime.high))) { return 'lostTime: integer|Long expected' }
+      }
+      if (message.connId != null && message.hasOwnProperty('connId')) {
+        if (!$util.isInteger(message.connId) && !(message.connId && $util.isInteger(message.connId.low) && $util.isInteger(message.connId.high))) { return 'connId: integer|Long expected' }
+      }
+      if (message.roomId != null && message.hasOwnProperty('roomId')) {
+        if (!$util.isInteger(message.roomId) && !(message.roomId && $util.isInteger(message.roomId.low) && $util.isInteger(message.roomId.high))) { return 'roomId: integer|Long expected' }
+      }
+      if (message.userId != null && message.hasOwnProperty('userId')) {
+        if (!$util.isInteger(message.userId) && !(message.userId && $util.isInteger(message.userId.low) && $util.isInteger(message.userId.high))) { return 'userId: integer|Long expected' }
+      }
+      if (message.appId != null && message.hasOwnProperty('appId')) {
+        if (!$util.isInteger(message.appId) && !(message.appId && $util.isInteger(message.appId.low) && $util.isInteger(message.appId.high))) { return 'appId: integer|Long expected' }
+      }
+      if (message.addr != null && message.hasOwnProperty('addr')) {
+        if (!$util.isString(message.addr)) { return 'addr: string expected' }
+      }
+      if (message.nodeId != null && message.hasOwnProperty('nodeId')) {
+        if (!$util.isInteger(message.nodeId) && !(message.nodeId && $util.isInteger(message.nodeId.low) && $util.isInteger(message.nodeId.high))) { return 'nodeId: integer|Long expected' }
+      }
+      if (message.head != null && message.hasOwnProperty('head')) {
+        if (!$util.isString(message.head)) { return 'head: string expected' }
+      }
+      if (message.nickname != null && message.hasOwnProperty('nickname')) {
+        if (!$util.isString(message.nickname)) { return 'nickname: string expected' }
+      }
+      return null
+    }
+
+    /**
+         * Creates a ConnInfo message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pblogic.ConnInfo
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pblogic.ConnInfo} ConnInfo
+         */
+    ConnInfo.fromObject = function fromObject(object) {
+      if (object instanceof $root.pblogic.ConnInfo) { return object }
+      var message = new $root.pblogic.ConnInfo()
+      if (object.beginTime != null) {
+        if ($util.Long) { (message.beginTime = $util.Long.fromValue(object.beginTime)).unsigned = false } else if (typeof object.beginTime === 'string') { message.beginTime = parseInt(object.beginTime, 10) } else if (typeof object.beginTime === 'number') { message.beginTime = object.beginTime } else if (typeof object.beginTime === 'object') { message.beginTime = new $util.LongBits(object.beginTime.low >>> 0, object.beginTime.high >>> 0).toNumber() }
+      }
+      if (object.lastPushTime != null) {
+        if ($util.Long) { (message.lastPushTime = $util.Long.fromValue(object.lastPushTime)).unsigned = false } else if (typeof object.lastPushTime === 'string') { message.lastPushTime = parseInt(object.lastPushTime, 10) } else if (typeof object.lastPushTime === 'number') { message.lastPushTime = object.lastPushTime } else if (typeof object.lastPushTime === 'object') { message.lastPushTime = new $util.LongBits(object.lastPushTime.low >>> 0, object.lastPushTime.high >>> 0).toNumber() }
+      }
+      if (object.lostTime != null) {
+        if ($util.Long) { (message.lostTime = $util.Long.fromValue(object.lostTime)).unsigned = false } else if (typeof object.lostTime === 'string') { message.lostTime = parseInt(object.lostTime, 10) } else if (typeof object.lostTime === 'number') { message.lostTime = object.lostTime } else if (typeof object.lostTime === 'object') { message.lostTime = new $util.LongBits(object.lostTime.low >>> 0, object.lostTime.high >>> 0).toNumber() }
+      }
+      if (object.connId != null) {
+        if ($util.Long) { (message.connId = $util.Long.fromValue(object.connId)).unsigned = false } else if (typeof object.connId === 'string') { message.connId = parseInt(object.connId, 10) } else if (typeof object.connId === 'number') { message.connId = object.connId } else if (typeof object.connId === 'object') { message.connId = new $util.LongBits(object.connId.low >>> 0, object.connId.high >>> 0).toNumber() }
+      }
+      if (object.roomId != null) {
+        if ($util.Long) { (message.roomId = $util.Long.fromValue(object.roomId)).unsigned = false } else if (typeof object.roomId === 'string') { message.roomId = parseInt(object.roomId, 10) } else if (typeof object.roomId === 'number') { message.roomId = object.roomId } else if (typeof object.roomId === 'object') { message.roomId = new $util.LongBits(object.roomId.low >>> 0, object.roomId.high >>> 0).toNumber() }
+      }
+      if (object.userId != null) {
+        if ($util.Long) { (message.userId = $util.Long.fromValue(object.userId)).unsigned = false } else if (typeof object.userId === 'string') { message.userId = parseInt(object.userId, 10) } else if (typeof object.userId === 'number') { message.userId = object.userId } else if (typeof object.userId === 'object') { message.userId = new $util.LongBits(object.userId.low >>> 0, object.userId.high >>> 0).toNumber() }
+      }
+      if (object.appId != null) {
+        if ($util.Long) { (message.appId = $util.Long.fromValue(object.appId)).unsigned = false } else if (typeof object.appId === 'string') { message.appId = parseInt(object.appId, 10) } else if (typeof object.appId === 'number') { message.appId = object.appId } else if (typeof object.appId === 'object') { message.appId = new $util.LongBits(object.appId.low >>> 0, object.appId.high >>> 0).toNumber() }
+      }
+      if (object.addr != null) { message.addr = String(object.addr) }
+      if (object.nodeId != null) {
+        if ($util.Long) { (message.nodeId = $util.Long.fromValue(object.nodeId)).unsigned = false } else if (typeof object.nodeId === 'string') { message.nodeId = parseInt(object.nodeId, 10) } else if (typeof object.nodeId === 'number') { message.nodeId = object.nodeId } else if (typeof object.nodeId === 'object') { message.nodeId = new $util.LongBits(object.nodeId.low >>> 0, object.nodeId.high >>> 0).toNumber() }
+      }
+      if (object.head != null) { message.head = String(object.head) }
+      if (object.nickname != null) { message.nickname = String(object.nickname) }
+      return message
+    }
+
+    /**
+         * Creates a plain object from a ConnInfo message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pblogic.ConnInfo
+         * @static
+         * @param {pblogic.ConnInfo} message ConnInfo
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    ConnInfo.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.defaults) {
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.beginTime = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.beginTime = options.longs === String ? '0' : 0 }
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.lastPushTime = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.lastPushTime = options.longs === String ? '0' : 0 }
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.lostTime = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.lostTime = options.longs === String ? '0' : 0 }
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.connId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.connId = options.longs === String ? '0' : 0 }
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.roomId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.roomId = options.longs === String ? '0' : 0 }
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.userId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.userId = options.longs === String ? '0' : 0 }
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.appId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.appId = options.longs === String ? '0' : 0 }
+        object.addr = ''
+        if ($util.Long) {
+          var long = new $util.Long(0, 0, false)
+          object.nodeId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long
+        } else { object.nodeId = options.longs === String ? '0' : 0 }
+        object.head = ''
+        object.nickname = ''
+      }
+      if (message.beginTime != null && message.hasOwnProperty('beginTime')) {
+        if (typeof message.beginTime === 'number') { object.beginTime = options.longs === String ? String(message.beginTime) : message.beginTime } else { object.beginTime = options.longs === String ? $util.Long.prototype.toString.call(message.beginTime) : options.longs === Number ? new $util.LongBits(message.beginTime.low >>> 0, message.beginTime.high >>> 0).toNumber() : message.beginTime }
+      }
+      if (message.lastPushTime != null && message.hasOwnProperty('lastPushTime')) {
+        if (typeof message.lastPushTime === 'number') { object.lastPushTime = options.longs === String ? String(message.lastPushTime) : message.lastPushTime } else { object.lastPushTime = options.longs === String ? $util.Long.prototype.toString.call(message.lastPushTime) : options.longs === Number ? new $util.LongBits(message.lastPushTime.low >>> 0, message.lastPushTime.high >>> 0).toNumber() : message.lastPushTime }
+      }
+      if (message.lostTime != null && message.hasOwnProperty('lostTime')) {
+        if (typeof message.lostTime === 'number') { object.lostTime = options.longs === String ? String(message.lostTime) : message.lostTime } else { object.lostTime = options.longs === String ? $util.Long.prototype.toString.call(message.lostTime) : options.longs === Number ? new $util.LongBits(message.lostTime.low >>> 0, message.lostTime.high >>> 0).toNumber() : message.lostTime }
+      }
+      if (message.connId != null && message.hasOwnProperty('connId')) {
+        if (typeof message.connId === 'number') { object.connId = options.longs === String ? String(message.connId) : message.connId } else { object.connId = options.longs === String ? $util.Long.prototype.toString.call(message.connId) : options.longs === Number ? new $util.LongBits(message.connId.low >>> 0, message.connId.high >>> 0).toNumber() : message.connId }
+      }
+      if (message.roomId != null && message.hasOwnProperty('roomId')) {
+        if (typeof message.roomId === 'number') { object.roomId = options.longs === String ? String(message.roomId) : message.roomId } else { object.roomId = options.longs === String ? $util.Long.prototype.toString.call(message.roomId) : options.longs === Number ? new $util.LongBits(message.roomId.low >>> 0, message.roomId.high >>> 0).toNumber() : message.roomId }
+      }
+      if (message.userId != null && message.hasOwnProperty('userId')) {
+        if (typeof message.userId === 'number') { object.userId = options.longs === String ? String(message.userId) : message.userId } else { object.userId = options.longs === String ? $util.Long.prototype.toString.call(message.userId) : options.longs === Number ? new $util.LongBits(message.userId.low >>> 0, message.userId.high >>> 0).toNumber() : message.userId }
+      }
+      if (message.appId != null && message.hasOwnProperty('appId')) {
+        if (typeof message.appId === 'number') { object.appId = options.longs === String ? String(message.appId) : message.appId } else { object.appId = options.longs === String ? $util.Long.prototype.toString.call(message.appId) : options.longs === Number ? new $util.LongBits(message.appId.low >>> 0, message.appId.high >>> 0).toNumber() : message.appId }
+      }
+      if (message.addr != null && message.hasOwnProperty('addr')) { object.addr = message.addr }
+      if (message.nodeId != null && message.hasOwnProperty('nodeId')) {
+        if (typeof message.nodeId === 'number') { object.nodeId = options.longs === String ? String(message.nodeId) : message.nodeId } else { object.nodeId = options.longs === String ? $util.Long.prototype.toString.call(message.nodeId) : options.longs === Number ? new $util.LongBits(message.nodeId.low >>> 0, message.nodeId.high >>> 0).toNumber() : message.nodeId }
+      }
+      if (message.head != null && message.hasOwnProperty('head')) { object.head = message.head }
+      if (message.nickname != null && message.hasOwnProperty('nickname')) { object.nickname = message.nickname }
+      return object
+    }
+
+    /**
+         * Converts this ConnInfo to JSON.
+         * @function toJSON
+         * @memberof pblogic.ConnInfo
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    ConnInfo.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for ConnInfo
+         * @function getTypeUrl
+         * @memberof pblogic.ConnInfo
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    ConnInfo.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/pblogic.ConnInfo'
+    }
+
+    return ConnInfo
+  })()
+
+  pblogic.GetConnListReply = (function() {
+    /**
+         * Properties of a GetConnListReply.
+         * @memberof pblogic
+         * @interface IGetConnListReply
+         * @property {pbcommon.EnumCode|null} [code] GetConnListReply code
+         * @property {string|null} [msg] GetConnListReply msg
+         * @property {Array.<pblogic.IConnInfo>|null} [list] GetConnListReply list
+         */
+
+    /**
+         * Constructs a new GetConnListReply.
+         * @memberof pblogic
+         * @classdesc Represents a GetConnListReply.
+         * @implements IGetConnListReply
+         * @constructor
+         * @param {pblogic.IGetConnListReply=} [properties] Properties to set
+         */
+    function GetConnListReply(properties) {
+      this.list = []
+      if (properties) {
+        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) { this[keys[i]] = properties[keys[i]] }
+        }
+      }
+    }
+
+    /**
+         * GetConnListReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pblogic.GetConnListReply
+         * @instance
+         */
+    GetConnListReply.prototype.code = 0
+
+    /**
+         * GetConnListReply msg.
+         * @member {string} msg
+         * @memberof pblogic.GetConnListReply
+         * @instance
+         */
+    GetConnListReply.prototype.msg = ''
+
+    /**
+         * GetConnListReply list.
+         * @member {Array.<pblogic.IConnInfo>} list
+         * @memberof pblogic.GetConnListReply
+         * @instance
+         */
+    GetConnListReply.prototype.list = $util.emptyArray
+
+    /**
+         * Creates a new GetConnListReply instance using the specified properties.
+         * @function create
+         * @memberof pblogic.GetConnListReply
+         * @static
+         * @param {pblogic.IGetConnListReply=} [properties] Properties to set
+         * @returns {pblogic.GetConnListReply} GetConnListReply instance
+         */
+    GetConnListReply.create = function create(properties) {
+      return new GetConnListReply(properties)
+    }
+
+    /**
+         * Encodes the specified GetConnListReply message. Does not implicitly {@link pblogic.GetConnListReply.verify|verify} messages.
+         * @function encode
+         * @memberof pblogic.GetConnListReply
+         * @static
+         * @param {pblogic.IGetConnListReply} message GetConnListReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    GetConnListReply.encode = function encode(message, writer) {
+      if (!writer) { writer = $Writer.create() }
+      if (message.code != null && Object.hasOwnProperty.call(message, 'code')) { writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code) }
+      if (message.msg != null && Object.hasOwnProperty.call(message, 'msg')) { writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg) }
+      if (message.list != null && message.list.length) {
+        for (var i = 0; i < message.list.length; ++i) { $root.pblogic.ConnInfo.encode(message.list[i], writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim() }
+      }
+      return writer
+    }
+
+    /**
+         * Encodes the specified GetConnListReply message, length delimited. Does not implicitly {@link pblogic.GetConnListReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pblogic.GetConnListReply
+         * @static
+         * @param {pblogic.IGetConnListReply} message GetConnListReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    GetConnListReply.encodeDelimited = function encodeDelimited(message, writer) {
+      return this.encode(message, writer).ldelim()
+    }
+
+    /**
+         * Decodes a GetConnListReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pblogic.GetConnListReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pblogic.GetConnListReply} GetConnListReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    GetConnListReply.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) { reader = $Reader.create(reader) }
+      var end = length === undefined ? reader.len : reader.pos + length; var message = new $root.pblogic.GetConnListReply()
+      while (reader.pos < end) {
+        var tag = reader.uint32()
+        switch (tag >>> 3) {
+          case 1: {
+            message.code = reader.int32()
+            break
+          }
+          case 2: {
+            message.msg = reader.string()
+            break
+          }
+          case 3: {
+            if (!(message.list && message.list.length)) { message.list = [] }
+            message.list.push($root.pblogic.ConnInfo.decode(reader, reader.uint32()))
+            break
+          }
+          default:
+            reader.skipType(tag & 7)
+            break
+        }
+      }
+      return message
+    }
+
+    /**
+         * Decodes a GetConnListReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pblogic.GetConnListReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pblogic.GetConnListReply} GetConnListReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    GetConnListReply.decodeDelimited = function decodeDelimited(reader) {
+      if (!(reader instanceof $Reader)) { reader = new $Reader(reader) }
+      return this.decode(reader, reader.uint32())
+    }
+
+    /**
+         * Verifies a GetConnListReply message.
+         * @function verify
+         * @memberof pblogic.GetConnListReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    GetConnListReply.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) { return 'object expected' }
+      if (message.code != null && message.hasOwnProperty('code')) {
+        switch (message.code) {
+          default:
+            return 'code: enum value expected'
+          case 0:
+          case 200:
+          case 403:
+          case 500:
+          case 501:
+          case 502:
+          case 503:
+          case 504:
+          case 505:
+          case 1001:
+          case 1002:
+          case 1003:
+          case 1004:
+          case 2002:
+          case 2003:
+          case 2004:
+          case 2005:
+          case 2006:
+          case 2007:
+          case 2008:
+          case 2009:
+          case 2010:
+          case 2011:
+          case 2012:
+          case 2013:
+          case 2014:
+          case 2015:
+          case 3001:
+          case 3002:
+          case 3003:
+          case 5001:
+          case 5002:
+          case 10001:
+          case 10002:
+            break
+        }
+      }
+      if (message.msg != null && message.hasOwnProperty('msg')) {
+        if (!$util.isString(message.msg)) { return 'msg: string expected' }
+      }
+      if (message.list != null && message.hasOwnProperty('list')) {
+        if (!Array.isArray(message.list)) { return 'list: array expected' }
+        for (var i = 0; i < message.list.length; ++i) {
+          var error = $root.pblogic.ConnInfo.verify(message.list[i])
+          if (error) { return 'list.' + error }
+        }
+      }
+      return null
+    }
+
+    /**
+         * Creates a GetConnListReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pblogic.GetConnListReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pblogic.GetConnListReply} GetConnListReply
+         */
+    GetConnListReply.fromObject = function fromObject(object) {
+      if (object instanceof $root.pblogic.GetConnListReply) { return object }
+      var message = new $root.pblogic.GetConnListReply()
+      switch (object.code) {
+        default:
+          if (typeof object.code === 'number') {
+            message.code = object.code
+            break
+          }
+          break
+        case 'None':
+        case 0:
+          message.code = 0
+          break
+        case 'Success':
+        case 200:
+          message.code = 200
+          break
+        case 'Forbidden':
+        case 403:
+          message.code = 403
+          break
+        case 'Fail':
+        case 500:
+          message.code = 500
+          break
+        case 'Unknown':
+        case 501:
+          message.code = 501
+          break
+        case 'Internal':
+        case 502:
+          message.code = 502
+          break
+        case 'Invalid':
+        case 503:
+          message.code = 503
+          break
+        case 'InvalidParam':
+        case 504:
+          message.code = 504
+          break
+        case 'ParamError':
+        case 505:
+          message.code = 505
+          break
+        case 'FindError':
+        case 1001:
+          message.code = 1001
+          break
+        case 'CreateError':
+        case 1002:
+          message.code = 1002
+          break
+        case 'DeleteError':
+        case 1003:
+          message.code = 1003
+          break
+        case 'UpdateError':
+        case 1004:
+          message.code = 1004
+          break
+        case 'InvalidToken':
+        case 2002:
+          message.code = 2002
+          break
+        case 'InvalidSign':
+        case 2003:
+          message.code = 2003
+          break
+        case 'NotLogin':
+        case 2004:
+          message.code = 2004
+          break
+        case 'LoginTimeout':
+        case 2005:
+          message.code = 2005
+          break
+        case 'LoginError':
+        case 2006:
+          message.code = 2006
+          break
+        case 'LoginForbidden':
+        case 2007:
+          message.code = 2007
+          break
+        case 'LoginExpired':
+        case 2008:
+          message.code = 2008
+          break
+        case 'LoginInvalid':
+        case 2009:
+          message.code = 2009
+          break
+        case 'LoginInvalidPassword':
+        case 2010:
+          message.code = 2010
+          break
+        case 'LoginInvalidUsername':
+        case 2011:
+          message.code = 2011
+          break
+        case 'LoginInvalidEmail':
+        case 2012:
+          message.code = 2012
+          break
+        case 'LoginInvalidPhone':
+        case 2013:
+          message.code = 2013
+          break
+        case 'LoginInvalidUsernameOrEmail':
+        case 2014:
+          message.code = 2014
+          break
+        case 'LoginSocketRepeat':
+        case 2015:
+          message.code = 2015
+          break
+        case 'RoleIsNotExist':
+        case 3001:
+          message.code = 3001
+          break
+        case 'UserIsExist':
+        case 3002:
+          message.code = 3002
+          break
+        case 'UserIsBan':
+        case 3003:
+          message.code = 3003
+          break
+        case 'TalkIsBan':
+        case 5001:
+          message.code = 5001
+          break
+        case 'EnterRoomErr':
+        case 5002:
+          message.code = 5002
+          break
+        case 'HalaChatNeedBuy':
+        case 10001:
+          message.code = 10001
+          break
+        case 'HalaPriceOutRange':
+        case 10002:
+          message.code = 10002
+          break
+      }
+      if (object.msg != null) { message.msg = String(object.msg) }
+      if (object.list) {
+        if (!Array.isArray(object.list)) { throw TypeError('.pblogic.GetConnListReply.list: array expected') }
+        message.list = []
+        for (var i = 0; i < object.list.length; ++i) {
+          if (typeof object.list[i] !== 'object') { throw TypeError('.pblogic.GetConnListReply.list: object expected') }
+          message.list[i] = $root.pblogic.ConnInfo.fromObject(object.list[i])
+        }
+      }
+      return message
+    }
+
+    /**
+         * Creates a plain object from a GetConnListReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pblogic.GetConnListReply
+         * @static
+         * @param {pblogic.GetConnListReply} message GetConnListReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+    GetConnListReply.toObject = function toObject(message, options) {
+      if (!options) { options = {} }
+      var object = {}
+      if (options.arrays || options.defaults) { object.list = [] }
+      if (options.defaults) {
+        object.code = options.enums === String ? 'None' : 0
+        object.msg = ''
+      }
+      if (message.code != null && message.hasOwnProperty('code')) { object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code }
+      if (message.msg != null && message.hasOwnProperty('msg')) { object.msg = message.msg }
+      if (message.list && message.list.length) {
+        object.list = []
+        for (var j = 0; j < message.list.length; ++j) { object.list[j] = $root.pblogic.ConnInfo.toObject(message.list[j], options) }
+      }
+      return object
+    }
+
+    /**
+         * Converts this GetConnListReply to JSON.
+         * @function toJSON
+         * @memberof pblogic.GetConnListReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+    GetConnListReply.prototype.toJSON = function toJSON() {
+      return this.constructor.toObject(this, $protobuf.util.toJSONOptions)
+    }
+
+    /**
+         * Gets the default type url for GetConnListReply
+         * @function getTypeUrl
+         * @memberof pblogic.GetConnListReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+    GetConnListReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+      if (typeUrlPrefix === undefined) {
+        typeUrlPrefix = 'type.googleapis.com'
+      }
+      return typeUrlPrefix + '/pblogic.GetConnListReply'
+    }
+
+    return GetConnListReply
+  })()
+
+  pblogic.LogicAdmin = (function() {
+    /**
+         * Constructs a new LogicAdmin service.
+         * @memberof pblogic
+         * @classdesc Represents a LogicAdmin
+         * @extends $protobuf.rpc.Service
+         * @constructor
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         */
+    function LogicAdmin(rpcImpl, requestDelimited, responseDelimited) {
+      $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited)
+    }
+
+    (LogicAdmin.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = LogicAdmin
+
+    /**
+         * Creates new LogicAdmin service using the specified rpc implementation.
+         * @function create
+         * @memberof pblogic.LogicAdmin
+         * @static
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         * @returns {LogicAdmin} RPC service. Useful where requests and/or responses are streamed.
+         */
+    LogicAdmin.create = function create(rpcImpl, requestDelimited, responseDelimited) {
+      return new this(rpcImpl, requestDelimited, responseDelimited)
+    }
+
+    /**
+         * Callback as used by {@link pblogic.LogicAdmin#getConnList}.
+         * @memberof pblogic.LogicAdmin
+         * @typedef GetConnListCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pblogic.GetConnListReply} [response] GetConnListReply
+         */
+
+    /**
+         * Calls GetConnList.
+         * @function getConnList
+         * @memberof pblogic.LogicAdmin
+         * @instance
+         * @param {pbcommon.IEmpty} request Empty message or plain object
+         * @param {pblogic.LogicAdmin.GetConnListCallback} callback Node-style callback called with the error, if any, and GetConnListReply
+         * @returns {undefined}
+         * @variation 1
+         */
+    Object.defineProperty(LogicAdmin.prototype.getConnList = function getConnList(request, callback) {
+      return this.rpcCall(getConnList, $root.pbcommon.Empty, $root.pblogic.GetConnListReply, request, callback)
+    }, 'name', { value: 'GetConnList' })
+
+    /**
+         * Calls GetConnList.
+         * @function getConnList
+         * @memberof pblogic.LogicAdmin
+         * @instance
+         * @param {pbcommon.IEmpty} request Empty message or plain object
+         * @returns {Promise<pblogic.GetConnListReply>} Promise
+         * @variation 2
+         */
+
+    return LogicAdmin
+  })()
+
+  return pblogic
 })()
 
 module.exports = $root

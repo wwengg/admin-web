@@ -473,7 +473,15 @@ export default {
     async updateApisData() {
       this.defaultCheckedKeys = this.$refs.tree.getCheckedKeys()
       console.log(this.defaultCheckedKeys)
-      await this.updateApisDataByChecked()
+      // await this.updateApisDataByChecked()
+      this.apisData.map(v => {
+        if (this.defaultCheckedKeys.indexOf(v.id) >= 0) {
+          v.isSelected = true
+        } else {
+          v.isSelected = false
+        }
+        return v
+      })
       console.log(this.apisData)
       const res = await setApiByCasbinRole({ role: this.role, list: this.apisData })
       if (res.code === 'Success') {
