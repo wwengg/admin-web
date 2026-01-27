@@ -24,18 +24,18 @@ import WujieVue from 'wujie-vue2'
 Vue.use(WujieVue)
 
 // Casdoor
-import Casdoor from 'casdoor-vue-sdk'
+// import Casdoor from 'casdoor-vue-sdk'
 import VueCompositionAPI from '@vue/composition-api'
 
-const config = {
-  serverUrl: 'https://account.wwengg.cn',
-  clientId: '090c5a8e378c3113f60e',
-  organizationName: 'organization_wwengg',
-  appName: 'application_wwengg',
-  redirectPath: '#/auth-redirect'
-}
+// const config = {
+//   serverUrl: 'https://account.wwengg.cn',
+//   clientId: '090c5a8e378c3113f60e',
+//   organizationName: 'organization_wwengg',
+//   appName: 'application_wwengg',
+//   redirectPath: '#/auth-redirect'
+// }
 Vue.use(VueCompositionAPI)
-Vue.use(Casdoor, config)
+// Vue.use(Casdoor, config)
 
 /**
  * If you don't want to use mock-server
