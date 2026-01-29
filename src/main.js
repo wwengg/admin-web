@@ -64,6 +64,7 @@ Vue.config.productionTip = false
 
 import protobufPlugin from './proto/protobuf-plugin'
 import protoRoot from '@/proto/proto.js'
+import protoErp from '@/proto/erp.js'
 var $protobuf = require('protobufjs/minimal')
 var Long = require('long')
 $protobuf.util.Long = Long
