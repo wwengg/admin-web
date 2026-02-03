@@ -5,6 +5,7 @@ import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
 import { getToken } from '@/utils/auth' // get token from cookie
 import getPageTitle from '@/utils/get-page-title'
+import imService from '@/service/im'
 
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
@@ -29,12 +30,33 @@ router.beforeEach(async(to, from, next) => {
       // determine whether the user has obtained his permission roles through getInfo
       const hasRoles = store.getters.roles && store.getters.roles.length > 0
       if (hasRoles) {
+        // User has roles, check if IM is connected
+        if (!imService.isConnectionActive()) {
+          // Connect to IM in background without blocking navigation
+          imService.connect().then(() => {
+            return imService.login(getToken())
+          }).then(() => {
+            console.log('[Permission] IM service connected (auto-login)')
+          }).catch((error) => {
+            console.warn('[Permission] IM service auto-connection failed:', error)
+          })
+        }
         next()
       } else {
         try {
           // get user info
           // note: roles must be a object array! such as: ['admin'] or ,['developer','editor']
           await store.dispatch('user/getInfo')
+
+          // Connect to IM service after getting user info
+          imService.connect().then(() => {
+            return imService.login(getToken())
+          }).then(() => {
+            console.log('[Permission] IM service connected')
+          }).catch((error) => {
+            console.warn('[Permission] IM service connection failed:', error)
+            // Don't block navigation if IM fails
+          })
 
           // generate accessible routes map based on roles
           const accessRoutes = await store.dispatch('permission/generateRoutes')

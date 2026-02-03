@@ -2,7 +2,15 @@
   "permissions": {
     "allow": [
       "Bash(pnpm install)",
-      "Bash(pnpm install:*)"
+      "Bash(pnpm install:*)",
+      "Bash(sudo chown:*)",
+      "mcp__figma__getme",
+      "mcp__figma__getteamprojects",
+      "mcp__figma__getactivitylogs",
+      "mcp__figma__getfile",
+      "mcp__figma__getfilecomponents",
+      "mcp__figma__getfilestyles",
+      "mcp__figma__getcomments"
     ]
   }
 }

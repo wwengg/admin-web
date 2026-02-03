@@ -65,11 +65,20 @@ Vue.config.productionTip = false
 import protobufPlugin from './proto/protobuf-plugin'
 import protoRoot from '@/proto/proto.js'
 import protoErp from '@/proto/erp.js'
+import protoIm from '@/proto/im.js'
+
+// Import and initialize IM Service
+import imService from '@/service/im'
+// Initialize IM service with default config
+// Will connect when user logs in
+imService.init()
+Vue.prototype.$im = imService
 var $protobuf = require('protobufjs/minimal')
 var Long = require('long')
 $protobuf.util.Long = Long
 $protobuf.configure()
 Vue.prototype.$protoRoot = protoRoot
+Vue.prototype.$protoIm = protoIm
 if (window.__POWERED_BY_WUJIE__) {
   let instance
   window.__WUJIE_MOUNT = () => {

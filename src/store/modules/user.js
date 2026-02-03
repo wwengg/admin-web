@@ -1,6 +1,7 @@
 import { login2, logout, getInfo, login3 } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import router, { resetRouter } from '@/router'
+import imService from '@/service/im'
 
 const state = {
   token: getToken(),
@@ -42,11 +43,22 @@ const actions = {
     // }
     return new Promise((resolve, reject) => {
       login2({ username: username.trim(), password: password }).then(
-        res => {
+        async res => {
           if (res.code === 'Success') {
             console.log(res)
             commit('SET_TOKEN', res.token)
             setToken(res.token)
+
+            // Connect to IM service
+            try {
+              await imService.connect()
+              await imService.login(res.token)
+              console.log('[User] IM service connected')
+            } catch (error) {
+              console.warn('[User] IM service connection failed:', error)
+              // Don't reject login if IM fails
+            }
+
             resolve()
           } else {
             reject(res)
@@ -69,13 +81,24 @@ const actions = {
     console.log(process.env.VUE_APP_BASE_APPNAME)
     return new Promise((resolve, reject) => {
       login3({ code: code, state: state, type: type, applicationName: process.env.VUE_APP_BASE_APPNAME }).then(
-        res => {
+        async res => {
           if (res.code === 'Success') {
             console.log(res)
             commit('SET_TOKEN', res.token)
             setToken(res.token)
             commit('SET_NAME', res.user.username)
             commit('SET_AVATAR', res.user.avatar)
+
+            // Connect to IM service
+            try {
+              await imService.connect()
+              await imService.login(res.token)
+              console.log('[User] IM service connected')
+            } catch (error) {
+              console.warn('[User] IM service connection failed:', error)
+              // Don't reject login if IM fails
+            }
+
             resolve()
           } else {
             reject(res)
@@ -123,6 +146,10 @@ const actions = {
   // user logout
   logout({ commit, state, dispatch }) {
     return new Promise((resolve, reject) => {
+      // Disconnect IM service first
+      imService.disconnect()
+      console.log('[User] IM service disconnected')
+
       logout(state.token).then(() => {
         commit('SET_TOKEN', '')
         commit('SET_ROLES', [])

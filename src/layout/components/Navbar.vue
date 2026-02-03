@@ -39,6 +39,9 @@
           <el-dropdown-item divided @click.native="toProfile">
             <span style="display:block;">设置</span>
           </el-dropdown-item>
+          <el-dropdown-item divided @click.native="logout">
+            <span style="display:block;">退出登陆</span>
+          </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
@@ -79,7 +82,7 @@ export default {
       window.localStorage.removeItem('redirect')
       window.localStorage.removeItem('other_query')
       this.$router.push(`/login?redirect=${this.$route.fullPath}`)
-      window.location.href = 'https://account.wwengg.cn/login/organization_wwengg'
+      // window.location.href = 'https://account.wwengg.cn/login/organization_wwengg'
     },
     async toProfile() {
       window.location.href = 'https://account.wwengg.cn/apps'

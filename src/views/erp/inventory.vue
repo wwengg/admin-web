@@ -101,9 +101,10 @@
             </el-table-column>
             <el-table-column prop="totalValue" label="总价值" width="100" class-name="hidden-xl-and-down" />
             <el-table-column prop="location" label="库位" width="120" class-name="hidden-sm-and-down" />
-            <el-table-column label="操作" width="80">
+            <el-table-column label="操作" width="150">
               <template slot-scope="scope">
-                <el-button type="text" size="small">详情</el-button>
+                <el-button type="text" size="small" @click="handleEdit(scope.row)">编辑</el-button>
+                <el-button type="text" size="small" style="color: #F56C6C;" @click="handleDelete(scope.row)">删除</el-button>
               </template>
             </el-table-column>
           </el-table>
@@ -236,8 +237,8 @@
                 </el-row>
 
                 <div class="location-actions">
-                  <el-button type="text" size="small">查看详情</el-button>
-                  <el-button type="text" size="small">编辑</el-button>
+                  <el-button type="text" size="small" @click="handleEditLocation(location)">编辑</el-button>
+                  <el-button type="text" size="small" style="color: #F56C6C;" @click="handleDeleteLocation(location)">删除</el-button>
                 </div>
               </el-card>
             </el-col>
@@ -295,6 +296,99 @@
         </el-tab-pane>
       </el-tabs>
     </el-card>
+
+    <!-- 库存编辑对话框 -->
+    <el-dialog
+      :title="inventoryDialogTitle"
+      :visible.sync="inventoryDialogVisible"
+      :close-on-click-modal="false"
+      width="600px"
+      @close="resetInventoryForm"
+    >
+      <el-form
+        ref="inventoryForm"
+        :model="inventoryForm"
+        :rules="inventoryRules"
+        label-width="100px"
+      >
+        <el-form-item label="物料编码" prop="code">
+          <el-input v-model="inventoryForm.code" placeholder="请输入物料编码" />
+        </el-form-item>
+        <el-form-item label="物料名称" prop="name">
+          <el-input v-model="inventoryForm.name" placeholder="请输入物料名称" />
+        </el-form-item>
+        <el-form-item label="分类" prop="category">
+          <el-input v-model="inventoryForm.category" placeholder="请输入分类" />
+        </el-form-item>
+        <el-form-item label="规格" prop="spec">
+          <el-input v-model="inventoryForm.spec" placeholder="请输入规格" />
+        </el-form-item>
+        <el-form-item label="单位" prop="unit">
+          <el-input v-model="inventoryForm.unit" placeholder="如：个、kg、台等" />
+        </el-form-item>
+        <el-form-item label="初始库存" prop="quantity">
+          <el-input-number v-model="inventoryForm.quantity" :min="0" controls-position="right" style="width: 100%;" />
+        </el-form-item>
+        <el-form-item label="最小库存" prop="minStock">
+          <el-input-number v-model="inventoryForm.minStock" :min="0" controls-position="right" style="width: 100%;" />
+        </el-form-item>
+        <el-form-item label="最大库存" prop="maxStock">
+          <el-input-number v-model="inventoryForm.maxStock" :min="0" controls-position="right" style="width: 100%;" />
+        </el-form-item>
+        <el-form-item label="平均成本" prop="avgCost">
+          <el-input-number v-model="inventoryForm.avgCost" :min="0" :precision="2" controls-position="right" style="width: 100%;" />
+        </el-form-item>
+        <el-form-item label="库位" prop="location">
+          <el-input v-model="inventoryForm.location" placeholder="请输入库位" />
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="inventoryDialogVisible = false">取消</el-button>
+        <el-button type="primary" @click="submitInventoryForm" :loading="submitting">确定</el-button>
+      </div>
+    </el-dialog>
+
+    <!-- 库位编辑对话框 -->
+    <el-dialog
+      :title="locationDialogTitle"
+      :visible.sync="locationDialogVisible"
+      :close-on-click-modal="false"
+      width="600px"
+      @close="resetLocationForm"
+    >
+      <el-form
+        ref="locationForm"
+        :model="locationForm"
+        :rules="locationRules"
+        label-width="100px"
+      >
+        <el-form-item label="区域" prop="zone">
+          <el-input v-model="locationForm.zone" placeholder="如：工厂A区、北京三里屯店" />
+        </el-form-item>
+        <el-form-item label="名称" prop="name">
+          <el-input v-model="locationForm.name" placeholder="如：原材料仓库、零售门店仓库" />
+        </el-form-item>
+        <el-form-item label="地址" prop="address">
+          <el-input v-model="locationForm.address" placeholder="请输入详细地址" />
+        </el-form-item>
+        <el-form-item label="类型" prop="type">
+          <el-radio-group v-model="locationForm.type">
+            <el-radio :label="1">工厂库位</el-radio>
+            <el-radio :label="2">门店库位</el-radio>
+          </el-radio-group>
+        </el-form-item>
+        <el-form-item label="容量" prop="capacity">
+          <el-input-number v-model="locationForm.capacity" :min="1" controls-position="right" style="width: 100%;" />
+        </el-form-item>
+        <el-form-item label="货架数" prop="shelves">
+          <el-input-number v-model="locationForm.shelves" :min="0" controls-position="right" style="width:100%;" />
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="locationDialogVisible = false">取消</el-button>
+        <el-button type="primary" @click="submitLocationForm" :loading="submitting">确定</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -312,6 +406,11 @@ import {
   updateLocation,
   deleteLocation
 } from '@/api/erp/inventoryService'
+import {
+  createProduct,
+  updateProduct,
+  deleteProduct
+} from '@/api/erp/productService'
 
 export default {
   name: 'ERPInventory',
@@ -321,6 +420,7 @@ export default {
       searchText: '',
       locationType: 'factory',
       loading: false,
+      submitting: false,
       inventoryItems: [],
       stockMovements: [],
       factoryLocations: [],
@@ -341,6 +441,47 @@ export default {
         page: 1,
         pageSize: 20,
         total: 0
+      },
+      // 库存编辑对话框
+      inventoryDialogVisible: false,
+      inventoryDialogTitle: '新增物料',
+      inventoryForm: {
+        id: '',
+        code: '',
+        name: '',
+        category: '',
+        spec: '',
+        unit: '',
+        quantity: 0,
+        minStock: 0,
+        maxStock: 0,
+        avgCost: 0,
+        location: ''
+      },
+      inventoryRules: {
+        code: [{ required: true, message: '请输入物料编码', trigger: 'blur' }],
+        name: [{ required: true, message: '请输入物料名称', trigger: 'blur' }],
+        unit: [{ required: true, message: '请输入单位', trigger: 'blur' }],
+        quantity: [{ required: true, message: '请输入初始库存', trigger: 'blur' }],
+        avgCost: [{ required: true, message: '请输入平均成本', trigger: 'blur' }]
+      },
+      // 库位编辑对话框
+      locationDialogVisible: false,
+      locationDialogTitle: '新增库位',
+      locationForm: {
+        id: '',
+        zone: '',
+        name: '',
+        address: '',
+        type: 1,
+        capacity: 0,
+        shelves: 0
+      },
+      locationRules: {
+        zone: [{ required: true, message: '请输入区域', trigger: 'blur' }],
+        name: [{ required: true, message: '请输入名称', trigger: 'blur' }],
+        type: [{ required: true, message: '请选择类型', trigger: 'change' }],
+        capacity: [{ required: true, message: '请输入容量', trigger: 'blur' }]
       }
     }
   },
@@ -509,8 +650,88 @@ export default {
       })
     },
     handleCreate() {
-      this.$message.info('新增物料功能开发中')
+      this.inventoryDialogTitle = '新增物料'
+      this.inventoryDialogVisible = true
     },
+    handleEdit(row) {
+      this.inventoryDialogTitle = '编辑物料'
+      this.inventoryDialogVisible = true
+      this.inventoryForm = {
+        id: row.id,
+        code: row.code,
+        name: row.name,
+        category: row.category,
+        spec: row.spec || '',
+        unit: row.unit,
+        quantity: row.stock,
+        minStock: row.minStock,
+        maxStock: row.maxStock,
+        avgCost: parseFloat(row.avgCost.replace('¥', '')) || 0,
+        location: row.location
+      }
+    },
+    async handleDelete(row) {
+      try {
+        await this.$confirm('确认删除该物料吗？此操作不可恢复。', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        })
+        await deleteProduct({ id: row.id })
+        this.$message.success('删除成功')
+        this.loadInventoryList()
+      } catch (error) {
+        if (error !== 'cancel') {
+          console.error('删除失败:', error)
+          this.$message.error('删除失败')
+        }
+      }
+    },
+    async submitInventoryForm() {
+      this.$refs.inventoryForm.validate(async (valid) => {
+        if (!valid) return
+        try {
+          this.submitting = true
+          const apiCall = this.inventoryForm.id ? updateProduct : createProduct
+          await apiCall({
+            id: this.inventoryForm.id || undefined,
+            code: this.inventoryForm.code,
+            name: this.inventoryForm.name,
+            categoryName: this.inventoryForm.category,
+            spec: this.inventoryForm.spec,
+            unit: this.inventoryForm.unit,
+            stock: this.inventoryForm.quantity,
+            minStock: this.inventoryForm.minStock,
+            maxStock: this.inventoryForm.maxStock,
+            costPrice: this.inventoryForm.avgCost,
+            locationName: this.inventoryForm.location
+          })
+          this.$message.success(this.inventoryForm.id ? '更新成功' : '创建成功')
+          this.inventoryDialogVisible = false
+          this.loadInventoryList()
+        } catch (error) {
+          console.error('提交失败:', error)
+          this.$message.error('操作失败')
+        } finally {
+          this.submitting = false
+        }
+      })
+    },
+    resetInventoryForm() {
+      this.inventoryForm = {
+        id: '',
+        code: '',
+        name: '',
+        category: '',
+        spec: '',
+        unit: '',
+        quantity: 0,
+        minStock: 0,
+        maxStock: 0,
+        avgCost: 0,
+        location: ''
+      }
+      },
     async handleStocktake() {
       try {
         await this.$confirm('确认开始库存盘点吗？', '提示', {
@@ -529,7 +750,69 @@ export default {
       }
     },
     handleCreateLocation() {
-      this.$message.info('新增库位功能开发中')
+      this.locationDialogTitle = '新增库位'
+      this.locationDialogVisible = true
+      // 默认选中当前类型
+      this.locationForm.type = this.locationType === 'factory' ? 1 : 2
+    },
+    handleEditLocation(row) {
+      this.locationDialogTitle = '编辑库位'
+      this.locationDialogVisible = true
+      this.locationForm = {
+        id: row.id,
+        zone: row.zone,
+        name: row.name,
+        address: row.address,
+        type: row.type === 'factory' ? 1 : 2,
+        capacity: row.capacity,
+        shelves: row.shelves
+      }
+    },
+    async handleDeleteLocation(row) {
+      try {
+        await this.$confirm('确认删除该库位吗？此操作不可恢复。', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        })
+        await deleteLocation({ id: row.id })
+        this.$message.success('删除成功')
+        this.loadLocationList()
+      } catch (error) {
+        if (error !== 'cancel') {
+          console.error('删除库位失败:', error)
+          this.$message.error('删除失败')
+        }
+      }
+    },
+    async submitLocationForm() {
+      this.$refs.locationForm.validate(async (valid) => {
+        if (!valid) return
+        try {
+          this.submitting = true
+          const apiCall = this.locationForm.id ? updateLocation : createLocation
+          await apiCall(this.locationForm)
+          this.$message.success(this.locationForm.id ? '更新成功' : '创建成功')
+          this.locationDialogVisible = false
+          this.loadLocationList()
+        } catch (error) {
+          console.error('提交库位失败:', error)
+          this.$message.error('操作失败')
+        } finally {
+          this.submitting = false
+        }
+      })
+    },
+    resetLocationForm() {
+      this.locationForm = {
+        id: '',
+        zone: '',
+        name: '',
+        address: '',
+        type: this.locationType === 'factory' ? 1 : 2,
+        capacity: 0,
+        shelves: 0
+      }
     },
     handleCreatePurchase(item) {
       this.$message.info(`为 ${item.code} 创建采购单`)

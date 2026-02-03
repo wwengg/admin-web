@@ -73,6 +73,12 @@
               </template>
             </el-table-column>
             <el-table-column prop="deliveryDate" label="交货日期" width="110" class-name="hidden-lg-and-down" />
+            <el-table-column label="操作" width="150">
+              <template slot-scope="scope">
+                <el-button type="text" size="small" @click="handleEditOrder(scope.row)">编辑</el-button>
+                <el-button type="text" size="small" style="color: #F56C6C;" @click="handleDeleteOrder(scope.row)">删除</el-button>
+              </template>
+            </el-table-column>
           </el-table>
         </el-tab-pane>
 
@@ -144,6 +150,7 @@
             />
             <el-button icon="el-icon-filter">筛选</el-button>
             <el-button icon="el-icon-download">导出</el-button>
+            <el-button type="primary" icon="el-icon-plus" @click="handleCreateCustomer">新增客户</el-button>
           </div>
           <el-table :data="customers" style="width: 100%">
             <el-table-column prop="name" label="客户名称" show-overflow-tooltip />
@@ -158,10 +165,191 @@
             </el-table-column>
             <el-table-column prop="totalOrders" label="订单总数" width="100" class-name="hidden-xl-and-down" />
             <el-table-column prop="totalAmount" label="累计金额" width="110" />
+            <el-table-column label="操作" width="150">
+              <template slot-scope="scope">
+                <el-button type="text" size="small" @click="handleEditCustomer(scope.row)">编辑</el-button>
+                <el-button type="text" size="small" style="color: #F56C6C;" @click="handleDeleteCustomer(scope.row)">删除</el-button>
+              </template>
+            </el-table-column>
           </el-table>
         </el-tab-pane>
       </el-tabs>
     </el-card>
+
+    <!-- 销售订单编辑对话框 -->
+    <el-dialog
+      :title="orderDialogTitle"
+      :visible.sync="orderDialogVisible"
+      :close-on-click-modal="false"
+      width="700px"
+      @close="resetOrderForm"
+    >
+      <el-form
+        ref="orderForm"
+        :model="orderForm"
+        :rules="orderRules"
+        label-width="100px"
+      >
+        <el-form-item label="客户名称" prop="customerName">
+          <el-select
+            v-model="orderForm.customerId"
+            filterable
+            placeholder="请选择客户"
+            style="width: 100%;"
+            @change="handleCustomerChange"
+          >
+            <el-option
+              v-for="customer in customerOptions"
+              :key="customer.id"
+              :label="customer.name"
+              :value="customer.id"
+            />
+          </el-select>
+        </el-form-item>
+        <el-form-item label="联系人" prop="contactName">
+          <el-input v-model="orderForm.contactName" placeholder="请输入联系人" />
+        </el-form-item>
+        <el-form-item label="联系电话" prop="phone">
+          <el-input v-model="orderForm.phone" placeholder="请输入联系电话" />
+        </el-form-item>
+        <el-form-item label="交货日期" prop="deliveryDate">
+          <el-date-picker
+            v-model="orderForm.deliveryDate"
+            type="date"
+            placeholder="选择交货日期"
+            style="width: 100%;"
+            value-format="timestamp"
+          />
+        </el-form-item>
+        <el-form-item label="备注">
+          <el-input
+            v-model="orderForm.remark"
+            type="textarea"
+            :rows="3"
+            placeholder="请输入备注"
+          />
+        </el-form-item>
+        <el-divider content-position="left">订单明细</el-divider>
+        <el-button type="primary" size="small" icon="el-icon-plus" @click="addOrderItem" style="margin-bottom: 12px;">
+          添加明细
+        </el-button>
+        <el-table :data="orderForm.items" style="width: 100%;">
+          <el-table-column label="商品" width="180">
+            <template slot-scope="scope">
+              <el-select
+                v-model="scope.row.productId"
+                filterable
+                placeholder="选择商品"
+                size="small"
+                @change="handleProductChange(scope.$index)"
+              >
+                <el-option
+                  v-for="product in productOptions"
+                  :key="product.id"
+                  :label="product.name"
+                  :value="product.id"
+                />
+              </el-select>
+            </template>
+          </el-table-column>
+          <el-table-column label="数量" width="120">
+            <template slot-scope="scope">
+              <el-input-number
+                v-model="scope.row.quantity"
+                :min="1"
+                size="small"
+                controls-position="right"
+                style="width: 100%;"
+              />
+            </template>
+          </el-table-column>
+          <el-table-column label="单价" width="120">
+            <template slot-scope="scope">
+              <el-input-number
+                v-model="scope.row.price"
+                :min="0"
+                :precision="2"
+                size="small"
+                controls-position="right"
+                style="width: 100%;"
+              />
+            </template>
+          </el-table-column>
+          <el-table-column label="小计" width="100">
+            <template slot-scope="scope">
+              {{ (scope.row.quantity * scope.row.price).toFixed(2) }}
+            </template>
+          </el-table-column>
+          <el-table-column label="操作" width="60">
+            <template slot-scope="scope">
+              <el-button
+                type="text"
+                size="small"
+                style="color: #F56C6C;"
+                @click="removeOrderItem(scope.$index)"
+              >
+                删除
+              </el-button>
+            </template>
+          </el-table-column>
+        </el-table>
+        <div style="text-align: right; margin-top: 12px; font-weight: bold;">
+          合计: ¥{{ orderTotalAmount.toFixed(2) }}
+        </div>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="orderDialogVisible = false">取消</el-button>
+        <el-button type="primary" @click="submitOrderForm" :loading="submitting">确定</el-button>
+      </div>
+    </el-dialog>
+
+    <!-- 客户编辑对话框 -->
+    <el-dialog
+      :title="customerDialogTitle"
+      :visible.sync="customerDialogVisible"
+      :close-on-click-modal="false"
+      width="600px"
+      @close="resetCustomerForm"
+    >
+      <el-form
+        ref="customerForm"
+        :model="customerForm"
+        :rules="customerRules"
+        label-width="100px"
+      >
+        <el-form-item label="客户名称" prop="name">
+          <el-input v-model="customerForm.name" placeholder="请输入客户名称" />
+        </el-form-item>
+        <el-form-item label="联系人" prop="contactName">
+          <el-input v-model="customerForm.contactName" placeholder="请输入联系人" />
+        </el-form-item>
+        <el-form-item label="联系电话" prop="phone">
+          <el-input v-model="customerForm.phone" placeholder="请输入联系电话" />
+        </el-form-item>
+        <el-form-item label="邮箱" prop="email">
+          <el-input v-model="customerForm.email" placeholder="请输入邮箱" />
+        </el-form-item>
+        <el-form-item label="级别" prop="level">
+          <el-radio-group v-model="customerForm.level">
+            <el-radio :label="1">VIP</el-radio>
+            <el-radio :label="2">重要</el-radio>
+            <el-radio :label="3">普通</el-radio>
+          </el-radio-group>
+        </el-form-item>
+        <el-form-item label="地址">
+          <el-input
+            v-model="customerForm.address"
+            type="textarea"
+            :rows="3"
+            placeholder="请输入地址"
+          />
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="customerDialogVisible = false">取消</el-button>
+        <el-button type="primary" @click="submitCustomerForm" :loading="submitting">确定</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -202,7 +390,53 @@ export default {
         page: 1,
         pageSize: 20,
         total: 0
-      }
+      },
+      // 销售订单编辑对话框
+      orderDialogVisible: false,
+      orderDialogTitle: '新建销售订单',
+      orderForm: {
+        id: '',
+        customerId: '',
+        customerName: '',
+        contactName: '',
+        phone: '',
+        deliveryDate: null,
+        remark: '',
+        items: []
+      },
+      orderRules: {
+        customerId: [{ required: true, message: '请选择客户', trigger: 'change' }],
+        contactName: [{ required: true, message: '请输入联系人', trigger: 'blur' }],
+        phone: [{ required: true, message: '请输入联系电话', trigger: 'blur' }]
+      },
+      // 客户编辑对话框
+      customerDialogVisible: false,
+      customerDialogTitle: '新增客户',
+      customerForm: {
+        id: '',
+        name: '',
+        contactName: '',
+        phone: '',
+        email: '',
+        level: 3,
+        address: ''
+      },
+      customerRules: {
+        name: [{ required: true, message: '请输入客户名称', trigger: 'blur' }],
+        contactName: [{ required: true, message: '请输入联系人', trigger: 'blur' }],
+        phone: [{ required: true, message: '请输入联系电话', trigger: 'blur' }]
+      },
+      // 选项数据
+      customerOptions: [],
+      productOptions: [],
+      submitting: false
+    }
+  },
+  computed: {
+    orderTotalAmount() {
+      return this.orderForm.items.reduce((sum, item) => {
+        return sum + (item.quantity || 0) * (item.price || 0)
+      }, 0)
     }
   },
   mounted() {
@@ -344,7 +578,188 @@ export default {
       return date.toLocaleDateString('zh-CN')
     },
     handleCreate() {
-      this.$message.info('新建销售订单功能开发中')
+      this.orderDialogTitle = '新建销售订单'
+      this.orderDialogVisible = true
+      this.loadCustomerOptions()
+      this.loadProductOptions()
+    },
+    handleEditOrder(row) {
+      this.orderDialogTitle = '编辑销售订单'
+      this.orderDialogVisible = true
+      this.loadCustomerOptions()
+      this.loadProductOptions()
+      // TODO: 加载订单详情数据
+    },
+    async handleDeleteOrder(row) {
+      try {
+        await this.$confirm('确认删除该销售订单吗？此操作不可恢复。', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        })
+        await deleteSalesOrder({ id: row.id })
+        this.$message.success('删除成功')
+        this.loadSalesOrders()
+      } catch (error) {
+        if (error !== 'cancel') {
+          console.error('删除失败:', error)
+          this.$message.error('删除失败')
+        }
+      }
+    },
+    async submitOrderForm() {
+      this.$refs.orderForm.validate(async (valid) => {
+        if (!valid) return
+        if (this.orderForm.items.length === 0) {
+          this.$message.warning('请至少添加一条订单明细')
+          return
+        }
+        try {
+          this.submitting = true
+          const apiCall = this.orderForm.id ? updateSalesOrder : createSalesOrder
+          await apiCall({
+            id: this.orderForm.id || undefined,
+            customerId: this.orderForm.customerId,
+            customerName: this.orderForm.customerName,
+            contactName: this.orderForm.contactName,
+            phone: this.orderForm.phone,
+            deliveryDate: this.orderForm.deliveryDate ? Math.floor(this.orderForm.deliveryDate / 1000) : undefined,
+            remark: this.orderForm.remark,
+            items: this.orderForm.items
+          })
+          this.$message.success(this.orderForm.id ? '更新成功' : '创建成功')
+          this.orderDialogVisible = false
+          this.loadSalesOrders()
+          this.loadStatistics()
+        } catch (error) {
+          console.error('提交失败:', error)
+          this.$message.error('操作失败')
+        } finally {
+          this.submitting = false
+        }
+      })
+    },
+    resetOrderForm() {
+      this.orderForm = {
+        id: '',
+        customerId: '',
+        customerName: '',
+        contactName: '',
+        phone: '',
+        deliveryDate: null,
+        remark: '',
+        items: []
+      }
+    },
+    async loadCustomerOptions() {
+      try {
+        const res = await findCustomerList({ page: 1, pageSize: 1000 })
+        if (res?.items) {
+          this.customerOptions = res.items
+        }
+      } catch (error) {
+        console.error('加载客户选项失败:', error)
+      }
+    },
+    async loadProductOptions() {
+      try {
+        const res = await findProductList({ page: 1, pageSize: 1000 })
+        if (res?.items) {
+          this.productOptions = res.items
+        }
+      } catch (error) {
+        console.error('加载商品选项失败:', error)
+      }
+    },
+    handleCustomerChange(customerId) {
+      const customer = this.customerOptions.find(c => c.id === customerId)
+      if (customer) {
+        this.orderForm.customerName = customer.name
+        this.orderForm.contactName = customer.contactName || ''
+        this.orderForm.phone = customer.phone || ''
+      }
+    },
+    addOrderItem() {
+      this.orderForm.items.push({
+        productId: '',
+        productName: '',
+        quantity: 1,
+        price: 0
+      })
+    },
+    handleProductChange(index) {
+      const product = this.productOptions.find(p => p.id === this.orderForm.items[index].productId)
+      if (product) {
+        this.orderForm.items[index].productName = product.name
+        this.orderForm.items[index].price = product.salePrice || 0
+      }
+    },
+    removeOrderItem(index) {
+      this.orderForm.items.splice(index, 1)
+    },
+    // 客户 CRUD
+    handleCreateCustomer() {
+      this.customerDialogTitle = '新增客户'
+      this.customerDialogVisible = true
+    },
+    handleEditCustomer(row) {
+      this.customerDialogTitle = '编辑客户'
+      this.customerDialogVisible = true
+      this.customerForm = {
+        id: row.id,
+        name: row.name,
+        contactName: row.contact,
+        phone: row.phone,
+        email: row.email || '',
+        level: row.level === 'VIP' ? 1 : row.level === '重要' ? 2 : 3,
+        address: row.address || ''
+      }
+    },
+    async handleDeleteCustomer(row) {
+      try {
+        await this.$confirm('确认删除该客户吗？此操作不可恢复。', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        })
+        await deleteCustomer({ id: row.id })
+        this.$message.success('删除成功')
+        this.loadCustomers()
+      } catch (error) {
+        if (error !== 'cancel') {
+          console.error('删除失败:', error)
+          this.$message.error('删除失败')
+        }
+      }
+    },
+    async submitCustomerForm() {
+      this.$refs.customerForm.validate(async (valid) => {
+        if (!valid) return
+        try {
+          this.submitting = true
+          const apiCall = this.customerForm.id ? updateCustomer : createCustomer
+          await apiCall(this.customerForm)
+          this.$message.success(this.customerForm.id ? '更新成功' : '创建成功')
+          this.customerDialogVisible = false
+          this.loadCustomers()
+        } catch (error) {
+          console.error('提交失败:', error)
+          this.$message.error('操作失败')
+        } finally {
+          this.submitting = false
+        }
+      })
+    },
+    resetCustomerForm() {
+      this.customerForm = {
+        id: '',
+        name: '',
+        contactName: '',
+        phone: '',
+        email: '',
+        level: 3,
+        address: ''
+      }
     },
     getSalesStatusType(status) {
       const map = {
