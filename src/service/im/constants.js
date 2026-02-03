@@ -145,7 +145,7 @@ export const HEARTBEAT_CONFIG = {
 }
 
 // Default WebSocket URL (can be overridden by config)
-export const DEFAULT_WS_URL = 'wss://api.wwengg.cn:21997'
+export const DEFAULT_WS_URL = 'ws://api.wwengg.cn:21997'
 
 // Error Codes (from pbcommon.proto)
 export const ErrorCode = {

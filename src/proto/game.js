@@ -1,0 +1,21889 @@
+/*eslint-disable block-scoped-var, id-length, no-control-regex, no-magic-numbers, no-prototype-builtins, no-redeclare, no-shadow, no-var, sort-vars*/
+"use strict";
+
+var $protobuf = require("protobufjs/minimal");
+
+// Common aliases
+var $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
+
+// Exported root namespace
+var $root = $protobuf.roots["default"] || ($protobuf.roots["default"] = {});
+
+$root.pbcommon = (function() {
+
+    /**
+     * Namespace pbcommon.
+     * @exports pbcommon
+     * @namespace
+     */
+    var pbcommon = {};
+
+    /**
+     * EnumCode enum.
+     * @name pbcommon.EnumCode
+     * @enum {number}
+     * @property {number} None=0 None value
+     * @property {number} Success=200 Success value
+     * @property {number} Forbidden=403 Forbidden value
+     * @property {number} Fail=500 Fail value
+     * @property {number} Unknown=501 Unknown value
+     * @property {number} Internal=502 Internal value
+     * @property {number} Invalid=503 Invalid value
+     * @property {number} InvalidParam=504 InvalidParam value
+     * @property {number} ParamError=505 ParamError value
+     * @property {number} FindError=1001 FindError value
+     * @property {number} CreateError=1002 CreateError value
+     * @property {number} DeleteError=1003 DeleteError value
+     * @property {number} UpdateError=1004 UpdateError value
+     * @property {number} InvalidToken=2002 InvalidToken value
+     * @property {number} InvalidSign=2003 InvalidSign value
+     * @property {number} NotLogin=2004 NotLogin value
+     * @property {number} LoginTimeout=2005 LoginTimeout value
+     * @property {number} LoginError=2006 LoginError value
+     * @property {number} LoginForbidden=2007 LoginForbidden value
+     * @property {number} LoginExpired=2008 LoginExpired value
+     * @property {number} LoginInvalid=2009 LoginInvalid value
+     * @property {number} LoginInvalidPassword=2010 LoginInvalidPassword value
+     * @property {number} LoginInvalidUsername=2011 LoginInvalidUsername value
+     * @property {number} LoginInvalidEmail=2012 LoginInvalidEmail value
+     * @property {number} LoginInvalidPhone=2013 LoginInvalidPhone value
+     * @property {number} LoginInvalidUsernameOrEmail=2014 LoginInvalidUsernameOrEmail value
+     * @property {number} LoginSocketRepeat=2015 LoginSocketRepeat value
+     * @property {number} RoleIsNotExist=3001 RoleIsNotExist value
+     * @property {number} UserIsExist=3002 UserIsExist value
+     * @property {number} UserIsBan=3003 UserIsBan value
+     * @property {number} TalkIsBan=5001 TalkIsBan value
+     * @property {number} EnterRoomErr=5002 EnterRoomErr value
+     * @property {number} HalaChatNeedBuy=10001 HalaChatNeedBuy value
+     * @property {number} HalaPriceOutRange=10002 HalaPriceOutRange value
+     * @property {number} GamePhaseNotMatch=20001 GamePhaseNotMatch value
+     * @property {number} GameNotStarted=20002 GameNotStarted value
+     */
+    pbcommon.EnumCode = (function() {
+        var valuesById = {}, values = Object.create(valuesById);
+        values[valuesById[0] = "None"] = 0;
+        values[valuesById[200] = "Success"] = 200;
+        values[valuesById[403] = "Forbidden"] = 403;
+        values[valuesById[500] = "Fail"] = 500;
+        values[valuesById[501] = "Unknown"] = 501;
+        values[valuesById[502] = "Internal"] = 502;
+        values[valuesById[503] = "Invalid"] = 503;
+        values[valuesById[504] = "InvalidParam"] = 504;
+        values[valuesById[505] = "ParamError"] = 505;
+        values[valuesById[1001] = "FindError"] = 1001;
+        values[valuesById[1002] = "CreateError"] = 1002;
+        values[valuesById[1003] = "DeleteError"] = 1003;
+        values[valuesById[1004] = "UpdateError"] = 1004;
+        values[valuesById[2002] = "InvalidToken"] = 2002;
+        values[valuesById[2003] = "InvalidSign"] = 2003;
+        values[valuesById[2004] = "NotLogin"] = 2004;
+        values[valuesById[2005] = "LoginTimeout"] = 2005;
+        values[valuesById[2006] = "LoginError"] = 2006;
+        values[valuesById[2007] = "LoginForbidden"] = 2007;
+        values[valuesById[2008] = "LoginExpired"] = 2008;
+        values[valuesById[2009] = "LoginInvalid"] = 2009;
+        values[valuesById[2010] = "LoginInvalidPassword"] = 2010;
+        values[valuesById[2011] = "LoginInvalidUsername"] = 2011;
+        values[valuesById[2012] = "LoginInvalidEmail"] = 2012;
+        values[valuesById[2013] = "LoginInvalidPhone"] = 2013;
+        values[valuesById[2014] = "LoginInvalidUsernameOrEmail"] = 2014;
+        values[valuesById[2015] = "LoginSocketRepeat"] = 2015;
+        values[valuesById[3001] = "RoleIsNotExist"] = 3001;
+        values[valuesById[3002] = "UserIsExist"] = 3002;
+        values[valuesById[3003] = "UserIsBan"] = 3003;
+        values[valuesById[5001] = "TalkIsBan"] = 5001;
+        values[valuesById[5002] = "EnterRoomErr"] = 5002;
+        values[valuesById[10001] = "HalaChatNeedBuy"] = 10001;
+        values[valuesById[10002] = "HalaPriceOutRange"] = 10002;
+        values[valuesById[20001] = "GamePhaseNotMatch"] = 20001;
+        values[valuesById[20002] = "GameNotStarted"] = 20002;
+        return values;
+    })();
+
+    pbcommon.CommonResult = (function() {
+
+        /**
+         * Properties of a CommonResult.
+         * @memberof pbcommon
+         * @interface ICommonResult
+         * @property {pbcommon.EnumCode|null} [code] CommonResult code
+         * @property {string|null} [msg] CommonResult msg
+         */
+
+        /**
+         * Constructs a new CommonResult.
+         * @memberof pbcommon
+         * @classdesc Represents a CommonResult.
+         * @implements ICommonResult
+         * @constructor
+         * @param {pbcommon.ICommonResult=} [properties] Properties to set
+         */
+        function CommonResult(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * CommonResult code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbcommon.CommonResult
+         * @instance
+         */
+        CommonResult.prototype.code = 0;
+
+        /**
+         * CommonResult msg.
+         * @member {string} msg
+         * @memberof pbcommon.CommonResult
+         * @instance
+         */
+        CommonResult.prototype.msg = "";
+
+        /**
+         * Creates a new CommonResult instance using the specified properties.
+         * @function create
+         * @memberof pbcommon.CommonResult
+         * @static
+         * @param {pbcommon.ICommonResult=} [properties] Properties to set
+         * @returns {pbcommon.CommonResult} CommonResult instance
+         */
+        CommonResult.create = function create(properties) {
+            return new CommonResult(properties);
+        };
+
+        /**
+         * Encodes the specified CommonResult message. Does not implicitly {@link pbcommon.CommonResult.verify|verify} messages.
+         * @function encode
+         * @memberof pbcommon.CommonResult
+         * @static
+         * @param {pbcommon.ICommonResult} message CommonResult message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        CommonResult.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified CommonResult message, length delimited. Does not implicitly {@link pbcommon.CommonResult.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbcommon.CommonResult
+         * @static
+         * @param {pbcommon.ICommonResult} message CommonResult message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        CommonResult.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a CommonResult message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbcommon.CommonResult
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbcommon.CommonResult} CommonResult
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        CommonResult.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbcommon.CommonResult();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.code = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.msg = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a CommonResult message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbcommon.CommonResult
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbcommon.CommonResult} CommonResult
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        CommonResult.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a CommonResult message.
+         * @function verify
+         * @memberof pbcommon.CommonResult
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        CommonResult.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.code != null && message.hasOwnProperty("code"))
+                switch (message.code) {
+                default:
+                    return "code: enum value expected";
+                case 0:
+                case 200:
+                case 403:
+                case 500:
+                case 501:
+                case 502:
+                case 503:
+                case 504:
+                case 505:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
+                case 2002:
+                case 2003:
+                case 2004:
+                case 2005:
+                case 2006:
+                case 2007:
+                case 2008:
+                case 2009:
+                case 2010:
+                case 2011:
+                case 2012:
+                case 2013:
+                case 2014:
+                case 2015:
+                case 3001:
+                case 3002:
+                case 3003:
+                case 5001:
+                case 5002:
+                case 10001:
+                case 10002:
+                case 20001:
+                case 20002:
+                    break;
+                }
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                if (!$util.isString(message.msg))
+                    return "msg: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a CommonResult message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbcommon.CommonResult
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbcommon.CommonResult} CommonResult
+         */
+        CommonResult.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbcommon.CommonResult)
+                return object;
+            var message = new $root.pbcommon.CommonResult();
+            switch (object.code) {
+            default:
+                if (typeof object.code === "number") {
+                    message.code = object.code;
+                    break;
+                }
+                break;
+            case "None":
+            case 0:
+                message.code = 0;
+                break;
+            case "Success":
+            case 200:
+                message.code = 200;
+                break;
+            case "Forbidden":
+            case 403:
+                message.code = 403;
+                break;
+            case "Fail":
+            case 500:
+                message.code = 500;
+                break;
+            case "Unknown":
+            case 501:
+                message.code = 501;
+                break;
+            case "Internal":
+            case 502:
+                message.code = 502;
+                break;
+            case "Invalid":
+            case 503:
+                message.code = 503;
+                break;
+            case "InvalidParam":
+            case 504:
+                message.code = 504;
+                break;
+            case "ParamError":
+            case 505:
+                message.code = 505;
+                break;
+            case "FindError":
+            case 1001:
+                message.code = 1001;
+                break;
+            case "CreateError":
+            case 1002:
+                message.code = 1002;
+                break;
+            case "DeleteError":
+            case 1003:
+                message.code = 1003;
+                break;
+            case "UpdateError":
+            case 1004:
+                message.code = 1004;
+                break;
+            case "InvalidToken":
+            case 2002:
+                message.code = 2002;
+                break;
+            case "InvalidSign":
+            case 2003:
+                message.code = 2003;
+                break;
+            case "NotLogin":
+            case 2004:
+                message.code = 2004;
+                break;
+            case "LoginTimeout":
+            case 2005:
+                message.code = 2005;
+                break;
+            case "LoginError":
+            case 2006:
+                message.code = 2006;
+                break;
+            case "LoginForbidden":
+            case 2007:
+                message.code = 2007;
+                break;
+            case "LoginExpired":
+            case 2008:
+                message.code = 2008;
+                break;
+            case "LoginInvalid":
+            case 2009:
+                message.code = 2009;
+                break;
+            case "LoginInvalidPassword":
+            case 2010:
+                message.code = 2010;
+                break;
+            case "LoginInvalidUsername":
+            case 2011:
+                message.code = 2011;
+                break;
+            case "LoginInvalidEmail":
+            case 2012:
+                message.code = 2012;
+                break;
+            case "LoginInvalidPhone":
+            case 2013:
+                message.code = 2013;
+                break;
+            case "LoginInvalidUsernameOrEmail":
+            case 2014:
+                message.code = 2014;
+                break;
+            case "LoginSocketRepeat":
+            case 2015:
+                message.code = 2015;
+                break;
+            case "RoleIsNotExist":
+            case 3001:
+                message.code = 3001;
+                break;
+            case "UserIsExist":
+            case 3002:
+                message.code = 3002;
+                break;
+            case "UserIsBan":
+            case 3003:
+                message.code = 3003;
+                break;
+            case "TalkIsBan":
+            case 5001:
+                message.code = 5001;
+                break;
+            case "EnterRoomErr":
+            case 5002:
+                message.code = 5002;
+                break;
+            case "HalaChatNeedBuy":
+            case 10001:
+                message.code = 10001;
+                break;
+            case "HalaPriceOutRange":
+            case 10002:
+                message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            }
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a CommonResult message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbcommon.CommonResult
+         * @static
+         * @param {pbcommon.CommonResult} message CommonResult
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        CommonResult.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.code = options.enums === String ? "None" : 0;
+                object.msg = "";
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            return object;
+        };
+
+        /**
+         * Converts this CommonResult to JSON.
+         * @function toJSON
+         * @memberof pbcommon.CommonResult
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        CommonResult.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for CommonResult
+         * @function getTypeUrl
+         * @memberof pbcommon.CommonResult
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        CommonResult.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbcommon.CommonResult";
+        };
+
+        return CommonResult;
+    })();
+
+    pbcommon.IdArgs = (function() {
+
+        /**
+         * Properties of an IdArgs.
+         * @memberof pbcommon
+         * @interface IIdArgs
+         * @property {number|Long|null} [id] IdArgs id
+         * @property {string|null} [idStr] IdArgs idStr
+         * @property {Array.<number|Long>|null} [ids] IdArgs ids
+         * @property {Array.<string>|null} [idStrs] IdArgs idStrs
+         */
+
+        /**
+         * Constructs a new IdArgs.
+         * @memberof pbcommon
+         * @classdesc Represents an IdArgs.
+         * @implements IIdArgs
+         * @constructor
+         * @param {pbcommon.IIdArgs=} [properties] Properties to set
+         */
+        function IdArgs(properties) {
+            this.ids = [];
+            this.idStrs = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * IdArgs id.
+         * @member {number|Long} id
+         * @memberof pbcommon.IdArgs
+         * @instance
+         */
+        IdArgs.prototype.id = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * IdArgs idStr.
+         * @member {string} idStr
+         * @memberof pbcommon.IdArgs
+         * @instance
+         */
+        IdArgs.prototype.idStr = "";
+
+        /**
+         * IdArgs ids.
+         * @member {Array.<number|Long>} ids
+         * @memberof pbcommon.IdArgs
+         * @instance
+         */
+        IdArgs.prototype.ids = $util.emptyArray;
+
+        /**
+         * IdArgs idStrs.
+         * @member {Array.<string>} idStrs
+         * @memberof pbcommon.IdArgs
+         * @instance
+         */
+        IdArgs.prototype.idStrs = $util.emptyArray;
+
+        /**
+         * Creates a new IdArgs instance using the specified properties.
+         * @function create
+         * @memberof pbcommon.IdArgs
+         * @static
+         * @param {pbcommon.IIdArgs=} [properties] Properties to set
+         * @returns {pbcommon.IdArgs} IdArgs instance
+         */
+        IdArgs.create = function create(properties) {
+            return new IdArgs(properties);
+        };
+
+        /**
+         * Encodes the specified IdArgs message. Does not implicitly {@link pbcommon.IdArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbcommon.IdArgs
+         * @static
+         * @param {pbcommon.IIdArgs} message IdArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        IdArgs.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id);
+            if (message.idStr != null && Object.hasOwnProperty.call(message, "idStr"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.idStr);
+            if (message.ids != null && message.ids.length) {
+                writer.uint32(/* id 3, wireType 2 =*/26).fork();
+                for (var i = 0; i < message.ids.length; ++i)
+                    writer.int64(message.ids[i]);
+                writer.ldelim();
+            }
+            if (message.idStrs != null && message.idStrs.length)
+                for (var i = 0; i < message.idStrs.length; ++i)
+                    writer.uint32(/* id 4, wireType 2 =*/34).string(message.idStrs[i]);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified IdArgs message, length delimited. Does not implicitly {@link pbcommon.IdArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbcommon.IdArgs
+         * @static
+         * @param {pbcommon.IIdArgs} message IdArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        IdArgs.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an IdArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbcommon.IdArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbcommon.IdArgs} IdArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        IdArgs.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbcommon.IdArgs();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.id = reader.int64();
+                        break;
+                    }
+                case 2: {
+                        message.idStr = reader.string();
+                        break;
+                    }
+                case 3: {
+                        if (!(message.ids && message.ids.length))
+                            message.ids = [];
+                        if ((tag & 7) === 2) {
+                            var end2 = reader.uint32() + reader.pos;
+                            while (reader.pos < end2)
+                                message.ids.push(reader.int64());
+                        } else
+                            message.ids.push(reader.int64());
+                        break;
+                    }
+                case 4: {
+                        if (!(message.idStrs && message.idStrs.length))
+                            message.idStrs = [];
+                        message.idStrs.push(reader.string());
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an IdArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbcommon.IdArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbcommon.IdArgs} IdArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        IdArgs.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an IdArgs message.
+         * @function verify
+         * @memberof pbcommon.IdArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        IdArgs.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (!$util.isInteger(message.id) && !(message.id && $util.isInteger(message.id.low) && $util.isInteger(message.id.high)))
+                    return "id: integer|Long expected";
+            if (message.idStr != null && message.hasOwnProperty("idStr"))
+                if (!$util.isString(message.idStr))
+                    return "idStr: string expected";
+            if (message.ids != null && message.hasOwnProperty("ids")) {
+                if (!Array.isArray(message.ids))
+                    return "ids: array expected";
+                for (var i = 0; i < message.ids.length; ++i)
+                    if (!$util.isInteger(message.ids[i]) && !(message.ids[i] && $util.isInteger(message.ids[i].low) && $util.isInteger(message.ids[i].high)))
+                        return "ids: integer|Long[] expected";
+            }
+            if (message.idStrs != null && message.hasOwnProperty("idStrs")) {
+                if (!Array.isArray(message.idStrs))
+                    return "idStrs: array expected";
+                for (var i = 0; i < message.idStrs.length; ++i)
+                    if (!$util.isString(message.idStrs[i]))
+                        return "idStrs: string[] expected";
+            }
+            return null;
+        };
+
+        /**
+         * Creates an IdArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbcommon.IdArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbcommon.IdArgs} IdArgs
+         */
+        IdArgs.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbcommon.IdArgs)
+                return object;
+            var message = new $root.pbcommon.IdArgs();
+            if (object.id != null)
+                if ($util.Long)
+                    (message.id = $util.Long.fromValue(object.id)).unsigned = false;
+                else if (typeof object.id === "string")
+                    message.id = parseInt(object.id, 10);
+                else if (typeof object.id === "number")
+                    message.id = object.id;
+                else if (typeof object.id === "object")
+                    message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber();
+            if (object.idStr != null)
+                message.idStr = String(object.idStr);
+            if (object.ids) {
+                if (!Array.isArray(object.ids))
+                    throw TypeError(".pbcommon.IdArgs.ids: array expected");
+                message.ids = [];
+                for (var i = 0; i < object.ids.length; ++i)
+                    if ($util.Long)
+                        (message.ids[i] = $util.Long.fromValue(object.ids[i])).unsigned = false;
+                    else if (typeof object.ids[i] === "string")
+                        message.ids[i] = parseInt(object.ids[i], 10);
+                    else if (typeof object.ids[i] === "number")
+                        message.ids[i] = object.ids[i];
+                    else if (typeof object.ids[i] === "object")
+                        message.ids[i] = new $util.LongBits(object.ids[i].low >>> 0, object.ids[i].high >>> 0).toNumber();
+            }
+            if (object.idStrs) {
+                if (!Array.isArray(object.idStrs))
+                    throw TypeError(".pbcommon.IdArgs.idStrs: array expected");
+                message.idStrs = [];
+                for (var i = 0; i < object.idStrs.length; ++i)
+                    message.idStrs[i] = String(object.idStrs[i]);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an IdArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbcommon.IdArgs
+         * @static
+         * @param {pbcommon.IdArgs} message IdArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        IdArgs.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults) {
+                object.ids = [];
+                object.idStrs = [];
+            }
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.id = options.longs === String ? "0" : 0;
+                object.idStr = "";
+            }
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (typeof message.id === "number")
+                    object.id = options.longs === String ? String(message.id) : message.id;
+                else
+                    object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id;
+            if (message.idStr != null && message.hasOwnProperty("idStr"))
+                object.idStr = message.idStr;
+            if (message.ids && message.ids.length) {
+                object.ids = [];
+                for (var j = 0; j < message.ids.length; ++j)
+                    if (typeof message.ids[j] === "number")
+                        object.ids[j] = options.longs === String ? String(message.ids[j]) : message.ids[j];
+                    else
+                        object.ids[j] = options.longs === String ? $util.Long.prototype.toString.call(message.ids[j]) : options.longs === Number ? new $util.LongBits(message.ids[j].low >>> 0, message.ids[j].high >>> 0).toNumber() : message.ids[j];
+            }
+            if (message.idStrs && message.idStrs.length) {
+                object.idStrs = [];
+                for (var j = 0; j < message.idStrs.length; ++j)
+                    object.idStrs[j] = message.idStrs[j];
+            }
+            return object;
+        };
+
+        /**
+         * Converts this IdArgs to JSON.
+         * @function toJSON
+         * @memberof pbcommon.IdArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        IdArgs.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for IdArgs
+         * @function getTypeUrl
+         * @memberof pbcommon.IdArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        IdArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbcommon.IdArgs";
+        };
+
+        return IdArgs;
+    })();
+
+    pbcommon.PageInfo = (function() {
+
+        /**
+         * Properties of a PageInfo.
+         * @memberof pbcommon
+         * @interface IPageInfo
+         * @property {number|null} [page] PageInfo page
+         * @property {number|null} [pageSize] PageInfo pageSize
+         */
+
+        /**
+         * Constructs a new PageInfo.
+         * @memberof pbcommon
+         * @classdesc Represents a PageInfo.
+         * @implements IPageInfo
+         * @constructor
+         * @param {pbcommon.IPageInfo=} [properties] Properties to set
+         */
+        function PageInfo(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * PageInfo page.
+         * @member {number} page
+         * @memberof pbcommon.PageInfo
+         * @instance
+         */
+        PageInfo.prototype.page = 0;
+
+        /**
+         * PageInfo pageSize.
+         * @member {number} pageSize
+         * @memberof pbcommon.PageInfo
+         * @instance
+         */
+        PageInfo.prototype.pageSize = 0;
+
+        /**
+         * Creates a new PageInfo instance using the specified properties.
+         * @function create
+         * @memberof pbcommon.PageInfo
+         * @static
+         * @param {pbcommon.IPageInfo=} [properties] Properties to set
+         * @returns {pbcommon.PageInfo} PageInfo instance
+         */
+        PageInfo.create = function create(properties) {
+            return new PageInfo(properties);
+        };
+
+        /**
+         * Encodes the specified PageInfo message. Does not implicitly {@link pbcommon.PageInfo.verify|verify} messages.
+         * @function encode
+         * @memberof pbcommon.PageInfo
+         * @static
+         * @param {pbcommon.IPageInfo} message PageInfo message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        PageInfo.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.page != null && Object.hasOwnProperty.call(message, "page"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.page);
+            if (message.pageSize != null && Object.hasOwnProperty.call(message, "pageSize"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.pageSize);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified PageInfo message, length delimited. Does not implicitly {@link pbcommon.PageInfo.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbcommon.PageInfo
+         * @static
+         * @param {pbcommon.IPageInfo} message PageInfo message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        PageInfo.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a PageInfo message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbcommon.PageInfo
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbcommon.PageInfo} PageInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        PageInfo.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbcommon.PageInfo();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.page = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.pageSize = reader.int32();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a PageInfo message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbcommon.PageInfo
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbcommon.PageInfo} PageInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        PageInfo.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a PageInfo message.
+         * @function verify
+         * @memberof pbcommon.PageInfo
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        PageInfo.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.page != null && message.hasOwnProperty("page"))
+                if (!$util.isInteger(message.page))
+                    return "page: integer expected";
+            if (message.pageSize != null && message.hasOwnProperty("pageSize"))
+                if (!$util.isInteger(message.pageSize))
+                    return "pageSize: integer expected";
+            return null;
+        };
+
+        /**
+         * Creates a PageInfo message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbcommon.PageInfo
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbcommon.PageInfo} PageInfo
+         */
+        PageInfo.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbcommon.PageInfo)
+                return object;
+            var message = new $root.pbcommon.PageInfo();
+            if (object.page != null)
+                message.page = object.page | 0;
+            if (object.pageSize != null)
+                message.pageSize = object.pageSize | 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a PageInfo message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbcommon.PageInfo
+         * @static
+         * @param {pbcommon.PageInfo} message PageInfo
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        PageInfo.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.page = 0;
+                object.pageSize = 0;
+            }
+            if (message.page != null && message.hasOwnProperty("page"))
+                object.page = message.page;
+            if (message.pageSize != null && message.hasOwnProperty("pageSize"))
+                object.pageSize = message.pageSize;
+            return object;
+        };
+
+        /**
+         * Converts this PageInfo to JSON.
+         * @function toJSON
+         * @memberof pbcommon.PageInfo
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        PageInfo.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for PageInfo
+         * @function getTypeUrl
+         * @memberof pbcommon.PageInfo
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        PageInfo.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbcommon.PageInfo";
+        };
+
+        return PageInfo;
+    })();
+
+    pbcommon.IdArgsWithPageInfo = (function() {
+
+        /**
+         * Properties of an IdArgsWithPageInfo.
+         * @memberof pbcommon
+         * @interface IIdArgsWithPageInfo
+         * @property {pbcommon.IIdArgs|null} [idArgs] IdArgsWithPageInfo idArgs
+         * @property {pbcommon.IPageInfo|null} [pageInfo] IdArgsWithPageInfo pageInfo
+         */
+
+        /**
+         * Constructs a new IdArgsWithPageInfo.
+         * @memberof pbcommon
+         * @classdesc Represents an IdArgsWithPageInfo.
+         * @implements IIdArgsWithPageInfo
+         * @constructor
+         * @param {pbcommon.IIdArgsWithPageInfo=} [properties] Properties to set
+         */
+        function IdArgsWithPageInfo(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * IdArgsWithPageInfo idArgs.
+         * @member {pbcommon.IIdArgs|null|undefined} idArgs
+         * @memberof pbcommon.IdArgsWithPageInfo
+         * @instance
+         */
+        IdArgsWithPageInfo.prototype.idArgs = null;
+
+        /**
+         * IdArgsWithPageInfo pageInfo.
+         * @member {pbcommon.IPageInfo|null|undefined} pageInfo
+         * @memberof pbcommon.IdArgsWithPageInfo
+         * @instance
+         */
+        IdArgsWithPageInfo.prototype.pageInfo = null;
+
+        /**
+         * Creates a new IdArgsWithPageInfo instance using the specified properties.
+         * @function create
+         * @memberof pbcommon.IdArgsWithPageInfo
+         * @static
+         * @param {pbcommon.IIdArgsWithPageInfo=} [properties] Properties to set
+         * @returns {pbcommon.IdArgsWithPageInfo} IdArgsWithPageInfo instance
+         */
+        IdArgsWithPageInfo.create = function create(properties) {
+            return new IdArgsWithPageInfo(properties);
+        };
+
+        /**
+         * Encodes the specified IdArgsWithPageInfo message. Does not implicitly {@link pbcommon.IdArgsWithPageInfo.verify|verify} messages.
+         * @function encode
+         * @memberof pbcommon.IdArgsWithPageInfo
+         * @static
+         * @param {pbcommon.IIdArgsWithPageInfo} message IdArgsWithPageInfo message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        IdArgsWithPageInfo.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.idArgs != null && Object.hasOwnProperty.call(message, "idArgs"))
+                $root.pbcommon.IdArgs.encode(message.idArgs, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.pageInfo != null && Object.hasOwnProperty.call(message, "pageInfo"))
+                $root.pbcommon.PageInfo.encode(message.pageInfo, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified IdArgsWithPageInfo message, length delimited. Does not implicitly {@link pbcommon.IdArgsWithPageInfo.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbcommon.IdArgsWithPageInfo
+         * @static
+         * @param {pbcommon.IIdArgsWithPageInfo} message IdArgsWithPageInfo message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        IdArgsWithPageInfo.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an IdArgsWithPageInfo message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbcommon.IdArgsWithPageInfo
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbcommon.IdArgsWithPageInfo} IdArgsWithPageInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        IdArgsWithPageInfo.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbcommon.IdArgsWithPageInfo();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.idArgs = $root.pbcommon.IdArgs.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 2: {
+                        message.pageInfo = $root.pbcommon.PageInfo.decode(reader, reader.uint32());
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an IdArgsWithPageInfo message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbcommon.IdArgsWithPageInfo
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbcommon.IdArgsWithPageInfo} IdArgsWithPageInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        IdArgsWithPageInfo.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an IdArgsWithPageInfo message.
+         * @function verify
+         * @memberof pbcommon.IdArgsWithPageInfo
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        IdArgsWithPageInfo.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.idArgs != null && message.hasOwnProperty("idArgs")) {
+                var error = $root.pbcommon.IdArgs.verify(message.idArgs);
+                if (error)
+                    return "idArgs." + error;
+            }
+            if (message.pageInfo != null && message.hasOwnProperty("pageInfo")) {
+                var error = $root.pbcommon.PageInfo.verify(message.pageInfo);
+                if (error)
+                    return "pageInfo." + error;
+            }
+            return null;
+        };
+
+        /**
+         * Creates an IdArgsWithPageInfo message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbcommon.IdArgsWithPageInfo
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbcommon.IdArgsWithPageInfo} IdArgsWithPageInfo
+         */
+        IdArgsWithPageInfo.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbcommon.IdArgsWithPageInfo)
+                return object;
+            var message = new $root.pbcommon.IdArgsWithPageInfo();
+            if (object.idArgs != null) {
+                if (typeof object.idArgs !== "object")
+                    throw TypeError(".pbcommon.IdArgsWithPageInfo.idArgs: object expected");
+                message.idArgs = $root.pbcommon.IdArgs.fromObject(object.idArgs);
+            }
+            if (object.pageInfo != null) {
+                if (typeof object.pageInfo !== "object")
+                    throw TypeError(".pbcommon.IdArgsWithPageInfo.pageInfo: object expected");
+                message.pageInfo = $root.pbcommon.PageInfo.fromObject(object.pageInfo);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an IdArgsWithPageInfo message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbcommon.IdArgsWithPageInfo
+         * @static
+         * @param {pbcommon.IdArgsWithPageInfo} message IdArgsWithPageInfo
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        IdArgsWithPageInfo.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.idArgs = null;
+                object.pageInfo = null;
+            }
+            if (message.idArgs != null && message.hasOwnProperty("idArgs"))
+                object.idArgs = $root.pbcommon.IdArgs.toObject(message.idArgs, options);
+            if (message.pageInfo != null && message.hasOwnProperty("pageInfo"))
+                object.pageInfo = $root.pbcommon.PageInfo.toObject(message.pageInfo, options);
+            return object;
+        };
+
+        /**
+         * Converts this IdArgsWithPageInfo to JSON.
+         * @function toJSON
+         * @memberof pbcommon.IdArgsWithPageInfo
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        IdArgsWithPageInfo.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for IdArgsWithPageInfo
+         * @function getTypeUrl
+         * @memberof pbcommon.IdArgsWithPageInfo
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        IdArgsWithPageInfo.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbcommon.IdArgsWithPageInfo";
+        };
+
+        return IdArgsWithPageInfo;
+    })();
+
+    pbcommon.Empty = (function() {
+
+        /**
+         * Properties of an Empty.
+         * @memberof pbcommon
+         * @interface IEmpty
+         */
+
+        /**
+         * Constructs a new Empty.
+         * @memberof pbcommon
+         * @classdesc Represents an Empty.
+         * @implements IEmpty
+         * @constructor
+         * @param {pbcommon.IEmpty=} [properties] Properties to set
+         */
+        function Empty(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * Creates a new Empty instance using the specified properties.
+         * @function create
+         * @memberof pbcommon.Empty
+         * @static
+         * @param {pbcommon.IEmpty=} [properties] Properties to set
+         * @returns {pbcommon.Empty} Empty instance
+         */
+        Empty.create = function create(properties) {
+            return new Empty(properties);
+        };
+
+        /**
+         * Encodes the specified Empty message. Does not implicitly {@link pbcommon.Empty.verify|verify} messages.
+         * @function encode
+         * @memberof pbcommon.Empty
+         * @static
+         * @param {pbcommon.IEmpty} message Empty message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Empty.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified Empty message, length delimited. Does not implicitly {@link pbcommon.Empty.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbcommon.Empty
+         * @static
+         * @param {pbcommon.IEmpty} message Empty message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Empty.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an Empty message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbcommon.Empty
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbcommon.Empty} Empty
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Empty.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbcommon.Empty();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an Empty message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbcommon.Empty
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbcommon.Empty} Empty
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Empty.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an Empty message.
+         * @function verify
+         * @memberof pbcommon.Empty
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        Empty.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            return null;
+        };
+
+        /**
+         * Creates an Empty message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbcommon.Empty
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbcommon.Empty} Empty
+         */
+        Empty.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbcommon.Empty)
+                return object;
+            return new $root.pbcommon.Empty();
+        };
+
+        /**
+         * Creates a plain object from an Empty message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbcommon.Empty
+         * @static
+         * @param {pbcommon.Empty} message Empty
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Empty.toObject = function toObject() {
+            return {};
+        };
+
+        /**
+         * Converts this Empty to JSON.
+         * @function toJSON
+         * @memberof pbcommon.Empty
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Empty.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for Empty
+         * @function getTypeUrl
+         * @memberof pbcommon.Empty
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        Empty.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbcommon.Empty";
+        };
+
+        return Empty;
+    })();
+
+    pbcommon.PrivilegeTip = (function() {
+
+        /**
+         * Properties of a PrivilegeTip.
+         * @memberof pbcommon
+         * @interface IPrivilegeTip
+         * @property {string|null} [title] PrivilegeTip title
+         * @property {string|null} [beginTime] PrivilegeTip beginTime
+         * @property {number|Long|null} [duration] PrivilegeTip duration
+         * @property {string|null} [reason] PrivilegeTip reason
+         * @property {string|null} [deviceUuid] PrivilegeTip deviceUuid
+         * @property {string|null} [endTime] PrivilegeTip endTime
+         */
+
+        /**
+         * Constructs a new PrivilegeTip.
+         * @memberof pbcommon
+         * @classdesc Represents a PrivilegeTip.
+         * @implements IPrivilegeTip
+         * @constructor
+         * @param {pbcommon.IPrivilegeTip=} [properties] Properties to set
+         */
+        function PrivilegeTip(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * PrivilegeTip title.
+         * @member {string} title
+         * @memberof pbcommon.PrivilegeTip
+         * @instance
+         */
+        PrivilegeTip.prototype.title = "";
+
+        /**
+         * PrivilegeTip beginTime.
+         * @member {string} beginTime
+         * @memberof pbcommon.PrivilegeTip
+         * @instance
+         */
+        PrivilegeTip.prototype.beginTime = "";
+
+        /**
+         * PrivilegeTip duration.
+         * @member {number|Long} duration
+         * @memberof pbcommon.PrivilegeTip
+         * @instance
+         */
+        PrivilegeTip.prototype.duration = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * PrivilegeTip reason.
+         * @member {string} reason
+         * @memberof pbcommon.PrivilegeTip
+         * @instance
+         */
+        PrivilegeTip.prototype.reason = "";
+
+        /**
+         * PrivilegeTip deviceUuid.
+         * @member {string} deviceUuid
+         * @memberof pbcommon.PrivilegeTip
+         * @instance
+         */
+        PrivilegeTip.prototype.deviceUuid = "";
+
+        /**
+         * PrivilegeTip endTime.
+         * @member {string} endTime
+         * @memberof pbcommon.PrivilegeTip
+         * @instance
+         */
+        PrivilegeTip.prototype.endTime = "";
+
+        /**
+         * Creates a new PrivilegeTip instance using the specified properties.
+         * @function create
+         * @memberof pbcommon.PrivilegeTip
+         * @static
+         * @param {pbcommon.IPrivilegeTip=} [properties] Properties to set
+         * @returns {pbcommon.PrivilegeTip} PrivilegeTip instance
+         */
+        PrivilegeTip.create = function create(properties) {
+            return new PrivilegeTip(properties);
+        };
+
+        /**
+         * Encodes the specified PrivilegeTip message. Does not implicitly {@link pbcommon.PrivilegeTip.verify|verify} messages.
+         * @function encode
+         * @memberof pbcommon.PrivilegeTip
+         * @static
+         * @param {pbcommon.IPrivilegeTip} message PrivilegeTip message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        PrivilegeTip.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.title != null && Object.hasOwnProperty.call(message, "title"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.title);
+            if (message.beginTime != null && Object.hasOwnProperty.call(message, "beginTime"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.beginTime);
+            if (message.duration != null && Object.hasOwnProperty.call(message, "duration"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int64(message.duration);
+            if (message.reason != null && Object.hasOwnProperty.call(message, "reason"))
+                writer.uint32(/* id 4, wireType 2 =*/34).string(message.reason);
+            if (message.deviceUuid != null && Object.hasOwnProperty.call(message, "deviceUuid"))
+                writer.uint32(/* id 5, wireType 2 =*/42).string(message.deviceUuid);
+            if (message.endTime != null && Object.hasOwnProperty.call(message, "endTime"))
+                writer.uint32(/* id 6, wireType 2 =*/50).string(message.endTime);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified PrivilegeTip message, length delimited. Does not implicitly {@link pbcommon.PrivilegeTip.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbcommon.PrivilegeTip
+         * @static
+         * @param {pbcommon.IPrivilegeTip} message PrivilegeTip message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        PrivilegeTip.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a PrivilegeTip message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbcommon.PrivilegeTip
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbcommon.PrivilegeTip} PrivilegeTip
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        PrivilegeTip.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbcommon.PrivilegeTip();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.title = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message.beginTime = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.duration = reader.int64();
+                        break;
+                    }
+                case 4: {
+                        message.reason = reader.string();
+                        break;
+                    }
+                case 5: {
+                        message.deviceUuid = reader.string();
+                        break;
+                    }
+                case 6: {
+                        message.endTime = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a PrivilegeTip message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbcommon.PrivilegeTip
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbcommon.PrivilegeTip} PrivilegeTip
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        PrivilegeTip.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a PrivilegeTip message.
+         * @function verify
+         * @memberof pbcommon.PrivilegeTip
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        PrivilegeTip.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.title != null && message.hasOwnProperty("title"))
+                if (!$util.isString(message.title))
+                    return "title: string expected";
+            if (message.beginTime != null && message.hasOwnProperty("beginTime"))
+                if (!$util.isString(message.beginTime))
+                    return "beginTime: string expected";
+            if (message.duration != null && message.hasOwnProperty("duration"))
+                if (!$util.isInteger(message.duration) && !(message.duration && $util.isInteger(message.duration.low) && $util.isInteger(message.duration.high)))
+                    return "duration: integer|Long expected";
+            if (message.reason != null && message.hasOwnProperty("reason"))
+                if (!$util.isString(message.reason))
+                    return "reason: string expected";
+            if (message.deviceUuid != null && message.hasOwnProperty("deviceUuid"))
+                if (!$util.isString(message.deviceUuid))
+                    return "deviceUuid: string expected";
+            if (message.endTime != null && message.hasOwnProperty("endTime"))
+                if (!$util.isString(message.endTime))
+                    return "endTime: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a PrivilegeTip message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbcommon.PrivilegeTip
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbcommon.PrivilegeTip} PrivilegeTip
+         */
+        PrivilegeTip.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbcommon.PrivilegeTip)
+                return object;
+            var message = new $root.pbcommon.PrivilegeTip();
+            if (object.title != null)
+                message.title = String(object.title);
+            if (object.beginTime != null)
+                message.beginTime = String(object.beginTime);
+            if (object.duration != null)
+                if ($util.Long)
+                    (message.duration = $util.Long.fromValue(object.duration)).unsigned = false;
+                else if (typeof object.duration === "string")
+                    message.duration = parseInt(object.duration, 10);
+                else if (typeof object.duration === "number")
+                    message.duration = object.duration;
+                else if (typeof object.duration === "object")
+                    message.duration = new $util.LongBits(object.duration.low >>> 0, object.duration.high >>> 0).toNumber();
+            if (object.reason != null)
+                message.reason = String(object.reason);
+            if (object.deviceUuid != null)
+                message.deviceUuid = String(object.deviceUuid);
+            if (object.endTime != null)
+                message.endTime = String(object.endTime);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a PrivilegeTip message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbcommon.PrivilegeTip
+         * @static
+         * @param {pbcommon.PrivilegeTip} message PrivilegeTip
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        PrivilegeTip.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.title = "";
+                object.beginTime = "";
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.duration = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.duration = options.longs === String ? "0" : 0;
+                object.reason = "";
+                object.deviceUuid = "";
+                object.endTime = "";
+            }
+            if (message.title != null && message.hasOwnProperty("title"))
+                object.title = message.title;
+            if (message.beginTime != null && message.hasOwnProperty("beginTime"))
+                object.beginTime = message.beginTime;
+            if (message.duration != null && message.hasOwnProperty("duration"))
+                if (typeof message.duration === "number")
+                    object.duration = options.longs === String ? String(message.duration) : message.duration;
+                else
+                    object.duration = options.longs === String ? $util.Long.prototype.toString.call(message.duration) : options.longs === Number ? new $util.LongBits(message.duration.low >>> 0, message.duration.high >>> 0).toNumber() : message.duration;
+            if (message.reason != null && message.hasOwnProperty("reason"))
+                object.reason = message.reason;
+            if (message.deviceUuid != null && message.hasOwnProperty("deviceUuid"))
+                object.deviceUuid = message.deviceUuid;
+            if (message.endTime != null && message.hasOwnProperty("endTime"))
+                object.endTime = message.endTime;
+            return object;
+        };
+
+        /**
+         * Converts this PrivilegeTip to JSON.
+         * @function toJSON
+         * @memberof pbcommon.PrivilegeTip
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        PrivilegeTip.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for PrivilegeTip
+         * @function getTypeUrl
+         * @memberof pbcommon.PrivilegeTip
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        PrivilegeTip.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbcommon.PrivilegeTip";
+        };
+
+        return PrivilegeTip;
+    })();
+
+    return pbcommon;
+})();
+
+$root.pbbattle = (function() {
+
+    /**
+     * Namespace pbbattle.
+     * @exports pbbattle
+     * @namespace
+     */
+    var pbbattle = {};
+
+    /**
+     * GamePhase enum.
+     * @name pbbattle.GamePhase
+     * @enum {number}
+     * @property {number} PHASE_UNKNOWN=0 PHASE_UNKNOWN value
+     * @property {number} ASSIST=1 ASSIST value
+     * @property {number} BATTLE=2 BATTLE value
+     */
+    pbbattle.GamePhase = (function() {
+        var valuesById = {}, values = Object.create(valuesById);
+        values[valuesById[0] = "PHASE_UNKNOWN"] = 0;
+        values[valuesById[1] = "ASSIST"] = 1;
+        values[valuesById[2] = "BATTLE"] = 2;
+        return values;
+    })();
+
+    /**
+     * BattleMode enum.
+     * @name pbbattle.BattleMode
+     * @enum {number}
+     * @property {number} MODE_UNKNOWN=0 MODE_UNKNOWN value
+     * @property {number} SINGLE=1 SINGLE value
+     * @property {number} DUAL=2 DUAL value
+     */
+    pbbattle.BattleMode = (function() {
+        var valuesById = {}, values = Object.create(valuesById);
+        values[valuesById[0] = "MODE_UNKNOWN"] = 0;
+        values[valuesById[1] = "SINGLE"] = 1;
+        values[valuesById[2] = "DUAL"] = 2;
+        return values;
+    })();
+
+    /**
+     * AssistOption enum.
+     * @name pbbattle.AssistOption
+     * @enum {number}
+     * @property {number} OPTION_UNKNOWN=0 OPTION_UNKNOWN value
+     * @property {number} PLUS_1=1 PLUS_1 value
+     * @property {number} PLUS_3=2 PLUS_3 value
+     * @property {number} PLUS_5=3 PLUS_5 value
+     * @property {number} PLUS_10=4 PLUS_10 value
+     */
+    pbbattle.AssistOption = (function() {
+        var valuesById = {}, values = Object.create(valuesById);
+        values[valuesById[0] = "OPTION_UNKNOWN"] = 0;
+        values[valuesById[1] = "PLUS_1"] = 1;
+        values[valuesById[2] = "PLUS_3"] = 2;
+        values[valuesById[3] = "PLUS_5"] = 3;
+        values[valuesById[4] = "PLUS_10"] = 4;
+        return values;
+    })();
+
+    pbbattle.GeneralModel = (function() {
+
+        /**
+         * Properties of a GeneralModel.
+         * @memberof pbbattle
+         * @interface IGeneralModel
+         * @property {number|Long|null} [id] GeneralModel id
+         * @property {string|null} [createdAt] GeneralModel createdAt
+         * @property {string|null} [updatedAt] GeneralModel updatedAt
+         * @property {string|null} [name] GeneralModel name
+         * @property {string|null} [avatar] GeneralModel avatar
+         * @property {number|null} [baseMultiplier] GeneralModel baseMultiplier
+         * @property {number|null} [index] GeneralModel index
+         */
+
+        /**
+         * Constructs a new GeneralModel.
+         * @memberof pbbattle
+         * @classdesc Represents a GeneralModel.
+         * @implements IGeneralModel
+         * @constructor
+         * @param {pbbattle.IGeneralModel=} [properties] Properties to set
+         */
+        function GeneralModel(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GeneralModel id.
+         * @member {number|Long} id
+         * @memberof pbbattle.GeneralModel
+         * @instance
+         */
+        GeneralModel.prototype.id = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * GeneralModel createdAt.
+         * @member {string} createdAt
+         * @memberof pbbattle.GeneralModel
+         * @instance
+         */
+        GeneralModel.prototype.createdAt = "";
+
+        /**
+         * GeneralModel updatedAt.
+         * @member {string} updatedAt
+         * @memberof pbbattle.GeneralModel
+         * @instance
+         */
+        GeneralModel.prototype.updatedAt = "";
+
+        /**
+         * GeneralModel name.
+         * @member {string} name
+         * @memberof pbbattle.GeneralModel
+         * @instance
+         */
+        GeneralModel.prototype.name = "";
+
+        /**
+         * GeneralModel avatar.
+         * @member {string} avatar
+         * @memberof pbbattle.GeneralModel
+         * @instance
+         */
+        GeneralModel.prototype.avatar = "";
+
+        /**
+         * GeneralModel baseMultiplier.
+         * @member {number} baseMultiplier
+         * @memberof pbbattle.GeneralModel
+         * @instance
+         */
+        GeneralModel.prototype.baseMultiplier = 0;
+
+        /**
+         * GeneralModel index.
+         * @member {number} index
+         * @memberof pbbattle.GeneralModel
+         * @instance
+         */
+        GeneralModel.prototype.index = 0;
+
+        /**
+         * Creates a new GeneralModel instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.GeneralModel
+         * @static
+         * @param {pbbattle.IGeneralModel=} [properties] Properties to set
+         * @returns {pbbattle.GeneralModel} GeneralModel instance
+         */
+        GeneralModel.create = function create(properties) {
+            return new GeneralModel(properties);
+        };
+
+        /**
+         * Encodes the specified GeneralModel message. Does not implicitly {@link pbbattle.GeneralModel.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.GeneralModel
+         * @static
+         * @param {pbbattle.IGeneralModel} message GeneralModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GeneralModel.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id);
+            if (message.createdAt != null && Object.hasOwnProperty.call(message, "createdAt"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.createdAt);
+            if (message.updatedAt != null && Object.hasOwnProperty.call(message, "updatedAt"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.updatedAt);
+            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                writer.uint32(/* id 4, wireType 2 =*/34).string(message.name);
+            if (message.avatar != null && Object.hasOwnProperty.call(message, "avatar"))
+                writer.uint32(/* id 5, wireType 2 =*/42).string(message.avatar);
+            if (message.baseMultiplier != null && Object.hasOwnProperty.call(message, "baseMultiplier"))
+                writer.uint32(/* id 6, wireType 0 =*/48).int32(message.baseMultiplier);
+            if (message.index != null && Object.hasOwnProperty.call(message, "index"))
+                writer.uint32(/* id 7, wireType 0 =*/56).int32(message.index);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GeneralModel message, length delimited. Does not implicitly {@link pbbattle.GeneralModel.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.GeneralModel
+         * @static
+         * @param {pbbattle.IGeneralModel} message GeneralModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GeneralModel.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GeneralModel message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.GeneralModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.GeneralModel} GeneralModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GeneralModel.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.GeneralModel();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.id = reader.int64();
+                        break;
+                    }
+                case 2: {
+                        message.createdAt = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.updatedAt = reader.string();
+                        break;
+                    }
+                case 4: {
+                        message.name = reader.string();
+                        break;
+                    }
+                case 5: {
+                        message.avatar = reader.string();
+                        break;
+                    }
+                case 6: {
+                        message.baseMultiplier = reader.int32();
+                        break;
+                    }
+                case 7: {
+                        message.index = reader.int32();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GeneralModel message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.GeneralModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.GeneralModel} GeneralModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GeneralModel.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GeneralModel message.
+         * @function verify
+         * @memberof pbbattle.GeneralModel
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GeneralModel.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (!$util.isInteger(message.id) && !(message.id && $util.isInteger(message.id.low) && $util.isInteger(message.id.high)))
+                    return "id: integer|Long expected";
+            if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                if (!$util.isString(message.createdAt))
+                    return "createdAt: string expected";
+            if (message.updatedAt != null && message.hasOwnProperty("updatedAt"))
+                if (!$util.isString(message.updatedAt))
+                    return "updatedAt: string expected";
+            if (message.name != null && message.hasOwnProperty("name"))
+                if (!$util.isString(message.name))
+                    return "name: string expected";
+            if (message.avatar != null && message.hasOwnProperty("avatar"))
+                if (!$util.isString(message.avatar))
+                    return "avatar: string expected";
+            if (message.baseMultiplier != null && message.hasOwnProperty("baseMultiplier"))
+                if (!$util.isInteger(message.baseMultiplier))
+                    return "baseMultiplier: integer expected";
+            if (message.index != null && message.hasOwnProperty("index"))
+                if (!$util.isInteger(message.index))
+                    return "index: integer expected";
+            return null;
+        };
+
+        /**
+         * Creates a GeneralModel message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.GeneralModel
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.GeneralModel} GeneralModel
+         */
+        GeneralModel.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.GeneralModel)
+                return object;
+            var message = new $root.pbbattle.GeneralModel();
+            if (object.id != null)
+                if ($util.Long)
+                    (message.id = $util.Long.fromValue(object.id)).unsigned = false;
+                else if (typeof object.id === "string")
+                    message.id = parseInt(object.id, 10);
+                else if (typeof object.id === "number")
+                    message.id = object.id;
+                else if (typeof object.id === "object")
+                    message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber();
+            if (object.createdAt != null)
+                message.createdAt = String(object.createdAt);
+            if (object.updatedAt != null)
+                message.updatedAt = String(object.updatedAt);
+            if (object.name != null)
+                message.name = String(object.name);
+            if (object.avatar != null)
+                message.avatar = String(object.avatar);
+            if (object.baseMultiplier != null)
+                message.baseMultiplier = object.baseMultiplier | 0;
+            if (object.index != null)
+                message.index = object.index | 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GeneralModel message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.GeneralModel
+         * @static
+         * @param {pbbattle.GeneralModel} message GeneralModel
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GeneralModel.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.id = options.longs === String ? "0" : 0;
+                object.createdAt = "";
+                object.updatedAt = "";
+                object.name = "";
+                object.avatar = "";
+                object.baseMultiplier = 0;
+                object.index = 0;
+            }
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (typeof message.id === "number")
+                    object.id = options.longs === String ? String(message.id) : message.id;
+                else
+                    object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id;
+            if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                object.createdAt = message.createdAt;
+            if (message.updatedAt != null && message.hasOwnProperty("updatedAt"))
+                object.updatedAt = message.updatedAt;
+            if (message.name != null && message.hasOwnProperty("name"))
+                object.name = message.name;
+            if (message.avatar != null && message.hasOwnProperty("avatar"))
+                object.avatar = message.avatar;
+            if (message.baseMultiplier != null && message.hasOwnProperty("baseMultiplier"))
+                object.baseMultiplier = message.baseMultiplier;
+            if (message.index != null && message.hasOwnProperty("index"))
+                object.index = message.index;
+            return object;
+        };
+
+        /**
+         * Converts this GeneralModel to JSON.
+         * @function toJSON
+         * @memberof pbbattle.GeneralModel
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GeneralModel.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GeneralModel
+         * @function getTypeUrl
+         * @memberof pbbattle.GeneralModel
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GeneralModel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.GeneralModel";
+        };
+
+        return GeneralModel;
+    })();
+
+    pbbattle.TreeNode = (function() {
+
+        /**
+         * Properties of a TreeNode.
+         * @memberof pbbattle
+         * @interface ITreeNode
+         * @property {number|null} [position] TreeNode position
+         * @property {number|null} [multiplier] TreeNode multiplier
+         * @property {pbbattle.IGeneralModel|null} [general] TreeNode general
+         * @property {number|null} [valueAll] TreeNode valueAll
+         * @property {number|null} [valueSelf] TreeNode valueSelf
+         */
+
+        /**
+         * Constructs a new TreeNode.
+         * @memberof pbbattle
+         * @classdesc Represents a TreeNode.
+         * @implements ITreeNode
+         * @constructor
+         * @param {pbbattle.ITreeNode=} [properties] Properties to set
+         */
+        function TreeNode(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * TreeNode position.
+         * @member {number} position
+         * @memberof pbbattle.TreeNode
+         * @instance
+         */
+        TreeNode.prototype.position = 0;
+
+        /**
+         * TreeNode multiplier.
+         * @member {number} multiplier
+         * @memberof pbbattle.TreeNode
+         * @instance
+         */
+        TreeNode.prototype.multiplier = 0;
+
+        /**
+         * TreeNode general.
+         * @member {pbbattle.IGeneralModel|null|undefined} general
+         * @memberof pbbattle.TreeNode
+         * @instance
+         */
+        TreeNode.prototype.general = null;
+
+        /**
+         * TreeNode valueAll.
+         * @member {number} valueAll
+         * @memberof pbbattle.TreeNode
+         * @instance
+         */
+        TreeNode.prototype.valueAll = 0;
+
+        /**
+         * TreeNode valueSelf.
+         * @member {number} valueSelf
+         * @memberof pbbattle.TreeNode
+         * @instance
+         */
+        TreeNode.prototype.valueSelf = 0;
+
+        /**
+         * Creates a new TreeNode instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.TreeNode
+         * @static
+         * @param {pbbattle.ITreeNode=} [properties] Properties to set
+         * @returns {pbbattle.TreeNode} TreeNode instance
+         */
+        TreeNode.create = function create(properties) {
+            return new TreeNode(properties);
+        };
+
+        /**
+         * Encodes the specified TreeNode message. Does not implicitly {@link pbbattle.TreeNode.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.TreeNode
+         * @static
+         * @param {pbbattle.ITreeNode} message TreeNode message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        TreeNode.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.position != null && Object.hasOwnProperty.call(message, "position"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.position);
+            if (message.multiplier != null && Object.hasOwnProperty.call(message, "multiplier"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.multiplier);
+            if (message.general != null && Object.hasOwnProperty.call(message, "general"))
+                $root.pbbattle.GeneralModel.encode(message.general, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            if (message.valueAll != null && Object.hasOwnProperty.call(message, "valueAll"))
+                writer.uint32(/* id 4, wireType 0 =*/32).int32(message.valueAll);
+            if (message.valueSelf != null && Object.hasOwnProperty.call(message, "valueSelf"))
+                writer.uint32(/* id 5, wireType 0 =*/40).int32(message.valueSelf);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified TreeNode message, length delimited. Does not implicitly {@link pbbattle.TreeNode.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.TreeNode
+         * @static
+         * @param {pbbattle.ITreeNode} message TreeNode message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        TreeNode.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a TreeNode message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.TreeNode
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.TreeNode} TreeNode
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        TreeNode.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.TreeNode();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.position = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.multiplier = reader.int32();
+                        break;
+                    }
+                case 3: {
+                        message.general = $root.pbbattle.GeneralModel.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 4: {
+                        message.valueAll = reader.int32();
+                        break;
+                    }
+                case 5: {
+                        message.valueSelf = reader.int32();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a TreeNode message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.TreeNode
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.TreeNode} TreeNode
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        TreeNode.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a TreeNode message.
+         * @function verify
+         * @memberof pbbattle.TreeNode
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        TreeNode.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.position != null && message.hasOwnProperty("position"))
+                if (!$util.isInteger(message.position))
+                    return "position: integer expected";
+            if (message.multiplier != null && message.hasOwnProperty("multiplier"))
+                if (!$util.isInteger(message.multiplier))
+                    return "multiplier: integer expected";
+            if (message.general != null && message.hasOwnProperty("general")) {
+                var error = $root.pbbattle.GeneralModel.verify(message.general);
+                if (error)
+                    return "general." + error;
+            }
+            if (message.valueAll != null && message.hasOwnProperty("valueAll"))
+                if (!$util.isInteger(message.valueAll))
+                    return "valueAll: integer expected";
+            if (message.valueSelf != null && message.hasOwnProperty("valueSelf"))
+                if (!$util.isInteger(message.valueSelf))
+                    return "valueSelf: integer expected";
+            return null;
+        };
+
+        /**
+         * Creates a TreeNode message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.TreeNode
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.TreeNode} TreeNode
+         */
+        TreeNode.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.TreeNode)
+                return object;
+            var message = new $root.pbbattle.TreeNode();
+            if (object.position != null)
+                message.position = object.position | 0;
+            if (object.multiplier != null)
+                message.multiplier = object.multiplier | 0;
+            if (object.general != null) {
+                if (typeof object.general !== "object")
+                    throw TypeError(".pbbattle.TreeNode.general: object expected");
+                message.general = $root.pbbattle.GeneralModel.fromObject(object.general);
+            }
+            if (object.valueAll != null)
+                message.valueAll = object.valueAll | 0;
+            if (object.valueSelf != null)
+                message.valueSelf = object.valueSelf | 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a TreeNode message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.TreeNode
+         * @static
+         * @param {pbbattle.TreeNode} message TreeNode
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        TreeNode.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.position = 0;
+                object.multiplier = 0;
+                object.general = null;
+                object.valueAll = 0;
+                object.valueSelf = 0;
+            }
+            if (message.position != null && message.hasOwnProperty("position"))
+                object.position = message.position;
+            if (message.multiplier != null && message.hasOwnProperty("multiplier"))
+                object.multiplier = message.multiplier;
+            if (message.general != null && message.hasOwnProperty("general"))
+                object.general = $root.pbbattle.GeneralModel.toObject(message.general, options);
+            if (message.valueAll != null && message.hasOwnProperty("valueAll"))
+                object.valueAll = message.valueAll;
+            if (message.valueSelf != null && message.hasOwnProperty("valueSelf"))
+                object.valueSelf = message.valueSelf;
+            return object;
+        };
+
+        /**
+         * Converts this TreeNode to JSON.
+         * @function toJSON
+         * @memberof pbbattle.TreeNode
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        TreeNode.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for TreeNode
+         * @function getTypeUrl
+         * @memberof pbbattle.TreeNode
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        TreeNode.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.TreeNode";
+        };
+
+        return TreeNode;
+    })();
+
+    pbbattle.BattleTree = (function() {
+
+        /**
+         * Properties of a BattleTree.
+         * @memberof pbbattle
+         * @interface IBattleTree
+         * @property {Array.<pbbattle.ITreeNode>|null} [nodes] BattleTree nodes
+         */
+
+        /**
+         * Constructs a new BattleTree.
+         * @memberof pbbattle
+         * @classdesc Represents a BattleTree.
+         * @implements IBattleTree
+         * @constructor
+         * @param {pbbattle.IBattleTree=} [properties] Properties to set
+         */
+        function BattleTree(properties) {
+            this.nodes = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BattleTree nodes.
+         * @member {Array.<pbbattle.ITreeNode>} nodes
+         * @memberof pbbattle.BattleTree
+         * @instance
+         */
+        BattleTree.prototype.nodes = $util.emptyArray;
+
+        /**
+         * Creates a new BattleTree instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.BattleTree
+         * @static
+         * @param {pbbattle.IBattleTree=} [properties] Properties to set
+         * @returns {pbbattle.BattleTree} BattleTree instance
+         */
+        BattleTree.create = function create(properties) {
+            return new BattleTree(properties);
+        };
+
+        /**
+         * Encodes the specified BattleTree message. Does not implicitly {@link pbbattle.BattleTree.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.BattleTree
+         * @static
+         * @param {pbbattle.IBattleTree} message BattleTree message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BattleTree.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.nodes != null && message.nodes.length)
+                for (var i = 0; i < message.nodes.length; ++i)
+                    $root.pbbattle.TreeNode.encode(message.nodes[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BattleTree message, length delimited. Does not implicitly {@link pbbattle.BattleTree.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.BattleTree
+         * @static
+         * @param {pbbattle.IBattleTree} message BattleTree message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BattleTree.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BattleTree message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.BattleTree
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.BattleTree} BattleTree
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BattleTree.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.BattleTree();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        if (!(message.nodes && message.nodes.length))
+                            message.nodes = [];
+                        message.nodes.push($root.pbbattle.TreeNode.decode(reader, reader.uint32()));
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a BattleTree message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.BattleTree
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.BattleTree} BattleTree
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BattleTree.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BattleTree message.
+         * @function verify
+         * @memberof pbbattle.BattleTree
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BattleTree.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.nodes != null && message.hasOwnProperty("nodes")) {
+                if (!Array.isArray(message.nodes))
+                    return "nodes: array expected";
+                for (var i = 0; i < message.nodes.length; ++i) {
+                    var error = $root.pbbattle.TreeNode.verify(message.nodes[i]);
+                    if (error)
+                        return "nodes." + error;
+                }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a BattleTree message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.BattleTree
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.BattleTree} BattleTree
+         */
+        BattleTree.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.BattleTree)
+                return object;
+            var message = new $root.pbbattle.BattleTree();
+            if (object.nodes) {
+                if (!Array.isArray(object.nodes))
+                    throw TypeError(".pbbattle.BattleTree.nodes: array expected");
+                message.nodes = [];
+                for (var i = 0; i < object.nodes.length; ++i) {
+                    if (typeof object.nodes[i] !== "object")
+                        throw TypeError(".pbbattle.BattleTree.nodes: object expected");
+                    message.nodes[i] = $root.pbbattle.TreeNode.fromObject(object.nodes[i]);
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BattleTree message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.BattleTree
+         * @static
+         * @param {pbbattle.BattleTree} message BattleTree
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BattleTree.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.nodes = [];
+            if (message.nodes && message.nodes.length) {
+                object.nodes = [];
+                for (var j = 0; j < message.nodes.length; ++j)
+                    object.nodes[j] = $root.pbbattle.TreeNode.toObject(message.nodes[j], options);
+            }
+            return object;
+        };
+
+        /**
+         * Converts this BattleTree to JSON.
+         * @function toJSON
+         * @memberof pbbattle.BattleTree
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BattleTree.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for BattleTree
+         * @function getTypeUrl
+         * @memberof pbbattle.BattleTree
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        BattleTree.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.BattleTree";
+        };
+
+        return BattleTree;
+    })();
+
+    pbbattle.GetGameStateReq = (function() {
+
+        /**
+         * Properties of a GetGameStateReq.
+         * @memberof pbbattle
+         * @interface IGetGameStateReq
+         * @property {string|null} [deviceId] GetGameStateReq deviceId
+         */
+
+        /**
+         * Constructs a new GetGameStateReq.
+         * @memberof pbbattle
+         * @classdesc Represents a GetGameStateReq.
+         * @implements IGetGameStateReq
+         * @constructor
+         * @param {pbbattle.IGetGameStateReq=} [properties] Properties to set
+         */
+        function GetGameStateReq(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GetGameStateReq deviceId.
+         * @member {string} deviceId
+         * @memberof pbbattle.GetGameStateReq
+         * @instance
+         */
+        GetGameStateReq.prototype.deviceId = "";
+
+        /**
+         * Creates a new GetGameStateReq instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.GetGameStateReq
+         * @static
+         * @param {pbbattle.IGetGameStateReq=} [properties] Properties to set
+         * @returns {pbbattle.GetGameStateReq} GetGameStateReq instance
+         */
+        GetGameStateReq.create = function create(properties) {
+            return new GetGameStateReq(properties);
+        };
+
+        /**
+         * Encodes the specified GetGameStateReq message. Does not implicitly {@link pbbattle.GetGameStateReq.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.GetGameStateReq
+         * @static
+         * @param {pbbattle.IGetGameStateReq} message GetGameStateReq message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetGameStateReq.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.deviceId != null && Object.hasOwnProperty.call(message, "deviceId"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.deviceId);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GetGameStateReq message, length delimited. Does not implicitly {@link pbbattle.GetGameStateReq.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.GetGameStateReq
+         * @static
+         * @param {pbbattle.IGetGameStateReq} message GetGameStateReq message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetGameStateReq.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GetGameStateReq message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.GetGameStateReq
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.GetGameStateReq} GetGameStateReq
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetGameStateReq.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.GetGameStateReq();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.deviceId = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GetGameStateReq message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.GetGameStateReq
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.GetGameStateReq} GetGameStateReq
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetGameStateReq.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GetGameStateReq message.
+         * @function verify
+         * @memberof pbbattle.GetGameStateReq
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GetGameStateReq.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.deviceId != null && message.hasOwnProperty("deviceId"))
+                if (!$util.isString(message.deviceId))
+                    return "deviceId: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a GetGameStateReq message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.GetGameStateReq
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.GetGameStateReq} GetGameStateReq
+         */
+        GetGameStateReq.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.GetGameStateReq)
+                return object;
+            var message = new $root.pbbattle.GetGameStateReq();
+            if (object.deviceId != null)
+                message.deviceId = String(object.deviceId);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GetGameStateReq message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.GetGameStateReq
+         * @static
+         * @param {pbbattle.GetGameStateReq} message GetGameStateReq
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GetGameStateReq.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.deviceId = "";
+            if (message.deviceId != null && message.hasOwnProperty("deviceId"))
+                object.deviceId = message.deviceId;
+            return object;
+        };
+
+        /**
+         * Converts this GetGameStateReq to JSON.
+         * @function toJSON
+         * @memberof pbbattle.GetGameStateReq
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GetGameStateReq.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GetGameStateReq
+         * @function getTypeUrl
+         * @memberof pbbattle.GetGameStateReq
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GetGameStateReq.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.GetGameStateReq";
+        };
+
+        return GetGameStateReq;
+    })();
+
+    pbbattle.GetGameStateResp = (function() {
+
+        /**
+         * Properties of a GetGameStateResp.
+         * @memberof pbbattle
+         * @interface IGetGameStateResp
+         * @property {pbcommon.EnumCode|null} [code] GetGameStateResp code
+         * @property {string|null} [msg] GetGameStateResp msg
+         * @property {number|Long|null} [currentRoundId] GetGameStateResp currentRoundId
+         * @property {pbbattle.GamePhase|null} [phase] GetGameStateResp phase
+         * @property {number|null} [countdown] GetGameStateResp countdown
+         * @property {pbbattle.BattleMode|null} [mode] GetGameStateResp mode
+         * @property {pbbattle.IBattleTree|null} [tree] GetGameStateResp tree
+         * @property {number|Long|null} [phaseStartTime] GetGameStateResp phaseStartTime
+         * @property {number|Long|null} [countDownServerTime] GetGameStateResp countDownServerTime
+         */
+
+        /**
+         * Constructs a new GetGameStateResp.
+         * @memberof pbbattle
+         * @classdesc Represents a GetGameStateResp.
+         * @implements IGetGameStateResp
+         * @constructor
+         * @param {pbbattle.IGetGameStateResp=} [properties] Properties to set
+         */
+        function GetGameStateResp(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GetGameStateResp code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbbattle.GetGameStateResp
+         * @instance
+         */
+        GetGameStateResp.prototype.code = 0;
+
+        /**
+         * GetGameStateResp msg.
+         * @member {string} msg
+         * @memberof pbbattle.GetGameStateResp
+         * @instance
+         */
+        GetGameStateResp.prototype.msg = "";
+
+        /**
+         * GetGameStateResp currentRoundId.
+         * @member {number|Long} currentRoundId
+         * @memberof pbbattle.GetGameStateResp
+         * @instance
+         */
+        GetGameStateResp.prototype.currentRoundId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * GetGameStateResp phase.
+         * @member {pbbattle.GamePhase} phase
+         * @memberof pbbattle.GetGameStateResp
+         * @instance
+         */
+        GetGameStateResp.prototype.phase = 0;
+
+        /**
+         * GetGameStateResp countdown.
+         * @member {number} countdown
+         * @memberof pbbattle.GetGameStateResp
+         * @instance
+         */
+        GetGameStateResp.prototype.countdown = 0;
+
+        /**
+         * GetGameStateResp mode.
+         * @member {pbbattle.BattleMode} mode
+         * @memberof pbbattle.GetGameStateResp
+         * @instance
+         */
+        GetGameStateResp.prototype.mode = 0;
+
+        /**
+         * GetGameStateResp tree.
+         * @member {pbbattle.IBattleTree|null|undefined} tree
+         * @memberof pbbattle.GetGameStateResp
+         * @instance
+         */
+        GetGameStateResp.prototype.tree = null;
+
+        /**
+         * GetGameStateResp phaseStartTime.
+         * @member {number|Long} phaseStartTime
+         * @memberof pbbattle.GetGameStateResp
+         * @instance
+         */
+        GetGameStateResp.prototype.phaseStartTime = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * GetGameStateResp countDownServerTime.
+         * @member {number|Long} countDownServerTime
+         * @memberof pbbattle.GetGameStateResp
+         * @instance
+         */
+        GetGameStateResp.prototype.countDownServerTime = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * Creates a new GetGameStateResp instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.GetGameStateResp
+         * @static
+         * @param {pbbattle.IGetGameStateResp=} [properties] Properties to set
+         * @returns {pbbattle.GetGameStateResp} GetGameStateResp instance
+         */
+        GetGameStateResp.create = function create(properties) {
+            return new GetGameStateResp(properties);
+        };
+
+        /**
+         * Encodes the specified GetGameStateResp message. Does not implicitly {@link pbbattle.GetGameStateResp.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.GetGameStateResp
+         * @static
+         * @param {pbbattle.IGetGameStateResp} message GetGameStateResp message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetGameStateResp.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.currentRoundId != null && Object.hasOwnProperty.call(message, "currentRoundId"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int64(message.currentRoundId);
+            if (message.phase != null && Object.hasOwnProperty.call(message, "phase"))
+                writer.uint32(/* id 4, wireType 0 =*/32).int32(message.phase);
+            if (message.countdown != null && Object.hasOwnProperty.call(message, "countdown"))
+                writer.uint32(/* id 5, wireType 0 =*/40).int32(message.countdown);
+            if (message.mode != null && Object.hasOwnProperty.call(message, "mode"))
+                writer.uint32(/* id 6, wireType 0 =*/48).int32(message.mode);
+            if (message.tree != null && Object.hasOwnProperty.call(message, "tree"))
+                $root.pbbattle.BattleTree.encode(message.tree, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
+            if (message.phaseStartTime != null && Object.hasOwnProperty.call(message, "phaseStartTime"))
+                writer.uint32(/* id 8, wireType 0 =*/64).int64(message.phaseStartTime);
+            if (message.countDownServerTime != null && Object.hasOwnProperty.call(message, "countDownServerTime"))
+                writer.uint32(/* id 9, wireType 0 =*/72).int64(message.countDownServerTime);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GetGameStateResp message, length delimited. Does not implicitly {@link pbbattle.GetGameStateResp.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.GetGameStateResp
+         * @static
+         * @param {pbbattle.IGetGameStateResp} message GetGameStateResp message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetGameStateResp.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GetGameStateResp message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.GetGameStateResp
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.GetGameStateResp} GetGameStateResp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetGameStateResp.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.GetGameStateResp();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.code = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.currentRoundId = reader.int64();
+                        break;
+                    }
+                case 4: {
+                        message.phase = reader.int32();
+                        break;
+                    }
+                case 5: {
+                        message.countdown = reader.int32();
+                        break;
+                    }
+                case 6: {
+                        message.mode = reader.int32();
+                        break;
+                    }
+                case 7: {
+                        message.tree = $root.pbbattle.BattleTree.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 8: {
+                        message.phaseStartTime = reader.int64();
+                        break;
+                    }
+                case 9: {
+                        message.countDownServerTime = reader.int64();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GetGameStateResp message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.GetGameStateResp
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.GetGameStateResp} GetGameStateResp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetGameStateResp.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GetGameStateResp message.
+         * @function verify
+         * @memberof pbbattle.GetGameStateResp
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GetGameStateResp.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.code != null && message.hasOwnProperty("code"))
+                switch (message.code) {
+                default:
+                    return "code: enum value expected";
+                case 0:
+                case 200:
+                case 403:
+                case 500:
+                case 501:
+                case 502:
+                case 503:
+                case 504:
+                case 505:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
+                case 2002:
+                case 2003:
+                case 2004:
+                case 2005:
+                case 2006:
+                case 2007:
+                case 2008:
+                case 2009:
+                case 2010:
+                case 2011:
+                case 2012:
+                case 2013:
+                case 2014:
+                case 2015:
+                case 3001:
+                case 3002:
+                case 3003:
+                case 5001:
+                case 5002:
+                case 10001:
+                case 10002:
+                case 20001:
+                case 20002:
+                    break;
+                }
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                if (!$util.isString(message.msg))
+                    return "msg: string expected";
+            if (message.currentRoundId != null && message.hasOwnProperty("currentRoundId"))
+                if (!$util.isInteger(message.currentRoundId) && !(message.currentRoundId && $util.isInteger(message.currentRoundId.low) && $util.isInteger(message.currentRoundId.high)))
+                    return "currentRoundId: integer|Long expected";
+            if (message.phase != null && message.hasOwnProperty("phase"))
+                switch (message.phase) {
+                default:
+                    return "phase: enum value expected";
+                case 0:
+                case 1:
+                case 2:
+                    break;
+                }
+            if (message.countdown != null && message.hasOwnProperty("countdown"))
+                if (!$util.isInteger(message.countdown))
+                    return "countdown: integer expected";
+            if (message.mode != null && message.hasOwnProperty("mode"))
+                switch (message.mode) {
+                default:
+                    return "mode: enum value expected";
+                case 0:
+                case 1:
+                case 2:
+                    break;
+                }
+            if (message.tree != null && message.hasOwnProperty("tree")) {
+                var error = $root.pbbattle.BattleTree.verify(message.tree);
+                if (error)
+                    return "tree." + error;
+            }
+            if (message.phaseStartTime != null && message.hasOwnProperty("phaseStartTime"))
+                if (!$util.isInteger(message.phaseStartTime) && !(message.phaseStartTime && $util.isInteger(message.phaseStartTime.low) && $util.isInteger(message.phaseStartTime.high)))
+                    return "phaseStartTime: integer|Long expected";
+            if (message.countDownServerTime != null && message.hasOwnProperty("countDownServerTime"))
+                if (!$util.isInteger(message.countDownServerTime) && !(message.countDownServerTime && $util.isInteger(message.countDownServerTime.low) && $util.isInteger(message.countDownServerTime.high)))
+                    return "countDownServerTime: integer|Long expected";
+            return null;
+        };
+
+        /**
+         * Creates a GetGameStateResp message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.GetGameStateResp
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.GetGameStateResp} GetGameStateResp
+         */
+        GetGameStateResp.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.GetGameStateResp)
+                return object;
+            var message = new $root.pbbattle.GetGameStateResp();
+            switch (object.code) {
+            default:
+                if (typeof object.code === "number") {
+                    message.code = object.code;
+                    break;
+                }
+                break;
+            case "None":
+            case 0:
+                message.code = 0;
+                break;
+            case "Success":
+            case 200:
+                message.code = 200;
+                break;
+            case "Forbidden":
+            case 403:
+                message.code = 403;
+                break;
+            case "Fail":
+            case 500:
+                message.code = 500;
+                break;
+            case "Unknown":
+            case 501:
+                message.code = 501;
+                break;
+            case "Internal":
+            case 502:
+                message.code = 502;
+                break;
+            case "Invalid":
+            case 503:
+                message.code = 503;
+                break;
+            case "InvalidParam":
+            case 504:
+                message.code = 504;
+                break;
+            case "ParamError":
+            case 505:
+                message.code = 505;
+                break;
+            case "FindError":
+            case 1001:
+                message.code = 1001;
+                break;
+            case "CreateError":
+            case 1002:
+                message.code = 1002;
+                break;
+            case "DeleteError":
+            case 1003:
+                message.code = 1003;
+                break;
+            case "UpdateError":
+            case 1004:
+                message.code = 1004;
+                break;
+            case "InvalidToken":
+            case 2002:
+                message.code = 2002;
+                break;
+            case "InvalidSign":
+            case 2003:
+                message.code = 2003;
+                break;
+            case "NotLogin":
+            case 2004:
+                message.code = 2004;
+                break;
+            case "LoginTimeout":
+            case 2005:
+                message.code = 2005;
+                break;
+            case "LoginError":
+            case 2006:
+                message.code = 2006;
+                break;
+            case "LoginForbidden":
+            case 2007:
+                message.code = 2007;
+                break;
+            case "LoginExpired":
+            case 2008:
+                message.code = 2008;
+                break;
+            case "LoginInvalid":
+            case 2009:
+                message.code = 2009;
+                break;
+            case "LoginInvalidPassword":
+            case 2010:
+                message.code = 2010;
+                break;
+            case "LoginInvalidUsername":
+            case 2011:
+                message.code = 2011;
+                break;
+            case "LoginInvalidEmail":
+            case 2012:
+                message.code = 2012;
+                break;
+            case "LoginInvalidPhone":
+            case 2013:
+                message.code = 2013;
+                break;
+            case "LoginInvalidUsernameOrEmail":
+            case 2014:
+                message.code = 2014;
+                break;
+            case "LoginSocketRepeat":
+            case 2015:
+                message.code = 2015;
+                break;
+            case "RoleIsNotExist":
+            case 3001:
+                message.code = 3001;
+                break;
+            case "UserIsExist":
+            case 3002:
+                message.code = 3002;
+                break;
+            case "UserIsBan":
+            case 3003:
+                message.code = 3003;
+                break;
+            case "TalkIsBan":
+            case 5001:
+                message.code = 5001;
+                break;
+            case "EnterRoomErr":
+            case 5002:
+                message.code = 5002;
+                break;
+            case "HalaChatNeedBuy":
+            case 10001:
+                message.code = 10001;
+                break;
+            case "HalaPriceOutRange":
+            case 10002:
+                message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            }
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.currentRoundId != null)
+                if ($util.Long)
+                    (message.currentRoundId = $util.Long.fromValue(object.currentRoundId)).unsigned = false;
+                else if (typeof object.currentRoundId === "string")
+                    message.currentRoundId = parseInt(object.currentRoundId, 10);
+                else if (typeof object.currentRoundId === "number")
+                    message.currentRoundId = object.currentRoundId;
+                else if (typeof object.currentRoundId === "object")
+                    message.currentRoundId = new $util.LongBits(object.currentRoundId.low >>> 0, object.currentRoundId.high >>> 0).toNumber();
+            switch (object.phase) {
+            default:
+                if (typeof object.phase === "number") {
+                    message.phase = object.phase;
+                    break;
+                }
+                break;
+            case "PHASE_UNKNOWN":
+            case 0:
+                message.phase = 0;
+                break;
+            case "ASSIST":
+            case 1:
+                message.phase = 1;
+                break;
+            case "BATTLE":
+            case 2:
+                message.phase = 2;
+                break;
+            }
+            if (object.countdown != null)
+                message.countdown = object.countdown | 0;
+            switch (object.mode) {
+            default:
+                if (typeof object.mode === "number") {
+                    message.mode = object.mode;
+                    break;
+                }
+                break;
+            case "MODE_UNKNOWN":
+            case 0:
+                message.mode = 0;
+                break;
+            case "SINGLE":
+            case 1:
+                message.mode = 1;
+                break;
+            case "DUAL":
+            case 2:
+                message.mode = 2;
+                break;
+            }
+            if (object.tree != null) {
+                if (typeof object.tree !== "object")
+                    throw TypeError(".pbbattle.GetGameStateResp.tree: object expected");
+                message.tree = $root.pbbattle.BattleTree.fromObject(object.tree);
+            }
+            if (object.phaseStartTime != null)
+                if ($util.Long)
+                    (message.phaseStartTime = $util.Long.fromValue(object.phaseStartTime)).unsigned = false;
+                else if (typeof object.phaseStartTime === "string")
+                    message.phaseStartTime = parseInt(object.phaseStartTime, 10);
+                else if (typeof object.phaseStartTime === "number")
+                    message.phaseStartTime = object.phaseStartTime;
+                else if (typeof object.phaseStartTime === "object")
+                    message.phaseStartTime = new $util.LongBits(object.phaseStartTime.low >>> 0, object.phaseStartTime.high >>> 0).toNumber();
+            if (object.countDownServerTime != null)
+                if ($util.Long)
+                    (message.countDownServerTime = $util.Long.fromValue(object.countDownServerTime)).unsigned = false;
+                else if (typeof object.countDownServerTime === "string")
+                    message.countDownServerTime = parseInt(object.countDownServerTime, 10);
+                else if (typeof object.countDownServerTime === "number")
+                    message.countDownServerTime = object.countDownServerTime;
+                else if (typeof object.countDownServerTime === "object")
+                    message.countDownServerTime = new $util.LongBits(object.countDownServerTime.low >>> 0, object.countDownServerTime.high >>> 0).toNumber();
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GetGameStateResp message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.GetGameStateResp
+         * @static
+         * @param {pbbattle.GetGameStateResp} message GetGameStateResp
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GetGameStateResp.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.code = options.enums === String ? "None" : 0;
+                object.msg = "";
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.currentRoundId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.currentRoundId = options.longs === String ? "0" : 0;
+                object.phase = options.enums === String ? "PHASE_UNKNOWN" : 0;
+                object.countdown = 0;
+                object.mode = options.enums === String ? "MODE_UNKNOWN" : 0;
+                object.tree = null;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.phaseStartTime = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.phaseStartTime = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.countDownServerTime = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.countDownServerTime = options.longs === String ? "0" : 0;
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.currentRoundId != null && message.hasOwnProperty("currentRoundId"))
+                if (typeof message.currentRoundId === "number")
+                    object.currentRoundId = options.longs === String ? String(message.currentRoundId) : message.currentRoundId;
+                else
+                    object.currentRoundId = options.longs === String ? $util.Long.prototype.toString.call(message.currentRoundId) : options.longs === Number ? new $util.LongBits(message.currentRoundId.low >>> 0, message.currentRoundId.high >>> 0).toNumber() : message.currentRoundId;
+            if (message.phase != null && message.hasOwnProperty("phase"))
+                object.phase = options.enums === String ? $root.pbbattle.GamePhase[message.phase] === undefined ? message.phase : $root.pbbattle.GamePhase[message.phase] : message.phase;
+            if (message.countdown != null && message.hasOwnProperty("countdown"))
+                object.countdown = message.countdown;
+            if (message.mode != null && message.hasOwnProperty("mode"))
+                object.mode = options.enums === String ? $root.pbbattle.BattleMode[message.mode] === undefined ? message.mode : $root.pbbattle.BattleMode[message.mode] : message.mode;
+            if (message.tree != null && message.hasOwnProperty("tree"))
+                object.tree = $root.pbbattle.BattleTree.toObject(message.tree, options);
+            if (message.phaseStartTime != null && message.hasOwnProperty("phaseStartTime"))
+                if (typeof message.phaseStartTime === "number")
+                    object.phaseStartTime = options.longs === String ? String(message.phaseStartTime) : message.phaseStartTime;
+                else
+                    object.phaseStartTime = options.longs === String ? $util.Long.prototype.toString.call(message.phaseStartTime) : options.longs === Number ? new $util.LongBits(message.phaseStartTime.low >>> 0, message.phaseStartTime.high >>> 0).toNumber() : message.phaseStartTime;
+            if (message.countDownServerTime != null && message.hasOwnProperty("countDownServerTime"))
+                if (typeof message.countDownServerTime === "number")
+                    object.countDownServerTime = options.longs === String ? String(message.countDownServerTime) : message.countDownServerTime;
+                else
+                    object.countDownServerTime = options.longs === String ? $util.Long.prototype.toString.call(message.countDownServerTime) : options.longs === Number ? new $util.LongBits(message.countDownServerTime.low >>> 0, message.countDownServerTime.high >>> 0).toNumber() : message.countDownServerTime;
+            return object;
+        };
+
+        /**
+         * Converts this GetGameStateResp to JSON.
+         * @function toJSON
+         * @memberof pbbattle.GetGameStateResp
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GetGameStateResp.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GetGameStateResp
+         * @function getTypeUrl
+         * @memberof pbbattle.GetGameStateResp
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GetGameStateResp.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.GetGameStateResp";
+        };
+
+        return GetGameStateResp;
+    })();
+
+    pbbattle.GetGeneralsReq = (function() {
+
+        /**
+         * Properties of a GetGeneralsReq.
+         * @memberof pbbattle
+         * @interface IGetGeneralsReq
+         * @property {pbcommon.IPageInfo|null} [page] GetGeneralsReq page
+         */
+
+        /**
+         * Constructs a new GetGeneralsReq.
+         * @memberof pbbattle
+         * @classdesc Represents a GetGeneralsReq.
+         * @implements IGetGeneralsReq
+         * @constructor
+         * @param {pbbattle.IGetGeneralsReq=} [properties] Properties to set
+         */
+        function GetGeneralsReq(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GetGeneralsReq page.
+         * @member {pbcommon.IPageInfo|null|undefined} page
+         * @memberof pbbattle.GetGeneralsReq
+         * @instance
+         */
+        GetGeneralsReq.prototype.page = null;
+
+        /**
+         * Creates a new GetGeneralsReq instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.GetGeneralsReq
+         * @static
+         * @param {pbbattle.IGetGeneralsReq=} [properties] Properties to set
+         * @returns {pbbattle.GetGeneralsReq} GetGeneralsReq instance
+         */
+        GetGeneralsReq.create = function create(properties) {
+            return new GetGeneralsReq(properties);
+        };
+
+        /**
+         * Encodes the specified GetGeneralsReq message. Does not implicitly {@link pbbattle.GetGeneralsReq.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.GetGeneralsReq
+         * @static
+         * @param {pbbattle.IGetGeneralsReq} message GetGeneralsReq message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetGeneralsReq.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.page != null && Object.hasOwnProperty.call(message, "page"))
+                $root.pbcommon.PageInfo.encode(message.page, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GetGeneralsReq message, length delimited. Does not implicitly {@link pbbattle.GetGeneralsReq.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.GetGeneralsReq
+         * @static
+         * @param {pbbattle.IGetGeneralsReq} message GetGeneralsReq message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetGeneralsReq.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GetGeneralsReq message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.GetGeneralsReq
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.GetGeneralsReq} GetGeneralsReq
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetGeneralsReq.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.GetGeneralsReq();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.page = $root.pbcommon.PageInfo.decode(reader, reader.uint32());
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GetGeneralsReq message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.GetGeneralsReq
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.GetGeneralsReq} GetGeneralsReq
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetGeneralsReq.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GetGeneralsReq message.
+         * @function verify
+         * @memberof pbbattle.GetGeneralsReq
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GetGeneralsReq.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.page != null && message.hasOwnProperty("page")) {
+                var error = $root.pbcommon.PageInfo.verify(message.page);
+                if (error)
+                    return "page." + error;
+            }
+            return null;
+        };
+
+        /**
+         * Creates a GetGeneralsReq message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.GetGeneralsReq
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.GetGeneralsReq} GetGeneralsReq
+         */
+        GetGeneralsReq.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.GetGeneralsReq)
+                return object;
+            var message = new $root.pbbattle.GetGeneralsReq();
+            if (object.page != null) {
+                if (typeof object.page !== "object")
+                    throw TypeError(".pbbattle.GetGeneralsReq.page: object expected");
+                message.page = $root.pbcommon.PageInfo.fromObject(object.page);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GetGeneralsReq message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.GetGeneralsReq
+         * @static
+         * @param {pbbattle.GetGeneralsReq} message GetGeneralsReq
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GetGeneralsReq.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.page = null;
+            if (message.page != null && message.hasOwnProperty("page"))
+                object.page = $root.pbcommon.PageInfo.toObject(message.page, options);
+            return object;
+        };
+
+        /**
+         * Converts this GetGeneralsReq to JSON.
+         * @function toJSON
+         * @memberof pbbattle.GetGeneralsReq
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GetGeneralsReq.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GetGeneralsReq
+         * @function getTypeUrl
+         * @memberof pbbattle.GetGeneralsReq
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GetGeneralsReq.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.GetGeneralsReq";
+        };
+
+        return GetGeneralsReq;
+    })();
+
+    pbbattle.GetGeneralsResp = (function() {
+
+        /**
+         * Properties of a GetGeneralsResp.
+         * @memberof pbbattle
+         * @interface IGetGeneralsResp
+         * @property {pbcommon.EnumCode|null} [code] GetGeneralsResp code
+         * @property {string|null} [msg] GetGeneralsResp msg
+         * @property {Array.<pbbattle.IGeneralModel>|null} [generals] GetGeneralsResp generals
+         * @property {number|null} [total] GetGeneralsResp total
+         */
+
+        /**
+         * Constructs a new GetGeneralsResp.
+         * @memberof pbbattle
+         * @classdesc Represents a GetGeneralsResp.
+         * @implements IGetGeneralsResp
+         * @constructor
+         * @param {pbbattle.IGetGeneralsResp=} [properties] Properties to set
+         */
+        function GetGeneralsResp(properties) {
+            this.generals = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GetGeneralsResp code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbbattle.GetGeneralsResp
+         * @instance
+         */
+        GetGeneralsResp.prototype.code = 0;
+
+        /**
+         * GetGeneralsResp msg.
+         * @member {string} msg
+         * @memberof pbbattle.GetGeneralsResp
+         * @instance
+         */
+        GetGeneralsResp.prototype.msg = "";
+
+        /**
+         * GetGeneralsResp generals.
+         * @member {Array.<pbbattle.IGeneralModel>} generals
+         * @memberof pbbattle.GetGeneralsResp
+         * @instance
+         */
+        GetGeneralsResp.prototype.generals = $util.emptyArray;
+
+        /**
+         * GetGeneralsResp total.
+         * @member {number} total
+         * @memberof pbbattle.GetGeneralsResp
+         * @instance
+         */
+        GetGeneralsResp.prototype.total = 0;
+
+        /**
+         * Creates a new GetGeneralsResp instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.GetGeneralsResp
+         * @static
+         * @param {pbbattle.IGetGeneralsResp=} [properties] Properties to set
+         * @returns {pbbattle.GetGeneralsResp} GetGeneralsResp instance
+         */
+        GetGeneralsResp.create = function create(properties) {
+            return new GetGeneralsResp(properties);
+        };
+
+        /**
+         * Encodes the specified GetGeneralsResp message. Does not implicitly {@link pbbattle.GetGeneralsResp.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.GetGeneralsResp
+         * @static
+         * @param {pbbattle.IGetGeneralsResp} message GetGeneralsResp message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetGeneralsResp.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.generals != null && message.generals.length)
+                for (var i = 0; i < message.generals.length; ++i)
+                    $root.pbbattle.GeneralModel.encode(message.generals[i], writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            if (message.total != null && Object.hasOwnProperty.call(message, "total"))
+                writer.uint32(/* id 4, wireType 0 =*/32).int32(message.total);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GetGeneralsResp message, length delimited. Does not implicitly {@link pbbattle.GetGeneralsResp.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.GetGeneralsResp
+         * @static
+         * @param {pbbattle.IGetGeneralsResp} message GetGeneralsResp message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetGeneralsResp.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GetGeneralsResp message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.GetGeneralsResp
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.GetGeneralsResp} GetGeneralsResp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetGeneralsResp.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.GetGeneralsResp();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.code = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        if (!(message.generals && message.generals.length))
+                            message.generals = [];
+                        message.generals.push($root.pbbattle.GeneralModel.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 4: {
+                        message.total = reader.int32();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GetGeneralsResp message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.GetGeneralsResp
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.GetGeneralsResp} GetGeneralsResp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetGeneralsResp.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GetGeneralsResp message.
+         * @function verify
+         * @memberof pbbattle.GetGeneralsResp
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GetGeneralsResp.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.code != null && message.hasOwnProperty("code"))
+                switch (message.code) {
+                default:
+                    return "code: enum value expected";
+                case 0:
+                case 200:
+                case 403:
+                case 500:
+                case 501:
+                case 502:
+                case 503:
+                case 504:
+                case 505:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
+                case 2002:
+                case 2003:
+                case 2004:
+                case 2005:
+                case 2006:
+                case 2007:
+                case 2008:
+                case 2009:
+                case 2010:
+                case 2011:
+                case 2012:
+                case 2013:
+                case 2014:
+                case 2015:
+                case 3001:
+                case 3002:
+                case 3003:
+                case 5001:
+                case 5002:
+                case 10001:
+                case 10002:
+                case 20001:
+                case 20002:
+                    break;
+                }
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                if (!$util.isString(message.msg))
+                    return "msg: string expected";
+            if (message.generals != null && message.hasOwnProperty("generals")) {
+                if (!Array.isArray(message.generals))
+                    return "generals: array expected";
+                for (var i = 0; i < message.generals.length; ++i) {
+                    var error = $root.pbbattle.GeneralModel.verify(message.generals[i]);
+                    if (error)
+                        return "generals." + error;
+                }
+            }
+            if (message.total != null && message.hasOwnProperty("total"))
+                if (!$util.isInteger(message.total))
+                    return "total: integer expected";
+            return null;
+        };
+
+        /**
+         * Creates a GetGeneralsResp message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.GetGeneralsResp
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.GetGeneralsResp} GetGeneralsResp
+         */
+        GetGeneralsResp.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.GetGeneralsResp)
+                return object;
+            var message = new $root.pbbattle.GetGeneralsResp();
+            switch (object.code) {
+            default:
+                if (typeof object.code === "number") {
+                    message.code = object.code;
+                    break;
+                }
+                break;
+            case "None":
+            case 0:
+                message.code = 0;
+                break;
+            case "Success":
+            case 200:
+                message.code = 200;
+                break;
+            case "Forbidden":
+            case 403:
+                message.code = 403;
+                break;
+            case "Fail":
+            case 500:
+                message.code = 500;
+                break;
+            case "Unknown":
+            case 501:
+                message.code = 501;
+                break;
+            case "Internal":
+            case 502:
+                message.code = 502;
+                break;
+            case "Invalid":
+            case 503:
+                message.code = 503;
+                break;
+            case "InvalidParam":
+            case 504:
+                message.code = 504;
+                break;
+            case "ParamError":
+            case 505:
+                message.code = 505;
+                break;
+            case "FindError":
+            case 1001:
+                message.code = 1001;
+                break;
+            case "CreateError":
+            case 1002:
+                message.code = 1002;
+                break;
+            case "DeleteError":
+            case 1003:
+                message.code = 1003;
+                break;
+            case "UpdateError":
+            case 1004:
+                message.code = 1004;
+                break;
+            case "InvalidToken":
+            case 2002:
+                message.code = 2002;
+                break;
+            case "InvalidSign":
+            case 2003:
+                message.code = 2003;
+                break;
+            case "NotLogin":
+            case 2004:
+                message.code = 2004;
+                break;
+            case "LoginTimeout":
+            case 2005:
+                message.code = 2005;
+                break;
+            case "LoginError":
+            case 2006:
+                message.code = 2006;
+                break;
+            case "LoginForbidden":
+            case 2007:
+                message.code = 2007;
+                break;
+            case "LoginExpired":
+            case 2008:
+                message.code = 2008;
+                break;
+            case "LoginInvalid":
+            case 2009:
+                message.code = 2009;
+                break;
+            case "LoginInvalidPassword":
+            case 2010:
+                message.code = 2010;
+                break;
+            case "LoginInvalidUsername":
+            case 2011:
+                message.code = 2011;
+                break;
+            case "LoginInvalidEmail":
+            case 2012:
+                message.code = 2012;
+                break;
+            case "LoginInvalidPhone":
+            case 2013:
+                message.code = 2013;
+                break;
+            case "LoginInvalidUsernameOrEmail":
+            case 2014:
+                message.code = 2014;
+                break;
+            case "LoginSocketRepeat":
+            case 2015:
+                message.code = 2015;
+                break;
+            case "RoleIsNotExist":
+            case 3001:
+                message.code = 3001;
+                break;
+            case "UserIsExist":
+            case 3002:
+                message.code = 3002;
+                break;
+            case "UserIsBan":
+            case 3003:
+                message.code = 3003;
+                break;
+            case "TalkIsBan":
+            case 5001:
+                message.code = 5001;
+                break;
+            case "EnterRoomErr":
+            case 5002:
+                message.code = 5002;
+                break;
+            case "HalaChatNeedBuy":
+            case 10001:
+                message.code = 10001;
+                break;
+            case "HalaPriceOutRange":
+            case 10002:
+                message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            }
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.generals) {
+                if (!Array.isArray(object.generals))
+                    throw TypeError(".pbbattle.GetGeneralsResp.generals: array expected");
+                message.generals = [];
+                for (var i = 0; i < object.generals.length; ++i) {
+                    if (typeof object.generals[i] !== "object")
+                        throw TypeError(".pbbattle.GetGeneralsResp.generals: object expected");
+                    message.generals[i] = $root.pbbattle.GeneralModel.fromObject(object.generals[i]);
+                }
+            }
+            if (object.total != null)
+                message.total = object.total | 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GetGeneralsResp message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.GetGeneralsResp
+         * @static
+         * @param {pbbattle.GetGeneralsResp} message GetGeneralsResp
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GetGeneralsResp.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.generals = [];
+            if (options.defaults) {
+                object.code = options.enums === String ? "None" : 0;
+                object.msg = "";
+                object.total = 0;
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.generals && message.generals.length) {
+                object.generals = [];
+                for (var j = 0; j < message.generals.length; ++j)
+                    object.generals[j] = $root.pbbattle.GeneralModel.toObject(message.generals[j], options);
+            }
+            if (message.total != null && message.hasOwnProperty("total"))
+                object.total = message.total;
+            return object;
+        };
+
+        /**
+         * Converts this GetGeneralsResp to JSON.
+         * @function toJSON
+         * @memberof pbbattle.GetGeneralsResp
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GetGeneralsResp.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GetGeneralsResp
+         * @function getTypeUrl
+         * @memberof pbbattle.GetGeneralsResp
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GetGeneralsResp.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.GetGeneralsResp";
+        };
+
+        return GetGeneralsResp;
+    })();
+
+    pbbattle.AssistActionReq = (function() {
+
+        /**
+         * Properties of an AssistActionReq.
+         * @memberof pbbattle
+         * @interface IAssistActionReq
+         * @property {number|Long|null} [generalId] AssistActionReq generalId
+         * @property {pbbattle.AssistOption|null} [option] AssistActionReq option
+         */
+
+        /**
+         * Constructs a new AssistActionReq.
+         * @memberof pbbattle
+         * @classdesc Represents an AssistActionReq.
+         * @implements IAssistActionReq
+         * @constructor
+         * @param {pbbattle.IAssistActionReq=} [properties] Properties to set
+         */
+        function AssistActionReq(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * AssistActionReq generalId.
+         * @member {number|Long} generalId
+         * @memberof pbbattle.AssistActionReq
+         * @instance
+         */
+        AssistActionReq.prototype.generalId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * AssistActionReq option.
+         * @member {pbbattle.AssistOption} option
+         * @memberof pbbattle.AssistActionReq
+         * @instance
+         */
+        AssistActionReq.prototype.option = 0;
+
+        /**
+         * Creates a new AssistActionReq instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.AssistActionReq
+         * @static
+         * @param {pbbattle.IAssistActionReq=} [properties] Properties to set
+         * @returns {pbbattle.AssistActionReq} AssistActionReq instance
+         */
+        AssistActionReq.create = function create(properties) {
+            return new AssistActionReq(properties);
+        };
+
+        /**
+         * Encodes the specified AssistActionReq message. Does not implicitly {@link pbbattle.AssistActionReq.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.AssistActionReq
+         * @static
+         * @param {pbbattle.IAssistActionReq} message AssistActionReq message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AssistActionReq.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.generalId != null && Object.hasOwnProperty.call(message, "generalId"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int64(message.generalId);
+            if (message.option != null && Object.hasOwnProperty.call(message, "option"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.option);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified AssistActionReq message, length delimited. Does not implicitly {@link pbbattle.AssistActionReq.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.AssistActionReq
+         * @static
+         * @param {pbbattle.IAssistActionReq} message AssistActionReq message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AssistActionReq.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an AssistActionReq message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.AssistActionReq
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.AssistActionReq} AssistActionReq
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AssistActionReq.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.AssistActionReq();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.generalId = reader.int64();
+                        break;
+                    }
+                case 2: {
+                        message.option = reader.int32();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an AssistActionReq message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.AssistActionReq
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.AssistActionReq} AssistActionReq
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AssistActionReq.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an AssistActionReq message.
+         * @function verify
+         * @memberof pbbattle.AssistActionReq
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        AssistActionReq.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.generalId != null && message.hasOwnProperty("generalId"))
+                if (!$util.isInteger(message.generalId) && !(message.generalId && $util.isInteger(message.generalId.low) && $util.isInteger(message.generalId.high)))
+                    return "generalId: integer|Long expected";
+            if (message.option != null && message.hasOwnProperty("option"))
+                switch (message.option) {
+                default:
+                    return "option: enum value expected";
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                    break;
+                }
+            return null;
+        };
+
+        /**
+         * Creates an AssistActionReq message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.AssistActionReq
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.AssistActionReq} AssistActionReq
+         */
+        AssistActionReq.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.AssistActionReq)
+                return object;
+            var message = new $root.pbbattle.AssistActionReq();
+            if (object.generalId != null)
+                if ($util.Long)
+                    (message.generalId = $util.Long.fromValue(object.generalId)).unsigned = false;
+                else if (typeof object.generalId === "string")
+                    message.generalId = parseInt(object.generalId, 10);
+                else if (typeof object.generalId === "number")
+                    message.generalId = object.generalId;
+                else if (typeof object.generalId === "object")
+                    message.generalId = new $util.LongBits(object.generalId.low >>> 0, object.generalId.high >>> 0).toNumber();
+            switch (object.option) {
+            default:
+                if (typeof object.option === "number") {
+                    message.option = object.option;
+                    break;
+                }
+                break;
+            case "OPTION_UNKNOWN":
+            case 0:
+                message.option = 0;
+                break;
+            case "PLUS_1":
+            case 1:
+                message.option = 1;
+                break;
+            case "PLUS_3":
+            case 2:
+                message.option = 2;
+                break;
+            case "PLUS_5":
+            case 3:
+                message.option = 3;
+                break;
+            case "PLUS_10":
+            case 4:
+                message.option = 4;
+                break;
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an AssistActionReq message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.AssistActionReq
+         * @static
+         * @param {pbbattle.AssistActionReq} message AssistActionReq
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        AssistActionReq.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.generalId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.generalId = options.longs === String ? "0" : 0;
+                object.option = options.enums === String ? "OPTION_UNKNOWN" : 0;
+            }
+            if (message.generalId != null && message.hasOwnProperty("generalId"))
+                if (typeof message.generalId === "number")
+                    object.generalId = options.longs === String ? String(message.generalId) : message.generalId;
+                else
+                    object.generalId = options.longs === String ? $util.Long.prototype.toString.call(message.generalId) : options.longs === Number ? new $util.LongBits(message.generalId.low >>> 0, message.generalId.high >>> 0).toNumber() : message.generalId;
+            if (message.option != null && message.hasOwnProperty("option"))
+                object.option = options.enums === String ? $root.pbbattle.AssistOption[message.option] === undefined ? message.option : $root.pbbattle.AssistOption[message.option] : message.option;
+            return object;
+        };
+
+        /**
+         * Converts this AssistActionReq to JSON.
+         * @function toJSON
+         * @memberof pbbattle.AssistActionReq
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        AssistActionReq.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for AssistActionReq
+         * @function getTypeUrl
+         * @memberof pbbattle.AssistActionReq
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        AssistActionReq.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.AssistActionReq";
+        };
+
+        return AssistActionReq;
+    })();
+
+    pbbattle.AssistActionResp = (function() {
+
+        /**
+         * Properties of an AssistActionResp.
+         * @memberof pbbattle
+         * @interface IAssistActionResp
+         * @property {pbcommon.EnumCode|null} [code] AssistActionResp code
+         * @property {string|null} [msg] AssistActionResp msg
+         * @property {pbbattle.ITreeNode|null} [updatedNode] AssistActionResp updatedNode
+         * @property {number|Long|null} [userGold] AssistActionResp userGold
+         */
+
+        /**
+         * Constructs a new AssistActionResp.
+         * @memberof pbbattle
+         * @classdesc Represents an AssistActionResp.
+         * @implements IAssistActionResp
+         * @constructor
+         * @param {pbbattle.IAssistActionResp=} [properties] Properties to set
+         */
+        function AssistActionResp(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * AssistActionResp code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbbattle.AssistActionResp
+         * @instance
+         */
+        AssistActionResp.prototype.code = 0;
+
+        /**
+         * AssistActionResp msg.
+         * @member {string} msg
+         * @memberof pbbattle.AssistActionResp
+         * @instance
+         */
+        AssistActionResp.prototype.msg = "";
+
+        /**
+         * AssistActionResp updatedNode.
+         * @member {pbbattle.ITreeNode|null|undefined} updatedNode
+         * @memberof pbbattle.AssistActionResp
+         * @instance
+         */
+        AssistActionResp.prototype.updatedNode = null;
+
+        /**
+         * AssistActionResp userGold.
+         * @member {number|Long} userGold
+         * @memberof pbbattle.AssistActionResp
+         * @instance
+         */
+        AssistActionResp.prototype.userGold = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * Creates a new AssistActionResp instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.AssistActionResp
+         * @static
+         * @param {pbbattle.IAssistActionResp=} [properties] Properties to set
+         * @returns {pbbattle.AssistActionResp} AssistActionResp instance
+         */
+        AssistActionResp.create = function create(properties) {
+            return new AssistActionResp(properties);
+        };
+
+        /**
+         * Encodes the specified AssistActionResp message. Does not implicitly {@link pbbattle.AssistActionResp.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.AssistActionResp
+         * @static
+         * @param {pbbattle.IAssistActionResp} message AssistActionResp message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AssistActionResp.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.updatedNode != null && Object.hasOwnProperty.call(message, "updatedNode"))
+                $root.pbbattle.TreeNode.encode(message.updatedNode, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            if (message.userGold != null && Object.hasOwnProperty.call(message, "userGold"))
+                writer.uint32(/* id 4, wireType 0 =*/32).int64(message.userGold);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified AssistActionResp message, length delimited. Does not implicitly {@link pbbattle.AssistActionResp.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.AssistActionResp
+         * @static
+         * @param {pbbattle.IAssistActionResp} message AssistActionResp message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AssistActionResp.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an AssistActionResp message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.AssistActionResp
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.AssistActionResp} AssistActionResp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AssistActionResp.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.AssistActionResp();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.code = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.updatedNode = $root.pbbattle.TreeNode.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 4: {
+                        message.userGold = reader.int64();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an AssistActionResp message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.AssistActionResp
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.AssistActionResp} AssistActionResp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AssistActionResp.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an AssistActionResp message.
+         * @function verify
+         * @memberof pbbattle.AssistActionResp
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        AssistActionResp.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.code != null && message.hasOwnProperty("code"))
+                switch (message.code) {
+                default:
+                    return "code: enum value expected";
+                case 0:
+                case 200:
+                case 403:
+                case 500:
+                case 501:
+                case 502:
+                case 503:
+                case 504:
+                case 505:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
+                case 2002:
+                case 2003:
+                case 2004:
+                case 2005:
+                case 2006:
+                case 2007:
+                case 2008:
+                case 2009:
+                case 2010:
+                case 2011:
+                case 2012:
+                case 2013:
+                case 2014:
+                case 2015:
+                case 3001:
+                case 3002:
+                case 3003:
+                case 5001:
+                case 5002:
+                case 10001:
+                case 10002:
+                case 20001:
+                case 20002:
+                    break;
+                }
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                if (!$util.isString(message.msg))
+                    return "msg: string expected";
+            if (message.updatedNode != null && message.hasOwnProperty("updatedNode")) {
+                var error = $root.pbbattle.TreeNode.verify(message.updatedNode);
+                if (error)
+                    return "updatedNode." + error;
+            }
+            if (message.userGold != null && message.hasOwnProperty("userGold"))
+                if (!$util.isInteger(message.userGold) && !(message.userGold && $util.isInteger(message.userGold.low) && $util.isInteger(message.userGold.high)))
+                    return "userGold: integer|Long expected";
+            return null;
+        };
+
+        /**
+         * Creates an AssistActionResp message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.AssistActionResp
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.AssistActionResp} AssistActionResp
+         */
+        AssistActionResp.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.AssistActionResp)
+                return object;
+            var message = new $root.pbbattle.AssistActionResp();
+            switch (object.code) {
+            default:
+                if (typeof object.code === "number") {
+                    message.code = object.code;
+                    break;
+                }
+                break;
+            case "None":
+            case 0:
+                message.code = 0;
+                break;
+            case "Success":
+            case 200:
+                message.code = 200;
+                break;
+            case "Forbidden":
+            case 403:
+                message.code = 403;
+                break;
+            case "Fail":
+            case 500:
+                message.code = 500;
+                break;
+            case "Unknown":
+            case 501:
+                message.code = 501;
+                break;
+            case "Internal":
+            case 502:
+                message.code = 502;
+                break;
+            case "Invalid":
+            case 503:
+                message.code = 503;
+                break;
+            case "InvalidParam":
+            case 504:
+                message.code = 504;
+                break;
+            case "ParamError":
+            case 505:
+                message.code = 505;
+                break;
+            case "FindError":
+            case 1001:
+                message.code = 1001;
+                break;
+            case "CreateError":
+            case 1002:
+                message.code = 1002;
+                break;
+            case "DeleteError":
+            case 1003:
+                message.code = 1003;
+                break;
+            case "UpdateError":
+            case 1004:
+                message.code = 1004;
+                break;
+            case "InvalidToken":
+            case 2002:
+                message.code = 2002;
+                break;
+            case "InvalidSign":
+            case 2003:
+                message.code = 2003;
+                break;
+            case "NotLogin":
+            case 2004:
+                message.code = 2004;
+                break;
+            case "LoginTimeout":
+            case 2005:
+                message.code = 2005;
+                break;
+            case "LoginError":
+            case 2006:
+                message.code = 2006;
+                break;
+            case "LoginForbidden":
+            case 2007:
+                message.code = 2007;
+                break;
+            case "LoginExpired":
+            case 2008:
+                message.code = 2008;
+                break;
+            case "LoginInvalid":
+            case 2009:
+                message.code = 2009;
+                break;
+            case "LoginInvalidPassword":
+            case 2010:
+                message.code = 2010;
+                break;
+            case "LoginInvalidUsername":
+            case 2011:
+                message.code = 2011;
+                break;
+            case "LoginInvalidEmail":
+            case 2012:
+                message.code = 2012;
+                break;
+            case "LoginInvalidPhone":
+            case 2013:
+                message.code = 2013;
+                break;
+            case "LoginInvalidUsernameOrEmail":
+            case 2014:
+                message.code = 2014;
+                break;
+            case "LoginSocketRepeat":
+            case 2015:
+                message.code = 2015;
+                break;
+            case "RoleIsNotExist":
+            case 3001:
+                message.code = 3001;
+                break;
+            case "UserIsExist":
+            case 3002:
+                message.code = 3002;
+                break;
+            case "UserIsBan":
+            case 3003:
+                message.code = 3003;
+                break;
+            case "TalkIsBan":
+            case 5001:
+                message.code = 5001;
+                break;
+            case "EnterRoomErr":
+            case 5002:
+                message.code = 5002;
+                break;
+            case "HalaChatNeedBuy":
+            case 10001:
+                message.code = 10001;
+                break;
+            case "HalaPriceOutRange":
+            case 10002:
+                message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            }
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.updatedNode != null) {
+                if (typeof object.updatedNode !== "object")
+                    throw TypeError(".pbbattle.AssistActionResp.updatedNode: object expected");
+                message.updatedNode = $root.pbbattle.TreeNode.fromObject(object.updatedNode);
+            }
+            if (object.userGold != null)
+                if ($util.Long)
+                    (message.userGold = $util.Long.fromValue(object.userGold)).unsigned = false;
+                else if (typeof object.userGold === "string")
+                    message.userGold = parseInt(object.userGold, 10);
+                else if (typeof object.userGold === "number")
+                    message.userGold = object.userGold;
+                else if (typeof object.userGold === "object")
+                    message.userGold = new $util.LongBits(object.userGold.low >>> 0, object.userGold.high >>> 0).toNumber();
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an AssistActionResp message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.AssistActionResp
+         * @static
+         * @param {pbbattle.AssistActionResp} message AssistActionResp
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        AssistActionResp.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.code = options.enums === String ? "None" : 0;
+                object.msg = "";
+                object.updatedNode = null;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.userGold = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.userGold = options.longs === String ? "0" : 0;
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.updatedNode != null && message.hasOwnProperty("updatedNode"))
+                object.updatedNode = $root.pbbattle.TreeNode.toObject(message.updatedNode, options);
+            if (message.userGold != null && message.hasOwnProperty("userGold"))
+                if (typeof message.userGold === "number")
+                    object.userGold = options.longs === String ? String(message.userGold) : message.userGold;
+                else
+                    object.userGold = options.longs === String ? $util.Long.prototype.toString.call(message.userGold) : options.longs === Number ? new $util.LongBits(message.userGold.low >>> 0, message.userGold.high >>> 0).toNumber() : message.userGold;
+            return object;
+        };
+
+        /**
+         * Converts this AssistActionResp to JSON.
+         * @function toJSON
+         * @memberof pbbattle.AssistActionResp
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        AssistActionResp.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for AssistActionResp
+         * @function getTypeUrl
+         * @memberof pbbattle.AssistActionResp
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        AssistActionResp.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.AssistActionResp";
+        };
+
+        return AssistActionResp;
+    })();
+
+    pbbattle.RepeatAssistReq = (function() {
+
+        /**
+         * Properties of a RepeatAssistReq.
+         * @memberof pbbattle
+         * @interface IRepeatAssistReq
+         * @property {Array.<pbbattle.IAssistActionReq>|null} [list] RepeatAssistReq list
+         */
+
+        /**
+         * Constructs a new RepeatAssistReq.
+         * @memberof pbbattle
+         * @classdesc Represents a RepeatAssistReq.
+         * @implements IRepeatAssistReq
+         * @constructor
+         * @param {pbbattle.IRepeatAssistReq=} [properties] Properties to set
+         */
+        function RepeatAssistReq(properties) {
+            this.list = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * RepeatAssistReq list.
+         * @member {Array.<pbbattle.IAssistActionReq>} list
+         * @memberof pbbattle.RepeatAssistReq
+         * @instance
+         */
+        RepeatAssistReq.prototype.list = $util.emptyArray;
+
+        /**
+         * Creates a new RepeatAssistReq instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.RepeatAssistReq
+         * @static
+         * @param {pbbattle.IRepeatAssistReq=} [properties] Properties to set
+         * @returns {pbbattle.RepeatAssistReq} RepeatAssistReq instance
+         */
+        RepeatAssistReq.create = function create(properties) {
+            return new RepeatAssistReq(properties);
+        };
+
+        /**
+         * Encodes the specified RepeatAssistReq message. Does not implicitly {@link pbbattle.RepeatAssistReq.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.RepeatAssistReq
+         * @static
+         * @param {pbbattle.IRepeatAssistReq} message RepeatAssistReq message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        RepeatAssistReq.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.list != null && message.list.length)
+                for (var i = 0; i < message.list.length; ++i)
+                    $root.pbbattle.AssistActionReq.encode(message.list[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified RepeatAssistReq message, length delimited. Does not implicitly {@link pbbattle.RepeatAssistReq.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.RepeatAssistReq
+         * @static
+         * @param {pbbattle.IRepeatAssistReq} message RepeatAssistReq message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        RepeatAssistReq.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a RepeatAssistReq message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.RepeatAssistReq
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.RepeatAssistReq} RepeatAssistReq
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        RepeatAssistReq.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.RepeatAssistReq();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        if (!(message.list && message.list.length))
+                            message.list = [];
+                        message.list.push($root.pbbattle.AssistActionReq.decode(reader, reader.uint32()));
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a RepeatAssistReq message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.RepeatAssistReq
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.RepeatAssistReq} RepeatAssistReq
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        RepeatAssistReq.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a RepeatAssistReq message.
+         * @function verify
+         * @memberof pbbattle.RepeatAssistReq
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        RepeatAssistReq.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.list != null && message.hasOwnProperty("list")) {
+                if (!Array.isArray(message.list))
+                    return "list: array expected";
+                for (var i = 0; i < message.list.length; ++i) {
+                    var error = $root.pbbattle.AssistActionReq.verify(message.list[i]);
+                    if (error)
+                        return "list." + error;
+                }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a RepeatAssistReq message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.RepeatAssistReq
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.RepeatAssistReq} RepeatAssistReq
+         */
+        RepeatAssistReq.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.RepeatAssistReq)
+                return object;
+            var message = new $root.pbbattle.RepeatAssistReq();
+            if (object.list) {
+                if (!Array.isArray(object.list))
+                    throw TypeError(".pbbattle.RepeatAssistReq.list: array expected");
+                message.list = [];
+                for (var i = 0; i < object.list.length; ++i) {
+                    if (typeof object.list[i] !== "object")
+                        throw TypeError(".pbbattle.RepeatAssistReq.list: object expected");
+                    message.list[i] = $root.pbbattle.AssistActionReq.fromObject(object.list[i]);
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a RepeatAssistReq message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.RepeatAssistReq
+         * @static
+         * @param {pbbattle.RepeatAssistReq} message RepeatAssistReq
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        RepeatAssistReq.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.list = [];
+            if (message.list && message.list.length) {
+                object.list = [];
+                for (var j = 0; j < message.list.length; ++j)
+                    object.list[j] = $root.pbbattle.AssistActionReq.toObject(message.list[j], options);
+            }
+            return object;
+        };
+
+        /**
+         * Converts this RepeatAssistReq to JSON.
+         * @function toJSON
+         * @memberof pbbattle.RepeatAssistReq
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        RepeatAssistReq.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for RepeatAssistReq
+         * @function getTypeUrl
+         * @memberof pbbattle.RepeatAssistReq
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        RepeatAssistReq.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.RepeatAssistReq";
+        };
+
+        return RepeatAssistReq;
+    })();
+
+    pbbattle.RepeatAssistResp = (function() {
+
+        /**
+         * Properties of a RepeatAssistResp.
+         * @memberof pbbattle
+         * @interface IRepeatAssistResp
+         * @property {pbcommon.EnumCode|null} [code] RepeatAssistResp code
+         * @property {string|null} [msg] RepeatAssistResp msg
+         * @property {Array.<pbbattle.ITreeNode>|null} [updatedNodes] RepeatAssistResp updatedNodes
+         * @property {number|Long|null} [userGold] RepeatAssistResp userGold
+         */
+
+        /**
+         * Constructs a new RepeatAssistResp.
+         * @memberof pbbattle
+         * @classdesc Represents a RepeatAssistResp.
+         * @implements IRepeatAssistResp
+         * @constructor
+         * @param {pbbattle.IRepeatAssistResp=} [properties] Properties to set
+         */
+        function RepeatAssistResp(properties) {
+            this.updatedNodes = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * RepeatAssistResp code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbbattle.RepeatAssistResp
+         * @instance
+         */
+        RepeatAssistResp.prototype.code = 0;
+
+        /**
+         * RepeatAssistResp msg.
+         * @member {string} msg
+         * @memberof pbbattle.RepeatAssistResp
+         * @instance
+         */
+        RepeatAssistResp.prototype.msg = "";
+
+        /**
+         * RepeatAssistResp updatedNodes.
+         * @member {Array.<pbbattle.ITreeNode>} updatedNodes
+         * @memberof pbbattle.RepeatAssistResp
+         * @instance
+         */
+        RepeatAssistResp.prototype.updatedNodes = $util.emptyArray;
+
+        /**
+         * RepeatAssistResp userGold.
+         * @member {number|Long} userGold
+         * @memberof pbbattle.RepeatAssistResp
+         * @instance
+         */
+        RepeatAssistResp.prototype.userGold = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * Creates a new RepeatAssistResp instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.RepeatAssistResp
+         * @static
+         * @param {pbbattle.IRepeatAssistResp=} [properties] Properties to set
+         * @returns {pbbattle.RepeatAssistResp} RepeatAssistResp instance
+         */
+        RepeatAssistResp.create = function create(properties) {
+            return new RepeatAssistResp(properties);
+        };
+
+        /**
+         * Encodes the specified RepeatAssistResp message. Does not implicitly {@link pbbattle.RepeatAssistResp.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.RepeatAssistResp
+         * @static
+         * @param {pbbattle.IRepeatAssistResp} message RepeatAssistResp message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        RepeatAssistResp.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.updatedNodes != null && message.updatedNodes.length)
+                for (var i = 0; i < message.updatedNodes.length; ++i)
+                    $root.pbbattle.TreeNode.encode(message.updatedNodes[i], writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            if (message.userGold != null && Object.hasOwnProperty.call(message, "userGold"))
+                writer.uint32(/* id 4, wireType 0 =*/32).int64(message.userGold);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified RepeatAssistResp message, length delimited. Does not implicitly {@link pbbattle.RepeatAssistResp.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.RepeatAssistResp
+         * @static
+         * @param {pbbattle.IRepeatAssistResp} message RepeatAssistResp message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        RepeatAssistResp.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a RepeatAssistResp message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.RepeatAssistResp
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.RepeatAssistResp} RepeatAssistResp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        RepeatAssistResp.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.RepeatAssistResp();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.code = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        if (!(message.updatedNodes && message.updatedNodes.length))
+                            message.updatedNodes = [];
+                        message.updatedNodes.push($root.pbbattle.TreeNode.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 4: {
+                        message.userGold = reader.int64();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a RepeatAssistResp message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.RepeatAssistResp
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.RepeatAssistResp} RepeatAssistResp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        RepeatAssistResp.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a RepeatAssistResp message.
+         * @function verify
+         * @memberof pbbattle.RepeatAssistResp
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        RepeatAssistResp.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.code != null && message.hasOwnProperty("code"))
+                switch (message.code) {
+                default:
+                    return "code: enum value expected";
+                case 0:
+                case 200:
+                case 403:
+                case 500:
+                case 501:
+                case 502:
+                case 503:
+                case 504:
+                case 505:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
+                case 2002:
+                case 2003:
+                case 2004:
+                case 2005:
+                case 2006:
+                case 2007:
+                case 2008:
+                case 2009:
+                case 2010:
+                case 2011:
+                case 2012:
+                case 2013:
+                case 2014:
+                case 2015:
+                case 3001:
+                case 3002:
+                case 3003:
+                case 5001:
+                case 5002:
+                case 10001:
+                case 10002:
+                case 20001:
+                case 20002:
+                    break;
+                }
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                if (!$util.isString(message.msg))
+                    return "msg: string expected";
+            if (message.updatedNodes != null && message.hasOwnProperty("updatedNodes")) {
+                if (!Array.isArray(message.updatedNodes))
+                    return "updatedNodes: array expected";
+                for (var i = 0; i < message.updatedNodes.length; ++i) {
+                    var error = $root.pbbattle.TreeNode.verify(message.updatedNodes[i]);
+                    if (error)
+                        return "updatedNodes." + error;
+                }
+            }
+            if (message.userGold != null && message.hasOwnProperty("userGold"))
+                if (!$util.isInteger(message.userGold) && !(message.userGold && $util.isInteger(message.userGold.low) && $util.isInteger(message.userGold.high)))
+                    return "userGold: integer|Long expected";
+            return null;
+        };
+
+        /**
+         * Creates a RepeatAssistResp message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.RepeatAssistResp
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.RepeatAssistResp} RepeatAssistResp
+         */
+        RepeatAssistResp.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.RepeatAssistResp)
+                return object;
+            var message = new $root.pbbattle.RepeatAssistResp();
+            switch (object.code) {
+            default:
+                if (typeof object.code === "number") {
+                    message.code = object.code;
+                    break;
+                }
+                break;
+            case "None":
+            case 0:
+                message.code = 0;
+                break;
+            case "Success":
+            case 200:
+                message.code = 200;
+                break;
+            case "Forbidden":
+            case 403:
+                message.code = 403;
+                break;
+            case "Fail":
+            case 500:
+                message.code = 500;
+                break;
+            case "Unknown":
+            case 501:
+                message.code = 501;
+                break;
+            case "Internal":
+            case 502:
+                message.code = 502;
+                break;
+            case "Invalid":
+            case 503:
+                message.code = 503;
+                break;
+            case "InvalidParam":
+            case 504:
+                message.code = 504;
+                break;
+            case "ParamError":
+            case 505:
+                message.code = 505;
+                break;
+            case "FindError":
+            case 1001:
+                message.code = 1001;
+                break;
+            case "CreateError":
+            case 1002:
+                message.code = 1002;
+                break;
+            case "DeleteError":
+            case 1003:
+                message.code = 1003;
+                break;
+            case "UpdateError":
+            case 1004:
+                message.code = 1004;
+                break;
+            case "InvalidToken":
+            case 2002:
+                message.code = 2002;
+                break;
+            case "InvalidSign":
+            case 2003:
+                message.code = 2003;
+                break;
+            case "NotLogin":
+            case 2004:
+                message.code = 2004;
+                break;
+            case "LoginTimeout":
+            case 2005:
+                message.code = 2005;
+                break;
+            case "LoginError":
+            case 2006:
+                message.code = 2006;
+                break;
+            case "LoginForbidden":
+            case 2007:
+                message.code = 2007;
+                break;
+            case "LoginExpired":
+            case 2008:
+                message.code = 2008;
+                break;
+            case "LoginInvalid":
+            case 2009:
+                message.code = 2009;
+                break;
+            case "LoginInvalidPassword":
+            case 2010:
+                message.code = 2010;
+                break;
+            case "LoginInvalidUsername":
+            case 2011:
+                message.code = 2011;
+                break;
+            case "LoginInvalidEmail":
+            case 2012:
+                message.code = 2012;
+                break;
+            case "LoginInvalidPhone":
+            case 2013:
+                message.code = 2013;
+                break;
+            case "LoginInvalidUsernameOrEmail":
+            case 2014:
+                message.code = 2014;
+                break;
+            case "LoginSocketRepeat":
+            case 2015:
+                message.code = 2015;
+                break;
+            case "RoleIsNotExist":
+            case 3001:
+                message.code = 3001;
+                break;
+            case "UserIsExist":
+            case 3002:
+                message.code = 3002;
+                break;
+            case "UserIsBan":
+            case 3003:
+                message.code = 3003;
+                break;
+            case "TalkIsBan":
+            case 5001:
+                message.code = 5001;
+                break;
+            case "EnterRoomErr":
+            case 5002:
+                message.code = 5002;
+                break;
+            case "HalaChatNeedBuy":
+            case 10001:
+                message.code = 10001;
+                break;
+            case "HalaPriceOutRange":
+            case 10002:
+                message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            }
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.updatedNodes) {
+                if (!Array.isArray(object.updatedNodes))
+                    throw TypeError(".pbbattle.RepeatAssistResp.updatedNodes: array expected");
+                message.updatedNodes = [];
+                for (var i = 0; i < object.updatedNodes.length; ++i) {
+                    if (typeof object.updatedNodes[i] !== "object")
+                        throw TypeError(".pbbattle.RepeatAssistResp.updatedNodes: object expected");
+                    message.updatedNodes[i] = $root.pbbattle.TreeNode.fromObject(object.updatedNodes[i]);
+                }
+            }
+            if (object.userGold != null)
+                if ($util.Long)
+                    (message.userGold = $util.Long.fromValue(object.userGold)).unsigned = false;
+                else if (typeof object.userGold === "string")
+                    message.userGold = parseInt(object.userGold, 10);
+                else if (typeof object.userGold === "number")
+                    message.userGold = object.userGold;
+                else if (typeof object.userGold === "object")
+                    message.userGold = new $util.LongBits(object.userGold.low >>> 0, object.userGold.high >>> 0).toNumber();
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a RepeatAssistResp message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.RepeatAssistResp
+         * @static
+         * @param {pbbattle.RepeatAssistResp} message RepeatAssistResp
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        RepeatAssistResp.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.updatedNodes = [];
+            if (options.defaults) {
+                object.code = options.enums === String ? "None" : 0;
+                object.msg = "";
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.userGold = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.userGold = options.longs === String ? "0" : 0;
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.updatedNodes && message.updatedNodes.length) {
+                object.updatedNodes = [];
+                for (var j = 0; j < message.updatedNodes.length; ++j)
+                    object.updatedNodes[j] = $root.pbbattle.TreeNode.toObject(message.updatedNodes[j], options);
+            }
+            if (message.userGold != null && message.hasOwnProperty("userGold"))
+                if (typeof message.userGold === "number")
+                    object.userGold = options.longs === String ? String(message.userGold) : message.userGold;
+                else
+                    object.userGold = options.longs === String ? $util.Long.prototype.toString.call(message.userGold) : options.longs === Number ? new $util.LongBits(message.userGold.low >>> 0, message.userGold.high >>> 0).toNumber() : message.userGold;
+            return object;
+        };
+
+        /**
+         * Converts this RepeatAssistResp to JSON.
+         * @function toJSON
+         * @memberof pbbattle.RepeatAssistResp
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        RepeatAssistResp.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for RepeatAssistResp
+         * @function getTypeUrl
+         * @memberof pbbattle.RepeatAssistResp
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        RepeatAssistResp.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.RepeatAssistResp";
+        };
+
+        return RepeatAssistResp;
+    })();
+
+    pbbattle.GetHistoryReq = (function() {
+
+        /**
+         * Properties of a GetHistoryReq.
+         * @memberof pbbattle
+         * @interface IGetHistoryReq
+         * @property {number|null} [limit] GetHistoryReq limit
+         */
+
+        /**
+         * Constructs a new GetHistoryReq.
+         * @memberof pbbattle
+         * @classdesc Represents a GetHistoryReq.
+         * @implements IGetHistoryReq
+         * @constructor
+         * @param {pbbattle.IGetHistoryReq=} [properties] Properties to set
+         */
+        function GetHistoryReq(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GetHistoryReq limit.
+         * @member {number} limit
+         * @memberof pbbattle.GetHistoryReq
+         * @instance
+         */
+        GetHistoryReq.prototype.limit = 0;
+
+        /**
+         * Creates a new GetHistoryReq instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.GetHistoryReq
+         * @static
+         * @param {pbbattle.IGetHistoryReq=} [properties] Properties to set
+         * @returns {pbbattle.GetHistoryReq} GetHistoryReq instance
+         */
+        GetHistoryReq.create = function create(properties) {
+            return new GetHistoryReq(properties);
+        };
+
+        /**
+         * Encodes the specified GetHistoryReq message. Does not implicitly {@link pbbattle.GetHistoryReq.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.GetHistoryReq
+         * @static
+         * @param {pbbattle.IGetHistoryReq} message GetHistoryReq message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetHistoryReq.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.limit != null && Object.hasOwnProperty.call(message, "limit"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.limit);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GetHistoryReq message, length delimited. Does not implicitly {@link pbbattle.GetHistoryReq.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.GetHistoryReq
+         * @static
+         * @param {pbbattle.IGetHistoryReq} message GetHistoryReq message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetHistoryReq.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GetHistoryReq message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.GetHistoryReq
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.GetHistoryReq} GetHistoryReq
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetHistoryReq.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.GetHistoryReq();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.limit = reader.int32();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GetHistoryReq message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.GetHistoryReq
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.GetHistoryReq} GetHistoryReq
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetHistoryReq.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GetHistoryReq message.
+         * @function verify
+         * @memberof pbbattle.GetHistoryReq
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GetHistoryReq.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.limit != null && message.hasOwnProperty("limit"))
+                if (!$util.isInteger(message.limit))
+                    return "limit: integer expected";
+            return null;
+        };
+
+        /**
+         * Creates a GetHistoryReq message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.GetHistoryReq
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.GetHistoryReq} GetHistoryReq
+         */
+        GetHistoryReq.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.GetHistoryReq)
+                return object;
+            var message = new $root.pbbattle.GetHistoryReq();
+            if (object.limit != null)
+                message.limit = object.limit | 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GetHistoryReq message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.GetHistoryReq
+         * @static
+         * @param {pbbattle.GetHistoryReq} message GetHistoryReq
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GetHistoryReq.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.limit = 0;
+            if (message.limit != null && message.hasOwnProperty("limit"))
+                object.limit = message.limit;
+            return object;
+        };
+
+        /**
+         * Converts this GetHistoryReq to JSON.
+         * @function toJSON
+         * @memberof pbbattle.GetHistoryReq
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GetHistoryReq.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GetHistoryReq
+         * @function getTypeUrl
+         * @memberof pbbattle.GetHistoryReq
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GetHistoryReq.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.GetHistoryReq";
+        };
+
+        return GetHistoryReq;
+    })();
+
+    pbbattle.BattleHistoryItem = (function() {
+
+        /**
+         * Properties of a BattleHistoryItem.
+         * @memberof pbbattle
+         * @interface IBattleHistoryItem
+         * @property {number|Long|null} [roundId] BattleHistoryItem roundId
+         * @property {string|null} [result] BattleHistoryItem result
+         */
+
+        /**
+         * Constructs a new BattleHistoryItem.
+         * @memberof pbbattle
+         * @classdesc Represents a BattleHistoryItem.
+         * @implements IBattleHistoryItem
+         * @constructor
+         * @param {pbbattle.IBattleHistoryItem=} [properties] Properties to set
+         */
+        function BattleHistoryItem(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BattleHistoryItem roundId.
+         * @member {number|Long} roundId
+         * @memberof pbbattle.BattleHistoryItem
+         * @instance
+         */
+        BattleHistoryItem.prototype.roundId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * BattleHistoryItem result.
+         * @member {string} result
+         * @memberof pbbattle.BattleHistoryItem
+         * @instance
+         */
+        BattleHistoryItem.prototype.result = "";
+
+        /**
+         * Creates a new BattleHistoryItem instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.BattleHistoryItem
+         * @static
+         * @param {pbbattle.IBattleHistoryItem=} [properties] Properties to set
+         * @returns {pbbattle.BattleHistoryItem} BattleHistoryItem instance
+         */
+        BattleHistoryItem.create = function create(properties) {
+            return new BattleHistoryItem(properties);
+        };
+
+        /**
+         * Encodes the specified BattleHistoryItem message. Does not implicitly {@link pbbattle.BattleHistoryItem.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.BattleHistoryItem
+         * @static
+         * @param {pbbattle.IBattleHistoryItem} message BattleHistoryItem message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BattleHistoryItem.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.roundId != null && Object.hasOwnProperty.call(message, "roundId"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int64(message.roundId);
+            if (message.result != null && Object.hasOwnProperty.call(message, "result"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.result);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BattleHistoryItem message, length delimited. Does not implicitly {@link pbbattle.BattleHistoryItem.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.BattleHistoryItem
+         * @static
+         * @param {pbbattle.IBattleHistoryItem} message BattleHistoryItem message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BattleHistoryItem.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BattleHistoryItem message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.BattleHistoryItem
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.BattleHistoryItem} BattleHistoryItem
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BattleHistoryItem.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.BattleHistoryItem();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.roundId = reader.int64();
+                        break;
+                    }
+                case 2: {
+                        message.result = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a BattleHistoryItem message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.BattleHistoryItem
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.BattleHistoryItem} BattleHistoryItem
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BattleHistoryItem.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BattleHistoryItem message.
+         * @function verify
+         * @memberof pbbattle.BattleHistoryItem
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BattleHistoryItem.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.roundId != null && message.hasOwnProperty("roundId"))
+                if (!$util.isInteger(message.roundId) && !(message.roundId && $util.isInteger(message.roundId.low) && $util.isInteger(message.roundId.high)))
+                    return "roundId: integer|Long expected";
+            if (message.result != null && message.hasOwnProperty("result"))
+                if (!$util.isString(message.result))
+                    return "result: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a BattleHistoryItem message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.BattleHistoryItem
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.BattleHistoryItem} BattleHistoryItem
+         */
+        BattleHistoryItem.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.BattleHistoryItem)
+                return object;
+            var message = new $root.pbbattle.BattleHistoryItem();
+            if (object.roundId != null)
+                if ($util.Long)
+                    (message.roundId = $util.Long.fromValue(object.roundId)).unsigned = false;
+                else if (typeof object.roundId === "string")
+                    message.roundId = parseInt(object.roundId, 10);
+                else if (typeof object.roundId === "number")
+                    message.roundId = object.roundId;
+                else if (typeof object.roundId === "object")
+                    message.roundId = new $util.LongBits(object.roundId.low >>> 0, object.roundId.high >>> 0).toNumber();
+            if (object.result != null)
+                message.result = String(object.result);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BattleHistoryItem message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.BattleHistoryItem
+         * @static
+         * @param {pbbattle.BattleHistoryItem} message BattleHistoryItem
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BattleHistoryItem.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.roundId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.roundId = options.longs === String ? "0" : 0;
+                object.result = "";
+            }
+            if (message.roundId != null && message.hasOwnProperty("roundId"))
+                if (typeof message.roundId === "number")
+                    object.roundId = options.longs === String ? String(message.roundId) : message.roundId;
+                else
+                    object.roundId = options.longs === String ? $util.Long.prototype.toString.call(message.roundId) : options.longs === Number ? new $util.LongBits(message.roundId.low >>> 0, message.roundId.high >>> 0).toNumber() : message.roundId;
+            if (message.result != null && message.hasOwnProperty("result"))
+                object.result = message.result;
+            return object;
+        };
+
+        /**
+         * Converts this BattleHistoryItem to JSON.
+         * @function toJSON
+         * @memberof pbbattle.BattleHistoryItem
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BattleHistoryItem.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for BattleHistoryItem
+         * @function getTypeUrl
+         * @memberof pbbattle.BattleHistoryItem
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        BattleHistoryItem.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.BattleHistoryItem";
+        };
+
+        return BattleHistoryItem;
+    })();
+
+    pbbattle.GetHistoryResp = (function() {
+
+        /**
+         * Properties of a GetHistoryResp.
+         * @memberof pbbattle
+         * @interface IGetHistoryResp
+         * @property {pbcommon.EnumCode|null} [code] GetHistoryResp code
+         * @property {string|null} [msg] GetHistoryResp msg
+         * @property {Array.<pbbattle.IBattleHistoryItem>|null} [history] GetHistoryResp history
+         */
+
+        /**
+         * Constructs a new GetHistoryResp.
+         * @memberof pbbattle
+         * @classdesc Represents a GetHistoryResp.
+         * @implements IGetHistoryResp
+         * @constructor
+         * @param {pbbattle.IGetHistoryResp=} [properties] Properties to set
+         */
+        function GetHistoryResp(properties) {
+            this.history = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GetHistoryResp code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbbattle.GetHistoryResp
+         * @instance
+         */
+        GetHistoryResp.prototype.code = 0;
+
+        /**
+         * GetHistoryResp msg.
+         * @member {string} msg
+         * @memberof pbbattle.GetHistoryResp
+         * @instance
+         */
+        GetHistoryResp.prototype.msg = "";
+
+        /**
+         * GetHistoryResp history.
+         * @member {Array.<pbbattle.IBattleHistoryItem>} history
+         * @memberof pbbattle.GetHistoryResp
+         * @instance
+         */
+        GetHistoryResp.prototype.history = $util.emptyArray;
+
+        /**
+         * Creates a new GetHistoryResp instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.GetHistoryResp
+         * @static
+         * @param {pbbattle.IGetHistoryResp=} [properties] Properties to set
+         * @returns {pbbattle.GetHistoryResp} GetHistoryResp instance
+         */
+        GetHistoryResp.create = function create(properties) {
+            return new GetHistoryResp(properties);
+        };
+
+        /**
+         * Encodes the specified GetHistoryResp message. Does not implicitly {@link pbbattle.GetHistoryResp.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.GetHistoryResp
+         * @static
+         * @param {pbbattle.IGetHistoryResp} message GetHistoryResp message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetHistoryResp.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.history != null && message.history.length)
+                for (var i = 0; i < message.history.length; ++i)
+                    $root.pbbattle.BattleHistoryItem.encode(message.history[i], writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GetHistoryResp message, length delimited. Does not implicitly {@link pbbattle.GetHistoryResp.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.GetHistoryResp
+         * @static
+         * @param {pbbattle.IGetHistoryResp} message GetHistoryResp message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetHistoryResp.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GetHistoryResp message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.GetHistoryResp
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.GetHistoryResp} GetHistoryResp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetHistoryResp.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.GetHistoryResp();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.code = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        if (!(message.history && message.history.length))
+                            message.history = [];
+                        message.history.push($root.pbbattle.BattleHistoryItem.decode(reader, reader.uint32()));
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GetHistoryResp message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.GetHistoryResp
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.GetHistoryResp} GetHistoryResp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetHistoryResp.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GetHistoryResp message.
+         * @function verify
+         * @memberof pbbattle.GetHistoryResp
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GetHistoryResp.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.code != null && message.hasOwnProperty("code"))
+                switch (message.code) {
+                default:
+                    return "code: enum value expected";
+                case 0:
+                case 200:
+                case 403:
+                case 500:
+                case 501:
+                case 502:
+                case 503:
+                case 504:
+                case 505:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
+                case 2002:
+                case 2003:
+                case 2004:
+                case 2005:
+                case 2006:
+                case 2007:
+                case 2008:
+                case 2009:
+                case 2010:
+                case 2011:
+                case 2012:
+                case 2013:
+                case 2014:
+                case 2015:
+                case 3001:
+                case 3002:
+                case 3003:
+                case 5001:
+                case 5002:
+                case 10001:
+                case 10002:
+                case 20001:
+                case 20002:
+                    break;
+                }
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                if (!$util.isString(message.msg))
+                    return "msg: string expected";
+            if (message.history != null && message.hasOwnProperty("history")) {
+                if (!Array.isArray(message.history))
+                    return "history: array expected";
+                for (var i = 0; i < message.history.length; ++i) {
+                    var error = $root.pbbattle.BattleHistoryItem.verify(message.history[i]);
+                    if (error)
+                        return "history." + error;
+                }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a GetHistoryResp message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.GetHistoryResp
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.GetHistoryResp} GetHistoryResp
+         */
+        GetHistoryResp.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.GetHistoryResp)
+                return object;
+            var message = new $root.pbbattle.GetHistoryResp();
+            switch (object.code) {
+            default:
+                if (typeof object.code === "number") {
+                    message.code = object.code;
+                    break;
+                }
+                break;
+            case "None":
+            case 0:
+                message.code = 0;
+                break;
+            case "Success":
+            case 200:
+                message.code = 200;
+                break;
+            case "Forbidden":
+            case 403:
+                message.code = 403;
+                break;
+            case "Fail":
+            case 500:
+                message.code = 500;
+                break;
+            case "Unknown":
+            case 501:
+                message.code = 501;
+                break;
+            case "Internal":
+            case 502:
+                message.code = 502;
+                break;
+            case "Invalid":
+            case 503:
+                message.code = 503;
+                break;
+            case "InvalidParam":
+            case 504:
+                message.code = 504;
+                break;
+            case "ParamError":
+            case 505:
+                message.code = 505;
+                break;
+            case "FindError":
+            case 1001:
+                message.code = 1001;
+                break;
+            case "CreateError":
+            case 1002:
+                message.code = 1002;
+                break;
+            case "DeleteError":
+            case 1003:
+                message.code = 1003;
+                break;
+            case "UpdateError":
+            case 1004:
+                message.code = 1004;
+                break;
+            case "InvalidToken":
+            case 2002:
+                message.code = 2002;
+                break;
+            case "InvalidSign":
+            case 2003:
+                message.code = 2003;
+                break;
+            case "NotLogin":
+            case 2004:
+                message.code = 2004;
+                break;
+            case "LoginTimeout":
+            case 2005:
+                message.code = 2005;
+                break;
+            case "LoginError":
+            case 2006:
+                message.code = 2006;
+                break;
+            case "LoginForbidden":
+            case 2007:
+                message.code = 2007;
+                break;
+            case "LoginExpired":
+            case 2008:
+                message.code = 2008;
+                break;
+            case "LoginInvalid":
+            case 2009:
+                message.code = 2009;
+                break;
+            case "LoginInvalidPassword":
+            case 2010:
+                message.code = 2010;
+                break;
+            case "LoginInvalidUsername":
+            case 2011:
+                message.code = 2011;
+                break;
+            case "LoginInvalidEmail":
+            case 2012:
+                message.code = 2012;
+                break;
+            case "LoginInvalidPhone":
+            case 2013:
+                message.code = 2013;
+                break;
+            case "LoginInvalidUsernameOrEmail":
+            case 2014:
+                message.code = 2014;
+                break;
+            case "LoginSocketRepeat":
+            case 2015:
+                message.code = 2015;
+                break;
+            case "RoleIsNotExist":
+            case 3001:
+                message.code = 3001;
+                break;
+            case "UserIsExist":
+            case 3002:
+                message.code = 3002;
+                break;
+            case "UserIsBan":
+            case 3003:
+                message.code = 3003;
+                break;
+            case "TalkIsBan":
+            case 5001:
+                message.code = 5001;
+                break;
+            case "EnterRoomErr":
+            case 5002:
+                message.code = 5002;
+                break;
+            case "HalaChatNeedBuy":
+            case 10001:
+                message.code = 10001;
+                break;
+            case "HalaPriceOutRange":
+            case 10002:
+                message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            }
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.history) {
+                if (!Array.isArray(object.history))
+                    throw TypeError(".pbbattle.GetHistoryResp.history: array expected");
+                message.history = [];
+                for (var i = 0; i < object.history.length; ++i) {
+                    if (typeof object.history[i] !== "object")
+                        throw TypeError(".pbbattle.GetHistoryResp.history: object expected");
+                    message.history[i] = $root.pbbattle.BattleHistoryItem.fromObject(object.history[i]);
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GetHistoryResp message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.GetHistoryResp
+         * @static
+         * @param {pbbattle.GetHistoryResp} message GetHistoryResp
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GetHistoryResp.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.history = [];
+            if (options.defaults) {
+                object.code = options.enums === String ? "None" : 0;
+                object.msg = "";
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.history && message.history.length) {
+                object.history = [];
+                for (var j = 0; j < message.history.length; ++j)
+                    object.history[j] = $root.pbbattle.BattleHistoryItem.toObject(message.history[j], options);
+            }
+            return object;
+        };
+
+        /**
+         * Converts this GetHistoryResp to JSON.
+         * @function toJSON
+         * @memberof pbbattle.GetHistoryResp
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GetHistoryResp.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GetHistoryResp
+         * @function getTypeUrl
+         * @memberof pbbattle.GetHistoryResp
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GetHistoryResp.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.GetHistoryResp";
+        };
+
+        return GetHistoryResp;
+    })();
+
+    pbbattle.CountdownPush = (function() {
+
+        /**
+         * Properties of a CountdownPush.
+         * @memberof pbbattle
+         * @interface ICountdownPush
+         * @property {number|null} [countdown] CountdownPush countdown
+         * @property {pbbattle.GamePhase|null} [phase] CountdownPush phase
+         * @property {number|Long|null} [roundId] CountdownPush roundId
+         * @property {string|null} [reward] CountdownPush reward
+         */
+
+        /**
+         * Constructs a new CountdownPush.
+         * @memberof pbbattle
+         * @classdesc Represents a CountdownPush.
+         * @implements ICountdownPush
+         * @constructor
+         * @param {pbbattle.ICountdownPush=} [properties] Properties to set
+         */
+        function CountdownPush(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * CountdownPush countdown.
+         * @member {number} countdown
+         * @memberof pbbattle.CountdownPush
+         * @instance
+         */
+        CountdownPush.prototype.countdown = 0;
+
+        /**
+         * CountdownPush phase.
+         * @member {pbbattle.GamePhase} phase
+         * @memberof pbbattle.CountdownPush
+         * @instance
+         */
+        CountdownPush.prototype.phase = 0;
+
+        /**
+         * CountdownPush roundId.
+         * @member {number|Long} roundId
+         * @memberof pbbattle.CountdownPush
+         * @instance
+         */
+        CountdownPush.prototype.roundId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * CountdownPush reward.
+         * @member {string} reward
+         * @memberof pbbattle.CountdownPush
+         * @instance
+         */
+        CountdownPush.prototype.reward = "";
+
+        /**
+         * Creates a new CountdownPush instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.CountdownPush
+         * @static
+         * @param {pbbattle.ICountdownPush=} [properties] Properties to set
+         * @returns {pbbattle.CountdownPush} CountdownPush instance
+         */
+        CountdownPush.create = function create(properties) {
+            return new CountdownPush(properties);
+        };
+
+        /**
+         * Encodes the specified CountdownPush message. Does not implicitly {@link pbbattle.CountdownPush.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.CountdownPush
+         * @static
+         * @param {pbbattle.ICountdownPush} message CountdownPush message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        CountdownPush.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.countdown != null && Object.hasOwnProperty.call(message, "countdown"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.countdown);
+            if (message.phase != null && Object.hasOwnProperty.call(message, "phase"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.phase);
+            if (message.roundId != null && Object.hasOwnProperty.call(message, "roundId"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int64(message.roundId);
+            if (message.reward != null && Object.hasOwnProperty.call(message, "reward"))
+                writer.uint32(/* id 4, wireType 2 =*/34).string(message.reward);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified CountdownPush message, length delimited. Does not implicitly {@link pbbattle.CountdownPush.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.CountdownPush
+         * @static
+         * @param {pbbattle.ICountdownPush} message CountdownPush message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        CountdownPush.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a CountdownPush message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.CountdownPush
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.CountdownPush} CountdownPush
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        CountdownPush.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.CountdownPush();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.countdown = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.phase = reader.int32();
+                        break;
+                    }
+                case 3: {
+                        message.roundId = reader.int64();
+                        break;
+                    }
+                case 4: {
+                        message.reward = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a CountdownPush message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.CountdownPush
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.CountdownPush} CountdownPush
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        CountdownPush.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a CountdownPush message.
+         * @function verify
+         * @memberof pbbattle.CountdownPush
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        CountdownPush.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.countdown != null && message.hasOwnProperty("countdown"))
+                if (!$util.isInteger(message.countdown))
+                    return "countdown: integer expected";
+            if (message.phase != null && message.hasOwnProperty("phase"))
+                switch (message.phase) {
+                default:
+                    return "phase: enum value expected";
+                case 0:
+                case 1:
+                case 2:
+                    break;
+                }
+            if (message.roundId != null && message.hasOwnProperty("roundId"))
+                if (!$util.isInteger(message.roundId) && !(message.roundId && $util.isInteger(message.roundId.low) && $util.isInteger(message.roundId.high)))
+                    return "roundId: integer|Long expected";
+            if (message.reward != null && message.hasOwnProperty("reward"))
+                if (!$util.isString(message.reward))
+                    return "reward: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a CountdownPush message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.CountdownPush
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.CountdownPush} CountdownPush
+         */
+        CountdownPush.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.CountdownPush)
+                return object;
+            var message = new $root.pbbattle.CountdownPush();
+            if (object.countdown != null)
+                message.countdown = object.countdown | 0;
+            switch (object.phase) {
+            default:
+                if (typeof object.phase === "number") {
+                    message.phase = object.phase;
+                    break;
+                }
+                break;
+            case "PHASE_UNKNOWN":
+            case 0:
+                message.phase = 0;
+                break;
+            case "ASSIST":
+            case 1:
+                message.phase = 1;
+                break;
+            case "BATTLE":
+            case 2:
+                message.phase = 2;
+                break;
+            }
+            if (object.roundId != null)
+                if ($util.Long)
+                    (message.roundId = $util.Long.fromValue(object.roundId)).unsigned = false;
+                else if (typeof object.roundId === "string")
+                    message.roundId = parseInt(object.roundId, 10);
+                else if (typeof object.roundId === "number")
+                    message.roundId = object.roundId;
+                else if (typeof object.roundId === "object")
+                    message.roundId = new $util.LongBits(object.roundId.low >>> 0, object.roundId.high >>> 0).toNumber();
+            if (object.reward != null)
+                message.reward = String(object.reward);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a CountdownPush message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.CountdownPush
+         * @static
+         * @param {pbbattle.CountdownPush} message CountdownPush
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        CountdownPush.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.countdown = 0;
+                object.phase = options.enums === String ? "PHASE_UNKNOWN" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.roundId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.roundId = options.longs === String ? "0" : 0;
+                object.reward = "";
+            }
+            if (message.countdown != null && message.hasOwnProperty("countdown"))
+                object.countdown = message.countdown;
+            if (message.phase != null && message.hasOwnProperty("phase"))
+                object.phase = options.enums === String ? $root.pbbattle.GamePhase[message.phase] === undefined ? message.phase : $root.pbbattle.GamePhase[message.phase] : message.phase;
+            if (message.roundId != null && message.hasOwnProperty("roundId"))
+                if (typeof message.roundId === "number")
+                    object.roundId = options.longs === String ? String(message.roundId) : message.roundId;
+                else
+                    object.roundId = options.longs === String ? $util.Long.prototype.toString.call(message.roundId) : options.longs === Number ? new $util.LongBits(message.roundId.low >>> 0, message.roundId.high >>> 0).toNumber() : message.roundId;
+            if (message.reward != null && message.hasOwnProperty("reward"))
+                object.reward = message.reward;
+            return object;
+        };
+
+        /**
+         * Converts this CountdownPush to JSON.
+         * @function toJSON
+         * @memberof pbbattle.CountdownPush
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        CountdownPush.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for CountdownPush
+         * @function getTypeUrl
+         * @memberof pbbattle.CountdownPush
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        CountdownPush.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.CountdownPush";
+        };
+
+        return CountdownPush;
+    })();
+
+    pbbattle.AssistBroadcastPush = (function() {
+
+        /**
+         * Properties of an AssistBroadcastPush.
+         * @memberof pbbattle
+         * @interface IAssistBroadcastPush
+         * @property {number|Long|null} [userId] AssistBroadcastPush userId
+         * @property {string|null} [nickname] AssistBroadcastPush nickname
+         * @property {string|null} [avatar] AssistBroadcastPush avatar
+         * @property {number|Long|null} [roundId] AssistBroadcastPush roundId
+         * @property {number|Long|null} [generalId] AssistBroadcastPush generalId
+         * @property {number|null} [AssistValue] AssistBroadcastPush AssistValue
+         */
+
+        /**
+         * Constructs a new AssistBroadcastPush.
+         * @memberof pbbattle
+         * @classdesc Represents an AssistBroadcastPush.
+         * @implements IAssistBroadcastPush
+         * @constructor
+         * @param {pbbattle.IAssistBroadcastPush=} [properties] Properties to set
+         */
+        function AssistBroadcastPush(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * AssistBroadcastPush userId.
+         * @member {number|Long} userId
+         * @memberof pbbattle.AssistBroadcastPush
+         * @instance
+         */
+        AssistBroadcastPush.prototype.userId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * AssistBroadcastPush nickname.
+         * @member {string} nickname
+         * @memberof pbbattle.AssistBroadcastPush
+         * @instance
+         */
+        AssistBroadcastPush.prototype.nickname = "";
+
+        /**
+         * AssistBroadcastPush avatar.
+         * @member {string} avatar
+         * @memberof pbbattle.AssistBroadcastPush
+         * @instance
+         */
+        AssistBroadcastPush.prototype.avatar = "";
+
+        /**
+         * AssistBroadcastPush roundId.
+         * @member {number|Long} roundId
+         * @memberof pbbattle.AssistBroadcastPush
+         * @instance
+         */
+        AssistBroadcastPush.prototype.roundId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * AssistBroadcastPush generalId.
+         * @member {number|Long} generalId
+         * @memberof pbbattle.AssistBroadcastPush
+         * @instance
+         */
+        AssistBroadcastPush.prototype.generalId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * AssistBroadcastPush AssistValue.
+         * @member {number} AssistValue
+         * @memberof pbbattle.AssistBroadcastPush
+         * @instance
+         */
+        AssistBroadcastPush.prototype.AssistValue = 0;
+
+        /**
+         * Creates a new AssistBroadcastPush instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.AssistBroadcastPush
+         * @static
+         * @param {pbbattle.IAssistBroadcastPush=} [properties] Properties to set
+         * @returns {pbbattle.AssistBroadcastPush} AssistBroadcastPush instance
+         */
+        AssistBroadcastPush.create = function create(properties) {
+            return new AssistBroadcastPush(properties);
+        };
+
+        /**
+         * Encodes the specified AssistBroadcastPush message. Does not implicitly {@link pbbattle.AssistBroadcastPush.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.AssistBroadcastPush
+         * @static
+         * @param {pbbattle.IAssistBroadcastPush} message AssistBroadcastPush message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AssistBroadcastPush.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.userId != null && Object.hasOwnProperty.call(message, "userId"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int64(message.userId);
+            if (message.nickname != null && Object.hasOwnProperty.call(message, "nickname"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.nickname);
+            if (message.avatar != null && Object.hasOwnProperty.call(message, "avatar"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.avatar);
+            if (message.roundId != null && Object.hasOwnProperty.call(message, "roundId"))
+                writer.uint32(/* id 4, wireType 0 =*/32).int64(message.roundId);
+            if (message.generalId != null && Object.hasOwnProperty.call(message, "generalId"))
+                writer.uint32(/* id 5, wireType 0 =*/40).int64(message.generalId);
+            if (message.AssistValue != null && Object.hasOwnProperty.call(message, "AssistValue"))
+                writer.uint32(/* id 6, wireType 0 =*/48).int32(message.AssistValue);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified AssistBroadcastPush message, length delimited. Does not implicitly {@link pbbattle.AssistBroadcastPush.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.AssistBroadcastPush
+         * @static
+         * @param {pbbattle.IAssistBroadcastPush} message AssistBroadcastPush message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AssistBroadcastPush.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an AssistBroadcastPush message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.AssistBroadcastPush
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.AssistBroadcastPush} AssistBroadcastPush
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AssistBroadcastPush.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.AssistBroadcastPush();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.userId = reader.int64();
+                        break;
+                    }
+                case 2: {
+                        message.nickname = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.avatar = reader.string();
+                        break;
+                    }
+                case 4: {
+                        message.roundId = reader.int64();
+                        break;
+                    }
+                case 5: {
+                        message.generalId = reader.int64();
+                        break;
+                    }
+                case 6: {
+                        message.AssistValue = reader.int32();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an AssistBroadcastPush message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.AssistBroadcastPush
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.AssistBroadcastPush} AssistBroadcastPush
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AssistBroadcastPush.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an AssistBroadcastPush message.
+         * @function verify
+         * @memberof pbbattle.AssistBroadcastPush
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        AssistBroadcastPush.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.userId != null && message.hasOwnProperty("userId"))
+                if (!$util.isInteger(message.userId) && !(message.userId && $util.isInteger(message.userId.low) && $util.isInteger(message.userId.high)))
+                    return "userId: integer|Long expected";
+            if (message.nickname != null && message.hasOwnProperty("nickname"))
+                if (!$util.isString(message.nickname))
+                    return "nickname: string expected";
+            if (message.avatar != null && message.hasOwnProperty("avatar"))
+                if (!$util.isString(message.avatar))
+                    return "avatar: string expected";
+            if (message.roundId != null && message.hasOwnProperty("roundId"))
+                if (!$util.isInteger(message.roundId) && !(message.roundId && $util.isInteger(message.roundId.low) && $util.isInteger(message.roundId.high)))
+                    return "roundId: integer|Long expected";
+            if (message.generalId != null && message.hasOwnProperty("generalId"))
+                if (!$util.isInteger(message.generalId) && !(message.generalId && $util.isInteger(message.generalId.low) && $util.isInteger(message.generalId.high)))
+                    return "generalId: integer|Long expected";
+            if (message.AssistValue != null && message.hasOwnProperty("AssistValue"))
+                if (!$util.isInteger(message.AssistValue))
+                    return "AssistValue: integer expected";
+            return null;
+        };
+
+        /**
+         * Creates an AssistBroadcastPush message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.AssistBroadcastPush
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.AssistBroadcastPush} AssistBroadcastPush
+         */
+        AssistBroadcastPush.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.AssistBroadcastPush)
+                return object;
+            var message = new $root.pbbattle.AssistBroadcastPush();
+            if (object.userId != null)
+                if ($util.Long)
+                    (message.userId = $util.Long.fromValue(object.userId)).unsigned = false;
+                else if (typeof object.userId === "string")
+                    message.userId = parseInt(object.userId, 10);
+                else if (typeof object.userId === "number")
+                    message.userId = object.userId;
+                else if (typeof object.userId === "object")
+                    message.userId = new $util.LongBits(object.userId.low >>> 0, object.userId.high >>> 0).toNumber();
+            if (object.nickname != null)
+                message.nickname = String(object.nickname);
+            if (object.avatar != null)
+                message.avatar = String(object.avatar);
+            if (object.roundId != null)
+                if ($util.Long)
+                    (message.roundId = $util.Long.fromValue(object.roundId)).unsigned = false;
+                else if (typeof object.roundId === "string")
+                    message.roundId = parseInt(object.roundId, 10);
+                else if (typeof object.roundId === "number")
+                    message.roundId = object.roundId;
+                else if (typeof object.roundId === "object")
+                    message.roundId = new $util.LongBits(object.roundId.low >>> 0, object.roundId.high >>> 0).toNumber();
+            if (object.generalId != null)
+                if ($util.Long)
+                    (message.generalId = $util.Long.fromValue(object.generalId)).unsigned = false;
+                else if (typeof object.generalId === "string")
+                    message.generalId = parseInt(object.generalId, 10);
+                else if (typeof object.generalId === "number")
+                    message.generalId = object.generalId;
+                else if (typeof object.generalId === "object")
+                    message.generalId = new $util.LongBits(object.generalId.low >>> 0, object.generalId.high >>> 0).toNumber();
+            if (object.AssistValue != null)
+                message.AssistValue = object.AssistValue | 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an AssistBroadcastPush message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.AssistBroadcastPush
+         * @static
+         * @param {pbbattle.AssistBroadcastPush} message AssistBroadcastPush
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        AssistBroadcastPush.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.userId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.userId = options.longs === String ? "0" : 0;
+                object.nickname = "";
+                object.avatar = "";
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.roundId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.roundId = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.generalId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.generalId = options.longs === String ? "0" : 0;
+                object.AssistValue = 0;
+            }
+            if (message.userId != null && message.hasOwnProperty("userId"))
+                if (typeof message.userId === "number")
+                    object.userId = options.longs === String ? String(message.userId) : message.userId;
+                else
+                    object.userId = options.longs === String ? $util.Long.prototype.toString.call(message.userId) : options.longs === Number ? new $util.LongBits(message.userId.low >>> 0, message.userId.high >>> 0).toNumber() : message.userId;
+            if (message.nickname != null && message.hasOwnProperty("nickname"))
+                object.nickname = message.nickname;
+            if (message.avatar != null && message.hasOwnProperty("avatar"))
+                object.avatar = message.avatar;
+            if (message.roundId != null && message.hasOwnProperty("roundId"))
+                if (typeof message.roundId === "number")
+                    object.roundId = options.longs === String ? String(message.roundId) : message.roundId;
+                else
+                    object.roundId = options.longs === String ? $util.Long.prototype.toString.call(message.roundId) : options.longs === Number ? new $util.LongBits(message.roundId.low >>> 0, message.roundId.high >>> 0).toNumber() : message.roundId;
+            if (message.generalId != null && message.hasOwnProperty("generalId"))
+                if (typeof message.generalId === "number")
+                    object.generalId = options.longs === String ? String(message.generalId) : message.generalId;
+                else
+                    object.generalId = options.longs === String ? $util.Long.prototype.toString.call(message.generalId) : options.longs === Number ? new $util.LongBits(message.generalId.low >>> 0, message.generalId.high >>> 0).toNumber() : message.generalId;
+            if (message.AssistValue != null && message.hasOwnProperty("AssistValue"))
+                object.AssistValue = message.AssistValue;
+            return object;
+        };
+
+        /**
+         * Converts this AssistBroadcastPush to JSON.
+         * @function toJSON
+         * @memberof pbbattle.AssistBroadcastPush
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        AssistBroadcastPush.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for AssistBroadcastPush
+         * @function getTypeUrl
+         * @memberof pbbattle.AssistBroadcastPush
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        AssistBroadcastPush.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.AssistBroadcastPush";
+        };
+
+        return AssistBroadcastPush;
+    })();
+
+    pbbattle.GameStateSyncPush = (function() {
+
+        /**
+         * Properties of a GameStateSyncPush.
+         * @memberof pbbattle
+         * @interface IGameStateSyncPush
+         * @property {pbbattle.GamePhase|null} [phase] GameStateSyncPush phase
+         * @property {number|null} [countdown] GameStateSyncPush countdown
+         * @property {pbbattle.IBattleTree|null} [tree] GameStateSyncPush tree
+         * @property {string|null} [broadcastMessage] GameStateSyncPush broadcastMessage
+         */
+
+        /**
+         * Constructs a new GameStateSyncPush.
+         * @memberof pbbattle
+         * @classdesc Represents a GameStateSyncPush.
+         * @implements IGameStateSyncPush
+         * @constructor
+         * @param {pbbattle.IGameStateSyncPush=} [properties] Properties to set
+         */
+        function GameStateSyncPush(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GameStateSyncPush phase.
+         * @member {pbbattle.GamePhase} phase
+         * @memberof pbbattle.GameStateSyncPush
+         * @instance
+         */
+        GameStateSyncPush.prototype.phase = 0;
+
+        /**
+         * GameStateSyncPush countdown.
+         * @member {number} countdown
+         * @memberof pbbattle.GameStateSyncPush
+         * @instance
+         */
+        GameStateSyncPush.prototype.countdown = 0;
+
+        /**
+         * GameStateSyncPush tree.
+         * @member {pbbattle.IBattleTree|null|undefined} tree
+         * @memberof pbbattle.GameStateSyncPush
+         * @instance
+         */
+        GameStateSyncPush.prototype.tree = null;
+
+        /**
+         * GameStateSyncPush broadcastMessage.
+         * @member {string} broadcastMessage
+         * @memberof pbbattle.GameStateSyncPush
+         * @instance
+         */
+        GameStateSyncPush.prototype.broadcastMessage = "";
+
+        /**
+         * Creates a new GameStateSyncPush instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.GameStateSyncPush
+         * @static
+         * @param {pbbattle.IGameStateSyncPush=} [properties] Properties to set
+         * @returns {pbbattle.GameStateSyncPush} GameStateSyncPush instance
+         */
+        GameStateSyncPush.create = function create(properties) {
+            return new GameStateSyncPush(properties);
+        };
+
+        /**
+         * Encodes the specified GameStateSyncPush message. Does not implicitly {@link pbbattle.GameStateSyncPush.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.GameStateSyncPush
+         * @static
+         * @param {pbbattle.IGameStateSyncPush} message GameStateSyncPush message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GameStateSyncPush.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.phase != null && Object.hasOwnProperty.call(message, "phase"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.phase);
+            if (message.countdown != null && Object.hasOwnProperty.call(message, "countdown"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.countdown);
+            if (message.tree != null && Object.hasOwnProperty.call(message, "tree"))
+                $root.pbbattle.BattleTree.encode(message.tree, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            if (message.broadcastMessage != null && Object.hasOwnProperty.call(message, "broadcastMessage"))
+                writer.uint32(/* id 4, wireType 2 =*/34).string(message.broadcastMessage);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GameStateSyncPush message, length delimited. Does not implicitly {@link pbbattle.GameStateSyncPush.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.GameStateSyncPush
+         * @static
+         * @param {pbbattle.IGameStateSyncPush} message GameStateSyncPush message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GameStateSyncPush.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GameStateSyncPush message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.GameStateSyncPush
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.GameStateSyncPush} GameStateSyncPush
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GameStateSyncPush.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.GameStateSyncPush();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.phase = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.countdown = reader.int32();
+                        break;
+                    }
+                case 3: {
+                        message.tree = $root.pbbattle.BattleTree.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 4: {
+                        message.broadcastMessage = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GameStateSyncPush message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.GameStateSyncPush
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.GameStateSyncPush} GameStateSyncPush
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GameStateSyncPush.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GameStateSyncPush message.
+         * @function verify
+         * @memberof pbbattle.GameStateSyncPush
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GameStateSyncPush.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.phase != null && message.hasOwnProperty("phase"))
+                switch (message.phase) {
+                default:
+                    return "phase: enum value expected";
+                case 0:
+                case 1:
+                case 2:
+                    break;
+                }
+            if (message.countdown != null && message.hasOwnProperty("countdown"))
+                if (!$util.isInteger(message.countdown))
+                    return "countdown: integer expected";
+            if (message.tree != null && message.hasOwnProperty("tree")) {
+                var error = $root.pbbattle.BattleTree.verify(message.tree);
+                if (error)
+                    return "tree." + error;
+            }
+            if (message.broadcastMessage != null && message.hasOwnProperty("broadcastMessage"))
+                if (!$util.isString(message.broadcastMessage))
+                    return "broadcastMessage: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a GameStateSyncPush message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.GameStateSyncPush
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.GameStateSyncPush} GameStateSyncPush
+         */
+        GameStateSyncPush.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.GameStateSyncPush)
+                return object;
+            var message = new $root.pbbattle.GameStateSyncPush();
+            switch (object.phase) {
+            default:
+                if (typeof object.phase === "number") {
+                    message.phase = object.phase;
+                    break;
+                }
+                break;
+            case "PHASE_UNKNOWN":
+            case 0:
+                message.phase = 0;
+                break;
+            case "ASSIST":
+            case 1:
+                message.phase = 1;
+                break;
+            case "BATTLE":
+            case 2:
+                message.phase = 2;
+                break;
+            }
+            if (object.countdown != null)
+                message.countdown = object.countdown | 0;
+            if (object.tree != null) {
+                if (typeof object.tree !== "object")
+                    throw TypeError(".pbbattle.GameStateSyncPush.tree: object expected");
+                message.tree = $root.pbbattle.BattleTree.fromObject(object.tree);
+            }
+            if (object.broadcastMessage != null)
+                message.broadcastMessage = String(object.broadcastMessage);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GameStateSyncPush message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.GameStateSyncPush
+         * @static
+         * @param {pbbattle.GameStateSyncPush} message GameStateSyncPush
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GameStateSyncPush.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.phase = options.enums === String ? "PHASE_UNKNOWN" : 0;
+                object.countdown = 0;
+                object.tree = null;
+                object.broadcastMessage = "";
+            }
+            if (message.phase != null && message.hasOwnProperty("phase"))
+                object.phase = options.enums === String ? $root.pbbattle.GamePhase[message.phase] === undefined ? message.phase : $root.pbbattle.GamePhase[message.phase] : message.phase;
+            if (message.countdown != null && message.hasOwnProperty("countdown"))
+                object.countdown = message.countdown;
+            if (message.tree != null && message.hasOwnProperty("tree"))
+                object.tree = $root.pbbattle.BattleTree.toObject(message.tree, options);
+            if (message.broadcastMessage != null && message.hasOwnProperty("broadcastMessage"))
+                object.broadcastMessage = message.broadcastMessage;
+            return object;
+        };
+
+        /**
+         * Converts this GameStateSyncPush to JSON.
+         * @function toJSON
+         * @memberof pbbattle.GameStateSyncPush
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GameStateSyncPush.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GameStateSyncPush
+         * @function getTypeUrl
+         * @memberof pbbattle.GameStateSyncPush
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GameStateSyncPush.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.GameStateSyncPush";
+        };
+
+        return GameStateSyncPush;
+    })();
+
+    pbbattle.Battle = (function() {
+
+        /**
+         * Constructs a new Battle service.
+         * @memberof pbbattle
+         * @classdesc Represents a Battle
+         * @extends $protobuf.rpc.Service
+         * @constructor
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         */
+        function Battle(rpcImpl, requestDelimited, responseDelimited) {
+            $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited);
+        }
+
+        (Battle.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = Battle;
+
+        /**
+         * Creates new Battle service using the specified rpc implementation.
+         * @function create
+         * @memberof pbbattle.Battle
+         * @static
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         * @returns {Battle} RPC service. Useful where requests and/or responses are streamed.
+         */
+        Battle.create = function create(rpcImpl, requestDelimited, responseDelimited) {
+            return new this(rpcImpl, requestDelimited, responseDelimited);
+        };
+
+        /**
+         * Callback as used by {@link pbbattle.Battle#getGameState}.
+         * @memberof pbbattle.Battle
+         * @typedef GetGameStateCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbbattle.GetGameStateResp} [response] GetGameStateResp
+         */
+
+        /**
+         * Calls GetGameState.
+         * @function getGameState
+         * @memberof pbbattle.Battle
+         * @instance
+         * @param {pbbattle.IGetGameStateReq} request GetGameStateReq message or plain object
+         * @param {pbbattle.Battle.GetGameStateCallback} callback Node-style callback called with the error, if any, and GetGameStateResp
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(Battle.prototype.getGameState = function getGameState(request, callback) {
+            return this.rpcCall(getGameState, $root.pbbattle.GetGameStateReq, $root.pbbattle.GetGameStateResp, request, callback);
+        }, "name", { value: "GetGameState" });
+
+        /**
+         * Calls GetGameState.
+         * @function getGameState
+         * @memberof pbbattle.Battle
+         * @instance
+         * @param {pbbattle.IGetGameStateReq} request GetGameStateReq message or plain object
+         * @returns {Promise<pbbattle.GetGameStateResp>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.Battle#getGenerals}.
+         * @memberof pbbattle.Battle
+         * @typedef GetGeneralsCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbbattle.GetGeneralsResp} [response] GetGeneralsResp
+         */
+
+        /**
+         * Calls GetGenerals.
+         * @function getGenerals
+         * @memberof pbbattle.Battle
+         * @instance
+         * @param {pbbattle.IGetGeneralsReq} request GetGeneralsReq message or plain object
+         * @param {pbbattle.Battle.GetGeneralsCallback} callback Node-style callback called with the error, if any, and GetGeneralsResp
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(Battle.prototype.getGenerals = function getGenerals(request, callback) {
+            return this.rpcCall(getGenerals, $root.pbbattle.GetGeneralsReq, $root.pbbattle.GetGeneralsResp, request, callback);
+        }, "name", { value: "GetGenerals" });
+
+        /**
+         * Calls GetGenerals.
+         * @function getGenerals
+         * @memberof pbbattle.Battle
+         * @instance
+         * @param {pbbattle.IGetGeneralsReq} request GetGeneralsReq message or plain object
+         * @returns {Promise<pbbattle.GetGeneralsResp>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.Battle#getHistory}.
+         * @memberof pbbattle.Battle
+         * @typedef GetHistoryCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbbattle.GetHistoryResp} [response] GetHistoryResp
+         */
+
+        /**
+         * Calls GetHistory.
+         * @function getHistory
+         * @memberof pbbattle.Battle
+         * @instance
+         * @param {pbbattle.IGetHistoryReq} request GetHistoryReq message or plain object
+         * @param {pbbattle.Battle.GetHistoryCallback} callback Node-style callback called with the error, if any, and GetHistoryResp
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(Battle.prototype.getHistory = function getHistory(request, callback) {
+            return this.rpcCall(getHistory, $root.pbbattle.GetHistoryReq, $root.pbbattle.GetHistoryResp, request, callback);
+        }, "name", { value: "GetHistory" });
+
+        /**
+         * Calls GetHistory.
+         * @function getHistory
+         * @memberof pbbattle.Battle
+         * @instance
+         * @param {pbbattle.IGetHistoryReq} request GetHistoryReq message or plain object
+         * @returns {Promise<pbbattle.GetHistoryResp>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.Battle#assistAction}.
+         * @memberof pbbattle.Battle
+         * @typedef AssistActionCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbbattle.AssistActionResp} [response] AssistActionResp
+         */
+
+        /**
+         * Calls AssistAction.
+         * @function assistAction
+         * @memberof pbbattle.Battle
+         * @instance
+         * @param {pbbattle.IAssistActionReq} request AssistActionReq message or plain object
+         * @param {pbbattle.Battle.AssistActionCallback} callback Node-style callback called with the error, if any, and AssistActionResp
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(Battle.prototype.assistAction = function assistAction(request, callback) {
+            return this.rpcCall(assistAction, $root.pbbattle.AssistActionReq, $root.pbbattle.AssistActionResp, request, callback);
+        }, "name", { value: "AssistAction" });
+
+        /**
+         * Calls AssistAction.
+         * @function assistAction
+         * @memberof pbbattle.Battle
+         * @instance
+         * @param {pbbattle.IAssistActionReq} request AssistActionReq message or plain object
+         * @returns {Promise<pbbattle.AssistActionResp>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.Battle#repeatAssist}.
+         * @memberof pbbattle.Battle
+         * @typedef RepeatAssistCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbbattle.RepeatAssistResp} [response] RepeatAssistResp
+         */
+
+        /**
+         * Calls RepeatAssist.
+         * @function repeatAssist
+         * @memberof pbbattle.Battle
+         * @instance
+         * @param {pbbattle.IRepeatAssistReq} request RepeatAssistReq message or plain object
+         * @param {pbbattle.Battle.RepeatAssistCallback} callback Node-style callback called with the error, if any, and RepeatAssistResp
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(Battle.prototype.repeatAssist = function repeatAssist(request, callback) {
+            return this.rpcCall(repeatAssist, $root.pbbattle.RepeatAssistReq, $root.pbbattle.RepeatAssistResp, request, callback);
+        }, "name", { value: "RepeatAssist" });
+
+        /**
+         * Calls RepeatAssist.
+         * @function repeatAssist
+         * @memberof pbbattle.Battle
+         * @instance
+         * @param {pbbattle.IRepeatAssistReq} request RepeatAssistReq message or plain object
+         * @returns {Promise<pbbattle.RepeatAssistResp>} Promise
+         * @variation 2
+         */
+
+        return Battle;
+    })();
+
+    pbbattle.BattleRequest = (function() {
+
+        /**
+         * Constructs a new BattleRequest service.
+         * @memberof pbbattle
+         * @classdesc Represents a BattleRequest
+         * @extends $protobuf.rpc.Service
+         * @constructor
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         */
+        function BattleRequest(rpcImpl, requestDelimited, responseDelimited) {
+            $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited);
+        }
+
+        (BattleRequest.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = BattleRequest;
+
+        /**
+         * Creates new BattleRequest service using the specified rpc implementation.
+         * @function create
+         * @memberof pbbattle.BattleRequest
+         * @static
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         * @returns {BattleRequest} RPC service. Useful where requests and/or responses are streamed.
+         */
+        BattleRequest.create = function create(rpcImpl, requestDelimited, responseDelimited) {
+            return new this(rpcImpl, requestDelimited, responseDelimited);
+        };
+
+        /**
+         * Callback as used by {@link pbbattle.BattleRequest#assist}.
+         * @memberof pbbattle.BattleRequest
+         * @typedef AssistCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.Empty} [response] Empty
+         */
+
+        /**
+         * Calls Assist.
+         * @function assist
+         * @memberof pbbattle.BattleRequest
+         * @instance
+         * @param {pbbattle.IAssistActionReq} request AssistActionReq message or plain object
+         * @param {pbbattle.BattleRequest.AssistCallback} callback Node-style callback called with the error, if any, and Empty
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattleRequest.prototype.assist = function assist(request, callback) {
+            return this.rpcCall(assist, $root.pbbattle.AssistActionReq, $root.pbcommon.Empty, request, callback);
+        }, "name", { value: "Assist" });
+
+        /**
+         * Calls Assist.
+         * @function assist
+         * @memberof pbbattle.BattleRequest
+         * @instance
+         * @param {pbbattle.IAssistActionReq} request AssistActionReq message or plain object
+         * @returns {Promise<pbcommon.Empty>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.BattleRequest#repeatAssist}.
+         * @memberof pbbattle.BattleRequest
+         * @typedef RepeatAssistCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.Empty} [response] Empty
+         */
+
+        /**
+         * Calls RepeatAssist.
+         * @function repeatAssist
+         * @memberof pbbattle.BattleRequest
+         * @instance
+         * @param {pbbattle.IRepeatAssistReq} request RepeatAssistReq message or plain object
+         * @param {pbbattle.BattleRequest.RepeatAssistCallback} callback Node-style callback called with the error, if any, and Empty
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattleRequest.prototype.repeatAssist = function repeatAssist(request, callback) {
+            return this.rpcCall(repeatAssist, $root.pbbattle.RepeatAssistReq, $root.pbcommon.Empty, request, callback);
+        }, "name", { value: "RepeatAssist" });
+
+        /**
+         * Calls RepeatAssist.
+         * @function repeatAssist
+         * @memberof pbbattle.BattleRequest
+         * @instance
+         * @param {pbbattle.IRepeatAssistReq} request RepeatAssistReq message or plain object
+         * @returns {Promise<pbcommon.Empty>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.BattleRequest#getState}.
+         * @memberof pbbattle.BattleRequest
+         * @typedef GetStateCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.Empty} [response] Empty
+         */
+
+        /**
+         * Calls GetState.
+         * @function getState
+         * @memberof pbbattle.BattleRequest
+         * @instance
+         * @param {pbcommon.IEmpty} request Empty message or plain object
+         * @param {pbbattle.BattleRequest.GetStateCallback} callback Node-style callback called with the error, if any, and Empty
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattleRequest.prototype.getState = function getState(request, callback) {
+            return this.rpcCall(getState, $root.pbcommon.Empty, $root.pbcommon.Empty, request, callback);
+        }, "name", { value: "GetState" });
+
+        /**
+         * Calls GetState.
+         * @function getState
+         * @memberof pbbattle.BattleRequest
+         * @instance
+         * @param {pbcommon.IEmpty} request Empty message or plain object
+         * @returns {Promise<pbcommon.Empty>} Promise
+         * @variation 2
+         */
+
+        return BattleRequest;
+    })();
+
+    pbbattle.BattlePush = (function() {
+
+        /**
+         * Constructs a new BattlePush service.
+         * @memberof pbbattle
+         * @classdesc Represents a BattlePush
+         * @extends $protobuf.rpc.Service
+         * @constructor
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         */
+        function BattlePush(rpcImpl, requestDelimited, responseDelimited) {
+            $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited);
+        }
+
+        (BattlePush.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = BattlePush;
+
+        /**
+         * Creates new BattlePush service using the specified rpc implementation.
+         * @function create
+         * @memberof pbbattle.BattlePush
+         * @static
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         * @returns {BattlePush} RPC service. Useful where requests and/or responses are streamed.
+         */
+        BattlePush.create = function create(rpcImpl, requestDelimited, responseDelimited) {
+            return new this(rpcImpl, requestDelimited, responseDelimited);
+        };
+
+        /**
+         * Callback as used by {@link pbbattle.BattlePush#countdown}.
+         * @memberof pbbattle.BattlePush
+         * @typedef CountdownCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.Empty} [response] Empty
+         */
+
+        /**
+         * Calls Countdown.
+         * @function countdown
+         * @memberof pbbattle.BattlePush
+         * @instance
+         * @param {pbbattle.ICountdownPush} request CountdownPush message or plain object
+         * @param {pbbattle.BattlePush.CountdownCallback} callback Node-style callback called with the error, if any, and Empty
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattlePush.prototype.countdown = function countdown(request, callback) {
+            return this.rpcCall(countdown, $root.pbbattle.CountdownPush, $root.pbcommon.Empty, request, callback);
+        }, "name", { value: "Countdown" });
+
+        /**
+         * Calls Countdown.
+         * @function countdown
+         * @memberof pbbattle.BattlePush
+         * @instance
+         * @param {pbbattle.ICountdownPush} request CountdownPush message or plain object
+         * @returns {Promise<pbcommon.Empty>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.BattlePush#assistBroadcast}.
+         * @memberof pbbattle.BattlePush
+         * @typedef AssistBroadcastCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.Empty} [response] Empty
+         */
+
+        /**
+         * Calls AssistBroadcast.
+         * @function assistBroadcast
+         * @memberof pbbattle.BattlePush
+         * @instance
+         * @param {pbbattle.IAssistBroadcastPush} request AssistBroadcastPush message or plain object
+         * @param {pbbattle.BattlePush.AssistBroadcastCallback} callback Node-style callback called with the error, if any, and Empty
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattlePush.prototype.assistBroadcast = function assistBroadcast(request, callback) {
+            return this.rpcCall(assistBroadcast, $root.pbbattle.AssistBroadcastPush, $root.pbcommon.Empty, request, callback);
+        }, "name", { value: "AssistBroadcast" });
+
+        /**
+         * Calls AssistBroadcast.
+         * @function assistBroadcast
+         * @memberof pbbattle.BattlePush
+         * @instance
+         * @param {pbbattle.IAssistBroadcastPush} request AssistBroadcastPush message or plain object
+         * @returns {Promise<pbcommon.Empty>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.BattlePush#stateSync}.
+         * @memberof pbbattle.BattlePush
+         * @typedef StateSyncCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.Empty} [response] Empty
+         */
+
+        /**
+         * Calls StateSync.
+         * @function stateSync
+         * @memberof pbbattle.BattlePush
+         * @instance
+         * @param {pbbattle.IGameStateSyncPush} request GameStateSyncPush message or plain object
+         * @param {pbbattle.BattlePush.StateSyncCallback} callback Node-style callback called with the error, if any, and Empty
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattlePush.prototype.stateSync = function stateSync(request, callback) {
+            return this.rpcCall(stateSync, $root.pbbattle.GameStateSyncPush, $root.pbcommon.Empty, request, callback);
+        }, "name", { value: "StateSync" });
+
+        /**
+         * Calls StateSync.
+         * @function stateSync
+         * @memberof pbbattle.BattlePush
+         * @instance
+         * @param {pbbattle.IGameStateSyncPush} request GameStateSyncPush message or plain object
+         * @returns {Promise<pbcommon.Empty>} Promise
+         * @variation 2
+         */
+
+        return BattlePush;
+    })();
+
+    pbbattle.AssistOptionModel = (function() {
+
+        /**
+         * Properties of an AssistOptionModel.
+         * @memberof pbbattle
+         * @interface IAssistOptionModel
+         * @property {number|Long|null} [id] AssistOptionModel id
+         * @property {string|null} [createdAt] AssistOptionModel createdAt
+         * @property {string|null} [updatedAt] AssistOptionModel updatedAt
+         * @property {string|null} [optionCode] AssistOptionModel optionCode
+         * @property {number|null} [optionValue] AssistOptionModel optionValue
+         * @property {number|null} [costGold] AssistOptionModel costGold
+         * @property {number|null} [sortOrder] AssistOptionModel sortOrder
+         * @property {boolean|null} [isEnabled] AssistOptionModel isEnabled
+         */
+
+        /**
+         * Constructs a new AssistOptionModel.
+         * @memberof pbbattle
+         * @classdesc Represents an AssistOptionModel.
+         * @implements IAssistOptionModel
+         * @constructor
+         * @param {pbbattle.IAssistOptionModel=} [properties] Properties to set
+         */
+        function AssistOptionModel(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * AssistOptionModel id.
+         * @member {number|Long} id
+         * @memberof pbbattle.AssistOptionModel
+         * @instance
+         */
+        AssistOptionModel.prototype.id = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * AssistOptionModel createdAt.
+         * @member {string} createdAt
+         * @memberof pbbattle.AssistOptionModel
+         * @instance
+         */
+        AssistOptionModel.prototype.createdAt = "";
+
+        /**
+         * AssistOptionModel updatedAt.
+         * @member {string} updatedAt
+         * @memberof pbbattle.AssistOptionModel
+         * @instance
+         */
+        AssistOptionModel.prototype.updatedAt = "";
+
+        /**
+         * AssistOptionModel optionCode.
+         * @member {string} optionCode
+         * @memberof pbbattle.AssistOptionModel
+         * @instance
+         */
+        AssistOptionModel.prototype.optionCode = "";
+
+        /**
+         * AssistOptionModel optionValue.
+         * @member {number} optionValue
+         * @memberof pbbattle.AssistOptionModel
+         * @instance
+         */
+        AssistOptionModel.prototype.optionValue = 0;
+
+        /**
+         * AssistOptionModel costGold.
+         * @member {number} costGold
+         * @memberof pbbattle.AssistOptionModel
+         * @instance
+         */
+        AssistOptionModel.prototype.costGold = 0;
+
+        /**
+         * AssistOptionModel sortOrder.
+         * @member {number} sortOrder
+         * @memberof pbbattle.AssistOptionModel
+         * @instance
+         */
+        AssistOptionModel.prototype.sortOrder = 0;
+
+        /**
+         * AssistOptionModel isEnabled.
+         * @member {boolean} isEnabled
+         * @memberof pbbattle.AssistOptionModel
+         * @instance
+         */
+        AssistOptionModel.prototype.isEnabled = false;
+
+        /**
+         * Creates a new AssistOptionModel instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.AssistOptionModel
+         * @static
+         * @param {pbbattle.IAssistOptionModel=} [properties] Properties to set
+         * @returns {pbbattle.AssistOptionModel} AssistOptionModel instance
+         */
+        AssistOptionModel.create = function create(properties) {
+            return new AssistOptionModel(properties);
+        };
+
+        /**
+         * Encodes the specified AssistOptionModel message. Does not implicitly {@link pbbattle.AssistOptionModel.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.AssistOptionModel
+         * @static
+         * @param {pbbattle.IAssistOptionModel} message AssistOptionModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AssistOptionModel.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id);
+            if (message.createdAt != null && Object.hasOwnProperty.call(message, "createdAt"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.createdAt);
+            if (message.updatedAt != null && Object.hasOwnProperty.call(message, "updatedAt"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.updatedAt);
+            if (message.optionCode != null && Object.hasOwnProperty.call(message, "optionCode"))
+                writer.uint32(/* id 10, wireType 2 =*/82).string(message.optionCode);
+            if (message.optionValue != null && Object.hasOwnProperty.call(message, "optionValue"))
+                writer.uint32(/* id 11, wireType 0 =*/88).int32(message.optionValue);
+            if (message.costGold != null && Object.hasOwnProperty.call(message, "costGold"))
+                writer.uint32(/* id 12, wireType 0 =*/96).int32(message.costGold);
+            if (message.sortOrder != null && Object.hasOwnProperty.call(message, "sortOrder"))
+                writer.uint32(/* id 13, wireType 0 =*/104).int32(message.sortOrder);
+            if (message.isEnabled != null && Object.hasOwnProperty.call(message, "isEnabled"))
+                writer.uint32(/* id 14, wireType 0 =*/112).bool(message.isEnabled);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified AssistOptionModel message, length delimited. Does not implicitly {@link pbbattle.AssistOptionModel.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.AssistOptionModel
+         * @static
+         * @param {pbbattle.IAssistOptionModel} message AssistOptionModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AssistOptionModel.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an AssistOptionModel message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.AssistOptionModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.AssistOptionModel} AssistOptionModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AssistOptionModel.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.AssistOptionModel();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.id = reader.int64();
+                        break;
+                    }
+                case 2: {
+                        message.createdAt = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.updatedAt = reader.string();
+                        break;
+                    }
+                case 10: {
+                        message.optionCode = reader.string();
+                        break;
+                    }
+                case 11: {
+                        message.optionValue = reader.int32();
+                        break;
+                    }
+                case 12: {
+                        message.costGold = reader.int32();
+                        break;
+                    }
+                case 13: {
+                        message.sortOrder = reader.int32();
+                        break;
+                    }
+                case 14: {
+                        message.isEnabled = reader.bool();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an AssistOptionModel message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.AssistOptionModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.AssistOptionModel} AssistOptionModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AssistOptionModel.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an AssistOptionModel message.
+         * @function verify
+         * @memberof pbbattle.AssistOptionModel
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        AssistOptionModel.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (!$util.isInteger(message.id) && !(message.id && $util.isInteger(message.id.low) && $util.isInteger(message.id.high)))
+                    return "id: integer|Long expected";
+            if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                if (!$util.isString(message.createdAt))
+                    return "createdAt: string expected";
+            if (message.updatedAt != null && message.hasOwnProperty("updatedAt"))
+                if (!$util.isString(message.updatedAt))
+                    return "updatedAt: string expected";
+            if (message.optionCode != null && message.hasOwnProperty("optionCode"))
+                if (!$util.isString(message.optionCode))
+                    return "optionCode: string expected";
+            if (message.optionValue != null && message.hasOwnProperty("optionValue"))
+                if (!$util.isInteger(message.optionValue))
+                    return "optionValue: integer expected";
+            if (message.costGold != null && message.hasOwnProperty("costGold"))
+                if (!$util.isInteger(message.costGold))
+                    return "costGold: integer expected";
+            if (message.sortOrder != null && message.hasOwnProperty("sortOrder"))
+                if (!$util.isInteger(message.sortOrder))
+                    return "sortOrder: integer expected";
+            if (message.isEnabled != null && message.hasOwnProperty("isEnabled"))
+                if (typeof message.isEnabled !== "boolean")
+                    return "isEnabled: boolean expected";
+            return null;
+        };
+
+        /**
+         * Creates an AssistOptionModel message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.AssistOptionModel
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.AssistOptionModel} AssistOptionModel
+         */
+        AssistOptionModel.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.AssistOptionModel)
+                return object;
+            var message = new $root.pbbattle.AssistOptionModel();
+            if (object.id != null)
+                if ($util.Long)
+                    (message.id = $util.Long.fromValue(object.id)).unsigned = false;
+                else if (typeof object.id === "string")
+                    message.id = parseInt(object.id, 10);
+                else if (typeof object.id === "number")
+                    message.id = object.id;
+                else if (typeof object.id === "object")
+                    message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber();
+            if (object.createdAt != null)
+                message.createdAt = String(object.createdAt);
+            if (object.updatedAt != null)
+                message.updatedAt = String(object.updatedAt);
+            if (object.optionCode != null)
+                message.optionCode = String(object.optionCode);
+            if (object.optionValue != null)
+                message.optionValue = object.optionValue | 0;
+            if (object.costGold != null)
+                message.costGold = object.costGold | 0;
+            if (object.sortOrder != null)
+                message.sortOrder = object.sortOrder | 0;
+            if (object.isEnabled != null)
+                message.isEnabled = Boolean(object.isEnabled);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an AssistOptionModel message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.AssistOptionModel
+         * @static
+         * @param {pbbattle.AssistOptionModel} message AssistOptionModel
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        AssistOptionModel.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.id = options.longs === String ? "0" : 0;
+                object.createdAt = "";
+                object.updatedAt = "";
+                object.optionCode = "";
+                object.optionValue = 0;
+                object.costGold = 0;
+                object.sortOrder = 0;
+                object.isEnabled = false;
+            }
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (typeof message.id === "number")
+                    object.id = options.longs === String ? String(message.id) : message.id;
+                else
+                    object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id;
+            if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                object.createdAt = message.createdAt;
+            if (message.updatedAt != null && message.hasOwnProperty("updatedAt"))
+                object.updatedAt = message.updatedAt;
+            if (message.optionCode != null && message.hasOwnProperty("optionCode"))
+                object.optionCode = message.optionCode;
+            if (message.optionValue != null && message.hasOwnProperty("optionValue"))
+                object.optionValue = message.optionValue;
+            if (message.costGold != null && message.hasOwnProperty("costGold"))
+                object.costGold = message.costGold;
+            if (message.sortOrder != null && message.hasOwnProperty("sortOrder"))
+                object.sortOrder = message.sortOrder;
+            if (message.isEnabled != null && message.hasOwnProperty("isEnabled"))
+                object.isEnabled = message.isEnabled;
+            return object;
+        };
+
+        /**
+         * Converts this AssistOptionModel to JSON.
+         * @function toJSON
+         * @memberof pbbattle.AssistOptionModel
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        AssistOptionModel.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for AssistOptionModel
+         * @function getTypeUrl
+         * @memberof pbbattle.AssistOptionModel
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        AssistOptionModel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.AssistOptionModel";
+        };
+
+        return AssistOptionModel;
+    })();
+
+    pbbattle.FindAssistOptionArgs = (function() {
+
+        /**
+         * Properties of a FindAssistOptionArgs.
+         * @memberof pbbattle
+         * @interface IFindAssistOptionArgs
+         * @property {pbcommon.IPageInfo|null} [pageInfo] FindAssistOptionArgs pageInfo
+         * @property {pbbattle.IAssistOptionModel|null} [query] FindAssistOptionArgs query
+         * @property {string|null} [keyword] FindAssistOptionArgs keyword
+         * @property {Array.<boolean>|null} [isEnabledList] FindAssistOptionArgs isEnabledList
+         */
+
+        /**
+         * Constructs a new FindAssistOptionArgs.
+         * @memberof pbbattle
+         * @classdesc Represents a FindAssistOptionArgs.
+         * @implements IFindAssistOptionArgs
+         * @constructor
+         * @param {pbbattle.IFindAssistOptionArgs=} [properties] Properties to set
+         */
+        function FindAssistOptionArgs(properties) {
+            this.isEnabledList = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * FindAssistOptionArgs pageInfo.
+         * @member {pbcommon.IPageInfo|null|undefined} pageInfo
+         * @memberof pbbattle.FindAssistOptionArgs
+         * @instance
+         */
+        FindAssistOptionArgs.prototype.pageInfo = null;
+
+        /**
+         * FindAssistOptionArgs query.
+         * @member {pbbattle.IAssistOptionModel|null|undefined} query
+         * @memberof pbbattle.FindAssistOptionArgs
+         * @instance
+         */
+        FindAssistOptionArgs.prototype.query = null;
+
+        /**
+         * FindAssistOptionArgs keyword.
+         * @member {string} keyword
+         * @memberof pbbattle.FindAssistOptionArgs
+         * @instance
+         */
+        FindAssistOptionArgs.prototype.keyword = "";
+
+        /**
+         * FindAssistOptionArgs isEnabledList.
+         * @member {Array.<boolean>} isEnabledList
+         * @memberof pbbattle.FindAssistOptionArgs
+         * @instance
+         */
+        FindAssistOptionArgs.prototype.isEnabledList = $util.emptyArray;
+
+        /**
+         * Creates a new FindAssistOptionArgs instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.FindAssistOptionArgs
+         * @static
+         * @param {pbbattle.IFindAssistOptionArgs=} [properties] Properties to set
+         * @returns {pbbattle.FindAssistOptionArgs} FindAssistOptionArgs instance
+         */
+        FindAssistOptionArgs.create = function create(properties) {
+            return new FindAssistOptionArgs(properties);
+        };
+
+        /**
+         * Encodes the specified FindAssistOptionArgs message. Does not implicitly {@link pbbattle.FindAssistOptionArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.FindAssistOptionArgs
+         * @static
+         * @param {pbbattle.IFindAssistOptionArgs} message FindAssistOptionArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindAssistOptionArgs.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.pageInfo != null && Object.hasOwnProperty.call(message, "pageInfo"))
+                $root.pbcommon.PageInfo.encode(message.pageInfo, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.query != null && Object.hasOwnProperty.call(message, "query"))
+                $root.pbbattle.AssistOptionModel.encode(message.query, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            if (message.keyword != null && Object.hasOwnProperty.call(message, "keyword"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.keyword);
+            if (message.isEnabledList != null && message.isEnabledList.length) {
+                writer.uint32(/* id 4, wireType 2 =*/34).fork();
+                for (var i = 0; i < message.isEnabledList.length; ++i)
+                    writer.bool(message.isEnabledList[i]);
+                writer.ldelim();
+            }
+            return writer;
+        };
+
+        /**
+         * Encodes the specified FindAssistOptionArgs message, length delimited. Does not implicitly {@link pbbattle.FindAssistOptionArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.FindAssistOptionArgs
+         * @static
+         * @param {pbbattle.IFindAssistOptionArgs} message FindAssistOptionArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindAssistOptionArgs.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a FindAssistOptionArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.FindAssistOptionArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.FindAssistOptionArgs} FindAssistOptionArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindAssistOptionArgs.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.FindAssistOptionArgs();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.pageInfo = $root.pbcommon.PageInfo.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 2: {
+                        message.query = $root.pbbattle.AssistOptionModel.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 3: {
+                        message.keyword = reader.string();
+                        break;
+                    }
+                case 4: {
+                        if (!(message.isEnabledList && message.isEnabledList.length))
+                            message.isEnabledList = [];
+                        if ((tag & 7) === 2) {
+                            var end2 = reader.uint32() + reader.pos;
+                            while (reader.pos < end2)
+                                message.isEnabledList.push(reader.bool());
+                        } else
+                            message.isEnabledList.push(reader.bool());
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a FindAssistOptionArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.FindAssistOptionArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.FindAssistOptionArgs} FindAssistOptionArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindAssistOptionArgs.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a FindAssistOptionArgs message.
+         * @function verify
+         * @memberof pbbattle.FindAssistOptionArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        FindAssistOptionArgs.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.pageInfo != null && message.hasOwnProperty("pageInfo")) {
+                var error = $root.pbcommon.PageInfo.verify(message.pageInfo);
+                if (error)
+                    return "pageInfo." + error;
+            }
+            if (message.query != null && message.hasOwnProperty("query")) {
+                var error = $root.pbbattle.AssistOptionModel.verify(message.query);
+                if (error)
+                    return "query." + error;
+            }
+            if (message.keyword != null && message.hasOwnProperty("keyword"))
+                if (!$util.isString(message.keyword))
+                    return "keyword: string expected";
+            if (message.isEnabledList != null && message.hasOwnProperty("isEnabledList")) {
+                if (!Array.isArray(message.isEnabledList))
+                    return "isEnabledList: array expected";
+                for (var i = 0; i < message.isEnabledList.length; ++i)
+                    if (typeof message.isEnabledList[i] !== "boolean")
+                        return "isEnabledList: boolean[] expected";
+            }
+            return null;
+        };
+
+        /**
+         * Creates a FindAssistOptionArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.FindAssistOptionArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.FindAssistOptionArgs} FindAssistOptionArgs
+         */
+        FindAssistOptionArgs.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.FindAssistOptionArgs)
+                return object;
+            var message = new $root.pbbattle.FindAssistOptionArgs();
+            if (object.pageInfo != null) {
+                if (typeof object.pageInfo !== "object")
+                    throw TypeError(".pbbattle.FindAssistOptionArgs.pageInfo: object expected");
+                message.pageInfo = $root.pbcommon.PageInfo.fromObject(object.pageInfo);
+            }
+            if (object.query != null) {
+                if (typeof object.query !== "object")
+                    throw TypeError(".pbbattle.FindAssistOptionArgs.query: object expected");
+                message.query = $root.pbbattle.AssistOptionModel.fromObject(object.query);
+            }
+            if (object.keyword != null)
+                message.keyword = String(object.keyword);
+            if (object.isEnabledList) {
+                if (!Array.isArray(object.isEnabledList))
+                    throw TypeError(".pbbattle.FindAssistOptionArgs.isEnabledList: array expected");
+                message.isEnabledList = [];
+                for (var i = 0; i < object.isEnabledList.length; ++i)
+                    message.isEnabledList[i] = Boolean(object.isEnabledList[i]);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a FindAssistOptionArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.FindAssistOptionArgs
+         * @static
+         * @param {pbbattle.FindAssistOptionArgs} message FindAssistOptionArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FindAssistOptionArgs.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.isEnabledList = [];
+            if (options.defaults) {
+                object.pageInfo = null;
+                object.query = null;
+                object.keyword = "";
+            }
+            if (message.pageInfo != null && message.hasOwnProperty("pageInfo"))
+                object.pageInfo = $root.pbcommon.PageInfo.toObject(message.pageInfo, options);
+            if (message.query != null && message.hasOwnProperty("query"))
+                object.query = $root.pbbattle.AssistOptionModel.toObject(message.query, options);
+            if (message.keyword != null && message.hasOwnProperty("keyword"))
+                object.keyword = message.keyword;
+            if (message.isEnabledList && message.isEnabledList.length) {
+                object.isEnabledList = [];
+                for (var j = 0; j < message.isEnabledList.length; ++j)
+                    object.isEnabledList[j] = message.isEnabledList[j];
+            }
+            return object;
+        };
+
+        /**
+         * Converts this FindAssistOptionArgs to JSON.
+         * @function toJSON
+         * @memberof pbbattle.FindAssistOptionArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        FindAssistOptionArgs.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for FindAssistOptionArgs
+         * @function getTypeUrl
+         * @memberof pbbattle.FindAssistOptionArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        FindAssistOptionArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.FindAssistOptionArgs";
+        };
+
+        return FindAssistOptionArgs;
+    })();
+
+    pbbattle.FindAssistOptionReply = (function() {
+
+        /**
+         * Properties of a FindAssistOptionReply.
+         * @memberof pbbattle
+         * @interface IFindAssistOptionReply
+         * @property {pbcommon.EnumCode|null} [code] FindAssistOptionReply code
+         * @property {string|null} [msg] FindAssistOptionReply msg
+         * @property {pbbattle.IAssistOptionModel|null} [data] FindAssistOptionReply data
+         * @property {Array.<pbbattle.IAssistOptionModel>|null} [list] FindAssistOptionReply list
+         * @property {number|Long|null} [total] FindAssistOptionReply total
+         */
+
+        /**
+         * Constructs a new FindAssistOptionReply.
+         * @memberof pbbattle
+         * @classdesc Represents a FindAssistOptionReply.
+         * @implements IFindAssistOptionReply
+         * @constructor
+         * @param {pbbattle.IFindAssistOptionReply=} [properties] Properties to set
+         */
+        function FindAssistOptionReply(properties) {
+            this.list = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * FindAssistOptionReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbbattle.FindAssistOptionReply
+         * @instance
+         */
+        FindAssistOptionReply.prototype.code = 0;
+
+        /**
+         * FindAssistOptionReply msg.
+         * @member {string} msg
+         * @memberof pbbattle.FindAssistOptionReply
+         * @instance
+         */
+        FindAssistOptionReply.prototype.msg = "";
+
+        /**
+         * FindAssistOptionReply data.
+         * @member {pbbattle.IAssistOptionModel|null|undefined} data
+         * @memberof pbbattle.FindAssistOptionReply
+         * @instance
+         */
+        FindAssistOptionReply.prototype.data = null;
+
+        /**
+         * FindAssistOptionReply list.
+         * @member {Array.<pbbattle.IAssistOptionModel>} list
+         * @memberof pbbattle.FindAssistOptionReply
+         * @instance
+         */
+        FindAssistOptionReply.prototype.list = $util.emptyArray;
+
+        /**
+         * FindAssistOptionReply total.
+         * @member {number|Long} total
+         * @memberof pbbattle.FindAssistOptionReply
+         * @instance
+         */
+        FindAssistOptionReply.prototype.total = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * Creates a new FindAssistOptionReply instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.FindAssistOptionReply
+         * @static
+         * @param {pbbattle.IFindAssistOptionReply=} [properties] Properties to set
+         * @returns {pbbattle.FindAssistOptionReply} FindAssistOptionReply instance
+         */
+        FindAssistOptionReply.create = function create(properties) {
+            return new FindAssistOptionReply(properties);
+        };
+
+        /**
+         * Encodes the specified FindAssistOptionReply message. Does not implicitly {@link pbbattle.FindAssistOptionReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.FindAssistOptionReply
+         * @static
+         * @param {pbbattle.IFindAssistOptionReply} message FindAssistOptionReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindAssistOptionReply.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.data != null && Object.hasOwnProperty.call(message, "data"))
+                $root.pbbattle.AssistOptionModel.encode(message.data, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            if (message.list != null && message.list.length)
+                for (var i = 0; i < message.list.length; ++i)
+                    $root.pbbattle.AssistOptionModel.encode(message.list[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+            if (message.total != null && Object.hasOwnProperty.call(message, "total"))
+                writer.uint32(/* id 5, wireType 0 =*/40).int64(message.total);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified FindAssistOptionReply message, length delimited. Does not implicitly {@link pbbattle.FindAssistOptionReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.FindAssistOptionReply
+         * @static
+         * @param {pbbattle.IFindAssistOptionReply} message FindAssistOptionReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindAssistOptionReply.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a FindAssistOptionReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.FindAssistOptionReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.FindAssistOptionReply} FindAssistOptionReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindAssistOptionReply.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.FindAssistOptionReply();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.code = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.data = $root.pbbattle.AssistOptionModel.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 4: {
+                        if (!(message.list && message.list.length))
+                            message.list = [];
+                        message.list.push($root.pbbattle.AssistOptionModel.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 5: {
+                        message.total = reader.int64();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a FindAssistOptionReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.FindAssistOptionReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.FindAssistOptionReply} FindAssistOptionReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindAssistOptionReply.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a FindAssistOptionReply message.
+         * @function verify
+         * @memberof pbbattle.FindAssistOptionReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        FindAssistOptionReply.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.code != null && message.hasOwnProperty("code"))
+                switch (message.code) {
+                default:
+                    return "code: enum value expected";
+                case 0:
+                case 200:
+                case 403:
+                case 500:
+                case 501:
+                case 502:
+                case 503:
+                case 504:
+                case 505:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
+                case 2002:
+                case 2003:
+                case 2004:
+                case 2005:
+                case 2006:
+                case 2007:
+                case 2008:
+                case 2009:
+                case 2010:
+                case 2011:
+                case 2012:
+                case 2013:
+                case 2014:
+                case 2015:
+                case 3001:
+                case 3002:
+                case 3003:
+                case 5001:
+                case 5002:
+                case 10001:
+                case 10002:
+                case 20001:
+                case 20002:
+                    break;
+                }
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                if (!$util.isString(message.msg))
+                    return "msg: string expected";
+            if (message.data != null && message.hasOwnProperty("data")) {
+                var error = $root.pbbattle.AssistOptionModel.verify(message.data);
+                if (error)
+                    return "data." + error;
+            }
+            if (message.list != null && message.hasOwnProperty("list")) {
+                if (!Array.isArray(message.list))
+                    return "list: array expected";
+                for (var i = 0; i < message.list.length; ++i) {
+                    var error = $root.pbbattle.AssistOptionModel.verify(message.list[i]);
+                    if (error)
+                        return "list." + error;
+                }
+            }
+            if (message.total != null && message.hasOwnProperty("total"))
+                if (!$util.isInteger(message.total) && !(message.total && $util.isInteger(message.total.low) && $util.isInteger(message.total.high)))
+                    return "total: integer|Long expected";
+            return null;
+        };
+
+        /**
+         * Creates a FindAssistOptionReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.FindAssistOptionReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.FindAssistOptionReply} FindAssistOptionReply
+         */
+        FindAssistOptionReply.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.FindAssistOptionReply)
+                return object;
+            var message = new $root.pbbattle.FindAssistOptionReply();
+            switch (object.code) {
+            default:
+                if (typeof object.code === "number") {
+                    message.code = object.code;
+                    break;
+                }
+                break;
+            case "None":
+            case 0:
+                message.code = 0;
+                break;
+            case "Success":
+            case 200:
+                message.code = 200;
+                break;
+            case "Forbidden":
+            case 403:
+                message.code = 403;
+                break;
+            case "Fail":
+            case 500:
+                message.code = 500;
+                break;
+            case "Unknown":
+            case 501:
+                message.code = 501;
+                break;
+            case "Internal":
+            case 502:
+                message.code = 502;
+                break;
+            case "Invalid":
+            case 503:
+                message.code = 503;
+                break;
+            case "InvalidParam":
+            case 504:
+                message.code = 504;
+                break;
+            case "ParamError":
+            case 505:
+                message.code = 505;
+                break;
+            case "FindError":
+            case 1001:
+                message.code = 1001;
+                break;
+            case "CreateError":
+            case 1002:
+                message.code = 1002;
+                break;
+            case "DeleteError":
+            case 1003:
+                message.code = 1003;
+                break;
+            case "UpdateError":
+            case 1004:
+                message.code = 1004;
+                break;
+            case "InvalidToken":
+            case 2002:
+                message.code = 2002;
+                break;
+            case "InvalidSign":
+            case 2003:
+                message.code = 2003;
+                break;
+            case "NotLogin":
+            case 2004:
+                message.code = 2004;
+                break;
+            case "LoginTimeout":
+            case 2005:
+                message.code = 2005;
+                break;
+            case "LoginError":
+            case 2006:
+                message.code = 2006;
+                break;
+            case "LoginForbidden":
+            case 2007:
+                message.code = 2007;
+                break;
+            case "LoginExpired":
+            case 2008:
+                message.code = 2008;
+                break;
+            case "LoginInvalid":
+            case 2009:
+                message.code = 2009;
+                break;
+            case "LoginInvalidPassword":
+            case 2010:
+                message.code = 2010;
+                break;
+            case "LoginInvalidUsername":
+            case 2011:
+                message.code = 2011;
+                break;
+            case "LoginInvalidEmail":
+            case 2012:
+                message.code = 2012;
+                break;
+            case "LoginInvalidPhone":
+            case 2013:
+                message.code = 2013;
+                break;
+            case "LoginInvalidUsernameOrEmail":
+            case 2014:
+                message.code = 2014;
+                break;
+            case "LoginSocketRepeat":
+            case 2015:
+                message.code = 2015;
+                break;
+            case "RoleIsNotExist":
+            case 3001:
+                message.code = 3001;
+                break;
+            case "UserIsExist":
+            case 3002:
+                message.code = 3002;
+                break;
+            case "UserIsBan":
+            case 3003:
+                message.code = 3003;
+                break;
+            case "TalkIsBan":
+            case 5001:
+                message.code = 5001;
+                break;
+            case "EnterRoomErr":
+            case 5002:
+                message.code = 5002;
+                break;
+            case "HalaChatNeedBuy":
+            case 10001:
+                message.code = 10001;
+                break;
+            case "HalaPriceOutRange":
+            case 10002:
+                message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            }
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.data != null) {
+                if (typeof object.data !== "object")
+                    throw TypeError(".pbbattle.FindAssistOptionReply.data: object expected");
+                message.data = $root.pbbattle.AssistOptionModel.fromObject(object.data);
+            }
+            if (object.list) {
+                if (!Array.isArray(object.list))
+                    throw TypeError(".pbbattle.FindAssistOptionReply.list: array expected");
+                message.list = [];
+                for (var i = 0; i < object.list.length; ++i) {
+                    if (typeof object.list[i] !== "object")
+                        throw TypeError(".pbbattle.FindAssistOptionReply.list: object expected");
+                    message.list[i] = $root.pbbattle.AssistOptionModel.fromObject(object.list[i]);
+                }
+            }
+            if (object.total != null)
+                if ($util.Long)
+                    (message.total = $util.Long.fromValue(object.total)).unsigned = false;
+                else if (typeof object.total === "string")
+                    message.total = parseInt(object.total, 10);
+                else if (typeof object.total === "number")
+                    message.total = object.total;
+                else if (typeof object.total === "object")
+                    message.total = new $util.LongBits(object.total.low >>> 0, object.total.high >>> 0).toNumber();
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a FindAssistOptionReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.FindAssistOptionReply
+         * @static
+         * @param {pbbattle.FindAssistOptionReply} message FindAssistOptionReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FindAssistOptionReply.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.list = [];
+            if (options.defaults) {
+                object.code = options.enums === String ? "None" : 0;
+                object.msg = "";
+                object.data = null;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.total = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.total = options.longs === String ? "0" : 0;
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.data != null && message.hasOwnProperty("data"))
+                object.data = $root.pbbattle.AssistOptionModel.toObject(message.data, options);
+            if (message.list && message.list.length) {
+                object.list = [];
+                for (var j = 0; j < message.list.length; ++j)
+                    object.list[j] = $root.pbbattle.AssistOptionModel.toObject(message.list[j], options);
+            }
+            if (message.total != null && message.hasOwnProperty("total"))
+                if (typeof message.total === "number")
+                    object.total = options.longs === String ? String(message.total) : message.total;
+                else
+                    object.total = options.longs === String ? $util.Long.prototype.toString.call(message.total) : options.longs === Number ? new $util.LongBits(message.total.low >>> 0, message.total.high >>> 0).toNumber() : message.total;
+            return object;
+        };
+
+        /**
+         * Converts this FindAssistOptionReply to JSON.
+         * @function toJSON
+         * @memberof pbbattle.FindAssistOptionReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        FindAssistOptionReply.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for FindAssistOptionReply
+         * @function getTypeUrl
+         * @memberof pbbattle.FindAssistOptionReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        FindAssistOptionReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.FindAssistOptionReply";
+        };
+
+        return FindAssistOptionReply;
+    })();
+
+    pbbattle.ProbabilityConfigModel = (function() {
+
+        /**
+         * Properties of a ProbabilityConfigModel.
+         * @memberof pbbattle
+         * @interface IProbabilityConfigModel
+         * @property {number|Long|null} [id] ProbabilityConfigModel id
+         * @property {string|null} [createdAt] ProbabilityConfigModel createdAt
+         * @property {string|null} [updatedAt] ProbabilityConfigModel updatedAt
+         * @property {number|Long|null} [poolMin] ProbabilityConfigModel poolMin
+         * @property {number|Long|null} [poolMax] ProbabilityConfigModel poolMax
+         * @property {string|null} [configType] ProbabilityConfigModel configType
+         * @property {number|Long|null} [general1Id] ProbabilityConfigModel general1Id
+         * @property {number|Long|null} [general2Id] ProbabilityConfigModel general2Id
+         * @property {number|null} [probability] ProbabilityConfigModel probability
+         * @property {number|null} [sortOrder] ProbabilityConfigModel sortOrder
+         * @property {boolean|null} [isEnabled] ProbabilityConfigModel isEnabled
+         */
+
+        /**
+         * Constructs a new ProbabilityConfigModel.
+         * @memberof pbbattle
+         * @classdesc Represents a ProbabilityConfigModel.
+         * @implements IProbabilityConfigModel
+         * @constructor
+         * @param {pbbattle.IProbabilityConfigModel=} [properties] Properties to set
+         */
+        function ProbabilityConfigModel(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ProbabilityConfigModel id.
+         * @member {number|Long} id
+         * @memberof pbbattle.ProbabilityConfigModel
+         * @instance
+         */
+        ProbabilityConfigModel.prototype.id = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * ProbabilityConfigModel createdAt.
+         * @member {string} createdAt
+         * @memberof pbbattle.ProbabilityConfigModel
+         * @instance
+         */
+        ProbabilityConfigModel.prototype.createdAt = "";
+
+        /**
+         * ProbabilityConfigModel updatedAt.
+         * @member {string} updatedAt
+         * @memberof pbbattle.ProbabilityConfigModel
+         * @instance
+         */
+        ProbabilityConfigModel.prototype.updatedAt = "";
+
+        /**
+         * ProbabilityConfigModel poolMin.
+         * @member {number|Long} poolMin
+         * @memberof pbbattle.ProbabilityConfigModel
+         * @instance
+         */
+        ProbabilityConfigModel.prototype.poolMin = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * ProbabilityConfigModel poolMax.
+         * @member {number|Long} poolMax
+         * @memberof pbbattle.ProbabilityConfigModel
+         * @instance
+         */
+        ProbabilityConfigModel.prototype.poolMax = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * ProbabilityConfigModel configType.
+         * @member {string} configType
+         * @memberof pbbattle.ProbabilityConfigModel
+         * @instance
+         */
+        ProbabilityConfigModel.prototype.configType = "";
+
+        /**
+         * ProbabilityConfigModel general1Id.
+         * @member {number|Long} general1Id
+         * @memberof pbbattle.ProbabilityConfigModel
+         * @instance
+         */
+        ProbabilityConfigModel.prototype.general1Id = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * ProbabilityConfigModel general2Id.
+         * @member {number|Long} general2Id
+         * @memberof pbbattle.ProbabilityConfigModel
+         * @instance
+         */
+        ProbabilityConfigModel.prototype.general2Id = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * ProbabilityConfigModel probability.
+         * @member {number} probability
+         * @memberof pbbattle.ProbabilityConfigModel
+         * @instance
+         */
+        ProbabilityConfigModel.prototype.probability = 0;
+
+        /**
+         * ProbabilityConfigModel sortOrder.
+         * @member {number} sortOrder
+         * @memberof pbbattle.ProbabilityConfigModel
+         * @instance
+         */
+        ProbabilityConfigModel.prototype.sortOrder = 0;
+
+        /**
+         * ProbabilityConfigModel isEnabled.
+         * @member {boolean} isEnabled
+         * @memberof pbbattle.ProbabilityConfigModel
+         * @instance
+         */
+        ProbabilityConfigModel.prototype.isEnabled = false;
+
+        /**
+         * Creates a new ProbabilityConfigModel instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.ProbabilityConfigModel
+         * @static
+         * @param {pbbattle.IProbabilityConfigModel=} [properties] Properties to set
+         * @returns {pbbattle.ProbabilityConfigModel} ProbabilityConfigModel instance
+         */
+        ProbabilityConfigModel.create = function create(properties) {
+            return new ProbabilityConfigModel(properties);
+        };
+
+        /**
+         * Encodes the specified ProbabilityConfigModel message. Does not implicitly {@link pbbattle.ProbabilityConfigModel.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.ProbabilityConfigModel
+         * @static
+         * @param {pbbattle.IProbabilityConfigModel} message ProbabilityConfigModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        ProbabilityConfigModel.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id);
+            if (message.createdAt != null && Object.hasOwnProperty.call(message, "createdAt"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.createdAt);
+            if (message.updatedAt != null && Object.hasOwnProperty.call(message, "updatedAt"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.updatedAt);
+            if (message.poolMin != null && Object.hasOwnProperty.call(message, "poolMin"))
+                writer.uint32(/* id 10, wireType 0 =*/80).int64(message.poolMin);
+            if (message.poolMax != null && Object.hasOwnProperty.call(message, "poolMax"))
+                writer.uint32(/* id 11, wireType 0 =*/88).int64(message.poolMax);
+            if (message.configType != null && Object.hasOwnProperty.call(message, "configType"))
+                writer.uint32(/* id 12, wireType 2 =*/98).string(message.configType);
+            if (message.general1Id != null && Object.hasOwnProperty.call(message, "general1Id"))
+                writer.uint32(/* id 13, wireType 0 =*/104).int64(message.general1Id);
+            if (message.general2Id != null && Object.hasOwnProperty.call(message, "general2Id"))
+                writer.uint32(/* id 14, wireType 0 =*/112).int64(message.general2Id);
+            if (message.probability != null && Object.hasOwnProperty.call(message, "probability"))
+                writer.uint32(/* id 15, wireType 1 =*/121).double(message.probability);
+            if (message.sortOrder != null && Object.hasOwnProperty.call(message, "sortOrder"))
+                writer.uint32(/* id 16, wireType 0 =*/128).int32(message.sortOrder);
+            if (message.isEnabled != null && Object.hasOwnProperty.call(message, "isEnabled"))
+                writer.uint32(/* id 17, wireType 0 =*/136).bool(message.isEnabled);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified ProbabilityConfigModel message, length delimited. Does not implicitly {@link pbbattle.ProbabilityConfigModel.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.ProbabilityConfigModel
+         * @static
+         * @param {pbbattle.IProbabilityConfigModel} message ProbabilityConfigModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        ProbabilityConfigModel.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a ProbabilityConfigModel message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.ProbabilityConfigModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.ProbabilityConfigModel} ProbabilityConfigModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        ProbabilityConfigModel.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.ProbabilityConfigModel();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.id = reader.int64();
+                        break;
+                    }
+                case 2: {
+                        message.createdAt = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.updatedAt = reader.string();
+                        break;
+                    }
+                case 10: {
+                        message.poolMin = reader.int64();
+                        break;
+                    }
+                case 11: {
+                        message.poolMax = reader.int64();
+                        break;
+                    }
+                case 12: {
+                        message.configType = reader.string();
+                        break;
+                    }
+                case 13: {
+                        message.general1Id = reader.int64();
+                        break;
+                    }
+                case 14: {
+                        message.general2Id = reader.int64();
+                        break;
+                    }
+                case 15: {
+                        message.probability = reader.double();
+                        break;
+                    }
+                case 16: {
+                        message.sortOrder = reader.int32();
+                        break;
+                    }
+                case 17: {
+                        message.isEnabled = reader.bool();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a ProbabilityConfigModel message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.ProbabilityConfigModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.ProbabilityConfigModel} ProbabilityConfigModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        ProbabilityConfigModel.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a ProbabilityConfigModel message.
+         * @function verify
+         * @memberof pbbattle.ProbabilityConfigModel
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        ProbabilityConfigModel.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (!$util.isInteger(message.id) && !(message.id && $util.isInteger(message.id.low) && $util.isInteger(message.id.high)))
+                    return "id: integer|Long expected";
+            if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                if (!$util.isString(message.createdAt))
+                    return "createdAt: string expected";
+            if (message.updatedAt != null && message.hasOwnProperty("updatedAt"))
+                if (!$util.isString(message.updatedAt))
+                    return "updatedAt: string expected";
+            if (message.poolMin != null && message.hasOwnProperty("poolMin"))
+                if (!$util.isInteger(message.poolMin) && !(message.poolMin && $util.isInteger(message.poolMin.low) && $util.isInteger(message.poolMin.high)))
+                    return "poolMin: integer|Long expected";
+            if (message.poolMax != null && message.hasOwnProperty("poolMax"))
+                if (!$util.isInteger(message.poolMax) && !(message.poolMax && $util.isInteger(message.poolMax.low) && $util.isInteger(message.poolMax.high)))
+                    return "poolMax: integer|Long expected";
+            if (message.configType != null && message.hasOwnProperty("configType"))
+                if (!$util.isString(message.configType))
+                    return "configType: string expected";
+            if (message.general1Id != null && message.hasOwnProperty("general1Id"))
+                if (!$util.isInteger(message.general1Id) && !(message.general1Id && $util.isInteger(message.general1Id.low) && $util.isInteger(message.general1Id.high)))
+                    return "general1Id: integer|Long expected";
+            if (message.general2Id != null && message.hasOwnProperty("general2Id"))
+                if (!$util.isInteger(message.general2Id) && !(message.general2Id && $util.isInteger(message.general2Id.low) && $util.isInteger(message.general2Id.high)))
+                    return "general2Id: integer|Long expected";
+            if (message.probability != null && message.hasOwnProperty("probability"))
+                if (typeof message.probability !== "number")
+                    return "probability: number expected";
+            if (message.sortOrder != null && message.hasOwnProperty("sortOrder"))
+                if (!$util.isInteger(message.sortOrder))
+                    return "sortOrder: integer expected";
+            if (message.isEnabled != null && message.hasOwnProperty("isEnabled"))
+                if (typeof message.isEnabled !== "boolean")
+                    return "isEnabled: boolean expected";
+            return null;
+        };
+
+        /**
+         * Creates a ProbabilityConfigModel message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.ProbabilityConfigModel
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.ProbabilityConfigModel} ProbabilityConfigModel
+         */
+        ProbabilityConfigModel.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.ProbabilityConfigModel)
+                return object;
+            var message = new $root.pbbattle.ProbabilityConfigModel();
+            if (object.id != null)
+                if ($util.Long)
+                    (message.id = $util.Long.fromValue(object.id)).unsigned = false;
+                else if (typeof object.id === "string")
+                    message.id = parseInt(object.id, 10);
+                else if (typeof object.id === "number")
+                    message.id = object.id;
+                else if (typeof object.id === "object")
+                    message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber();
+            if (object.createdAt != null)
+                message.createdAt = String(object.createdAt);
+            if (object.updatedAt != null)
+                message.updatedAt = String(object.updatedAt);
+            if (object.poolMin != null)
+                if ($util.Long)
+                    (message.poolMin = $util.Long.fromValue(object.poolMin)).unsigned = false;
+                else if (typeof object.poolMin === "string")
+                    message.poolMin = parseInt(object.poolMin, 10);
+                else if (typeof object.poolMin === "number")
+                    message.poolMin = object.poolMin;
+                else if (typeof object.poolMin === "object")
+                    message.poolMin = new $util.LongBits(object.poolMin.low >>> 0, object.poolMin.high >>> 0).toNumber();
+            if (object.poolMax != null)
+                if ($util.Long)
+                    (message.poolMax = $util.Long.fromValue(object.poolMax)).unsigned = false;
+                else if (typeof object.poolMax === "string")
+                    message.poolMax = parseInt(object.poolMax, 10);
+                else if (typeof object.poolMax === "number")
+                    message.poolMax = object.poolMax;
+                else if (typeof object.poolMax === "object")
+                    message.poolMax = new $util.LongBits(object.poolMax.low >>> 0, object.poolMax.high >>> 0).toNumber();
+            if (object.configType != null)
+                message.configType = String(object.configType);
+            if (object.general1Id != null)
+                if ($util.Long)
+                    (message.general1Id = $util.Long.fromValue(object.general1Id)).unsigned = false;
+                else if (typeof object.general1Id === "string")
+                    message.general1Id = parseInt(object.general1Id, 10);
+                else if (typeof object.general1Id === "number")
+                    message.general1Id = object.general1Id;
+                else if (typeof object.general1Id === "object")
+                    message.general1Id = new $util.LongBits(object.general1Id.low >>> 0, object.general1Id.high >>> 0).toNumber();
+            if (object.general2Id != null)
+                if ($util.Long)
+                    (message.general2Id = $util.Long.fromValue(object.general2Id)).unsigned = false;
+                else if (typeof object.general2Id === "string")
+                    message.general2Id = parseInt(object.general2Id, 10);
+                else if (typeof object.general2Id === "number")
+                    message.general2Id = object.general2Id;
+                else if (typeof object.general2Id === "object")
+                    message.general2Id = new $util.LongBits(object.general2Id.low >>> 0, object.general2Id.high >>> 0).toNumber();
+            if (object.probability != null)
+                message.probability = Number(object.probability);
+            if (object.sortOrder != null)
+                message.sortOrder = object.sortOrder | 0;
+            if (object.isEnabled != null)
+                message.isEnabled = Boolean(object.isEnabled);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a ProbabilityConfigModel message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.ProbabilityConfigModel
+         * @static
+         * @param {pbbattle.ProbabilityConfigModel} message ProbabilityConfigModel
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        ProbabilityConfigModel.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.id = options.longs === String ? "0" : 0;
+                object.createdAt = "";
+                object.updatedAt = "";
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.poolMin = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.poolMin = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.poolMax = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.poolMax = options.longs === String ? "0" : 0;
+                object.configType = "";
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.general1Id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.general1Id = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.general2Id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.general2Id = options.longs === String ? "0" : 0;
+                object.probability = 0;
+                object.sortOrder = 0;
+                object.isEnabled = false;
+            }
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (typeof message.id === "number")
+                    object.id = options.longs === String ? String(message.id) : message.id;
+                else
+                    object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id;
+            if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                object.createdAt = message.createdAt;
+            if (message.updatedAt != null && message.hasOwnProperty("updatedAt"))
+                object.updatedAt = message.updatedAt;
+            if (message.poolMin != null && message.hasOwnProperty("poolMin"))
+                if (typeof message.poolMin === "number")
+                    object.poolMin = options.longs === String ? String(message.poolMin) : message.poolMin;
+                else
+                    object.poolMin = options.longs === String ? $util.Long.prototype.toString.call(message.poolMin) : options.longs === Number ? new $util.LongBits(message.poolMin.low >>> 0, message.poolMin.high >>> 0).toNumber() : message.poolMin;
+            if (message.poolMax != null && message.hasOwnProperty("poolMax"))
+                if (typeof message.poolMax === "number")
+                    object.poolMax = options.longs === String ? String(message.poolMax) : message.poolMax;
+                else
+                    object.poolMax = options.longs === String ? $util.Long.prototype.toString.call(message.poolMax) : options.longs === Number ? new $util.LongBits(message.poolMax.low >>> 0, message.poolMax.high >>> 0).toNumber() : message.poolMax;
+            if (message.configType != null && message.hasOwnProperty("configType"))
+                object.configType = message.configType;
+            if (message.general1Id != null && message.hasOwnProperty("general1Id"))
+                if (typeof message.general1Id === "number")
+                    object.general1Id = options.longs === String ? String(message.general1Id) : message.general1Id;
+                else
+                    object.general1Id = options.longs === String ? $util.Long.prototype.toString.call(message.general1Id) : options.longs === Number ? new $util.LongBits(message.general1Id.low >>> 0, message.general1Id.high >>> 0).toNumber() : message.general1Id;
+            if (message.general2Id != null && message.hasOwnProperty("general2Id"))
+                if (typeof message.general2Id === "number")
+                    object.general2Id = options.longs === String ? String(message.general2Id) : message.general2Id;
+                else
+                    object.general2Id = options.longs === String ? $util.Long.prototype.toString.call(message.general2Id) : options.longs === Number ? new $util.LongBits(message.general2Id.low >>> 0, message.general2Id.high >>> 0).toNumber() : message.general2Id;
+            if (message.probability != null && message.hasOwnProperty("probability"))
+                object.probability = options.json && !isFinite(message.probability) ? String(message.probability) : message.probability;
+            if (message.sortOrder != null && message.hasOwnProperty("sortOrder"))
+                object.sortOrder = message.sortOrder;
+            if (message.isEnabled != null && message.hasOwnProperty("isEnabled"))
+                object.isEnabled = message.isEnabled;
+            return object;
+        };
+
+        /**
+         * Converts this ProbabilityConfigModel to JSON.
+         * @function toJSON
+         * @memberof pbbattle.ProbabilityConfigModel
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        ProbabilityConfigModel.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for ProbabilityConfigModel
+         * @function getTypeUrl
+         * @memberof pbbattle.ProbabilityConfigModel
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        ProbabilityConfigModel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.ProbabilityConfigModel";
+        };
+
+        return ProbabilityConfigModel;
+    })();
+
+    pbbattle.FindProbabilityConfigArgs = (function() {
+
+        /**
+         * Properties of a FindProbabilityConfigArgs.
+         * @memberof pbbattle
+         * @interface IFindProbabilityConfigArgs
+         * @property {pbcommon.IPageInfo|null} [pageInfo] FindProbabilityConfigArgs pageInfo
+         * @property {pbbattle.IProbabilityConfigModel|null} [query] FindProbabilityConfigArgs query
+         * @property {string|null} [keyword] FindProbabilityConfigArgs keyword
+         * @property {Array.<string>|null} [configTypeList] FindProbabilityConfigArgs configTypeList
+         * @property {Array.<boolean>|null} [isEnabledList] FindProbabilityConfigArgs isEnabledList
+         */
+
+        /**
+         * Constructs a new FindProbabilityConfigArgs.
+         * @memberof pbbattle
+         * @classdesc Represents a FindProbabilityConfigArgs.
+         * @implements IFindProbabilityConfigArgs
+         * @constructor
+         * @param {pbbattle.IFindProbabilityConfigArgs=} [properties] Properties to set
+         */
+        function FindProbabilityConfigArgs(properties) {
+            this.configTypeList = [];
+            this.isEnabledList = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * FindProbabilityConfigArgs pageInfo.
+         * @member {pbcommon.IPageInfo|null|undefined} pageInfo
+         * @memberof pbbattle.FindProbabilityConfigArgs
+         * @instance
+         */
+        FindProbabilityConfigArgs.prototype.pageInfo = null;
+
+        /**
+         * FindProbabilityConfigArgs query.
+         * @member {pbbattle.IProbabilityConfigModel|null|undefined} query
+         * @memberof pbbattle.FindProbabilityConfigArgs
+         * @instance
+         */
+        FindProbabilityConfigArgs.prototype.query = null;
+
+        /**
+         * FindProbabilityConfigArgs keyword.
+         * @member {string} keyword
+         * @memberof pbbattle.FindProbabilityConfigArgs
+         * @instance
+         */
+        FindProbabilityConfigArgs.prototype.keyword = "";
+
+        /**
+         * FindProbabilityConfigArgs configTypeList.
+         * @member {Array.<string>} configTypeList
+         * @memberof pbbattle.FindProbabilityConfigArgs
+         * @instance
+         */
+        FindProbabilityConfigArgs.prototype.configTypeList = $util.emptyArray;
+
+        /**
+         * FindProbabilityConfigArgs isEnabledList.
+         * @member {Array.<boolean>} isEnabledList
+         * @memberof pbbattle.FindProbabilityConfigArgs
+         * @instance
+         */
+        FindProbabilityConfigArgs.prototype.isEnabledList = $util.emptyArray;
+
+        /**
+         * Creates a new FindProbabilityConfigArgs instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.FindProbabilityConfigArgs
+         * @static
+         * @param {pbbattle.IFindProbabilityConfigArgs=} [properties] Properties to set
+         * @returns {pbbattle.FindProbabilityConfigArgs} FindProbabilityConfigArgs instance
+         */
+        FindProbabilityConfigArgs.create = function create(properties) {
+            return new FindProbabilityConfigArgs(properties);
+        };
+
+        /**
+         * Encodes the specified FindProbabilityConfigArgs message. Does not implicitly {@link pbbattle.FindProbabilityConfigArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.FindProbabilityConfigArgs
+         * @static
+         * @param {pbbattle.IFindProbabilityConfigArgs} message FindProbabilityConfigArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindProbabilityConfigArgs.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.pageInfo != null && Object.hasOwnProperty.call(message, "pageInfo"))
+                $root.pbcommon.PageInfo.encode(message.pageInfo, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.query != null && Object.hasOwnProperty.call(message, "query"))
+                $root.pbbattle.ProbabilityConfigModel.encode(message.query, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            if (message.keyword != null && Object.hasOwnProperty.call(message, "keyword"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.keyword);
+            if (message.configTypeList != null && message.configTypeList.length)
+                for (var i = 0; i < message.configTypeList.length; ++i)
+                    writer.uint32(/* id 4, wireType 2 =*/34).string(message.configTypeList[i]);
+            if (message.isEnabledList != null && message.isEnabledList.length) {
+                writer.uint32(/* id 5, wireType 2 =*/42).fork();
+                for (var i = 0; i < message.isEnabledList.length; ++i)
+                    writer.bool(message.isEnabledList[i]);
+                writer.ldelim();
+            }
+            return writer;
+        };
+
+        /**
+         * Encodes the specified FindProbabilityConfigArgs message, length delimited. Does not implicitly {@link pbbattle.FindProbabilityConfigArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.FindProbabilityConfigArgs
+         * @static
+         * @param {pbbattle.IFindProbabilityConfigArgs} message FindProbabilityConfigArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindProbabilityConfigArgs.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a FindProbabilityConfigArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.FindProbabilityConfigArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.FindProbabilityConfigArgs} FindProbabilityConfigArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindProbabilityConfigArgs.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.FindProbabilityConfigArgs();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.pageInfo = $root.pbcommon.PageInfo.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 2: {
+                        message.query = $root.pbbattle.ProbabilityConfigModel.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 3: {
+                        message.keyword = reader.string();
+                        break;
+                    }
+                case 4: {
+                        if (!(message.configTypeList && message.configTypeList.length))
+                            message.configTypeList = [];
+                        message.configTypeList.push(reader.string());
+                        break;
+                    }
+                case 5: {
+                        if (!(message.isEnabledList && message.isEnabledList.length))
+                            message.isEnabledList = [];
+                        if ((tag & 7) === 2) {
+                            var end2 = reader.uint32() + reader.pos;
+                            while (reader.pos < end2)
+                                message.isEnabledList.push(reader.bool());
+                        } else
+                            message.isEnabledList.push(reader.bool());
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a FindProbabilityConfigArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.FindProbabilityConfigArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.FindProbabilityConfigArgs} FindProbabilityConfigArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindProbabilityConfigArgs.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a FindProbabilityConfigArgs message.
+         * @function verify
+         * @memberof pbbattle.FindProbabilityConfigArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        FindProbabilityConfigArgs.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.pageInfo != null && message.hasOwnProperty("pageInfo")) {
+                var error = $root.pbcommon.PageInfo.verify(message.pageInfo);
+                if (error)
+                    return "pageInfo." + error;
+            }
+            if (message.query != null && message.hasOwnProperty("query")) {
+                var error = $root.pbbattle.ProbabilityConfigModel.verify(message.query);
+                if (error)
+                    return "query." + error;
+            }
+            if (message.keyword != null && message.hasOwnProperty("keyword"))
+                if (!$util.isString(message.keyword))
+                    return "keyword: string expected";
+            if (message.configTypeList != null && message.hasOwnProperty("configTypeList")) {
+                if (!Array.isArray(message.configTypeList))
+                    return "configTypeList: array expected";
+                for (var i = 0; i < message.configTypeList.length; ++i)
+                    if (!$util.isString(message.configTypeList[i]))
+                        return "configTypeList: string[] expected";
+            }
+            if (message.isEnabledList != null && message.hasOwnProperty("isEnabledList")) {
+                if (!Array.isArray(message.isEnabledList))
+                    return "isEnabledList: array expected";
+                for (var i = 0; i < message.isEnabledList.length; ++i)
+                    if (typeof message.isEnabledList[i] !== "boolean")
+                        return "isEnabledList: boolean[] expected";
+            }
+            return null;
+        };
+
+        /**
+         * Creates a FindProbabilityConfigArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.FindProbabilityConfigArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.FindProbabilityConfigArgs} FindProbabilityConfigArgs
+         */
+        FindProbabilityConfigArgs.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.FindProbabilityConfigArgs)
+                return object;
+            var message = new $root.pbbattle.FindProbabilityConfigArgs();
+            if (object.pageInfo != null) {
+                if (typeof object.pageInfo !== "object")
+                    throw TypeError(".pbbattle.FindProbabilityConfigArgs.pageInfo: object expected");
+                message.pageInfo = $root.pbcommon.PageInfo.fromObject(object.pageInfo);
+            }
+            if (object.query != null) {
+                if (typeof object.query !== "object")
+                    throw TypeError(".pbbattle.FindProbabilityConfigArgs.query: object expected");
+                message.query = $root.pbbattle.ProbabilityConfigModel.fromObject(object.query);
+            }
+            if (object.keyword != null)
+                message.keyword = String(object.keyword);
+            if (object.configTypeList) {
+                if (!Array.isArray(object.configTypeList))
+                    throw TypeError(".pbbattle.FindProbabilityConfigArgs.configTypeList: array expected");
+                message.configTypeList = [];
+                for (var i = 0; i < object.configTypeList.length; ++i)
+                    message.configTypeList[i] = String(object.configTypeList[i]);
+            }
+            if (object.isEnabledList) {
+                if (!Array.isArray(object.isEnabledList))
+                    throw TypeError(".pbbattle.FindProbabilityConfigArgs.isEnabledList: array expected");
+                message.isEnabledList = [];
+                for (var i = 0; i < object.isEnabledList.length; ++i)
+                    message.isEnabledList[i] = Boolean(object.isEnabledList[i]);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a FindProbabilityConfigArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.FindProbabilityConfigArgs
+         * @static
+         * @param {pbbattle.FindProbabilityConfigArgs} message FindProbabilityConfigArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FindProbabilityConfigArgs.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults) {
+                object.configTypeList = [];
+                object.isEnabledList = [];
+            }
+            if (options.defaults) {
+                object.pageInfo = null;
+                object.query = null;
+                object.keyword = "";
+            }
+            if (message.pageInfo != null && message.hasOwnProperty("pageInfo"))
+                object.pageInfo = $root.pbcommon.PageInfo.toObject(message.pageInfo, options);
+            if (message.query != null && message.hasOwnProperty("query"))
+                object.query = $root.pbbattle.ProbabilityConfigModel.toObject(message.query, options);
+            if (message.keyword != null && message.hasOwnProperty("keyword"))
+                object.keyword = message.keyword;
+            if (message.configTypeList && message.configTypeList.length) {
+                object.configTypeList = [];
+                for (var j = 0; j < message.configTypeList.length; ++j)
+                    object.configTypeList[j] = message.configTypeList[j];
+            }
+            if (message.isEnabledList && message.isEnabledList.length) {
+                object.isEnabledList = [];
+                for (var j = 0; j < message.isEnabledList.length; ++j)
+                    object.isEnabledList[j] = message.isEnabledList[j];
+            }
+            return object;
+        };
+
+        /**
+         * Converts this FindProbabilityConfigArgs to JSON.
+         * @function toJSON
+         * @memberof pbbattle.FindProbabilityConfigArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        FindProbabilityConfigArgs.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for FindProbabilityConfigArgs
+         * @function getTypeUrl
+         * @memberof pbbattle.FindProbabilityConfigArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        FindProbabilityConfigArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.FindProbabilityConfigArgs";
+        };
+
+        return FindProbabilityConfigArgs;
+    })();
+
+    pbbattle.FindProbabilityConfigReply = (function() {
+
+        /**
+         * Properties of a FindProbabilityConfigReply.
+         * @memberof pbbattle
+         * @interface IFindProbabilityConfigReply
+         * @property {pbcommon.EnumCode|null} [code] FindProbabilityConfigReply code
+         * @property {string|null} [msg] FindProbabilityConfigReply msg
+         * @property {pbbattle.IProbabilityConfigModel|null} [data] FindProbabilityConfigReply data
+         * @property {Array.<pbbattle.IProbabilityConfigModel>|null} [list] FindProbabilityConfigReply list
+         * @property {number|Long|null} [total] FindProbabilityConfigReply total
+         */
+
+        /**
+         * Constructs a new FindProbabilityConfigReply.
+         * @memberof pbbattle
+         * @classdesc Represents a FindProbabilityConfigReply.
+         * @implements IFindProbabilityConfigReply
+         * @constructor
+         * @param {pbbattle.IFindProbabilityConfigReply=} [properties] Properties to set
+         */
+        function FindProbabilityConfigReply(properties) {
+            this.list = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * FindProbabilityConfigReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbbattle.FindProbabilityConfigReply
+         * @instance
+         */
+        FindProbabilityConfigReply.prototype.code = 0;
+
+        /**
+         * FindProbabilityConfigReply msg.
+         * @member {string} msg
+         * @memberof pbbattle.FindProbabilityConfigReply
+         * @instance
+         */
+        FindProbabilityConfigReply.prototype.msg = "";
+
+        /**
+         * FindProbabilityConfigReply data.
+         * @member {pbbattle.IProbabilityConfigModel|null|undefined} data
+         * @memberof pbbattle.FindProbabilityConfigReply
+         * @instance
+         */
+        FindProbabilityConfigReply.prototype.data = null;
+
+        /**
+         * FindProbabilityConfigReply list.
+         * @member {Array.<pbbattle.IProbabilityConfigModel>} list
+         * @memberof pbbattle.FindProbabilityConfigReply
+         * @instance
+         */
+        FindProbabilityConfigReply.prototype.list = $util.emptyArray;
+
+        /**
+         * FindProbabilityConfigReply total.
+         * @member {number|Long} total
+         * @memberof pbbattle.FindProbabilityConfigReply
+         * @instance
+         */
+        FindProbabilityConfigReply.prototype.total = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * Creates a new FindProbabilityConfigReply instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.FindProbabilityConfigReply
+         * @static
+         * @param {pbbattle.IFindProbabilityConfigReply=} [properties] Properties to set
+         * @returns {pbbattle.FindProbabilityConfigReply} FindProbabilityConfigReply instance
+         */
+        FindProbabilityConfigReply.create = function create(properties) {
+            return new FindProbabilityConfigReply(properties);
+        };
+
+        /**
+         * Encodes the specified FindProbabilityConfigReply message. Does not implicitly {@link pbbattle.FindProbabilityConfigReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.FindProbabilityConfigReply
+         * @static
+         * @param {pbbattle.IFindProbabilityConfigReply} message FindProbabilityConfigReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindProbabilityConfigReply.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.data != null && Object.hasOwnProperty.call(message, "data"))
+                $root.pbbattle.ProbabilityConfigModel.encode(message.data, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            if (message.list != null && message.list.length)
+                for (var i = 0; i < message.list.length; ++i)
+                    $root.pbbattle.ProbabilityConfigModel.encode(message.list[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+            if (message.total != null && Object.hasOwnProperty.call(message, "total"))
+                writer.uint32(/* id 5, wireType 0 =*/40).int64(message.total);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified FindProbabilityConfigReply message, length delimited. Does not implicitly {@link pbbattle.FindProbabilityConfigReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.FindProbabilityConfigReply
+         * @static
+         * @param {pbbattle.IFindProbabilityConfigReply} message FindProbabilityConfigReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindProbabilityConfigReply.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a FindProbabilityConfigReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.FindProbabilityConfigReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.FindProbabilityConfigReply} FindProbabilityConfigReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindProbabilityConfigReply.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.FindProbabilityConfigReply();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.code = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.data = $root.pbbattle.ProbabilityConfigModel.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 4: {
+                        if (!(message.list && message.list.length))
+                            message.list = [];
+                        message.list.push($root.pbbattle.ProbabilityConfigModel.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 5: {
+                        message.total = reader.int64();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a FindProbabilityConfigReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.FindProbabilityConfigReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.FindProbabilityConfigReply} FindProbabilityConfigReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindProbabilityConfigReply.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a FindProbabilityConfigReply message.
+         * @function verify
+         * @memberof pbbattle.FindProbabilityConfigReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        FindProbabilityConfigReply.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.code != null && message.hasOwnProperty("code"))
+                switch (message.code) {
+                default:
+                    return "code: enum value expected";
+                case 0:
+                case 200:
+                case 403:
+                case 500:
+                case 501:
+                case 502:
+                case 503:
+                case 504:
+                case 505:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
+                case 2002:
+                case 2003:
+                case 2004:
+                case 2005:
+                case 2006:
+                case 2007:
+                case 2008:
+                case 2009:
+                case 2010:
+                case 2011:
+                case 2012:
+                case 2013:
+                case 2014:
+                case 2015:
+                case 3001:
+                case 3002:
+                case 3003:
+                case 5001:
+                case 5002:
+                case 10001:
+                case 10002:
+                case 20001:
+                case 20002:
+                    break;
+                }
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                if (!$util.isString(message.msg))
+                    return "msg: string expected";
+            if (message.data != null && message.hasOwnProperty("data")) {
+                var error = $root.pbbattle.ProbabilityConfigModel.verify(message.data);
+                if (error)
+                    return "data." + error;
+            }
+            if (message.list != null && message.hasOwnProperty("list")) {
+                if (!Array.isArray(message.list))
+                    return "list: array expected";
+                for (var i = 0; i < message.list.length; ++i) {
+                    var error = $root.pbbattle.ProbabilityConfigModel.verify(message.list[i]);
+                    if (error)
+                        return "list." + error;
+                }
+            }
+            if (message.total != null && message.hasOwnProperty("total"))
+                if (!$util.isInteger(message.total) && !(message.total && $util.isInteger(message.total.low) && $util.isInteger(message.total.high)))
+                    return "total: integer|Long expected";
+            return null;
+        };
+
+        /**
+         * Creates a FindProbabilityConfigReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.FindProbabilityConfigReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.FindProbabilityConfigReply} FindProbabilityConfigReply
+         */
+        FindProbabilityConfigReply.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.FindProbabilityConfigReply)
+                return object;
+            var message = new $root.pbbattle.FindProbabilityConfigReply();
+            switch (object.code) {
+            default:
+                if (typeof object.code === "number") {
+                    message.code = object.code;
+                    break;
+                }
+                break;
+            case "None":
+            case 0:
+                message.code = 0;
+                break;
+            case "Success":
+            case 200:
+                message.code = 200;
+                break;
+            case "Forbidden":
+            case 403:
+                message.code = 403;
+                break;
+            case "Fail":
+            case 500:
+                message.code = 500;
+                break;
+            case "Unknown":
+            case 501:
+                message.code = 501;
+                break;
+            case "Internal":
+            case 502:
+                message.code = 502;
+                break;
+            case "Invalid":
+            case 503:
+                message.code = 503;
+                break;
+            case "InvalidParam":
+            case 504:
+                message.code = 504;
+                break;
+            case "ParamError":
+            case 505:
+                message.code = 505;
+                break;
+            case "FindError":
+            case 1001:
+                message.code = 1001;
+                break;
+            case "CreateError":
+            case 1002:
+                message.code = 1002;
+                break;
+            case "DeleteError":
+            case 1003:
+                message.code = 1003;
+                break;
+            case "UpdateError":
+            case 1004:
+                message.code = 1004;
+                break;
+            case "InvalidToken":
+            case 2002:
+                message.code = 2002;
+                break;
+            case "InvalidSign":
+            case 2003:
+                message.code = 2003;
+                break;
+            case "NotLogin":
+            case 2004:
+                message.code = 2004;
+                break;
+            case "LoginTimeout":
+            case 2005:
+                message.code = 2005;
+                break;
+            case "LoginError":
+            case 2006:
+                message.code = 2006;
+                break;
+            case "LoginForbidden":
+            case 2007:
+                message.code = 2007;
+                break;
+            case "LoginExpired":
+            case 2008:
+                message.code = 2008;
+                break;
+            case "LoginInvalid":
+            case 2009:
+                message.code = 2009;
+                break;
+            case "LoginInvalidPassword":
+            case 2010:
+                message.code = 2010;
+                break;
+            case "LoginInvalidUsername":
+            case 2011:
+                message.code = 2011;
+                break;
+            case "LoginInvalidEmail":
+            case 2012:
+                message.code = 2012;
+                break;
+            case "LoginInvalidPhone":
+            case 2013:
+                message.code = 2013;
+                break;
+            case "LoginInvalidUsernameOrEmail":
+            case 2014:
+                message.code = 2014;
+                break;
+            case "LoginSocketRepeat":
+            case 2015:
+                message.code = 2015;
+                break;
+            case "RoleIsNotExist":
+            case 3001:
+                message.code = 3001;
+                break;
+            case "UserIsExist":
+            case 3002:
+                message.code = 3002;
+                break;
+            case "UserIsBan":
+            case 3003:
+                message.code = 3003;
+                break;
+            case "TalkIsBan":
+            case 5001:
+                message.code = 5001;
+                break;
+            case "EnterRoomErr":
+            case 5002:
+                message.code = 5002;
+                break;
+            case "HalaChatNeedBuy":
+            case 10001:
+                message.code = 10001;
+                break;
+            case "HalaPriceOutRange":
+            case 10002:
+                message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            }
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.data != null) {
+                if (typeof object.data !== "object")
+                    throw TypeError(".pbbattle.FindProbabilityConfigReply.data: object expected");
+                message.data = $root.pbbattle.ProbabilityConfigModel.fromObject(object.data);
+            }
+            if (object.list) {
+                if (!Array.isArray(object.list))
+                    throw TypeError(".pbbattle.FindProbabilityConfigReply.list: array expected");
+                message.list = [];
+                for (var i = 0; i < object.list.length; ++i) {
+                    if (typeof object.list[i] !== "object")
+                        throw TypeError(".pbbattle.FindProbabilityConfigReply.list: object expected");
+                    message.list[i] = $root.pbbattle.ProbabilityConfigModel.fromObject(object.list[i]);
+                }
+            }
+            if (object.total != null)
+                if ($util.Long)
+                    (message.total = $util.Long.fromValue(object.total)).unsigned = false;
+                else if (typeof object.total === "string")
+                    message.total = parseInt(object.total, 10);
+                else if (typeof object.total === "number")
+                    message.total = object.total;
+                else if (typeof object.total === "object")
+                    message.total = new $util.LongBits(object.total.low >>> 0, object.total.high >>> 0).toNumber();
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a FindProbabilityConfigReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.FindProbabilityConfigReply
+         * @static
+         * @param {pbbattle.FindProbabilityConfigReply} message FindProbabilityConfigReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FindProbabilityConfigReply.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.list = [];
+            if (options.defaults) {
+                object.code = options.enums === String ? "None" : 0;
+                object.msg = "";
+                object.data = null;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.total = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.total = options.longs === String ? "0" : 0;
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.data != null && message.hasOwnProperty("data"))
+                object.data = $root.pbbattle.ProbabilityConfigModel.toObject(message.data, options);
+            if (message.list && message.list.length) {
+                object.list = [];
+                for (var j = 0; j < message.list.length; ++j)
+                    object.list[j] = $root.pbbattle.ProbabilityConfigModel.toObject(message.list[j], options);
+            }
+            if (message.total != null && message.hasOwnProperty("total"))
+                if (typeof message.total === "number")
+                    object.total = options.longs === String ? String(message.total) : message.total;
+                else
+                    object.total = options.longs === String ? $util.Long.prototype.toString.call(message.total) : options.longs === Number ? new $util.LongBits(message.total.low >>> 0, message.total.high >>> 0).toNumber() : message.total;
+            return object;
+        };
+
+        /**
+         * Converts this FindProbabilityConfigReply to JSON.
+         * @function toJSON
+         * @memberof pbbattle.FindProbabilityConfigReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        FindProbabilityConfigReply.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for FindProbabilityConfigReply
+         * @function getTypeUrl
+         * @memberof pbbattle.FindProbabilityConfigReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        FindProbabilityConfigReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.FindProbabilityConfigReply";
+        };
+
+        return FindProbabilityConfigReply;
+    })();
+
+    pbbattle.BattleRoundModel = (function() {
+
+        /**
+         * Properties of a BattleRoundModel.
+         * @memberof pbbattle
+         * @interface IBattleRoundModel
+         * @property {number|Long|null} [roundId] BattleRoundModel roundId
+         * @property {string|null} [createdAt] BattleRoundModel createdAt
+         * @property {string|null} [updatedAt] BattleRoundModel updatedAt
+         * @property {string|null} [status] BattleRoundModel status
+         * @property {string|null} [assistStartTime] BattleRoundModel assistStartTime
+         * @property {string|null} [assistEndTime] BattleRoundModel assistEndTime
+         * @property {string|null} [battleStartTime] BattleRoundModel battleStartTime
+         * @property {string|null} [battleEndTime] BattleRoundModel battleEndTime
+         * @property {number|Long|null} [prizePoolBefore] BattleRoundModel prizePoolBefore
+         * @property {number|Long|null} [prizePoolAfter] BattleRoundModel prizePoolAfter
+         * @property {number|null} [totalAssistCount] BattleRoundModel totalAssistCount
+         * @property {number|Long|null} [totalAssistGold] BattleRoundModel totalAssistGold
+         * @property {number|Long|null} [totalRealAssistGold] BattleRoundModel totalRealAssistGold
+         * @property {number|Long|null} [resultGeneral1Id] BattleRoundModel resultGeneral1Id
+         * @property {number|Long|null} [resultGeneral2Id] BattleRoundModel resultGeneral2Id
+         * @property {string|null} [resultMode] BattleRoundModel resultMode
+         */
+
+        /**
+         * Constructs a new BattleRoundModel.
+         * @memberof pbbattle
+         * @classdesc Represents a BattleRoundModel.
+         * @implements IBattleRoundModel
+         * @constructor
+         * @param {pbbattle.IBattleRoundModel=} [properties] Properties to set
+         */
+        function BattleRoundModel(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BattleRoundModel roundId.
+         * @member {number|Long} roundId
+         * @memberof pbbattle.BattleRoundModel
+         * @instance
+         */
+        BattleRoundModel.prototype.roundId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * BattleRoundModel createdAt.
+         * @member {string} createdAt
+         * @memberof pbbattle.BattleRoundModel
+         * @instance
+         */
+        BattleRoundModel.prototype.createdAt = "";
+
+        /**
+         * BattleRoundModel updatedAt.
+         * @member {string} updatedAt
+         * @memberof pbbattle.BattleRoundModel
+         * @instance
+         */
+        BattleRoundModel.prototype.updatedAt = "";
+
+        /**
+         * BattleRoundModel status.
+         * @member {string} status
+         * @memberof pbbattle.BattleRoundModel
+         * @instance
+         */
+        BattleRoundModel.prototype.status = "";
+
+        /**
+         * BattleRoundModel assistStartTime.
+         * @member {string} assistStartTime
+         * @memberof pbbattle.BattleRoundModel
+         * @instance
+         */
+        BattleRoundModel.prototype.assistStartTime = "";
+
+        /**
+         * BattleRoundModel assistEndTime.
+         * @member {string} assistEndTime
+         * @memberof pbbattle.BattleRoundModel
+         * @instance
+         */
+        BattleRoundModel.prototype.assistEndTime = "";
+
+        /**
+         * BattleRoundModel battleStartTime.
+         * @member {string} battleStartTime
+         * @memberof pbbattle.BattleRoundModel
+         * @instance
+         */
+        BattleRoundModel.prototype.battleStartTime = "";
+
+        /**
+         * BattleRoundModel battleEndTime.
+         * @member {string} battleEndTime
+         * @memberof pbbattle.BattleRoundModel
+         * @instance
+         */
+        BattleRoundModel.prototype.battleEndTime = "";
+
+        /**
+         * BattleRoundModel prizePoolBefore.
+         * @member {number|Long} prizePoolBefore
+         * @memberof pbbattle.BattleRoundModel
+         * @instance
+         */
+        BattleRoundModel.prototype.prizePoolBefore = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * BattleRoundModel prizePoolAfter.
+         * @member {number|Long} prizePoolAfter
+         * @memberof pbbattle.BattleRoundModel
+         * @instance
+         */
+        BattleRoundModel.prototype.prizePoolAfter = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * BattleRoundModel totalAssistCount.
+         * @member {number} totalAssistCount
+         * @memberof pbbattle.BattleRoundModel
+         * @instance
+         */
+        BattleRoundModel.prototype.totalAssistCount = 0;
+
+        /**
+         * BattleRoundModel totalAssistGold.
+         * @member {number|Long} totalAssistGold
+         * @memberof pbbattle.BattleRoundModel
+         * @instance
+         */
+        BattleRoundModel.prototype.totalAssistGold = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * BattleRoundModel totalRealAssistGold.
+         * @member {number|Long} totalRealAssistGold
+         * @memberof pbbattle.BattleRoundModel
+         * @instance
+         */
+        BattleRoundModel.prototype.totalRealAssistGold = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * BattleRoundModel resultGeneral1Id.
+         * @member {number|Long} resultGeneral1Id
+         * @memberof pbbattle.BattleRoundModel
+         * @instance
+         */
+        BattleRoundModel.prototype.resultGeneral1Id = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * BattleRoundModel resultGeneral2Id.
+         * @member {number|Long} resultGeneral2Id
+         * @memberof pbbattle.BattleRoundModel
+         * @instance
+         */
+        BattleRoundModel.prototype.resultGeneral2Id = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * BattleRoundModel resultMode.
+         * @member {string} resultMode
+         * @memberof pbbattle.BattleRoundModel
+         * @instance
+         */
+        BattleRoundModel.prototype.resultMode = "";
+
+        /**
+         * Creates a new BattleRoundModel instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.BattleRoundModel
+         * @static
+         * @param {pbbattle.IBattleRoundModel=} [properties] Properties to set
+         * @returns {pbbattle.BattleRoundModel} BattleRoundModel instance
+         */
+        BattleRoundModel.create = function create(properties) {
+            return new BattleRoundModel(properties);
+        };
+
+        /**
+         * Encodes the specified BattleRoundModel message. Does not implicitly {@link pbbattle.BattleRoundModel.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.BattleRoundModel
+         * @static
+         * @param {pbbattle.IBattleRoundModel} message BattleRoundModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BattleRoundModel.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.roundId != null && Object.hasOwnProperty.call(message, "roundId"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int64(message.roundId);
+            if (message.createdAt != null && Object.hasOwnProperty.call(message, "createdAt"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.createdAt);
+            if (message.updatedAt != null && Object.hasOwnProperty.call(message, "updatedAt"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.updatedAt);
+            if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+                writer.uint32(/* id 10, wireType 2 =*/82).string(message.status);
+            if (message.assistStartTime != null && Object.hasOwnProperty.call(message, "assistStartTime"))
+                writer.uint32(/* id 11, wireType 2 =*/90).string(message.assistStartTime);
+            if (message.assistEndTime != null && Object.hasOwnProperty.call(message, "assistEndTime"))
+                writer.uint32(/* id 12, wireType 2 =*/98).string(message.assistEndTime);
+            if (message.battleStartTime != null && Object.hasOwnProperty.call(message, "battleStartTime"))
+                writer.uint32(/* id 13, wireType 2 =*/106).string(message.battleStartTime);
+            if (message.battleEndTime != null && Object.hasOwnProperty.call(message, "battleEndTime"))
+                writer.uint32(/* id 14, wireType 2 =*/114).string(message.battleEndTime);
+            if (message.prizePoolBefore != null && Object.hasOwnProperty.call(message, "prizePoolBefore"))
+                writer.uint32(/* id 15, wireType 0 =*/120).int64(message.prizePoolBefore);
+            if (message.prizePoolAfter != null && Object.hasOwnProperty.call(message, "prizePoolAfter"))
+                writer.uint32(/* id 16, wireType 0 =*/128).int64(message.prizePoolAfter);
+            if (message.totalAssistCount != null && Object.hasOwnProperty.call(message, "totalAssistCount"))
+                writer.uint32(/* id 17, wireType 0 =*/136).int32(message.totalAssistCount);
+            if (message.totalAssistGold != null && Object.hasOwnProperty.call(message, "totalAssistGold"))
+                writer.uint32(/* id 18, wireType 0 =*/144).int64(message.totalAssistGold);
+            if (message.totalRealAssistGold != null && Object.hasOwnProperty.call(message, "totalRealAssistGold"))
+                writer.uint32(/* id 19, wireType 0 =*/152).int64(message.totalRealAssistGold);
+            if (message.resultGeneral1Id != null && Object.hasOwnProperty.call(message, "resultGeneral1Id"))
+                writer.uint32(/* id 20, wireType 0 =*/160).int64(message.resultGeneral1Id);
+            if (message.resultGeneral2Id != null && Object.hasOwnProperty.call(message, "resultGeneral2Id"))
+                writer.uint32(/* id 21, wireType 0 =*/168).int64(message.resultGeneral2Id);
+            if (message.resultMode != null && Object.hasOwnProperty.call(message, "resultMode"))
+                writer.uint32(/* id 22, wireType 2 =*/178).string(message.resultMode);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BattleRoundModel message, length delimited. Does not implicitly {@link pbbattle.BattleRoundModel.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.BattleRoundModel
+         * @static
+         * @param {pbbattle.IBattleRoundModel} message BattleRoundModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BattleRoundModel.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BattleRoundModel message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.BattleRoundModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.BattleRoundModel} BattleRoundModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BattleRoundModel.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.BattleRoundModel();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.roundId = reader.int64();
+                        break;
+                    }
+                case 2: {
+                        message.createdAt = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.updatedAt = reader.string();
+                        break;
+                    }
+                case 10: {
+                        message.status = reader.string();
+                        break;
+                    }
+                case 11: {
+                        message.assistStartTime = reader.string();
+                        break;
+                    }
+                case 12: {
+                        message.assistEndTime = reader.string();
+                        break;
+                    }
+                case 13: {
+                        message.battleStartTime = reader.string();
+                        break;
+                    }
+                case 14: {
+                        message.battleEndTime = reader.string();
+                        break;
+                    }
+                case 15: {
+                        message.prizePoolBefore = reader.int64();
+                        break;
+                    }
+                case 16: {
+                        message.prizePoolAfter = reader.int64();
+                        break;
+                    }
+                case 17: {
+                        message.totalAssistCount = reader.int32();
+                        break;
+                    }
+                case 18: {
+                        message.totalAssistGold = reader.int64();
+                        break;
+                    }
+                case 19: {
+                        message.totalRealAssistGold = reader.int64();
+                        break;
+                    }
+                case 20: {
+                        message.resultGeneral1Id = reader.int64();
+                        break;
+                    }
+                case 21: {
+                        message.resultGeneral2Id = reader.int64();
+                        break;
+                    }
+                case 22: {
+                        message.resultMode = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a BattleRoundModel message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.BattleRoundModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.BattleRoundModel} BattleRoundModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BattleRoundModel.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BattleRoundModel message.
+         * @function verify
+         * @memberof pbbattle.BattleRoundModel
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BattleRoundModel.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.roundId != null && message.hasOwnProperty("roundId"))
+                if (!$util.isInteger(message.roundId) && !(message.roundId && $util.isInteger(message.roundId.low) && $util.isInteger(message.roundId.high)))
+                    return "roundId: integer|Long expected";
+            if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                if (!$util.isString(message.createdAt))
+                    return "createdAt: string expected";
+            if (message.updatedAt != null && message.hasOwnProperty("updatedAt"))
+                if (!$util.isString(message.updatedAt))
+                    return "updatedAt: string expected";
+            if (message.status != null && message.hasOwnProperty("status"))
+                if (!$util.isString(message.status))
+                    return "status: string expected";
+            if (message.assistStartTime != null && message.hasOwnProperty("assistStartTime"))
+                if (!$util.isString(message.assistStartTime))
+                    return "assistStartTime: string expected";
+            if (message.assistEndTime != null && message.hasOwnProperty("assistEndTime"))
+                if (!$util.isString(message.assistEndTime))
+                    return "assistEndTime: string expected";
+            if (message.battleStartTime != null && message.hasOwnProperty("battleStartTime"))
+                if (!$util.isString(message.battleStartTime))
+                    return "battleStartTime: string expected";
+            if (message.battleEndTime != null && message.hasOwnProperty("battleEndTime"))
+                if (!$util.isString(message.battleEndTime))
+                    return "battleEndTime: string expected";
+            if (message.prizePoolBefore != null && message.hasOwnProperty("prizePoolBefore"))
+                if (!$util.isInteger(message.prizePoolBefore) && !(message.prizePoolBefore && $util.isInteger(message.prizePoolBefore.low) && $util.isInteger(message.prizePoolBefore.high)))
+                    return "prizePoolBefore: integer|Long expected";
+            if (message.prizePoolAfter != null && message.hasOwnProperty("prizePoolAfter"))
+                if (!$util.isInteger(message.prizePoolAfter) && !(message.prizePoolAfter && $util.isInteger(message.prizePoolAfter.low) && $util.isInteger(message.prizePoolAfter.high)))
+                    return "prizePoolAfter: integer|Long expected";
+            if (message.totalAssistCount != null && message.hasOwnProperty("totalAssistCount"))
+                if (!$util.isInteger(message.totalAssistCount))
+                    return "totalAssistCount: integer expected";
+            if (message.totalAssistGold != null && message.hasOwnProperty("totalAssistGold"))
+                if (!$util.isInteger(message.totalAssistGold) && !(message.totalAssistGold && $util.isInteger(message.totalAssistGold.low) && $util.isInteger(message.totalAssistGold.high)))
+                    return "totalAssistGold: integer|Long expected";
+            if (message.totalRealAssistGold != null && message.hasOwnProperty("totalRealAssistGold"))
+                if (!$util.isInteger(message.totalRealAssistGold) && !(message.totalRealAssistGold && $util.isInteger(message.totalRealAssistGold.low) && $util.isInteger(message.totalRealAssistGold.high)))
+                    return "totalRealAssistGold: integer|Long expected";
+            if (message.resultGeneral1Id != null && message.hasOwnProperty("resultGeneral1Id"))
+                if (!$util.isInteger(message.resultGeneral1Id) && !(message.resultGeneral1Id && $util.isInteger(message.resultGeneral1Id.low) && $util.isInteger(message.resultGeneral1Id.high)))
+                    return "resultGeneral1Id: integer|Long expected";
+            if (message.resultGeneral2Id != null && message.hasOwnProperty("resultGeneral2Id"))
+                if (!$util.isInteger(message.resultGeneral2Id) && !(message.resultGeneral2Id && $util.isInteger(message.resultGeneral2Id.low) && $util.isInteger(message.resultGeneral2Id.high)))
+                    return "resultGeneral2Id: integer|Long expected";
+            if (message.resultMode != null && message.hasOwnProperty("resultMode"))
+                if (!$util.isString(message.resultMode))
+                    return "resultMode: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a BattleRoundModel message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.BattleRoundModel
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.BattleRoundModel} BattleRoundModel
+         */
+        BattleRoundModel.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.BattleRoundModel)
+                return object;
+            var message = new $root.pbbattle.BattleRoundModel();
+            if (object.roundId != null)
+                if ($util.Long)
+                    (message.roundId = $util.Long.fromValue(object.roundId)).unsigned = false;
+                else if (typeof object.roundId === "string")
+                    message.roundId = parseInt(object.roundId, 10);
+                else if (typeof object.roundId === "number")
+                    message.roundId = object.roundId;
+                else if (typeof object.roundId === "object")
+                    message.roundId = new $util.LongBits(object.roundId.low >>> 0, object.roundId.high >>> 0).toNumber();
+            if (object.createdAt != null)
+                message.createdAt = String(object.createdAt);
+            if (object.updatedAt != null)
+                message.updatedAt = String(object.updatedAt);
+            if (object.status != null)
+                message.status = String(object.status);
+            if (object.assistStartTime != null)
+                message.assistStartTime = String(object.assistStartTime);
+            if (object.assistEndTime != null)
+                message.assistEndTime = String(object.assistEndTime);
+            if (object.battleStartTime != null)
+                message.battleStartTime = String(object.battleStartTime);
+            if (object.battleEndTime != null)
+                message.battleEndTime = String(object.battleEndTime);
+            if (object.prizePoolBefore != null)
+                if ($util.Long)
+                    (message.prizePoolBefore = $util.Long.fromValue(object.prizePoolBefore)).unsigned = false;
+                else if (typeof object.prizePoolBefore === "string")
+                    message.prizePoolBefore = parseInt(object.prizePoolBefore, 10);
+                else if (typeof object.prizePoolBefore === "number")
+                    message.prizePoolBefore = object.prizePoolBefore;
+                else if (typeof object.prizePoolBefore === "object")
+                    message.prizePoolBefore = new $util.LongBits(object.prizePoolBefore.low >>> 0, object.prizePoolBefore.high >>> 0).toNumber();
+            if (object.prizePoolAfter != null)
+                if ($util.Long)
+                    (message.prizePoolAfter = $util.Long.fromValue(object.prizePoolAfter)).unsigned = false;
+                else if (typeof object.prizePoolAfter === "string")
+                    message.prizePoolAfter = parseInt(object.prizePoolAfter, 10);
+                else if (typeof object.prizePoolAfter === "number")
+                    message.prizePoolAfter = object.prizePoolAfter;
+                else if (typeof object.prizePoolAfter === "object")
+                    message.prizePoolAfter = new $util.LongBits(object.prizePoolAfter.low >>> 0, object.prizePoolAfter.high >>> 0).toNumber();
+            if (object.totalAssistCount != null)
+                message.totalAssistCount = object.totalAssistCount | 0;
+            if (object.totalAssistGold != null)
+                if ($util.Long)
+                    (message.totalAssistGold = $util.Long.fromValue(object.totalAssistGold)).unsigned = false;
+                else if (typeof object.totalAssistGold === "string")
+                    message.totalAssistGold = parseInt(object.totalAssistGold, 10);
+                else if (typeof object.totalAssistGold === "number")
+                    message.totalAssistGold = object.totalAssistGold;
+                else if (typeof object.totalAssistGold === "object")
+                    message.totalAssistGold = new $util.LongBits(object.totalAssistGold.low >>> 0, object.totalAssistGold.high >>> 0).toNumber();
+            if (object.totalRealAssistGold != null)
+                if ($util.Long)
+                    (message.totalRealAssistGold = $util.Long.fromValue(object.totalRealAssistGold)).unsigned = false;
+                else if (typeof object.totalRealAssistGold === "string")
+                    message.totalRealAssistGold = parseInt(object.totalRealAssistGold, 10);
+                else if (typeof object.totalRealAssistGold === "number")
+                    message.totalRealAssistGold = object.totalRealAssistGold;
+                else if (typeof object.totalRealAssistGold === "object")
+                    message.totalRealAssistGold = new $util.LongBits(object.totalRealAssistGold.low >>> 0, object.totalRealAssistGold.high >>> 0).toNumber();
+            if (object.resultGeneral1Id != null)
+                if ($util.Long)
+                    (message.resultGeneral1Id = $util.Long.fromValue(object.resultGeneral1Id)).unsigned = false;
+                else if (typeof object.resultGeneral1Id === "string")
+                    message.resultGeneral1Id = parseInt(object.resultGeneral1Id, 10);
+                else if (typeof object.resultGeneral1Id === "number")
+                    message.resultGeneral1Id = object.resultGeneral1Id;
+                else if (typeof object.resultGeneral1Id === "object")
+                    message.resultGeneral1Id = new $util.LongBits(object.resultGeneral1Id.low >>> 0, object.resultGeneral1Id.high >>> 0).toNumber();
+            if (object.resultGeneral2Id != null)
+                if ($util.Long)
+                    (message.resultGeneral2Id = $util.Long.fromValue(object.resultGeneral2Id)).unsigned = false;
+                else if (typeof object.resultGeneral2Id === "string")
+                    message.resultGeneral2Id = parseInt(object.resultGeneral2Id, 10);
+                else if (typeof object.resultGeneral2Id === "number")
+                    message.resultGeneral2Id = object.resultGeneral2Id;
+                else if (typeof object.resultGeneral2Id === "object")
+                    message.resultGeneral2Id = new $util.LongBits(object.resultGeneral2Id.low >>> 0, object.resultGeneral2Id.high >>> 0).toNumber();
+            if (object.resultMode != null)
+                message.resultMode = String(object.resultMode);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BattleRoundModel message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.BattleRoundModel
+         * @static
+         * @param {pbbattle.BattleRoundModel} message BattleRoundModel
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BattleRoundModel.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.roundId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.roundId = options.longs === String ? "0" : 0;
+                object.createdAt = "";
+                object.updatedAt = "";
+                object.status = "";
+                object.assistStartTime = "";
+                object.assistEndTime = "";
+                object.battleStartTime = "";
+                object.battleEndTime = "";
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.prizePoolBefore = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.prizePoolBefore = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.prizePoolAfter = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.prizePoolAfter = options.longs === String ? "0" : 0;
+                object.totalAssistCount = 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.totalAssistGold = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.totalAssistGold = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.totalRealAssistGold = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.totalRealAssistGold = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.resultGeneral1Id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.resultGeneral1Id = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.resultGeneral2Id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.resultGeneral2Id = options.longs === String ? "0" : 0;
+                object.resultMode = "";
+            }
+            if (message.roundId != null && message.hasOwnProperty("roundId"))
+                if (typeof message.roundId === "number")
+                    object.roundId = options.longs === String ? String(message.roundId) : message.roundId;
+                else
+                    object.roundId = options.longs === String ? $util.Long.prototype.toString.call(message.roundId) : options.longs === Number ? new $util.LongBits(message.roundId.low >>> 0, message.roundId.high >>> 0).toNumber() : message.roundId;
+            if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                object.createdAt = message.createdAt;
+            if (message.updatedAt != null && message.hasOwnProperty("updatedAt"))
+                object.updatedAt = message.updatedAt;
+            if (message.status != null && message.hasOwnProperty("status"))
+                object.status = message.status;
+            if (message.assistStartTime != null && message.hasOwnProperty("assistStartTime"))
+                object.assistStartTime = message.assistStartTime;
+            if (message.assistEndTime != null && message.hasOwnProperty("assistEndTime"))
+                object.assistEndTime = message.assistEndTime;
+            if (message.battleStartTime != null && message.hasOwnProperty("battleStartTime"))
+                object.battleStartTime = message.battleStartTime;
+            if (message.battleEndTime != null && message.hasOwnProperty("battleEndTime"))
+                object.battleEndTime = message.battleEndTime;
+            if (message.prizePoolBefore != null && message.hasOwnProperty("prizePoolBefore"))
+                if (typeof message.prizePoolBefore === "number")
+                    object.prizePoolBefore = options.longs === String ? String(message.prizePoolBefore) : message.prizePoolBefore;
+                else
+                    object.prizePoolBefore = options.longs === String ? $util.Long.prototype.toString.call(message.prizePoolBefore) : options.longs === Number ? new $util.LongBits(message.prizePoolBefore.low >>> 0, message.prizePoolBefore.high >>> 0).toNumber() : message.prizePoolBefore;
+            if (message.prizePoolAfter != null && message.hasOwnProperty("prizePoolAfter"))
+                if (typeof message.prizePoolAfter === "number")
+                    object.prizePoolAfter = options.longs === String ? String(message.prizePoolAfter) : message.prizePoolAfter;
+                else
+                    object.prizePoolAfter = options.longs === String ? $util.Long.prototype.toString.call(message.prizePoolAfter) : options.longs === Number ? new $util.LongBits(message.prizePoolAfter.low >>> 0, message.prizePoolAfter.high >>> 0).toNumber() : message.prizePoolAfter;
+            if (message.totalAssistCount != null && message.hasOwnProperty("totalAssistCount"))
+                object.totalAssistCount = message.totalAssistCount;
+            if (message.totalAssistGold != null && message.hasOwnProperty("totalAssistGold"))
+                if (typeof message.totalAssistGold === "number")
+                    object.totalAssistGold = options.longs === String ? String(message.totalAssistGold) : message.totalAssistGold;
+                else
+                    object.totalAssistGold = options.longs === String ? $util.Long.prototype.toString.call(message.totalAssistGold) : options.longs === Number ? new $util.LongBits(message.totalAssistGold.low >>> 0, message.totalAssistGold.high >>> 0).toNumber() : message.totalAssistGold;
+            if (message.totalRealAssistGold != null && message.hasOwnProperty("totalRealAssistGold"))
+                if (typeof message.totalRealAssistGold === "number")
+                    object.totalRealAssistGold = options.longs === String ? String(message.totalRealAssistGold) : message.totalRealAssistGold;
+                else
+                    object.totalRealAssistGold = options.longs === String ? $util.Long.prototype.toString.call(message.totalRealAssistGold) : options.longs === Number ? new $util.LongBits(message.totalRealAssistGold.low >>> 0, message.totalRealAssistGold.high >>> 0).toNumber() : message.totalRealAssistGold;
+            if (message.resultGeneral1Id != null && message.hasOwnProperty("resultGeneral1Id"))
+                if (typeof message.resultGeneral1Id === "number")
+                    object.resultGeneral1Id = options.longs === String ? String(message.resultGeneral1Id) : message.resultGeneral1Id;
+                else
+                    object.resultGeneral1Id = options.longs === String ? $util.Long.prototype.toString.call(message.resultGeneral1Id) : options.longs === Number ? new $util.LongBits(message.resultGeneral1Id.low >>> 0, message.resultGeneral1Id.high >>> 0).toNumber() : message.resultGeneral1Id;
+            if (message.resultGeneral2Id != null && message.hasOwnProperty("resultGeneral2Id"))
+                if (typeof message.resultGeneral2Id === "number")
+                    object.resultGeneral2Id = options.longs === String ? String(message.resultGeneral2Id) : message.resultGeneral2Id;
+                else
+                    object.resultGeneral2Id = options.longs === String ? $util.Long.prototype.toString.call(message.resultGeneral2Id) : options.longs === Number ? new $util.LongBits(message.resultGeneral2Id.low >>> 0, message.resultGeneral2Id.high >>> 0).toNumber() : message.resultGeneral2Id;
+            if (message.resultMode != null && message.hasOwnProperty("resultMode"))
+                object.resultMode = message.resultMode;
+            return object;
+        };
+
+        /**
+         * Converts this BattleRoundModel to JSON.
+         * @function toJSON
+         * @memberof pbbattle.BattleRoundModel
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BattleRoundModel.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for BattleRoundModel
+         * @function getTypeUrl
+         * @memberof pbbattle.BattleRoundModel
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        BattleRoundModel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.BattleRoundModel";
+        };
+
+        return BattleRoundModel;
+    })();
+
+    pbbattle.FindBattleRoundArgs = (function() {
+
+        /**
+         * Properties of a FindBattleRoundArgs.
+         * @memberof pbbattle
+         * @interface IFindBattleRoundArgs
+         * @property {pbcommon.IPageInfo|null} [pageInfo] FindBattleRoundArgs pageInfo
+         * @property {pbbattle.IBattleRoundModel|null} [query] FindBattleRoundArgs query
+         * @property {string|null} [keyword] FindBattleRoundArgs keyword
+         * @property {Array.<string>|null} [statusList] FindBattleRoundArgs statusList
+         * @property {string|null} [startDate] FindBattleRoundArgs startDate
+         * @property {string|null} [endDate] FindBattleRoundArgs endDate
+         */
+
+        /**
+         * Constructs a new FindBattleRoundArgs.
+         * @memberof pbbattle
+         * @classdesc Represents a FindBattleRoundArgs.
+         * @implements IFindBattleRoundArgs
+         * @constructor
+         * @param {pbbattle.IFindBattleRoundArgs=} [properties] Properties to set
+         */
+        function FindBattleRoundArgs(properties) {
+            this.statusList = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * FindBattleRoundArgs pageInfo.
+         * @member {pbcommon.IPageInfo|null|undefined} pageInfo
+         * @memberof pbbattle.FindBattleRoundArgs
+         * @instance
+         */
+        FindBattleRoundArgs.prototype.pageInfo = null;
+
+        /**
+         * FindBattleRoundArgs query.
+         * @member {pbbattle.IBattleRoundModel|null|undefined} query
+         * @memberof pbbattle.FindBattleRoundArgs
+         * @instance
+         */
+        FindBattleRoundArgs.prototype.query = null;
+
+        /**
+         * FindBattleRoundArgs keyword.
+         * @member {string} keyword
+         * @memberof pbbattle.FindBattleRoundArgs
+         * @instance
+         */
+        FindBattleRoundArgs.prototype.keyword = "";
+
+        /**
+         * FindBattleRoundArgs statusList.
+         * @member {Array.<string>} statusList
+         * @memberof pbbattle.FindBattleRoundArgs
+         * @instance
+         */
+        FindBattleRoundArgs.prototype.statusList = $util.emptyArray;
+
+        /**
+         * FindBattleRoundArgs startDate.
+         * @member {string} startDate
+         * @memberof pbbattle.FindBattleRoundArgs
+         * @instance
+         */
+        FindBattleRoundArgs.prototype.startDate = "";
+
+        /**
+         * FindBattleRoundArgs endDate.
+         * @member {string} endDate
+         * @memberof pbbattle.FindBattleRoundArgs
+         * @instance
+         */
+        FindBattleRoundArgs.prototype.endDate = "";
+
+        /**
+         * Creates a new FindBattleRoundArgs instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.FindBattleRoundArgs
+         * @static
+         * @param {pbbattle.IFindBattleRoundArgs=} [properties] Properties to set
+         * @returns {pbbattle.FindBattleRoundArgs} FindBattleRoundArgs instance
+         */
+        FindBattleRoundArgs.create = function create(properties) {
+            return new FindBattleRoundArgs(properties);
+        };
+
+        /**
+         * Encodes the specified FindBattleRoundArgs message. Does not implicitly {@link pbbattle.FindBattleRoundArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.FindBattleRoundArgs
+         * @static
+         * @param {pbbattle.IFindBattleRoundArgs} message FindBattleRoundArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindBattleRoundArgs.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.pageInfo != null && Object.hasOwnProperty.call(message, "pageInfo"))
+                $root.pbcommon.PageInfo.encode(message.pageInfo, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.query != null && Object.hasOwnProperty.call(message, "query"))
+                $root.pbbattle.BattleRoundModel.encode(message.query, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            if (message.keyword != null && Object.hasOwnProperty.call(message, "keyword"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.keyword);
+            if (message.statusList != null && message.statusList.length)
+                for (var i = 0; i < message.statusList.length; ++i)
+                    writer.uint32(/* id 4, wireType 2 =*/34).string(message.statusList[i]);
+            if (message.startDate != null && Object.hasOwnProperty.call(message, "startDate"))
+                writer.uint32(/* id 5, wireType 2 =*/42).string(message.startDate);
+            if (message.endDate != null && Object.hasOwnProperty.call(message, "endDate"))
+                writer.uint32(/* id 6, wireType 2 =*/50).string(message.endDate);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified FindBattleRoundArgs message, length delimited. Does not implicitly {@link pbbattle.FindBattleRoundArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.FindBattleRoundArgs
+         * @static
+         * @param {pbbattle.IFindBattleRoundArgs} message FindBattleRoundArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindBattleRoundArgs.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a FindBattleRoundArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.FindBattleRoundArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.FindBattleRoundArgs} FindBattleRoundArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindBattleRoundArgs.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.FindBattleRoundArgs();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.pageInfo = $root.pbcommon.PageInfo.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 2: {
+                        message.query = $root.pbbattle.BattleRoundModel.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 3: {
+                        message.keyword = reader.string();
+                        break;
+                    }
+                case 4: {
+                        if (!(message.statusList && message.statusList.length))
+                            message.statusList = [];
+                        message.statusList.push(reader.string());
+                        break;
+                    }
+                case 5: {
+                        message.startDate = reader.string();
+                        break;
+                    }
+                case 6: {
+                        message.endDate = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a FindBattleRoundArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.FindBattleRoundArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.FindBattleRoundArgs} FindBattleRoundArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindBattleRoundArgs.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a FindBattleRoundArgs message.
+         * @function verify
+         * @memberof pbbattle.FindBattleRoundArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        FindBattleRoundArgs.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.pageInfo != null && message.hasOwnProperty("pageInfo")) {
+                var error = $root.pbcommon.PageInfo.verify(message.pageInfo);
+                if (error)
+                    return "pageInfo." + error;
+            }
+            if (message.query != null && message.hasOwnProperty("query")) {
+                var error = $root.pbbattle.BattleRoundModel.verify(message.query);
+                if (error)
+                    return "query." + error;
+            }
+            if (message.keyword != null && message.hasOwnProperty("keyword"))
+                if (!$util.isString(message.keyword))
+                    return "keyword: string expected";
+            if (message.statusList != null && message.hasOwnProperty("statusList")) {
+                if (!Array.isArray(message.statusList))
+                    return "statusList: array expected";
+                for (var i = 0; i < message.statusList.length; ++i)
+                    if (!$util.isString(message.statusList[i]))
+                        return "statusList: string[] expected";
+            }
+            if (message.startDate != null && message.hasOwnProperty("startDate"))
+                if (!$util.isString(message.startDate))
+                    return "startDate: string expected";
+            if (message.endDate != null && message.hasOwnProperty("endDate"))
+                if (!$util.isString(message.endDate))
+                    return "endDate: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a FindBattleRoundArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.FindBattleRoundArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.FindBattleRoundArgs} FindBattleRoundArgs
+         */
+        FindBattleRoundArgs.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.FindBattleRoundArgs)
+                return object;
+            var message = new $root.pbbattle.FindBattleRoundArgs();
+            if (object.pageInfo != null) {
+                if (typeof object.pageInfo !== "object")
+                    throw TypeError(".pbbattle.FindBattleRoundArgs.pageInfo: object expected");
+                message.pageInfo = $root.pbcommon.PageInfo.fromObject(object.pageInfo);
+            }
+            if (object.query != null) {
+                if (typeof object.query !== "object")
+                    throw TypeError(".pbbattle.FindBattleRoundArgs.query: object expected");
+                message.query = $root.pbbattle.BattleRoundModel.fromObject(object.query);
+            }
+            if (object.keyword != null)
+                message.keyword = String(object.keyword);
+            if (object.statusList) {
+                if (!Array.isArray(object.statusList))
+                    throw TypeError(".pbbattle.FindBattleRoundArgs.statusList: array expected");
+                message.statusList = [];
+                for (var i = 0; i < object.statusList.length; ++i)
+                    message.statusList[i] = String(object.statusList[i]);
+            }
+            if (object.startDate != null)
+                message.startDate = String(object.startDate);
+            if (object.endDate != null)
+                message.endDate = String(object.endDate);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a FindBattleRoundArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.FindBattleRoundArgs
+         * @static
+         * @param {pbbattle.FindBattleRoundArgs} message FindBattleRoundArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FindBattleRoundArgs.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.statusList = [];
+            if (options.defaults) {
+                object.pageInfo = null;
+                object.query = null;
+                object.keyword = "";
+                object.startDate = "";
+                object.endDate = "";
+            }
+            if (message.pageInfo != null && message.hasOwnProperty("pageInfo"))
+                object.pageInfo = $root.pbcommon.PageInfo.toObject(message.pageInfo, options);
+            if (message.query != null && message.hasOwnProperty("query"))
+                object.query = $root.pbbattle.BattleRoundModel.toObject(message.query, options);
+            if (message.keyword != null && message.hasOwnProperty("keyword"))
+                object.keyword = message.keyword;
+            if (message.statusList && message.statusList.length) {
+                object.statusList = [];
+                for (var j = 0; j < message.statusList.length; ++j)
+                    object.statusList[j] = message.statusList[j];
+            }
+            if (message.startDate != null && message.hasOwnProperty("startDate"))
+                object.startDate = message.startDate;
+            if (message.endDate != null && message.hasOwnProperty("endDate"))
+                object.endDate = message.endDate;
+            return object;
+        };
+
+        /**
+         * Converts this FindBattleRoundArgs to JSON.
+         * @function toJSON
+         * @memberof pbbattle.FindBattleRoundArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        FindBattleRoundArgs.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for FindBattleRoundArgs
+         * @function getTypeUrl
+         * @memberof pbbattle.FindBattleRoundArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        FindBattleRoundArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.FindBattleRoundArgs";
+        };
+
+        return FindBattleRoundArgs;
+    })();
+
+    pbbattle.FindBattleRoundReply = (function() {
+
+        /**
+         * Properties of a FindBattleRoundReply.
+         * @memberof pbbattle
+         * @interface IFindBattleRoundReply
+         * @property {pbcommon.EnumCode|null} [code] FindBattleRoundReply code
+         * @property {string|null} [msg] FindBattleRoundReply msg
+         * @property {pbbattle.IBattleRoundModel|null} [data] FindBattleRoundReply data
+         * @property {Array.<pbbattle.IBattleRoundModel>|null} [list] FindBattleRoundReply list
+         * @property {number|Long|null} [total] FindBattleRoundReply total
+         */
+
+        /**
+         * Constructs a new FindBattleRoundReply.
+         * @memberof pbbattle
+         * @classdesc Represents a FindBattleRoundReply.
+         * @implements IFindBattleRoundReply
+         * @constructor
+         * @param {pbbattle.IFindBattleRoundReply=} [properties] Properties to set
+         */
+        function FindBattleRoundReply(properties) {
+            this.list = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * FindBattleRoundReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbbattle.FindBattleRoundReply
+         * @instance
+         */
+        FindBattleRoundReply.prototype.code = 0;
+
+        /**
+         * FindBattleRoundReply msg.
+         * @member {string} msg
+         * @memberof pbbattle.FindBattleRoundReply
+         * @instance
+         */
+        FindBattleRoundReply.prototype.msg = "";
+
+        /**
+         * FindBattleRoundReply data.
+         * @member {pbbattle.IBattleRoundModel|null|undefined} data
+         * @memberof pbbattle.FindBattleRoundReply
+         * @instance
+         */
+        FindBattleRoundReply.prototype.data = null;
+
+        /**
+         * FindBattleRoundReply list.
+         * @member {Array.<pbbattle.IBattleRoundModel>} list
+         * @memberof pbbattle.FindBattleRoundReply
+         * @instance
+         */
+        FindBattleRoundReply.prototype.list = $util.emptyArray;
+
+        /**
+         * FindBattleRoundReply total.
+         * @member {number|Long} total
+         * @memberof pbbattle.FindBattleRoundReply
+         * @instance
+         */
+        FindBattleRoundReply.prototype.total = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * Creates a new FindBattleRoundReply instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.FindBattleRoundReply
+         * @static
+         * @param {pbbattle.IFindBattleRoundReply=} [properties] Properties to set
+         * @returns {pbbattle.FindBattleRoundReply} FindBattleRoundReply instance
+         */
+        FindBattleRoundReply.create = function create(properties) {
+            return new FindBattleRoundReply(properties);
+        };
+
+        /**
+         * Encodes the specified FindBattleRoundReply message. Does not implicitly {@link pbbattle.FindBattleRoundReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.FindBattleRoundReply
+         * @static
+         * @param {pbbattle.IFindBattleRoundReply} message FindBattleRoundReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindBattleRoundReply.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.data != null && Object.hasOwnProperty.call(message, "data"))
+                $root.pbbattle.BattleRoundModel.encode(message.data, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            if (message.list != null && message.list.length)
+                for (var i = 0; i < message.list.length; ++i)
+                    $root.pbbattle.BattleRoundModel.encode(message.list[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+            if (message.total != null && Object.hasOwnProperty.call(message, "total"))
+                writer.uint32(/* id 5, wireType 0 =*/40).int64(message.total);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified FindBattleRoundReply message, length delimited. Does not implicitly {@link pbbattle.FindBattleRoundReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.FindBattleRoundReply
+         * @static
+         * @param {pbbattle.IFindBattleRoundReply} message FindBattleRoundReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindBattleRoundReply.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a FindBattleRoundReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.FindBattleRoundReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.FindBattleRoundReply} FindBattleRoundReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindBattleRoundReply.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.FindBattleRoundReply();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.code = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.data = $root.pbbattle.BattleRoundModel.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 4: {
+                        if (!(message.list && message.list.length))
+                            message.list = [];
+                        message.list.push($root.pbbattle.BattleRoundModel.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 5: {
+                        message.total = reader.int64();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a FindBattleRoundReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.FindBattleRoundReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.FindBattleRoundReply} FindBattleRoundReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindBattleRoundReply.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a FindBattleRoundReply message.
+         * @function verify
+         * @memberof pbbattle.FindBattleRoundReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        FindBattleRoundReply.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.code != null && message.hasOwnProperty("code"))
+                switch (message.code) {
+                default:
+                    return "code: enum value expected";
+                case 0:
+                case 200:
+                case 403:
+                case 500:
+                case 501:
+                case 502:
+                case 503:
+                case 504:
+                case 505:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
+                case 2002:
+                case 2003:
+                case 2004:
+                case 2005:
+                case 2006:
+                case 2007:
+                case 2008:
+                case 2009:
+                case 2010:
+                case 2011:
+                case 2012:
+                case 2013:
+                case 2014:
+                case 2015:
+                case 3001:
+                case 3002:
+                case 3003:
+                case 5001:
+                case 5002:
+                case 10001:
+                case 10002:
+                case 20001:
+                case 20002:
+                    break;
+                }
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                if (!$util.isString(message.msg))
+                    return "msg: string expected";
+            if (message.data != null && message.hasOwnProperty("data")) {
+                var error = $root.pbbattle.BattleRoundModel.verify(message.data);
+                if (error)
+                    return "data." + error;
+            }
+            if (message.list != null && message.hasOwnProperty("list")) {
+                if (!Array.isArray(message.list))
+                    return "list: array expected";
+                for (var i = 0; i < message.list.length; ++i) {
+                    var error = $root.pbbattle.BattleRoundModel.verify(message.list[i]);
+                    if (error)
+                        return "list." + error;
+                }
+            }
+            if (message.total != null && message.hasOwnProperty("total"))
+                if (!$util.isInteger(message.total) && !(message.total && $util.isInteger(message.total.low) && $util.isInteger(message.total.high)))
+                    return "total: integer|Long expected";
+            return null;
+        };
+
+        /**
+         * Creates a FindBattleRoundReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.FindBattleRoundReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.FindBattleRoundReply} FindBattleRoundReply
+         */
+        FindBattleRoundReply.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.FindBattleRoundReply)
+                return object;
+            var message = new $root.pbbattle.FindBattleRoundReply();
+            switch (object.code) {
+            default:
+                if (typeof object.code === "number") {
+                    message.code = object.code;
+                    break;
+                }
+                break;
+            case "None":
+            case 0:
+                message.code = 0;
+                break;
+            case "Success":
+            case 200:
+                message.code = 200;
+                break;
+            case "Forbidden":
+            case 403:
+                message.code = 403;
+                break;
+            case "Fail":
+            case 500:
+                message.code = 500;
+                break;
+            case "Unknown":
+            case 501:
+                message.code = 501;
+                break;
+            case "Internal":
+            case 502:
+                message.code = 502;
+                break;
+            case "Invalid":
+            case 503:
+                message.code = 503;
+                break;
+            case "InvalidParam":
+            case 504:
+                message.code = 504;
+                break;
+            case "ParamError":
+            case 505:
+                message.code = 505;
+                break;
+            case "FindError":
+            case 1001:
+                message.code = 1001;
+                break;
+            case "CreateError":
+            case 1002:
+                message.code = 1002;
+                break;
+            case "DeleteError":
+            case 1003:
+                message.code = 1003;
+                break;
+            case "UpdateError":
+            case 1004:
+                message.code = 1004;
+                break;
+            case "InvalidToken":
+            case 2002:
+                message.code = 2002;
+                break;
+            case "InvalidSign":
+            case 2003:
+                message.code = 2003;
+                break;
+            case "NotLogin":
+            case 2004:
+                message.code = 2004;
+                break;
+            case "LoginTimeout":
+            case 2005:
+                message.code = 2005;
+                break;
+            case "LoginError":
+            case 2006:
+                message.code = 2006;
+                break;
+            case "LoginForbidden":
+            case 2007:
+                message.code = 2007;
+                break;
+            case "LoginExpired":
+            case 2008:
+                message.code = 2008;
+                break;
+            case "LoginInvalid":
+            case 2009:
+                message.code = 2009;
+                break;
+            case "LoginInvalidPassword":
+            case 2010:
+                message.code = 2010;
+                break;
+            case "LoginInvalidUsername":
+            case 2011:
+                message.code = 2011;
+                break;
+            case "LoginInvalidEmail":
+            case 2012:
+                message.code = 2012;
+                break;
+            case "LoginInvalidPhone":
+            case 2013:
+                message.code = 2013;
+                break;
+            case "LoginInvalidUsernameOrEmail":
+            case 2014:
+                message.code = 2014;
+                break;
+            case "LoginSocketRepeat":
+            case 2015:
+                message.code = 2015;
+                break;
+            case "RoleIsNotExist":
+            case 3001:
+                message.code = 3001;
+                break;
+            case "UserIsExist":
+            case 3002:
+                message.code = 3002;
+                break;
+            case "UserIsBan":
+            case 3003:
+                message.code = 3003;
+                break;
+            case "TalkIsBan":
+            case 5001:
+                message.code = 5001;
+                break;
+            case "EnterRoomErr":
+            case 5002:
+                message.code = 5002;
+                break;
+            case "HalaChatNeedBuy":
+            case 10001:
+                message.code = 10001;
+                break;
+            case "HalaPriceOutRange":
+            case 10002:
+                message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            }
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.data != null) {
+                if (typeof object.data !== "object")
+                    throw TypeError(".pbbattle.FindBattleRoundReply.data: object expected");
+                message.data = $root.pbbattle.BattleRoundModel.fromObject(object.data);
+            }
+            if (object.list) {
+                if (!Array.isArray(object.list))
+                    throw TypeError(".pbbattle.FindBattleRoundReply.list: array expected");
+                message.list = [];
+                for (var i = 0; i < object.list.length; ++i) {
+                    if (typeof object.list[i] !== "object")
+                        throw TypeError(".pbbattle.FindBattleRoundReply.list: object expected");
+                    message.list[i] = $root.pbbattle.BattleRoundModel.fromObject(object.list[i]);
+                }
+            }
+            if (object.total != null)
+                if ($util.Long)
+                    (message.total = $util.Long.fromValue(object.total)).unsigned = false;
+                else if (typeof object.total === "string")
+                    message.total = parseInt(object.total, 10);
+                else if (typeof object.total === "number")
+                    message.total = object.total;
+                else if (typeof object.total === "object")
+                    message.total = new $util.LongBits(object.total.low >>> 0, object.total.high >>> 0).toNumber();
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a FindBattleRoundReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.FindBattleRoundReply
+         * @static
+         * @param {pbbattle.FindBattleRoundReply} message FindBattleRoundReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FindBattleRoundReply.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.list = [];
+            if (options.defaults) {
+                object.code = options.enums === String ? "None" : 0;
+                object.msg = "";
+                object.data = null;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.total = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.total = options.longs === String ? "0" : 0;
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.data != null && message.hasOwnProperty("data"))
+                object.data = $root.pbbattle.BattleRoundModel.toObject(message.data, options);
+            if (message.list && message.list.length) {
+                object.list = [];
+                for (var j = 0; j < message.list.length; ++j)
+                    object.list[j] = $root.pbbattle.BattleRoundModel.toObject(message.list[j], options);
+            }
+            if (message.total != null && message.hasOwnProperty("total"))
+                if (typeof message.total === "number")
+                    object.total = options.longs === String ? String(message.total) : message.total;
+                else
+                    object.total = options.longs === String ? $util.Long.prototype.toString.call(message.total) : options.longs === Number ? new $util.LongBits(message.total.low >>> 0, message.total.high >>> 0).toNumber() : message.total;
+            return object;
+        };
+
+        /**
+         * Converts this FindBattleRoundReply to JSON.
+         * @function toJSON
+         * @memberof pbbattle.FindBattleRoundReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        FindBattleRoundReply.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for FindBattleRoundReply
+         * @function getTypeUrl
+         * @memberof pbbattle.FindBattleRoundReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        FindBattleRoundReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.FindBattleRoundReply";
+        };
+
+        return FindBattleRoundReply;
+    })();
+
+    pbbattle.AssistRecordModel = (function() {
+
+        /**
+         * Properties of an AssistRecordModel.
+         * @memberof pbbattle
+         * @interface IAssistRecordModel
+         * @property {number|Long|null} [id] AssistRecordModel id
+         * @property {string|null} [createdAt] AssistRecordModel createdAt
+         * @property {number|Long|null} [roundId] AssistRecordModel roundId
+         * @property {number|Long|null} [userId] AssistRecordModel userId
+         * @property {number|Long|null} [generalId] AssistRecordModel generalId
+         * @property {string|null} [optionCode] AssistRecordModel optionCode
+         * @property {number|null} [assistValue] AssistRecordModel assistValue
+         * @property {number|null} [costGold] AssistRecordModel costGold
+         * @property {boolean|null} [isSystemUser] AssistRecordModel isSystemUser
+         */
+
+        /**
+         * Constructs a new AssistRecordModel.
+         * @memberof pbbattle
+         * @classdesc Represents an AssistRecordModel.
+         * @implements IAssistRecordModel
+         * @constructor
+         * @param {pbbattle.IAssistRecordModel=} [properties] Properties to set
+         */
+        function AssistRecordModel(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * AssistRecordModel id.
+         * @member {number|Long} id
+         * @memberof pbbattle.AssistRecordModel
+         * @instance
+         */
+        AssistRecordModel.prototype.id = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * AssistRecordModel createdAt.
+         * @member {string} createdAt
+         * @memberof pbbattle.AssistRecordModel
+         * @instance
+         */
+        AssistRecordModel.prototype.createdAt = "";
+
+        /**
+         * AssistRecordModel roundId.
+         * @member {number|Long} roundId
+         * @memberof pbbattle.AssistRecordModel
+         * @instance
+         */
+        AssistRecordModel.prototype.roundId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * AssistRecordModel userId.
+         * @member {number|Long} userId
+         * @memberof pbbattle.AssistRecordModel
+         * @instance
+         */
+        AssistRecordModel.prototype.userId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * AssistRecordModel generalId.
+         * @member {number|Long} generalId
+         * @memberof pbbattle.AssistRecordModel
+         * @instance
+         */
+        AssistRecordModel.prototype.generalId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * AssistRecordModel optionCode.
+         * @member {string} optionCode
+         * @memberof pbbattle.AssistRecordModel
+         * @instance
+         */
+        AssistRecordModel.prototype.optionCode = "";
+
+        /**
+         * AssistRecordModel assistValue.
+         * @member {number} assistValue
+         * @memberof pbbattle.AssistRecordModel
+         * @instance
+         */
+        AssistRecordModel.prototype.assistValue = 0;
+
+        /**
+         * AssistRecordModel costGold.
+         * @member {number} costGold
+         * @memberof pbbattle.AssistRecordModel
+         * @instance
+         */
+        AssistRecordModel.prototype.costGold = 0;
+
+        /**
+         * AssistRecordModel isSystemUser.
+         * @member {boolean} isSystemUser
+         * @memberof pbbattle.AssistRecordModel
+         * @instance
+         */
+        AssistRecordModel.prototype.isSystemUser = false;
+
+        /**
+         * Creates a new AssistRecordModel instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.AssistRecordModel
+         * @static
+         * @param {pbbattle.IAssistRecordModel=} [properties] Properties to set
+         * @returns {pbbattle.AssistRecordModel} AssistRecordModel instance
+         */
+        AssistRecordModel.create = function create(properties) {
+            return new AssistRecordModel(properties);
+        };
+
+        /**
+         * Encodes the specified AssistRecordModel message. Does not implicitly {@link pbbattle.AssistRecordModel.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.AssistRecordModel
+         * @static
+         * @param {pbbattle.IAssistRecordModel} message AssistRecordModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AssistRecordModel.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id);
+            if (message.createdAt != null && Object.hasOwnProperty.call(message, "createdAt"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.createdAt);
+            if (message.roundId != null && Object.hasOwnProperty.call(message, "roundId"))
+                writer.uint32(/* id 10, wireType 0 =*/80).int64(message.roundId);
+            if (message.userId != null && Object.hasOwnProperty.call(message, "userId"))
+                writer.uint32(/* id 11, wireType 0 =*/88).int64(message.userId);
+            if (message.generalId != null && Object.hasOwnProperty.call(message, "generalId"))
+                writer.uint32(/* id 12, wireType 0 =*/96).int64(message.generalId);
+            if (message.optionCode != null && Object.hasOwnProperty.call(message, "optionCode"))
+                writer.uint32(/* id 13, wireType 2 =*/106).string(message.optionCode);
+            if (message.assistValue != null && Object.hasOwnProperty.call(message, "assistValue"))
+                writer.uint32(/* id 14, wireType 0 =*/112).int32(message.assistValue);
+            if (message.costGold != null && Object.hasOwnProperty.call(message, "costGold"))
+                writer.uint32(/* id 15, wireType 0 =*/120).int32(message.costGold);
+            if (message.isSystemUser != null && Object.hasOwnProperty.call(message, "isSystemUser"))
+                writer.uint32(/* id 16, wireType 0 =*/128).bool(message.isSystemUser);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified AssistRecordModel message, length delimited. Does not implicitly {@link pbbattle.AssistRecordModel.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.AssistRecordModel
+         * @static
+         * @param {pbbattle.IAssistRecordModel} message AssistRecordModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AssistRecordModel.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an AssistRecordModel message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.AssistRecordModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.AssistRecordModel} AssistRecordModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AssistRecordModel.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.AssistRecordModel();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.id = reader.int64();
+                        break;
+                    }
+                case 2: {
+                        message.createdAt = reader.string();
+                        break;
+                    }
+                case 10: {
+                        message.roundId = reader.int64();
+                        break;
+                    }
+                case 11: {
+                        message.userId = reader.int64();
+                        break;
+                    }
+                case 12: {
+                        message.generalId = reader.int64();
+                        break;
+                    }
+                case 13: {
+                        message.optionCode = reader.string();
+                        break;
+                    }
+                case 14: {
+                        message.assistValue = reader.int32();
+                        break;
+                    }
+                case 15: {
+                        message.costGold = reader.int32();
+                        break;
+                    }
+                case 16: {
+                        message.isSystemUser = reader.bool();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an AssistRecordModel message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.AssistRecordModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.AssistRecordModel} AssistRecordModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AssistRecordModel.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an AssistRecordModel message.
+         * @function verify
+         * @memberof pbbattle.AssistRecordModel
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        AssistRecordModel.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (!$util.isInteger(message.id) && !(message.id && $util.isInteger(message.id.low) && $util.isInteger(message.id.high)))
+                    return "id: integer|Long expected";
+            if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                if (!$util.isString(message.createdAt))
+                    return "createdAt: string expected";
+            if (message.roundId != null && message.hasOwnProperty("roundId"))
+                if (!$util.isInteger(message.roundId) && !(message.roundId && $util.isInteger(message.roundId.low) && $util.isInteger(message.roundId.high)))
+                    return "roundId: integer|Long expected";
+            if (message.userId != null && message.hasOwnProperty("userId"))
+                if (!$util.isInteger(message.userId) && !(message.userId && $util.isInteger(message.userId.low) && $util.isInteger(message.userId.high)))
+                    return "userId: integer|Long expected";
+            if (message.generalId != null && message.hasOwnProperty("generalId"))
+                if (!$util.isInteger(message.generalId) && !(message.generalId && $util.isInteger(message.generalId.low) && $util.isInteger(message.generalId.high)))
+                    return "generalId: integer|Long expected";
+            if (message.optionCode != null && message.hasOwnProperty("optionCode"))
+                if (!$util.isString(message.optionCode))
+                    return "optionCode: string expected";
+            if (message.assistValue != null && message.hasOwnProperty("assistValue"))
+                if (!$util.isInteger(message.assistValue))
+                    return "assistValue: integer expected";
+            if (message.costGold != null && message.hasOwnProperty("costGold"))
+                if (!$util.isInteger(message.costGold))
+                    return "costGold: integer expected";
+            if (message.isSystemUser != null && message.hasOwnProperty("isSystemUser"))
+                if (typeof message.isSystemUser !== "boolean")
+                    return "isSystemUser: boolean expected";
+            return null;
+        };
+
+        /**
+         * Creates an AssistRecordModel message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.AssistRecordModel
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.AssistRecordModel} AssistRecordModel
+         */
+        AssistRecordModel.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.AssistRecordModel)
+                return object;
+            var message = new $root.pbbattle.AssistRecordModel();
+            if (object.id != null)
+                if ($util.Long)
+                    (message.id = $util.Long.fromValue(object.id)).unsigned = false;
+                else if (typeof object.id === "string")
+                    message.id = parseInt(object.id, 10);
+                else if (typeof object.id === "number")
+                    message.id = object.id;
+                else if (typeof object.id === "object")
+                    message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber();
+            if (object.createdAt != null)
+                message.createdAt = String(object.createdAt);
+            if (object.roundId != null)
+                if ($util.Long)
+                    (message.roundId = $util.Long.fromValue(object.roundId)).unsigned = false;
+                else if (typeof object.roundId === "string")
+                    message.roundId = parseInt(object.roundId, 10);
+                else if (typeof object.roundId === "number")
+                    message.roundId = object.roundId;
+                else if (typeof object.roundId === "object")
+                    message.roundId = new $util.LongBits(object.roundId.low >>> 0, object.roundId.high >>> 0).toNumber();
+            if (object.userId != null)
+                if ($util.Long)
+                    (message.userId = $util.Long.fromValue(object.userId)).unsigned = false;
+                else if (typeof object.userId === "string")
+                    message.userId = parseInt(object.userId, 10);
+                else if (typeof object.userId === "number")
+                    message.userId = object.userId;
+                else if (typeof object.userId === "object")
+                    message.userId = new $util.LongBits(object.userId.low >>> 0, object.userId.high >>> 0).toNumber();
+            if (object.generalId != null)
+                if ($util.Long)
+                    (message.generalId = $util.Long.fromValue(object.generalId)).unsigned = false;
+                else if (typeof object.generalId === "string")
+                    message.generalId = parseInt(object.generalId, 10);
+                else if (typeof object.generalId === "number")
+                    message.generalId = object.generalId;
+                else if (typeof object.generalId === "object")
+                    message.generalId = new $util.LongBits(object.generalId.low >>> 0, object.generalId.high >>> 0).toNumber();
+            if (object.optionCode != null)
+                message.optionCode = String(object.optionCode);
+            if (object.assistValue != null)
+                message.assistValue = object.assistValue | 0;
+            if (object.costGold != null)
+                message.costGold = object.costGold | 0;
+            if (object.isSystemUser != null)
+                message.isSystemUser = Boolean(object.isSystemUser);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an AssistRecordModel message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.AssistRecordModel
+         * @static
+         * @param {pbbattle.AssistRecordModel} message AssistRecordModel
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        AssistRecordModel.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.id = options.longs === String ? "0" : 0;
+                object.createdAt = "";
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.roundId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.roundId = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.userId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.userId = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.generalId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.generalId = options.longs === String ? "0" : 0;
+                object.optionCode = "";
+                object.assistValue = 0;
+                object.costGold = 0;
+                object.isSystemUser = false;
+            }
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (typeof message.id === "number")
+                    object.id = options.longs === String ? String(message.id) : message.id;
+                else
+                    object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id;
+            if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                object.createdAt = message.createdAt;
+            if (message.roundId != null && message.hasOwnProperty("roundId"))
+                if (typeof message.roundId === "number")
+                    object.roundId = options.longs === String ? String(message.roundId) : message.roundId;
+                else
+                    object.roundId = options.longs === String ? $util.Long.prototype.toString.call(message.roundId) : options.longs === Number ? new $util.LongBits(message.roundId.low >>> 0, message.roundId.high >>> 0).toNumber() : message.roundId;
+            if (message.userId != null && message.hasOwnProperty("userId"))
+                if (typeof message.userId === "number")
+                    object.userId = options.longs === String ? String(message.userId) : message.userId;
+                else
+                    object.userId = options.longs === String ? $util.Long.prototype.toString.call(message.userId) : options.longs === Number ? new $util.LongBits(message.userId.low >>> 0, message.userId.high >>> 0).toNumber() : message.userId;
+            if (message.generalId != null && message.hasOwnProperty("generalId"))
+                if (typeof message.generalId === "number")
+                    object.generalId = options.longs === String ? String(message.generalId) : message.generalId;
+                else
+                    object.generalId = options.longs === String ? $util.Long.prototype.toString.call(message.generalId) : options.longs === Number ? new $util.LongBits(message.generalId.low >>> 0, message.generalId.high >>> 0).toNumber() : message.generalId;
+            if (message.optionCode != null && message.hasOwnProperty("optionCode"))
+                object.optionCode = message.optionCode;
+            if (message.assistValue != null && message.hasOwnProperty("assistValue"))
+                object.assistValue = message.assistValue;
+            if (message.costGold != null && message.hasOwnProperty("costGold"))
+                object.costGold = message.costGold;
+            if (message.isSystemUser != null && message.hasOwnProperty("isSystemUser"))
+                object.isSystemUser = message.isSystemUser;
+            return object;
+        };
+
+        /**
+         * Converts this AssistRecordModel to JSON.
+         * @function toJSON
+         * @memberof pbbattle.AssistRecordModel
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        AssistRecordModel.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for AssistRecordModel
+         * @function getTypeUrl
+         * @memberof pbbattle.AssistRecordModel
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        AssistRecordModel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.AssistRecordModel";
+        };
+
+        return AssistRecordModel;
+    })();
+
+    pbbattle.FindAssistRecordArgs = (function() {
+
+        /**
+         * Properties of a FindAssistRecordArgs.
+         * @memberof pbbattle
+         * @interface IFindAssistRecordArgs
+         * @property {pbcommon.IPageInfo|null} [pageInfo] FindAssistRecordArgs pageInfo
+         * @property {pbbattle.IAssistRecordModel|null} [query] FindAssistRecordArgs query
+         * @property {string|null} [keyword] FindAssistRecordArgs keyword
+         * @property {Array.<number|Long>|null} [generalIdList] FindAssistRecordArgs generalIdList
+         * @property {Array.<boolean>|null} [isSystemUserList] FindAssistRecordArgs isSystemUserList
+         * @property {string|null} [startDate] FindAssistRecordArgs startDate
+         * @property {string|null} [endDate] FindAssistRecordArgs endDate
+         */
+
+        /**
+         * Constructs a new FindAssistRecordArgs.
+         * @memberof pbbattle
+         * @classdesc Represents a FindAssistRecordArgs.
+         * @implements IFindAssistRecordArgs
+         * @constructor
+         * @param {pbbattle.IFindAssistRecordArgs=} [properties] Properties to set
+         */
+        function FindAssistRecordArgs(properties) {
+            this.generalIdList = [];
+            this.isSystemUserList = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * FindAssistRecordArgs pageInfo.
+         * @member {pbcommon.IPageInfo|null|undefined} pageInfo
+         * @memberof pbbattle.FindAssistRecordArgs
+         * @instance
+         */
+        FindAssistRecordArgs.prototype.pageInfo = null;
+
+        /**
+         * FindAssistRecordArgs query.
+         * @member {pbbattle.IAssistRecordModel|null|undefined} query
+         * @memberof pbbattle.FindAssistRecordArgs
+         * @instance
+         */
+        FindAssistRecordArgs.prototype.query = null;
+
+        /**
+         * FindAssistRecordArgs keyword.
+         * @member {string} keyword
+         * @memberof pbbattle.FindAssistRecordArgs
+         * @instance
+         */
+        FindAssistRecordArgs.prototype.keyword = "";
+
+        /**
+         * FindAssistRecordArgs generalIdList.
+         * @member {Array.<number|Long>} generalIdList
+         * @memberof pbbattle.FindAssistRecordArgs
+         * @instance
+         */
+        FindAssistRecordArgs.prototype.generalIdList = $util.emptyArray;
+
+        /**
+         * FindAssistRecordArgs isSystemUserList.
+         * @member {Array.<boolean>} isSystemUserList
+         * @memberof pbbattle.FindAssistRecordArgs
+         * @instance
+         */
+        FindAssistRecordArgs.prototype.isSystemUserList = $util.emptyArray;
+
+        /**
+         * FindAssistRecordArgs startDate.
+         * @member {string} startDate
+         * @memberof pbbattle.FindAssistRecordArgs
+         * @instance
+         */
+        FindAssistRecordArgs.prototype.startDate = "";
+
+        /**
+         * FindAssistRecordArgs endDate.
+         * @member {string} endDate
+         * @memberof pbbattle.FindAssistRecordArgs
+         * @instance
+         */
+        FindAssistRecordArgs.prototype.endDate = "";
+
+        /**
+         * Creates a new FindAssistRecordArgs instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.FindAssistRecordArgs
+         * @static
+         * @param {pbbattle.IFindAssistRecordArgs=} [properties] Properties to set
+         * @returns {pbbattle.FindAssistRecordArgs} FindAssistRecordArgs instance
+         */
+        FindAssistRecordArgs.create = function create(properties) {
+            return new FindAssistRecordArgs(properties);
+        };
+
+        /**
+         * Encodes the specified FindAssistRecordArgs message. Does not implicitly {@link pbbattle.FindAssistRecordArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.FindAssistRecordArgs
+         * @static
+         * @param {pbbattle.IFindAssistRecordArgs} message FindAssistRecordArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindAssistRecordArgs.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.pageInfo != null && Object.hasOwnProperty.call(message, "pageInfo"))
+                $root.pbcommon.PageInfo.encode(message.pageInfo, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.query != null && Object.hasOwnProperty.call(message, "query"))
+                $root.pbbattle.AssistRecordModel.encode(message.query, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            if (message.keyword != null && Object.hasOwnProperty.call(message, "keyword"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.keyword);
+            if (message.generalIdList != null && message.generalIdList.length) {
+                writer.uint32(/* id 4, wireType 2 =*/34).fork();
+                for (var i = 0; i < message.generalIdList.length; ++i)
+                    writer.int64(message.generalIdList[i]);
+                writer.ldelim();
+            }
+            if (message.isSystemUserList != null && message.isSystemUserList.length) {
+                writer.uint32(/* id 5, wireType 2 =*/42).fork();
+                for (var i = 0; i < message.isSystemUserList.length; ++i)
+                    writer.bool(message.isSystemUserList[i]);
+                writer.ldelim();
+            }
+            if (message.startDate != null && Object.hasOwnProperty.call(message, "startDate"))
+                writer.uint32(/* id 6, wireType 2 =*/50).string(message.startDate);
+            if (message.endDate != null && Object.hasOwnProperty.call(message, "endDate"))
+                writer.uint32(/* id 7, wireType 2 =*/58).string(message.endDate);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified FindAssistRecordArgs message, length delimited. Does not implicitly {@link pbbattle.FindAssistRecordArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.FindAssistRecordArgs
+         * @static
+         * @param {pbbattle.IFindAssistRecordArgs} message FindAssistRecordArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindAssistRecordArgs.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a FindAssistRecordArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.FindAssistRecordArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.FindAssistRecordArgs} FindAssistRecordArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindAssistRecordArgs.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.FindAssistRecordArgs();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.pageInfo = $root.pbcommon.PageInfo.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 2: {
+                        message.query = $root.pbbattle.AssistRecordModel.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 3: {
+                        message.keyword = reader.string();
+                        break;
+                    }
+                case 4: {
+                        if (!(message.generalIdList && message.generalIdList.length))
+                            message.generalIdList = [];
+                        if ((tag & 7) === 2) {
+                            var end2 = reader.uint32() + reader.pos;
+                            while (reader.pos < end2)
+                                message.generalIdList.push(reader.int64());
+                        } else
+                            message.generalIdList.push(reader.int64());
+                        break;
+                    }
+                case 5: {
+                        if (!(message.isSystemUserList && message.isSystemUserList.length))
+                            message.isSystemUserList = [];
+                        if ((tag & 7) === 2) {
+                            var end2 = reader.uint32() + reader.pos;
+                            while (reader.pos < end2)
+                                message.isSystemUserList.push(reader.bool());
+                        } else
+                            message.isSystemUserList.push(reader.bool());
+                        break;
+                    }
+                case 6: {
+                        message.startDate = reader.string();
+                        break;
+                    }
+                case 7: {
+                        message.endDate = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a FindAssistRecordArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.FindAssistRecordArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.FindAssistRecordArgs} FindAssistRecordArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindAssistRecordArgs.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a FindAssistRecordArgs message.
+         * @function verify
+         * @memberof pbbattle.FindAssistRecordArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        FindAssistRecordArgs.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.pageInfo != null && message.hasOwnProperty("pageInfo")) {
+                var error = $root.pbcommon.PageInfo.verify(message.pageInfo);
+                if (error)
+                    return "pageInfo." + error;
+            }
+            if (message.query != null && message.hasOwnProperty("query")) {
+                var error = $root.pbbattle.AssistRecordModel.verify(message.query);
+                if (error)
+                    return "query." + error;
+            }
+            if (message.keyword != null && message.hasOwnProperty("keyword"))
+                if (!$util.isString(message.keyword))
+                    return "keyword: string expected";
+            if (message.generalIdList != null && message.hasOwnProperty("generalIdList")) {
+                if (!Array.isArray(message.generalIdList))
+                    return "generalIdList: array expected";
+                for (var i = 0; i < message.generalIdList.length; ++i)
+                    if (!$util.isInteger(message.generalIdList[i]) && !(message.generalIdList[i] && $util.isInteger(message.generalIdList[i].low) && $util.isInteger(message.generalIdList[i].high)))
+                        return "generalIdList: integer|Long[] expected";
+            }
+            if (message.isSystemUserList != null && message.hasOwnProperty("isSystemUserList")) {
+                if (!Array.isArray(message.isSystemUserList))
+                    return "isSystemUserList: array expected";
+                for (var i = 0; i < message.isSystemUserList.length; ++i)
+                    if (typeof message.isSystemUserList[i] !== "boolean")
+                        return "isSystemUserList: boolean[] expected";
+            }
+            if (message.startDate != null && message.hasOwnProperty("startDate"))
+                if (!$util.isString(message.startDate))
+                    return "startDate: string expected";
+            if (message.endDate != null && message.hasOwnProperty("endDate"))
+                if (!$util.isString(message.endDate))
+                    return "endDate: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a FindAssistRecordArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.FindAssistRecordArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.FindAssistRecordArgs} FindAssistRecordArgs
+         */
+        FindAssistRecordArgs.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.FindAssistRecordArgs)
+                return object;
+            var message = new $root.pbbattle.FindAssistRecordArgs();
+            if (object.pageInfo != null) {
+                if (typeof object.pageInfo !== "object")
+                    throw TypeError(".pbbattle.FindAssistRecordArgs.pageInfo: object expected");
+                message.pageInfo = $root.pbcommon.PageInfo.fromObject(object.pageInfo);
+            }
+            if (object.query != null) {
+                if (typeof object.query !== "object")
+                    throw TypeError(".pbbattle.FindAssistRecordArgs.query: object expected");
+                message.query = $root.pbbattle.AssistRecordModel.fromObject(object.query);
+            }
+            if (object.keyword != null)
+                message.keyword = String(object.keyword);
+            if (object.generalIdList) {
+                if (!Array.isArray(object.generalIdList))
+                    throw TypeError(".pbbattle.FindAssistRecordArgs.generalIdList: array expected");
+                message.generalIdList = [];
+                for (var i = 0; i < object.generalIdList.length; ++i)
+                    if ($util.Long)
+                        (message.generalIdList[i] = $util.Long.fromValue(object.generalIdList[i])).unsigned = false;
+                    else if (typeof object.generalIdList[i] === "string")
+                        message.generalIdList[i] = parseInt(object.generalIdList[i], 10);
+                    else if (typeof object.generalIdList[i] === "number")
+                        message.generalIdList[i] = object.generalIdList[i];
+                    else if (typeof object.generalIdList[i] === "object")
+                        message.generalIdList[i] = new $util.LongBits(object.generalIdList[i].low >>> 0, object.generalIdList[i].high >>> 0).toNumber();
+            }
+            if (object.isSystemUserList) {
+                if (!Array.isArray(object.isSystemUserList))
+                    throw TypeError(".pbbattle.FindAssistRecordArgs.isSystemUserList: array expected");
+                message.isSystemUserList = [];
+                for (var i = 0; i < object.isSystemUserList.length; ++i)
+                    message.isSystemUserList[i] = Boolean(object.isSystemUserList[i]);
+            }
+            if (object.startDate != null)
+                message.startDate = String(object.startDate);
+            if (object.endDate != null)
+                message.endDate = String(object.endDate);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a FindAssistRecordArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.FindAssistRecordArgs
+         * @static
+         * @param {pbbattle.FindAssistRecordArgs} message FindAssistRecordArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FindAssistRecordArgs.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults) {
+                object.generalIdList = [];
+                object.isSystemUserList = [];
+            }
+            if (options.defaults) {
+                object.pageInfo = null;
+                object.query = null;
+                object.keyword = "";
+                object.startDate = "";
+                object.endDate = "";
+            }
+            if (message.pageInfo != null && message.hasOwnProperty("pageInfo"))
+                object.pageInfo = $root.pbcommon.PageInfo.toObject(message.pageInfo, options);
+            if (message.query != null && message.hasOwnProperty("query"))
+                object.query = $root.pbbattle.AssistRecordModel.toObject(message.query, options);
+            if (message.keyword != null && message.hasOwnProperty("keyword"))
+                object.keyword = message.keyword;
+            if (message.generalIdList && message.generalIdList.length) {
+                object.generalIdList = [];
+                for (var j = 0; j < message.generalIdList.length; ++j)
+                    if (typeof message.generalIdList[j] === "number")
+                        object.generalIdList[j] = options.longs === String ? String(message.generalIdList[j]) : message.generalIdList[j];
+                    else
+                        object.generalIdList[j] = options.longs === String ? $util.Long.prototype.toString.call(message.generalIdList[j]) : options.longs === Number ? new $util.LongBits(message.generalIdList[j].low >>> 0, message.generalIdList[j].high >>> 0).toNumber() : message.generalIdList[j];
+            }
+            if (message.isSystemUserList && message.isSystemUserList.length) {
+                object.isSystemUserList = [];
+                for (var j = 0; j < message.isSystemUserList.length; ++j)
+                    object.isSystemUserList[j] = message.isSystemUserList[j];
+            }
+            if (message.startDate != null && message.hasOwnProperty("startDate"))
+                object.startDate = message.startDate;
+            if (message.endDate != null && message.hasOwnProperty("endDate"))
+                object.endDate = message.endDate;
+            return object;
+        };
+
+        /**
+         * Converts this FindAssistRecordArgs to JSON.
+         * @function toJSON
+         * @memberof pbbattle.FindAssistRecordArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        FindAssistRecordArgs.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for FindAssistRecordArgs
+         * @function getTypeUrl
+         * @memberof pbbattle.FindAssistRecordArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        FindAssistRecordArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.FindAssistRecordArgs";
+        };
+
+        return FindAssistRecordArgs;
+    })();
+
+    pbbattle.FindAssistRecordReply = (function() {
+
+        /**
+         * Properties of a FindAssistRecordReply.
+         * @memberof pbbattle
+         * @interface IFindAssistRecordReply
+         * @property {pbcommon.EnumCode|null} [code] FindAssistRecordReply code
+         * @property {string|null} [msg] FindAssistRecordReply msg
+         * @property {pbbattle.IAssistRecordModel|null} [data] FindAssistRecordReply data
+         * @property {Array.<pbbattle.IAssistRecordModel>|null} [list] FindAssistRecordReply list
+         * @property {number|Long|null} [total] FindAssistRecordReply total
+         */
+
+        /**
+         * Constructs a new FindAssistRecordReply.
+         * @memberof pbbattle
+         * @classdesc Represents a FindAssistRecordReply.
+         * @implements IFindAssistRecordReply
+         * @constructor
+         * @param {pbbattle.IFindAssistRecordReply=} [properties] Properties to set
+         */
+        function FindAssistRecordReply(properties) {
+            this.list = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * FindAssistRecordReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbbattle.FindAssistRecordReply
+         * @instance
+         */
+        FindAssistRecordReply.prototype.code = 0;
+
+        /**
+         * FindAssistRecordReply msg.
+         * @member {string} msg
+         * @memberof pbbattle.FindAssistRecordReply
+         * @instance
+         */
+        FindAssistRecordReply.prototype.msg = "";
+
+        /**
+         * FindAssistRecordReply data.
+         * @member {pbbattle.IAssistRecordModel|null|undefined} data
+         * @memberof pbbattle.FindAssistRecordReply
+         * @instance
+         */
+        FindAssistRecordReply.prototype.data = null;
+
+        /**
+         * FindAssistRecordReply list.
+         * @member {Array.<pbbattle.IAssistRecordModel>} list
+         * @memberof pbbattle.FindAssistRecordReply
+         * @instance
+         */
+        FindAssistRecordReply.prototype.list = $util.emptyArray;
+
+        /**
+         * FindAssistRecordReply total.
+         * @member {number|Long} total
+         * @memberof pbbattle.FindAssistRecordReply
+         * @instance
+         */
+        FindAssistRecordReply.prototype.total = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * Creates a new FindAssistRecordReply instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.FindAssistRecordReply
+         * @static
+         * @param {pbbattle.IFindAssistRecordReply=} [properties] Properties to set
+         * @returns {pbbattle.FindAssistRecordReply} FindAssistRecordReply instance
+         */
+        FindAssistRecordReply.create = function create(properties) {
+            return new FindAssistRecordReply(properties);
+        };
+
+        /**
+         * Encodes the specified FindAssistRecordReply message. Does not implicitly {@link pbbattle.FindAssistRecordReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.FindAssistRecordReply
+         * @static
+         * @param {pbbattle.IFindAssistRecordReply} message FindAssistRecordReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindAssistRecordReply.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.data != null && Object.hasOwnProperty.call(message, "data"))
+                $root.pbbattle.AssistRecordModel.encode(message.data, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            if (message.list != null && message.list.length)
+                for (var i = 0; i < message.list.length; ++i)
+                    $root.pbbattle.AssistRecordModel.encode(message.list[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+            if (message.total != null && Object.hasOwnProperty.call(message, "total"))
+                writer.uint32(/* id 5, wireType 0 =*/40).int64(message.total);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified FindAssistRecordReply message, length delimited. Does not implicitly {@link pbbattle.FindAssistRecordReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.FindAssistRecordReply
+         * @static
+         * @param {pbbattle.IFindAssistRecordReply} message FindAssistRecordReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindAssistRecordReply.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a FindAssistRecordReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.FindAssistRecordReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.FindAssistRecordReply} FindAssistRecordReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindAssistRecordReply.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.FindAssistRecordReply();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.code = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.data = $root.pbbattle.AssistRecordModel.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 4: {
+                        if (!(message.list && message.list.length))
+                            message.list = [];
+                        message.list.push($root.pbbattle.AssistRecordModel.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 5: {
+                        message.total = reader.int64();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a FindAssistRecordReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.FindAssistRecordReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.FindAssistRecordReply} FindAssistRecordReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindAssistRecordReply.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a FindAssistRecordReply message.
+         * @function verify
+         * @memberof pbbattle.FindAssistRecordReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        FindAssistRecordReply.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.code != null && message.hasOwnProperty("code"))
+                switch (message.code) {
+                default:
+                    return "code: enum value expected";
+                case 0:
+                case 200:
+                case 403:
+                case 500:
+                case 501:
+                case 502:
+                case 503:
+                case 504:
+                case 505:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
+                case 2002:
+                case 2003:
+                case 2004:
+                case 2005:
+                case 2006:
+                case 2007:
+                case 2008:
+                case 2009:
+                case 2010:
+                case 2011:
+                case 2012:
+                case 2013:
+                case 2014:
+                case 2015:
+                case 3001:
+                case 3002:
+                case 3003:
+                case 5001:
+                case 5002:
+                case 10001:
+                case 10002:
+                case 20001:
+                case 20002:
+                    break;
+                }
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                if (!$util.isString(message.msg))
+                    return "msg: string expected";
+            if (message.data != null && message.hasOwnProperty("data")) {
+                var error = $root.pbbattle.AssistRecordModel.verify(message.data);
+                if (error)
+                    return "data." + error;
+            }
+            if (message.list != null && message.hasOwnProperty("list")) {
+                if (!Array.isArray(message.list))
+                    return "list: array expected";
+                for (var i = 0; i < message.list.length; ++i) {
+                    var error = $root.pbbattle.AssistRecordModel.verify(message.list[i]);
+                    if (error)
+                        return "list." + error;
+                }
+            }
+            if (message.total != null && message.hasOwnProperty("total"))
+                if (!$util.isInteger(message.total) && !(message.total && $util.isInteger(message.total.low) && $util.isInteger(message.total.high)))
+                    return "total: integer|Long expected";
+            return null;
+        };
+
+        /**
+         * Creates a FindAssistRecordReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.FindAssistRecordReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.FindAssistRecordReply} FindAssistRecordReply
+         */
+        FindAssistRecordReply.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.FindAssistRecordReply)
+                return object;
+            var message = new $root.pbbattle.FindAssistRecordReply();
+            switch (object.code) {
+            default:
+                if (typeof object.code === "number") {
+                    message.code = object.code;
+                    break;
+                }
+                break;
+            case "None":
+            case 0:
+                message.code = 0;
+                break;
+            case "Success":
+            case 200:
+                message.code = 200;
+                break;
+            case "Forbidden":
+            case 403:
+                message.code = 403;
+                break;
+            case "Fail":
+            case 500:
+                message.code = 500;
+                break;
+            case "Unknown":
+            case 501:
+                message.code = 501;
+                break;
+            case "Internal":
+            case 502:
+                message.code = 502;
+                break;
+            case "Invalid":
+            case 503:
+                message.code = 503;
+                break;
+            case "InvalidParam":
+            case 504:
+                message.code = 504;
+                break;
+            case "ParamError":
+            case 505:
+                message.code = 505;
+                break;
+            case "FindError":
+            case 1001:
+                message.code = 1001;
+                break;
+            case "CreateError":
+            case 1002:
+                message.code = 1002;
+                break;
+            case "DeleteError":
+            case 1003:
+                message.code = 1003;
+                break;
+            case "UpdateError":
+            case 1004:
+                message.code = 1004;
+                break;
+            case "InvalidToken":
+            case 2002:
+                message.code = 2002;
+                break;
+            case "InvalidSign":
+            case 2003:
+                message.code = 2003;
+                break;
+            case "NotLogin":
+            case 2004:
+                message.code = 2004;
+                break;
+            case "LoginTimeout":
+            case 2005:
+                message.code = 2005;
+                break;
+            case "LoginError":
+            case 2006:
+                message.code = 2006;
+                break;
+            case "LoginForbidden":
+            case 2007:
+                message.code = 2007;
+                break;
+            case "LoginExpired":
+            case 2008:
+                message.code = 2008;
+                break;
+            case "LoginInvalid":
+            case 2009:
+                message.code = 2009;
+                break;
+            case "LoginInvalidPassword":
+            case 2010:
+                message.code = 2010;
+                break;
+            case "LoginInvalidUsername":
+            case 2011:
+                message.code = 2011;
+                break;
+            case "LoginInvalidEmail":
+            case 2012:
+                message.code = 2012;
+                break;
+            case "LoginInvalidPhone":
+            case 2013:
+                message.code = 2013;
+                break;
+            case "LoginInvalidUsernameOrEmail":
+            case 2014:
+                message.code = 2014;
+                break;
+            case "LoginSocketRepeat":
+            case 2015:
+                message.code = 2015;
+                break;
+            case "RoleIsNotExist":
+            case 3001:
+                message.code = 3001;
+                break;
+            case "UserIsExist":
+            case 3002:
+                message.code = 3002;
+                break;
+            case "UserIsBan":
+            case 3003:
+                message.code = 3003;
+                break;
+            case "TalkIsBan":
+            case 5001:
+                message.code = 5001;
+                break;
+            case "EnterRoomErr":
+            case 5002:
+                message.code = 5002;
+                break;
+            case "HalaChatNeedBuy":
+            case 10001:
+                message.code = 10001;
+                break;
+            case "HalaPriceOutRange":
+            case 10002:
+                message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            }
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.data != null) {
+                if (typeof object.data !== "object")
+                    throw TypeError(".pbbattle.FindAssistRecordReply.data: object expected");
+                message.data = $root.pbbattle.AssistRecordModel.fromObject(object.data);
+            }
+            if (object.list) {
+                if (!Array.isArray(object.list))
+                    throw TypeError(".pbbattle.FindAssistRecordReply.list: array expected");
+                message.list = [];
+                for (var i = 0; i < object.list.length; ++i) {
+                    if (typeof object.list[i] !== "object")
+                        throw TypeError(".pbbattle.FindAssistRecordReply.list: object expected");
+                    message.list[i] = $root.pbbattle.AssistRecordModel.fromObject(object.list[i]);
+                }
+            }
+            if (object.total != null)
+                if ($util.Long)
+                    (message.total = $util.Long.fromValue(object.total)).unsigned = false;
+                else if (typeof object.total === "string")
+                    message.total = parseInt(object.total, 10);
+                else if (typeof object.total === "number")
+                    message.total = object.total;
+                else if (typeof object.total === "object")
+                    message.total = new $util.LongBits(object.total.low >>> 0, object.total.high >>> 0).toNumber();
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a FindAssistRecordReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.FindAssistRecordReply
+         * @static
+         * @param {pbbattle.FindAssistRecordReply} message FindAssistRecordReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FindAssistRecordReply.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.list = [];
+            if (options.defaults) {
+                object.code = options.enums === String ? "None" : 0;
+                object.msg = "";
+                object.data = null;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.total = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.total = options.longs === String ? "0" : 0;
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.data != null && message.hasOwnProperty("data"))
+                object.data = $root.pbbattle.AssistRecordModel.toObject(message.data, options);
+            if (message.list && message.list.length) {
+                object.list = [];
+                for (var j = 0; j < message.list.length; ++j)
+                    object.list[j] = $root.pbbattle.AssistRecordModel.toObject(message.list[j], options);
+            }
+            if (message.total != null && message.hasOwnProperty("total"))
+                if (typeof message.total === "number")
+                    object.total = options.longs === String ? String(message.total) : message.total;
+                else
+                    object.total = options.longs === String ? $util.Long.prototype.toString.call(message.total) : options.longs === Number ? new $util.LongBits(message.total.low >>> 0, message.total.high >>> 0).toNumber() : message.total;
+            return object;
+        };
+
+        /**
+         * Converts this FindAssistRecordReply to JSON.
+         * @function toJSON
+         * @memberof pbbattle.FindAssistRecordReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        FindAssistRecordReply.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for FindAssistRecordReply
+         * @function getTypeUrl
+         * @memberof pbbattle.FindAssistRecordReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        FindAssistRecordReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.FindAssistRecordReply";
+        };
+
+        return FindAssistRecordReply;
+    })();
+
+    pbbattle.PrizePoolLogModel = (function() {
+
+        /**
+         * Properties of a PrizePoolLogModel.
+         * @memberof pbbattle
+         * @interface IPrizePoolLogModel
+         * @property {number|Long|null} [id] PrizePoolLogModel id
+         * @property {string|null} [createdAt] PrizePoolLogModel createdAt
+         * @property {number|Long|null} [roundId] PrizePoolLogModel roundId
+         * @property {number|Long|null} [amount] PrizePoolLogModel amount
+         * @property {number|Long|null} [balanceAfter] PrizePoolLogModel balanceAfter
+         * @property {string|null} [logType] PrizePoolLogModel logType
+         * @property {number|Long|null} [relatedUserId] PrizePoolLogModel relatedUserId
+         * @property {number|Long|null} [relatedGeneralId] PrizePoolLogModel relatedGeneralId
+         * @property {string|null} [description] PrizePoolLogModel description
+         */
+
+        /**
+         * Constructs a new PrizePoolLogModel.
+         * @memberof pbbattle
+         * @classdesc Represents a PrizePoolLogModel.
+         * @implements IPrizePoolLogModel
+         * @constructor
+         * @param {pbbattle.IPrizePoolLogModel=} [properties] Properties to set
+         */
+        function PrizePoolLogModel(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * PrizePoolLogModel id.
+         * @member {number|Long} id
+         * @memberof pbbattle.PrizePoolLogModel
+         * @instance
+         */
+        PrizePoolLogModel.prototype.id = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * PrizePoolLogModel createdAt.
+         * @member {string} createdAt
+         * @memberof pbbattle.PrizePoolLogModel
+         * @instance
+         */
+        PrizePoolLogModel.prototype.createdAt = "";
+
+        /**
+         * PrizePoolLogModel roundId.
+         * @member {number|Long} roundId
+         * @memberof pbbattle.PrizePoolLogModel
+         * @instance
+         */
+        PrizePoolLogModel.prototype.roundId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * PrizePoolLogModel amount.
+         * @member {number|Long} amount
+         * @memberof pbbattle.PrizePoolLogModel
+         * @instance
+         */
+        PrizePoolLogModel.prototype.amount = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * PrizePoolLogModel balanceAfter.
+         * @member {number|Long} balanceAfter
+         * @memberof pbbattle.PrizePoolLogModel
+         * @instance
+         */
+        PrizePoolLogModel.prototype.balanceAfter = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * PrizePoolLogModel logType.
+         * @member {string} logType
+         * @memberof pbbattle.PrizePoolLogModel
+         * @instance
+         */
+        PrizePoolLogModel.prototype.logType = "";
+
+        /**
+         * PrizePoolLogModel relatedUserId.
+         * @member {number|Long} relatedUserId
+         * @memberof pbbattle.PrizePoolLogModel
+         * @instance
+         */
+        PrizePoolLogModel.prototype.relatedUserId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * PrizePoolLogModel relatedGeneralId.
+         * @member {number|Long} relatedGeneralId
+         * @memberof pbbattle.PrizePoolLogModel
+         * @instance
+         */
+        PrizePoolLogModel.prototype.relatedGeneralId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * PrizePoolLogModel description.
+         * @member {string} description
+         * @memberof pbbattle.PrizePoolLogModel
+         * @instance
+         */
+        PrizePoolLogModel.prototype.description = "";
+
+        /**
+         * Creates a new PrizePoolLogModel instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.PrizePoolLogModel
+         * @static
+         * @param {pbbattle.IPrizePoolLogModel=} [properties] Properties to set
+         * @returns {pbbattle.PrizePoolLogModel} PrizePoolLogModel instance
+         */
+        PrizePoolLogModel.create = function create(properties) {
+            return new PrizePoolLogModel(properties);
+        };
+
+        /**
+         * Encodes the specified PrizePoolLogModel message. Does not implicitly {@link pbbattle.PrizePoolLogModel.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.PrizePoolLogModel
+         * @static
+         * @param {pbbattle.IPrizePoolLogModel} message PrizePoolLogModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        PrizePoolLogModel.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id);
+            if (message.createdAt != null && Object.hasOwnProperty.call(message, "createdAt"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.createdAt);
+            if (message.roundId != null && Object.hasOwnProperty.call(message, "roundId"))
+                writer.uint32(/* id 10, wireType 0 =*/80).int64(message.roundId);
+            if (message.amount != null && Object.hasOwnProperty.call(message, "amount"))
+                writer.uint32(/* id 11, wireType 0 =*/88).int64(message.amount);
+            if (message.balanceAfter != null && Object.hasOwnProperty.call(message, "balanceAfter"))
+                writer.uint32(/* id 12, wireType 0 =*/96).int64(message.balanceAfter);
+            if (message.logType != null && Object.hasOwnProperty.call(message, "logType"))
+                writer.uint32(/* id 13, wireType 2 =*/106).string(message.logType);
+            if (message.relatedUserId != null && Object.hasOwnProperty.call(message, "relatedUserId"))
+                writer.uint32(/* id 14, wireType 0 =*/112).int64(message.relatedUserId);
+            if (message.relatedGeneralId != null && Object.hasOwnProperty.call(message, "relatedGeneralId"))
+                writer.uint32(/* id 15, wireType 0 =*/120).int64(message.relatedGeneralId);
+            if (message.description != null && Object.hasOwnProperty.call(message, "description"))
+                writer.uint32(/* id 16, wireType 2 =*/130).string(message.description);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified PrizePoolLogModel message, length delimited. Does not implicitly {@link pbbattle.PrizePoolLogModel.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.PrizePoolLogModel
+         * @static
+         * @param {pbbattle.IPrizePoolLogModel} message PrizePoolLogModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        PrizePoolLogModel.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a PrizePoolLogModel message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.PrizePoolLogModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.PrizePoolLogModel} PrizePoolLogModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        PrizePoolLogModel.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.PrizePoolLogModel();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.id = reader.int64();
+                        break;
+                    }
+                case 2: {
+                        message.createdAt = reader.string();
+                        break;
+                    }
+                case 10: {
+                        message.roundId = reader.int64();
+                        break;
+                    }
+                case 11: {
+                        message.amount = reader.int64();
+                        break;
+                    }
+                case 12: {
+                        message.balanceAfter = reader.int64();
+                        break;
+                    }
+                case 13: {
+                        message.logType = reader.string();
+                        break;
+                    }
+                case 14: {
+                        message.relatedUserId = reader.int64();
+                        break;
+                    }
+                case 15: {
+                        message.relatedGeneralId = reader.int64();
+                        break;
+                    }
+                case 16: {
+                        message.description = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a PrizePoolLogModel message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.PrizePoolLogModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.PrizePoolLogModel} PrizePoolLogModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        PrizePoolLogModel.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a PrizePoolLogModel message.
+         * @function verify
+         * @memberof pbbattle.PrizePoolLogModel
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        PrizePoolLogModel.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (!$util.isInteger(message.id) && !(message.id && $util.isInteger(message.id.low) && $util.isInteger(message.id.high)))
+                    return "id: integer|Long expected";
+            if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                if (!$util.isString(message.createdAt))
+                    return "createdAt: string expected";
+            if (message.roundId != null && message.hasOwnProperty("roundId"))
+                if (!$util.isInteger(message.roundId) && !(message.roundId && $util.isInteger(message.roundId.low) && $util.isInteger(message.roundId.high)))
+                    return "roundId: integer|Long expected";
+            if (message.amount != null && message.hasOwnProperty("amount"))
+                if (!$util.isInteger(message.amount) && !(message.amount && $util.isInteger(message.amount.low) && $util.isInteger(message.amount.high)))
+                    return "amount: integer|Long expected";
+            if (message.balanceAfter != null && message.hasOwnProperty("balanceAfter"))
+                if (!$util.isInteger(message.balanceAfter) && !(message.balanceAfter && $util.isInteger(message.balanceAfter.low) && $util.isInteger(message.balanceAfter.high)))
+                    return "balanceAfter: integer|Long expected";
+            if (message.logType != null && message.hasOwnProperty("logType"))
+                if (!$util.isString(message.logType))
+                    return "logType: string expected";
+            if (message.relatedUserId != null && message.hasOwnProperty("relatedUserId"))
+                if (!$util.isInteger(message.relatedUserId) && !(message.relatedUserId && $util.isInteger(message.relatedUserId.low) && $util.isInteger(message.relatedUserId.high)))
+                    return "relatedUserId: integer|Long expected";
+            if (message.relatedGeneralId != null && message.hasOwnProperty("relatedGeneralId"))
+                if (!$util.isInteger(message.relatedGeneralId) && !(message.relatedGeneralId && $util.isInteger(message.relatedGeneralId.low) && $util.isInteger(message.relatedGeneralId.high)))
+                    return "relatedGeneralId: integer|Long expected";
+            if (message.description != null && message.hasOwnProperty("description"))
+                if (!$util.isString(message.description))
+                    return "description: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a PrizePoolLogModel message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.PrizePoolLogModel
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.PrizePoolLogModel} PrizePoolLogModel
+         */
+        PrizePoolLogModel.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.PrizePoolLogModel)
+                return object;
+            var message = new $root.pbbattle.PrizePoolLogModel();
+            if (object.id != null)
+                if ($util.Long)
+                    (message.id = $util.Long.fromValue(object.id)).unsigned = false;
+                else if (typeof object.id === "string")
+                    message.id = parseInt(object.id, 10);
+                else if (typeof object.id === "number")
+                    message.id = object.id;
+                else if (typeof object.id === "object")
+                    message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber();
+            if (object.createdAt != null)
+                message.createdAt = String(object.createdAt);
+            if (object.roundId != null)
+                if ($util.Long)
+                    (message.roundId = $util.Long.fromValue(object.roundId)).unsigned = false;
+                else if (typeof object.roundId === "string")
+                    message.roundId = parseInt(object.roundId, 10);
+                else if (typeof object.roundId === "number")
+                    message.roundId = object.roundId;
+                else if (typeof object.roundId === "object")
+                    message.roundId = new $util.LongBits(object.roundId.low >>> 0, object.roundId.high >>> 0).toNumber();
+            if (object.amount != null)
+                if ($util.Long)
+                    (message.amount = $util.Long.fromValue(object.amount)).unsigned = false;
+                else if (typeof object.amount === "string")
+                    message.amount = parseInt(object.amount, 10);
+                else if (typeof object.amount === "number")
+                    message.amount = object.amount;
+                else if (typeof object.amount === "object")
+                    message.amount = new $util.LongBits(object.amount.low >>> 0, object.amount.high >>> 0).toNumber();
+            if (object.balanceAfter != null)
+                if ($util.Long)
+                    (message.balanceAfter = $util.Long.fromValue(object.balanceAfter)).unsigned = false;
+                else if (typeof object.balanceAfter === "string")
+                    message.balanceAfter = parseInt(object.balanceAfter, 10);
+                else if (typeof object.balanceAfter === "number")
+                    message.balanceAfter = object.balanceAfter;
+                else if (typeof object.balanceAfter === "object")
+                    message.balanceAfter = new $util.LongBits(object.balanceAfter.low >>> 0, object.balanceAfter.high >>> 0).toNumber();
+            if (object.logType != null)
+                message.logType = String(object.logType);
+            if (object.relatedUserId != null)
+                if ($util.Long)
+                    (message.relatedUserId = $util.Long.fromValue(object.relatedUserId)).unsigned = false;
+                else if (typeof object.relatedUserId === "string")
+                    message.relatedUserId = parseInt(object.relatedUserId, 10);
+                else if (typeof object.relatedUserId === "number")
+                    message.relatedUserId = object.relatedUserId;
+                else if (typeof object.relatedUserId === "object")
+                    message.relatedUserId = new $util.LongBits(object.relatedUserId.low >>> 0, object.relatedUserId.high >>> 0).toNumber();
+            if (object.relatedGeneralId != null)
+                if ($util.Long)
+                    (message.relatedGeneralId = $util.Long.fromValue(object.relatedGeneralId)).unsigned = false;
+                else if (typeof object.relatedGeneralId === "string")
+                    message.relatedGeneralId = parseInt(object.relatedGeneralId, 10);
+                else if (typeof object.relatedGeneralId === "number")
+                    message.relatedGeneralId = object.relatedGeneralId;
+                else if (typeof object.relatedGeneralId === "object")
+                    message.relatedGeneralId = new $util.LongBits(object.relatedGeneralId.low >>> 0, object.relatedGeneralId.high >>> 0).toNumber();
+            if (object.description != null)
+                message.description = String(object.description);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a PrizePoolLogModel message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.PrizePoolLogModel
+         * @static
+         * @param {pbbattle.PrizePoolLogModel} message PrizePoolLogModel
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        PrizePoolLogModel.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.id = options.longs === String ? "0" : 0;
+                object.createdAt = "";
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.roundId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.roundId = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.amount = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.amount = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.balanceAfter = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.balanceAfter = options.longs === String ? "0" : 0;
+                object.logType = "";
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.relatedUserId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.relatedUserId = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.relatedGeneralId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.relatedGeneralId = options.longs === String ? "0" : 0;
+                object.description = "";
+            }
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (typeof message.id === "number")
+                    object.id = options.longs === String ? String(message.id) : message.id;
+                else
+                    object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id;
+            if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                object.createdAt = message.createdAt;
+            if (message.roundId != null && message.hasOwnProperty("roundId"))
+                if (typeof message.roundId === "number")
+                    object.roundId = options.longs === String ? String(message.roundId) : message.roundId;
+                else
+                    object.roundId = options.longs === String ? $util.Long.prototype.toString.call(message.roundId) : options.longs === Number ? new $util.LongBits(message.roundId.low >>> 0, message.roundId.high >>> 0).toNumber() : message.roundId;
+            if (message.amount != null && message.hasOwnProperty("amount"))
+                if (typeof message.amount === "number")
+                    object.amount = options.longs === String ? String(message.amount) : message.amount;
+                else
+                    object.amount = options.longs === String ? $util.Long.prototype.toString.call(message.amount) : options.longs === Number ? new $util.LongBits(message.amount.low >>> 0, message.amount.high >>> 0).toNumber() : message.amount;
+            if (message.balanceAfter != null && message.hasOwnProperty("balanceAfter"))
+                if (typeof message.balanceAfter === "number")
+                    object.balanceAfter = options.longs === String ? String(message.balanceAfter) : message.balanceAfter;
+                else
+                    object.balanceAfter = options.longs === String ? $util.Long.prototype.toString.call(message.balanceAfter) : options.longs === Number ? new $util.LongBits(message.balanceAfter.low >>> 0, message.balanceAfter.high >>> 0).toNumber() : message.balanceAfter;
+            if (message.logType != null && message.hasOwnProperty("logType"))
+                object.logType = message.logType;
+            if (message.relatedUserId != null && message.hasOwnProperty("relatedUserId"))
+                if (typeof message.relatedUserId === "number")
+                    object.relatedUserId = options.longs === String ? String(message.relatedUserId) : message.relatedUserId;
+                else
+                    object.relatedUserId = options.longs === String ? $util.Long.prototype.toString.call(message.relatedUserId) : options.longs === Number ? new $util.LongBits(message.relatedUserId.low >>> 0, message.relatedUserId.high >>> 0).toNumber() : message.relatedUserId;
+            if (message.relatedGeneralId != null && message.hasOwnProperty("relatedGeneralId"))
+                if (typeof message.relatedGeneralId === "number")
+                    object.relatedGeneralId = options.longs === String ? String(message.relatedGeneralId) : message.relatedGeneralId;
+                else
+                    object.relatedGeneralId = options.longs === String ? $util.Long.prototype.toString.call(message.relatedGeneralId) : options.longs === Number ? new $util.LongBits(message.relatedGeneralId.low >>> 0, message.relatedGeneralId.high >>> 0).toNumber() : message.relatedGeneralId;
+            if (message.description != null && message.hasOwnProperty("description"))
+                object.description = message.description;
+            return object;
+        };
+
+        /**
+         * Converts this PrizePoolLogModel to JSON.
+         * @function toJSON
+         * @memberof pbbattle.PrizePoolLogModel
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        PrizePoolLogModel.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for PrizePoolLogModel
+         * @function getTypeUrl
+         * @memberof pbbattle.PrizePoolLogModel
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        PrizePoolLogModel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.PrizePoolLogModel";
+        };
+
+        return PrizePoolLogModel;
+    })();
+
+    pbbattle.FindPrizePoolLogArgs = (function() {
+
+        /**
+         * Properties of a FindPrizePoolLogArgs.
+         * @memberof pbbattle
+         * @interface IFindPrizePoolLogArgs
+         * @property {pbcommon.IPageInfo|null} [pageInfo] FindPrizePoolLogArgs pageInfo
+         * @property {pbbattle.IPrizePoolLogModel|null} [query] FindPrizePoolLogArgs query
+         * @property {string|null} [keyword] FindPrizePoolLogArgs keyword
+         * @property {Array.<string>|null} [logTypeList] FindPrizePoolLogArgs logTypeList
+         * @property {string|null} [startDate] FindPrizePoolLogArgs startDate
+         * @property {string|null} [endDate] FindPrizePoolLogArgs endDate
+         */
+
+        /**
+         * Constructs a new FindPrizePoolLogArgs.
+         * @memberof pbbattle
+         * @classdesc Represents a FindPrizePoolLogArgs.
+         * @implements IFindPrizePoolLogArgs
+         * @constructor
+         * @param {pbbattle.IFindPrizePoolLogArgs=} [properties] Properties to set
+         */
+        function FindPrizePoolLogArgs(properties) {
+            this.logTypeList = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * FindPrizePoolLogArgs pageInfo.
+         * @member {pbcommon.IPageInfo|null|undefined} pageInfo
+         * @memberof pbbattle.FindPrizePoolLogArgs
+         * @instance
+         */
+        FindPrizePoolLogArgs.prototype.pageInfo = null;
+
+        /**
+         * FindPrizePoolLogArgs query.
+         * @member {pbbattle.IPrizePoolLogModel|null|undefined} query
+         * @memberof pbbattle.FindPrizePoolLogArgs
+         * @instance
+         */
+        FindPrizePoolLogArgs.prototype.query = null;
+
+        /**
+         * FindPrizePoolLogArgs keyword.
+         * @member {string} keyword
+         * @memberof pbbattle.FindPrizePoolLogArgs
+         * @instance
+         */
+        FindPrizePoolLogArgs.prototype.keyword = "";
+
+        /**
+         * FindPrizePoolLogArgs logTypeList.
+         * @member {Array.<string>} logTypeList
+         * @memberof pbbattle.FindPrizePoolLogArgs
+         * @instance
+         */
+        FindPrizePoolLogArgs.prototype.logTypeList = $util.emptyArray;
+
+        /**
+         * FindPrizePoolLogArgs startDate.
+         * @member {string} startDate
+         * @memberof pbbattle.FindPrizePoolLogArgs
+         * @instance
+         */
+        FindPrizePoolLogArgs.prototype.startDate = "";
+
+        /**
+         * FindPrizePoolLogArgs endDate.
+         * @member {string} endDate
+         * @memberof pbbattle.FindPrizePoolLogArgs
+         * @instance
+         */
+        FindPrizePoolLogArgs.prototype.endDate = "";
+
+        /**
+         * Creates a new FindPrizePoolLogArgs instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.FindPrizePoolLogArgs
+         * @static
+         * @param {pbbattle.IFindPrizePoolLogArgs=} [properties] Properties to set
+         * @returns {pbbattle.FindPrizePoolLogArgs} FindPrizePoolLogArgs instance
+         */
+        FindPrizePoolLogArgs.create = function create(properties) {
+            return new FindPrizePoolLogArgs(properties);
+        };
+
+        /**
+         * Encodes the specified FindPrizePoolLogArgs message. Does not implicitly {@link pbbattle.FindPrizePoolLogArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.FindPrizePoolLogArgs
+         * @static
+         * @param {pbbattle.IFindPrizePoolLogArgs} message FindPrizePoolLogArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindPrizePoolLogArgs.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.pageInfo != null && Object.hasOwnProperty.call(message, "pageInfo"))
+                $root.pbcommon.PageInfo.encode(message.pageInfo, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.query != null && Object.hasOwnProperty.call(message, "query"))
+                $root.pbbattle.PrizePoolLogModel.encode(message.query, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            if (message.keyword != null && Object.hasOwnProperty.call(message, "keyword"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.keyword);
+            if (message.logTypeList != null && message.logTypeList.length)
+                for (var i = 0; i < message.logTypeList.length; ++i)
+                    writer.uint32(/* id 4, wireType 2 =*/34).string(message.logTypeList[i]);
+            if (message.startDate != null && Object.hasOwnProperty.call(message, "startDate"))
+                writer.uint32(/* id 5, wireType 2 =*/42).string(message.startDate);
+            if (message.endDate != null && Object.hasOwnProperty.call(message, "endDate"))
+                writer.uint32(/* id 6, wireType 2 =*/50).string(message.endDate);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified FindPrizePoolLogArgs message, length delimited. Does not implicitly {@link pbbattle.FindPrizePoolLogArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.FindPrizePoolLogArgs
+         * @static
+         * @param {pbbattle.IFindPrizePoolLogArgs} message FindPrizePoolLogArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindPrizePoolLogArgs.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a FindPrizePoolLogArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.FindPrizePoolLogArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.FindPrizePoolLogArgs} FindPrizePoolLogArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindPrizePoolLogArgs.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.FindPrizePoolLogArgs();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.pageInfo = $root.pbcommon.PageInfo.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 2: {
+                        message.query = $root.pbbattle.PrizePoolLogModel.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 3: {
+                        message.keyword = reader.string();
+                        break;
+                    }
+                case 4: {
+                        if (!(message.logTypeList && message.logTypeList.length))
+                            message.logTypeList = [];
+                        message.logTypeList.push(reader.string());
+                        break;
+                    }
+                case 5: {
+                        message.startDate = reader.string();
+                        break;
+                    }
+                case 6: {
+                        message.endDate = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a FindPrizePoolLogArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.FindPrizePoolLogArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.FindPrizePoolLogArgs} FindPrizePoolLogArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindPrizePoolLogArgs.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a FindPrizePoolLogArgs message.
+         * @function verify
+         * @memberof pbbattle.FindPrizePoolLogArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        FindPrizePoolLogArgs.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.pageInfo != null && message.hasOwnProperty("pageInfo")) {
+                var error = $root.pbcommon.PageInfo.verify(message.pageInfo);
+                if (error)
+                    return "pageInfo." + error;
+            }
+            if (message.query != null && message.hasOwnProperty("query")) {
+                var error = $root.pbbattle.PrizePoolLogModel.verify(message.query);
+                if (error)
+                    return "query." + error;
+            }
+            if (message.keyword != null && message.hasOwnProperty("keyword"))
+                if (!$util.isString(message.keyword))
+                    return "keyword: string expected";
+            if (message.logTypeList != null && message.hasOwnProperty("logTypeList")) {
+                if (!Array.isArray(message.logTypeList))
+                    return "logTypeList: array expected";
+                for (var i = 0; i < message.logTypeList.length; ++i)
+                    if (!$util.isString(message.logTypeList[i]))
+                        return "logTypeList: string[] expected";
+            }
+            if (message.startDate != null && message.hasOwnProperty("startDate"))
+                if (!$util.isString(message.startDate))
+                    return "startDate: string expected";
+            if (message.endDate != null && message.hasOwnProperty("endDate"))
+                if (!$util.isString(message.endDate))
+                    return "endDate: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a FindPrizePoolLogArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.FindPrizePoolLogArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.FindPrizePoolLogArgs} FindPrizePoolLogArgs
+         */
+        FindPrizePoolLogArgs.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.FindPrizePoolLogArgs)
+                return object;
+            var message = new $root.pbbattle.FindPrizePoolLogArgs();
+            if (object.pageInfo != null) {
+                if (typeof object.pageInfo !== "object")
+                    throw TypeError(".pbbattle.FindPrizePoolLogArgs.pageInfo: object expected");
+                message.pageInfo = $root.pbcommon.PageInfo.fromObject(object.pageInfo);
+            }
+            if (object.query != null) {
+                if (typeof object.query !== "object")
+                    throw TypeError(".pbbattle.FindPrizePoolLogArgs.query: object expected");
+                message.query = $root.pbbattle.PrizePoolLogModel.fromObject(object.query);
+            }
+            if (object.keyword != null)
+                message.keyword = String(object.keyword);
+            if (object.logTypeList) {
+                if (!Array.isArray(object.logTypeList))
+                    throw TypeError(".pbbattle.FindPrizePoolLogArgs.logTypeList: array expected");
+                message.logTypeList = [];
+                for (var i = 0; i < object.logTypeList.length; ++i)
+                    message.logTypeList[i] = String(object.logTypeList[i]);
+            }
+            if (object.startDate != null)
+                message.startDate = String(object.startDate);
+            if (object.endDate != null)
+                message.endDate = String(object.endDate);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a FindPrizePoolLogArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.FindPrizePoolLogArgs
+         * @static
+         * @param {pbbattle.FindPrizePoolLogArgs} message FindPrizePoolLogArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FindPrizePoolLogArgs.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.logTypeList = [];
+            if (options.defaults) {
+                object.pageInfo = null;
+                object.query = null;
+                object.keyword = "";
+                object.startDate = "";
+                object.endDate = "";
+            }
+            if (message.pageInfo != null && message.hasOwnProperty("pageInfo"))
+                object.pageInfo = $root.pbcommon.PageInfo.toObject(message.pageInfo, options);
+            if (message.query != null && message.hasOwnProperty("query"))
+                object.query = $root.pbbattle.PrizePoolLogModel.toObject(message.query, options);
+            if (message.keyword != null && message.hasOwnProperty("keyword"))
+                object.keyword = message.keyword;
+            if (message.logTypeList && message.logTypeList.length) {
+                object.logTypeList = [];
+                for (var j = 0; j < message.logTypeList.length; ++j)
+                    object.logTypeList[j] = message.logTypeList[j];
+            }
+            if (message.startDate != null && message.hasOwnProperty("startDate"))
+                object.startDate = message.startDate;
+            if (message.endDate != null && message.hasOwnProperty("endDate"))
+                object.endDate = message.endDate;
+            return object;
+        };
+
+        /**
+         * Converts this FindPrizePoolLogArgs to JSON.
+         * @function toJSON
+         * @memberof pbbattle.FindPrizePoolLogArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        FindPrizePoolLogArgs.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for FindPrizePoolLogArgs
+         * @function getTypeUrl
+         * @memberof pbbattle.FindPrizePoolLogArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        FindPrizePoolLogArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.FindPrizePoolLogArgs";
+        };
+
+        return FindPrizePoolLogArgs;
+    })();
+
+    pbbattle.FindPrizePoolLogReply = (function() {
+
+        /**
+         * Properties of a FindPrizePoolLogReply.
+         * @memberof pbbattle
+         * @interface IFindPrizePoolLogReply
+         * @property {pbcommon.EnumCode|null} [code] FindPrizePoolLogReply code
+         * @property {string|null} [msg] FindPrizePoolLogReply msg
+         * @property {pbbattle.IPrizePoolLogModel|null} [data] FindPrizePoolLogReply data
+         * @property {Array.<pbbattle.IPrizePoolLogModel>|null} [list] FindPrizePoolLogReply list
+         * @property {number|Long|null} [total] FindPrizePoolLogReply total
+         */
+
+        /**
+         * Constructs a new FindPrizePoolLogReply.
+         * @memberof pbbattle
+         * @classdesc Represents a FindPrizePoolLogReply.
+         * @implements IFindPrizePoolLogReply
+         * @constructor
+         * @param {pbbattle.IFindPrizePoolLogReply=} [properties] Properties to set
+         */
+        function FindPrizePoolLogReply(properties) {
+            this.list = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * FindPrizePoolLogReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbbattle.FindPrizePoolLogReply
+         * @instance
+         */
+        FindPrizePoolLogReply.prototype.code = 0;
+
+        /**
+         * FindPrizePoolLogReply msg.
+         * @member {string} msg
+         * @memberof pbbattle.FindPrizePoolLogReply
+         * @instance
+         */
+        FindPrizePoolLogReply.prototype.msg = "";
+
+        /**
+         * FindPrizePoolLogReply data.
+         * @member {pbbattle.IPrizePoolLogModel|null|undefined} data
+         * @memberof pbbattle.FindPrizePoolLogReply
+         * @instance
+         */
+        FindPrizePoolLogReply.prototype.data = null;
+
+        /**
+         * FindPrizePoolLogReply list.
+         * @member {Array.<pbbattle.IPrizePoolLogModel>} list
+         * @memberof pbbattle.FindPrizePoolLogReply
+         * @instance
+         */
+        FindPrizePoolLogReply.prototype.list = $util.emptyArray;
+
+        /**
+         * FindPrizePoolLogReply total.
+         * @member {number|Long} total
+         * @memberof pbbattle.FindPrizePoolLogReply
+         * @instance
+         */
+        FindPrizePoolLogReply.prototype.total = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * Creates a new FindPrizePoolLogReply instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.FindPrizePoolLogReply
+         * @static
+         * @param {pbbattle.IFindPrizePoolLogReply=} [properties] Properties to set
+         * @returns {pbbattle.FindPrizePoolLogReply} FindPrizePoolLogReply instance
+         */
+        FindPrizePoolLogReply.create = function create(properties) {
+            return new FindPrizePoolLogReply(properties);
+        };
+
+        /**
+         * Encodes the specified FindPrizePoolLogReply message. Does not implicitly {@link pbbattle.FindPrizePoolLogReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.FindPrizePoolLogReply
+         * @static
+         * @param {pbbattle.IFindPrizePoolLogReply} message FindPrizePoolLogReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindPrizePoolLogReply.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.data != null && Object.hasOwnProperty.call(message, "data"))
+                $root.pbbattle.PrizePoolLogModel.encode(message.data, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            if (message.list != null && message.list.length)
+                for (var i = 0; i < message.list.length; ++i)
+                    $root.pbbattle.PrizePoolLogModel.encode(message.list[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+            if (message.total != null && Object.hasOwnProperty.call(message, "total"))
+                writer.uint32(/* id 5, wireType 0 =*/40).int64(message.total);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified FindPrizePoolLogReply message, length delimited. Does not implicitly {@link pbbattle.FindPrizePoolLogReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.FindPrizePoolLogReply
+         * @static
+         * @param {pbbattle.IFindPrizePoolLogReply} message FindPrizePoolLogReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindPrizePoolLogReply.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a FindPrizePoolLogReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.FindPrizePoolLogReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.FindPrizePoolLogReply} FindPrizePoolLogReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindPrizePoolLogReply.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.FindPrizePoolLogReply();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.code = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.data = $root.pbbattle.PrizePoolLogModel.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 4: {
+                        if (!(message.list && message.list.length))
+                            message.list = [];
+                        message.list.push($root.pbbattle.PrizePoolLogModel.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 5: {
+                        message.total = reader.int64();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a FindPrizePoolLogReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.FindPrizePoolLogReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.FindPrizePoolLogReply} FindPrizePoolLogReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindPrizePoolLogReply.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a FindPrizePoolLogReply message.
+         * @function verify
+         * @memberof pbbattle.FindPrizePoolLogReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        FindPrizePoolLogReply.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.code != null && message.hasOwnProperty("code"))
+                switch (message.code) {
+                default:
+                    return "code: enum value expected";
+                case 0:
+                case 200:
+                case 403:
+                case 500:
+                case 501:
+                case 502:
+                case 503:
+                case 504:
+                case 505:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
+                case 2002:
+                case 2003:
+                case 2004:
+                case 2005:
+                case 2006:
+                case 2007:
+                case 2008:
+                case 2009:
+                case 2010:
+                case 2011:
+                case 2012:
+                case 2013:
+                case 2014:
+                case 2015:
+                case 3001:
+                case 3002:
+                case 3003:
+                case 5001:
+                case 5002:
+                case 10001:
+                case 10002:
+                case 20001:
+                case 20002:
+                    break;
+                }
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                if (!$util.isString(message.msg))
+                    return "msg: string expected";
+            if (message.data != null && message.hasOwnProperty("data")) {
+                var error = $root.pbbattle.PrizePoolLogModel.verify(message.data);
+                if (error)
+                    return "data." + error;
+            }
+            if (message.list != null && message.hasOwnProperty("list")) {
+                if (!Array.isArray(message.list))
+                    return "list: array expected";
+                for (var i = 0; i < message.list.length; ++i) {
+                    var error = $root.pbbattle.PrizePoolLogModel.verify(message.list[i]);
+                    if (error)
+                        return "list." + error;
+                }
+            }
+            if (message.total != null && message.hasOwnProperty("total"))
+                if (!$util.isInteger(message.total) && !(message.total && $util.isInteger(message.total.low) && $util.isInteger(message.total.high)))
+                    return "total: integer|Long expected";
+            return null;
+        };
+
+        /**
+         * Creates a FindPrizePoolLogReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.FindPrizePoolLogReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.FindPrizePoolLogReply} FindPrizePoolLogReply
+         */
+        FindPrizePoolLogReply.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.FindPrizePoolLogReply)
+                return object;
+            var message = new $root.pbbattle.FindPrizePoolLogReply();
+            switch (object.code) {
+            default:
+                if (typeof object.code === "number") {
+                    message.code = object.code;
+                    break;
+                }
+                break;
+            case "None":
+            case 0:
+                message.code = 0;
+                break;
+            case "Success":
+            case 200:
+                message.code = 200;
+                break;
+            case "Forbidden":
+            case 403:
+                message.code = 403;
+                break;
+            case "Fail":
+            case 500:
+                message.code = 500;
+                break;
+            case "Unknown":
+            case 501:
+                message.code = 501;
+                break;
+            case "Internal":
+            case 502:
+                message.code = 502;
+                break;
+            case "Invalid":
+            case 503:
+                message.code = 503;
+                break;
+            case "InvalidParam":
+            case 504:
+                message.code = 504;
+                break;
+            case "ParamError":
+            case 505:
+                message.code = 505;
+                break;
+            case "FindError":
+            case 1001:
+                message.code = 1001;
+                break;
+            case "CreateError":
+            case 1002:
+                message.code = 1002;
+                break;
+            case "DeleteError":
+            case 1003:
+                message.code = 1003;
+                break;
+            case "UpdateError":
+            case 1004:
+                message.code = 1004;
+                break;
+            case "InvalidToken":
+            case 2002:
+                message.code = 2002;
+                break;
+            case "InvalidSign":
+            case 2003:
+                message.code = 2003;
+                break;
+            case "NotLogin":
+            case 2004:
+                message.code = 2004;
+                break;
+            case "LoginTimeout":
+            case 2005:
+                message.code = 2005;
+                break;
+            case "LoginError":
+            case 2006:
+                message.code = 2006;
+                break;
+            case "LoginForbidden":
+            case 2007:
+                message.code = 2007;
+                break;
+            case "LoginExpired":
+            case 2008:
+                message.code = 2008;
+                break;
+            case "LoginInvalid":
+            case 2009:
+                message.code = 2009;
+                break;
+            case "LoginInvalidPassword":
+            case 2010:
+                message.code = 2010;
+                break;
+            case "LoginInvalidUsername":
+            case 2011:
+                message.code = 2011;
+                break;
+            case "LoginInvalidEmail":
+            case 2012:
+                message.code = 2012;
+                break;
+            case "LoginInvalidPhone":
+            case 2013:
+                message.code = 2013;
+                break;
+            case "LoginInvalidUsernameOrEmail":
+            case 2014:
+                message.code = 2014;
+                break;
+            case "LoginSocketRepeat":
+            case 2015:
+                message.code = 2015;
+                break;
+            case "RoleIsNotExist":
+            case 3001:
+                message.code = 3001;
+                break;
+            case "UserIsExist":
+            case 3002:
+                message.code = 3002;
+                break;
+            case "UserIsBan":
+            case 3003:
+                message.code = 3003;
+                break;
+            case "TalkIsBan":
+            case 5001:
+                message.code = 5001;
+                break;
+            case "EnterRoomErr":
+            case 5002:
+                message.code = 5002;
+                break;
+            case "HalaChatNeedBuy":
+            case 10001:
+                message.code = 10001;
+                break;
+            case "HalaPriceOutRange":
+            case 10002:
+                message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            }
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.data != null) {
+                if (typeof object.data !== "object")
+                    throw TypeError(".pbbattle.FindPrizePoolLogReply.data: object expected");
+                message.data = $root.pbbattle.PrizePoolLogModel.fromObject(object.data);
+            }
+            if (object.list) {
+                if (!Array.isArray(object.list))
+                    throw TypeError(".pbbattle.FindPrizePoolLogReply.list: array expected");
+                message.list = [];
+                for (var i = 0; i < object.list.length; ++i) {
+                    if (typeof object.list[i] !== "object")
+                        throw TypeError(".pbbattle.FindPrizePoolLogReply.list: object expected");
+                    message.list[i] = $root.pbbattle.PrizePoolLogModel.fromObject(object.list[i]);
+                }
+            }
+            if (object.total != null)
+                if ($util.Long)
+                    (message.total = $util.Long.fromValue(object.total)).unsigned = false;
+                else if (typeof object.total === "string")
+                    message.total = parseInt(object.total, 10);
+                else if (typeof object.total === "number")
+                    message.total = object.total;
+                else if (typeof object.total === "object")
+                    message.total = new $util.LongBits(object.total.low >>> 0, object.total.high >>> 0).toNumber();
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a FindPrizePoolLogReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.FindPrizePoolLogReply
+         * @static
+         * @param {pbbattle.FindPrizePoolLogReply} message FindPrizePoolLogReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FindPrizePoolLogReply.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.list = [];
+            if (options.defaults) {
+                object.code = options.enums === String ? "None" : 0;
+                object.msg = "";
+                object.data = null;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.total = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.total = options.longs === String ? "0" : 0;
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.data != null && message.hasOwnProperty("data"))
+                object.data = $root.pbbattle.PrizePoolLogModel.toObject(message.data, options);
+            if (message.list && message.list.length) {
+                object.list = [];
+                for (var j = 0; j < message.list.length; ++j)
+                    object.list[j] = $root.pbbattle.PrizePoolLogModel.toObject(message.list[j], options);
+            }
+            if (message.total != null && message.hasOwnProperty("total"))
+                if (typeof message.total === "number")
+                    object.total = options.longs === String ? String(message.total) : message.total;
+                else
+                    object.total = options.longs === String ? $util.Long.prototype.toString.call(message.total) : options.longs === Number ? new $util.LongBits(message.total.low >>> 0, message.total.high >>> 0).toNumber() : message.total;
+            return object;
+        };
+
+        /**
+         * Converts this FindPrizePoolLogReply to JSON.
+         * @function toJSON
+         * @memberof pbbattle.FindPrizePoolLogReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        FindPrizePoolLogReply.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for FindPrizePoolLogReply
+         * @function getTypeUrl
+         * @memberof pbbattle.FindPrizePoolLogReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        FindPrizePoolLogReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.FindPrizePoolLogReply";
+        };
+
+        return FindPrizePoolLogReply;
+    })();
+
+    pbbattle.WinRecordModel = (function() {
+
+        /**
+         * Properties of a WinRecordModel.
+         * @memberof pbbattle
+         * @interface IWinRecordModel
+         * @property {number|Long|null} [id] WinRecordModel id
+         * @property {string|null} [createdAt] WinRecordModel createdAt
+         * @property {number|Long|null} [roundId] WinRecordModel roundId
+         * @property {number|Long|null} [userId] WinRecordModel userId
+         * @property {number|Long|null} [generalId] WinRecordModel generalId
+         * @property {number|null} [assistTotal] WinRecordModel assistTotal
+         * @property {number|null} [winMultiplier] WinRecordModel winMultiplier
+         * @property {number|Long|null} [winAmount] WinRecordModel winAmount
+         * @property {boolean|null} [isSystemUser] WinRecordModel isSystemUser
+         */
+
+        /**
+         * Constructs a new WinRecordModel.
+         * @memberof pbbattle
+         * @classdesc Represents a WinRecordModel.
+         * @implements IWinRecordModel
+         * @constructor
+         * @param {pbbattle.IWinRecordModel=} [properties] Properties to set
+         */
+        function WinRecordModel(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * WinRecordModel id.
+         * @member {number|Long} id
+         * @memberof pbbattle.WinRecordModel
+         * @instance
+         */
+        WinRecordModel.prototype.id = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * WinRecordModel createdAt.
+         * @member {string} createdAt
+         * @memberof pbbattle.WinRecordModel
+         * @instance
+         */
+        WinRecordModel.prototype.createdAt = "";
+
+        /**
+         * WinRecordModel roundId.
+         * @member {number|Long} roundId
+         * @memberof pbbattle.WinRecordModel
+         * @instance
+         */
+        WinRecordModel.prototype.roundId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * WinRecordModel userId.
+         * @member {number|Long} userId
+         * @memberof pbbattle.WinRecordModel
+         * @instance
+         */
+        WinRecordModel.prototype.userId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * WinRecordModel generalId.
+         * @member {number|Long} generalId
+         * @memberof pbbattle.WinRecordModel
+         * @instance
+         */
+        WinRecordModel.prototype.generalId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * WinRecordModel assistTotal.
+         * @member {number} assistTotal
+         * @memberof pbbattle.WinRecordModel
+         * @instance
+         */
+        WinRecordModel.prototype.assistTotal = 0;
+
+        /**
+         * WinRecordModel winMultiplier.
+         * @member {number} winMultiplier
+         * @memberof pbbattle.WinRecordModel
+         * @instance
+         */
+        WinRecordModel.prototype.winMultiplier = 0;
+
+        /**
+         * WinRecordModel winAmount.
+         * @member {number|Long} winAmount
+         * @memberof pbbattle.WinRecordModel
+         * @instance
+         */
+        WinRecordModel.prototype.winAmount = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * WinRecordModel isSystemUser.
+         * @member {boolean} isSystemUser
+         * @memberof pbbattle.WinRecordModel
+         * @instance
+         */
+        WinRecordModel.prototype.isSystemUser = false;
+
+        /**
+         * Creates a new WinRecordModel instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.WinRecordModel
+         * @static
+         * @param {pbbattle.IWinRecordModel=} [properties] Properties to set
+         * @returns {pbbattle.WinRecordModel} WinRecordModel instance
+         */
+        WinRecordModel.create = function create(properties) {
+            return new WinRecordModel(properties);
+        };
+
+        /**
+         * Encodes the specified WinRecordModel message. Does not implicitly {@link pbbattle.WinRecordModel.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.WinRecordModel
+         * @static
+         * @param {pbbattle.IWinRecordModel} message WinRecordModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        WinRecordModel.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id);
+            if (message.createdAt != null && Object.hasOwnProperty.call(message, "createdAt"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.createdAt);
+            if (message.roundId != null && Object.hasOwnProperty.call(message, "roundId"))
+                writer.uint32(/* id 10, wireType 0 =*/80).int64(message.roundId);
+            if (message.userId != null && Object.hasOwnProperty.call(message, "userId"))
+                writer.uint32(/* id 11, wireType 0 =*/88).int64(message.userId);
+            if (message.generalId != null && Object.hasOwnProperty.call(message, "generalId"))
+                writer.uint32(/* id 12, wireType 0 =*/96).int64(message.generalId);
+            if (message.assistTotal != null && Object.hasOwnProperty.call(message, "assistTotal"))
+                writer.uint32(/* id 13, wireType 0 =*/104).int32(message.assistTotal);
+            if (message.winMultiplier != null && Object.hasOwnProperty.call(message, "winMultiplier"))
+                writer.uint32(/* id 14, wireType 1 =*/113).double(message.winMultiplier);
+            if (message.winAmount != null && Object.hasOwnProperty.call(message, "winAmount"))
+                writer.uint32(/* id 15, wireType 0 =*/120).int64(message.winAmount);
+            if (message.isSystemUser != null && Object.hasOwnProperty.call(message, "isSystemUser"))
+                writer.uint32(/* id 16, wireType 0 =*/128).bool(message.isSystemUser);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified WinRecordModel message, length delimited. Does not implicitly {@link pbbattle.WinRecordModel.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.WinRecordModel
+         * @static
+         * @param {pbbattle.IWinRecordModel} message WinRecordModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        WinRecordModel.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a WinRecordModel message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.WinRecordModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.WinRecordModel} WinRecordModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        WinRecordModel.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.WinRecordModel();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.id = reader.int64();
+                        break;
+                    }
+                case 2: {
+                        message.createdAt = reader.string();
+                        break;
+                    }
+                case 10: {
+                        message.roundId = reader.int64();
+                        break;
+                    }
+                case 11: {
+                        message.userId = reader.int64();
+                        break;
+                    }
+                case 12: {
+                        message.generalId = reader.int64();
+                        break;
+                    }
+                case 13: {
+                        message.assistTotal = reader.int32();
+                        break;
+                    }
+                case 14: {
+                        message.winMultiplier = reader.double();
+                        break;
+                    }
+                case 15: {
+                        message.winAmount = reader.int64();
+                        break;
+                    }
+                case 16: {
+                        message.isSystemUser = reader.bool();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a WinRecordModel message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.WinRecordModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.WinRecordModel} WinRecordModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        WinRecordModel.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a WinRecordModel message.
+         * @function verify
+         * @memberof pbbattle.WinRecordModel
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        WinRecordModel.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (!$util.isInteger(message.id) && !(message.id && $util.isInteger(message.id.low) && $util.isInteger(message.id.high)))
+                    return "id: integer|Long expected";
+            if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                if (!$util.isString(message.createdAt))
+                    return "createdAt: string expected";
+            if (message.roundId != null && message.hasOwnProperty("roundId"))
+                if (!$util.isInteger(message.roundId) && !(message.roundId && $util.isInteger(message.roundId.low) && $util.isInteger(message.roundId.high)))
+                    return "roundId: integer|Long expected";
+            if (message.userId != null && message.hasOwnProperty("userId"))
+                if (!$util.isInteger(message.userId) && !(message.userId && $util.isInteger(message.userId.low) && $util.isInteger(message.userId.high)))
+                    return "userId: integer|Long expected";
+            if (message.generalId != null && message.hasOwnProperty("generalId"))
+                if (!$util.isInteger(message.generalId) && !(message.generalId && $util.isInteger(message.generalId.low) && $util.isInteger(message.generalId.high)))
+                    return "generalId: integer|Long expected";
+            if (message.assistTotal != null && message.hasOwnProperty("assistTotal"))
+                if (!$util.isInteger(message.assistTotal))
+                    return "assistTotal: integer expected";
+            if (message.winMultiplier != null && message.hasOwnProperty("winMultiplier"))
+                if (typeof message.winMultiplier !== "number")
+                    return "winMultiplier: number expected";
+            if (message.winAmount != null && message.hasOwnProperty("winAmount"))
+                if (!$util.isInteger(message.winAmount) && !(message.winAmount && $util.isInteger(message.winAmount.low) && $util.isInteger(message.winAmount.high)))
+                    return "winAmount: integer|Long expected";
+            if (message.isSystemUser != null && message.hasOwnProperty("isSystemUser"))
+                if (typeof message.isSystemUser !== "boolean")
+                    return "isSystemUser: boolean expected";
+            return null;
+        };
+
+        /**
+         * Creates a WinRecordModel message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.WinRecordModel
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.WinRecordModel} WinRecordModel
+         */
+        WinRecordModel.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.WinRecordModel)
+                return object;
+            var message = new $root.pbbattle.WinRecordModel();
+            if (object.id != null)
+                if ($util.Long)
+                    (message.id = $util.Long.fromValue(object.id)).unsigned = false;
+                else if (typeof object.id === "string")
+                    message.id = parseInt(object.id, 10);
+                else if (typeof object.id === "number")
+                    message.id = object.id;
+                else if (typeof object.id === "object")
+                    message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber();
+            if (object.createdAt != null)
+                message.createdAt = String(object.createdAt);
+            if (object.roundId != null)
+                if ($util.Long)
+                    (message.roundId = $util.Long.fromValue(object.roundId)).unsigned = false;
+                else if (typeof object.roundId === "string")
+                    message.roundId = parseInt(object.roundId, 10);
+                else if (typeof object.roundId === "number")
+                    message.roundId = object.roundId;
+                else if (typeof object.roundId === "object")
+                    message.roundId = new $util.LongBits(object.roundId.low >>> 0, object.roundId.high >>> 0).toNumber();
+            if (object.userId != null)
+                if ($util.Long)
+                    (message.userId = $util.Long.fromValue(object.userId)).unsigned = false;
+                else if (typeof object.userId === "string")
+                    message.userId = parseInt(object.userId, 10);
+                else if (typeof object.userId === "number")
+                    message.userId = object.userId;
+                else if (typeof object.userId === "object")
+                    message.userId = new $util.LongBits(object.userId.low >>> 0, object.userId.high >>> 0).toNumber();
+            if (object.generalId != null)
+                if ($util.Long)
+                    (message.generalId = $util.Long.fromValue(object.generalId)).unsigned = false;
+                else if (typeof object.generalId === "string")
+                    message.generalId = parseInt(object.generalId, 10);
+                else if (typeof object.generalId === "number")
+                    message.generalId = object.generalId;
+                else if (typeof object.generalId === "object")
+                    message.generalId = new $util.LongBits(object.generalId.low >>> 0, object.generalId.high >>> 0).toNumber();
+            if (object.assistTotal != null)
+                message.assistTotal = object.assistTotal | 0;
+            if (object.winMultiplier != null)
+                message.winMultiplier = Number(object.winMultiplier);
+            if (object.winAmount != null)
+                if ($util.Long)
+                    (message.winAmount = $util.Long.fromValue(object.winAmount)).unsigned = false;
+                else if (typeof object.winAmount === "string")
+                    message.winAmount = parseInt(object.winAmount, 10);
+                else if (typeof object.winAmount === "number")
+                    message.winAmount = object.winAmount;
+                else if (typeof object.winAmount === "object")
+                    message.winAmount = new $util.LongBits(object.winAmount.low >>> 0, object.winAmount.high >>> 0).toNumber();
+            if (object.isSystemUser != null)
+                message.isSystemUser = Boolean(object.isSystemUser);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a WinRecordModel message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.WinRecordModel
+         * @static
+         * @param {pbbattle.WinRecordModel} message WinRecordModel
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        WinRecordModel.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.id = options.longs === String ? "0" : 0;
+                object.createdAt = "";
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.roundId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.roundId = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.userId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.userId = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.generalId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.generalId = options.longs === String ? "0" : 0;
+                object.assistTotal = 0;
+                object.winMultiplier = 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.winAmount = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.winAmount = options.longs === String ? "0" : 0;
+                object.isSystemUser = false;
+            }
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (typeof message.id === "number")
+                    object.id = options.longs === String ? String(message.id) : message.id;
+                else
+                    object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id;
+            if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                object.createdAt = message.createdAt;
+            if (message.roundId != null && message.hasOwnProperty("roundId"))
+                if (typeof message.roundId === "number")
+                    object.roundId = options.longs === String ? String(message.roundId) : message.roundId;
+                else
+                    object.roundId = options.longs === String ? $util.Long.prototype.toString.call(message.roundId) : options.longs === Number ? new $util.LongBits(message.roundId.low >>> 0, message.roundId.high >>> 0).toNumber() : message.roundId;
+            if (message.userId != null && message.hasOwnProperty("userId"))
+                if (typeof message.userId === "number")
+                    object.userId = options.longs === String ? String(message.userId) : message.userId;
+                else
+                    object.userId = options.longs === String ? $util.Long.prototype.toString.call(message.userId) : options.longs === Number ? new $util.LongBits(message.userId.low >>> 0, message.userId.high >>> 0).toNumber() : message.userId;
+            if (message.generalId != null && message.hasOwnProperty("generalId"))
+                if (typeof message.generalId === "number")
+                    object.generalId = options.longs === String ? String(message.generalId) : message.generalId;
+                else
+                    object.generalId = options.longs === String ? $util.Long.prototype.toString.call(message.generalId) : options.longs === Number ? new $util.LongBits(message.generalId.low >>> 0, message.generalId.high >>> 0).toNumber() : message.generalId;
+            if (message.assistTotal != null && message.hasOwnProperty("assistTotal"))
+                object.assistTotal = message.assistTotal;
+            if (message.winMultiplier != null && message.hasOwnProperty("winMultiplier"))
+                object.winMultiplier = options.json && !isFinite(message.winMultiplier) ? String(message.winMultiplier) : message.winMultiplier;
+            if (message.winAmount != null && message.hasOwnProperty("winAmount"))
+                if (typeof message.winAmount === "number")
+                    object.winAmount = options.longs === String ? String(message.winAmount) : message.winAmount;
+                else
+                    object.winAmount = options.longs === String ? $util.Long.prototype.toString.call(message.winAmount) : options.longs === Number ? new $util.LongBits(message.winAmount.low >>> 0, message.winAmount.high >>> 0).toNumber() : message.winAmount;
+            if (message.isSystemUser != null && message.hasOwnProperty("isSystemUser"))
+                object.isSystemUser = message.isSystemUser;
+            return object;
+        };
+
+        /**
+         * Converts this WinRecordModel to JSON.
+         * @function toJSON
+         * @memberof pbbattle.WinRecordModel
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        WinRecordModel.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for WinRecordModel
+         * @function getTypeUrl
+         * @memberof pbbattle.WinRecordModel
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        WinRecordModel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.WinRecordModel";
+        };
+
+        return WinRecordModel;
+    })();
+
+    pbbattle.FindWinRecordArgs = (function() {
+
+        /**
+         * Properties of a FindWinRecordArgs.
+         * @memberof pbbattle
+         * @interface IFindWinRecordArgs
+         * @property {pbcommon.IPageInfo|null} [pageInfo] FindWinRecordArgs pageInfo
+         * @property {pbbattle.IWinRecordModel|null} [query] FindWinRecordArgs query
+         * @property {string|null} [keyword] FindWinRecordArgs keyword
+         * @property {Array.<number|Long>|null} [generalIdList] FindWinRecordArgs generalIdList
+         * @property {Array.<boolean>|null} [isSystemUserList] FindWinRecordArgs isSystemUserList
+         * @property {string|null} [startDate] FindWinRecordArgs startDate
+         * @property {string|null} [endDate] FindWinRecordArgs endDate
+         */
+
+        /**
+         * Constructs a new FindWinRecordArgs.
+         * @memberof pbbattle
+         * @classdesc Represents a FindWinRecordArgs.
+         * @implements IFindWinRecordArgs
+         * @constructor
+         * @param {pbbattle.IFindWinRecordArgs=} [properties] Properties to set
+         */
+        function FindWinRecordArgs(properties) {
+            this.generalIdList = [];
+            this.isSystemUserList = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * FindWinRecordArgs pageInfo.
+         * @member {pbcommon.IPageInfo|null|undefined} pageInfo
+         * @memberof pbbattle.FindWinRecordArgs
+         * @instance
+         */
+        FindWinRecordArgs.prototype.pageInfo = null;
+
+        /**
+         * FindWinRecordArgs query.
+         * @member {pbbattle.IWinRecordModel|null|undefined} query
+         * @memberof pbbattle.FindWinRecordArgs
+         * @instance
+         */
+        FindWinRecordArgs.prototype.query = null;
+
+        /**
+         * FindWinRecordArgs keyword.
+         * @member {string} keyword
+         * @memberof pbbattle.FindWinRecordArgs
+         * @instance
+         */
+        FindWinRecordArgs.prototype.keyword = "";
+
+        /**
+         * FindWinRecordArgs generalIdList.
+         * @member {Array.<number|Long>} generalIdList
+         * @memberof pbbattle.FindWinRecordArgs
+         * @instance
+         */
+        FindWinRecordArgs.prototype.generalIdList = $util.emptyArray;
+
+        /**
+         * FindWinRecordArgs isSystemUserList.
+         * @member {Array.<boolean>} isSystemUserList
+         * @memberof pbbattle.FindWinRecordArgs
+         * @instance
+         */
+        FindWinRecordArgs.prototype.isSystemUserList = $util.emptyArray;
+
+        /**
+         * FindWinRecordArgs startDate.
+         * @member {string} startDate
+         * @memberof pbbattle.FindWinRecordArgs
+         * @instance
+         */
+        FindWinRecordArgs.prototype.startDate = "";
+
+        /**
+         * FindWinRecordArgs endDate.
+         * @member {string} endDate
+         * @memberof pbbattle.FindWinRecordArgs
+         * @instance
+         */
+        FindWinRecordArgs.prototype.endDate = "";
+
+        /**
+         * Creates a new FindWinRecordArgs instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.FindWinRecordArgs
+         * @static
+         * @param {pbbattle.IFindWinRecordArgs=} [properties] Properties to set
+         * @returns {pbbattle.FindWinRecordArgs} FindWinRecordArgs instance
+         */
+        FindWinRecordArgs.create = function create(properties) {
+            return new FindWinRecordArgs(properties);
+        };
+
+        /**
+         * Encodes the specified FindWinRecordArgs message. Does not implicitly {@link pbbattle.FindWinRecordArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.FindWinRecordArgs
+         * @static
+         * @param {pbbattle.IFindWinRecordArgs} message FindWinRecordArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindWinRecordArgs.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.pageInfo != null && Object.hasOwnProperty.call(message, "pageInfo"))
+                $root.pbcommon.PageInfo.encode(message.pageInfo, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.query != null && Object.hasOwnProperty.call(message, "query"))
+                $root.pbbattle.WinRecordModel.encode(message.query, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            if (message.keyword != null && Object.hasOwnProperty.call(message, "keyword"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.keyword);
+            if (message.generalIdList != null && message.generalIdList.length) {
+                writer.uint32(/* id 4, wireType 2 =*/34).fork();
+                for (var i = 0; i < message.generalIdList.length; ++i)
+                    writer.int64(message.generalIdList[i]);
+                writer.ldelim();
+            }
+            if (message.isSystemUserList != null && message.isSystemUserList.length) {
+                writer.uint32(/* id 5, wireType 2 =*/42).fork();
+                for (var i = 0; i < message.isSystemUserList.length; ++i)
+                    writer.bool(message.isSystemUserList[i]);
+                writer.ldelim();
+            }
+            if (message.startDate != null && Object.hasOwnProperty.call(message, "startDate"))
+                writer.uint32(/* id 6, wireType 2 =*/50).string(message.startDate);
+            if (message.endDate != null && Object.hasOwnProperty.call(message, "endDate"))
+                writer.uint32(/* id 7, wireType 2 =*/58).string(message.endDate);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified FindWinRecordArgs message, length delimited. Does not implicitly {@link pbbattle.FindWinRecordArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.FindWinRecordArgs
+         * @static
+         * @param {pbbattle.IFindWinRecordArgs} message FindWinRecordArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindWinRecordArgs.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a FindWinRecordArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.FindWinRecordArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.FindWinRecordArgs} FindWinRecordArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindWinRecordArgs.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.FindWinRecordArgs();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.pageInfo = $root.pbcommon.PageInfo.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 2: {
+                        message.query = $root.pbbattle.WinRecordModel.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 3: {
+                        message.keyword = reader.string();
+                        break;
+                    }
+                case 4: {
+                        if (!(message.generalIdList && message.generalIdList.length))
+                            message.generalIdList = [];
+                        if ((tag & 7) === 2) {
+                            var end2 = reader.uint32() + reader.pos;
+                            while (reader.pos < end2)
+                                message.generalIdList.push(reader.int64());
+                        } else
+                            message.generalIdList.push(reader.int64());
+                        break;
+                    }
+                case 5: {
+                        if (!(message.isSystemUserList && message.isSystemUserList.length))
+                            message.isSystemUserList = [];
+                        if ((tag & 7) === 2) {
+                            var end2 = reader.uint32() + reader.pos;
+                            while (reader.pos < end2)
+                                message.isSystemUserList.push(reader.bool());
+                        } else
+                            message.isSystemUserList.push(reader.bool());
+                        break;
+                    }
+                case 6: {
+                        message.startDate = reader.string();
+                        break;
+                    }
+                case 7: {
+                        message.endDate = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a FindWinRecordArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.FindWinRecordArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.FindWinRecordArgs} FindWinRecordArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindWinRecordArgs.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a FindWinRecordArgs message.
+         * @function verify
+         * @memberof pbbattle.FindWinRecordArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        FindWinRecordArgs.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.pageInfo != null && message.hasOwnProperty("pageInfo")) {
+                var error = $root.pbcommon.PageInfo.verify(message.pageInfo);
+                if (error)
+                    return "pageInfo." + error;
+            }
+            if (message.query != null && message.hasOwnProperty("query")) {
+                var error = $root.pbbattle.WinRecordModel.verify(message.query);
+                if (error)
+                    return "query." + error;
+            }
+            if (message.keyword != null && message.hasOwnProperty("keyword"))
+                if (!$util.isString(message.keyword))
+                    return "keyword: string expected";
+            if (message.generalIdList != null && message.hasOwnProperty("generalIdList")) {
+                if (!Array.isArray(message.generalIdList))
+                    return "generalIdList: array expected";
+                for (var i = 0; i < message.generalIdList.length; ++i)
+                    if (!$util.isInteger(message.generalIdList[i]) && !(message.generalIdList[i] && $util.isInteger(message.generalIdList[i].low) && $util.isInteger(message.generalIdList[i].high)))
+                        return "generalIdList: integer|Long[] expected";
+            }
+            if (message.isSystemUserList != null && message.hasOwnProperty("isSystemUserList")) {
+                if (!Array.isArray(message.isSystemUserList))
+                    return "isSystemUserList: array expected";
+                for (var i = 0; i < message.isSystemUserList.length; ++i)
+                    if (typeof message.isSystemUserList[i] !== "boolean")
+                        return "isSystemUserList: boolean[] expected";
+            }
+            if (message.startDate != null && message.hasOwnProperty("startDate"))
+                if (!$util.isString(message.startDate))
+                    return "startDate: string expected";
+            if (message.endDate != null && message.hasOwnProperty("endDate"))
+                if (!$util.isString(message.endDate))
+                    return "endDate: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a FindWinRecordArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.FindWinRecordArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.FindWinRecordArgs} FindWinRecordArgs
+         */
+        FindWinRecordArgs.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.FindWinRecordArgs)
+                return object;
+            var message = new $root.pbbattle.FindWinRecordArgs();
+            if (object.pageInfo != null) {
+                if (typeof object.pageInfo !== "object")
+                    throw TypeError(".pbbattle.FindWinRecordArgs.pageInfo: object expected");
+                message.pageInfo = $root.pbcommon.PageInfo.fromObject(object.pageInfo);
+            }
+            if (object.query != null) {
+                if (typeof object.query !== "object")
+                    throw TypeError(".pbbattle.FindWinRecordArgs.query: object expected");
+                message.query = $root.pbbattle.WinRecordModel.fromObject(object.query);
+            }
+            if (object.keyword != null)
+                message.keyword = String(object.keyword);
+            if (object.generalIdList) {
+                if (!Array.isArray(object.generalIdList))
+                    throw TypeError(".pbbattle.FindWinRecordArgs.generalIdList: array expected");
+                message.generalIdList = [];
+                for (var i = 0; i < object.generalIdList.length; ++i)
+                    if ($util.Long)
+                        (message.generalIdList[i] = $util.Long.fromValue(object.generalIdList[i])).unsigned = false;
+                    else if (typeof object.generalIdList[i] === "string")
+                        message.generalIdList[i] = parseInt(object.generalIdList[i], 10);
+                    else if (typeof object.generalIdList[i] === "number")
+                        message.generalIdList[i] = object.generalIdList[i];
+                    else if (typeof object.generalIdList[i] === "object")
+                        message.generalIdList[i] = new $util.LongBits(object.generalIdList[i].low >>> 0, object.generalIdList[i].high >>> 0).toNumber();
+            }
+            if (object.isSystemUserList) {
+                if (!Array.isArray(object.isSystemUserList))
+                    throw TypeError(".pbbattle.FindWinRecordArgs.isSystemUserList: array expected");
+                message.isSystemUserList = [];
+                for (var i = 0; i < object.isSystemUserList.length; ++i)
+                    message.isSystemUserList[i] = Boolean(object.isSystemUserList[i]);
+            }
+            if (object.startDate != null)
+                message.startDate = String(object.startDate);
+            if (object.endDate != null)
+                message.endDate = String(object.endDate);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a FindWinRecordArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.FindWinRecordArgs
+         * @static
+         * @param {pbbattle.FindWinRecordArgs} message FindWinRecordArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FindWinRecordArgs.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults) {
+                object.generalIdList = [];
+                object.isSystemUserList = [];
+            }
+            if (options.defaults) {
+                object.pageInfo = null;
+                object.query = null;
+                object.keyword = "";
+                object.startDate = "";
+                object.endDate = "";
+            }
+            if (message.pageInfo != null && message.hasOwnProperty("pageInfo"))
+                object.pageInfo = $root.pbcommon.PageInfo.toObject(message.pageInfo, options);
+            if (message.query != null && message.hasOwnProperty("query"))
+                object.query = $root.pbbattle.WinRecordModel.toObject(message.query, options);
+            if (message.keyword != null && message.hasOwnProperty("keyword"))
+                object.keyword = message.keyword;
+            if (message.generalIdList && message.generalIdList.length) {
+                object.generalIdList = [];
+                for (var j = 0; j < message.generalIdList.length; ++j)
+                    if (typeof message.generalIdList[j] === "number")
+                        object.generalIdList[j] = options.longs === String ? String(message.generalIdList[j]) : message.generalIdList[j];
+                    else
+                        object.generalIdList[j] = options.longs === String ? $util.Long.prototype.toString.call(message.generalIdList[j]) : options.longs === Number ? new $util.LongBits(message.generalIdList[j].low >>> 0, message.generalIdList[j].high >>> 0).toNumber() : message.generalIdList[j];
+            }
+            if (message.isSystemUserList && message.isSystemUserList.length) {
+                object.isSystemUserList = [];
+                for (var j = 0; j < message.isSystemUserList.length; ++j)
+                    object.isSystemUserList[j] = message.isSystemUserList[j];
+            }
+            if (message.startDate != null && message.hasOwnProperty("startDate"))
+                object.startDate = message.startDate;
+            if (message.endDate != null && message.hasOwnProperty("endDate"))
+                object.endDate = message.endDate;
+            return object;
+        };
+
+        /**
+         * Converts this FindWinRecordArgs to JSON.
+         * @function toJSON
+         * @memberof pbbattle.FindWinRecordArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        FindWinRecordArgs.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for FindWinRecordArgs
+         * @function getTypeUrl
+         * @memberof pbbattle.FindWinRecordArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        FindWinRecordArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.FindWinRecordArgs";
+        };
+
+        return FindWinRecordArgs;
+    })();
+
+    pbbattle.FindWinRecordReply = (function() {
+
+        /**
+         * Properties of a FindWinRecordReply.
+         * @memberof pbbattle
+         * @interface IFindWinRecordReply
+         * @property {pbcommon.EnumCode|null} [code] FindWinRecordReply code
+         * @property {string|null} [msg] FindWinRecordReply msg
+         * @property {pbbattle.IWinRecordModel|null} [data] FindWinRecordReply data
+         * @property {Array.<pbbattle.IWinRecordModel>|null} [list] FindWinRecordReply list
+         * @property {number|Long|null} [total] FindWinRecordReply total
+         */
+
+        /**
+         * Constructs a new FindWinRecordReply.
+         * @memberof pbbattle
+         * @classdesc Represents a FindWinRecordReply.
+         * @implements IFindWinRecordReply
+         * @constructor
+         * @param {pbbattle.IFindWinRecordReply=} [properties] Properties to set
+         */
+        function FindWinRecordReply(properties) {
+            this.list = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * FindWinRecordReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbbattle.FindWinRecordReply
+         * @instance
+         */
+        FindWinRecordReply.prototype.code = 0;
+
+        /**
+         * FindWinRecordReply msg.
+         * @member {string} msg
+         * @memberof pbbattle.FindWinRecordReply
+         * @instance
+         */
+        FindWinRecordReply.prototype.msg = "";
+
+        /**
+         * FindWinRecordReply data.
+         * @member {pbbattle.IWinRecordModel|null|undefined} data
+         * @memberof pbbattle.FindWinRecordReply
+         * @instance
+         */
+        FindWinRecordReply.prototype.data = null;
+
+        /**
+         * FindWinRecordReply list.
+         * @member {Array.<pbbattle.IWinRecordModel>} list
+         * @memberof pbbattle.FindWinRecordReply
+         * @instance
+         */
+        FindWinRecordReply.prototype.list = $util.emptyArray;
+
+        /**
+         * FindWinRecordReply total.
+         * @member {number|Long} total
+         * @memberof pbbattle.FindWinRecordReply
+         * @instance
+         */
+        FindWinRecordReply.prototype.total = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * Creates a new FindWinRecordReply instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.FindWinRecordReply
+         * @static
+         * @param {pbbattle.IFindWinRecordReply=} [properties] Properties to set
+         * @returns {pbbattle.FindWinRecordReply} FindWinRecordReply instance
+         */
+        FindWinRecordReply.create = function create(properties) {
+            return new FindWinRecordReply(properties);
+        };
+
+        /**
+         * Encodes the specified FindWinRecordReply message. Does not implicitly {@link pbbattle.FindWinRecordReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.FindWinRecordReply
+         * @static
+         * @param {pbbattle.IFindWinRecordReply} message FindWinRecordReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindWinRecordReply.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.data != null && Object.hasOwnProperty.call(message, "data"))
+                $root.pbbattle.WinRecordModel.encode(message.data, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            if (message.list != null && message.list.length)
+                for (var i = 0; i < message.list.length; ++i)
+                    $root.pbbattle.WinRecordModel.encode(message.list[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+            if (message.total != null && Object.hasOwnProperty.call(message, "total"))
+                writer.uint32(/* id 5, wireType 0 =*/40).int64(message.total);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified FindWinRecordReply message, length delimited. Does not implicitly {@link pbbattle.FindWinRecordReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.FindWinRecordReply
+         * @static
+         * @param {pbbattle.IFindWinRecordReply} message FindWinRecordReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindWinRecordReply.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a FindWinRecordReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.FindWinRecordReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.FindWinRecordReply} FindWinRecordReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindWinRecordReply.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.FindWinRecordReply();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.code = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.data = $root.pbbattle.WinRecordModel.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 4: {
+                        if (!(message.list && message.list.length))
+                            message.list = [];
+                        message.list.push($root.pbbattle.WinRecordModel.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 5: {
+                        message.total = reader.int64();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a FindWinRecordReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.FindWinRecordReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.FindWinRecordReply} FindWinRecordReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindWinRecordReply.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a FindWinRecordReply message.
+         * @function verify
+         * @memberof pbbattle.FindWinRecordReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        FindWinRecordReply.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.code != null && message.hasOwnProperty("code"))
+                switch (message.code) {
+                default:
+                    return "code: enum value expected";
+                case 0:
+                case 200:
+                case 403:
+                case 500:
+                case 501:
+                case 502:
+                case 503:
+                case 504:
+                case 505:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
+                case 2002:
+                case 2003:
+                case 2004:
+                case 2005:
+                case 2006:
+                case 2007:
+                case 2008:
+                case 2009:
+                case 2010:
+                case 2011:
+                case 2012:
+                case 2013:
+                case 2014:
+                case 2015:
+                case 3001:
+                case 3002:
+                case 3003:
+                case 5001:
+                case 5002:
+                case 10001:
+                case 10002:
+                case 20001:
+                case 20002:
+                    break;
+                }
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                if (!$util.isString(message.msg))
+                    return "msg: string expected";
+            if (message.data != null && message.hasOwnProperty("data")) {
+                var error = $root.pbbattle.WinRecordModel.verify(message.data);
+                if (error)
+                    return "data." + error;
+            }
+            if (message.list != null && message.hasOwnProperty("list")) {
+                if (!Array.isArray(message.list))
+                    return "list: array expected";
+                for (var i = 0; i < message.list.length; ++i) {
+                    var error = $root.pbbattle.WinRecordModel.verify(message.list[i]);
+                    if (error)
+                        return "list." + error;
+                }
+            }
+            if (message.total != null && message.hasOwnProperty("total"))
+                if (!$util.isInteger(message.total) && !(message.total && $util.isInteger(message.total.low) && $util.isInteger(message.total.high)))
+                    return "total: integer|Long expected";
+            return null;
+        };
+
+        /**
+         * Creates a FindWinRecordReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.FindWinRecordReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.FindWinRecordReply} FindWinRecordReply
+         */
+        FindWinRecordReply.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.FindWinRecordReply)
+                return object;
+            var message = new $root.pbbattle.FindWinRecordReply();
+            switch (object.code) {
+            default:
+                if (typeof object.code === "number") {
+                    message.code = object.code;
+                    break;
+                }
+                break;
+            case "None":
+            case 0:
+                message.code = 0;
+                break;
+            case "Success":
+            case 200:
+                message.code = 200;
+                break;
+            case "Forbidden":
+            case 403:
+                message.code = 403;
+                break;
+            case "Fail":
+            case 500:
+                message.code = 500;
+                break;
+            case "Unknown":
+            case 501:
+                message.code = 501;
+                break;
+            case "Internal":
+            case 502:
+                message.code = 502;
+                break;
+            case "Invalid":
+            case 503:
+                message.code = 503;
+                break;
+            case "InvalidParam":
+            case 504:
+                message.code = 504;
+                break;
+            case "ParamError":
+            case 505:
+                message.code = 505;
+                break;
+            case "FindError":
+            case 1001:
+                message.code = 1001;
+                break;
+            case "CreateError":
+            case 1002:
+                message.code = 1002;
+                break;
+            case "DeleteError":
+            case 1003:
+                message.code = 1003;
+                break;
+            case "UpdateError":
+            case 1004:
+                message.code = 1004;
+                break;
+            case "InvalidToken":
+            case 2002:
+                message.code = 2002;
+                break;
+            case "InvalidSign":
+            case 2003:
+                message.code = 2003;
+                break;
+            case "NotLogin":
+            case 2004:
+                message.code = 2004;
+                break;
+            case "LoginTimeout":
+            case 2005:
+                message.code = 2005;
+                break;
+            case "LoginError":
+            case 2006:
+                message.code = 2006;
+                break;
+            case "LoginForbidden":
+            case 2007:
+                message.code = 2007;
+                break;
+            case "LoginExpired":
+            case 2008:
+                message.code = 2008;
+                break;
+            case "LoginInvalid":
+            case 2009:
+                message.code = 2009;
+                break;
+            case "LoginInvalidPassword":
+            case 2010:
+                message.code = 2010;
+                break;
+            case "LoginInvalidUsername":
+            case 2011:
+                message.code = 2011;
+                break;
+            case "LoginInvalidEmail":
+            case 2012:
+                message.code = 2012;
+                break;
+            case "LoginInvalidPhone":
+            case 2013:
+                message.code = 2013;
+                break;
+            case "LoginInvalidUsernameOrEmail":
+            case 2014:
+                message.code = 2014;
+                break;
+            case "LoginSocketRepeat":
+            case 2015:
+                message.code = 2015;
+                break;
+            case "RoleIsNotExist":
+            case 3001:
+                message.code = 3001;
+                break;
+            case "UserIsExist":
+            case 3002:
+                message.code = 3002;
+                break;
+            case "UserIsBan":
+            case 3003:
+                message.code = 3003;
+                break;
+            case "TalkIsBan":
+            case 5001:
+                message.code = 5001;
+                break;
+            case "EnterRoomErr":
+            case 5002:
+                message.code = 5002;
+                break;
+            case "HalaChatNeedBuy":
+            case 10001:
+                message.code = 10001;
+                break;
+            case "HalaPriceOutRange":
+            case 10002:
+                message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            }
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.data != null) {
+                if (typeof object.data !== "object")
+                    throw TypeError(".pbbattle.FindWinRecordReply.data: object expected");
+                message.data = $root.pbbattle.WinRecordModel.fromObject(object.data);
+            }
+            if (object.list) {
+                if (!Array.isArray(object.list))
+                    throw TypeError(".pbbattle.FindWinRecordReply.list: array expected");
+                message.list = [];
+                for (var i = 0; i < object.list.length; ++i) {
+                    if (typeof object.list[i] !== "object")
+                        throw TypeError(".pbbattle.FindWinRecordReply.list: object expected");
+                    message.list[i] = $root.pbbattle.WinRecordModel.fromObject(object.list[i]);
+                }
+            }
+            if (object.total != null)
+                if ($util.Long)
+                    (message.total = $util.Long.fromValue(object.total)).unsigned = false;
+                else if (typeof object.total === "string")
+                    message.total = parseInt(object.total, 10);
+                else if (typeof object.total === "number")
+                    message.total = object.total;
+                else if (typeof object.total === "object")
+                    message.total = new $util.LongBits(object.total.low >>> 0, object.total.high >>> 0).toNumber();
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a FindWinRecordReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.FindWinRecordReply
+         * @static
+         * @param {pbbattle.FindWinRecordReply} message FindWinRecordReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FindWinRecordReply.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.list = [];
+            if (options.defaults) {
+                object.code = options.enums === String ? "None" : 0;
+                object.msg = "";
+                object.data = null;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.total = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.total = options.longs === String ? "0" : 0;
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.data != null && message.hasOwnProperty("data"))
+                object.data = $root.pbbattle.WinRecordModel.toObject(message.data, options);
+            if (message.list && message.list.length) {
+                object.list = [];
+                for (var j = 0; j < message.list.length; ++j)
+                    object.list[j] = $root.pbbattle.WinRecordModel.toObject(message.list[j], options);
+            }
+            if (message.total != null && message.hasOwnProperty("total"))
+                if (typeof message.total === "number")
+                    object.total = options.longs === String ? String(message.total) : message.total;
+                else
+                    object.total = options.longs === String ? $util.Long.prototype.toString.call(message.total) : options.longs === Number ? new $util.LongBits(message.total.low >>> 0, message.total.high >>> 0).toNumber() : message.total;
+            return object;
+        };
+
+        /**
+         * Converts this FindWinRecordReply to JSON.
+         * @function toJSON
+         * @memberof pbbattle.FindWinRecordReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        FindWinRecordReply.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for FindWinRecordReply
+         * @function getTypeUrl
+         * @memberof pbbattle.FindWinRecordReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        FindWinRecordReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.FindWinRecordReply";
+        };
+
+        return FindWinRecordReply;
+    })();
+
+    pbbattle.SystemUserModel = (function() {
+
+        /**
+         * Properties of a SystemUserModel.
+         * @memberof pbbattle
+         * @interface ISystemUserModel
+         * @property {number|Long|null} [id] SystemUserModel id
+         * @property {string|null} [createdAt] SystemUserModel createdAt
+         * @property {string|null} [updatedAt] SystemUserModel updatedAt
+         * @property {number|Long|null} [userId] SystemUserModel userId
+         * @property {string|null} [username] SystemUserModel username
+         * @property {string|null} [nickname] SystemUserModel nickname
+         * @property {boolean|null} [isEnabled] SystemUserModel isEnabled
+         * @property {string|null} [remark] SystemUserModel remark
+         */
+
+        /**
+         * Constructs a new SystemUserModel.
+         * @memberof pbbattle
+         * @classdesc Represents a SystemUserModel.
+         * @implements ISystemUserModel
+         * @constructor
+         * @param {pbbattle.ISystemUserModel=} [properties] Properties to set
+         */
+        function SystemUserModel(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * SystemUserModel id.
+         * @member {number|Long} id
+         * @memberof pbbattle.SystemUserModel
+         * @instance
+         */
+        SystemUserModel.prototype.id = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * SystemUserModel createdAt.
+         * @member {string} createdAt
+         * @memberof pbbattle.SystemUserModel
+         * @instance
+         */
+        SystemUserModel.prototype.createdAt = "";
+
+        /**
+         * SystemUserModel updatedAt.
+         * @member {string} updatedAt
+         * @memberof pbbattle.SystemUserModel
+         * @instance
+         */
+        SystemUserModel.prototype.updatedAt = "";
+
+        /**
+         * SystemUserModel userId.
+         * @member {number|Long} userId
+         * @memberof pbbattle.SystemUserModel
+         * @instance
+         */
+        SystemUserModel.prototype.userId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * SystemUserModel username.
+         * @member {string} username
+         * @memberof pbbattle.SystemUserModel
+         * @instance
+         */
+        SystemUserModel.prototype.username = "";
+
+        /**
+         * SystemUserModel nickname.
+         * @member {string} nickname
+         * @memberof pbbattle.SystemUserModel
+         * @instance
+         */
+        SystemUserModel.prototype.nickname = "";
+
+        /**
+         * SystemUserModel isEnabled.
+         * @member {boolean} isEnabled
+         * @memberof pbbattle.SystemUserModel
+         * @instance
+         */
+        SystemUserModel.prototype.isEnabled = false;
+
+        /**
+         * SystemUserModel remark.
+         * @member {string} remark
+         * @memberof pbbattle.SystemUserModel
+         * @instance
+         */
+        SystemUserModel.prototype.remark = "";
+
+        /**
+         * Creates a new SystemUserModel instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.SystemUserModel
+         * @static
+         * @param {pbbattle.ISystemUserModel=} [properties] Properties to set
+         * @returns {pbbattle.SystemUserModel} SystemUserModel instance
+         */
+        SystemUserModel.create = function create(properties) {
+            return new SystemUserModel(properties);
+        };
+
+        /**
+         * Encodes the specified SystemUserModel message. Does not implicitly {@link pbbattle.SystemUserModel.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.SystemUserModel
+         * @static
+         * @param {pbbattle.ISystemUserModel} message SystemUserModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        SystemUserModel.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id);
+            if (message.createdAt != null && Object.hasOwnProperty.call(message, "createdAt"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.createdAt);
+            if (message.updatedAt != null && Object.hasOwnProperty.call(message, "updatedAt"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.updatedAt);
+            if (message.userId != null && Object.hasOwnProperty.call(message, "userId"))
+                writer.uint32(/* id 10, wireType 0 =*/80).int64(message.userId);
+            if (message.username != null && Object.hasOwnProperty.call(message, "username"))
+                writer.uint32(/* id 11, wireType 2 =*/90).string(message.username);
+            if (message.nickname != null && Object.hasOwnProperty.call(message, "nickname"))
+                writer.uint32(/* id 12, wireType 2 =*/98).string(message.nickname);
+            if (message.isEnabled != null && Object.hasOwnProperty.call(message, "isEnabled"))
+                writer.uint32(/* id 13, wireType 0 =*/104).bool(message.isEnabled);
+            if (message.remark != null && Object.hasOwnProperty.call(message, "remark"))
+                writer.uint32(/* id 14, wireType 2 =*/114).string(message.remark);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified SystemUserModel message, length delimited. Does not implicitly {@link pbbattle.SystemUserModel.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.SystemUserModel
+         * @static
+         * @param {pbbattle.ISystemUserModel} message SystemUserModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        SystemUserModel.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a SystemUserModel message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.SystemUserModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.SystemUserModel} SystemUserModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        SystemUserModel.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.SystemUserModel();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.id = reader.int64();
+                        break;
+                    }
+                case 2: {
+                        message.createdAt = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.updatedAt = reader.string();
+                        break;
+                    }
+                case 10: {
+                        message.userId = reader.int64();
+                        break;
+                    }
+                case 11: {
+                        message.username = reader.string();
+                        break;
+                    }
+                case 12: {
+                        message.nickname = reader.string();
+                        break;
+                    }
+                case 13: {
+                        message.isEnabled = reader.bool();
+                        break;
+                    }
+                case 14: {
+                        message.remark = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a SystemUserModel message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.SystemUserModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.SystemUserModel} SystemUserModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        SystemUserModel.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a SystemUserModel message.
+         * @function verify
+         * @memberof pbbattle.SystemUserModel
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        SystemUserModel.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (!$util.isInteger(message.id) && !(message.id && $util.isInteger(message.id.low) && $util.isInteger(message.id.high)))
+                    return "id: integer|Long expected";
+            if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                if (!$util.isString(message.createdAt))
+                    return "createdAt: string expected";
+            if (message.updatedAt != null && message.hasOwnProperty("updatedAt"))
+                if (!$util.isString(message.updatedAt))
+                    return "updatedAt: string expected";
+            if (message.userId != null && message.hasOwnProperty("userId"))
+                if (!$util.isInteger(message.userId) && !(message.userId && $util.isInteger(message.userId.low) && $util.isInteger(message.userId.high)))
+                    return "userId: integer|Long expected";
+            if (message.username != null && message.hasOwnProperty("username"))
+                if (!$util.isString(message.username))
+                    return "username: string expected";
+            if (message.nickname != null && message.hasOwnProperty("nickname"))
+                if (!$util.isString(message.nickname))
+                    return "nickname: string expected";
+            if (message.isEnabled != null && message.hasOwnProperty("isEnabled"))
+                if (typeof message.isEnabled !== "boolean")
+                    return "isEnabled: boolean expected";
+            if (message.remark != null && message.hasOwnProperty("remark"))
+                if (!$util.isString(message.remark))
+                    return "remark: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a SystemUserModel message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.SystemUserModel
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.SystemUserModel} SystemUserModel
+         */
+        SystemUserModel.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.SystemUserModel)
+                return object;
+            var message = new $root.pbbattle.SystemUserModel();
+            if (object.id != null)
+                if ($util.Long)
+                    (message.id = $util.Long.fromValue(object.id)).unsigned = false;
+                else if (typeof object.id === "string")
+                    message.id = parseInt(object.id, 10);
+                else if (typeof object.id === "number")
+                    message.id = object.id;
+                else if (typeof object.id === "object")
+                    message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber();
+            if (object.createdAt != null)
+                message.createdAt = String(object.createdAt);
+            if (object.updatedAt != null)
+                message.updatedAt = String(object.updatedAt);
+            if (object.userId != null)
+                if ($util.Long)
+                    (message.userId = $util.Long.fromValue(object.userId)).unsigned = false;
+                else if (typeof object.userId === "string")
+                    message.userId = parseInt(object.userId, 10);
+                else if (typeof object.userId === "number")
+                    message.userId = object.userId;
+                else if (typeof object.userId === "object")
+                    message.userId = new $util.LongBits(object.userId.low >>> 0, object.userId.high >>> 0).toNumber();
+            if (object.username != null)
+                message.username = String(object.username);
+            if (object.nickname != null)
+                message.nickname = String(object.nickname);
+            if (object.isEnabled != null)
+                message.isEnabled = Boolean(object.isEnabled);
+            if (object.remark != null)
+                message.remark = String(object.remark);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a SystemUserModel message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.SystemUserModel
+         * @static
+         * @param {pbbattle.SystemUserModel} message SystemUserModel
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        SystemUserModel.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.id = options.longs === String ? "0" : 0;
+                object.createdAt = "";
+                object.updatedAt = "";
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.userId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.userId = options.longs === String ? "0" : 0;
+                object.username = "";
+                object.nickname = "";
+                object.isEnabled = false;
+                object.remark = "";
+            }
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (typeof message.id === "number")
+                    object.id = options.longs === String ? String(message.id) : message.id;
+                else
+                    object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id;
+            if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                object.createdAt = message.createdAt;
+            if (message.updatedAt != null && message.hasOwnProperty("updatedAt"))
+                object.updatedAt = message.updatedAt;
+            if (message.userId != null && message.hasOwnProperty("userId"))
+                if (typeof message.userId === "number")
+                    object.userId = options.longs === String ? String(message.userId) : message.userId;
+                else
+                    object.userId = options.longs === String ? $util.Long.prototype.toString.call(message.userId) : options.longs === Number ? new $util.LongBits(message.userId.low >>> 0, message.userId.high >>> 0).toNumber() : message.userId;
+            if (message.username != null && message.hasOwnProperty("username"))
+                object.username = message.username;
+            if (message.nickname != null && message.hasOwnProperty("nickname"))
+                object.nickname = message.nickname;
+            if (message.isEnabled != null && message.hasOwnProperty("isEnabled"))
+                object.isEnabled = message.isEnabled;
+            if (message.remark != null && message.hasOwnProperty("remark"))
+                object.remark = message.remark;
+            return object;
+        };
+
+        /**
+         * Converts this SystemUserModel to JSON.
+         * @function toJSON
+         * @memberof pbbattle.SystemUserModel
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        SystemUserModel.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for SystemUserModel
+         * @function getTypeUrl
+         * @memberof pbbattle.SystemUserModel
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        SystemUserModel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.SystemUserModel";
+        };
+
+        return SystemUserModel;
+    })();
+
+    pbbattle.FindSystemUserArgs = (function() {
+
+        /**
+         * Properties of a FindSystemUserArgs.
+         * @memberof pbbattle
+         * @interface IFindSystemUserArgs
+         * @property {pbcommon.IPageInfo|null} [pageInfo] FindSystemUserArgs pageInfo
+         * @property {pbbattle.ISystemUserModel|null} [query] FindSystemUserArgs query
+         * @property {string|null} [keyword] FindSystemUserArgs keyword
+         * @property {Array.<boolean>|null} [isEnabledList] FindSystemUserArgs isEnabledList
+         */
+
+        /**
+         * Constructs a new FindSystemUserArgs.
+         * @memberof pbbattle
+         * @classdesc Represents a FindSystemUserArgs.
+         * @implements IFindSystemUserArgs
+         * @constructor
+         * @param {pbbattle.IFindSystemUserArgs=} [properties] Properties to set
+         */
+        function FindSystemUserArgs(properties) {
+            this.isEnabledList = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * FindSystemUserArgs pageInfo.
+         * @member {pbcommon.IPageInfo|null|undefined} pageInfo
+         * @memberof pbbattle.FindSystemUserArgs
+         * @instance
+         */
+        FindSystemUserArgs.prototype.pageInfo = null;
+
+        /**
+         * FindSystemUserArgs query.
+         * @member {pbbattle.ISystemUserModel|null|undefined} query
+         * @memberof pbbattle.FindSystemUserArgs
+         * @instance
+         */
+        FindSystemUserArgs.prototype.query = null;
+
+        /**
+         * FindSystemUserArgs keyword.
+         * @member {string} keyword
+         * @memberof pbbattle.FindSystemUserArgs
+         * @instance
+         */
+        FindSystemUserArgs.prototype.keyword = "";
+
+        /**
+         * FindSystemUserArgs isEnabledList.
+         * @member {Array.<boolean>} isEnabledList
+         * @memberof pbbattle.FindSystemUserArgs
+         * @instance
+         */
+        FindSystemUserArgs.prototype.isEnabledList = $util.emptyArray;
+
+        /**
+         * Creates a new FindSystemUserArgs instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.FindSystemUserArgs
+         * @static
+         * @param {pbbattle.IFindSystemUserArgs=} [properties] Properties to set
+         * @returns {pbbattle.FindSystemUserArgs} FindSystemUserArgs instance
+         */
+        FindSystemUserArgs.create = function create(properties) {
+            return new FindSystemUserArgs(properties);
+        };
+
+        /**
+         * Encodes the specified FindSystemUserArgs message. Does not implicitly {@link pbbattle.FindSystemUserArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.FindSystemUserArgs
+         * @static
+         * @param {pbbattle.IFindSystemUserArgs} message FindSystemUserArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindSystemUserArgs.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.pageInfo != null && Object.hasOwnProperty.call(message, "pageInfo"))
+                $root.pbcommon.PageInfo.encode(message.pageInfo, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.query != null && Object.hasOwnProperty.call(message, "query"))
+                $root.pbbattle.SystemUserModel.encode(message.query, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            if (message.keyword != null && Object.hasOwnProperty.call(message, "keyword"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.keyword);
+            if (message.isEnabledList != null && message.isEnabledList.length) {
+                writer.uint32(/* id 4, wireType 2 =*/34).fork();
+                for (var i = 0; i < message.isEnabledList.length; ++i)
+                    writer.bool(message.isEnabledList[i]);
+                writer.ldelim();
+            }
+            return writer;
+        };
+
+        /**
+         * Encodes the specified FindSystemUserArgs message, length delimited. Does not implicitly {@link pbbattle.FindSystemUserArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.FindSystemUserArgs
+         * @static
+         * @param {pbbattle.IFindSystemUserArgs} message FindSystemUserArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindSystemUserArgs.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a FindSystemUserArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.FindSystemUserArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.FindSystemUserArgs} FindSystemUserArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindSystemUserArgs.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.FindSystemUserArgs();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.pageInfo = $root.pbcommon.PageInfo.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 2: {
+                        message.query = $root.pbbattle.SystemUserModel.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 3: {
+                        message.keyword = reader.string();
+                        break;
+                    }
+                case 4: {
+                        if (!(message.isEnabledList && message.isEnabledList.length))
+                            message.isEnabledList = [];
+                        if ((tag & 7) === 2) {
+                            var end2 = reader.uint32() + reader.pos;
+                            while (reader.pos < end2)
+                                message.isEnabledList.push(reader.bool());
+                        } else
+                            message.isEnabledList.push(reader.bool());
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a FindSystemUserArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.FindSystemUserArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.FindSystemUserArgs} FindSystemUserArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindSystemUserArgs.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a FindSystemUserArgs message.
+         * @function verify
+         * @memberof pbbattle.FindSystemUserArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        FindSystemUserArgs.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.pageInfo != null && message.hasOwnProperty("pageInfo")) {
+                var error = $root.pbcommon.PageInfo.verify(message.pageInfo);
+                if (error)
+                    return "pageInfo." + error;
+            }
+            if (message.query != null && message.hasOwnProperty("query")) {
+                var error = $root.pbbattle.SystemUserModel.verify(message.query);
+                if (error)
+                    return "query." + error;
+            }
+            if (message.keyword != null && message.hasOwnProperty("keyword"))
+                if (!$util.isString(message.keyword))
+                    return "keyword: string expected";
+            if (message.isEnabledList != null && message.hasOwnProperty("isEnabledList")) {
+                if (!Array.isArray(message.isEnabledList))
+                    return "isEnabledList: array expected";
+                for (var i = 0; i < message.isEnabledList.length; ++i)
+                    if (typeof message.isEnabledList[i] !== "boolean")
+                        return "isEnabledList: boolean[] expected";
+            }
+            return null;
+        };
+
+        /**
+         * Creates a FindSystemUserArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.FindSystemUserArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.FindSystemUserArgs} FindSystemUserArgs
+         */
+        FindSystemUserArgs.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.FindSystemUserArgs)
+                return object;
+            var message = new $root.pbbattle.FindSystemUserArgs();
+            if (object.pageInfo != null) {
+                if (typeof object.pageInfo !== "object")
+                    throw TypeError(".pbbattle.FindSystemUserArgs.pageInfo: object expected");
+                message.pageInfo = $root.pbcommon.PageInfo.fromObject(object.pageInfo);
+            }
+            if (object.query != null) {
+                if (typeof object.query !== "object")
+                    throw TypeError(".pbbattle.FindSystemUserArgs.query: object expected");
+                message.query = $root.pbbattle.SystemUserModel.fromObject(object.query);
+            }
+            if (object.keyword != null)
+                message.keyword = String(object.keyword);
+            if (object.isEnabledList) {
+                if (!Array.isArray(object.isEnabledList))
+                    throw TypeError(".pbbattle.FindSystemUserArgs.isEnabledList: array expected");
+                message.isEnabledList = [];
+                for (var i = 0; i < object.isEnabledList.length; ++i)
+                    message.isEnabledList[i] = Boolean(object.isEnabledList[i]);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a FindSystemUserArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.FindSystemUserArgs
+         * @static
+         * @param {pbbattle.FindSystemUserArgs} message FindSystemUserArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FindSystemUserArgs.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.isEnabledList = [];
+            if (options.defaults) {
+                object.pageInfo = null;
+                object.query = null;
+                object.keyword = "";
+            }
+            if (message.pageInfo != null && message.hasOwnProperty("pageInfo"))
+                object.pageInfo = $root.pbcommon.PageInfo.toObject(message.pageInfo, options);
+            if (message.query != null && message.hasOwnProperty("query"))
+                object.query = $root.pbbattle.SystemUserModel.toObject(message.query, options);
+            if (message.keyword != null && message.hasOwnProperty("keyword"))
+                object.keyword = message.keyword;
+            if (message.isEnabledList && message.isEnabledList.length) {
+                object.isEnabledList = [];
+                for (var j = 0; j < message.isEnabledList.length; ++j)
+                    object.isEnabledList[j] = message.isEnabledList[j];
+            }
+            return object;
+        };
+
+        /**
+         * Converts this FindSystemUserArgs to JSON.
+         * @function toJSON
+         * @memberof pbbattle.FindSystemUserArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        FindSystemUserArgs.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for FindSystemUserArgs
+         * @function getTypeUrl
+         * @memberof pbbattle.FindSystemUserArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        FindSystemUserArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.FindSystemUserArgs";
+        };
+
+        return FindSystemUserArgs;
+    })();
+
+    pbbattle.FindSystemUserReply = (function() {
+
+        /**
+         * Properties of a FindSystemUserReply.
+         * @memberof pbbattle
+         * @interface IFindSystemUserReply
+         * @property {pbcommon.EnumCode|null} [code] FindSystemUserReply code
+         * @property {string|null} [msg] FindSystemUserReply msg
+         * @property {pbbattle.ISystemUserModel|null} [data] FindSystemUserReply data
+         * @property {Array.<pbbattle.ISystemUserModel>|null} [list] FindSystemUserReply list
+         * @property {number|Long|null} [total] FindSystemUserReply total
+         */
+
+        /**
+         * Constructs a new FindSystemUserReply.
+         * @memberof pbbattle
+         * @classdesc Represents a FindSystemUserReply.
+         * @implements IFindSystemUserReply
+         * @constructor
+         * @param {pbbattle.IFindSystemUserReply=} [properties] Properties to set
+         */
+        function FindSystemUserReply(properties) {
+            this.list = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * FindSystemUserReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbbattle.FindSystemUserReply
+         * @instance
+         */
+        FindSystemUserReply.prototype.code = 0;
+
+        /**
+         * FindSystemUserReply msg.
+         * @member {string} msg
+         * @memberof pbbattle.FindSystemUserReply
+         * @instance
+         */
+        FindSystemUserReply.prototype.msg = "";
+
+        /**
+         * FindSystemUserReply data.
+         * @member {pbbattle.ISystemUserModel|null|undefined} data
+         * @memberof pbbattle.FindSystemUserReply
+         * @instance
+         */
+        FindSystemUserReply.prototype.data = null;
+
+        /**
+         * FindSystemUserReply list.
+         * @member {Array.<pbbattle.ISystemUserModel>} list
+         * @memberof pbbattle.FindSystemUserReply
+         * @instance
+         */
+        FindSystemUserReply.prototype.list = $util.emptyArray;
+
+        /**
+         * FindSystemUserReply total.
+         * @member {number|Long} total
+         * @memberof pbbattle.FindSystemUserReply
+         * @instance
+         */
+        FindSystemUserReply.prototype.total = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * Creates a new FindSystemUserReply instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.FindSystemUserReply
+         * @static
+         * @param {pbbattle.IFindSystemUserReply=} [properties] Properties to set
+         * @returns {pbbattle.FindSystemUserReply} FindSystemUserReply instance
+         */
+        FindSystemUserReply.create = function create(properties) {
+            return new FindSystemUserReply(properties);
+        };
+
+        /**
+         * Encodes the specified FindSystemUserReply message. Does not implicitly {@link pbbattle.FindSystemUserReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.FindSystemUserReply
+         * @static
+         * @param {pbbattle.IFindSystemUserReply} message FindSystemUserReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindSystemUserReply.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.data != null && Object.hasOwnProperty.call(message, "data"))
+                $root.pbbattle.SystemUserModel.encode(message.data, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            if (message.list != null && message.list.length)
+                for (var i = 0; i < message.list.length; ++i)
+                    $root.pbbattle.SystemUserModel.encode(message.list[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+            if (message.total != null && Object.hasOwnProperty.call(message, "total"))
+                writer.uint32(/* id 5, wireType 0 =*/40).int64(message.total);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified FindSystemUserReply message, length delimited. Does not implicitly {@link pbbattle.FindSystemUserReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.FindSystemUserReply
+         * @static
+         * @param {pbbattle.IFindSystemUserReply} message FindSystemUserReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindSystemUserReply.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a FindSystemUserReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.FindSystemUserReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.FindSystemUserReply} FindSystemUserReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindSystemUserReply.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.FindSystemUserReply();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.code = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.data = $root.pbbattle.SystemUserModel.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 4: {
+                        if (!(message.list && message.list.length))
+                            message.list = [];
+                        message.list.push($root.pbbattle.SystemUserModel.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 5: {
+                        message.total = reader.int64();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a FindSystemUserReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.FindSystemUserReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.FindSystemUserReply} FindSystemUserReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindSystemUserReply.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a FindSystemUserReply message.
+         * @function verify
+         * @memberof pbbattle.FindSystemUserReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        FindSystemUserReply.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.code != null && message.hasOwnProperty("code"))
+                switch (message.code) {
+                default:
+                    return "code: enum value expected";
+                case 0:
+                case 200:
+                case 403:
+                case 500:
+                case 501:
+                case 502:
+                case 503:
+                case 504:
+                case 505:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
+                case 2002:
+                case 2003:
+                case 2004:
+                case 2005:
+                case 2006:
+                case 2007:
+                case 2008:
+                case 2009:
+                case 2010:
+                case 2011:
+                case 2012:
+                case 2013:
+                case 2014:
+                case 2015:
+                case 3001:
+                case 3002:
+                case 3003:
+                case 5001:
+                case 5002:
+                case 10001:
+                case 10002:
+                case 20001:
+                case 20002:
+                    break;
+                }
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                if (!$util.isString(message.msg))
+                    return "msg: string expected";
+            if (message.data != null && message.hasOwnProperty("data")) {
+                var error = $root.pbbattle.SystemUserModel.verify(message.data);
+                if (error)
+                    return "data." + error;
+            }
+            if (message.list != null && message.hasOwnProperty("list")) {
+                if (!Array.isArray(message.list))
+                    return "list: array expected";
+                for (var i = 0; i < message.list.length; ++i) {
+                    var error = $root.pbbattle.SystemUserModel.verify(message.list[i]);
+                    if (error)
+                        return "list." + error;
+                }
+            }
+            if (message.total != null && message.hasOwnProperty("total"))
+                if (!$util.isInteger(message.total) && !(message.total && $util.isInteger(message.total.low) && $util.isInteger(message.total.high)))
+                    return "total: integer|Long expected";
+            return null;
+        };
+
+        /**
+         * Creates a FindSystemUserReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.FindSystemUserReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.FindSystemUserReply} FindSystemUserReply
+         */
+        FindSystemUserReply.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.FindSystemUserReply)
+                return object;
+            var message = new $root.pbbattle.FindSystemUserReply();
+            switch (object.code) {
+            default:
+                if (typeof object.code === "number") {
+                    message.code = object.code;
+                    break;
+                }
+                break;
+            case "None":
+            case 0:
+                message.code = 0;
+                break;
+            case "Success":
+            case 200:
+                message.code = 200;
+                break;
+            case "Forbidden":
+            case 403:
+                message.code = 403;
+                break;
+            case "Fail":
+            case 500:
+                message.code = 500;
+                break;
+            case "Unknown":
+            case 501:
+                message.code = 501;
+                break;
+            case "Internal":
+            case 502:
+                message.code = 502;
+                break;
+            case "Invalid":
+            case 503:
+                message.code = 503;
+                break;
+            case "InvalidParam":
+            case 504:
+                message.code = 504;
+                break;
+            case "ParamError":
+            case 505:
+                message.code = 505;
+                break;
+            case "FindError":
+            case 1001:
+                message.code = 1001;
+                break;
+            case "CreateError":
+            case 1002:
+                message.code = 1002;
+                break;
+            case "DeleteError":
+            case 1003:
+                message.code = 1003;
+                break;
+            case "UpdateError":
+            case 1004:
+                message.code = 1004;
+                break;
+            case "InvalidToken":
+            case 2002:
+                message.code = 2002;
+                break;
+            case "InvalidSign":
+            case 2003:
+                message.code = 2003;
+                break;
+            case "NotLogin":
+            case 2004:
+                message.code = 2004;
+                break;
+            case "LoginTimeout":
+            case 2005:
+                message.code = 2005;
+                break;
+            case "LoginError":
+            case 2006:
+                message.code = 2006;
+                break;
+            case "LoginForbidden":
+            case 2007:
+                message.code = 2007;
+                break;
+            case "LoginExpired":
+            case 2008:
+                message.code = 2008;
+                break;
+            case "LoginInvalid":
+            case 2009:
+                message.code = 2009;
+                break;
+            case "LoginInvalidPassword":
+            case 2010:
+                message.code = 2010;
+                break;
+            case "LoginInvalidUsername":
+            case 2011:
+                message.code = 2011;
+                break;
+            case "LoginInvalidEmail":
+            case 2012:
+                message.code = 2012;
+                break;
+            case "LoginInvalidPhone":
+            case 2013:
+                message.code = 2013;
+                break;
+            case "LoginInvalidUsernameOrEmail":
+            case 2014:
+                message.code = 2014;
+                break;
+            case "LoginSocketRepeat":
+            case 2015:
+                message.code = 2015;
+                break;
+            case "RoleIsNotExist":
+            case 3001:
+                message.code = 3001;
+                break;
+            case "UserIsExist":
+            case 3002:
+                message.code = 3002;
+                break;
+            case "UserIsBan":
+            case 3003:
+                message.code = 3003;
+                break;
+            case "TalkIsBan":
+            case 5001:
+                message.code = 5001;
+                break;
+            case "EnterRoomErr":
+            case 5002:
+                message.code = 5002;
+                break;
+            case "HalaChatNeedBuy":
+            case 10001:
+                message.code = 10001;
+                break;
+            case "HalaPriceOutRange":
+            case 10002:
+                message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            }
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.data != null) {
+                if (typeof object.data !== "object")
+                    throw TypeError(".pbbattle.FindSystemUserReply.data: object expected");
+                message.data = $root.pbbattle.SystemUserModel.fromObject(object.data);
+            }
+            if (object.list) {
+                if (!Array.isArray(object.list))
+                    throw TypeError(".pbbattle.FindSystemUserReply.list: array expected");
+                message.list = [];
+                for (var i = 0; i < object.list.length; ++i) {
+                    if (typeof object.list[i] !== "object")
+                        throw TypeError(".pbbattle.FindSystemUserReply.list: object expected");
+                    message.list[i] = $root.pbbattle.SystemUserModel.fromObject(object.list[i]);
+                }
+            }
+            if (object.total != null)
+                if ($util.Long)
+                    (message.total = $util.Long.fromValue(object.total)).unsigned = false;
+                else if (typeof object.total === "string")
+                    message.total = parseInt(object.total, 10);
+                else if (typeof object.total === "number")
+                    message.total = object.total;
+                else if (typeof object.total === "object")
+                    message.total = new $util.LongBits(object.total.low >>> 0, object.total.high >>> 0).toNumber();
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a FindSystemUserReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.FindSystemUserReply
+         * @static
+         * @param {pbbattle.FindSystemUserReply} message FindSystemUserReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FindSystemUserReply.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.list = [];
+            if (options.defaults) {
+                object.code = options.enums === String ? "None" : 0;
+                object.msg = "";
+                object.data = null;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.total = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.total = options.longs === String ? "0" : 0;
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.data != null && message.hasOwnProperty("data"))
+                object.data = $root.pbbattle.SystemUserModel.toObject(message.data, options);
+            if (message.list && message.list.length) {
+                object.list = [];
+                for (var j = 0; j < message.list.length; ++j)
+                    object.list[j] = $root.pbbattle.SystemUserModel.toObject(message.list[j], options);
+            }
+            if (message.total != null && message.hasOwnProperty("total"))
+                if (typeof message.total === "number")
+                    object.total = options.longs === String ? String(message.total) : message.total;
+                else
+                    object.total = options.longs === String ? $util.Long.prototype.toString.call(message.total) : options.longs === Number ? new $util.LongBits(message.total.low >>> 0, message.total.high >>> 0).toNumber() : message.total;
+            return object;
+        };
+
+        /**
+         * Converts this FindSystemUserReply to JSON.
+         * @function toJSON
+         * @memberof pbbattle.FindSystemUserReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        FindSystemUserReply.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for FindSystemUserReply
+         * @function getTypeUrl
+         * @memberof pbbattle.FindSystemUserReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        FindSystemUserReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.FindSystemUserReply";
+        };
+
+        return FindSystemUserReply;
+    })();
+
+    pbbattle.FindGeneralArgs = (function() {
+
+        /**
+         * Properties of a FindGeneralArgs.
+         * @memberof pbbattle
+         * @interface IFindGeneralArgs
+         * @property {pbcommon.IPageInfo|null} [pageInfo] FindGeneralArgs pageInfo
+         * @property {pbbattle.IGeneralModel|null} [query] FindGeneralArgs query
+         * @property {string|null} [keyword] FindGeneralArgs keyword
+         * @property {Array.<boolean>|null} [isEnabledList] FindGeneralArgs isEnabledList
+         * @property {Array.<string>|null} [rarityList] FindGeneralArgs rarityList
+         */
+
+        /**
+         * Constructs a new FindGeneralArgs.
+         * @memberof pbbattle
+         * @classdesc Represents a FindGeneralArgs.
+         * @implements IFindGeneralArgs
+         * @constructor
+         * @param {pbbattle.IFindGeneralArgs=} [properties] Properties to set
+         */
+        function FindGeneralArgs(properties) {
+            this.isEnabledList = [];
+            this.rarityList = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * FindGeneralArgs pageInfo.
+         * @member {pbcommon.IPageInfo|null|undefined} pageInfo
+         * @memberof pbbattle.FindGeneralArgs
+         * @instance
+         */
+        FindGeneralArgs.prototype.pageInfo = null;
+
+        /**
+         * FindGeneralArgs query.
+         * @member {pbbattle.IGeneralModel|null|undefined} query
+         * @memberof pbbattle.FindGeneralArgs
+         * @instance
+         */
+        FindGeneralArgs.prototype.query = null;
+
+        /**
+         * FindGeneralArgs keyword.
+         * @member {string} keyword
+         * @memberof pbbattle.FindGeneralArgs
+         * @instance
+         */
+        FindGeneralArgs.prototype.keyword = "";
+
+        /**
+         * FindGeneralArgs isEnabledList.
+         * @member {Array.<boolean>} isEnabledList
+         * @memberof pbbattle.FindGeneralArgs
+         * @instance
+         */
+        FindGeneralArgs.prototype.isEnabledList = $util.emptyArray;
+
+        /**
+         * FindGeneralArgs rarityList.
+         * @member {Array.<string>} rarityList
+         * @memberof pbbattle.FindGeneralArgs
+         * @instance
+         */
+        FindGeneralArgs.prototype.rarityList = $util.emptyArray;
+
+        /**
+         * Creates a new FindGeneralArgs instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.FindGeneralArgs
+         * @static
+         * @param {pbbattle.IFindGeneralArgs=} [properties] Properties to set
+         * @returns {pbbattle.FindGeneralArgs} FindGeneralArgs instance
+         */
+        FindGeneralArgs.create = function create(properties) {
+            return new FindGeneralArgs(properties);
+        };
+
+        /**
+         * Encodes the specified FindGeneralArgs message. Does not implicitly {@link pbbattle.FindGeneralArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.FindGeneralArgs
+         * @static
+         * @param {pbbattle.IFindGeneralArgs} message FindGeneralArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindGeneralArgs.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.pageInfo != null && Object.hasOwnProperty.call(message, "pageInfo"))
+                $root.pbcommon.PageInfo.encode(message.pageInfo, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.query != null && Object.hasOwnProperty.call(message, "query"))
+                $root.pbbattle.GeneralModel.encode(message.query, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            if (message.keyword != null && Object.hasOwnProperty.call(message, "keyword"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.keyword);
+            if (message.isEnabledList != null && message.isEnabledList.length) {
+                writer.uint32(/* id 4, wireType 2 =*/34).fork();
+                for (var i = 0; i < message.isEnabledList.length; ++i)
+                    writer.bool(message.isEnabledList[i]);
+                writer.ldelim();
+            }
+            if (message.rarityList != null && message.rarityList.length)
+                for (var i = 0; i < message.rarityList.length; ++i)
+                    writer.uint32(/* id 5, wireType 2 =*/42).string(message.rarityList[i]);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified FindGeneralArgs message, length delimited. Does not implicitly {@link pbbattle.FindGeneralArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.FindGeneralArgs
+         * @static
+         * @param {pbbattle.IFindGeneralArgs} message FindGeneralArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindGeneralArgs.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a FindGeneralArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.FindGeneralArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.FindGeneralArgs} FindGeneralArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindGeneralArgs.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.FindGeneralArgs();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.pageInfo = $root.pbcommon.PageInfo.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 2: {
+                        message.query = $root.pbbattle.GeneralModel.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 3: {
+                        message.keyword = reader.string();
+                        break;
+                    }
+                case 4: {
+                        if (!(message.isEnabledList && message.isEnabledList.length))
+                            message.isEnabledList = [];
+                        if ((tag & 7) === 2) {
+                            var end2 = reader.uint32() + reader.pos;
+                            while (reader.pos < end2)
+                                message.isEnabledList.push(reader.bool());
+                        } else
+                            message.isEnabledList.push(reader.bool());
+                        break;
+                    }
+                case 5: {
+                        if (!(message.rarityList && message.rarityList.length))
+                            message.rarityList = [];
+                        message.rarityList.push(reader.string());
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a FindGeneralArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.FindGeneralArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.FindGeneralArgs} FindGeneralArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindGeneralArgs.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a FindGeneralArgs message.
+         * @function verify
+         * @memberof pbbattle.FindGeneralArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        FindGeneralArgs.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.pageInfo != null && message.hasOwnProperty("pageInfo")) {
+                var error = $root.pbcommon.PageInfo.verify(message.pageInfo);
+                if (error)
+                    return "pageInfo." + error;
+            }
+            if (message.query != null && message.hasOwnProperty("query")) {
+                var error = $root.pbbattle.GeneralModel.verify(message.query);
+                if (error)
+                    return "query." + error;
+            }
+            if (message.keyword != null && message.hasOwnProperty("keyword"))
+                if (!$util.isString(message.keyword))
+                    return "keyword: string expected";
+            if (message.isEnabledList != null && message.hasOwnProperty("isEnabledList")) {
+                if (!Array.isArray(message.isEnabledList))
+                    return "isEnabledList: array expected";
+                for (var i = 0; i < message.isEnabledList.length; ++i)
+                    if (typeof message.isEnabledList[i] !== "boolean")
+                        return "isEnabledList: boolean[] expected";
+            }
+            if (message.rarityList != null && message.hasOwnProperty("rarityList")) {
+                if (!Array.isArray(message.rarityList))
+                    return "rarityList: array expected";
+                for (var i = 0; i < message.rarityList.length; ++i)
+                    if (!$util.isString(message.rarityList[i]))
+                        return "rarityList: string[] expected";
+            }
+            return null;
+        };
+
+        /**
+         * Creates a FindGeneralArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.FindGeneralArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.FindGeneralArgs} FindGeneralArgs
+         */
+        FindGeneralArgs.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.FindGeneralArgs)
+                return object;
+            var message = new $root.pbbattle.FindGeneralArgs();
+            if (object.pageInfo != null) {
+                if (typeof object.pageInfo !== "object")
+                    throw TypeError(".pbbattle.FindGeneralArgs.pageInfo: object expected");
+                message.pageInfo = $root.pbcommon.PageInfo.fromObject(object.pageInfo);
+            }
+            if (object.query != null) {
+                if (typeof object.query !== "object")
+                    throw TypeError(".pbbattle.FindGeneralArgs.query: object expected");
+                message.query = $root.pbbattle.GeneralModel.fromObject(object.query);
+            }
+            if (object.keyword != null)
+                message.keyword = String(object.keyword);
+            if (object.isEnabledList) {
+                if (!Array.isArray(object.isEnabledList))
+                    throw TypeError(".pbbattle.FindGeneralArgs.isEnabledList: array expected");
+                message.isEnabledList = [];
+                for (var i = 0; i < object.isEnabledList.length; ++i)
+                    message.isEnabledList[i] = Boolean(object.isEnabledList[i]);
+            }
+            if (object.rarityList) {
+                if (!Array.isArray(object.rarityList))
+                    throw TypeError(".pbbattle.FindGeneralArgs.rarityList: array expected");
+                message.rarityList = [];
+                for (var i = 0; i < object.rarityList.length; ++i)
+                    message.rarityList[i] = String(object.rarityList[i]);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a FindGeneralArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.FindGeneralArgs
+         * @static
+         * @param {pbbattle.FindGeneralArgs} message FindGeneralArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FindGeneralArgs.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults) {
+                object.isEnabledList = [];
+                object.rarityList = [];
+            }
+            if (options.defaults) {
+                object.pageInfo = null;
+                object.query = null;
+                object.keyword = "";
+            }
+            if (message.pageInfo != null && message.hasOwnProperty("pageInfo"))
+                object.pageInfo = $root.pbcommon.PageInfo.toObject(message.pageInfo, options);
+            if (message.query != null && message.hasOwnProperty("query"))
+                object.query = $root.pbbattle.GeneralModel.toObject(message.query, options);
+            if (message.keyword != null && message.hasOwnProperty("keyword"))
+                object.keyword = message.keyword;
+            if (message.isEnabledList && message.isEnabledList.length) {
+                object.isEnabledList = [];
+                for (var j = 0; j < message.isEnabledList.length; ++j)
+                    object.isEnabledList[j] = message.isEnabledList[j];
+            }
+            if (message.rarityList && message.rarityList.length) {
+                object.rarityList = [];
+                for (var j = 0; j < message.rarityList.length; ++j)
+                    object.rarityList[j] = message.rarityList[j];
+            }
+            return object;
+        };
+
+        /**
+         * Converts this FindGeneralArgs to JSON.
+         * @function toJSON
+         * @memberof pbbattle.FindGeneralArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        FindGeneralArgs.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for FindGeneralArgs
+         * @function getTypeUrl
+         * @memberof pbbattle.FindGeneralArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        FindGeneralArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.FindGeneralArgs";
+        };
+
+        return FindGeneralArgs;
+    })();
+
+    pbbattle.FindGeneralReply = (function() {
+
+        /**
+         * Properties of a FindGeneralReply.
+         * @memberof pbbattle
+         * @interface IFindGeneralReply
+         * @property {pbcommon.EnumCode|null} [code] FindGeneralReply code
+         * @property {string|null} [msg] FindGeneralReply msg
+         * @property {pbbattle.IGeneralModel|null} [data] FindGeneralReply data
+         * @property {Array.<pbbattle.IGeneralModel>|null} [list] FindGeneralReply list
+         * @property {number|Long|null} [total] FindGeneralReply total
+         */
+
+        /**
+         * Constructs a new FindGeneralReply.
+         * @memberof pbbattle
+         * @classdesc Represents a FindGeneralReply.
+         * @implements IFindGeneralReply
+         * @constructor
+         * @param {pbbattle.IFindGeneralReply=} [properties] Properties to set
+         */
+        function FindGeneralReply(properties) {
+            this.list = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * FindGeneralReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbbattle.FindGeneralReply
+         * @instance
+         */
+        FindGeneralReply.prototype.code = 0;
+
+        /**
+         * FindGeneralReply msg.
+         * @member {string} msg
+         * @memberof pbbattle.FindGeneralReply
+         * @instance
+         */
+        FindGeneralReply.prototype.msg = "";
+
+        /**
+         * FindGeneralReply data.
+         * @member {pbbattle.IGeneralModel|null|undefined} data
+         * @memberof pbbattle.FindGeneralReply
+         * @instance
+         */
+        FindGeneralReply.prototype.data = null;
+
+        /**
+         * FindGeneralReply list.
+         * @member {Array.<pbbattle.IGeneralModel>} list
+         * @memberof pbbattle.FindGeneralReply
+         * @instance
+         */
+        FindGeneralReply.prototype.list = $util.emptyArray;
+
+        /**
+         * FindGeneralReply total.
+         * @member {number|Long} total
+         * @memberof pbbattle.FindGeneralReply
+         * @instance
+         */
+        FindGeneralReply.prototype.total = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * Creates a new FindGeneralReply instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.FindGeneralReply
+         * @static
+         * @param {pbbattle.IFindGeneralReply=} [properties] Properties to set
+         * @returns {pbbattle.FindGeneralReply} FindGeneralReply instance
+         */
+        FindGeneralReply.create = function create(properties) {
+            return new FindGeneralReply(properties);
+        };
+
+        /**
+         * Encodes the specified FindGeneralReply message. Does not implicitly {@link pbbattle.FindGeneralReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.FindGeneralReply
+         * @static
+         * @param {pbbattle.IFindGeneralReply} message FindGeneralReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindGeneralReply.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.data != null && Object.hasOwnProperty.call(message, "data"))
+                $root.pbbattle.GeneralModel.encode(message.data, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            if (message.list != null && message.list.length)
+                for (var i = 0; i < message.list.length; ++i)
+                    $root.pbbattle.GeneralModel.encode(message.list[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+            if (message.total != null && Object.hasOwnProperty.call(message, "total"))
+                writer.uint32(/* id 5, wireType 0 =*/40).int64(message.total);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified FindGeneralReply message, length delimited. Does not implicitly {@link pbbattle.FindGeneralReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.FindGeneralReply
+         * @static
+         * @param {pbbattle.IFindGeneralReply} message FindGeneralReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindGeneralReply.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a FindGeneralReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.FindGeneralReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.FindGeneralReply} FindGeneralReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindGeneralReply.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.FindGeneralReply();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.code = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.data = $root.pbbattle.GeneralModel.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 4: {
+                        if (!(message.list && message.list.length))
+                            message.list = [];
+                        message.list.push($root.pbbattle.GeneralModel.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 5: {
+                        message.total = reader.int64();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a FindGeneralReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.FindGeneralReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.FindGeneralReply} FindGeneralReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindGeneralReply.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a FindGeneralReply message.
+         * @function verify
+         * @memberof pbbattle.FindGeneralReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        FindGeneralReply.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.code != null && message.hasOwnProperty("code"))
+                switch (message.code) {
+                default:
+                    return "code: enum value expected";
+                case 0:
+                case 200:
+                case 403:
+                case 500:
+                case 501:
+                case 502:
+                case 503:
+                case 504:
+                case 505:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
+                case 2002:
+                case 2003:
+                case 2004:
+                case 2005:
+                case 2006:
+                case 2007:
+                case 2008:
+                case 2009:
+                case 2010:
+                case 2011:
+                case 2012:
+                case 2013:
+                case 2014:
+                case 2015:
+                case 3001:
+                case 3002:
+                case 3003:
+                case 5001:
+                case 5002:
+                case 10001:
+                case 10002:
+                case 20001:
+                case 20002:
+                    break;
+                }
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                if (!$util.isString(message.msg))
+                    return "msg: string expected";
+            if (message.data != null && message.hasOwnProperty("data")) {
+                var error = $root.pbbattle.GeneralModel.verify(message.data);
+                if (error)
+                    return "data." + error;
+            }
+            if (message.list != null && message.hasOwnProperty("list")) {
+                if (!Array.isArray(message.list))
+                    return "list: array expected";
+                for (var i = 0; i < message.list.length; ++i) {
+                    var error = $root.pbbattle.GeneralModel.verify(message.list[i]);
+                    if (error)
+                        return "list." + error;
+                }
+            }
+            if (message.total != null && message.hasOwnProperty("total"))
+                if (!$util.isInteger(message.total) && !(message.total && $util.isInteger(message.total.low) && $util.isInteger(message.total.high)))
+                    return "total: integer|Long expected";
+            return null;
+        };
+
+        /**
+         * Creates a FindGeneralReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.FindGeneralReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.FindGeneralReply} FindGeneralReply
+         */
+        FindGeneralReply.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.FindGeneralReply)
+                return object;
+            var message = new $root.pbbattle.FindGeneralReply();
+            switch (object.code) {
+            default:
+                if (typeof object.code === "number") {
+                    message.code = object.code;
+                    break;
+                }
+                break;
+            case "None":
+            case 0:
+                message.code = 0;
+                break;
+            case "Success":
+            case 200:
+                message.code = 200;
+                break;
+            case "Forbidden":
+            case 403:
+                message.code = 403;
+                break;
+            case "Fail":
+            case 500:
+                message.code = 500;
+                break;
+            case "Unknown":
+            case 501:
+                message.code = 501;
+                break;
+            case "Internal":
+            case 502:
+                message.code = 502;
+                break;
+            case "Invalid":
+            case 503:
+                message.code = 503;
+                break;
+            case "InvalidParam":
+            case 504:
+                message.code = 504;
+                break;
+            case "ParamError":
+            case 505:
+                message.code = 505;
+                break;
+            case "FindError":
+            case 1001:
+                message.code = 1001;
+                break;
+            case "CreateError":
+            case 1002:
+                message.code = 1002;
+                break;
+            case "DeleteError":
+            case 1003:
+                message.code = 1003;
+                break;
+            case "UpdateError":
+            case 1004:
+                message.code = 1004;
+                break;
+            case "InvalidToken":
+            case 2002:
+                message.code = 2002;
+                break;
+            case "InvalidSign":
+            case 2003:
+                message.code = 2003;
+                break;
+            case "NotLogin":
+            case 2004:
+                message.code = 2004;
+                break;
+            case "LoginTimeout":
+            case 2005:
+                message.code = 2005;
+                break;
+            case "LoginError":
+            case 2006:
+                message.code = 2006;
+                break;
+            case "LoginForbidden":
+            case 2007:
+                message.code = 2007;
+                break;
+            case "LoginExpired":
+            case 2008:
+                message.code = 2008;
+                break;
+            case "LoginInvalid":
+            case 2009:
+                message.code = 2009;
+                break;
+            case "LoginInvalidPassword":
+            case 2010:
+                message.code = 2010;
+                break;
+            case "LoginInvalidUsername":
+            case 2011:
+                message.code = 2011;
+                break;
+            case "LoginInvalidEmail":
+            case 2012:
+                message.code = 2012;
+                break;
+            case "LoginInvalidPhone":
+            case 2013:
+                message.code = 2013;
+                break;
+            case "LoginInvalidUsernameOrEmail":
+            case 2014:
+                message.code = 2014;
+                break;
+            case "LoginSocketRepeat":
+            case 2015:
+                message.code = 2015;
+                break;
+            case "RoleIsNotExist":
+            case 3001:
+                message.code = 3001;
+                break;
+            case "UserIsExist":
+            case 3002:
+                message.code = 3002;
+                break;
+            case "UserIsBan":
+            case 3003:
+                message.code = 3003;
+                break;
+            case "TalkIsBan":
+            case 5001:
+                message.code = 5001;
+                break;
+            case "EnterRoomErr":
+            case 5002:
+                message.code = 5002;
+                break;
+            case "HalaChatNeedBuy":
+            case 10001:
+                message.code = 10001;
+                break;
+            case "HalaPriceOutRange":
+            case 10002:
+                message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            }
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.data != null) {
+                if (typeof object.data !== "object")
+                    throw TypeError(".pbbattle.FindGeneralReply.data: object expected");
+                message.data = $root.pbbattle.GeneralModel.fromObject(object.data);
+            }
+            if (object.list) {
+                if (!Array.isArray(object.list))
+                    throw TypeError(".pbbattle.FindGeneralReply.list: array expected");
+                message.list = [];
+                for (var i = 0; i < object.list.length; ++i) {
+                    if (typeof object.list[i] !== "object")
+                        throw TypeError(".pbbattle.FindGeneralReply.list: object expected");
+                    message.list[i] = $root.pbbattle.GeneralModel.fromObject(object.list[i]);
+                }
+            }
+            if (object.total != null)
+                if ($util.Long)
+                    (message.total = $util.Long.fromValue(object.total)).unsigned = false;
+                else if (typeof object.total === "string")
+                    message.total = parseInt(object.total, 10);
+                else if (typeof object.total === "number")
+                    message.total = object.total;
+                else if (typeof object.total === "object")
+                    message.total = new $util.LongBits(object.total.low >>> 0, object.total.high >>> 0).toNumber();
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a FindGeneralReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.FindGeneralReply
+         * @static
+         * @param {pbbattle.FindGeneralReply} message FindGeneralReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FindGeneralReply.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.list = [];
+            if (options.defaults) {
+                object.code = options.enums === String ? "None" : 0;
+                object.msg = "";
+                object.data = null;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.total = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.total = options.longs === String ? "0" : 0;
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.data != null && message.hasOwnProperty("data"))
+                object.data = $root.pbbattle.GeneralModel.toObject(message.data, options);
+            if (message.list && message.list.length) {
+                object.list = [];
+                for (var j = 0; j < message.list.length; ++j)
+                    object.list[j] = $root.pbbattle.GeneralModel.toObject(message.list[j], options);
+            }
+            if (message.total != null && message.hasOwnProperty("total"))
+                if (typeof message.total === "number")
+                    object.total = options.longs === String ? String(message.total) : message.total;
+                else
+                    object.total = options.longs === String ? $util.Long.prototype.toString.call(message.total) : options.longs === Number ? new $util.LongBits(message.total.low >>> 0, message.total.high >>> 0).toNumber() : message.total;
+            return object;
+        };
+
+        /**
+         * Converts this FindGeneralReply to JSON.
+         * @function toJSON
+         * @memberof pbbattle.FindGeneralReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        FindGeneralReply.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for FindGeneralReply
+         * @function getTypeUrl
+         * @memberof pbbattle.FindGeneralReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        FindGeneralReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.FindGeneralReply";
+        };
+
+        return FindGeneralReply;
+    })();
+
+    pbbattle.GameStatisticsModel = (function() {
+
+        /**
+         * Properties of a GameStatisticsModel.
+         * @memberof pbbattle
+         * @interface IGameStatisticsModel
+         * @property {number|Long|null} [totalRounds] GameStatisticsModel totalRounds
+         * @property {number|Long|null} [totalAssistCount] GameStatisticsModel totalAssistCount
+         * @property {number|Long|null} [totalAssistGold] GameStatisticsModel totalAssistGold
+         * @property {number|Long|null} [currentPrizePool] GameStatisticsModel currentPrizePool
+         * @property {number|Long|null} [totalPayout] GameStatisticsModel totalPayout
+         * @property {number|Long|null} [todayRounds] GameStatisticsModel todayRounds
+         * @property {number|Long|null} [todayAssistCount] GameStatisticsModel todayAssistCount
+         * @property {number|Long|null} [todayAssistGold] GameStatisticsModel todayAssistGold
+         * @property {number|Long|null} [todayPayout] GameStatisticsModel todayPayout
+         */
+
+        /**
+         * Constructs a new GameStatisticsModel.
+         * @memberof pbbattle
+         * @classdesc Represents a GameStatisticsModel.
+         * @implements IGameStatisticsModel
+         * @constructor
+         * @param {pbbattle.IGameStatisticsModel=} [properties] Properties to set
+         */
+        function GameStatisticsModel(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GameStatisticsModel totalRounds.
+         * @member {number|Long} totalRounds
+         * @memberof pbbattle.GameStatisticsModel
+         * @instance
+         */
+        GameStatisticsModel.prototype.totalRounds = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * GameStatisticsModel totalAssistCount.
+         * @member {number|Long} totalAssistCount
+         * @memberof pbbattle.GameStatisticsModel
+         * @instance
+         */
+        GameStatisticsModel.prototype.totalAssistCount = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * GameStatisticsModel totalAssistGold.
+         * @member {number|Long} totalAssistGold
+         * @memberof pbbattle.GameStatisticsModel
+         * @instance
+         */
+        GameStatisticsModel.prototype.totalAssistGold = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * GameStatisticsModel currentPrizePool.
+         * @member {number|Long} currentPrizePool
+         * @memberof pbbattle.GameStatisticsModel
+         * @instance
+         */
+        GameStatisticsModel.prototype.currentPrizePool = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * GameStatisticsModel totalPayout.
+         * @member {number|Long} totalPayout
+         * @memberof pbbattle.GameStatisticsModel
+         * @instance
+         */
+        GameStatisticsModel.prototype.totalPayout = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * GameStatisticsModel todayRounds.
+         * @member {number|Long} todayRounds
+         * @memberof pbbattle.GameStatisticsModel
+         * @instance
+         */
+        GameStatisticsModel.prototype.todayRounds = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * GameStatisticsModel todayAssistCount.
+         * @member {number|Long} todayAssistCount
+         * @memberof pbbattle.GameStatisticsModel
+         * @instance
+         */
+        GameStatisticsModel.prototype.todayAssistCount = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * GameStatisticsModel todayAssistGold.
+         * @member {number|Long} todayAssistGold
+         * @memberof pbbattle.GameStatisticsModel
+         * @instance
+         */
+        GameStatisticsModel.prototype.todayAssistGold = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * GameStatisticsModel todayPayout.
+         * @member {number|Long} todayPayout
+         * @memberof pbbattle.GameStatisticsModel
+         * @instance
+         */
+        GameStatisticsModel.prototype.todayPayout = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * Creates a new GameStatisticsModel instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.GameStatisticsModel
+         * @static
+         * @param {pbbattle.IGameStatisticsModel=} [properties] Properties to set
+         * @returns {pbbattle.GameStatisticsModel} GameStatisticsModel instance
+         */
+        GameStatisticsModel.create = function create(properties) {
+            return new GameStatisticsModel(properties);
+        };
+
+        /**
+         * Encodes the specified GameStatisticsModel message. Does not implicitly {@link pbbattle.GameStatisticsModel.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.GameStatisticsModel
+         * @static
+         * @param {pbbattle.IGameStatisticsModel} message GameStatisticsModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GameStatisticsModel.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.totalRounds != null && Object.hasOwnProperty.call(message, "totalRounds"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int64(message.totalRounds);
+            if (message.totalAssistCount != null && Object.hasOwnProperty.call(message, "totalAssistCount"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int64(message.totalAssistCount);
+            if (message.totalAssistGold != null && Object.hasOwnProperty.call(message, "totalAssistGold"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int64(message.totalAssistGold);
+            if (message.currentPrizePool != null && Object.hasOwnProperty.call(message, "currentPrizePool"))
+                writer.uint32(/* id 4, wireType 0 =*/32).int64(message.currentPrizePool);
+            if (message.totalPayout != null && Object.hasOwnProperty.call(message, "totalPayout"))
+                writer.uint32(/* id 5, wireType 0 =*/40).int64(message.totalPayout);
+            if (message.todayRounds != null && Object.hasOwnProperty.call(message, "todayRounds"))
+                writer.uint32(/* id 6, wireType 0 =*/48).int64(message.todayRounds);
+            if (message.todayAssistCount != null && Object.hasOwnProperty.call(message, "todayAssistCount"))
+                writer.uint32(/* id 7, wireType 0 =*/56).int64(message.todayAssistCount);
+            if (message.todayAssistGold != null && Object.hasOwnProperty.call(message, "todayAssistGold"))
+                writer.uint32(/* id 8, wireType 0 =*/64).int64(message.todayAssistGold);
+            if (message.todayPayout != null && Object.hasOwnProperty.call(message, "todayPayout"))
+                writer.uint32(/* id 9, wireType 0 =*/72).int64(message.todayPayout);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GameStatisticsModel message, length delimited. Does not implicitly {@link pbbattle.GameStatisticsModel.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.GameStatisticsModel
+         * @static
+         * @param {pbbattle.IGameStatisticsModel} message GameStatisticsModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GameStatisticsModel.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GameStatisticsModel message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.GameStatisticsModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.GameStatisticsModel} GameStatisticsModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GameStatisticsModel.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.GameStatisticsModel();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.totalRounds = reader.int64();
+                        break;
+                    }
+                case 2: {
+                        message.totalAssistCount = reader.int64();
+                        break;
+                    }
+                case 3: {
+                        message.totalAssistGold = reader.int64();
+                        break;
+                    }
+                case 4: {
+                        message.currentPrizePool = reader.int64();
+                        break;
+                    }
+                case 5: {
+                        message.totalPayout = reader.int64();
+                        break;
+                    }
+                case 6: {
+                        message.todayRounds = reader.int64();
+                        break;
+                    }
+                case 7: {
+                        message.todayAssistCount = reader.int64();
+                        break;
+                    }
+                case 8: {
+                        message.todayAssistGold = reader.int64();
+                        break;
+                    }
+                case 9: {
+                        message.todayPayout = reader.int64();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GameStatisticsModel message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.GameStatisticsModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.GameStatisticsModel} GameStatisticsModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GameStatisticsModel.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GameStatisticsModel message.
+         * @function verify
+         * @memberof pbbattle.GameStatisticsModel
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GameStatisticsModel.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.totalRounds != null && message.hasOwnProperty("totalRounds"))
+                if (!$util.isInteger(message.totalRounds) && !(message.totalRounds && $util.isInteger(message.totalRounds.low) && $util.isInteger(message.totalRounds.high)))
+                    return "totalRounds: integer|Long expected";
+            if (message.totalAssistCount != null && message.hasOwnProperty("totalAssistCount"))
+                if (!$util.isInteger(message.totalAssistCount) && !(message.totalAssistCount && $util.isInteger(message.totalAssistCount.low) && $util.isInteger(message.totalAssistCount.high)))
+                    return "totalAssistCount: integer|Long expected";
+            if (message.totalAssistGold != null && message.hasOwnProperty("totalAssistGold"))
+                if (!$util.isInteger(message.totalAssistGold) && !(message.totalAssistGold && $util.isInteger(message.totalAssistGold.low) && $util.isInteger(message.totalAssistGold.high)))
+                    return "totalAssistGold: integer|Long expected";
+            if (message.currentPrizePool != null && message.hasOwnProperty("currentPrizePool"))
+                if (!$util.isInteger(message.currentPrizePool) && !(message.currentPrizePool && $util.isInteger(message.currentPrizePool.low) && $util.isInteger(message.currentPrizePool.high)))
+                    return "currentPrizePool: integer|Long expected";
+            if (message.totalPayout != null && message.hasOwnProperty("totalPayout"))
+                if (!$util.isInteger(message.totalPayout) && !(message.totalPayout && $util.isInteger(message.totalPayout.low) && $util.isInteger(message.totalPayout.high)))
+                    return "totalPayout: integer|Long expected";
+            if (message.todayRounds != null && message.hasOwnProperty("todayRounds"))
+                if (!$util.isInteger(message.todayRounds) && !(message.todayRounds && $util.isInteger(message.todayRounds.low) && $util.isInteger(message.todayRounds.high)))
+                    return "todayRounds: integer|Long expected";
+            if (message.todayAssistCount != null && message.hasOwnProperty("todayAssistCount"))
+                if (!$util.isInteger(message.todayAssistCount) && !(message.todayAssistCount && $util.isInteger(message.todayAssistCount.low) && $util.isInteger(message.todayAssistCount.high)))
+                    return "todayAssistCount: integer|Long expected";
+            if (message.todayAssistGold != null && message.hasOwnProperty("todayAssistGold"))
+                if (!$util.isInteger(message.todayAssistGold) && !(message.todayAssistGold && $util.isInteger(message.todayAssistGold.low) && $util.isInteger(message.todayAssistGold.high)))
+                    return "todayAssistGold: integer|Long expected";
+            if (message.todayPayout != null && message.hasOwnProperty("todayPayout"))
+                if (!$util.isInteger(message.todayPayout) && !(message.todayPayout && $util.isInteger(message.todayPayout.low) && $util.isInteger(message.todayPayout.high)))
+                    return "todayPayout: integer|Long expected";
+            return null;
+        };
+
+        /**
+         * Creates a GameStatisticsModel message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.GameStatisticsModel
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.GameStatisticsModel} GameStatisticsModel
+         */
+        GameStatisticsModel.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.GameStatisticsModel)
+                return object;
+            var message = new $root.pbbattle.GameStatisticsModel();
+            if (object.totalRounds != null)
+                if ($util.Long)
+                    (message.totalRounds = $util.Long.fromValue(object.totalRounds)).unsigned = false;
+                else if (typeof object.totalRounds === "string")
+                    message.totalRounds = parseInt(object.totalRounds, 10);
+                else if (typeof object.totalRounds === "number")
+                    message.totalRounds = object.totalRounds;
+                else if (typeof object.totalRounds === "object")
+                    message.totalRounds = new $util.LongBits(object.totalRounds.low >>> 0, object.totalRounds.high >>> 0).toNumber();
+            if (object.totalAssistCount != null)
+                if ($util.Long)
+                    (message.totalAssistCount = $util.Long.fromValue(object.totalAssistCount)).unsigned = false;
+                else if (typeof object.totalAssistCount === "string")
+                    message.totalAssistCount = parseInt(object.totalAssistCount, 10);
+                else if (typeof object.totalAssistCount === "number")
+                    message.totalAssistCount = object.totalAssistCount;
+                else if (typeof object.totalAssistCount === "object")
+                    message.totalAssistCount = new $util.LongBits(object.totalAssistCount.low >>> 0, object.totalAssistCount.high >>> 0).toNumber();
+            if (object.totalAssistGold != null)
+                if ($util.Long)
+                    (message.totalAssistGold = $util.Long.fromValue(object.totalAssistGold)).unsigned = false;
+                else if (typeof object.totalAssistGold === "string")
+                    message.totalAssistGold = parseInt(object.totalAssistGold, 10);
+                else if (typeof object.totalAssistGold === "number")
+                    message.totalAssistGold = object.totalAssistGold;
+                else if (typeof object.totalAssistGold === "object")
+                    message.totalAssistGold = new $util.LongBits(object.totalAssistGold.low >>> 0, object.totalAssistGold.high >>> 0).toNumber();
+            if (object.currentPrizePool != null)
+                if ($util.Long)
+                    (message.currentPrizePool = $util.Long.fromValue(object.currentPrizePool)).unsigned = false;
+                else if (typeof object.currentPrizePool === "string")
+                    message.currentPrizePool = parseInt(object.currentPrizePool, 10);
+                else if (typeof object.currentPrizePool === "number")
+                    message.currentPrizePool = object.currentPrizePool;
+                else if (typeof object.currentPrizePool === "object")
+                    message.currentPrizePool = new $util.LongBits(object.currentPrizePool.low >>> 0, object.currentPrizePool.high >>> 0).toNumber();
+            if (object.totalPayout != null)
+                if ($util.Long)
+                    (message.totalPayout = $util.Long.fromValue(object.totalPayout)).unsigned = false;
+                else if (typeof object.totalPayout === "string")
+                    message.totalPayout = parseInt(object.totalPayout, 10);
+                else if (typeof object.totalPayout === "number")
+                    message.totalPayout = object.totalPayout;
+                else if (typeof object.totalPayout === "object")
+                    message.totalPayout = new $util.LongBits(object.totalPayout.low >>> 0, object.totalPayout.high >>> 0).toNumber();
+            if (object.todayRounds != null)
+                if ($util.Long)
+                    (message.todayRounds = $util.Long.fromValue(object.todayRounds)).unsigned = false;
+                else if (typeof object.todayRounds === "string")
+                    message.todayRounds = parseInt(object.todayRounds, 10);
+                else if (typeof object.todayRounds === "number")
+                    message.todayRounds = object.todayRounds;
+                else if (typeof object.todayRounds === "object")
+                    message.todayRounds = new $util.LongBits(object.todayRounds.low >>> 0, object.todayRounds.high >>> 0).toNumber();
+            if (object.todayAssistCount != null)
+                if ($util.Long)
+                    (message.todayAssistCount = $util.Long.fromValue(object.todayAssistCount)).unsigned = false;
+                else if (typeof object.todayAssistCount === "string")
+                    message.todayAssistCount = parseInt(object.todayAssistCount, 10);
+                else if (typeof object.todayAssistCount === "number")
+                    message.todayAssistCount = object.todayAssistCount;
+                else if (typeof object.todayAssistCount === "object")
+                    message.todayAssistCount = new $util.LongBits(object.todayAssistCount.low >>> 0, object.todayAssistCount.high >>> 0).toNumber();
+            if (object.todayAssistGold != null)
+                if ($util.Long)
+                    (message.todayAssistGold = $util.Long.fromValue(object.todayAssistGold)).unsigned = false;
+                else if (typeof object.todayAssistGold === "string")
+                    message.todayAssistGold = parseInt(object.todayAssistGold, 10);
+                else if (typeof object.todayAssistGold === "number")
+                    message.todayAssistGold = object.todayAssistGold;
+                else if (typeof object.todayAssistGold === "object")
+                    message.todayAssistGold = new $util.LongBits(object.todayAssistGold.low >>> 0, object.todayAssistGold.high >>> 0).toNumber();
+            if (object.todayPayout != null)
+                if ($util.Long)
+                    (message.todayPayout = $util.Long.fromValue(object.todayPayout)).unsigned = false;
+                else if (typeof object.todayPayout === "string")
+                    message.todayPayout = parseInt(object.todayPayout, 10);
+                else if (typeof object.todayPayout === "number")
+                    message.todayPayout = object.todayPayout;
+                else if (typeof object.todayPayout === "object")
+                    message.todayPayout = new $util.LongBits(object.todayPayout.low >>> 0, object.todayPayout.high >>> 0).toNumber();
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GameStatisticsModel message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.GameStatisticsModel
+         * @static
+         * @param {pbbattle.GameStatisticsModel} message GameStatisticsModel
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GameStatisticsModel.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.totalRounds = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.totalRounds = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.totalAssistCount = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.totalAssistCount = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.totalAssistGold = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.totalAssistGold = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.currentPrizePool = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.currentPrizePool = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.totalPayout = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.totalPayout = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.todayRounds = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.todayRounds = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.todayAssistCount = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.todayAssistCount = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.todayAssistGold = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.todayAssistGold = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.todayPayout = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.todayPayout = options.longs === String ? "0" : 0;
+            }
+            if (message.totalRounds != null && message.hasOwnProperty("totalRounds"))
+                if (typeof message.totalRounds === "number")
+                    object.totalRounds = options.longs === String ? String(message.totalRounds) : message.totalRounds;
+                else
+                    object.totalRounds = options.longs === String ? $util.Long.prototype.toString.call(message.totalRounds) : options.longs === Number ? new $util.LongBits(message.totalRounds.low >>> 0, message.totalRounds.high >>> 0).toNumber() : message.totalRounds;
+            if (message.totalAssistCount != null && message.hasOwnProperty("totalAssistCount"))
+                if (typeof message.totalAssistCount === "number")
+                    object.totalAssistCount = options.longs === String ? String(message.totalAssistCount) : message.totalAssistCount;
+                else
+                    object.totalAssistCount = options.longs === String ? $util.Long.prototype.toString.call(message.totalAssistCount) : options.longs === Number ? new $util.LongBits(message.totalAssistCount.low >>> 0, message.totalAssistCount.high >>> 0).toNumber() : message.totalAssistCount;
+            if (message.totalAssistGold != null && message.hasOwnProperty("totalAssistGold"))
+                if (typeof message.totalAssistGold === "number")
+                    object.totalAssistGold = options.longs === String ? String(message.totalAssistGold) : message.totalAssistGold;
+                else
+                    object.totalAssistGold = options.longs === String ? $util.Long.prototype.toString.call(message.totalAssistGold) : options.longs === Number ? new $util.LongBits(message.totalAssistGold.low >>> 0, message.totalAssistGold.high >>> 0).toNumber() : message.totalAssistGold;
+            if (message.currentPrizePool != null && message.hasOwnProperty("currentPrizePool"))
+                if (typeof message.currentPrizePool === "number")
+                    object.currentPrizePool = options.longs === String ? String(message.currentPrizePool) : message.currentPrizePool;
+                else
+                    object.currentPrizePool = options.longs === String ? $util.Long.prototype.toString.call(message.currentPrizePool) : options.longs === Number ? new $util.LongBits(message.currentPrizePool.low >>> 0, message.currentPrizePool.high >>> 0).toNumber() : message.currentPrizePool;
+            if (message.totalPayout != null && message.hasOwnProperty("totalPayout"))
+                if (typeof message.totalPayout === "number")
+                    object.totalPayout = options.longs === String ? String(message.totalPayout) : message.totalPayout;
+                else
+                    object.totalPayout = options.longs === String ? $util.Long.prototype.toString.call(message.totalPayout) : options.longs === Number ? new $util.LongBits(message.totalPayout.low >>> 0, message.totalPayout.high >>> 0).toNumber() : message.totalPayout;
+            if (message.todayRounds != null && message.hasOwnProperty("todayRounds"))
+                if (typeof message.todayRounds === "number")
+                    object.todayRounds = options.longs === String ? String(message.todayRounds) : message.todayRounds;
+                else
+                    object.todayRounds = options.longs === String ? $util.Long.prototype.toString.call(message.todayRounds) : options.longs === Number ? new $util.LongBits(message.todayRounds.low >>> 0, message.todayRounds.high >>> 0).toNumber() : message.todayRounds;
+            if (message.todayAssistCount != null && message.hasOwnProperty("todayAssistCount"))
+                if (typeof message.todayAssistCount === "number")
+                    object.todayAssistCount = options.longs === String ? String(message.todayAssistCount) : message.todayAssistCount;
+                else
+                    object.todayAssistCount = options.longs === String ? $util.Long.prototype.toString.call(message.todayAssistCount) : options.longs === Number ? new $util.LongBits(message.todayAssistCount.low >>> 0, message.todayAssistCount.high >>> 0).toNumber() : message.todayAssistCount;
+            if (message.todayAssistGold != null && message.hasOwnProperty("todayAssistGold"))
+                if (typeof message.todayAssistGold === "number")
+                    object.todayAssistGold = options.longs === String ? String(message.todayAssistGold) : message.todayAssistGold;
+                else
+                    object.todayAssistGold = options.longs === String ? $util.Long.prototype.toString.call(message.todayAssistGold) : options.longs === Number ? new $util.LongBits(message.todayAssistGold.low >>> 0, message.todayAssistGold.high >>> 0).toNumber() : message.todayAssistGold;
+            if (message.todayPayout != null && message.hasOwnProperty("todayPayout"))
+                if (typeof message.todayPayout === "number")
+                    object.todayPayout = options.longs === String ? String(message.todayPayout) : message.todayPayout;
+                else
+                    object.todayPayout = options.longs === String ? $util.Long.prototype.toString.call(message.todayPayout) : options.longs === Number ? new $util.LongBits(message.todayPayout.low >>> 0, message.todayPayout.high >>> 0).toNumber() : message.todayPayout;
+            return object;
+        };
+
+        /**
+         * Converts this GameStatisticsModel to JSON.
+         * @function toJSON
+         * @memberof pbbattle.GameStatisticsModel
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GameStatisticsModel.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GameStatisticsModel
+         * @function getTypeUrl
+         * @memberof pbbattle.GameStatisticsModel
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GameStatisticsModel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.GameStatisticsModel";
+        };
+
+        return GameStatisticsModel;
+    })();
+
+    pbbattle.GetGameStatisticsArgs = (function() {
+
+        /**
+         * Properties of a GetGameStatisticsArgs.
+         * @memberof pbbattle
+         * @interface IGetGameStatisticsArgs
+         * @property {string|null} [startDate] GetGameStatisticsArgs startDate
+         * @property {string|null} [endDate] GetGameStatisticsArgs endDate
+         */
+
+        /**
+         * Constructs a new GetGameStatisticsArgs.
+         * @memberof pbbattle
+         * @classdesc Represents a GetGameStatisticsArgs.
+         * @implements IGetGameStatisticsArgs
+         * @constructor
+         * @param {pbbattle.IGetGameStatisticsArgs=} [properties] Properties to set
+         */
+        function GetGameStatisticsArgs(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GetGameStatisticsArgs startDate.
+         * @member {string} startDate
+         * @memberof pbbattle.GetGameStatisticsArgs
+         * @instance
+         */
+        GetGameStatisticsArgs.prototype.startDate = "";
+
+        /**
+         * GetGameStatisticsArgs endDate.
+         * @member {string} endDate
+         * @memberof pbbattle.GetGameStatisticsArgs
+         * @instance
+         */
+        GetGameStatisticsArgs.prototype.endDate = "";
+
+        /**
+         * Creates a new GetGameStatisticsArgs instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.GetGameStatisticsArgs
+         * @static
+         * @param {pbbattle.IGetGameStatisticsArgs=} [properties] Properties to set
+         * @returns {pbbattle.GetGameStatisticsArgs} GetGameStatisticsArgs instance
+         */
+        GetGameStatisticsArgs.create = function create(properties) {
+            return new GetGameStatisticsArgs(properties);
+        };
+
+        /**
+         * Encodes the specified GetGameStatisticsArgs message. Does not implicitly {@link pbbattle.GetGameStatisticsArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.GetGameStatisticsArgs
+         * @static
+         * @param {pbbattle.IGetGameStatisticsArgs} message GetGameStatisticsArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetGameStatisticsArgs.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.startDate != null && Object.hasOwnProperty.call(message, "startDate"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.startDate);
+            if (message.endDate != null && Object.hasOwnProperty.call(message, "endDate"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.endDate);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GetGameStatisticsArgs message, length delimited. Does not implicitly {@link pbbattle.GetGameStatisticsArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.GetGameStatisticsArgs
+         * @static
+         * @param {pbbattle.IGetGameStatisticsArgs} message GetGameStatisticsArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetGameStatisticsArgs.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GetGameStatisticsArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.GetGameStatisticsArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.GetGameStatisticsArgs} GetGameStatisticsArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetGameStatisticsArgs.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.GetGameStatisticsArgs();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.startDate = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message.endDate = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GetGameStatisticsArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.GetGameStatisticsArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.GetGameStatisticsArgs} GetGameStatisticsArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetGameStatisticsArgs.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GetGameStatisticsArgs message.
+         * @function verify
+         * @memberof pbbattle.GetGameStatisticsArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GetGameStatisticsArgs.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.startDate != null && message.hasOwnProperty("startDate"))
+                if (!$util.isString(message.startDate))
+                    return "startDate: string expected";
+            if (message.endDate != null && message.hasOwnProperty("endDate"))
+                if (!$util.isString(message.endDate))
+                    return "endDate: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a GetGameStatisticsArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.GetGameStatisticsArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.GetGameStatisticsArgs} GetGameStatisticsArgs
+         */
+        GetGameStatisticsArgs.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.GetGameStatisticsArgs)
+                return object;
+            var message = new $root.pbbattle.GetGameStatisticsArgs();
+            if (object.startDate != null)
+                message.startDate = String(object.startDate);
+            if (object.endDate != null)
+                message.endDate = String(object.endDate);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GetGameStatisticsArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.GetGameStatisticsArgs
+         * @static
+         * @param {pbbattle.GetGameStatisticsArgs} message GetGameStatisticsArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GetGameStatisticsArgs.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.startDate = "";
+                object.endDate = "";
+            }
+            if (message.startDate != null && message.hasOwnProperty("startDate"))
+                object.startDate = message.startDate;
+            if (message.endDate != null && message.hasOwnProperty("endDate"))
+                object.endDate = message.endDate;
+            return object;
+        };
+
+        /**
+         * Converts this GetGameStatisticsArgs to JSON.
+         * @function toJSON
+         * @memberof pbbattle.GetGameStatisticsArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GetGameStatisticsArgs.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GetGameStatisticsArgs
+         * @function getTypeUrl
+         * @memberof pbbattle.GetGameStatisticsArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GetGameStatisticsArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.GetGameStatisticsArgs";
+        };
+
+        return GetGameStatisticsArgs;
+    })();
+
+    pbbattle.GetGameStatisticsReply = (function() {
+
+        /**
+         * Properties of a GetGameStatisticsReply.
+         * @memberof pbbattle
+         * @interface IGetGameStatisticsReply
+         * @property {pbcommon.EnumCode|null} [code] GetGameStatisticsReply code
+         * @property {string|null} [msg] GetGameStatisticsReply msg
+         * @property {pbbattle.IGameStatisticsModel|null} [data] GetGameStatisticsReply data
+         */
+
+        /**
+         * Constructs a new GetGameStatisticsReply.
+         * @memberof pbbattle
+         * @classdesc Represents a GetGameStatisticsReply.
+         * @implements IGetGameStatisticsReply
+         * @constructor
+         * @param {pbbattle.IGetGameStatisticsReply=} [properties] Properties to set
+         */
+        function GetGameStatisticsReply(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GetGameStatisticsReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbbattle.GetGameStatisticsReply
+         * @instance
+         */
+        GetGameStatisticsReply.prototype.code = 0;
+
+        /**
+         * GetGameStatisticsReply msg.
+         * @member {string} msg
+         * @memberof pbbattle.GetGameStatisticsReply
+         * @instance
+         */
+        GetGameStatisticsReply.prototype.msg = "";
+
+        /**
+         * GetGameStatisticsReply data.
+         * @member {pbbattle.IGameStatisticsModel|null|undefined} data
+         * @memberof pbbattle.GetGameStatisticsReply
+         * @instance
+         */
+        GetGameStatisticsReply.prototype.data = null;
+
+        /**
+         * Creates a new GetGameStatisticsReply instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.GetGameStatisticsReply
+         * @static
+         * @param {pbbattle.IGetGameStatisticsReply=} [properties] Properties to set
+         * @returns {pbbattle.GetGameStatisticsReply} GetGameStatisticsReply instance
+         */
+        GetGameStatisticsReply.create = function create(properties) {
+            return new GetGameStatisticsReply(properties);
+        };
+
+        /**
+         * Encodes the specified GetGameStatisticsReply message. Does not implicitly {@link pbbattle.GetGameStatisticsReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.GetGameStatisticsReply
+         * @static
+         * @param {pbbattle.IGetGameStatisticsReply} message GetGameStatisticsReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetGameStatisticsReply.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.data != null && Object.hasOwnProperty.call(message, "data"))
+                $root.pbbattle.GameStatisticsModel.encode(message.data, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GetGameStatisticsReply message, length delimited. Does not implicitly {@link pbbattle.GetGameStatisticsReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.GetGameStatisticsReply
+         * @static
+         * @param {pbbattle.IGetGameStatisticsReply} message GetGameStatisticsReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetGameStatisticsReply.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GetGameStatisticsReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.GetGameStatisticsReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.GetGameStatisticsReply} GetGameStatisticsReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetGameStatisticsReply.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.GetGameStatisticsReply();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.code = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.data = $root.pbbattle.GameStatisticsModel.decode(reader, reader.uint32());
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GetGameStatisticsReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.GetGameStatisticsReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.GetGameStatisticsReply} GetGameStatisticsReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetGameStatisticsReply.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GetGameStatisticsReply message.
+         * @function verify
+         * @memberof pbbattle.GetGameStatisticsReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GetGameStatisticsReply.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.code != null && message.hasOwnProperty("code"))
+                switch (message.code) {
+                default:
+                    return "code: enum value expected";
+                case 0:
+                case 200:
+                case 403:
+                case 500:
+                case 501:
+                case 502:
+                case 503:
+                case 504:
+                case 505:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
+                case 2002:
+                case 2003:
+                case 2004:
+                case 2005:
+                case 2006:
+                case 2007:
+                case 2008:
+                case 2009:
+                case 2010:
+                case 2011:
+                case 2012:
+                case 2013:
+                case 2014:
+                case 2015:
+                case 3001:
+                case 3002:
+                case 3003:
+                case 5001:
+                case 5002:
+                case 10001:
+                case 10002:
+                case 20001:
+                case 20002:
+                    break;
+                }
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                if (!$util.isString(message.msg))
+                    return "msg: string expected";
+            if (message.data != null && message.hasOwnProperty("data")) {
+                var error = $root.pbbattle.GameStatisticsModel.verify(message.data);
+                if (error)
+                    return "data." + error;
+            }
+            return null;
+        };
+
+        /**
+         * Creates a GetGameStatisticsReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.GetGameStatisticsReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.GetGameStatisticsReply} GetGameStatisticsReply
+         */
+        GetGameStatisticsReply.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.GetGameStatisticsReply)
+                return object;
+            var message = new $root.pbbattle.GetGameStatisticsReply();
+            switch (object.code) {
+            default:
+                if (typeof object.code === "number") {
+                    message.code = object.code;
+                    break;
+                }
+                break;
+            case "None":
+            case 0:
+                message.code = 0;
+                break;
+            case "Success":
+            case 200:
+                message.code = 200;
+                break;
+            case "Forbidden":
+            case 403:
+                message.code = 403;
+                break;
+            case "Fail":
+            case 500:
+                message.code = 500;
+                break;
+            case "Unknown":
+            case 501:
+                message.code = 501;
+                break;
+            case "Internal":
+            case 502:
+                message.code = 502;
+                break;
+            case "Invalid":
+            case 503:
+                message.code = 503;
+                break;
+            case "InvalidParam":
+            case 504:
+                message.code = 504;
+                break;
+            case "ParamError":
+            case 505:
+                message.code = 505;
+                break;
+            case "FindError":
+            case 1001:
+                message.code = 1001;
+                break;
+            case "CreateError":
+            case 1002:
+                message.code = 1002;
+                break;
+            case "DeleteError":
+            case 1003:
+                message.code = 1003;
+                break;
+            case "UpdateError":
+            case 1004:
+                message.code = 1004;
+                break;
+            case "InvalidToken":
+            case 2002:
+                message.code = 2002;
+                break;
+            case "InvalidSign":
+            case 2003:
+                message.code = 2003;
+                break;
+            case "NotLogin":
+            case 2004:
+                message.code = 2004;
+                break;
+            case "LoginTimeout":
+            case 2005:
+                message.code = 2005;
+                break;
+            case "LoginError":
+            case 2006:
+                message.code = 2006;
+                break;
+            case "LoginForbidden":
+            case 2007:
+                message.code = 2007;
+                break;
+            case "LoginExpired":
+            case 2008:
+                message.code = 2008;
+                break;
+            case "LoginInvalid":
+            case 2009:
+                message.code = 2009;
+                break;
+            case "LoginInvalidPassword":
+            case 2010:
+                message.code = 2010;
+                break;
+            case "LoginInvalidUsername":
+            case 2011:
+                message.code = 2011;
+                break;
+            case "LoginInvalidEmail":
+            case 2012:
+                message.code = 2012;
+                break;
+            case "LoginInvalidPhone":
+            case 2013:
+                message.code = 2013;
+                break;
+            case "LoginInvalidUsernameOrEmail":
+            case 2014:
+                message.code = 2014;
+                break;
+            case "LoginSocketRepeat":
+            case 2015:
+                message.code = 2015;
+                break;
+            case "RoleIsNotExist":
+            case 3001:
+                message.code = 3001;
+                break;
+            case "UserIsExist":
+            case 3002:
+                message.code = 3002;
+                break;
+            case "UserIsBan":
+            case 3003:
+                message.code = 3003;
+                break;
+            case "TalkIsBan":
+            case 5001:
+                message.code = 5001;
+                break;
+            case "EnterRoomErr":
+            case 5002:
+                message.code = 5002;
+                break;
+            case "HalaChatNeedBuy":
+            case 10001:
+                message.code = 10001;
+                break;
+            case "HalaPriceOutRange":
+            case 10002:
+                message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            }
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.data != null) {
+                if (typeof object.data !== "object")
+                    throw TypeError(".pbbattle.GetGameStatisticsReply.data: object expected");
+                message.data = $root.pbbattle.GameStatisticsModel.fromObject(object.data);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GetGameStatisticsReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.GetGameStatisticsReply
+         * @static
+         * @param {pbbattle.GetGameStatisticsReply} message GetGameStatisticsReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GetGameStatisticsReply.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.code = options.enums === String ? "None" : 0;
+                object.msg = "";
+                object.data = null;
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.data != null && message.hasOwnProperty("data"))
+                object.data = $root.pbbattle.GameStatisticsModel.toObject(message.data, options);
+            return object;
+        };
+
+        /**
+         * Converts this GetGameStatisticsReply to JSON.
+         * @function toJSON
+         * @memberof pbbattle.GetGameStatisticsReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GetGameStatisticsReply.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GetGameStatisticsReply
+         * @function getTypeUrl
+         * @memberof pbbattle.GetGameStatisticsReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GetGameStatisticsReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.GetGameStatisticsReply";
+        };
+
+        return GetGameStatisticsReply;
+    })();
+
+    pbbattle.GeneralStatisticsModel = (function() {
+
+        /**
+         * Properties of a GeneralStatisticsModel.
+         * @memberof pbbattle
+         * @interface IGeneralStatisticsModel
+         * @property {number|Long|null} [generalId] GeneralStatisticsModel generalId
+         * @property {string|null} [generalName] GeneralStatisticsModel generalName
+         * @property {number|null} [totalAssistCount] GeneralStatisticsModel totalAssistCount
+         * @property {number|Long|null} [totalAssistGold] GeneralStatisticsModel totalAssistGold
+         * @property {number|null} [winCount] GeneralStatisticsModel winCount
+         * @property {number|Long|null} [totalPayout] GeneralStatisticsModel totalPayout
+         * @property {number|null} [winRate] GeneralStatisticsModel winRate
+         */
+
+        /**
+         * Constructs a new GeneralStatisticsModel.
+         * @memberof pbbattle
+         * @classdesc Represents a GeneralStatisticsModel.
+         * @implements IGeneralStatisticsModel
+         * @constructor
+         * @param {pbbattle.IGeneralStatisticsModel=} [properties] Properties to set
+         */
+        function GeneralStatisticsModel(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GeneralStatisticsModel generalId.
+         * @member {number|Long} generalId
+         * @memberof pbbattle.GeneralStatisticsModel
+         * @instance
+         */
+        GeneralStatisticsModel.prototype.generalId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * GeneralStatisticsModel generalName.
+         * @member {string} generalName
+         * @memberof pbbattle.GeneralStatisticsModel
+         * @instance
+         */
+        GeneralStatisticsModel.prototype.generalName = "";
+
+        /**
+         * GeneralStatisticsModel totalAssistCount.
+         * @member {number} totalAssistCount
+         * @memberof pbbattle.GeneralStatisticsModel
+         * @instance
+         */
+        GeneralStatisticsModel.prototype.totalAssistCount = 0;
+
+        /**
+         * GeneralStatisticsModel totalAssistGold.
+         * @member {number|Long} totalAssistGold
+         * @memberof pbbattle.GeneralStatisticsModel
+         * @instance
+         */
+        GeneralStatisticsModel.prototype.totalAssistGold = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * GeneralStatisticsModel winCount.
+         * @member {number} winCount
+         * @memberof pbbattle.GeneralStatisticsModel
+         * @instance
+         */
+        GeneralStatisticsModel.prototype.winCount = 0;
+
+        /**
+         * GeneralStatisticsModel totalPayout.
+         * @member {number|Long} totalPayout
+         * @memberof pbbattle.GeneralStatisticsModel
+         * @instance
+         */
+        GeneralStatisticsModel.prototype.totalPayout = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * GeneralStatisticsModel winRate.
+         * @member {number} winRate
+         * @memberof pbbattle.GeneralStatisticsModel
+         * @instance
+         */
+        GeneralStatisticsModel.prototype.winRate = 0;
+
+        /**
+         * Creates a new GeneralStatisticsModel instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.GeneralStatisticsModel
+         * @static
+         * @param {pbbattle.IGeneralStatisticsModel=} [properties] Properties to set
+         * @returns {pbbattle.GeneralStatisticsModel} GeneralStatisticsModel instance
+         */
+        GeneralStatisticsModel.create = function create(properties) {
+            return new GeneralStatisticsModel(properties);
+        };
+
+        /**
+         * Encodes the specified GeneralStatisticsModel message. Does not implicitly {@link pbbattle.GeneralStatisticsModel.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.GeneralStatisticsModel
+         * @static
+         * @param {pbbattle.IGeneralStatisticsModel} message GeneralStatisticsModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GeneralStatisticsModel.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.generalId != null && Object.hasOwnProperty.call(message, "generalId"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int64(message.generalId);
+            if (message.generalName != null && Object.hasOwnProperty.call(message, "generalName"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.generalName);
+            if (message.totalAssistCount != null && Object.hasOwnProperty.call(message, "totalAssistCount"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int32(message.totalAssistCount);
+            if (message.totalAssistGold != null && Object.hasOwnProperty.call(message, "totalAssistGold"))
+                writer.uint32(/* id 4, wireType 0 =*/32).int64(message.totalAssistGold);
+            if (message.winCount != null && Object.hasOwnProperty.call(message, "winCount"))
+                writer.uint32(/* id 5, wireType 0 =*/40).int32(message.winCount);
+            if (message.totalPayout != null && Object.hasOwnProperty.call(message, "totalPayout"))
+                writer.uint32(/* id 6, wireType 0 =*/48).int64(message.totalPayout);
+            if (message.winRate != null && Object.hasOwnProperty.call(message, "winRate"))
+                writer.uint32(/* id 7, wireType 1 =*/57).double(message.winRate);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GeneralStatisticsModel message, length delimited. Does not implicitly {@link pbbattle.GeneralStatisticsModel.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.GeneralStatisticsModel
+         * @static
+         * @param {pbbattle.IGeneralStatisticsModel} message GeneralStatisticsModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GeneralStatisticsModel.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GeneralStatisticsModel message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.GeneralStatisticsModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.GeneralStatisticsModel} GeneralStatisticsModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GeneralStatisticsModel.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.GeneralStatisticsModel();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.generalId = reader.int64();
+                        break;
+                    }
+                case 2: {
+                        message.generalName = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.totalAssistCount = reader.int32();
+                        break;
+                    }
+                case 4: {
+                        message.totalAssistGold = reader.int64();
+                        break;
+                    }
+                case 5: {
+                        message.winCount = reader.int32();
+                        break;
+                    }
+                case 6: {
+                        message.totalPayout = reader.int64();
+                        break;
+                    }
+                case 7: {
+                        message.winRate = reader.double();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GeneralStatisticsModel message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.GeneralStatisticsModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.GeneralStatisticsModel} GeneralStatisticsModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GeneralStatisticsModel.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GeneralStatisticsModel message.
+         * @function verify
+         * @memberof pbbattle.GeneralStatisticsModel
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GeneralStatisticsModel.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.generalId != null && message.hasOwnProperty("generalId"))
+                if (!$util.isInteger(message.generalId) && !(message.generalId && $util.isInteger(message.generalId.low) && $util.isInteger(message.generalId.high)))
+                    return "generalId: integer|Long expected";
+            if (message.generalName != null && message.hasOwnProperty("generalName"))
+                if (!$util.isString(message.generalName))
+                    return "generalName: string expected";
+            if (message.totalAssistCount != null && message.hasOwnProperty("totalAssistCount"))
+                if (!$util.isInteger(message.totalAssistCount))
+                    return "totalAssistCount: integer expected";
+            if (message.totalAssistGold != null && message.hasOwnProperty("totalAssistGold"))
+                if (!$util.isInteger(message.totalAssistGold) && !(message.totalAssistGold && $util.isInteger(message.totalAssistGold.low) && $util.isInteger(message.totalAssistGold.high)))
+                    return "totalAssistGold: integer|Long expected";
+            if (message.winCount != null && message.hasOwnProperty("winCount"))
+                if (!$util.isInteger(message.winCount))
+                    return "winCount: integer expected";
+            if (message.totalPayout != null && message.hasOwnProperty("totalPayout"))
+                if (!$util.isInteger(message.totalPayout) && !(message.totalPayout && $util.isInteger(message.totalPayout.low) && $util.isInteger(message.totalPayout.high)))
+                    return "totalPayout: integer|Long expected";
+            if (message.winRate != null && message.hasOwnProperty("winRate"))
+                if (typeof message.winRate !== "number")
+                    return "winRate: number expected";
+            return null;
+        };
+
+        /**
+         * Creates a GeneralStatisticsModel message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.GeneralStatisticsModel
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.GeneralStatisticsModel} GeneralStatisticsModel
+         */
+        GeneralStatisticsModel.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.GeneralStatisticsModel)
+                return object;
+            var message = new $root.pbbattle.GeneralStatisticsModel();
+            if (object.generalId != null)
+                if ($util.Long)
+                    (message.generalId = $util.Long.fromValue(object.generalId)).unsigned = false;
+                else if (typeof object.generalId === "string")
+                    message.generalId = parseInt(object.generalId, 10);
+                else if (typeof object.generalId === "number")
+                    message.generalId = object.generalId;
+                else if (typeof object.generalId === "object")
+                    message.generalId = new $util.LongBits(object.generalId.low >>> 0, object.generalId.high >>> 0).toNumber();
+            if (object.generalName != null)
+                message.generalName = String(object.generalName);
+            if (object.totalAssistCount != null)
+                message.totalAssistCount = object.totalAssistCount | 0;
+            if (object.totalAssistGold != null)
+                if ($util.Long)
+                    (message.totalAssistGold = $util.Long.fromValue(object.totalAssistGold)).unsigned = false;
+                else if (typeof object.totalAssistGold === "string")
+                    message.totalAssistGold = parseInt(object.totalAssistGold, 10);
+                else if (typeof object.totalAssistGold === "number")
+                    message.totalAssistGold = object.totalAssistGold;
+                else if (typeof object.totalAssistGold === "object")
+                    message.totalAssistGold = new $util.LongBits(object.totalAssistGold.low >>> 0, object.totalAssistGold.high >>> 0).toNumber();
+            if (object.winCount != null)
+                message.winCount = object.winCount | 0;
+            if (object.totalPayout != null)
+                if ($util.Long)
+                    (message.totalPayout = $util.Long.fromValue(object.totalPayout)).unsigned = false;
+                else if (typeof object.totalPayout === "string")
+                    message.totalPayout = parseInt(object.totalPayout, 10);
+                else if (typeof object.totalPayout === "number")
+                    message.totalPayout = object.totalPayout;
+                else if (typeof object.totalPayout === "object")
+                    message.totalPayout = new $util.LongBits(object.totalPayout.low >>> 0, object.totalPayout.high >>> 0).toNumber();
+            if (object.winRate != null)
+                message.winRate = Number(object.winRate);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GeneralStatisticsModel message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.GeneralStatisticsModel
+         * @static
+         * @param {pbbattle.GeneralStatisticsModel} message GeneralStatisticsModel
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GeneralStatisticsModel.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.generalId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.generalId = options.longs === String ? "0" : 0;
+                object.generalName = "";
+                object.totalAssistCount = 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.totalAssistGold = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.totalAssistGold = options.longs === String ? "0" : 0;
+                object.winCount = 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.totalPayout = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.totalPayout = options.longs === String ? "0" : 0;
+                object.winRate = 0;
+            }
+            if (message.generalId != null && message.hasOwnProperty("generalId"))
+                if (typeof message.generalId === "number")
+                    object.generalId = options.longs === String ? String(message.generalId) : message.generalId;
+                else
+                    object.generalId = options.longs === String ? $util.Long.prototype.toString.call(message.generalId) : options.longs === Number ? new $util.LongBits(message.generalId.low >>> 0, message.generalId.high >>> 0).toNumber() : message.generalId;
+            if (message.generalName != null && message.hasOwnProperty("generalName"))
+                object.generalName = message.generalName;
+            if (message.totalAssistCount != null && message.hasOwnProperty("totalAssistCount"))
+                object.totalAssistCount = message.totalAssistCount;
+            if (message.totalAssistGold != null && message.hasOwnProperty("totalAssistGold"))
+                if (typeof message.totalAssistGold === "number")
+                    object.totalAssistGold = options.longs === String ? String(message.totalAssistGold) : message.totalAssistGold;
+                else
+                    object.totalAssistGold = options.longs === String ? $util.Long.prototype.toString.call(message.totalAssistGold) : options.longs === Number ? new $util.LongBits(message.totalAssistGold.low >>> 0, message.totalAssistGold.high >>> 0).toNumber() : message.totalAssistGold;
+            if (message.winCount != null && message.hasOwnProperty("winCount"))
+                object.winCount = message.winCount;
+            if (message.totalPayout != null && message.hasOwnProperty("totalPayout"))
+                if (typeof message.totalPayout === "number")
+                    object.totalPayout = options.longs === String ? String(message.totalPayout) : message.totalPayout;
+                else
+                    object.totalPayout = options.longs === String ? $util.Long.prototype.toString.call(message.totalPayout) : options.longs === Number ? new $util.LongBits(message.totalPayout.low >>> 0, message.totalPayout.high >>> 0).toNumber() : message.totalPayout;
+            if (message.winRate != null && message.hasOwnProperty("winRate"))
+                object.winRate = options.json && !isFinite(message.winRate) ? String(message.winRate) : message.winRate;
+            return object;
+        };
+
+        /**
+         * Converts this GeneralStatisticsModel to JSON.
+         * @function toJSON
+         * @memberof pbbattle.GeneralStatisticsModel
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GeneralStatisticsModel.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GeneralStatisticsModel
+         * @function getTypeUrl
+         * @memberof pbbattle.GeneralStatisticsModel
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GeneralStatisticsModel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.GeneralStatisticsModel";
+        };
+
+        return GeneralStatisticsModel;
+    })();
+
+    pbbattle.GetGeneralStatisticsArgs = (function() {
+
+        /**
+         * Properties of a GetGeneralStatisticsArgs.
+         * @memberof pbbattle
+         * @interface IGetGeneralStatisticsArgs
+         * @property {string|null} [startDate] GetGeneralStatisticsArgs startDate
+         * @property {string|null} [endDate] GetGeneralStatisticsArgs endDate
+         */
+
+        /**
+         * Constructs a new GetGeneralStatisticsArgs.
+         * @memberof pbbattle
+         * @classdesc Represents a GetGeneralStatisticsArgs.
+         * @implements IGetGeneralStatisticsArgs
+         * @constructor
+         * @param {pbbattle.IGetGeneralStatisticsArgs=} [properties] Properties to set
+         */
+        function GetGeneralStatisticsArgs(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GetGeneralStatisticsArgs startDate.
+         * @member {string} startDate
+         * @memberof pbbattle.GetGeneralStatisticsArgs
+         * @instance
+         */
+        GetGeneralStatisticsArgs.prototype.startDate = "";
+
+        /**
+         * GetGeneralStatisticsArgs endDate.
+         * @member {string} endDate
+         * @memberof pbbattle.GetGeneralStatisticsArgs
+         * @instance
+         */
+        GetGeneralStatisticsArgs.prototype.endDate = "";
+
+        /**
+         * Creates a new GetGeneralStatisticsArgs instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.GetGeneralStatisticsArgs
+         * @static
+         * @param {pbbattle.IGetGeneralStatisticsArgs=} [properties] Properties to set
+         * @returns {pbbattle.GetGeneralStatisticsArgs} GetGeneralStatisticsArgs instance
+         */
+        GetGeneralStatisticsArgs.create = function create(properties) {
+            return new GetGeneralStatisticsArgs(properties);
+        };
+
+        /**
+         * Encodes the specified GetGeneralStatisticsArgs message. Does not implicitly {@link pbbattle.GetGeneralStatisticsArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.GetGeneralStatisticsArgs
+         * @static
+         * @param {pbbattle.IGetGeneralStatisticsArgs} message GetGeneralStatisticsArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetGeneralStatisticsArgs.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.startDate != null && Object.hasOwnProperty.call(message, "startDate"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.startDate);
+            if (message.endDate != null && Object.hasOwnProperty.call(message, "endDate"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.endDate);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GetGeneralStatisticsArgs message, length delimited. Does not implicitly {@link pbbattle.GetGeneralStatisticsArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.GetGeneralStatisticsArgs
+         * @static
+         * @param {pbbattle.IGetGeneralStatisticsArgs} message GetGeneralStatisticsArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetGeneralStatisticsArgs.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GetGeneralStatisticsArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.GetGeneralStatisticsArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.GetGeneralStatisticsArgs} GetGeneralStatisticsArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetGeneralStatisticsArgs.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.GetGeneralStatisticsArgs();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.startDate = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message.endDate = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GetGeneralStatisticsArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.GetGeneralStatisticsArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.GetGeneralStatisticsArgs} GetGeneralStatisticsArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetGeneralStatisticsArgs.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GetGeneralStatisticsArgs message.
+         * @function verify
+         * @memberof pbbattle.GetGeneralStatisticsArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GetGeneralStatisticsArgs.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.startDate != null && message.hasOwnProperty("startDate"))
+                if (!$util.isString(message.startDate))
+                    return "startDate: string expected";
+            if (message.endDate != null && message.hasOwnProperty("endDate"))
+                if (!$util.isString(message.endDate))
+                    return "endDate: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a GetGeneralStatisticsArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.GetGeneralStatisticsArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.GetGeneralStatisticsArgs} GetGeneralStatisticsArgs
+         */
+        GetGeneralStatisticsArgs.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.GetGeneralStatisticsArgs)
+                return object;
+            var message = new $root.pbbattle.GetGeneralStatisticsArgs();
+            if (object.startDate != null)
+                message.startDate = String(object.startDate);
+            if (object.endDate != null)
+                message.endDate = String(object.endDate);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GetGeneralStatisticsArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.GetGeneralStatisticsArgs
+         * @static
+         * @param {pbbattle.GetGeneralStatisticsArgs} message GetGeneralStatisticsArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GetGeneralStatisticsArgs.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.startDate = "";
+                object.endDate = "";
+            }
+            if (message.startDate != null && message.hasOwnProperty("startDate"))
+                object.startDate = message.startDate;
+            if (message.endDate != null && message.hasOwnProperty("endDate"))
+                object.endDate = message.endDate;
+            return object;
+        };
+
+        /**
+         * Converts this GetGeneralStatisticsArgs to JSON.
+         * @function toJSON
+         * @memberof pbbattle.GetGeneralStatisticsArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GetGeneralStatisticsArgs.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GetGeneralStatisticsArgs
+         * @function getTypeUrl
+         * @memberof pbbattle.GetGeneralStatisticsArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GetGeneralStatisticsArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.GetGeneralStatisticsArgs";
+        };
+
+        return GetGeneralStatisticsArgs;
+    })();
+
+    pbbattle.GetGeneralStatisticsReply = (function() {
+
+        /**
+         * Properties of a GetGeneralStatisticsReply.
+         * @memberof pbbattle
+         * @interface IGetGeneralStatisticsReply
+         * @property {pbcommon.EnumCode|null} [code] GetGeneralStatisticsReply code
+         * @property {string|null} [msg] GetGeneralStatisticsReply msg
+         * @property {Array.<pbbattle.IGeneralStatisticsModel>|null} [list] GetGeneralStatisticsReply list
+         */
+
+        /**
+         * Constructs a new GetGeneralStatisticsReply.
+         * @memberof pbbattle
+         * @classdesc Represents a GetGeneralStatisticsReply.
+         * @implements IGetGeneralStatisticsReply
+         * @constructor
+         * @param {pbbattle.IGetGeneralStatisticsReply=} [properties] Properties to set
+         */
+        function GetGeneralStatisticsReply(properties) {
+            this.list = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GetGeneralStatisticsReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbbattle.GetGeneralStatisticsReply
+         * @instance
+         */
+        GetGeneralStatisticsReply.prototype.code = 0;
+
+        /**
+         * GetGeneralStatisticsReply msg.
+         * @member {string} msg
+         * @memberof pbbattle.GetGeneralStatisticsReply
+         * @instance
+         */
+        GetGeneralStatisticsReply.prototype.msg = "";
+
+        /**
+         * GetGeneralStatisticsReply list.
+         * @member {Array.<pbbattle.IGeneralStatisticsModel>} list
+         * @memberof pbbattle.GetGeneralStatisticsReply
+         * @instance
+         */
+        GetGeneralStatisticsReply.prototype.list = $util.emptyArray;
+
+        /**
+         * Creates a new GetGeneralStatisticsReply instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.GetGeneralStatisticsReply
+         * @static
+         * @param {pbbattle.IGetGeneralStatisticsReply=} [properties] Properties to set
+         * @returns {pbbattle.GetGeneralStatisticsReply} GetGeneralStatisticsReply instance
+         */
+        GetGeneralStatisticsReply.create = function create(properties) {
+            return new GetGeneralStatisticsReply(properties);
+        };
+
+        /**
+         * Encodes the specified GetGeneralStatisticsReply message. Does not implicitly {@link pbbattle.GetGeneralStatisticsReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.GetGeneralStatisticsReply
+         * @static
+         * @param {pbbattle.IGetGeneralStatisticsReply} message GetGeneralStatisticsReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetGeneralStatisticsReply.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.list != null && message.list.length)
+                for (var i = 0; i < message.list.length; ++i)
+                    $root.pbbattle.GeneralStatisticsModel.encode(message.list[i], writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GetGeneralStatisticsReply message, length delimited. Does not implicitly {@link pbbattle.GetGeneralStatisticsReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.GetGeneralStatisticsReply
+         * @static
+         * @param {pbbattle.IGetGeneralStatisticsReply} message GetGeneralStatisticsReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetGeneralStatisticsReply.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GetGeneralStatisticsReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.GetGeneralStatisticsReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.GetGeneralStatisticsReply} GetGeneralStatisticsReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetGeneralStatisticsReply.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.GetGeneralStatisticsReply();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.code = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        if (!(message.list && message.list.length))
+                            message.list = [];
+                        message.list.push($root.pbbattle.GeneralStatisticsModel.decode(reader, reader.uint32()));
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GetGeneralStatisticsReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.GetGeneralStatisticsReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.GetGeneralStatisticsReply} GetGeneralStatisticsReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetGeneralStatisticsReply.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GetGeneralStatisticsReply message.
+         * @function verify
+         * @memberof pbbattle.GetGeneralStatisticsReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GetGeneralStatisticsReply.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.code != null && message.hasOwnProperty("code"))
+                switch (message.code) {
+                default:
+                    return "code: enum value expected";
+                case 0:
+                case 200:
+                case 403:
+                case 500:
+                case 501:
+                case 502:
+                case 503:
+                case 504:
+                case 505:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
+                case 2002:
+                case 2003:
+                case 2004:
+                case 2005:
+                case 2006:
+                case 2007:
+                case 2008:
+                case 2009:
+                case 2010:
+                case 2011:
+                case 2012:
+                case 2013:
+                case 2014:
+                case 2015:
+                case 3001:
+                case 3002:
+                case 3003:
+                case 5001:
+                case 5002:
+                case 10001:
+                case 10002:
+                case 20001:
+                case 20002:
+                    break;
+                }
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                if (!$util.isString(message.msg))
+                    return "msg: string expected";
+            if (message.list != null && message.hasOwnProperty("list")) {
+                if (!Array.isArray(message.list))
+                    return "list: array expected";
+                for (var i = 0; i < message.list.length; ++i) {
+                    var error = $root.pbbattle.GeneralStatisticsModel.verify(message.list[i]);
+                    if (error)
+                        return "list." + error;
+                }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a GetGeneralStatisticsReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.GetGeneralStatisticsReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.GetGeneralStatisticsReply} GetGeneralStatisticsReply
+         */
+        GetGeneralStatisticsReply.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.GetGeneralStatisticsReply)
+                return object;
+            var message = new $root.pbbattle.GetGeneralStatisticsReply();
+            switch (object.code) {
+            default:
+                if (typeof object.code === "number") {
+                    message.code = object.code;
+                    break;
+                }
+                break;
+            case "None":
+            case 0:
+                message.code = 0;
+                break;
+            case "Success":
+            case 200:
+                message.code = 200;
+                break;
+            case "Forbidden":
+            case 403:
+                message.code = 403;
+                break;
+            case "Fail":
+            case 500:
+                message.code = 500;
+                break;
+            case "Unknown":
+            case 501:
+                message.code = 501;
+                break;
+            case "Internal":
+            case 502:
+                message.code = 502;
+                break;
+            case "Invalid":
+            case 503:
+                message.code = 503;
+                break;
+            case "InvalidParam":
+            case 504:
+                message.code = 504;
+                break;
+            case "ParamError":
+            case 505:
+                message.code = 505;
+                break;
+            case "FindError":
+            case 1001:
+                message.code = 1001;
+                break;
+            case "CreateError":
+            case 1002:
+                message.code = 1002;
+                break;
+            case "DeleteError":
+            case 1003:
+                message.code = 1003;
+                break;
+            case "UpdateError":
+            case 1004:
+                message.code = 1004;
+                break;
+            case "InvalidToken":
+            case 2002:
+                message.code = 2002;
+                break;
+            case "InvalidSign":
+            case 2003:
+                message.code = 2003;
+                break;
+            case "NotLogin":
+            case 2004:
+                message.code = 2004;
+                break;
+            case "LoginTimeout":
+            case 2005:
+                message.code = 2005;
+                break;
+            case "LoginError":
+            case 2006:
+                message.code = 2006;
+                break;
+            case "LoginForbidden":
+            case 2007:
+                message.code = 2007;
+                break;
+            case "LoginExpired":
+            case 2008:
+                message.code = 2008;
+                break;
+            case "LoginInvalid":
+            case 2009:
+                message.code = 2009;
+                break;
+            case "LoginInvalidPassword":
+            case 2010:
+                message.code = 2010;
+                break;
+            case "LoginInvalidUsername":
+            case 2011:
+                message.code = 2011;
+                break;
+            case "LoginInvalidEmail":
+            case 2012:
+                message.code = 2012;
+                break;
+            case "LoginInvalidPhone":
+            case 2013:
+                message.code = 2013;
+                break;
+            case "LoginInvalidUsernameOrEmail":
+            case 2014:
+                message.code = 2014;
+                break;
+            case "LoginSocketRepeat":
+            case 2015:
+                message.code = 2015;
+                break;
+            case "RoleIsNotExist":
+            case 3001:
+                message.code = 3001;
+                break;
+            case "UserIsExist":
+            case 3002:
+                message.code = 3002;
+                break;
+            case "UserIsBan":
+            case 3003:
+                message.code = 3003;
+                break;
+            case "TalkIsBan":
+            case 5001:
+                message.code = 5001;
+                break;
+            case "EnterRoomErr":
+            case 5002:
+                message.code = 5002;
+                break;
+            case "HalaChatNeedBuy":
+            case 10001:
+                message.code = 10001;
+                break;
+            case "HalaPriceOutRange":
+            case 10002:
+                message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            }
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.list) {
+                if (!Array.isArray(object.list))
+                    throw TypeError(".pbbattle.GetGeneralStatisticsReply.list: array expected");
+                message.list = [];
+                for (var i = 0; i < object.list.length; ++i) {
+                    if (typeof object.list[i] !== "object")
+                        throw TypeError(".pbbattle.GetGeneralStatisticsReply.list: object expected");
+                    message.list[i] = $root.pbbattle.GeneralStatisticsModel.fromObject(object.list[i]);
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GetGeneralStatisticsReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.GetGeneralStatisticsReply
+         * @static
+         * @param {pbbattle.GetGeneralStatisticsReply} message GetGeneralStatisticsReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GetGeneralStatisticsReply.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.list = [];
+            if (options.defaults) {
+                object.code = options.enums === String ? "None" : 0;
+                object.msg = "";
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.list && message.list.length) {
+                object.list = [];
+                for (var j = 0; j < message.list.length; ++j)
+                    object.list[j] = $root.pbbattle.GeneralStatisticsModel.toObject(message.list[j], options);
+            }
+            return object;
+        };
+
+        /**
+         * Converts this GetGeneralStatisticsReply to JSON.
+         * @function toJSON
+         * @memberof pbbattle.GetGeneralStatisticsReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GetGeneralStatisticsReply.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GetGeneralStatisticsReply
+         * @function getTypeUrl
+         * @memberof pbbattle.GetGeneralStatisticsReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GetGeneralStatisticsReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.GetGeneralStatisticsReply";
+        };
+
+        return GetGeneralStatisticsReply;
+    })();
+
+    pbbattle.BattleAdmin = (function() {
+
+        /**
+         * Constructs a new BattleAdmin service.
+         * @memberof pbbattle
+         * @classdesc Represents a BattleAdmin
+         * @extends $protobuf.rpc.Service
+         * @constructor
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         */
+        function BattleAdmin(rpcImpl, requestDelimited, responseDelimited) {
+            $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited);
+        }
+
+        (BattleAdmin.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = BattleAdmin;
+
+        /**
+         * Creates new BattleAdmin service using the specified rpc implementation.
+         * @function create
+         * @memberof pbbattle.BattleAdmin
+         * @static
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         * @returns {BattleAdmin} RPC service. Useful where requests and/or responses are streamed.
+         */
+        BattleAdmin.create = function create(rpcImpl, requestDelimited, responseDelimited) {
+            return new this(rpcImpl, requestDelimited, responseDelimited);
+        };
+
+        /**
+         * Callback as used by {@link pbbattle.BattleAdmin#createAssistOption}.
+         * @memberof pbbattle.BattleAdmin
+         * @typedef CreateAssistOptionCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls CreateAssistOption.
+         * @function createAssistOption
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IAssistOptionModel} request AssistOptionModel message or plain object
+         * @param {pbbattle.BattleAdmin.CreateAssistOptionCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattleAdmin.prototype.createAssistOption = function createAssistOption(request, callback) {
+            return this.rpcCall(createAssistOption, $root.pbbattle.AssistOptionModel, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "CreateAssistOption" });
+
+        /**
+         * Calls CreateAssistOption.
+         * @function createAssistOption
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IAssistOptionModel} request AssistOptionModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.BattleAdmin#updateAssistOption}.
+         * @memberof pbbattle.BattleAdmin
+         * @typedef UpdateAssistOptionCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls UpdateAssistOption.
+         * @function updateAssistOption
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IAssistOptionModel} request AssistOptionModel message or plain object
+         * @param {pbbattle.BattleAdmin.UpdateAssistOptionCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattleAdmin.prototype.updateAssistOption = function updateAssistOption(request, callback) {
+            return this.rpcCall(updateAssistOption, $root.pbbattle.AssistOptionModel, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "UpdateAssistOption" });
+
+        /**
+         * Calls UpdateAssistOption.
+         * @function updateAssistOption
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IAssistOptionModel} request AssistOptionModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.BattleAdmin#deleteAssistOption}.
+         * @memberof pbbattle.BattleAdmin
+         * @typedef DeleteAssistOptionCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls DeleteAssistOption.
+         * @function deleteAssistOption
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbbattle.BattleAdmin.DeleteAssistOptionCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattleAdmin.prototype.deleteAssistOption = function deleteAssistOption(request, callback) {
+            return this.rpcCall(deleteAssistOption, $root.pbcommon.IdArgs, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "DeleteAssistOption" });
+
+        /**
+         * Calls DeleteAssistOption.
+         * @function deleteAssistOption
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.BattleAdmin#findAssistOptionById}.
+         * @memberof pbbattle.BattleAdmin
+         * @typedef FindAssistOptionByIdCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbbattle.FindAssistOptionReply} [response] FindAssistOptionReply
+         */
+
+        /**
+         * Calls FindAssistOptionById.
+         * @function findAssistOptionById
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbbattle.BattleAdmin.FindAssistOptionByIdCallback} callback Node-style callback called with the error, if any, and FindAssistOptionReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattleAdmin.prototype.findAssistOptionById = function findAssistOptionById(request, callback) {
+            return this.rpcCall(findAssistOptionById, $root.pbcommon.IdArgs, $root.pbbattle.FindAssistOptionReply, request, callback);
+        }, "name", { value: "FindAssistOptionById" });
+
+        /**
+         * Calls FindAssistOptionById.
+         * @function findAssistOptionById
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbbattle.FindAssistOptionReply>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.BattleAdmin#findAssistOptionList}.
+         * @memberof pbbattle.BattleAdmin
+         * @typedef FindAssistOptionListCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbbattle.FindAssistOptionReply} [response] FindAssistOptionReply
+         */
+
+        /**
+         * Calls FindAssistOptionList.
+         * @function findAssistOptionList
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IFindAssistOptionArgs} request FindAssistOptionArgs message or plain object
+         * @param {pbbattle.BattleAdmin.FindAssistOptionListCallback} callback Node-style callback called with the error, if any, and FindAssistOptionReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattleAdmin.prototype.findAssistOptionList = function findAssistOptionList(request, callback) {
+            return this.rpcCall(findAssistOptionList, $root.pbbattle.FindAssistOptionArgs, $root.pbbattle.FindAssistOptionReply, request, callback);
+        }, "name", { value: "FindAssistOptionList" });
+
+        /**
+         * Calls FindAssistOptionList.
+         * @function findAssistOptionList
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IFindAssistOptionArgs} request FindAssistOptionArgs message or plain object
+         * @returns {Promise<pbbattle.FindAssistOptionReply>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.BattleAdmin#createProbabilityConfig}.
+         * @memberof pbbattle.BattleAdmin
+         * @typedef CreateProbabilityConfigCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls CreateProbabilityConfig.
+         * @function createProbabilityConfig
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IProbabilityConfigModel} request ProbabilityConfigModel message or plain object
+         * @param {pbbattle.BattleAdmin.CreateProbabilityConfigCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattleAdmin.prototype.createProbabilityConfig = function createProbabilityConfig(request, callback) {
+            return this.rpcCall(createProbabilityConfig, $root.pbbattle.ProbabilityConfigModel, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "CreateProbabilityConfig" });
+
+        /**
+         * Calls CreateProbabilityConfig.
+         * @function createProbabilityConfig
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IProbabilityConfigModel} request ProbabilityConfigModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.BattleAdmin#updateProbabilityConfig}.
+         * @memberof pbbattle.BattleAdmin
+         * @typedef UpdateProbabilityConfigCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls UpdateProbabilityConfig.
+         * @function updateProbabilityConfig
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IProbabilityConfigModel} request ProbabilityConfigModel message or plain object
+         * @param {pbbattle.BattleAdmin.UpdateProbabilityConfigCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattleAdmin.prototype.updateProbabilityConfig = function updateProbabilityConfig(request, callback) {
+            return this.rpcCall(updateProbabilityConfig, $root.pbbattle.ProbabilityConfigModel, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "UpdateProbabilityConfig" });
+
+        /**
+         * Calls UpdateProbabilityConfig.
+         * @function updateProbabilityConfig
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IProbabilityConfigModel} request ProbabilityConfigModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.BattleAdmin#deleteProbabilityConfig}.
+         * @memberof pbbattle.BattleAdmin
+         * @typedef DeleteProbabilityConfigCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls DeleteProbabilityConfig.
+         * @function deleteProbabilityConfig
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbbattle.BattleAdmin.DeleteProbabilityConfigCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattleAdmin.prototype.deleteProbabilityConfig = function deleteProbabilityConfig(request, callback) {
+            return this.rpcCall(deleteProbabilityConfig, $root.pbcommon.IdArgs, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "DeleteProbabilityConfig" });
+
+        /**
+         * Calls DeleteProbabilityConfig.
+         * @function deleteProbabilityConfig
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.BattleAdmin#findProbabilityConfigById}.
+         * @memberof pbbattle.BattleAdmin
+         * @typedef FindProbabilityConfigByIdCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbbattle.FindProbabilityConfigReply} [response] FindProbabilityConfigReply
+         */
+
+        /**
+         * Calls FindProbabilityConfigById.
+         * @function findProbabilityConfigById
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbbattle.BattleAdmin.FindProbabilityConfigByIdCallback} callback Node-style callback called with the error, if any, and FindProbabilityConfigReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattleAdmin.prototype.findProbabilityConfigById = function findProbabilityConfigById(request, callback) {
+            return this.rpcCall(findProbabilityConfigById, $root.pbcommon.IdArgs, $root.pbbattle.FindProbabilityConfigReply, request, callback);
+        }, "name", { value: "FindProbabilityConfigById" });
+
+        /**
+         * Calls FindProbabilityConfigById.
+         * @function findProbabilityConfigById
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbbattle.FindProbabilityConfigReply>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.BattleAdmin#findProbabilityConfigList}.
+         * @memberof pbbattle.BattleAdmin
+         * @typedef FindProbabilityConfigListCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbbattle.FindProbabilityConfigReply} [response] FindProbabilityConfigReply
+         */
+
+        /**
+         * Calls FindProbabilityConfigList.
+         * @function findProbabilityConfigList
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IFindProbabilityConfigArgs} request FindProbabilityConfigArgs message or plain object
+         * @param {pbbattle.BattleAdmin.FindProbabilityConfigListCallback} callback Node-style callback called with the error, if any, and FindProbabilityConfigReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattleAdmin.prototype.findProbabilityConfigList = function findProbabilityConfigList(request, callback) {
+            return this.rpcCall(findProbabilityConfigList, $root.pbbattle.FindProbabilityConfigArgs, $root.pbbattle.FindProbabilityConfigReply, request, callback);
+        }, "name", { value: "FindProbabilityConfigList" });
+
+        /**
+         * Calls FindProbabilityConfigList.
+         * @function findProbabilityConfigList
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IFindProbabilityConfigArgs} request FindProbabilityConfigArgs message or plain object
+         * @returns {Promise<pbbattle.FindProbabilityConfigReply>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.BattleAdmin#findBattleRoundById}.
+         * @memberof pbbattle.BattleAdmin
+         * @typedef FindBattleRoundByIdCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbbattle.FindBattleRoundReply} [response] FindBattleRoundReply
+         */
+
+        /**
+         * Calls FindBattleRoundById.
+         * @function findBattleRoundById
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbbattle.BattleAdmin.FindBattleRoundByIdCallback} callback Node-style callback called with the error, if any, and FindBattleRoundReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattleAdmin.prototype.findBattleRoundById = function findBattleRoundById(request, callback) {
+            return this.rpcCall(findBattleRoundById, $root.pbcommon.IdArgs, $root.pbbattle.FindBattleRoundReply, request, callback);
+        }, "name", { value: "FindBattleRoundById" });
+
+        /**
+         * Calls FindBattleRoundById.
+         * @function findBattleRoundById
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbbattle.FindBattleRoundReply>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.BattleAdmin#findBattleRoundList}.
+         * @memberof pbbattle.BattleAdmin
+         * @typedef FindBattleRoundListCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbbattle.FindBattleRoundReply} [response] FindBattleRoundReply
+         */
+
+        /**
+         * Calls FindBattleRoundList.
+         * @function findBattleRoundList
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IFindBattleRoundArgs} request FindBattleRoundArgs message or plain object
+         * @param {pbbattle.BattleAdmin.FindBattleRoundListCallback} callback Node-style callback called with the error, if any, and FindBattleRoundReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattleAdmin.prototype.findBattleRoundList = function findBattleRoundList(request, callback) {
+            return this.rpcCall(findBattleRoundList, $root.pbbattle.FindBattleRoundArgs, $root.pbbattle.FindBattleRoundReply, request, callback);
+        }, "name", { value: "FindBattleRoundList" });
+
+        /**
+         * Calls FindBattleRoundList.
+         * @function findBattleRoundList
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IFindBattleRoundArgs} request FindBattleRoundArgs message or plain object
+         * @returns {Promise<pbbattle.FindBattleRoundReply>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.BattleAdmin#findAssistRecordById}.
+         * @memberof pbbattle.BattleAdmin
+         * @typedef FindAssistRecordByIdCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbbattle.FindAssistRecordReply} [response] FindAssistRecordReply
+         */
+
+        /**
+         * Calls FindAssistRecordById.
+         * @function findAssistRecordById
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbbattle.BattleAdmin.FindAssistRecordByIdCallback} callback Node-style callback called with the error, if any, and FindAssistRecordReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattleAdmin.prototype.findAssistRecordById = function findAssistRecordById(request, callback) {
+            return this.rpcCall(findAssistRecordById, $root.pbcommon.IdArgs, $root.pbbattle.FindAssistRecordReply, request, callback);
+        }, "name", { value: "FindAssistRecordById" });
+
+        /**
+         * Calls FindAssistRecordById.
+         * @function findAssistRecordById
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbbattle.FindAssistRecordReply>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.BattleAdmin#findAssistRecordList}.
+         * @memberof pbbattle.BattleAdmin
+         * @typedef FindAssistRecordListCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbbattle.FindAssistRecordReply} [response] FindAssistRecordReply
+         */
+
+        /**
+         * Calls FindAssistRecordList.
+         * @function findAssistRecordList
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IFindAssistRecordArgs} request FindAssistRecordArgs message or plain object
+         * @param {pbbattle.BattleAdmin.FindAssistRecordListCallback} callback Node-style callback called with the error, if any, and FindAssistRecordReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattleAdmin.prototype.findAssistRecordList = function findAssistRecordList(request, callback) {
+            return this.rpcCall(findAssistRecordList, $root.pbbattle.FindAssistRecordArgs, $root.pbbattle.FindAssistRecordReply, request, callback);
+        }, "name", { value: "FindAssistRecordList" });
+
+        /**
+         * Calls FindAssistRecordList.
+         * @function findAssistRecordList
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IFindAssistRecordArgs} request FindAssistRecordArgs message or plain object
+         * @returns {Promise<pbbattle.FindAssistRecordReply>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.BattleAdmin#findPrizePoolLogById}.
+         * @memberof pbbattle.BattleAdmin
+         * @typedef FindPrizePoolLogByIdCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbbattle.FindPrizePoolLogReply} [response] FindPrizePoolLogReply
+         */
+
+        /**
+         * Calls FindPrizePoolLogById.
+         * @function findPrizePoolLogById
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbbattle.BattleAdmin.FindPrizePoolLogByIdCallback} callback Node-style callback called with the error, if any, and FindPrizePoolLogReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattleAdmin.prototype.findPrizePoolLogById = function findPrizePoolLogById(request, callback) {
+            return this.rpcCall(findPrizePoolLogById, $root.pbcommon.IdArgs, $root.pbbattle.FindPrizePoolLogReply, request, callback);
+        }, "name", { value: "FindPrizePoolLogById" });
+
+        /**
+         * Calls FindPrizePoolLogById.
+         * @function findPrizePoolLogById
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbbattle.FindPrizePoolLogReply>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.BattleAdmin#findPrizePoolLogList}.
+         * @memberof pbbattle.BattleAdmin
+         * @typedef FindPrizePoolLogListCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbbattle.FindPrizePoolLogReply} [response] FindPrizePoolLogReply
+         */
+
+        /**
+         * Calls FindPrizePoolLogList.
+         * @function findPrizePoolLogList
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IFindPrizePoolLogArgs} request FindPrizePoolLogArgs message or plain object
+         * @param {pbbattle.BattleAdmin.FindPrizePoolLogListCallback} callback Node-style callback called with the error, if any, and FindPrizePoolLogReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattleAdmin.prototype.findPrizePoolLogList = function findPrizePoolLogList(request, callback) {
+            return this.rpcCall(findPrizePoolLogList, $root.pbbattle.FindPrizePoolLogArgs, $root.pbbattle.FindPrizePoolLogReply, request, callback);
+        }, "name", { value: "FindPrizePoolLogList" });
+
+        /**
+         * Calls FindPrizePoolLogList.
+         * @function findPrizePoolLogList
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IFindPrizePoolLogArgs} request FindPrizePoolLogArgs message or plain object
+         * @returns {Promise<pbbattle.FindPrizePoolLogReply>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.BattleAdmin#findWinRecordById}.
+         * @memberof pbbattle.BattleAdmin
+         * @typedef FindWinRecordByIdCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbbattle.FindWinRecordReply} [response] FindWinRecordReply
+         */
+
+        /**
+         * Calls FindWinRecordById.
+         * @function findWinRecordById
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbbattle.BattleAdmin.FindWinRecordByIdCallback} callback Node-style callback called with the error, if any, and FindWinRecordReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattleAdmin.prototype.findWinRecordById = function findWinRecordById(request, callback) {
+            return this.rpcCall(findWinRecordById, $root.pbcommon.IdArgs, $root.pbbattle.FindWinRecordReply, request, callback);
+        }, "name", { value: "FindWinRecordById" });
+
+        /**
+         * Calls FindWinRecordById.
+         * @function findWinRecordById
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbbattle.FindWinRecordReply>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.BattleAdmin#findWinRecordList}.
+         * @memberof pbbattle.BattleAdmin
+         * @typedef FindWinRecordListCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbbattle.FindWinRecordReply} [response] FindWinRecordReply
+         */
+
+        /**
+         * Calls FindWinRecordList.
+         * @function findWinRecordList
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IFindWinRecordArgs} request FindWinRecordArgs message or plain object
+         * @param {pbbattle.BattleAdmin.FindWinRecordListCallback} callback Node-style callback called with the error, if any, and FindWinRecordReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattleAdmin.prototype.findWinRecordList = function findWinRecordList(request, callback) {
+            return this.rpcCall(findWinRecordList, $root.pbbattle.FindWinRecordArgs, $root.pbbattle.FindWinRecordReply, request, callback);
+        }, "name", { value: "FindWinRecordList" });
+
+        /**
+         * Calls FindWinRecordList.
+         * @function findWinRecordList
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IFindWinRecordArgs} request FindWinRecordArgs message or plain object
+         * @returns {Promise<pbbattle.FindWinRecordReply>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.BattleAdmin#createSystemUser}.
+         * @memberof pbbattle.BattleAdmin
+         * @typedef CreateSystemUserCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls CreateSystemUser.
+         * @function createSystemUser
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.ISystemUserModel} request SystemUserModel message or plain object
+         * @param {pbbattle.BattleAdmin.CreateSystemUserCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattleAdmin.prototype.createSystemUser = function createSystemUser(request, callback) {
+            return this.rpcCall(createSystemUser, $root.pbbattle.SystemUserModel, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "CreateSystemUser" });
+
+        /**
+         * Calls CreateSystemUser.
+         * @function createSystemUser
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.ISystemUserModel} request SystemUserModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.BattleAdmin#updateSystemUser}.
+         * @memberof pbbattle.BattleAdmin
+         * @typedef UpdateSystemUserCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls UpdateSystemUser.
+         * @function updateSystemUser
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.ISystemUserModel} request SystemUserModel message or plain object
+         * @param {pbbattle.BattleAdmin.UpdateSystemUserCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattleAdmin.prototype.updateSystemUser = function updateSystemUser(request, callback) {
+            return this.rpcCall(updateSystemUser, $root.pbbattle.SystemUserModel, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "UpdateSystemUser" });
+
+        /**
+         * Calls UpdateSystemUser.
+         * @function updateSystemUser
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.ISystemUserModel} request SystemUserModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.BattleAdmin#deleteSystemUser}.
+         * @memberof pbbattle.BattleAdmin
+         * @typedef DeleteSystemUserCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls DeleteSystemUser.
+         * @function deleteSystemUser
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbbattle.BattleAdmin.DeleteSystemUserCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattleAdmin.prototype.deleteSystemUser = function deleteSystemUser(request, callback) {
+            return this.rpcCall(deleteSystemUser, $root.pbcommon.IdArgs, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "DeleteSystemUser" });
+
+        /**
+         * Calls DeleteSystemUser.
+         * @function deleteSystemUser
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.BattleAdmin#findSystemUserById}.
+         * @memberof pbbattle.BattleAdmin
+         * @typedef FindSystemUserByIdCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbbattle.FindSystemUserReply} [response] FindSystemUserReply
+         */
+
+        /**
+         * Calls FindSystemUserById.
+         * @function findSystemUserById
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbbattle.BattleAdmin.FindSystemUserByIdCallback} callback Node-style callback called with the error, if any, and FindSystemUserReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattleAdmin.prototype.findSystemUserById = function findSystemUserById(request, callback) {
+            return this.rpcCall(findSystemUserById, $root.pbcommon.IdArgs, $root.pbbattle.FindSystemUserReply, request, callback);
+        }, "name", { value: "FindSystemUserById" });
+
+        /**
+         * Calls FindSystemUserById.
+         * @function findSystemUserById
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbbattle.FindSystemUserReply>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.BattleAdmin#findSystemUserList}.
+         * @memberof pbbattle.BattleAdmin
+         * @typedef FindSystemUserListCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbbattle.FindSystemUserReply} [response] FindSystemUserReply
+         */
+
+        /**
+         * Calls FindSystemUserList.
+         * @function findSystemUserList
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IFindSystemUserArgs} request FindSystemUserArgs message or plain object
+         * @param {pbbattle.BattleAdmin.FindSystemUserListCallback} callback Node-style callback called with the error, if any, and FindSystemUserReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattleAdmin.prototype.findSystemUserList = function findSystemUserList(request, callback) {
+            return this.rpcCall(findSystemUserList, $root.pbbattle.FindSystemUserArgs, $root.pbbattle.FindSystemUserReply, request, callback);
+        }, "name", { value: "FindSystemUserList" });
+
+        /**
+         * Calls FindSystemUserList.
+         * @function findSystemUserList
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IFindSystemUserArgs} request FindSystemUserArgs message or plain object
+         * @returns {Promise<pbbattle.FindSystemUserReply>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.BattleAdmin#createGeneral}.
+         * @memberof pbbattle.BattleAdmin
+         * @typedef CreateGeneralCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls CreateGeneral.
+         * @function createGeneral
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IGeneralModel} request GeneralModel message or plain object
+         * @param {pbbattle.BattleAdmin.CreateGeneralCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattleAdmin.prototype.createGeneral = function createGeneral(request, callback) {
+            return this.rpcCall(createGeneral, $root.pbbattle.GeneralModel, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "CreateGeneral" });
+
+        /**
+         * Calls CreateGeneral.
+         * @function createGeneral
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IGeneralModel} request GeneralModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.BattleAdmin#updateGeneral}.
+         * @memberof pbbattle.BattleAdmin
+         * @typedef UpdateGeneralCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls UpdateGeneral.
+         * @function updateGeneral
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IGeneralModel} request GeneralModel message or plain object
+         * @param {pbbattle.BattleAdmin.UpdateGeneralCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattleAdmin.prototype.updateGeneral = function updateGeneral(request, callback) {
+            return this.rpcCall(updateGeneral, $root.pbbattle.GeneralModel, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "UpdateGeneral" });
+
+        /**
+         * Calls UpdateGeneral.
+         * @function updateGeneral
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IGeneralModel} request GeneralModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.BattleAdmin#deleteGeneral}.
+         * @memberof pbbattle.BattleAdmin
+         * @typedef DeleteGeneralCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls DeleteGeneral.
+         * @function deleteGeneral
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbbattle.BattleAdmin.DeleteGeneralCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattleAdmin.prototype.deleteGeneral = function deleteGeneral(request, callback) {
+            return this.rpcCall(deleteGeneral, $root.pbcommon.IdArgs, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "DeleteGeneral" });
+
+        /**
+         * Calls DeleteGeneral.
+         * @function deleteGeneral
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.BattleAdmin#findGeneralById}.
+         * @memberof pbbattle.BattleAdmin
+         * @typedef FindGeneralByIdCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbbattle.FindGeneralReply} [response] FindGeneralReply
+         */
+
+        /**
+         * Calls FindGeneralById.
+         * @function findGeneralById
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbbattle.BattleAdmin.FindGeneralByIdCallback} callback Node-style callback called with the error, if any, and FindGeneralReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattleAdmin.prototype.findGeneralById = function findGeneralById(request, callback) {
+            return this.rpcCall(findGeneralById, $root.pbcommon.IdArgs, $root.pbbattle.FindGeneralReply, request, callback);
+        }, "name", { value: "FindGeneralById" });
+
+        /**
+         * Calls FindGeneralById.
+         * @function findGeneralById
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbbattle.FindGeneralReply>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.BattleAdmin#findGeneralList}.
+         * @memberof pbbattle.BattleAdmin
+         * @typedef FindGeneralListCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbbattle.FindGeneralReply} [response] FindGeneralReply
+         */
+
+        /**
+         * Calls FindGeneralList.
+         * @function findGeneralList
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IFindGeneralArgs} request FindGeneralArgs message or plain object
+         * @param {pbbattle.BattleAdmin.FindGeneralListCallback} callback Node-style callback called with the error, if any, and FindGeneralReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattleAdmin.prototype.findGeneralList = function findGeneralList(request, callback) {
+            return this.rpcCall(findGeneralList, $root.pbbattle.FindGeneralArgs, $root.pbbattle.FindGeneralReply, request, callback);
+        }, "name", { value: "FindGeneralList" });
+
+        /**
+         * Calls FindGeneralList.
+         * @function findGeneralList
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IFindGeneralArgs} request FindGeneralArgs message or plain object
+         * @returns {Promise<pbbattle.FindGeneralReply>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.BattleAdmin#getGameStatistics}.
+         * @memberof pbbattle.BattleAdmin
+         * @typedef GetGameStatisticsCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbbattle.GetGameStatisticsReply} [response] GetGameStatisticsReply
+         */
+
+        /**
+         * Calls GetGameStatistics.
+         * @function getGameStatistics
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IGetGameStatisticsArgs} request GetGameStatisticsArgs message or plain object
+         * @param {pbbattle.BattleAdmin.GetGameStatisticsCallback} callback Node-style callback called with the error, if any, and GetGameStatisticsReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattleAdmin.prototype.getGameStatistics = function getGameStatistics(request, callback) {
+            return this.rpcCall(getGameStatistics, $root.pbbattle.GetGameStatisticsArgs, $root.pbbattle.GetGameStatisticsReply, request, callback);
+        }, "name", { value: "GetGameStatistics" });
+
+        /**
+         * Calls GetGameStatistics.
+         * @function getGameStatistics
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IGetGameStatisticsArgs} request GetGameStatisticsArgs message or plain object
+         * @returns {Promise<pbbattle.GetGameStatisticsReply>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.BattleAdmin#getGeneralStatistics}.
+         * @memberof pbbattle.BattleAdmin
+         * @typedef GetGeneralStatisticsCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbbattle.GetGeneralStatisticsReply} [response] GetGeneralStatisticsReply
+         */
+
+        /**
+         * Calls GetGeneralStatistics.
+         * @function getGeneralStatistics
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IGetGeneralStatisticsArgs} request GetGeneralStatisticsArgs message or plain object
+         * @param {pbbattle.BattleAdmin.GetGeneralStatisticsCallback} callback Node-style callback called with the error, if any, and GetGeneralStatisticsReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattleAdmin.prototype.getGeneralStatistics = function getGeneralStatistics(request, callback) {
+            return this.rpcCall(getGeneralStatistics, $root.pbbattle.GetGeneralStatisticsArgs, $root.pbbattle.GetGeneralStatisticsReply, request, callback);
+        }, "name", { value: "GetGeneralStatistics" });
+
+        /**
+         * Calls GetGeneralStatistics.
+         * @function getGeneralStatistics
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IGetGeneralStatisticsArgs} request GetGeneralStatisticsArgs message or plain object
+         * @returns {Promise<pbbattle.GetGeneralStatisticsReply>} Promise
+         * @variation 2
+         */
+
+        return BattleAdmin;
+    })();
+
+    return pbbattle;
+})();
+
+module.exports = $root;
