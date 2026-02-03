@@ -147,6 +147,69 @@ export const constantRoutes = [
         meta: { title: '库存管理', icon: 'list' }
       }
     ]
+  },
+  {
+    path: '/game',
+    component: Layout,
+    redirect: '/game/dashboard',
+    alwaysShow: true,
+    meta: { title: '游戏管理', icon: 'trophy' },
+    children: [
+      {
+        path: 'dashboard',
+        component: () => import('@/views/game/dashboard'),
+        name: 'GameDashboard',
+        meta: { title: '数据看板', icon: 'chart' }
+      },
+      {
+        path: 'assist-options',
+        component: () => import('@/views/game/assistOptions'),
+        name: 'AssistOptions',
+        meta: { title: '助战选项', icon: 'setting' }
+      },
+      {
+        path: 'probability-config',
+        component: () => import('@/views/game/probabilityConfig'),
+        name: 'ProbabilityConfig',
+        meta: { title: '概率配置', icon: 'odometer' }
+      },
+      {
+        path: 'battle-rounds',
+        component: () => import('@/views/game/battleRounds'),
+        name: 'BattleRounds',
+        meta: { title: '游戏回合', icon: 'list' }
+      },
+      {
+        path: 'assist-records',
+        component: () => import('@/views/game/assistRecords'),
+        name: 'AssistRecords',
+        meta: { title: '助战记录', icon: 'document' }
+      },
+      {
+        path: 'prize-pool-logs',
+        component: () => import('@/views/game/prizePoolLogs'),
+        name: 'PrizePoolLogs',
+        meta: { title: '奖池流水', icon: 'money' }
+      },
+      {
+        path: 'win-records',
+        component: () => import('@/views/game/winRecords'),
+        name: 'WinRecords',
+        meta: { title: '中奖记录', icon: 'star' }
+      },
+      {
+        path: 'system-users',
+        component: () => import('@/views/game/systemUsers'),
+        name: 'SystemUsers',
+        meta: { title: '系统号管理', icon: 'user' }
+      },
+      {
+        path: 'generals',
+        component: () => import('@/views/game/generals'),
+        name: 'Generals',
+        meta: { title: '武将管理', icon: 'star' }
+      }
+    ]
   }
 ]
 
