@@ -1892,6 +1892,8 @@ $root.pbbattle = (function() {
      * @property {number} PLUS_3=2 PLUS_3 value
      * @property {number} PLUS_5=3 PLUS_5 value
      * @property {number} PLUS_10=4 PLUS_10 value
+     * @property {number} PLUS_25=5 PLUS_25 value
+     * @property {number} PLUS_50=6 PLUS_50 value
      */
     pbbattle.AssistOption = (function() {
         var valuesById = {}, values = Object.create(valuesById);
@@ -1900,6 +1902,8 @@ $root.pbbattle = (function() {
         values[valuesById[2] = "PLUS_3"] = 2;
         values[valuesById[3] = "PLUS_5"] = 3;
         values[valuesById[4] = "PLUS_10"] = 4;
+        values[valuesById[5] = "PLUS_25"] = 5;
+        values[valuesById[6] = "PLUS_50"] = 6;
         return values;
     })();
 
@@ -4525,6 +4529,8 @@ $root.pbbattle = (function() {
                 case 2:
                 case 3:
                 case 4:
+                case 5:
+                case 6:
                     break;
                 }
             return null;
@@ -4577,6 +4583,14 @@ $root.pbbattle = (function() {
             case "PLUS_10":
             case 4:
                 message.option = 4;
+                break;
+            case "PLUS_25":
+            case 5:
+                message.option = 5;
+                break;
+            case "PLUS_50":
+            case 6:
+                message.option = 6;
                 break;
             }
             return message;
@@ -9429,6 +9443,1253 @@ $root.pbbattle = (function() {
         return FindAssistOptionReply;
     })();
 
+    pbbattle.PrizePoolStageModel = (function() {
+
+        /**
+         * Properties of a PrizePoolStageModel.
+         * @memberof pbbattle
+         * @interface IPrizePoolStageModel
+         * @property {number|Long|null} [id] PrizePoolStageModel id
+         * @property {string|null} [createdAt] PrizePoolStageModel createdAt
+         * @property {string|null} [updatedAt] PrizePoolStageModel updatedAt
+         * @property {string|null} [stageName] PrizePoolStageModel stageName
+         * @property {number|Long|null} [poolMin] PrizePoolStageModel poolMin
+         * @property {number|Long|null} [poolMax] PrizePoolStageModel poolMax
+         * @property {number|null} [sortOrder] PrizePoolStageModel sortOrder
+         * @property {boolean|null} [isEnabled] PrizePoolStageModel isEnabled
+         */
+
+        /**
+         * Constructs a new PrizePoolStageModel.
+         * @memberof pbbattle
+         * @classdesc Represents a PrizePoolStageModel.
+         * @implements IPrizePoolStageModel
+         * @constructor
+         * @param {pbbattle.IPrizePoolStageModel=} [properties] Properties to set
+         */
+        function PrizePoolStageModel(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * PrizePoolStageModel id.
+         * @member {number|Long} id
+         * @memberof pbbattle.PrizePoolStageModel
+         * @instance
+         */
+        PrizePoolStageModel.prototype.id = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * PrizePoolStageModel createdAt.
+         * @member {string} createdAt
+         * @memberof pbbattle.PrizePoolStageModel
+         * @instance
+         */
+        PrizePoolStageModel.prototype.createdAt = "";
+
+        /**
+         * PrizePoolStageModel updatedAt.
+         * @member {string} updatedAt
+         * @memberof pbbattle.PrizePoolStageModel
+         * @instance
+         */
+        PrizePoolStageModel.prototype.updatedAt = "";
+
+        /**
+         * PrizePoolStageModel stageName.
+         * @member {string} stageName
+         * @memberof pbbattle.PrizePoolStageModel
+         * @instance
+         */
+        PrizePoolStageModel.prototype.stageName = "";
+
+        /**
+         * PrizePoolStageModel poolMin.
+         * @member {number|Long} poolMin
+         * @memberof pbbattle.PrizePoolStageModel
+         * @instance
+         */
+        PrizePoolStageModel.prototype.poolMin = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * PrizePoolStageModel poolMax.
+         * @member {number|Long} poolMax
+         * @memberof pbbattle.PrizePoolStageModel
+         * @instance
+         */
+        PrizePoolStageModel.prototype.poolMax = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * PrizePoolStageModel sortOrder.
+         * @member {number} sortOrder
+         * @memberof pbbattle.PrizePoolStageModel
+         * @instance
+         */
+        PrizePoolStageModel.prototype.sortOrder = 0;
+
+        /**
+         * PrizePoolStageModel isEnabled.
+         * @member {boolean} isEnabled
+         * @memberof pbbattle.PrizePoolStageModel
+         * @instance
+         */
+        PrizePoolStageModel.prototype.isEnabled = false;
+
+        /**
+         * Creates a new PrizePoolStageModel instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.PrizePoolStageModel
+         * @static
+         * @param {pbbattle.IPrizePoolStageModel=} [properties] Properties to set
+         * @returns {pbbattle.PrizePoolStageModel} PrizePoolStageModel instance
+         */
+        PrizePoolStageModel.create = function create(properties) {
+            return new PrizePoolStageModel(properties);
+        };
+
+        /**
+         * Encodes the specified PrizePoolStageModel message. Does not implicitly {@link pbbattle.PrizePoolStageModel.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.PrizePoolStageModel
+         * @static
+         * @param {pbbattle.IPrizePoolStageModel} message PrizePoolStageModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        PrizePoolStageModel.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id);
+            if (message.createdAt != null && Object.hasOwnProperty.call(message, "createdAt"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.createdAt);
+            if (message.updatedAt != null && Object.hasOwnProperty.call(message, "updatedAt"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.updatedAt);
+            if (message.stageName != null && Object.hasOwnProperty.call(message, "stageName"))
+                writer.uint32(/* id 10, wireType 2 =*/82).string(message.stageName);
+            if (message.poolMin != null && Object.hasOwnProperty.call(message, "poolMin"))
+                writer.uint32(/* id 11, wireType 0 =*/88).int64(message.poolMin);
+            if (message.poolMax != null && Object.hasOwnProperty.call(message, "poolMax"))
+                writer.uint32(/* id 12, wireType 0 =*/96).int64(message.poolMax);
+            if (message.sortOrder != null && Object.hasOwnProperty.call(message, "sortOrder"))
+                writer.uint32(/* id 13, wireType 0 =*/104).int32(message.sortOrder);
+            if (message.isEnabled != null && Object.hasOwnProperty.call(message, "isEnabled"))
+                writer.uint32(/* id 14, wireType 0 =*/112).bool(message.isEnabled);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified PrizePoolStageModel message, length delimited. Does not implicitly {@link pbbattle.PrizePoolStageModel.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.PrizePoolStageModel
+         * @static
+         * @param {pbbattle.IPrizePoolStageModel} message PrizePoolStageModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        PrizePoolStageModel.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a PrizePoolStageModel message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.PrizePoolStageModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.PrizePoolStageModel} PrizePoolStageModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        PrizePoolStageModel.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.PrizePoolStageModel();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.id = reader.int64();
+                        break;
+                    }
+                case 2: {
+                        message.createdAt = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.updatedAt = reader.string();
+                        break;
+                    }
+                case 10: {
+                        message.stageName = reader.string();
+                        break;
+                    }
+                case 11: {
+                        message.poolMin = reader.int64();
+                        break;
+                    }
+                case 12: {
+                        message.poolMax = reader.int64();
+                        break;
+                    }
+                case 13: {
+                        message.sortOrder = reader.int32();
+                        break;
+                    }
+                case 14: {
+                        message.isEnabled = reader.bool();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a PrizePoolStageModel message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.PrizePoolStageModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.PrizePoolStageModel} PrizePoolStageModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        PrizePoolStageModel.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a PrizePoolStageModel message.
+         * @function verify
+         * @memberof pbbattle.PrizePoolStageModel
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        PrizePoolStageModel.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (!$util.isInteger(message.id) && !(message.id && $util.isInteger(message.id.low) && $util.isInteger(message.id.high)))
+                    return "id: integer|Long expected";
+            if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                if (!$util.isString(message.createdAt))
+                    return "createdAt: string expected";
+            if (message.updatedAt != null && message.hasOwnProperty("updatedAt"))
+                if (!$util.isString(message.updatedAt))
+                    return "updatedAt: string expected";
+            if (message.stageName != null && message.hasOwnProperty("stageName"))
+                if (!$util.isString(message.stageName))
+                    return "stageName: string expected";
+            if (message.poolMin != null && message.hasOwnProperty("poolMin"))
+                if (!$util.isInteger(message.poolMin) && !(message.poolMin && $util.isInteger(message.poolMin.low) && $util.isInteger(message.poolMin.high)))
+                    return "poolMin: integer|Long expected";
+            if (message.poolMax != null && message.hasOwnProperty("poolMax"))
+                if (!$util.isInteger(message.poolMax) && !(message.poolMax && $util.isInteger(message.poolMax.low) && $util.isInteger(message.poolMax.high)))
+                    return "poolMax: integer|Long expected";
+            if (message.sortOrder != null && message.hasOwnProperty("sortOrder"))
+                if (!$util.isInteger(message.sortOrder))
+                    return "sortOrder: integer expected";
+            if (message.isEnabled != null && message.hasOwnProperty("isEnabled"))
+                if (typeof message.isEnabled !== "boolean")
+                    return "isEnabled: boolean expected";
+            return null;
+        };
+
+        /**
+         * Creates a PrizePoolStageModel message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.PrizePoolStageModel
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.PrizePoolStageModel} PrizePoolStageModel
+         */
+        PrizePoolStageModel.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.PrizePoolStageModel)
+                return object;
+            var message = new $root.pbbattle.PrizePoolStageModel();
+            if (object.id != null)
+                if ($util.Long)
+                    (message.id = $util.Long.fromValue(object.id)).unsigned = false;
+                else if (typeof object.id === "string")
+                    message.id = parseInt(object.id, 10);
+                else if (typeof object.id === "number")
+                    message.id = object.id;
+                else if (typeof object.id === "object")
+                    message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber();
+            if (object.createdAt != null)
+                message.createdAt = String(object.createdAt);
+            if (object.updatedAt != null)
+                message.updatedAt = String(object.updatedAt);
+            if (object.stageName != null)
+                message.stageName = String(object.stageName);
+            if (object.poolMin != null)
+                if ($util.Long)
+                    (message.poolMin = $util.Long.fromValue(object.poolMin)).unsigned = false;
+                else if (typeof object.poolMin === "string")
+                    message.poolMin = parseInt(object.poolMin, 10);
+                else if (typeof object.poolMin === "number")
+                    message.poolMin = object.poolMin;
+                else if (typeof object.poolMin === "object")
+                    message.poolMin = new $util.LongBits(object.poolMin.low >>> 0, object.poolMin.high >>> 0).toNumber();
+            if (object.poolMax != null)
+                if ($util.Long)
+                    (message.poolMax = $util.Long.fromValue(object.poolMax)).unsigned = false;
+                else if (typeof object.poolMax === "string")
+                    message.poolMax = parseInt(object.poolMax, 10);
+                else if (typeof object.poolMax === "number")
+                    message.poolMax = object.poolMax;
+                else if (typeof object.poolMax === "object")
+                    message.poolMax = new $util.LongBits(object.poolMax.low >>> 0, object.poolMax.high >>> 0).toNumber();
+            if (object.sortOrder != null)
+                message.sortOrder = object.sortOrder | 0;
+            if (object.isEnabled != null)
+                message.isEnabled = Boolean(object.isEnabled);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a PrizePoolStageModel message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.PrizePoolStageModel
+         * @static
+         * @param {pbbattle.PrizePoolStageModel} message PrizePoolStageModel
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        PrizePoolStageModel.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.id = options.longs === String ? "0" : 0;
+                object.createdAt = "";
+                object.updatedAt = "";
+                object.stageName = "";
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.poolMin = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.poolMin = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.poolMax = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.poolMax = options.longs === String ? "0" : 0;
+                object.sortOrder = 0;
+                object.isEnabled = false;
+            }
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (typeof message.id === "number")
+                    object.id = options.longs === String ? String(message.id) : message.id;
+                else
+                    object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id;
+            if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                object.createdAt = message.createdAt;
+            if (message.updatedAt != null && message.hasOwnProperty("updatedAt"))
+                object.updatedAt = message.updatedAt;
+            if (message.stageName != null && message.hasOwnProperty("stageName"))
+                object.stageName = message.stageName;
+            if (message.poolMin != null && message.hasOwnProperty("poolMin"))
+                if (typeof message.poolMin === "number")
+                    object.poolMin = options.longs === String ? String(message.poolMin) : message.poolMin;
+                else
+                    object.poolMin = options.longs === String ? $util.Long.prototype.toString.call(message.poolMin) : options.longs === Number ? new $util.LongBits(message.poolMin.low >>> 0, message.poolMin.high >>> 0).toNumber() : message.poolMin;
+            if (message.poolMax != null && message.hasOwnProperty("poolMax"))
+                if (typeof message.poolMax === "number")
+                    object.poolMax = options.longs === String ? String(message.poolMax) : message.poolMax;
+                else
+                    object.poolMax = options.longs === String ? $util.Long.prototype.toString.call(message.poolMax) : options.longs === Number ? new $util.LongBits(message.poolMax.low >>> 0, message.poolMax.high >>> 0).toNumber() : message.poolMax;
+            if (message.sortOrder != null && message.hasOwnProperty("sortOrder"))
+                object.sortOrder = message.sortOrder;
+            if (message.isEnabled != null && message.hasOwnProperty("isEnabled"))
+                object.isEnabled = message.isEnabled;
+            return object;
+        };
+
+        /**
+         * Converts this PrizePoolStageModel to JSON.
+         * @function toJSON
+         * @memberof pbbattle.PrizePoolStageModel
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        PrizePoolStageModel.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for PrizePoolStageModel
+         * @function getTypeUrl
+         * @memberof pbbattle.PrizePoolStageModel
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        PrizePoolStageModel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.PrizePoolStageModel";
+        };
+
+        return PrizePoolStageModel;
+    })();
+
+    pbbattle.FindPrizePoolStageArgs = (function() {
+
+        /**
+         * Properties of a FindPrizePoolStageArgs.
+         * @memberof pbbattle
+         * @interface IFindPrizePoolStageArgs
+         * @property {pbcommon.IPageInfo|null} [pageInfo] FindPrizePoolStageArgs pageInfo
+         * @property {pbbattle.IPrizePoolStageModel|null} [query] FindPrizePoolStageArgs query
+         * @property {string|null} [keyword] FindPrizePoolStageArgs keyword
+         * @property {Array.<boolean>|null} [isEnabledList] FindPrizePoolStageArgs isEnabledList
+         */
+
+        /**
+         * Constructs a new FindPrizePoolStageArgs.
+         * @memberof pbbattle
+         * @classdesc Represents a FindPrizePoolStageArgs.
+         * @implements IFindPrizePoolStageArgs
+         * @constructor
+         * @param {pbbattle.IFindPrizePoolStageArgs=} [properties] Properties to set
+         */
+        function FindPrizePoolStageArgs(properties) {
+            this.isEnabledList = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * FindPrizePoolStageArgs pageInfo.
+         * @member {pbcommon.IPageInfo|null|undefined} pageInfo
+         * @memberof pbbattle.FindPrizePoolStageArgs
+         * @instance
+         */
+        FindPrizePoolStageArgs.prototype.pageInfo = null;
+
+        /**
+         * FindPrizePoolStageArgs query.
+         * @member {pbbattle.IPrizePoolStageModel|null|undefined} query
+         * @memberof pbbattle.FindPrizePoolStageArgs
+         * @instance
+         */
+        FindPrizePoolStageArgs.prototype.query = null;
+
+        /**
+         * FindPrizePoolStageArgs keyword.
+         * @member {string} keyword
+         * @memberof pbbattle.FindPrizePoolStageArgs
+         * @instance
+         */
+        FindPrizePoolStageArgs.prototype.keyword = "";
+
+        /**
+         * FindPrizePoolStageArgs isEnabledList.
+         * @member {Array.<boolean>} isEnabledList
+         * @memberof pbbattle.FindPrizePoolStageArgs
+         * @instance
+         */
+        FindPrizePoolStageArgs.prototype.isEnabledList = $util.emptyArray;
+
+        /**
+         * Creates a new FindPrizePoolStageArgs instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.FindPrizePoolStageArgs
+         * @static
+         * @param {pbbattle.IFindPrizePoolStageArgs=} [properties] Properties to set
+         * @returns {pbbattle.FindPrizePoolStageArgs} FindPrizePoolStageArgs instance
+         */
+        FindPrizePoolStageArgs.create = function create(properties) {
+            return new FindPrizePoolStageArgs(properties);
+        };
+
+        /**
+         * Encodes the specified FindPrizePoolStageArgs message. Does not implicitly {@link pbbattle.FindPrizePoolStageArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.FindPrizePoolStageArgs
+         * @static
+         * @param {pbbattle.IFindPrizePoolStageArgs} message FindPrizePoolStageArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindPrizePoolStageArgs.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.pageInfo != null && Object.hasOwnProperty.call(message, "pageInfo"))
+                $root.pbcommon.PageInfo.encode(message.pageInfo, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.query != null && Object.hasOwnProperty.call(message, "query"))
+                $root.pbbattle.PrizePoolStageModel.encode(message.query, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            if (message.keyword != null && Object.hasOwnProperty.call(message, "keyword"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.keyword);
+            if (message.isEnabledList != null && message.isEnabledList.length) {
+                writer.uint32(/* id 4, wireType 2 =*/34).fork();
+                for (var i = 0; i < message.isEnabledList.length; ++i)
+                    writer.bool(message.isEnabledList[i]);
+                writer.ldelim();
+            }
+            return writer;
+        };
+
+        /**
+         * Encodes the specified FindPrizePoolStageArgs message, length delimited. Does not implicitly {@link pbbattle.FindPrizePoolStageArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.FindPrizePoolStageArgs
+         * @static
+         * @param {pbbattle.IFindPrizePoolStageArgs} message FindPrizePoolStageArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindPrizePoolStageArgs.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a FindPrizePoolStageArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.FindPrizePoolStageArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.FindPrizePoolStageArgs} FindPrizePoolStageArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindPrizePoolStageArgs.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.FindPrizePoolStageArgs();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.pageInfo = $root.pbcommon.PageInfo.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 2: {
+                        message.query = $root.pbbattle.PrizePoolStageModel.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 3: {
+                        message.keyword = reader.string();
+                        break;
+                    }
+                case 4: {
+                        if (!(message.isEnabledList && message.isEnabledList.length))
+                            message.isEnabledList = [];
+                        if ((tag & 7) === 2) {
+                            var end2 = reader.uint32() + reader.pos;
+                            while (reader.pos < end2)
+                                message.isEnabledList.push(reader.bool());
+                        } else
+                            message.isEnabledList.push(reader.bool());
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a FindPrizePoolStageArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.FindPrizePoolStageArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.FindPrizePoolStageArgs} FindPrizePoolStageArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindPrizePoolStageArgs.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a FindPrizePoolStageArgs message.
+         * @function verify
+         * @memberof pbbattle.FindPrizePoolStageArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        FindPrizePoolStageArgs.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.pageInfo != null && message.hasOwnProperty("pageInfo")) {
+                var error = $root.pbcommon.PageInfo.verify(message.pageInfo);
+                if (error)
+                    return "pageInfo." + error;
+            }
+            if (message.query != null && message.hasOwnProperty("query")) {
+                var error = $root.pbbattle.PrizePoolStageModel.verify(message.query);
+                if (error)
+                    return "query." + error;
+            }
+            if (message.keyword != null && message.hasOwnProperty("keyword"))
+                if (!$util.isString(message.keyword))
+                    return "keyword: string expected";
+            if (message.isEnabledList != null && message.hasOwnProperty("isEnabledList")) {
+                if (!Array.isArray(message.isEnabledList))
+                    return "isEnabledList: array expected";
+                for (var i = 0; i < message.isEnabledList.length; ++i)
+                    if (typeof message.isEnabledList[i] !== "boolean")
+                        return "isEnabledList: boolean[] expected";
+            }
+            return null;
+        };
+
+        /**
+         * Creates a FindPrizePoolStageArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.FindPrizePoolStageArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.FindPrizePoolStageArgs} FindPrizePoolStageArgs
+         */
+        FindPrizePoolStageArgs.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.FindPrizePoolStageArgs)
+                return object;
+            var message = new $root.pbbattle.FindPrizePoolStageArgs();
+            if (object.pageInfo != null) {
+                if (typeof object.pageInfo !== "object")
+                    throw TypeError(".pbbattle.FindPrizePoolStageArgs.pageInfo: object expected");
+                message.pageInfo = $root.pbcommon.PageInfo.fromObject(object.pageInfo);
+            }
+            if (object.query != null) {
+                if (typeof object.query !== "object")
+                    throw TypeError(".pbbattle.FindPrizePoolStageArgs.query: object expected");
+                message.query = $root.pbbattle.PrizePoolStageModel.fromObject(object.query);
+            }
+            if (object.keyword != null)
+                message.keyword = String(object.keyword);
+            if (object.isEnabledList) {
+                if (!Array.isArray(object.isEnabledList))
+                    throw TypeError(".pbbattle.FindPrizePoolStageArgs.isEnabledList: array expected");
+                message.isEnabledList = [];
+                for (var i = 0; i < object.isEnabledList.length; ++i)
+                    message.isEnabledList[i] = Boolean(object.isEnabledList[i]);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a FindPrizePoolStageArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.FindPrizePoolStageArgs
+         * @static
+         * @param {pbbattle.FindPrizePoolStageArgs} message FindPrizePoolStageArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FindPrizePoolStageArgs.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.isEnabledList = [];
+            if (options.defaults) {
+                object.pageInfo = null;
+                object.query = null;
+                object.keyword = "";
+            }
+            if (message.pageInfo != null && message.hasOwnProperty("pageInfo"))
+                object.pageInfo = $root.pbcommon.PageInfo.toObject(message.pageInfo, options);
+            if (message.query != null && message.hasOwnProperty("query"))
+                object.query = $root.pbbattle.PrizePoolStageModel.toObject(message.query, options);
+            if (message.keyword != null && message.hasOwnProperty("keyword"))
+                object.keyword = message.keyword;
+            if (message.isEnabledList && message.isEnabledList.length) {
+                object.isEnabledList = [];
+                for (var j = 0; j < message.isEnabledList.length; ++j)
+                    object.isEnabledList[j] = message.isEnabledList[j];
+            }
+            return object;
+        };
+
+        /**
+         * Converts this FindPrizePoolStageArgs to JSON.
+         * @function toJSON
+         * @memberof pbbattle.FindPrizePoolStageArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        FindPrizePoolStageArgs.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for FindPrizePoolStageArgs
+         * @function getTypeUrl
+         * @memberof pbbattle.FindPrizePoolStageArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        FindPrizePoolStageArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.FindPrizePoolStageArgs";
+        };
+
+        return FindPrizePoolStageArgs;
+    })();
+
+    pbbattle.FindPrizePoolStageReply = (function() {
+
+        /**
+         * Properties of a FindPrizePoolStageReply.
+         * @memberof pbbattle
+         * @interface IFindPrizePoolStageReply
+         * @property {pbcommon.EnumCode|null} [code] FindPrizePoolStageReply code
+         * @property {string|null} [msg] FindPrizePoolStageReply msg
+         * @property {pbbattle.IPrizePoolStageModel|null} [data] FindPrizePoolStageReply data
+         * @property {Array.<pbbattle.IPrizePoolStageModel>|null} [list] FindPrizePoolStageReply list
+         * @property {number|Long|null} [total] FindPrizePoolStageReply total
+         */
+
+        /**
+         * Constructs a new FindPrizePoolStageReply.
+         * @memberof pbbattle
+         * @classdesc Represents a FindPrizePoolStageReply.
+         * @implements IFindPrizePoolStageReply
+         * @constructor
+         * @param {pbbattle.IFindPrizePoolStageReply=} [properties] Properties to set
+         */
+        function FindPrizePoolStageReply(properties) {
+            this.list = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * FindPrizePoolStageReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbbattle.FindPrizePoolStageReply
+         * @instance
+         */
+        FindPrizePoolStageReply.prototype.code = 0;
+
+        /**
+         * FindPrizePoolStageReply msg.
+         * @member {string} msg
+         * @memberof pbbattle.FindPrizePoolStageReply
+         * @instance
+         */
+        FindPrizePoolStageReply.prototype.msg = "";
+
+        /**
+         * FindPrizePoolStageReply data.
+         * @member {pbbattle.IPrizePoolStageModel|null|undefined} data
+         * @memberof pbbattle.FindPrizePoolStageReply
+         * @instance
+         */
+        FindPrizePoolStageReply.prototype.data = null;
+
+        /**
+         * FindPrizePoolStageReply list.
+         * @member {Array.<pbbattle.IPrizePoolStageModel>} list
+         * @memberof pbbattle.FindPrizePoolStageReply
+         * @instance
+         */
+        FindPrizePoolStageReply.prototype.list = $util.emptyArray;
+
+        /**
+         * FindPrizePoolStageReply total.
+         * @member {number|Long} total
+         * @memberof pbbattle.FindPrizePoolStageReply
+         * @instance
+         */
+        FindPrizePoolStageReply.prototype.total = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * Creates a new FindPrizePoolStageReply instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.FindPrizePoolStageReply
+         * @static
+         * @param {pbbattle.IFindPrizePoolStageReply=} [properties] Properties to set
+         * @returns {pbbattle.FindPrizePoolStageReply} FindPrizePoolStageReply instance
+         */
+        FindPrizePoolStageReply.create = function create(properties) {
+            return new FindPrizePoolStageReply(properties);
+        };
+
+        /**
+         * Encodes the specified FindPrizePoolStageReply message. Does not implicitly {@link pbbattle.FindPrizePoolStageReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.FindPrizePoolStageReply
+         * @static
+         * @param {pbbattle.IFindPrizePoolStageReply} message FindPrizePoolStageReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindPrizePoolStageReply.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.data != null && Object.hasOwnProperty.call(message, "data"))
+                $root.pbbattle.PrizePoolStageModel.encode(message.data, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            if (message.list != null && message.list.length)
+                for (var i = 0; i < message.list.length; ++i)
+                    $root.pbbattle.PrizePoolStageModel.encode(message.list[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+            if (message.total != null && Object.hasOwnProperty.call(message, "total"))
+                writer.uint32(/* id 5, wireType 0 =*/40).int64(message.total);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified FindPrizePoolStageReply message, length delimited. Does not implicitly {@link pbbattle.FindPrizePoolStageReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.FindPrizePoolStageReply
+         * @static
+         * @param {pbbattle.IFindPrizePoolStageReply} message FindPrizePoolStageReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindPrizePoolStageReply.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a FindPrizePoolStageReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.FindPrizePoolStageReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.FindPrizePoolStageReply} FindPrizePoolStageReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindPrizePoolStageReply.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.FindPrizePoolStageReply();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.code = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.data = $root.pbbattle.PrizePoolStageModel.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 4: {
+                        if (!(message.list && message.list.length))
+                            message.list = [];
+                        message.list.push($root.pbbattle.PrizePoolStageModel.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 5: {
+                        message.total = reader.int64();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a FindPrizePoolStageReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.FindPrizePoolStageReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.FindPrizePoolStageReply} FindPrizePoolStageReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindPrizePoolStageReply.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a FindPrizePoolStageReply message.
+         * @function verify
+         * @memberof pbbattle.FindPrizePoolStageReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        FindPrizePoolStageReply.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.code != null && message.hasOwnProperty("code"))
+                switch (message.code) {
+                default:
+                    return "code: enum value expected";
+                case 0:
+                case 200:
+                case 403:
+                case 500:
+                case 501:
+                case 502:
+                case 503:
+                case 504:
+                case 505:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
+                case 2002:
+                case 2003:
+                case 2004:
+                case 2005:
+                case 2006:
+                case 2007:
+                case 2008:
+                case 2009:
+                case 2010:
+                case 2011:
+                case 2012:
+                case 2013:
+                case 2014:
+                case 2015:
+                case 3001:
+                case 3002:
+                case 3003:
+                case 5001:
+                case 5002:
+                case 10001:
+                case 10002:
+                case 20001:
+                case 20002:
+                    break;
+                }
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                if (!$util.isString(message.msg))
+                    return "msg: string expected";
+            if (message.data != null && message.hasOwnProperty("data")) {
+                var error = $root.pbbattle.PrizePoolStageModel.verify(message.data);
+                if (error)
+                    return "data." + error;
+            }
+            if (message.list != null && message.hasOwnProperty("list")) {
+                if (!Array.isArray(message.list))
+                    return "list: array expected";
+                for (var i = 0; i < message.list.length; ++i) {
+                    var error = $root.pbbattle.PrizePoolStageModel.verify(message.list[i]);
+                    if (error)
+                        return "list." + error;
+                }
+            }
+            if (message.total != null && message.hasOwnProperty("total"))
+                if (!$util.isInteger(message.total) && !(message.total && $util.isInteger(message.total.low) && $util.isInteger(message.total.high)))
+                    return "total: integer|Long expected";
+            return null;
+        };
+
+        /**
+         * Creates a FindPrizePoolStageReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.FindPrizePoolStageReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.FindPrizePoolStageReply} FindPrizePoolStageReply
+         */
+        FindPrizePoolStageReply.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.FindPrizePoolStageReply)
+                return object;
+            var message = new $root.pbbattle.FindPrizePoolStageReply();
+            switch (object.code) {
+            default:
+                if (typeof object.code === "number") {
+                    message.code = object.code;
+                    break;
+                }
+                break;
+            case "None":
+            case 0:
+                message.code = 0;
+                break;
+            case "Success":
+            case 200:
+                message.code = 200;
+                break;
+            case "Forbidden":
+            case 403:
+                message.code = 403;
+                break;
+            case "Fail":
+            case 500:
+                message.code = 500;
+                break;
+            case "Unknown":
+            case 501:
+                message.code = 501;
+                break;
+            case "Internal":
+            case 502:
+                message.code = 502;
+                break;
+            case "Invalid":
+            case 503:
+                message.code = 503;
+                break;
+            case "InvalidParam":
+            case 504:
+                message.code = 504;
+                break;
+            case "ParamError":
+            case 505:
+                message.code = 505;
+                break;
+            case "FindError":
+            case 1001:
+                message.code = 1001;
+                break;
+            case "CreateError":
+            case 1002:
+                message.code = 1002;
+                break;
+            case "DeleteError":
+            case 1003:
+                message.code = 1003;
+                break;
+            case "UpdateError":
+            case 1004:
+                message.code = 1004;
+                break;
+            case "InvalidToken":
+            case 2002:
+                message.code = 2002;
+                break;
+            case "InvalidSign":
+            case 2003:
+                message.code = 2003;
+                break;
+            case "NotLogin":
+            case 2004:
+                message.code = 2004;
+                break;
+            case "LoginTimeout":
+            case 2005:
+                message.code = 2005;
+                break;
+            case "LoginError":
+            case 2006:
+                message.code = 2006;
+                break;
+            case "LoginForbidden":
+            case 2007:
+                message.code = 2007;
+                break;
+            case "LoginExpired":
+            case 2008:
+                message.code = 2008;
+                break;
+            case "LoginInvalid":
+            case 2009:
+                message.code = 2009;
+                break;
+            case "LoginInvalidPassword":
+            case 2010:
+                message.code = 2010;
+                break;
+            case "LoginInvalidUsername":
+            case 2011:
+                message.code = 2011;
+                break;
+            case "LoginInvalidEmail":
+            case 2012:
+                message.code = 2012;
+                break;
+            case "LoginInvalidPhone":
+            case 2013:
+                message.code = 2013;
+                break;
+            case "LoginInvalidUsernameOrEmail":
+            case 2014:
+                message.code = 2014;
+                break;
+            case "LoginSocketRepeat":
+            case 2015:
+                message.code = 2015;
+                break;
+            case "RoleIsNotExist":
+            case 3001:
+                message.code = 3001;
+                break;
+            case "UserIsExist":
+            case 3002:
+                message.code = 3002;
+                break;
+            case "UserIsBan":
+            case 3003:
+                message.code = 3003;
+                break;
+            case "TalkIsBan":
+            case 5001:
+                message.code = 5001;
+                break;
+            case "EnterRoomErr":
+            case 5002:
+                message.code = 5002;
+                break;
+            case "HalaChatNeedBuy":
+            case 10001:
+                message.code = 10001;
+                break;
+            case "HalaPriceOutRange":
+            case 10002:
+                message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            }
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.data != null) {
+                if (typeof object.data !== "object")
+                    throw TypeError(".pbbattle.FindPrizePoolStageReply.data: object expected");
+                message.data = $root.pbbattle.PrizePoolStageModel.fromObject(object.data);
+            }
+            if (object.list) {
+                if (!Array.isArray(object.list))
+                    throw TypeError(".pbbattle.FindPrizePoolStageReply.list: array expected");
+                message.list = [];
+                for (var i = 0; i < object.list.length; ++i) {
+                    if (typeof object.list[i] !== "object")
+                        throw TypeError(".pbbattle.FindPrizePoolStageReply.list: object expected");
+                    message.list[i] = $root.pbbattle.PrizePoolStageModel.fromObject(object.list[i]);
+                }
+            }
+            if (object.total != null)
+                if ($util.Long)
+                    (message.total = $util.Long.fromValue(object.total)).unsigned = false;
+                else if (typeof object.total === "string")
+                    message.total = parseInt(object.total, 10);
+                else if (typeof object.total === "number")
+                    message.total = object.total;
+                else if (typeof object.total === "object")
+                    message.total = new $util.LongBits(object.total.low >>> 0, object.total.high >>> 0).toNumber();
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a FindPrizePoolStageReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.FindPrizePoolStageReply
+         * @static
+         * @param {pbbattle.FindPrizePoolStageReply} message FindPrizePoolStageReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FindPrizePoolStageReply.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.list = [];
+            if (options.defaults) {
+                object.code = options.enums === String ? "None" : 0;
+                object.msg = "";
+                object.data = null;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.total = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.total = options.longs === String ? "0" : 0;
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.data != null && message.hasOwnProperty("data"))
+                object.data = $root.pbbattle.PrizePoolStageModel.toObject(message.data, options);
+            if (message.list && message.list.length) {
+                object.list = [];
+                for (var j = 0; j < message.list.length; ++j)
+                    object.list[j] = $root.pbbattle.PrizePoolStageModel.toObject(message.list[j], options);
+            }
+            if (message.total != null && message.hasOwnProperty("total"))
+                if (typeof message.total === "number")
+                    object.total = options.longs === String ? String(message.total) : message.total;
+                else
+                    object.total = options.longs === String ? $util.Long.prototype.toString.call(message.total) : options.longs === Number ? new $util.LongBits(message.total.low >>> 0, message.total.high >>> 0).toNumber() : message.total;
+            return object;
+        };
+
+        /**
+         * Converts this FindPrizePoolStageReply to JSON.
+         * @function toJSON
+         * @memberof pbbattle.FindPrizePoolStageReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        FindPrizePoolStageReply.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for FindPrizePoolStageReply
+         * @function getTypeUrl
+         * @memberof pbbattle.FindPrizePoolStageReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        FindPrizePoolStageReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.FindPrizePoolStageReply";
+        };
+
+        return FindPrizePoolStageReply;
+    })();
+
     pbbattle.ProbabilityConfigModel = (function() {
 
         /**
@@ -9438,9 +10699,7 @@ $root.pbbattle = (function() {
          * @property {number|Long|null} [id] ProbabilityConfigModel id
          * @property {string|null} [createdAt] ProbabilityConfigModel createdAt
          * @property {string|null} [updatedAt] ProbabilityConfigModel updatedAt
-         * @property {number|Long|null} [poolMin] ProbabilityConfigModel poolMin
-         * @property {number|Long|null} [poolMax] ProbabilityConfigModel poolMax
-         * @property {string|null} [configType] ProbabilityConfigModel configType
+         * @property {number|Long|null} [stageId] ProbabilityConfigModel stageId
          * @property {number|Long|null} [general1Id] ProbabilityConfigModel general1Id
          * @property {number|Long|null} [general2Id] ProbabilityConfigModel general2Id
          * @property {number|null} [probability] ProbabilityConfigModel probability
@@ -9488,28 +10747,12 @@ $root.pbbattle = (function() {
         ProbabilityConfigModel.prototype.updatedAt = "";
 
         /**
-         * ProbabilityConfigModel poolMin.
-         * @member {number|Long} poolMin
+         * ProbabilityConfigModel stageId.
+         * @member {number|Long} stageId
          * @memberof pbbattle.ProbabilityConfigModel
          * @instance
          */
-        ProbabilityConfigModel.prototype.poolMin = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
-
-        /**
-         * ProbabilityConfigModel poolMax.
-         * @member {number|Long} poolMax
-         * @memberof pbbattle.ProbabilityConfigModel
-         * @instance
-         */
-        ProbabilityConfigModel.prototype.poolMax = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
-
-        /**
-         * ProbabilityConfigModel configType.
-         * @member {string} configType
-         * @memberof pbbattle.ProbabilityConfigModel
-         * @instance
-         */
-        ProbabilityConfigModel.prototype.configType = "";
+        ProbabilityConfigModel.prototype.stageId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
 
         /**
          * ProbabilityConfigModel general1Id.
@@ -9581,22 +10824,18 @@ $root.pbbattle = (function() {
                 writer.uint32(/* id 2, wireType 2 =*/18).string(message.createdAt);
             if (message.updatedAt != null && Object.hasOwnProperty.call(message, "updatedAt"))
                 writer.uint32(/* id 3, wireType 2 =*/26).string(message.updatedAt);
-            if (message.poolMin != null && Object.hasOwnProperty.call(message, "poolMin"))
-                writer.uint32(/* id 10, wireType 0 =*/80).int64(message.poolMin);
-            if (message.poolMax != null && Object.hasOwnProperty.call(message, "poolMax"))
-                writer.uint32(/* id 11, wireType 0 =*/88).int64(message.poolMax);
-            if (message.configType != null && Object.hasOwnProperty.call(message, "configType"))
-                writer.uint32(/* id 12, wireType 2 =*/98).string(message.configType);
+            if (message.stageId != null && Object.hasOwnProperty.call(message, "stageId"))
+                writer.uint32(/* id 10, wireType 0 =*/80).int64(message.stageId);
             if (message.general1Id != null && Object.hasOwnProperty.call(message, "general1Id"))
-                writer.uint32(/* id 13, wireType 0 =*/104).int64(message.general1Id);
+                writer.uint32(/* id 11, wireType 0 =*/88).int64(message.general1Id);
             if (message.general2Id != null && Object.hasOwnProperty.call(message, "general2Id"))
-                writer.uint32(/* id 14, wireType 0 =*/112).int64(message.general2Id);
+                writer.uint32(/* id 12, wireType 0 =*/96).int64(message.general2Id);
             if (message.probability != null && Object.hasOwnProperty.call(message, "probability"))
-                writer.uint32(/* id 15, wireType 1 =*/121).double(message.probability);
+                writer.uint32(/* id 13, wireType 1 =*/105).double(message.probability);
             if (message.sortOrder != null && Object.hasOwnProperty.call(message, "sortOrder"))
-                writer.uint32(/* id 16, wireType 0 =*/128).int32(message.sortOrder);
+                writer.uint32(/* id 14, wireType 0 =*/112).int32(message.sortOrder);
             if (message.isEnabled != null && Object.hasOwnProperty.call(message, "isEnabled"))
-                writer.uint32(/* id 17, wireType 0 =*/136).bool(message.isEnabled);
+                writer.uint32(/* id 15, wireType 0 =*/120).bool(message.isEnabled);
             return writer;
         };
 
@@ -9646,34 +10885,26 @@ $root.pbbattle = (function() {
                         break;
                     }
                 case 10: {
-                        message.poolMin = reader.int64();
+                        message.stageId = reader.int64();
                         break;
                     }
                 case 11: {
-                        message.poolMax = reader.int64();
-                        break;
-                    }
-                case 12: {
-                        message.configType = reader.string();
-                        break;
-                    }
-                case 13: {
                         message.general1Id = reader.int64();
                         break;
                     }
-                case 14: {
+                case 12: {
                         message.general2Id = reader.int64();
                         break;
                     }
-                case 15: {
+                case 13: {
                         message.probability = reader.double();
                         break;
                     }
-                case 16: {
+                case 14: {
                         message.sortOrder = reader.int32();
                         break;
                     }
-                case 17: {
+                case 15: {
                         message.isEnabled = reader.bool();
                         break;
                     }
@@ -9721,15 +10952,9 @@ $root.pbbattle = (function() {
             if (message.updatedAt != null && message.hasOwnProperty("updatedAt"))
                 if (!$util.isString(message.updatedAt))
                     return "updatedAt: string expected";
-            if (message.poolMin != null && message.hasOwnProperty("poolMin"))
-                if (!$util.isInteger(message.poolMin) && !(message.poolMin && $util.isInteger(message.poolMin.low) && $util.isInteger(message.poolMin.high)))
-                    return "poolMin: integer|Long expected";
-            if (message.poolMax != null && message.hasOwnProperty("poolMax"))
-                if (!$util.isInteger(message.poolMax) && !(message.poolMax && $util.isInteger(message.poolMax.low) && $util.isInteger(message.poolMax.high)))
-                    return "poolMax: integer|Long expected";
-            if (message.configType != null && message.hasOwnProperty("configType"))
-                if (!$util.isString(message.configType))
-                    return "configType: string expected";
+            if (message.stageId != null && message.hasOwnProperty("stageId"))
+                if (!$util.isInteger(message.stageId) && !(message.stageId && $util.isInteger(message.stageId.low) && $util.isInteger(message.stageId.high)))
+                    return "stageId: integer|Long expected";
             if (message.general1Id != null && message.hasOwnProperty("general1Id"))
                 if (!$util.isInteger(message.general1Id) && !(message.general1Id && $util.isInteger(message.general1Id.low) && $util.isInteger(message.general1Id.high)))
                     return "general1Id: integer|Long expected";
@@ -9773,26 +10998,15 @@ $root.pbbattle = (function() {
                 message.createdAt = String(object.createdAt);
             if (object.updatedAt != null)
                 message.updatedAt = String(object.updatedAt);
-            if (object.poolMin != null)
+            if (object.stageId != null)
                 if ($util.Long)
-                    (message.poolMin = $util.Long.fromValue(object.poolMin)).unsigned = false;
-                else if (typeof object.poolMin === "string")
-                    message.poolMin = parseInt(object.poolMin, 10);
-                else if (typeof object.poolMin === "number")
-                    message.poolMin = object.poolMin;
-                else if (typeof object.poolMin === "object")
-                    message.poolMin = new $util.LongBits(object.poolMin.low >>> 0, object.poolMin.high >>> 0).toNumber();
-            if (object.poolMax != null)
-                if ($util.Long)
-                    (message.poolMax = $util.Long.fromValue(object.poolMax)).unsigned = false;
-                else if (typeof object.poolMax === "string")
-                    message.poolMax = parseInt(object.poolMax, 10);
-                else if (typeof object.poolMax === "number")
-                    message.poolMax = object.poolMax;
-                else if (typeof object.poolMax === "object")
-                    message.poolMax = new $util.LongBits(object.poolMax.low >>> 0, object.poolMax.high >>> 0).toNumber();
-            if (object.configType != null)
-                message.configType = String(object.configType);
+                    (message.stageId = $util.Long.fromValue(object.stageId)).unsigned = false;
+                else if (typeof object.stageId === "string")
+                    message.stageId = parseInt(object.stageId, 10);
+                else if (typeof object.stageId === "number")
+                    message.stageId = object.stageId;
+                else if (typeof object.stageId === "object")
+                    message.stageId = new $util.LongBits(object.stageId.low >>> 0, object.stageId.high >>> 0).toNumber();
             if (object.general1Id != null)
                 if ($util.Long)
                     (message.general1Id = $util.Long.fromValue(object.general1Id)).unsigned = false;
@@ -9843,15 +11057,9 @@ $root.pbbattle = (function() {
                 object.updatedAt = "";
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, false);
-                    object.poolMin = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.stageId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
                 } else
-                    object.poolMin = options.longs === String ? "0" : 0;
-                if ($util.Long) {
-                    var long = new $util.Long(0, 0, false);
-                    object.poolMax = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
-                } else
-                    object.poolMax = options.longs === String ? "0" : 0;
-                object.configType = "";
+                    object.stageId = options.longs === String ? "0" : 0;
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, false);
                     object.general1Id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
@@ -9875,18 +11083,11 @@ $root.pbbattle = (function() {
                 object.createdAt = message.createdAt;
             if (message.updatedAt != null && message.hasOwnProperty("updatedAt"))
                 object.updatedAt = message.updatedAt;
-            if (message.poolMin != null && message.hasOwnProperty("poolMin"))
-                if (typeof message.poolMin === "number")
-                    object.poolMin = options.longs === String ? String(message.poolMin) : message.poolMin;
+            if (message.stageId != null && message.hasOwnProperty("stageId"))
+                if (typeof message.stageId === "number")
+                    object.stageId = options.longs === String ? String(message.stageId) : message.stageId;
                 else
-                    object.poolMin = options.longs === String ? $util.Long.prototype.toString.call(message.poolMin) : options.longs === Number ? new $util.LongBits(message.poolMin.low >>> 0, message.poolMin.high >>> 0).toNumber() : message.poolMin;
-            if (message.poolMax != null && message.hasOwnProperty("poolMax"))
-                if (typeof message.poolMax === "number")
-                    object.poolMax = options.longs === String ? String(message.poolMax) : message.poolMax;
-                else
-                    object.poolMax = options.longs === String ? $util.Long.prototype.toString.call(message.poolMax) : options.longs === Number ? new $util.LongBits(message.poolMax.low >>> 0, message.poolMax.high >>> 0).toNumber() : message.poolMax;
-            if (message.configType != null && message.hasOwnProperty("configType"))
-                object.configType = message.configType;
+                    object.stageId = options.longs === String ? $util.Long.prototype.toString.call(message.stageId) : options.longs === Number ? new $util.LongBits(message.stageId.low >>> 0, message.stageId.high >>> 0).toNumber() : message.stageId;
             if (message.general1Id != null && message.hasOwnProperty("general1Id"))
                 if (typeof message.general1Id === "number")
                     object.general1Id = options.longs === String ? String(message.general1Id) : message.general1Id;
@@ -9944,7 +11145,7 @@ $root.pbbattle = (function() {
          * @property {pbcommon.IPageInfo|null} [pageInfo] FindProbabilityConfigArgs pageInfo
          * @property {pbbattle.IProbabilityConfigModel|null} [query] FindProbabilityConfigArgs query
          * @property {string|null} [keyword] FindProbabilityConfigArgs keyword
-         * @property {Array.<string>|null} [configTypeList] FindProbabilityConfigArgs configTypeList
+         * @property {Array.<number|Long>|null} [stageIdList] FindProbabilityConfigArgs stageIdList
          * @property {Array.<boolean>|null} [isEnabledList] FindProbabilityConfigArgs isEnabledList
          */
 
@@ -9957,7 +11158,7 @@ $root.pbbattle = (function() {
          * @param {pbbattle.IFindProbabilityConfigArgs=} [properties] Properties to set
          */
         function FindProbabilityConfigArgs(properties) {
-            this.configTypeList = [];
+            this.stageIdList = [];
             this.isEnabledList = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
@@ -9990,12 +11191,12 @@ $root.pbbattle = (function() {
         FindProbabilityConfigArgs.prototype.keyword = "";
 
         /**
-         * FindProbabilityConfigArgs configTypeList.
-         * @member {Array.<string>} configTypeList
+         * FindProbabilityConfigArgs stageIdList.
+         * @member {Array.<number|Long>} stageIdList
          * @memberof pbbattle.FindProbabilityConfigArgs
          * @instance
          */
-        FindProbabilityConfigArgs.prototype.configTypeList = $util.emptyArray;
+        FindProbabilityConfigArgs.prototype.stageIdList = $util.emptyArray;
 
         /**
          * FindProbabilityConfigArgs isEnabledList.
@@ -10035,9 +11236,12 @@ $root.pbbattle = (function() {
                 $root.pbbattle.ProbabilityConfigModel.encode(message.query, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
             if (message.keyword != null && Object.hasOwnProperty.call(message, "keyword"))
                 writer.uint32(/* id 3, wireType 2 =*/26).string(message.keyword);
-            if (message.configTypeList != null && message.configTypeList.length)
-                for (var i = 0; i < message.configTypeList.length; ++i)
-                    writer.uint32(/* id 4, wireType 2 =*/34).string(message.configTypeList[i]);
+            if (message.stageIdList != null && message.stageIdList.length) {
+                writer.uint32(/* id 4, wireType 2 =*/34).fork();
+                for (var i = 0; i < message.stageIdList.length; ++i)
+                    writer.int64(message.stageIdList[i]);
+                writer.ldelim();
+            }
             if (message.isEnabledList != null && message.isEnabledList.length) {
                 writer.uint32(/* id 5, wireType 2 =*/42).fork();
                 for (var i = 0; i < message.isEnabledList.length; ++i)
@@ -10093,9 +11297,14 @@ $root.pbbattle = (function() {
                         break;
                     }
                 case 4: {
-                        if (!(message.configTypeList && message.configTypeList.length))
-                            message.configTypeList = [];
-                        message.configTypeList.push(reader.string());
+                        if (!(message.stageIdList && message.stageIdList.length))
+                            message.stageIdList = [];
+                        if ((tag & 7) === 2) {
+                            var end2 = reader.uint32() + reader.pos;
+                            while (reader.pos < end2)
+                                message.stageIdList.push(reader.int64());
+                        } else
+                            message.stageIdList.push(reader.int64());
                         break;
                     }
                 case 5: {
@@ -10157,12 +11366,12 @@ $root.pbbattle = (function() {
             if (message.keyword != null && message.hasOwnProperty("keyword"))
                 if (!$util.isString(message.keyword))
                     return "keyword: string expected";
-            if (message.configTypeList != null && message.hasOwnProperty("configTypeList")) {
-                if (!Array.isArray(message.configTypeList))
-                    return "configTypeList: array expected";
-                for (var i = 0; i < message.configTypeList.length; ++i)
-                    if (!$util.isString(message.configTypeList[i]))
-                        return "configTypeList: string[] expected";
+            if (message.stageIdList != null && message.hasOwnProperty("stageIdList")) {
+                if (!Array.isArray(message.stageIdList))
+                    return "stageIdList: array expected";
+                for (var i = 0; i < message.stageIdList.length; ++i)
+                    if (!$util.isInteger(message.stageIdList[i]) && !(message.stageIdList[i] && $util.isInteger(message.stageIdList[i].low) && $util.isInteger(message.stageIdList[i].high)))
+                        return "stageIdList: integer|Long[] expected";
             }
             if (message.isEnabledList != null && message.hasOwnProperty("isEnabledList")) {
                 if (!Array.isArray(message.isEnabledList))
@@ -10198,12 +11407,19 @@ $root.pbbattle = (function() {
             }
             if (object.keyword != null)
                 message.keyword = String(object.keyword);
-            if (object.configTypeList) {
-                if (!Array.isArray(object.configTypeList))
-                    throw TypeError(".pbbattle.FindProbabilityConfigArgs.configTypeList: array expected");
-                message.configTypeList = [];
-                for (var i = 0; i < object.configTypeList.length; ++i)
-                    message.configTypeList[i] = String(object.configTypeList[i]);
+            if (object.stageIdList) {
+                if (!Array.isArray(object.stageIdList))
+                    throw TypeError(".pbbattle.FindProbabilityConfigArgs.stageIdList: array expected");
+                message.stageIdList = [];
+                for (var i = 0; i < object.stageIdList.length; ++i)
+                    if ($util.Long)
+                        (message.stageIdList[i] = $util.Long.fromValue(object.stageIdList[i])).unsigned = false;
+                    else if (typeof object.stageIdList[i] === "string")
+                        message.stageIdList[i] = parseInt(object.stageIdList[i], 10);
+                    else if (typeof object.stageIdList[i] === "number")
+                        message.stageIdList[i] = object.stageIdList[i];
+                    else if (typeof object.stageIdList[i] === "object")
+                        message.stageIdList[i] = new $util.LongBits(object.stageIdList[i].low >>> 0, object.stageIdList[i].high >>> 0).toNumber();
             }
             if (object.isEnabledList) {
                 if (!Array.isArray(object.isEnabledList))
@@ -10229,7 +11445,7 @@ $root.pbbattle = (function() {
                 options = {};
             var object = {};
             if (options.arrays || options.defaults) {
-                object.configTypeList = [];
+                object.stageIdList = [];
                 object.isEnabledList = [];
             }
             if (options.defaults) {
@@ -10243,10 +11459,13 @@ $root.pbbattle = (function() {
                 object.query = $root.pbbattle.ProbabilityConfigModel.toObject(message.query, options);
             if (message.keyword != null && message.hasOwnProperty("keyword"))
                 object.keyword = message.keyword;
-            if (message.configTypeList && message.configTypeList.length) {
-                object.configTypeList = [];
-                for (var j = 0; j < message.configTypeList.length; ++j)
-                    object.configTypeList[j] = message.configTypeList[j];
+            if (message.stageIdList && message.stageIdList.length) {
+                object.stageIdList = [];
+                for (var j = 0; j < message.stageIdList.length; ++j)
+                    if (typeof message.stageIdList[j] === "number")
+                        object.stageIdList[j] = options.longs === String ? String(message.stageIdList[j]) : message.stageIdList[j];
+                    else
+                        object.stageIdList[j] = options.longs === String ? $util.Long.prototype.toString.call(message.stageIdList[j]) : options.longs === Number ? new $util.LongBits(message.stageIdList[j].low >>> 0, message.stageIdList[j].high >>> 0).toNumber() : message.stageIdList[j];
             }
             if (message.isEnabledList && message.isEnabledList.length) {
                 object.isEnabledList = [];
@@ -21052,6 +22271,171 @@ $root.pbbattle = (function() {
          * @instance
          * @param {pbbattle.IFindAssistOptionArgs} request FindAssistOptionArgs message or plain object
          * @returns {Promise<pbbattle.FindAssistOptionReply>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.BattleAdmin#createPrizePoolStage}.
+         * @memberof pbbattle.BattleAdmin
+         * @typedef CreatePrizePoolStageCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls CreatePrizePoolStage.
+         * @function createPrizePoolStage
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IPrizePoolStageModel} request PrizePoolStageModel message or plain object
+         * @param {pbbattle.BattleAdmin.CreatePrizePoolStageCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattleAdmin.prototype.createPrizePoolStage = function createPrizePoolStage(request, callback) {
+            return this.rpcCall(createPrizePoolStage, $root.pbbattle.PrizePoolStageModel, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "CreatePrizePoolStage" });
+
+        /**
+         * Calls CreatePrizePoolStage.
+         * @function createPrizePoolStage
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IPrizePoolStageModel} request PrizePoolStageModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.BattleAdmin#updatePrizePoolStage}.
+         * @memberof pbbattle.BattleAdmin
+         * @typedef UpdatePrizePoolStageCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls UpdatePrizePoolStage.
+         * @function updatePrizePoolStage
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IPrizePoolStageModel} request PrizePoolStageModel message or plain object
+         * @param {pbbattle.BattleAdmin.UpdatePrizePoolStageCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattleAdmin.prototype.updatePrizePoolStage = function updatePrizePoolStage(request, callback) {
+            return this.rpcCall(updatePrizePoolStage, $root.pbbattle.PrizePoolStageModel, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "UpdatePrizePoolStage" });
+
+        /**
+         * Calls UpdatePrizePoolStage.
+         * @function updatePrizePoolStage
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IPrizePoolStageModel} request PrizePoolStageModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.BattleAdmin#deletePrizePoolStage}.
+         * @memberof pbbattle.BattleAdmin
+         * @typedef DeletePrizePoolStageCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls DeletePrizePoolStage.
+         * @function deletePrizePoolStage
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbbattle.BattleAdmin.DeletePrizePoolStageCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattleAdmin.prototype.deletePrizePoolStage = function deletePrizePoolStage(request, callback) {
+            return this.rpcCall(deletePrizePoolStage, $root.pbcommon.IdArgs, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "DeletePrizePoolStage" });
+
+        /**
+         * Calls DeletePrizePoolStage.
+         * @function deletePrizePoolStage
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.BattleAdmin#findPrizePoolStageById}.
+         * @memberof pbbattle.BattleAdmin
+         * @typedef FindPrizePoolStageByIdCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbbattle.FindPrizePoolStageReply} [response] FindPrizePoolStageReply
+         */
+
+        /**
+         * Calls FindPrizePoolStageById.
+         * @function findPrizePoolStageById
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbbattle.BattleAdmin.FindPrizePoolStageByIdCallback} callback Node-style callback called with the error, if any, and FindPrizePoolStageReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattleAdmin.prototype.findPrizePoolStageById = function findPrizePoolStageById(request, callback) {
+            return this.rpcCall(findPrizePoolStageById, $root.pbcommon.IdArgs, $root.pbbattle.FindPrizePoolStageReply, request, callback);
+        }, "name", { value: "FindPrizePoolStageById" });
+
+        /**
+         * Calls FindPrizePoolStageById.
+         * @function findPrizePoolStageById
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbbattle.FindPrizePoolStageReply>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.BattleAdmin#findPrizePoolStageList}.
+         * @memberof pbbattle.BattleAdmin
+         * @typedef FindPrizePoolStageListCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbbattle.FindPrizePoolStageReply} [response] FindPrizePoolStageReply
+         */
+
+        /**
+         * Calls FindPrizePoolStageList.
+         * @function findPrizePoolStageList
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IFindPrizePoolStageArgs} request FindPrizePoolStageArgs message or plain object
+         * @param {pbbattle.BattleAdmin.FindPrizePoolStageListCallback} callback Node-style callback called with the error, if any, and FindPrizePoolStageReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattleAdmin.prototype.findPrizePoolStageList = function findPrizePoolStageList(request, callback) {
+            return this.rpcCall(findPrizePoolStageList, $root.pbbattle.FindPrizePoolStageArgs, $root.pbbattle.FindPrizePoolStageReply, request, callback);
+        }, "name", { value: "FindPrizePoolStageList" });
+
+        /**
+         * Calls FindPrizePoolStageList.
+         * @function findPrizePoolStageList
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IFindPrizePoolStageArgs} request FindPrizePoolStageArgs message or plain object
+         * @returns {Promise<pbbattle.FindPrizePoolStageReply>} Promise
          * @variation 2
          */
 

@@ -6,7 +6,7 @@
 // Protocol Constants
 export const PROTOCOL = {
   MAGIC_NUMBER: 0x13, // 19
-  VERSION: 0,
+  VERSION: 1, // SocketVersion.v1 - must match Flutter version
   HEADER_SIZE: 1 + 4 + 1 + 2 + 2 + 1 + 8 // magic + len + version + cmd + ret + flag + seq
 }
 
@@ -145,7 +145,7 @@ export const HEARTBEAT_CONFIG = {
 }
 
 // Default WebSocket URL (can be overridden by config)
-export const DEFAULT_WS_URL = 'ws://api.wwengg.cn:21997'
+export const DEFAULT_WS_URL = 'wss://api.wwengg.cn:21997'
 
 // Error Codes (from pbcommon.proto)
 export const ErrorCode = {

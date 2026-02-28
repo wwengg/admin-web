@@ -102,7 +102,7 @@ class IMService {
 
     this.token = token
     const seq = this._getNextSeq()
-    const message = IMMessage.createLogin(token, seq)
+    const message = IMMessage.createLogin(token, seq, '0')
 
     try {
       const response = await this.connection.sendRequest(message)

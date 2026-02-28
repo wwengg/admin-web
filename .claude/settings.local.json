@@ -10,7 +10,9 @@
       "mcp__figma__getfile",
       "mcp__figma__getfilecomponents",
       "mcp__figma__getfilestyles",
-      "mcp__figma__getcomments"
+      "mcp__figma__getcomments",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
     ]
   }
 }

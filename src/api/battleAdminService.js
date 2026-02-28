@@ -54,6 +54,58 @@ export function findAssistOptionList(data) {
   })
 }
 
+// ========== 奖池阶段管理 ==========
+
+export function createPrizePoolStage(data) {
+  const buffer = pbbattle.PrizePoolStageModel.encode(data).finish().slice().buffer
+  return request({
+    url: '/v2/battleAdmin/createPrizePoolStage',
+    method: 'post',
+    buffer,
+    pb: 'pbcommon.CommonResult'
+  })
+}
+
+export function updatePrizePoolStage(data) {
+  const buffer = pbbattle.PrizePoolStageModel.encode(data).finish().slice().buffer
+  return request({
+    url: '/v2/battleAdmin/updatePrizePoolStage',
+    method: 'post',
+    buffer,
+    pb: 'pbcommon.CommonResult'
+  })
+}
+
+export function deletePrizePoolStage(data) {
+  const buffer = pbcommon.IdArgs.encode(data).finish().slice().buffer
+  return request({
+    url: '/v2/battleAdmin/deletePrizePoolStage',
+    method: 'post',
+    buffer,
+    pb: 'pbcommon.CommonResult'
+  })
+}
+
+export function findPrizePoolStageById(data) {
+  const buffer = pbcommon.IdArgs.encode(data).finish().slice().buffer
+  return request({
+    url: '/v2/battleAdmin/findPrizePoolStageById',
+    method: 'post',
+    buffer,
+    pb: 'pbbattle.FindPrizePoolStageReply'
+  })
+}
+
+export function findPrizePoolStageList(data) {
+  const buffer = pbbattle.FindPrizePoolStageArgs.encode(data).finish().slice().buffer
+  return request({
+    url: '/v2/battleAdmin/findPrizePoolStageList',
+    method: 'post',
+    buffer,
+    pb: 'pbbattle.FindPrizePoolStageReply'
+  })
+}
+
 // ========== 概率配置管理 ==========
 
 export function createProbabilityConfig(data) {

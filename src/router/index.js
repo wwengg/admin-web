@@ -208,6 +208,12 @@ export const constantRoutes = [
         component: () => import('@/views/game/generals'),
         name: 'Generals',
         meta: { title: '武将管理', icon: 'star' }
+      },
+      {
+        path: 'prize-pool-stages',
+        component: () => import('@/views/game/prizePoolStages'),
+        name: 'PrizePoolStages',
+        meta: { title: '奖池阶段', icon: 'money' }
       }
     ]
   }

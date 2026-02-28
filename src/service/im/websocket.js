@@ -209,7 +209,8 @@ export class WebSocketConnection {
       }
 
       try {
-        const data = message instanceof IMMessage ? message.encode() : message
+        // Server doesn't use frame decoder, so encode without magic number
+        const data = message instanceof IMMessage ? message.encode(false) : message
         this.ws.send(data)
         resolve()
       } catch (error) {
@@ -258,7 +259,8 @@ export class WebSocketConnection {
    */
   _handleMessage(data) {
     try {
-      const message = IMMessage.decode(data)
+      // Server doesn't use frame decoder, so decode without magic number
+      const message = IMMessage.decode(data, false)
 
       // Reset heartbeat timeout on any message
       this._resetHeartbeatTimeout()

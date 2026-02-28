@@ -1,15 +1,15 @@
 <template>
-  <div class="generals">
+  <div class="prize-pool-stages">
     <el-card>
       <div slot="header" class="card-header">
-        <span>武将管理</span>
+        <span>奖池阶段管理</span>
         <el-button type="primary" size="small" icon="el-icon-plus" @click="handleAdd">新增</el-button>
       </div>
 
       <!-- 搜索表单 -->
       <el-form :inline="true" :model="queryForm" class="search-form">
         <el-form-item label="关键词">
-          <el-input v-model="queryForm.keyword" placeholder="武将名称" clearable />
+          <el-input v-model="queryForm.keyword" placeholder="阶段名称" clearable />
         </el-form-item>
         <el-form-item>
           <el-button type="primary" icon="el-icon-search" @click="loadData">查询</el-button>
@@ -20,15 +20,25 @@
       <!-- 数据表格 -->
       <el-table :data="tableData" v-loading="loading" border>
         <el-table-column prop="id" label="ID" width="80" />
-        <el-table-column prop="name" label="武将名称" width="150" />
-        <el-table-column label="头像" width="100" align="center">
+        <el-table-column prop="stageName" label="阶段名称" width="200" />
+        <el-table-column prop="poolMin" label="奖池最小值" width="150" align="right">
           <template slot-scope="scope">
-            <el-image v-if="scope.row.avatar" :src="scope.row.avatar" fit="cover" style="width: 60px; height: 60px; border-radius: 4px" :preview-src-list="[scope.row.avatar]" />
-            <span v-else>-</span>
+            {{ formatNumber(scope.row.poolMin) }}
           </template>
         </el-table-column>
-        <el-table-column prop="baseMultiplier" label="基础倍率" width="120" align="center" />
-        <el-table-column prop="index" label="位置索引" width="100" align="center" />
+        <el-table-column prop="poolMax" label="奖池最大值" width="150" align="right">
+          <template slot-scope="scope">
+            {{ formatNumber(scope.row.poolMax) }}
+          </template>
+        </el-table-column>
+        <el-table-column prop="sortOrder" label="排序" width="100" align="center" />
+        <el-table-column prop="isEnabled" label="状态" width="100" align="center">
+          <template slot-scope="scope">
+            <el-tag :type="scope.row.isEnabled ? 'success' : 'info'">
+              {{ scope.row.isEnabled ? '启用' : '禁用' }}
+            </el-tag>
+          </template>
+        </el-table-column>
         <el-table-column label="操作" width="150" fixed="right">
           <template slot-scope="scope">
             <el-button type="text" size="small" @click="handleEdit(scope.row)">编辑</el-button>
@@ -56,24 +66,21 @@
       width="500px"
       @close="handleDialogClose"
     >
-      <el-form :model="formData" :rules="formRules" ref="formRef" label-width="100px">
-        <el-form-item label="武将名称" prop="name">
-          <el-input v-model="formData.name" placeholder="请输入武将名称" maxlength="50" />
+      <el-form :model="formData" :rules="formRules" ref="formRef" label-width="110px">
+        <el-form-item label="阶段名称" prop="stageName">
+          <el-input v-model="formData.stageName" placeholder="请输入阶段名称" maxlength="50" />
         </el-form-item>
-        <el-form-item label="头像" prop="avatar">
-          <ImageUpload
-            v-model="formData.avatar"
-            accept="image/*"
-            :max-size="5"
-            tip="支持 jpg、png 格式，文件大小不超过 5MB"
-            @upload-success="handleAvatarUploadSuccess"
-          />
+        <el-form-item label="奖池最小值" prop="poolMin">
+          <el-input-number v-model="formData.poolMin" :min="0" :step="1000" />
         </el-form-item>
-        <el-form-item label="基础倍率" prop="baseMultiplier">
-          <el-input-number v-model="formData.baseMultiplier" :min="1" :max="999" />
+        <el-form-item label="奖池最大值" prop="poolMax">
+          <el-input-number v-model="formData.poolMax" :min="0" :step="1000" />
         </el-form-item>
-        <el-form-item label="位置索引" prop="index">
-          <el-input-number v-model="formData.index" :min="0" :max="15" />
+        <el-form-item label="排序" prop="sortOrder">
+          <el-input-number v-model="formData.sortOrder" :min="0" />
+        </el-form-item>
+        <el-form-item label="状态" prop="isEnabled">
+          <el-switch v-model="formData.isEnabled" active-text="启用" inactive-text="禁用" />
         </el-form-item>
       </el-form>
       <div slot="footer">
@@ -85,14 +92,10 @@
 </template>
 
 <script>
-import { findGeneralList, createGeneral, updateGeneral, deleteGeneral } from '@/api/battleAdminService'
-import ImageUpload from '@/components/ImageUpload/index.vue'
+import { findPrizePoolStageList, createPrizePoolStage, updatePrizePoolStage, deletePrizePoolStage } from '@/api/battleAdminService'
 
 export default {
-  name: 'Generals',
-  components: {
-    ImageUpload
-  },
+  name: 'PrizePoolStages',
   data() {
     return {
       loading: false,
@@ -107,18 +110,20 @@ export default {
         keyword: ''
       },
       dialogVisible: false,
-      dialogTitle: '新增武将',
+      dialogTitle: '新增奖池阶段',
       isEdit: false,
       formData: {
         id: null,
-        name: '',
-        avatar: '',
-        baseMultiplier: 1,
-        index: 0
+        stageName: '',
+        poolMin: 0,
+        poolMax: 0,
+        sortOrder: 0,
+        isEnabled: true
       },
       formRules: {
-        name: [{ required: true, message: '请输入武将名称', trigger: 'blur' }],
-        baseMultiplier: [{ required: true, message: '请输入基础倍率', trigger: 'blur' }]
+        stageName: [{ required: true, message: '请输入阶段名称', trigger: 'blur' }],
+        poolMin: [{ required: true, message: '请输入奖池最小值', trigger: 'blur' }],
+        poolMax: [{ required: true, message: '请输入奖池最大值', trigger: 'blur' }]
       }
     }
   },
@@ -134,8 +139,7 @@ export default {
           query: {},
           keyword: this.queryForm.keyword
         }
-        const res = await findGeneralList(req)
-        console.log(res);
+        const res = await findPrizePoolStageList(req)
         if (res.code === 'Success') {
           this.tableData = res.list || []
           this.total = res.total || 0
@@ -150,33 +154,35 @@ export default {
       }
     },
     handleAdd() {
-      this.dialogTitle = '新增武将'
+      this.dialogTitle = '新增奖池阶段'
       this.isEdit = false
       this.formData = {
         id: null,
-        name: '',
-        avatar: '',
-        baseMultiplier: 1,
-        index: 0
+        stageName: '',
+        poolMin: 0,
+        poolMax: 0,
+        sortOrder: 0,
+        isEnabled: true
       }
       this.dialogVisible = true
     },
     handleEdit(row) {
-      this.dialogTitle = '编辑武将'
+      this.dialogTitle = '编辑奖池阶段'
       this.isEdit = true
       this.formData = {
         id: row.id,
-        name: row.name,
-        avatar: row.avatar || '',
-        baseMultiplier: row.baseMultiplier || 1,
-        index: row.index || 0
+        stageName: row.stageName || '',
+        poolMin: row.poolMin || 0,
+        poolMax: row.poolMax || 0,
+        sortOrder: row.sortOrder || 0,
+        isEnabled: row.isEnabled !== undefined ? row.isEnabled : true
       }
       this.dialogVisible = true
     },
     async handleDelete(row) {
       try {
-        await this.$confirm('确定要删除该武将吗?', '提示', { type: 'warning' })
-        const res = await deleteGeneral({ id: row.id })
+        await this.$confirm('确定要删除该奖池阶段吗?', '提示', { type: 'warning' })
+        const res = await deletePrizePoolStage({ id: row.id })
         if (res.code === 'Success') {
           this.$message.success('删除成功')
           this.loadData()
@@ -194,7 +200,7 @@ export default {
       try {
         await this.$refs.formRef.validate()
         this.submitting = true
-        const api = this.isEdit ? updateGeneral : createGeneral
+        const api = this.isEdit ? updatePrizePoolStage : createPrizePoolStage
         const res = await api(this.formData)
         if (res.code === 'Success') {
           this.$message.success(this.isEdit ? '更新成功' : '创建成功')
@@ -213,9 +219,6 @@ export default {
     handleDialogClose() {
       this.$refs.formRef?.resetFields()
     },
-    handleAvatarUploadSuccess(url) {
-      console.log('Avatar uploaded:', url)
-    },
     handleSizeChange(val) {
       this.pageInfo.pageSize = val
       this.loadData()
@@ -230,13 +233,17 @@ export default {
       }
       this.pageInfo.page = 1
       this.loadData()
+    },
+    formatNumber(value) {
+      if (!value && value !== 0) return '-'
+      return Number(value).toLocaleString()
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.generals {
+.prize-pool-stages {
   padding: 16px;
 
   .card-header {

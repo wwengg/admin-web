@@ -2,16 +2,20 @@
   <div class="probability-config">
     <el-card>
       <div slot="header" class="card-header">
-        <span>概率配置管理</span>
+        <div class="header-left">
+          <span>概率配置管理</span>
+          <span v-if="currentStageTotal !== null" class="total-prob" :class="{ 'warning': isTotalOver100 }">
+            当前阶段总概率: <strong>{{ currentStageTotal.toFixed(2) }}%</strong>
+          </span>
+        </div>
         <el-button type="primary" size="small" icon="el-icon-plus" @click="handleAdd">新增</el-button>
       </div>
 
       <!-- 搜索表单 -->
       <el-form :inline="true" :model="queryForm" class="search-form">
-        <el-form-item label="配置类型">
-          <el-select v-model="queryForm.configType" placeholder="全部" clearable>
-            <el-option label="单开" value="SINGLE" />
-            <el-option label="双开" value="DUAL" />
+        <el-form-item label="奖池阶段">
+          <el-select v-model="queryForm.stageId" placeholder="全部" clearable>
+            <el-option v-for="stage in stages" :key="stage.id" :label="`${stage.stageName} (${stage.poolMin}-${stage.poolMax})`" :value="stage.id" />
           </el-select>
         </el-form-item>
         <el-form-item label="状态">
@@ -28,32 +32,24 @@
 
       <!-- 数据表格 -->
       <el-table :data="tableData" v-loading="loading" border>
-        <el-table-column prop="poolMin" label="奖池最小值" width="120" align="right">
+        <el-table-column label="奖池阶段" width="200">
           <template slot-scope="scope">
-            <span class="number-text">{{ scope.row.poolMin.toLocaleString() }}</span>
+            {{ getStageName(scope.row.stageId) }}
           </template>
         </el-table-column>
-        <el-table-column prop="poolMax" label="奖池最大值" width="120" align="right">
+        <el-table-column label="武将组合" width="280">
           <template slot-scope="scope">
-            <span class="number-text">{{ scope.row.poolMax.toLocaleString() }}</span>
-          </template>
-        </el-table-column>
-        <el-table-column prop="configType" label="配置类型" width="80" align="center">
-          <template slot-scope="scope">
-            <el-tag :type="scope.row.configType === 'DUAL' ? 'warning' : 'success'" size="small">
-              {{ scope.row.configType === 'DUAL' ? '双开' : '单开' }}
-            </el-tag>
-          </template>
-        </el-table-column>
-        <el-table-column label="武将组合" width="180">
-          <template slot-scope="scope">
-            <span v-if="scope.row.configType === 'SINGLE'">{{ getGeneralName(scope.row.general1Id) }}</span>
-            <span v-else>{{ getGeneralName(scope.row.general1Id) }} + {{ getGeneralName(scope.row.general2Id) }}</span>
+            <span v-if="!scope.row.general2Id || scope.row.general2Id === '0'">
+              {{ getGeneralName(scope.row.general1Id) }}
+            </span>
+            <span v-else>
+              {{ getGeneralName(scope.row.general1Id) }} + {{ getGeneralName(scope.row.general2Id) }}
+            </span>
           </template>
         </el-table-column>
         <el-table-column prop="probability" label="概率(%)" width="100" align="right">
           <template slot-scope="scope">
-            <span class="prob-text">{{ scope.row.probability.toFixed(2) }}%</span>
+            <span class="prob-text">{{ scope.row.probability.toFixed(3) }}%</span>
           </template>
         </el-table-column>
         <el-table-column prop="sortOrder" label="排序" width="80" align="center" />
@@ -79,8 +75,8 @@
       <el-pagination
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
-        :current-page="pageInfo.currentPage"
-        :page-sizes="[10, 20, 50, 100]"
+        :current-page="pageInfo.page"
+        :page-sizes="[100]"
         :page-size="pageInfo.pageSize"
         layout="total, sizes, prev, pager, next, jumper"
         :total="total"
@@ -95,26 +91,19 @@
       @close="handleDialogClose"
     >
       <el-form :model="formData" :rules="formRules" ref="formRef" label-width="100px">
-        <el-form-item label="奖池最小值" prop="poolMin">
-          <el-input-number v-model="formData.poolMin" :min="0" :max="999999999" />
-        </el-form-item>
-        <el-form-item label="奖池最大值" prop="poolMax">
-          <el-input-number v-model="formData.poolMax" :min="0" :max="999999999" />
-        </el-form-item>
-        <el-form-item label="配置类型" prop="configType">
-          <el-select v-model="formData.configType" placeholder="请选择" @change="handleConfigTypeChange">
-            <el-option label="单开" value="SINGLE" />
-            <el-option label="双开" value="DUAL" />
+        <el-form-item label="奖池阶段" prop="stageId">
+          <el-select v-model="formData.stageId" placeholder="请选择">
+            <el-option v-for="stage in stages" :key="stage.id" :label="`${stage.stageName} (${formatNumber(stage.poolMin)}-${formatNumber(stage.poolMax)})`" :value="stage.id" />
           </el-select>
         </el-form-item>
         <el-form-item label="武将1" prop="general1Id">
           <el-select v-model="formData.general1Id" placeholder="请选择">
-            <el-option v-for="g in generals" :key="g.id" :label="g.name" :value="g.id" />
+            <el-option v-for="g in generals" :key="g.id" :label="`${g.baseMultiplier}倍 - ${g.name}`" :value="g.id" />
           </el-select>
         </el-form-item>
-        <el-form-item label="武将2" prop="general2Id" v-if="formData.configType === 'DUAL'">
-          <el-select v-model="formData.general2Id" placeholder="请选择">
-            <el-option v-for="g in generals" :key="g.id" :label="g.name" :value="g.id" />
+        <el-form-item label="武将2" prop="general2Id">
+          <el-select v-model="formData.general2Id" placeholder="请选择（可选）" clearable>
+            <el-option v-for="g in generals" :key="g.id" :label="`${g.baseMultiplier}倍 - ${g.name}`" :value="g.id" />
           </el-select>
         </el-form-item>
         <el-form-item label="概率(%)" prop="probability">
@@ -137,6 +126,8 @@
 
 <script>
 import { findProbabilityConfigList, createProbabilityConfig, updateProbabilityConfig, deleteProbabilityConfig } from '@/api/battleAdminService'
+import { findPrizePoolStageList } from '@/api/battleAdminService'
+import { findGeneralList } from '@/api/battleAdminService'
 
 export default {
   name: 'ProbabilityConfig',
@@ -147,11 +138,11 @@ export default {
       tableData: [],
       total: 0,
       pageInfo: {
-        currentPage: 1,
-        pageSize: 20
+        page: 1,
+        pageSize: 100
       },
       queryForm: {
-        configType: '',
+        stageId: null,
         isEnabled: null
       },
       dialogVisible: false,
@@ -159,9 +150,7 @@ export default {
       isEdit: false,
       formData: {
         id: null,
-        poolMin: 0,
-        poolMax: 0,
-        configType: 'SINGLE',
+        stageId: null,
         general1Id: 0,
         general2Id: 0,
         probability: 0,
@@ -169,36 +158,75 @@ export default {
         isEnabled: true
       },
       formRules: {
-        poolMin: [{ required: true, message: '请输入奖池最小值', trigger: 'blur' }],
-        poolMax: [{ required: true, message: '请输入奖池最大值', trigger: 'blur' }],
-        configType: [{ required: true, message: '请选择配置类型', trigger: 'change' }],
+        stageId: [{ required: true, message: '请选择奖池阶段', trigger: 'change' }],
         general1Id: [{ required: true, message: '请选择武将1', trigger: 'change' }],
         probability: [{ required: true, message: '请输入概率', trigger: 'blur' }],
         sortOrder: [{ required: true, message: '请输入排序', trigger: 'blur' }]
       },
-      generals: [
-        { id: 1, name: '地狱犬' },
-        { id: 2, name: '九尾狐' },
-        { id: 3, name: '夔牛' },
-        { id: 4, name: '麒麟' },
-        { id: 5, name: '朱雀' },
-        { id: 6, name: '玄武' },
-        { id: 7, name: '白虎' },
-        { id: 8, name: '青龙' }
-      ]
+      stages: [],
+      generals: []
+    }
+  },
+  computed: {
+    currentStageTotal() {
+      if (!this.tableData || this.tableData.length === 0) {
+        return null
+      }
+      // Only show total when a specific stage is selected
+      if (!this.queryForm.stageId) {
+        return null
+      }
+      // Calculate total for enabled configs only
+      const total = this.tableData
+        .filter(row => row.isEnabled)
+        .reduce((sum, row) => sum + (row.probability || 0), 0)
+      return total
+    },
+    isTotalOver100() {
+      return this.currentStageTotal !== null && this.currentStageTotal > 100
     }
   },
   mounted() {
+    this.loadStages()
+    this.loadGenerals()
     this.loadData()
   },
   methods: {
+    async loadStages() {
+      try {
+        const req = {
+          pageInfo: { page: 1, pageSize: 100 },
+          query: {}
+        }
+        const res = await findPrizePoolStageList(req)
+        if (res.code === 'Success') {
+          this.stages = res.list || []
+        }
+      } catch (error) {
+        console.error('加载奖池阶段失败:', error)
+      }
+    },
+    async loadGenerals() {
+      try {
+        const req = {
+          pageInfo: { page: 1, pageSize: 100 },
+          query: {}
+        }
+        const res = await findGeneralList(req)
+        if (res.code === 'Success') {
+          this.generals = res.list || []
+        }
+      } catch (error) {
+        console.error('加载武将列表失败:', error)
+      }
+    },
     async loadData() {
       try {
         this.loading = true
         const req = {
           pageInfo: this.pageInfo,
           query: {},
-          configTypeList: this.queryForm.configType ? [this.queryForm.configType] : [],
+          stageIdList: this.queryForm.stageId ? [this.queryForm.stageId] : [],
           isEnabledList: this.queryForm.isEnabled !== null ? [this.queryForm.isEnabled] : []
         }
         const res = await findProbabilityConfigList(req)
@@ -220,9 +248,7 @@ export default {
       this.isEdit = false
       this.formData = {
         id: null,
-        poolMin: 0,
-        poolMax: 0,
-        configType: 'SINGLE',
+        stageId: null,
         general1Id: 0,
         general2Id: 0,
         probability: 0,
@@ -236,21 +262,14 @@ export default {
       this.isEdit = true
       this.formData = {
         id: row.id,
-        poolMin: row.poolMin,
-        poolMax: row.poolMax,
-        configType: row.configType,
-        general1Id: row.general1Id,
-        general2Id: row.general2Id,
+        stageId: row.stageId,
+        general1Id: row.general1Id || 0,
+        general2Id: row.general2Id || 0,
         probability: row.probability,
         sortOrder: row.sortOrder,
         isEnabled: row.isEnabled
       }
       this.dialogVisible = true
-    },
-    handleConfigTypeChange(val) {
-      if (val === 'SINGLE') {
-        this.formData.general2Id = 0
-      }
     },
     async handleToggleStatus(row) {
       const action = row.isEnabled ? '禁用' : '启用'
@@ -316,20 +335,31 @@ export default {
       this.loadData()
     },
     handleCurrentChange(val) {
-      this.pageInfo.currentPage = val
+      this.pageInfo.page = val
       this.loadData()
     },
     resetQuery() {
       this.queryForm = {
-        configType: '',
+        stageId: null,
         isEnabled: null
       }
-      this.pageInfo.currentPage = 1
+      this.pageInfo.page = 1
       this.loadData()
     },
-    getGeneralName(id) {
-      const general = this.generals.find(g => g.id === id)
-      return general ? general.name : `武将${id}`
+    getStageName(stageId) {
+      const stage = this.stages.find(s => s.id === stageId)
+      if (stage) {
+        return `${stage.stageName} (${this.formatNumber(stage.poolMin)}-${this.formatNumber(stage.poolMax)})`
+      }
+      return `阶段${stageId}`
+    },
+    getGeneralName(index) {
+      const general = this.generals.find(g => g.id == index)
+      return general ? `${general.baseMultiplier}倍 - ${general.name}` : `位置${index}`
+    },
+    formatNumber(value) {
+      if (!value && value !== 0) return '-'
+      return Number(value).toLocaleString()
     }
   }
 }
@@ -344,15 +374,31 @@ export default {
     justify-content: space-between;
     align-items: center;
     font-weight: bold;
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .total-prob {
+      font-size: 14px;
+      color: #606266;
+      font-weight: normal;
+
+      strong {
+        color: #409eff;
+        font-size: 16px;
+      }
+
+      &.warning strong {
+        color: #f56c6c;
+      }
+    }
   }
 
   .search-form {
     margin-bottom: 16px;
-  }
-
-  .number-text {
-    font-family: 'Courier New', monospace;
-    font-weight: 500;
   }
 
   .prob-text {

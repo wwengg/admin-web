@@ -15,6 +15,7 @@ import {
   CompressType,
   MessageType
 } from './constants'
+import protoIm from '@/proto/im.js'
 
 /**
  * IM Message class
@@ -34,8 +35,9 @@ export class IMMessage {
 
   /**
    * Convert message to binary
+   * @param {boolean} useFrameDecoder - Whether to use frame decoder mode (includes magic number + length prefix)
    */
-  encode() {
+  encode(useFrameDecoder = false) {
     // Calculate metadata length
     const metadataBytes = this.metadata ? this._encodeMetadata(this.metadata) : null
     const metaLen = metadataBytes ? metadataBytes.length : 0
@@ -55,18 +57,19 @@ export class IMMessage {
     if (hasData) len += 4 + dataLen
     len += 4 // crc
 
-    // Create buffer
-    const buffer = new ArrayBuffer(1 + 4 + len) // magic + len + content
+    // Create buffer (add space for magic + len if using frame decoder)
+    const headerSize = useFrameDecoder ? 1 + 4 : 0
+    const buffer = new ArrayBuffer(headerSize + len)
     const view = new DataView(buffer)
     let offset = 0
 
-    // Write Magic Number (1 byte)
-    view.setUint8(offset, PROTOCOL.MAGIC_NUMBER)
-    offset += 1
-
-    // Write Length (4 bytes, big endian / network byte order)
-    view.setUint32(offset, len, false)
-    offset += 4
+    // Write Magic Number (1 byte) and Length (4 bytes) if using frame decoder
+    if (useFrameDecoder) {
+      view.setUint8(offset, PROTOCOL.MAGIC_NUMBER)
+      offset += 1
+      view.setUint32(offset, len, false)
+      offset += 4
+    }
 
     // Write Version (1 byte)
     view.setUint8(offset, this.version)
@@ -121,8 +124,10 @@ export class IMMessage {
 
   /**
    * Parse message from binary
+   * @param {Uint8Array|ArrayBuffer} buffer - The binary data to decode
+   * @param {boolean} hasFrameDecoder - Whether the data was encoded with frame decoder (has magic number + length prefix)
    */
-  static decode(buffer) {
+  static decode(buffer, hasFrameDecoder = false) {
     if (!(buffer instanceof Uint8Array)) {
       buffer = new Uint8Array(buffer)
     }
@@ -130,16 +135,19 @@ export class IMMessage {
     const view = new DataView(buffer.buffer, buffer.byteOffset, buffer.byteLength)
     let offset = 0
 
-    // Read and verify Magic Number
-    const magicNumber = view.getUint8(offset)
-    if (magicNumber !== PROTOCOL.MAGIC_NUMBER) {
-      throw new Error(`Invalid magic number: ${magicNumber}`)
+    // Skip Magic Number (1 byte) and Length (4 bytes) if using frame decoder
+    if (hasFrameDecoder) {
+      if (buffer.length < 5) {
+        throw new Error('Invalid message: too short (frame decoder mode)')
+      }
+      // Optionally verify magic number (Flutter doesn't verify, but we can for safety)
+      const magicNumber = view.getUint8(offset)
+      // Only throw if magic number is explicitly wrong, not 0 (server may not use frame decoder)
+      if (magicNumber !== 0 && magicNumber !== PROTOCOL.MAGIC_NUMBER) {
+        throw new Error(`Invalid magic number: ${magicNumber}`)
+      }
+      offset += 5 // Magic Number (1) + Length (4)
     }
-    offset += 1
-
-    // Read Length (4 bytes, big endian)
-    const len = view.getUint32(offset, false)
-    offset += 4
 
     // Read Version
     const version = view.getUint8(offset)
@@ -167,9 +175,19 @@ export class IMMessage {
     offset += 4
     const seq = seqLow + (seqHigh * 0x100000000)
 
-    // Read Metadata (if present)
+    // Read Metadata and Data (only if present, i.e., if there's more data than just CRC)
     let metadata = null
-    if (offset < buffer.length - 4) { // -4 for CRC
+    let data = null
+
+    // Check if there's additional data beyond the fixed header and CRC
+    // Fixed header size = version(1) + cmd(2) + ret(2) + flag(1) + seq(8) = 14 bytes
+    // CRC = 4 bytes
+    // So if buffer length > 18, we have metadata and/or data
+    const remainingBytes = buffer.length - offset
+    const hasBodyData = remainingBytes > 4 // More than just CRC (4 bytes)
+
+    if (hasBodyData) {
+      // Read MetaLen (4 bytes)
       const metaLen = view.getUint32(offset, false)
       offset += 4
       if (metaLen > 0) {
@@ -177,16 +195,15 @@ export class IMMessage {
         metadata = IMMessage._decodeMetadata(metadataBytes)
         offset += metaLen
       }
-    }
 
-    // Read Data (if present)
-    let data = null
-    if (offset < buffer.length - 4) { // -4 for CRC
-      const dataLen = view.getUint32(offset, false)
-      offset += 4
-      if (dataLen > 0) {
-        data = buffer.slice(offset, offset + dataLen)
-        offset += dataLen
+      // Read DataLen (4 bytes)
+      if (offset + 4 <= buffer.length - 4) { // Ensure space for dataLen + CRC
+        const dataLen = view.getUint32(offset, false)
+        offset += 4
+        if (dataLen > 0) {
+          data = buffer.slice(offset, offset + dataLen)
+          offset += dataLen
+        }
       }
     }
 
@@ -283,25 +300,43 @@ export class IMMessage {
   }
 
   /**
-   * Create a ping message
+   * Create a ping message (heartbeat)
+   * Uses version 0 and cmd 0 to match Flutter behavior
    */
   static createPing(seq) {
     return new IMMessage({
-      cmd: 1, // PING
+      version: PROTOCOL.VERSION, // ProtocolCodec.defaultVersion (not SocketVersion.v1)
+      cmd: 1, // CMD_NONE (not PING=1) - matches Flutter
       messageType: MessageType.REQUEST,
-      seq: seq || Date.now()
+      seq: seq || Date.now(),
+      metadata: { ping: 'heartbeat' } // Match Flutter
     })
   }
 
   /**
    * Create a login message
+   * Matches Flutter behavior: includes both metadata and ParseTokenArgs in data
    */
-  static createLogin(token, seq) {
+  static createLogin(token, seq, appId = null) {
+    // Create ParseTokenArgs and encode to protobuf (matches Flutter)
+    const parseTokenArgs = protoIm.pbsocket.ParseTokenArgs.create({
+      token: token
+    })
+    const requestData = protoIm.pbsocket.ParseTokenArgs.encode(parseTokenArgs).finish()
+
+    // Build metadata (matches Flutter)
+    const metadata = { token }
+    if (appId) {
+      metadata.appId = appId
+    }
+
     return new IMMessage({
+      version: PROTOCOL.VERSION, // SocketVersion.v1 = 1
       cmd: 5, // LOGIN_C2S2C
       messageType: MessageType.REQUEST,
       seq: seq || Date.now(),
-      metadata: { token }
+      metadata: metadata,
+      data: new Uint8Array(requestData) // ← This was missing!
     })
   }
 
