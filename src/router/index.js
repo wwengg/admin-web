@@ -145,6 +145,12 @@ export const constantRoutes = [
         component: () => import('@/views/erp/inventory'),
         name: 'ERPInventory',
         meta: { title: '库存管理', icon: 'list' }
+      },
+      {
+        path: 'organization',
+        component: () => import('@/views/upms/organization'),
+        name: 'Organization',
+        meta: { title: '组织管理', icon: 's-grid' }
       }
     ]
   },
@@ -214,6 +220,30 @@ export const constantRoutes = [
         component: () => import('@/views/game/prizePoolStages'),
         name: 'PrizePoolStages',
         meta: { title: '奖池阶段', icon: 'money' }
+      },
+      {
+        path: 'lucky-prize-configs',
+        component: () => import('@/views/game/luckyPrizeConfigs'),
+        name: 'LuckyPrizeConfigs',
+        meta: { title: '轮盘奖品配置', icon: 'present' }
+      },
+      {
+        path: 'lucky-rounds',
+        component: () => import('@/views/game/luckyRounds'),
+        name: 'LuckyRounds',
+        meta: { title: '轮盘回合', icon: 'data-line' }
+      },
+      {
+        path: 'lucky-draws',
+        component: () => import('@/views/game/luckyDraws'),
+        name: 'LuckyDraws',
+        meta: { title: '轮盘抽奖记录', icon: 'tickets' }
+      },
+      {
+        path: 'wallet-manage',
+        name: 'walletManage',
+        component: () => import('@/views/game/walletManage'),
+        meta: { title: '钱包管理', icon: 'wallet' }
       }
     ]
   }

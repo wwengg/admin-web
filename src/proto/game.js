@@ -2276,6 +2276,7 @@ $root.pbbattle = (function() {
          * @property {pbbattle.IGeneralModel|null} [general] TreeNode general
          * @property {number|null} [valueAll] TreeNode valueAll
          * @property {number|null} [valueSelf] TreeNode valueSelf
+         * @property {number|Long|null} [serverTime] TreeNode serverTime
          */
 
         /**
@@ -2334,6 +2335,14 @@ $root.pbbattle = (function() {
         TreeNode.prototype.valueSelf = 0;
 
         /**
+         * TreeNode serverTime.
+         * @member {number|Long} serverTime
+         * @memberof pbbattle.TreeNode
+         * @instance
+         */
+        TreeNode.prototype.serverTime = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
          * Creates a new TreeNode instance using the specified properties.
          * @function create
          * @memberof pbbattle.TreeNode
@@ -2367,6 +2376,8 @@ $root.pbbattle = (function() {
                 writer.uint32(/* id 4, wireType 0 =*/32).int32(message.valueAll);
             if (message.valueSelf != null && Object.hasOwnProperty.call(message, "valueSelf"))
                 writer.uint32(/* id 5, wireType 0 =*/40).int32(message.valueSelf);
+            if (message.serverTime != null && Object.hasOwnProperty.call(message, "serverTime"))
+                writer.uint32(/* id 6, wireType 0 =*/48).int64(message.serverTime);
             return writer;
         };
 
@@ -2423,6 +2434,10 @@ $root.pbbattle = (function() {
                         message.valueSelf = reader.int32();
                         break;
                     }
+                case 6: {
+                        message.serverTime = reader.int64();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -2475,6 +2490,9 @@ $root.pbbattle = (function() {
             if (message.valueSelf != null && message.hasOwnProperty("valueSelf"))
                 if (!$util.isInteger(message.valueSelf))
                     return "valueSelf: integer expected";
+            if (message.serverTime != null && message.hasOwnProperty("serverTime"))
+                if (!$util.isInteger(message.serverTime) && !(message.serverTime && $util.isInteger(message.serverTime.low) && $util.isInteger(message.serverTime.high)))
+                    return "serverTime: integer|Long expected";
             return null;
         };
 
@@ -2503,6 +2521,15 @@ $root.pbbattle = (function() {
                 message.valueAll = object.valueAll | 0;
             if (object.valueSelf != null)
                 message.valueSelf = object.valueSelf | 0;
+            if (object.serverTime != null)
+                if ($util.Long)
+                    (message.serverTime = $util.Long.fromValue(object.serverTime)).unsigned = false;
+                else if (typeof object.serverTime === "string")
+                    message.serverTime = parseInt(object.serverTime, 10);
+                else if (typeof object.serverTime === "number")
+                    message.serverTime = object.serverTime;
+                else if (typeof object.serverTime === "object")
+                    message.serverTime = new $util.LongBits(object.serverTime.low >>> 0, object.serverTime.high >>> 0).toNumber();
             return message;
         };
 
@@ -2525,6 +2552,11 @@ $root.pbbattle = (function() {
                 object.general = null;
                 object.valueAll = 0;
                 object.valueSelf = 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.serverTime = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.serverTime = options.longs === String ? "0" : 0;
             }
             if (message.position != null && message.hasOwnProperty("position"))
                 object.position = message.position;
@@ -2536,6 +2568,11 @@ $root.pbbattle = (function() {
                 object.valueAll = message.valueAll;
             if (message.valueSelf != null && message.hasOwnProperty("valueSelf"))
                 object.valueSelf = message.valueSelf;
+            if (message.serverTime != null && message.hasOwnProperty("serverTime"))
+                if (typeof message.serverTime === "number")
+                    object.serverTime = options.longs === String ? String(message.serverTime) : message.serverTime;
+                else
+                    object.serverTime = options.longs === String ? $util.Long.prototype.toString.call(message.serverTime) : options.longs === Number ? new $util.LongBits(message.serverTime.low >>> 0, message.serverTime.high >>> 0).toNumber() : message.serverTime;
             return object;
         };
 
@@ -3010,10 +3047,10 @@ $root.pbbattle = (function() {
          * @property {number|Long|null} [currentRoundId] GetGameStateResp currentRoundId
          * @property {pbbattle.GamePhase|null} [phase] GetGameStateResp phase
          * @property {number|null} [countdown] GetGameStateResp countdown
-         * @property {pbbattle.BattleMode|null} [mode] GetGameStateResp mode
          * @property {pbbattle.IBattleTree|null} [tree] GetGameStateResp tree
          * @property {number|Long|null} [phaseStartTime] GetGameStateResp phaseStartTime
          * @property {number|Long|null} [countDownServerTime] GetGameStateResp countDownServerTime
+         * @property {number|Long|null} [logicRoomId] GetGameStateResp logicRoomId
          */
 
         /**
@@ -3072,14 +3109,6 @@ $root.pbbattle = (function() {
         GetGameStateResp.prototype.countdown = 0;
 
         /**
-         * GetGameStateResp mode.
-         * @member {pbbattle.BattleMode} mode
-         * @memberof pbbattle.GetGameStateResp
-         * @instance
-         */
-        GetGameStateResp.prototype.mode = 0;
-
-        /**
          * GetGameStateResp tree.
          * @member {pbbattle.IBattleTree|null|undefined} tree
          * @memberof pbbattle.GetGameStateResp
@@ -3102,6 +3131,14 @@ $root.pbbattle = (function() {
          * @instance
          */
         GetGameStateResp.prototype.countDownServerTime = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * GetGameStateResp logicRoomId.
+         * @member {number|Long} logicRoomId
+         * @memberof pbbattle.GetGameStateResp
+         * @instance
+         */
+        GetGameStateResp.prototype.logicRoomId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
 
         /**
          * Creates a new GetGameStateResp instance using the specified properties.
@@ -3137,14 +3174,14 @@ $root.pbbattle = (function() {
                 writer.uint32(/* id 4, wireType 0 =*/32).int32(message.phase);
             if (message.countdown != null && Object.hasOwnProperty.call(message, "countdown"))
                 writer.uint32(/* id 5, wireType 0 =*/40).int32(message.countdown);
-            if (message.mode != null && Object.hasOwnProperty.call(message, "mode"))
-                writer.uint32(/* id 6, wireType 0 =*/48).int32(message.mode);
             if (message.tree != null && Object.hasOwnProperty.call(message, "tree"))
                 $root.pbbattle.BattleTree.encode(message.tree, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
             if (message.phaseStartTime != null && Object.hasOwnProperty.call(message, "phaseStartTime"))
                 writer.uint32(/* id 8, wireType 0 =*/64).int64(message.phaseStartTime);
             if (message.countDownServerTime != null && Object.hasOwnProperty.call(message, "countDownServerTime"))
                 writer.uint32(/* id 9, wireType 0 =*/72).int64(message.countDownServerTime);
+            if (message.logicRoomId != null && Object.hasOwnProperty.call(message, "logicRoomId"))
+                writer.uint32(/* id 10, wireType 0 =*/80).int64(message.logicRoomId);
             return writer;
         };
 
@@ -3201,10 +3238,6 @@ $root.pbbattle = (function() {
                         message.countdown = reader.int32();
                         break;
                     }
-                case 6: {
-                        message.mode = reader.int32();
-                        break;
-                    }
                 case 7: {
                         message.tree = $root.pbbattle.BattleTree.decode(reader, reader.uint32());
                         break;
@@ -3215,6 +3248,10 @@ $root.pbbattle = (function() {
                     }
                 case 9: {
                         message.countDownServerTime = reader.int64();
+                        break;
+                    }
+                case 10: {
+                        message.logicRoomId = reader.int64();
                         break;
                     }
                 default:
@@ -3312,15 +3349,6 @@ $root.pbbattle = (function() {
             if (message.countdown != null && message.hasOwnProperty("countdown"))
                 if (!$util.isInteger(message.countdown))
                     return "countdown: integer expected";
-            if (message.mode != null && message.hasOwnProperty("mode"))
-                switch (message.mode) {
-                default:
-                    return "mode: enum value expected";
-                case 0:
-                case 1:
-                case 2:
-                    break;
-                }
             if (message.tree != null && message.hasOwnProperty("tree")) {
                 var error = $root.pbbattle.BattleTree.verify(message.tree);
                 if (error)
@@ -3332,6 +3360,9 @@ $root.pbbattle = (function() {
             if (message.countDownServerTime != null && message.hasOwnProperty("countDownServerTime"))
                 if (!$util.isInteger(message.countDownServerTime) && !(message.countDownServerTime && $util.isInteger(message.countDownServerTime.low) && $util.isInteger(message.countDownServerTime.high)))
                     return "countDownServerTime: integer|Long expected";
+            if (message.logicRoomId != null && message.hasOwnProperty("logicRoomId"))
+                if (!$util.isInteger(message.logicRoomId) && !(message.logicRoomId && $util.isInteger(message.logicRoomId.low) && $util.isInteger(message.logicRoomId.high)))
+                    return "logicRoomId: integer|Long expected";
             return null;
         };
 
@@ -3532,26 +3563,6 @@ $root.pbbattle = (function() {
             }
             if (object.countdown != null)
                 message.countdown = object.countdown | 0;
-            switch (object.mode) {
-            default:
-                if (typeof object.mode === "number") {
-                    message.mode = object.mode;
-                    break;
-                }
-                break;
-            case "MODE_UNKNOWN":
-            case 0:
-                message.mode = 0;
-                break;
-            case "SINGLE":
-            case 1:
-                message.mode = 1;
-                break;
-            case "DUAL":
-            case 2:
-                message.mode = 2;
-                break;
-            }
             if (object.tree != null) {
                 if (typeof object.tree !== "object")
                     throw TypeError(".pbbattle.GetGameStateResp.tree: object expected");
@@ -3575,6 +3586,15 @@ $root.pbbattle = (function() {
                     message.countDownServerTime = object.countDownServerTime;
                 else if (typeof object.countDownServerTime === "object")
                     message.countDownServerTime = new $util.LongBits(object.countDownServerTime.low >>> 0, object.countDownServerTime.high >>> 0).toNumber();
+            if (object.logicRoomId != null)
+                if ($util.Long)
+                    (message.logicRoomId = $util.Long.fromValue(object.logicRoomId)).unsigned = false;
+                else if (typeof object.logicRoomId === "string")
+                    message.logicRoomId = parseInt(object.logicRoomId, 10);
+                else if (typeof object.logicRoomId === "number")
+                    message.logicRoomId = object.logicRoomId;
+                else if (typeof object.logicRoomId === "object")
+                    message.logicRoomId = new $util.LongBits(object.logicRoomId.low >>> 0, object.logicRoomId.high >>> 0).toNumber();
             return message;
         };
 
@@ -3601,7 +3621,6 @@ $root.pbbattle = (function() {
                     object.currentRoundId = options.longs === String ? "0" : 0;
                 object.phase = options.enums === String ? "PHASE_UNKNOWN" : 0;
                 object.countdown = 0;
-                object.mode = options.enums === String ? "MODE_UNKNOWN" : 0;
                 object.tree = null;
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, false);
@@ -3613,6 +3632,11 @@ $root.pbbattle = (function() {
                     object.countDownServerTime = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
                 } else
                     object.countDownServerTime = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.logicRoomId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.logicRoomId = options.longs === String ? "0" : 0;
             }
             if (message.code != null && message.hasOwnProperty("code"))
                 object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
@@ -3627,8 +3651,6 @@ $root.pbbattle = (function() {
                 object.phase = options.enums === String ? $root.pbbattle.GamePhase[message.phase] === undefined ? message.phase : $root.pbbattle.GamePhase[message.phase] : message.phase;
             if (message.countdown != null && message.hasOwnProperty("countdown"))
                 object.countdown = message.countdown;
-            if (message.mode != null && message.hasOwnProperty("mode"))
-                object.mode = options.enums === String ? $root.pbbattle.BattleMode[message.mode] === undefined ? message.mode : $root.pbbattle.BattleMode[message.mode] : message.mode;
             if (message.tree != null && message.hasOwnProperty("tree"))
                 object.tree = $root.pbbattle.BattleTree.toObject(message.tree, options);
             if (message.phaseStartTime != null && message.hasOwnProperty("phaseStartTime"))
@@ -3641,6 +3663,11 @@ $root.pbbattle = (function() {
                     object.countDownServerTime = options.longs === String ? String(message.countDownServerTime) : message.countDownServerTime;
                 else
                     object.countDownServerTime = options.longs === String ? $util.Long.prototype.toString.call(message.countDownServerTime) : options.longs === Number ? new $util.LongBits(message.countDownServerTime.low >>> 0, message.countDownServerTime.high >>> 0).toNumber() : message.countDownServerTime;
+            if (message.logicRoomId != null && message.hasOwnProperty("logicRoomId"))
+                if (typeof message.logicRoomId === "number")
+                    object.logicRoomId = options.longs === String ? String(message.logicRoomId) : message.logicRoomId;
+                else
+                    object.logicRoomId = options.longs === String ? $util.Long.prototype.toString.call(message.logicRoomId) : options.longs === Number ? new $util.LongBits(message.logicRoomId.low >>> 0, message.logicRoomId.high >>> 0).toNumber() : message.logicRoomId;
             return object;
         };
 
@@ -10705,6 +10732,7 @@ $root.pbbattle = (function() {
          * @property {number|null} [probability] ProbabilityConfigModel probability
          * @property {number|null} [sortOrder] ProbabilityConfigModel sortOrder
          * @property {boolean|null} [isEnabled] ProbabilityConfigModel isEnabled
+         * @property {pbbattle.IPrizePoolStageModel|null} [stage] ProbabilityConfigModel stage
          */
 
         /**
@@ -10795,6 +10823,14 @@ $root.pbbattle = (function() {
         ProbabilityConfigModel.prototype.isEnabled = false;
 
         /**
+         * ProbabilityConfigModel stage.
+         * @member {pbbattle.IPrizePoolStageModel|null|undefined} stage
+         * @memberof pbbattle.ProbabilityConfigModel
+         * @instance
+         */
+        ProbabilityConfigModel.prototype.stage = null;
+
+        /**
          * Creates a new ProbabilityConfigModel instance using the specified properties.
          * @function create
          * @memberof pbbattle.ProbabilityConfigModel
@@ -10836,6 +10872,8 @@ $root.pbbattle = (function() {
                 writer.uint32(/* id 14, wireType 0 =*/112).int32(message.sortOrder);
             if (message.isEnabled != null && Object.hasOwnProperty.call(message, "isEnabled"))
                 writer.uint32(/* id 15, wireType 0 =*/120).bool(message.isEnabled);
+            if (message.stage != null && Object.hasOwnProperty.call(message, "stage"))
+                $root.pbbattle.PrizePoolStageModel.encode(message.stage, writer.uint32(/* id 16, wireType 2 =*/130).fork()).ldelim();
             return writer;
         };
 
@@ -10908,6 +10946,10 @@ $root.pbbattle = (function() {
                         message.isEnabled = reader.bool();
                         break;
                     }
+                case 16: {
+                        message.stage = $root.pbbattle.PrizePoolStageModel.decode(reader, reader.uint32());
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -10970,6 +11012,11 @@ $root.pbbattle = (function() {
             if (message.isEnabled != null && message.hasOwnProperty("isEnabled"))
                 if (typeof message.isEnabled !== "boolean")
                     return "isEnabled: boolean expected";
+            if (message.stage != null && message.hasOwnProperty("stage")) {
+                var error = $root.pbbattle.PrizePoolStageModel.verify(message.stage);
+                if (error)
+                    return "stage." + error;
+            }
             return null;
         };
 
@@ -11031,6 +11078,11 @@ $root.pbbattle = (function() {
                 message.sortOrder = object.sortOrder | 0;
             if (object.isEnabled != null)
                 message.isEnabled = Boolean(object.isEnabled);
+            if (object.stage != null) {
+                if (typeof object.stage !== "object")
+                    throw TypeError(".pbbattle.ProbabilityConfigModel.stage: object expected");
+                message.stage = $root.pbbattle.PrizePoolStageModel.fromObject(object.stage);
+            }
             return message;
         };
 
@@ -11073,6 +11125,7 @@ $root.pbbattle = (function() {
                 object.probability = 0;
                 object.sortOrder = 0;
                 object.isEnabled = false;
+                object.stage = null;
             }
             if (message.id != null && message.hasOwnProperty("id"))
                 if (typeof message.id === "number")
@@ -11104,6 +11157,8 @@ $root.pbbattle = (function() {
                 object.sortOrder = message.sortOrder;
             if (message.isEnabled != null && message.hasOwnProperty("isEnabled"))
                 object.isEnabled = message.isEnabled;
+            if (message.stage != null && message.hasOwnProperty("stage"))
+                object.stage = $root.pbbattle.PrizePoolStageModel.toObject(message.stage, options);
             return object;
         };
 
@@ -23268,6 +23323,7691 @@ $root.pbbattle = (function() {
     })();
 
     return pbbattle;
+})();
+
+$root.pblucky = (function() {
+
+    /**
+     * Namespace pblucky.
+     * @exports pblucky
+     * @namespace
+     */
+    var pblucky = {};
+
+    pblucky.calBattleArgs = (function() {
+
+        /**
+         * Properties of a calBattleArgs.
+         * @memberof pblucky
+         * @interface IcalBattleArgs
+         * @property {Array.<pbbattle.IProbabilityConfigModel>|null} [configs] calBattleArgs configs
+         * @property {Array.<pbbattle.ITreeNode>|null} [treeNodes] calBattleArgs treeNodes
+         */
+
+        /**
+         * Constructs a new calBattleArgs.
+         * @memberof pblucky
+         * @classdesc Represents a calBattleArgs.
+         * @implements IcalBattleArgs
+         * @constructor
+         * @param {pblucky.IcalBattleArgs=} [properties] Properties to set
+         */
+        function calBattleArgs(properties) {
+            this.configs = [];
+            this.treeNodes = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * calBattleArgs configs.
+         * @member {Array.<pbbattle.IProbabilityConfigModel>} configs
+         * @memberof pblucky.calBattleArgs
+         * @instance
+         */
+        calBattleArgs.prototype.configs = $util.emptyArray;
+
+        /**
+         * calBattleArgs treeNodes.
+         * @member {Array.<pbbattle.ITreeNode>} treeNodes
+         * @memberof pblucky.calBattleArgs
+         * @instance
+         */
+        calBattleArgs.prototype.treeNodes = $util.emptyArray;
+
+        /**
+         * Creates a new calBattleArgs instance using the specified properties.
+         * @function create
+         * @memberof pblucky.calBattleArgs
+         * @static
+         * @param {pblucky.IcalBattleArgs=} [properties] Properties to set
+         * @returns {pblucky.calBattleArgs} calBattleArgs instance
+         */
+        calBattleArgs.create = function create(properties) {
+            return new calBattleArgs(properties);
+        };
+
+        /**
+         * Encodes the specified calBattleArgs message. Does not implicitly {@link pblucky.calBattleArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pblucky.calBattleArgs
+         * @static
+         * @param {pblucky.IcalBattleArgs} message calBattleArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        calBattleArgs.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.configs != null && message.configs.length)
+                for (var i = 0; i < message.configs.length; ++i)
+                    $root.pbbattle.ProbabilityConfigModel.encode(message.configs[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.treeNodes != null && message.treeNodes.length)
+                for (var i = 0; i < message.treeNodes.length; ++i)
+                    $root.pbbattle.TreeNode.encode(message.treeNodes[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified calBattleArgs message, length delimited. Does not implicitly {@link pblucky.calBattleArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pblucky.calBattleArgs
+         * @static
+         * @param {pblucky.IcalBattleArgs} message calBattleArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        calBattleArgs.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a calBattleArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pblucky.calBattleArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pblucky.calBattleArgs} calBattleArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        calBattleArgs.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pblucky.calBattleArgs();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        if (!(message.configs && message.configs.length))
+                            message.configs = [];
+                        message.configs.push($root.pbbattle.ProbabilityConfigModel.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 2: {
+                        if (!(message.treeNodes && message.treeNodes.length))
+                            message.treeNodes = [];
+                        message.treeNodes.push($root.pbbattle.TreeNode.decode(reader, reader.uint32()));
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a calBattleArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pblucky.calBattleArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pblucky.calBattleArgs} calBattleArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        calBattleArgs.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a calBattleArgs message.
+         * @function verify
+         * @memberof pblucky.calBattleArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        calBattleArgs.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.configs != null && message.hasOwnProperty("configs")) {
+                if (!Array.isArray(message.configs))
+                    return "configs: array expected";
+                for (var i = 0; i < message.configs.length; ++i) {
+                    var error = $root.pbbattle.ProbabilityConfigModel.verify(message.configs[i]);
+                    if (error)
+                        return "configs." + error;
+                }
+            }
+            if (message.treeNodes != null && message.hasOwnProperty("treeNodes")) {
+                if (!Array.isArray(message.treeNodes))
+                    return "treeNodes: array expected";
+                for (var i = 0; i < message.treeNodes.length; ++i) {
+                    var error = $root.pbbattle.TreeNode.verify(message.treeNodes[i]);
+                    if (error)
+                        return "treeNodes." + error;
+                }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a calBattleArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pblucky.calBattleArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pblucky.calBattleArgs} calBattleArgs
+         */
+        calBattleArgs.fromObject = function fromObject(object) {
+            if (object instanceof $root.pblucky.calBattleArgs)
+                return object;
+            var message = new $root.pblucky.calBattleArgs();
+            if (object.configs) {
+                if (!Array.isArray(object.configs))
+                    throw TypeError(".pblucky.calBattleArgs.configs: array expected");
+                message.configs = [];
+                for (var i = 0; i < object.configs.length; ++i) {
+                    if (typeof object.configs[i] !== "object")
+                        throw TypeError(".pblucky.calBattleArgs.configs: object expected");
+                    message.configs[i] = $root.pbbattle.ProbabilityConfigModel.fromObject(object.configs[i]);
+                }
+            }
+            if (object.treeNodes) {
+                if (!Array.isArray(object.treeNodes))
+                    throw TypeError(".pblucky.calBattleArgs.treeNodes: array expected");
+                message.treeNodes = [];
+                for (var i = 0; i < object.treeNodes.length; ++i) {
+                    if (typeof object.treeNodes[i] !== "object")
+                        throw TypeError(".pblucky.calBattleArgs.treeNodes: object expected");
+                    message.treeNodes[i] = $root.pbbattle.TreeNode.fromObject(object.treeNodes[i]);
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a calBattleArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pblucky.calBattleArgs
+         * @static
+         * @param {pblucky.calBattleArgs} message calBattleArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        calBattleArgs.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults) {
+                object.configs = [];
+                object.treeNodes = [];
+            }
+            if (message.configs && message.configs.length) {
+                object.configs = [];
+                for (var j = 0; j < message.configs.length; ++j)
+                    object.configs[j] = $root.pbbattle.ProbabilityConfigModel.toObject(message.configs[j], options);
+            }
+            if (message.treeNodes && message.treeNodes.length) {
+                object.treeNodes = [];
+                for (var j = 0; j < message.treeNodes.length; ++j)
+                    object.treeNodes[j] = $root.pbbattle.TreeNode.toObject(message.treeNodes[j], options);
+            }
+            return object;
+        };
+
+        /**
+         * Converts this calBattleArgs to JSON.
+         * @function toJSON
+         * @memberof pblucky.calBattleArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        calBattleArgs.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for calBattleArgs
+         * @function getTypeUrl
+         * @memberof pblucky.calBattleArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        calBattleArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pblucky.calBattleArgs";
+        };
+
+        return calBattleArgs;
+    })();
+
+    pblucky.calBattleReply = (function() {
+
+        /**
+         * Properties of a calBattleReply.
+         * @memberof pblucky
+         * @interface IcalBattleReply
+         * @property {Array.<pbbattle.ITreeNode>|null} [treeNodesResult] calBattleReply treeNodesResult
+         */
+
+        /**
+         * Constructs a new calBattleReply.
+         * @memberof pblucky
+         * @classdesc Represents a calBattleReply.
+         * @implements IcalBattleReply
+         * @constructor
+         * @param {pblucky.IcalBattleReply=} [properties] Properties to set
+         */
+        function calBattleReply(properties) {
+            this.treeNodesResult = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * calBattleReply treeNodesResult.
+         * @member {Array.<pbbattle.ITreeNode>} treeNodesResult
+         * @memberof pblucky.calBattleReply
+         * @instance
+         */
+        calBattleReply.prototype.treeNodesResult = $util.emptyArray;
+
+        /**
+         * Creates a new calBattleReply instance using the specified properties.
+         * @function create
+         * @memberof pblucky.calBattleReply
+         * @static
+         * @param {pblucky.IcalBattleReply=} [properties] Properties to set
+         * @returns {pblucky.calBattleReply} calBattleReply instance
+         */
+        calBattleReply.create = function create(properties) {
+            return new calBattleReply(properties);
+        };
+
+        /**
+         * Encodes the specified calBattleReply message. Does not implicitly {@link pblucky.calBattleReply.verify|verify} messages.
+         * @function encode
+         * @memberof pblucky.calBattleReply
+         * @static
+         * @param {pblucky.IcalBattleReply} message calBattleReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        calBattleReply.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.treeNodesResult != null && message.treeNodesResult.length)
+                for (var i = 0; i < message.treeNodesResult.length; ++i)
+                    $root.pbbattle.TreeNode.encode(message.treeNodesResult[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified calBattleReply message, length delimited. Does not implicitly {@link pblucky.calBattleReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pblucky.calBattleReply
+         * @static
+         * @param {pblucky.IcalBattleReply} message calBattleReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        calBattleReply.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a calBattleReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pblucky.calBattleReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pblucky.calBattleReply} calBattleReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        calBattleReply.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pblucky.calBattleReply();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        if (!(message.treeNodesResult && message.treeNodesResult.length))
+                            message.treeNodesResult = [];
+                        message.treeNodesResult.push($root.pbbattle.TreeNode.decode(reader, reader.uint32()));
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a calBattleReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pblucky.calBattleReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pblucky.calBattleReply} calBattleReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        calBattleReply.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a calBattleReply message.
+         * @function verify
+         * @memberof pblucky.calBattleReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        calBattleReply.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.treeNodesResult != null && message.hasOwnProperty("treeNodesResult")) {
+                if (!Array.isArray(message.treeNodesResult))
+                    return "treeNodesResult: array expected";
+                for (var i = 0; i < message.treeNodesResult.length; ++i) {
+                    var error = $root.pbbattle.TreeNode.verify(message.treeNodesResult[i]);
+                    if (error)
+                        return "treeNodesResult." + error;
+                }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a calBattleReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pblucky.calBattleReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pblucky.calBattleReply} calBattleReply
+         */
+        calBattleReply.fromObject = function fromObject(object) {
+            if (object instanceof $root.pblucky.calBattleReply)
+                return object;
+            var message = new $root.pblucky.calBattleReply();
+            if (object.treeNodesResult) {
+                if (!Array.isArray(object.treeNodesResult))
+                    throw TypeError(".pblucky.calBattleReply.treeNodesResult: array expected");
+                message.treeNodesResult = [];
+                for (var i = 0; i < object.treeNodesResult.length; ++i) {
+                    if (typeof object.treeNodesResult[i] !== "object")
+                        throw TypeError(".pblucky.calBattleReply.treeNodesResult: object expected");
+                    message.treeNodesResult[i] = $root.pbbattle.TreeNode.fromObject(object.treeNodesResult[i]);
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a calBattleReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pblucky.calBattleReply
+         * @static
+         * @param {pblucky.calBattleReply} message calBattleReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        calBattleReply.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.treeNodesResult = [];
+            if (message.treeNodesResult && message.treeNodesResult.length) {
+                object.treeNodesResult = [];
+                for (var j = 0; j < message.treeNodesResult.length; ++j)
+                    object.treeNodesResult[j] = $root.pbbattle.TreeNode.toObject(message.treeNodesResult[j], options);
+            }
+            return object;
+        };
+
+        /**
+         * Converts this calBattleReply to JSON.
+         * @function toJSON
+         * @memberof pblucky.calBattleReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        calBattleReply.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for calBattleReply
+         * @function getTypeUrl
+         * @memberof pblucky.calBattleReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        calBattleReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pblucky.calBattleReply";
+        };
+
+        return calBattleReply;
+    })();
+
+    pblucky.Lucky = (function() {
+
+        /**
+         * Constructs a new Lucky service.
+         * @memberof pblucky
+         * @classdesc Represents a Lucky
+         * @extends $protobuf.rpc.Service
+         * @constructor
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         */
+        function Lucky(rpcImpl, requestDelimited, responseDelimited) {
+            $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited);
+        }
+
+        (Lucky.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = Lucky;
+
+        /**
+         * Creates new Lucky service using the specified rpc implementation.
+         * @function create
+         * @memberof pblucky.Lucky
+         * @static
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         * @returns {Lucky} RPC service. Useful where requests and/or responses are streamed.
+         */
+        Lucky.create = function create(rpcImpl, requestDelimited, responseDelimited) {
+            return new this(rpcImpl, requestDelimited, responseDelimited);
+        };
+
+        /**
+         * Callback as used by {@link pblucky.Lucky#calBattle}.
+         * @memberof pblucky.Lucky
+         * @typedef CalBattleCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pblucky.calBattleReply} [response] calBattleReply
+         */
+
+        /**
+         * Calls CalBattle.
+         * @function calBattle
+         * @memberof pblucky.Lucky
+         * @instance
+         * @param {pblucky.IcalBattleArgs} request calBattleArgs message or plain object
+         * @param {pblucky.Lucky.CalBattleCallback} callback Node-style callback called with the error, if any, and calBattleReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(Lucky.prototype.calBattle = function calBattle(request, callback) {
+            return this.rpcCall(calBattle, $root.pblucky.calBattleArgs, $root.pblucky.calBattleReply, request, callback);
+        }, "name", { value: "CalBattle" });
+
+        /**
+         * Calls CalBattle.
+         * @function calBattle
+         * @memberof pblucky.Lucky
+         * @instance
+         * @param {pblucky.IcalBattleArgs} request calBattleArgs message or plain object
+         * @returns {Promise<pblucky.calBattleReply>} Promise
+         * @variation 2
+         */
+
+        return Lucky;
+    })();
+
+    pblucky.LuckyPrizeConfigModel = (function() {
+
+        /**
+         * Properties of a LuckyPrizeConfigModel.
+         * @memberof pblucky
+         * @interface ILuckyPrizeConfigModel
+         * @property {number|Long|null} [id] LuckyPrizeConfigModel id
+         * @property {string|null} [createdAt] LuckyPrizeConfigModel createdAt
+         * @property {string|null} [updatedAt] LuckyPrizeConfigModel updatedAt
+         * @property {string|null} [fieldType] LuckyPrizeConfigModel fieldType
+         * @property {string|null} [prizeType] LuckyPrizeConfigModel prizeType
+         * @property {string|null} [prizeName] LuckyPrizeConfigModel prizeName
+         * @property {number|null} [prizeValue] LuckyPrizeConfigModel prizeValue
+         * @property {number|null} [weight] LuckyPrizeConfigModel weight
+         * @property {number|null} [sortOrder] LuckyPrizeConfigModel sortOrder
+         * @property {boolean|null} [isEnabled] LuckyPrizeConfigModel isEnabled
+         * @property {string|null} [imageUrl] LuckyPrizeConfigModel imageUrl
+         * @property {number|null} [halaGiftId] LuckyPrizeConfigModel halaGiftId
+         */
+
+        /**
+         * Constructs a new LuckyPrizeConfigModel.
+         * @memberof pblucky
+         * @classdesc Represents a LuckyPrizeConfigModel.
+         * @implements ILuckyPrizeConfigModel
+         * @constructor
+         * @param {pblucky.ILuckyPrizeConfigModel=} [properties] Properties to set
+         */
+        function LuckyPrizeConfigModel(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * LuckyPrizeConfigModel id.
+         * @member {number|Long} id
+         * @memberof pblucky.LuckyPrizeConfigModel
+         * @instance
+         */
+        LuckyPrizeConfigModel.prototype.id = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * LuckyPrizeConfigModel createdAt.
+         * @member {string} createdAt
+         * @memberof pblucky.LuckyPrizeConfigModel
+         * @instance
+         */
+        LuckyPrizeConfigModel.prototype.createdAt = "";
+
+        /**
+         * LuckyPrizeConfigModel updatedAt.
+         * @member {string} updatedAt
+         * @memberof pblucky.LuckyPrizeConfigModel
+         * @instance
+         */
+        LuckyPrizeConfigModel.prototype.updatedAt = "";
+
+        /**
+         * LuckyPrizeConfigModel fieldType.
+         * @member {string} fieldType
+         * @memberof pblucky.LuckyPrizeConfigModel
+         * @instance
+         */
+        LuckyPrizeConfigModel.prototype.fieldType = "";
+
+        /**
+         * LuckyPrizeConfigModel prizeType.
+         * @member {string} prizeType
+         * @memberof pblucky.LuckyPrizeConfigModel
+         * @instance
+         */
+        LuckyPrizeConfigModel.prototype.prizeType = "";
+
+        /**
+         * LuckyPrizeConfigModel prizeName.
+         * @member {string} prizeName
+         * @memberof pblucky.LuckyPrizeConfigModel
+         * @instance
+         */
+        LuckyPrizeConfigModel.prototype.prizeName = "";
+
+        /**
+         * LuckyPrizeConfigModel prizeValue.
+         * @member {number} prizeValue
+         * @memberof pblucky.LuckyPrizeConfigModel
+         * @instance
+         */
+        LuckyPrizeConfigModel.prototype.prizeValue = 0;
+
+        /**
+         * LuckyPrizeConfigModel weight.
+         * @member {number} weight
+         * @memberof pblucky.LuckyPrizeConfigModel
+         * @instance
+         */
+        LuckyPrizeConfigModel.prototype.weight = 0;
+
+        /**
+         * LuckyPrizeConfigModel sortOrder.
+         * @member {number} sortOrder
+         * @memberof pblucky.LuckyPrizeConfigModel
+         * @instance
+         */
+        LuckyPrizeConfigModel.prototype.sortOrder = 0;
+
+        /**
+         * LuckyPrizeConfigModel isEnabled.
+         * @member {boolean} isEnabled
+         * @memberof pblucky.LuckyPrizeConfigModel
+         * @instance
+         */
+        LuckyPrizeConfigModel.prototype.isEnabled = false;
+
+        /**
+         * LuckyPrizeConfigModel imageUrl.
+         * @member {string} imageUrl
+         * @memberof pblucky.LuckyPrizeConfigModel
+         * @instance
+         */
+        LuckyPrizeConfigModel.prototype.imageUrl = "";
+
+        /**
+         * LuckyPrizeConfigModel halaGiftId.
+         * @member {number} halaGiftId
+         * @memberof pblucky.LuckyPrizeConfigModel
+         * @instance
+         */
+        LuckyPrizeConfigModel.prototype.halaGiftId = 0;
+
+        /**
+         * Creates a new LuckyPrizeConfigModel instance using the specified properties.
+         * @function create
+         * @memberof pblucky.LuckyPrizeConfigModel
+         * @static
+         * @param {pblucky.ILuckyPrizeConfigModel=} [properties] Properties to set
+         * @returns {pblucky.LuckyPrizeConfigModel} LuckyPrizeConfigModel instance
+         */
+        LuckyPrizeConfigModel.create = function create(properties) {
+            return new LuckyPrizeConfigModel(properties);
+        };
+
+        /**
+         * Encodes the specified LuckyPrizeConfigModel message. Does not implicitly {@link pblucky.LuckyPrizeConfigModel.verify|verify} messages.
+         * @function encode
+         * @memberof pblucky.LuckyPrizeConfigModel
+         * @static
+         * @param {pblucky.ILuckyPrizeConfigModel} message LuckyPrizeConfigModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        LuckyPrizeConfigModel.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id);
+            if (message.createdAt != null && Object.hasOwnProperty.call(message, "createdAt"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.createdAt);
+            if (message.updatedAt != null && Object.hasOwnProperty.call(message, "updatedAt"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.updatedAt);
+            if (message.fieldType != null && Object.hasOwnProperty.call(message, "fieldType"))
+                writer.uint32(/* id 10, wireType 2 =*/82).string(message.fieldType);
+            if (message.prizeType != null && Object.hasOwnProperty.call(message, "prizeType"))
+                writer.uint32(/* id 11, wireType 2 =*/90).string(message.prizeType);
+            if (message.prizeName != null && Object.hasOwnProperty.call(message, "prizeName"))
+                writer.uint32(/* id 12, wireType 2 =*/98).string(message.prizeName);
+            if (message.prizeValue != null && Object.hasOwnProperty.call(message, "prizeValue"))
+                writer.uint32(/* id 13, wireType 0 =*/104).int32(message.prizeValue);
+            if (message.weight != null && Object.hasOwnProperty.call(message, "weight"))
+                writer.uint32(/* id 14, wireType 0 =*/112).int32(message.weight);
+            if (message.sortOrder != null && Object.hasOwnProperty.call(message, "sortOrder"))
+                writer.uint32(/* id 15, wireType 0 =*/120).int32(message.sortOrder);
+            if (message.isEnabled != null && Object.hasOwnProperty.call(message, "isEnabled"))
+                writer.uint32(/* id 16, wireType 0 =*/128).bool(message.isEnabled);
+            if (message.imageUrl != null && Object.hasOwnProperty.call(message, "imageUrl"))
+                writer.uint32(/* id 17, wireType 2 =*/138).string(message.imageUrl);
+            if (message.halaGiftId != null && Object.hasOwnProperty.call(message, "halaGiftId"))
+                writer.uint32(/* id 18, wireType 0 =*/144).int32(message.halaGiftId);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified LuckyPrizeConfigModel message, length delimited. Does not implicitly {@link pblucky.LuckyPrizeConfigModel.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pblucky.LuckyPrizeConfigModel
+         * @static
+         * @param {pblucky.ILuckyPrizeConfigModel} message LuckyPrizeConfigModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        LuckyPrizeConfigModel.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a LuckyPrizeConfigModel message from the specified reader or buffer.
+         * @function decode
+         * @memberof pblucky.LuckyPrizeConfigModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pblucky.LuckyPrizeConfigModel} LuckyPrizeConfigModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        LuckyPrizeConfigModel.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pblucky.LuckyPrizeConfigModel();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.id = reader.int64();
+                        break;
+                    }
+                case 2: {
+                        message.createdAt = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.updatedAt = reader.string();
+                        break;
+                    }
+                case 10: {
+                        message.fieldType = reader.string();
+                        break;
+                    }
+                case 11: {
+                        message.prizeType = reader.string();
+                        break;
+                    }
+                case 12: {
+                        message.prizeName = reader.string();
+                        break;
+                    }
+                case 13: {
+                        message.prizeValue = reader.int32();
+                        break;
+                    }
+                case 14: {
+                        message.weight = reader.int32();
+                        break;
+                    }
+                case 15: {
+                        message.sortOrder = reader.int32();
+                        break;
+                    }
+                case 16: {
+                        message.isEnabled = reader.bool();
+                        break;
+                    }
+                case 17: {
+                        message.imageUrl = reader.string();
+                        break;
+                    }
+                case 18: {
+                        message.halaGiftId = reader.int32();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a LuckyPrizeConfigModel message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pblucky.LuckyPrizeConfigModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pblucky.LuckyPrizeConfigModel} LuckyPrizeConfigModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        LuckyPrizeConfigModel.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a LuckyPrizeConfigModel message.
+         * @function verify
+         * @memberof pblucky.LuckyPrizeConfigModel
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        LuckyPrizeConfigModel.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (!$util.isInteger(message.id) && !(message.id && $util.isInteger(message.id.low) && $util.isInteger(message.id.high)))
+                    return "id: integer|Long expected";
+            if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                if (!$util.isString(message.createdAt))
+                    return "createdAt: string expected";
+            if (message.updatedAt != null && message.hasOwnProperty("updatedAt"))
+                if (!$util.isString(message.updatedAt))
+                    return "updatedAt: string expected";
+            if (message.fieldType != null && message.hasOwnProperty("fieldType"))
+                if (!$util.isString(message.fieldType))
+                    return "fieldType: string expected";
+            if (message.prizeType != null && message.hasOwnProperty("prizeType"))
+                if (!$util.isString(message.prizeType))
+                    return "prizeType: string expected";
+            if (message.prizeName != null && message.hasOwnProperty("prizeName"))
+                if (!$util.isString(message.prizeName))
+                    return "prizeName: string expected";
+            if (message.prizeValue != null && message.hasOwnProperty("prizeValue"))
+                if (!$util.isInteger(message.prizeValue))
+                    return "prizeValue: integer expected";
+            if (message.weight != null && message.hasOwnProperty("weight"))
+                if (!$util.isInteger(message.weight))
+                    return "weight: integer expected";
+            if (message.sortOrder != null && message.hasOwnProperty("sortOrder"))
+                if (!$util.isInteger(message.sortOrder))
+                    return "sortOrder: integer expected";
+            if (message.isEnabled != null && message.hasOwnProperty("isEnabled"))
+                if (typeof message.isEnabled !== "boolean")
+                    return "isEnabled: boolean expected";
+            if (message.imageUrl != null && message.hasOwnProperty("imageUrl"))
+                if (!$util.isString(message.imageUrl))
+                    return "imageUrl: string expected";
+            if (message.halaGiftId != null && message.hasOwnProperty("halaGiftId"))
+                if (!$util.isInteger(message.halaGiftId))
+                    return "halaGiftId: integer expected";
+            return null;
+        };
+
+        /**
+         * Creates a LuckyPrizeConfigModel message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pblucky.LuckyPrizeConfigModel
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pblucky.LuckyPrizeConfigModel} LuckyPrizeConfigModel
+         */
+        LuckyPrizeConfigModel.fromObject = function fromObject(object) {
+            if (object instanceof $root.pblucky.LuckyPrizeConfigModel)
+                return object;
+            var message = new $root.pblucky.LuckyPrizeConfigModel();
+            if (object.id != null)
+                if ($util.Long)
+                    (message.id = $util.Long.fromValue(object.id)).unsigned = false;
+                else if (typeof object.id === "string")
+                    message.id = parseInt(object.id, 10);
+                else if (typeof object.id === "number")
+                    message.id = object.id;
+                else if (typeof object.id === "object")
+                    message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber();
+            if (object.createdAt != null)
+                message.createdAt = String(object.createdAt);
+            if (object.updatedAt != null)
+                message.updatedAt = String(object.updatedAt);
+            if (object.fieldType != null)
+                message.fieldType = String(object.fieldType);
+            if (object.prizeType != null)
+                message.prizeType = String(object.prizeType);
+            if (object.prizeName != null)
+                message.prizeName = String(object.prizeName);
+            if (object.prizeValue != null)
+                message.prizeValue = object.prizeValue | 0;
+            if (object.weight != null)
+                message.weight = object.weight | 0;
+            if (object.sortOrder != null)
+                message.sortOrder = object.sortOrder | 0;
+            if (object.isEnabled != null)
+                message.isEnabled = Boolean(object.isEnabled);
+            if (object.imageUrl != null)
+                message.imageUrl = String(object.imageUrl);
+            if (object.halaGiftId != null)
+                message.halaGiftId = object.halaGiftId | 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a LuckyPrizeConfigModel message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pblucky.LuckyPrizeConfigModel
+         * @static
+         * @param {pblucky.LuckyPrizeConfigModel} message LuckyPrizeConfigModel
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        LuckyPrizeConfigModel.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.id = options.longs === String ? "0" : 0;
+                object.createdAt = "";
+                object.updatedAt = "";
+                object.fieldType = "";
+                object.prizeType = "";
+                object.prizeName = "";
+                object.prizeValue = 0;
+                object.weight = 0;
+                object.sortOrder = 0;
+                object.isEnabled = false;
+                object.imageUrl = "";
+                object.halaGiftId = 0;
+            }
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (typeof message.id === "number")
+                    object.id = options.longs === String ? String(message.id) : message.id;
+                else
+                    object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id;
+            if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                object.createdAt = message.createdAt;
+            if (message.updatedAt != null && message.hasOwnProperty("updatedAt"))
+                object.updatedAt = message.updatedAt;
+            if (message.fieldType != null && message.hasOwnProperty("fieldType"))
+                object.fieldType = message.fieldType;
+            if (message.prizeType != null && message.hasOwnProperty("prizeType"))
+                object.prizeType = message.prizeType;
+            if (message.prizeName != null && message.hasOwnProperty("prizeName"))
+                object.prizeName = message.prizeName;
+            if (message.prizeValue != null && message.hasOwnProperty("prizeValue"))
+                object.prizeValue = message.prizeValue;
+            if (message.weight != null && message.hasOwnProperty("weight"))
+                object.weight = message.weight;
+            if (message.sortOrder != null && message.hasOwnProperty("sortOrder"))
+                object.sortOrder = message.sortOrder;
+            if (message.isEnabled != null && message.hasOwnProperty("isEnabled"))
+                object.isEnabled = message.isEnabled;
+            if (message.imageUrl != null && message.hasOwnProperty("imageUrl"))
+                object.imageUrl = message.imageUrl;
+            if (message.halaGiftId != null && message.hasOwnProperty("halaGiftId"))
+                object.halaGiftId = message.halaGiftId;
+            return object;
+        };
+
+        /**
+         * Converts this LuckyPrizeConfigModel to JSON.
+         * @function toJSON
+         * @memberof pblucky.LuckyPrizeConfigModel
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        LuckyPrizeConfigModel.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for LuckyPrizeConfigModel
+         * @function getTypeUrl
+         * @memberof pblucky.LuckyPrizeConfigModel
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        LuckyPrizeConfigModel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pblucky.LuckyPrizeConfigModel";
+        };
+
+        return LuckyPrizeConfigModel;
+    })();
+
+    pblucky.FindLuckyPrizeConfigArgs = (function() {
+
+        /**
+         * Properties of a FindLuckyPrizeConfigArgs.
+         * @memberof pblucky
+         * @interface IFindLuckyPrizeConfigArgs
+         * @property {pbcommon.IPageInfo|null} [pageInfo] FindLuckyPrizeConfigArgs pageInfo
+         * @property {pblucky.ILuckyPrizeConfigModel|null} [query] FindLuckyPrizeConfigArgs query
+         * @property {string|null} [keyword] FindLuckyPrizeConfigArgs keyword
+         * @property {Array.<string>|null} [fieldTypeList] FindLuckyPrizeConfigArgs fieldTypeList
+         * @property {Array.<boolean>|null} [isEnabledList] FindLuckyPrizeConfigArgs isEnabledList
+         */
+
+        /**
+         * Constructs a new FindLuckyPrizeConfigArgs.
+         * @memberof pblucky
+         * @classdesc Represents a FindLuckyPrizeConfigArgs.
+         * @implements IFindLuckyPrizeConfigArgs
+         * @constructor
+         * @param {pblucky.IFindLuckyPrizeConfigArgs=} [properties] Properties to set
+         */
+        function FindLuckyPrizeConfigArgs(properties) {
+            this.fieldTypeList = [];
+            this.isEnabledList = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * FindLuckyPrizeConfigArgs pageInfo.
+         * @member {pbcommon.IPageInfo|null|undefined} pageInfo
+         * @memberof pblucky.FindLuckyPrizeConfigArgs
+         * @instance
+         */
+        FindLuckyPrizeConfigArgs.prototype.pageInfo = null;
+
+        /**
+         * FindLuckyPrizeConfigArgs query.
+         * @member {pblucky.ILuckyPrizeConfigModel|null|undefined} query
+         * @memberof pblucky.FindLuckyPrizeConfigArgs
+         * @instance
+         */
+        FindLuckyPrizeConfigArgs.prototype.query = null;
+
+        /**
+         * FindLuckyPrizeConfigArgs keyword.
+         * @member {string} keyword
+         * @memberof pblucky.FindLuckyPrizeConfigArgs
+         * @instance
+         */
+        FindLuckyPrizeConfigArgs.prototype.keyword = "";
+
+        /**
+         * FindLuckyPrizeConfigArgs fieldTypeList.
+         * @member {Array.<string>} fieldTypeList
+         * @memberof pblucky.FindLuckyPrizeConfigArgs
+         * @instance
+         */
+        FindLuckyPrizeConfigArgs.prototype.fieldTypeList = $util.emptyArray;
+
+        /**
+         * FindLuckyPrizeConfigArgs isEnabledList.
+         * @member {Array.<boolean>} isEnabledList
+         * @memberof pblucky.FindLuckyPrizeConfigArgs
+         * @instance
+         */
+        FindLuckyPrizeConfigArgs.prototype.isEnabledList = $util.emptyArray;
+
+        /**
+         * Creates a new FindLuckyPrizeConfigArgs instance using the specified properties.
+         * @function create
+         * @memberof pblucky.FindLuckyPrizeConfigArgs
+         * @static
+         * @param {pblucky.IFindLuckyPrizeConfigArgs=} [properties] Properties to set
+         * @returns {pblucky.FindLuckyPrizeConfigArgs} FindLuckyPrizeConfigArgs instance
+         */
+        FindLuckyPrizeConfigArgs.create = function create(properties) {
+            return new FindLuckyPrizeConfigArgs(properties);
+        };
+
+        /**
+         * Encodes the specified FindLuckyPrizeConfigArgs message. Does not implicitly {@link pblucky.FindLuckyPrizeConfigArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pblucky.FindLuckyPrizeConfigArgs
+         * @static
+         * @param {pblucky.IFindLuckyPrizeConfigArgs} message FindLuckyPrizeConfigArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindLuckyPrizeConfigArgs.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.pageInfo != null && Object.hasOwnProperty.call(message, "pageInfo"))
+                $root.pbcommon.PageInfo.encode(message.pageInfo, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.query != null && Object.hasOwnProperty.call(message, "query"))
+                $root.pblucky.LuckyPrizeConfigModel.encode(message.query, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            if (message.keyword != null && Object.hasOwnProperty.call(message, "keyword"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.keyword);
+            if (message.fieldTypeList != null && message.fieldTypeList.length)
+                for (var i = 0; i < message.fieldTypeList.length; ++i)
+                    writer.uint32(/* id 4, wireType 2 =*/34).string(message.fieldTypeList[i]);
+            if (message.isEnabledList != null && message.isEnabledList.length) {
+                writer.uint32(/* id 5, wireType 2 =*/42).fork();
+                for (var i = 0; i < message.isEnabledList.length; ++i)
+                    writer.bool(message.isEnabledList[i]);
+                writer.ldelim();
+            }
+            return writer;
+        };
+
+        /**
+         * Encodes the specified FindLuckyPrizeConfigArgs message, length delimited. Does not implicitly {@link pblucky.FindLuckyPrizeConfigArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pblucky.FindLuckyPrizeConfigArgs
+         * @static
+         * @param {pblucky.IFindLuckyPrizeConfigArgs} message FindLuckyPrizeConfigArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindLuckyPrizeConfigArgs.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a FindLuckyPrizeConfigArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pblucky.FindLuckyPrizeConfigArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pblucky.FindLuckyPrizeConfigArgs} FindLuckyPrizeConfigArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindLuckyPrizeConfigArgs.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pblucky.FindLuckyPrizeConfigArgs();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.pageInfo = $root.pbcommon.PageInfo.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 2: {
+                        message.query = $root.pblucky.LuckyPrizeConfigModel.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 3: {
+                        message.keyword = reader.string();
+                        break;
+                    }
+                case 4: {
+                        if (!(message.fieldTypeList && message.fieldTypeList.length))
+                            message.fieldTypeList = [];
+                        message.fieldTypeList.push(reader.string());
+                        break;
+                    }
+                case 5: {
+                        if (!(message.isEnabledList && message.isEnabledList.length))
+                            message.isEnabledList = [];
+                        if ((tag & 7) === 2) {
+                            var end2 = reader.uint32() + reader.pos;
+                            while (reader.pos < end2)
+                                message.isEnabledList.push(reader.bool());
+                        } else
+                            message.isEnabledList.push(reader.bool());
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a FindLuckyPrizeConfigArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pblucky.FindLuckyPrizeConfigArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pblucky.FindLuckyPrizeConfigArgs} FindLuckyPrizeConfigArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindLuckyPrizeConfigArgs.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a FindLuckyPrizeConfigArgs message.
+         * @function verify
+         * @memberof pblucky.FindLuckyPrizeConfigArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        FindLuckyPrizeConfigArgs.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.pageInfo != null && message.hasOwnProperty("pageInfo")) {
+                var error = $root.pbcommon.PageInfo.verify(message.pageInfo);
+                if (error)
+                    return "pageInfo." + error;
+            }
+            if (message.query != null && message.hasOwnProperty("query")) {
+                var error = $root.pblucky.LuckyPrizeConfigModel.verify(message.query);
+                if (error)
+                    return "query." + error;
+            }
+            if (message.keyword != null && message.hasOwnProperty("keyword"))
+                if (!$util.isString(message.keyword))
+                    return "keyword: string expected";
+            if (message.fieldTypeList != null && message.hasOwnProperty("fieldTypeList")) {
+                if (!Array.isArray(message.fieldTypeList))
+                    return "fieldTypeList: array expected";
+                for (var i = 0; i < message.fieldTypeList.length; ++i)
+                    if (!$util.isString(message.fieldTypeList[i]))
+                        return "fieldTypeList: string[] expected";
+            }
+            if (message.isEnabledList != null && message.hasOwnProperty("isEnabledList")) {
+                if (!Array.isArray(message.isEnabledList))
+                    return "isEnabledList: array expected";
+                for (var i = 0; i < message.isEnabledList.length; ++i)
+                    if (typeof message.isEnabledList[i] !== "boolean")
+                        return "isEnabledList: boolean[] expected";
+            }
+            return null;
+        };
+
+        /**
+         * Creates a FindLuckyPrizeConfigArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pblucky.FindLuckyPrizeConfigArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pblucky.FindLuckyPrizeConfigArgs} FindLuckyPrizeConfigArgs
+         */
+        FindLuckyPrizeConfigArgs.fromObject = function fromObject(object) {
+            if (object instanceof $root.pblucky.FindLuckyPrizeConfigArgs)
+                return object;
+            var message = new $root.pblucky.FindLuckyPrizeConfigArgs();
+            if (object.pageInfo != null) {
+                if (typeof object.pageInfo !== "object")
+                    throw TypeError(".pblucky.FindLuckyPrizeConfigArgs.pageInfo: object expected");
+                message.pageInfo = $root.pbcommon.PageInfo.fromObject(object.pageInfo);
+            }
+            if (object.query != null) {
+                if (typeof object.query !== "object")
+                    throw TypeError(".pblucky.FindLuckyPrizeConfigArgs.query: object expected");
+                message.query = $root.pblucky.LuckyPrizeConfigModel.fromObject(object.query);
+            }
+            if (object.keyword != null)
+                message.keyword = String(object.keyword);
+            if (object.fieldTypeList) {
+                if (!Array.isArray(object.fieldTypeList))
+                    throw TypeError(".pblucky.FindLuckyPrizeConfigArgs.fieldTypeList: array expected");
+                message.fieldTypeList = [];
+                for (var i = 0; i < object.fieldTypeList.length; ++i)
+                    message.fieldTypeList[i] = String(object.fieldTypeList[i]);
+            }
+            if (object.isEnabledList) {
+                if (!Array.isArray(object.isEnabledList))
+                    throw TypeError(".pblucky.FindLuckyPrizeConfigArgs.isEnabledList: array expected");
+                message.isEnabledList = [];
+                for (var i = 0; i < object.isEnabledList.length; ++i)
+                    message.isEnabledList[i] = Boolean(object.isEnabledList[i]);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a FindLuckyPrizeConfigArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pblucky.FindLuckyPrizeConfigArgs
+         * @static
+         * @param {pblucky.FindLuckyPrizeConfigArgs} message FindLuckyPrizeConfigArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FindLuckyPrizeConfigArgs.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults) {
+                object.fieldTypeList = [];
+                object.isEnabledList = [];
+            }
+            if (options.defaults) {
+                object.pageInfo = null;
+                object.query = null;
+                object.keyword = "";
+            }
+            if (message.pageInfo != null && message.hasOwnProperty("pageInfo"))
+                object.pageInfo = $root.pbcommon.PageInfo.toObject(message.pageInfo, options);
+            if (message.query != null && message.hasOwnProperty("query"))
+                object.query = $root.pblucky.LuckyPrizeConfigModel.toObject(message.query, options);
+            if (message.keyword != null && message.hasOwnProperty("keyword"))
+                object.keyword = message.keyword;
+            if (message.fieldTypeList && message.fieldTypeList.length) {
+                object.fieldTypeList = [];
+                for (var j = 0; j < message.fieldTypeList.length; ++j)
+                    object.fieldTypeList[j] = message.fieldTypeList[j];
+            }
+            if (message.isEnabledList && message.isEnabledList.length) {
+                object.isEnabledList = [];
+                for (var j = 0; j < message.isEnabledList.length; ++j)
+                    object.isEnabledList[j] = message.isEnabledList[j];
+            }
+            return object;
+        };
+
+        /**
+         * Converts this FindLuckyPrizeConfigArgs to JSON.
+         * @function toJSON
+         * @memberof pblucky.FindLuckyPrizeConfigArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        FindLuckyPrizeConfigArgs.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for FindLuckyPrizeConfigArgs
+         * @function getTypeUrl
+         * @memberof pblucky.FindLuckyPrizeConfigArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        FindLuckyPrizeConfigArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pblucky.FindLuckyPrizeConfigArgs";
+        };
+
+        return FindLuckyPrizeConfigArgs;
+    })();
+
+    pblucky.FindLuckyPrizeConfigReply = (function() {
+
+        /**
+         * Properties of a FindLuckyPrizeConfigReply.
+         * @memberof pblucky
+         * @interface IFindLuckyPrizeConfigReply
+         * @property {pbcommon.EnumCode|null} [code] FindLuckyPrizeConfigReply code
+         * @property {string|null} [msg] FindLuckyPrizeConfigReply msg
+         * @property {pblucky.ILuckyPrizeConfigModel|null} [data] FindLuckyPrizeConfigReply data
+         * @property {Array.<pblucky.ILuckyPrizeConfigModel>|null} [list] FindLuckyPrizeConfigReply list
+         * @property {number|Long|null} [total] FindLuckyPrizeConfigReply total
+         */
+
+        /**
+         * Constructs a new FindLuckyPrizeConfigReply.
+         * @memberof pblucky
+         * @classdesc Represents a FindLuckyPrizeConfigReply.
+         * @implements IFindLuckyPrizeConfigReply
+         * @constructor
+         * @param {pblucky.IFindLuckyPrizeConfigReply=} [properties] Properties to set
+         */
+        function FindLuckyPrizeConfigReply(properties) {
+            this.list = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * FindLuckyPrizeConfigReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pblucky.FindLuckyPrizeConfigReply
+         * @instance
+         */
+        FindLuckyPrizeConfigReply.prototype.code = 0;
+
+        /**
+         * FindLuckyPrizeConfigReply msg.
+         * @member {string} msg
+         * @memberof pblucky.FindLuckyPrizeConfigReply
+         * @instance
+         */
+        FindLuckyPrizeConfigReply.prototype.msg = "";
+
+        /**
+         * FindLuckyPrizeConfigReply data.
+         * @member {pblucky.ILuckyPrizeConfigModel|null|undefined} data
+         * @memberof pblucky.FindLuckyPrizeConfigReply
+         * @instance
+         */
+        FindLuckyPrizeConfigReply.prototype.data = null;
+
+        /**
+         * FindLuckyPrizeConfigReply list.
+         * @member {Array.<pblucky.ILuckyPrizeConfigModel>} list
+         * @memberof pblucky.FindLuckyPrizeConfigReply
+         * @instance
+         */
+        FindLuckyPrizeConfigReply.prototype.list = $util.emptyArray;
+
+        /**
+         * FindLuckyPrizeConfigReply total.
+         * @member {number|Long} total
+         * @memberof pblucky.FindLuckyPrizeConfigReply
+         * @instance
+         */
+        FindLuckyPrizeConfigReply.prototype.total = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * Creates a new FindLuckyPrizeConfigReply instance using the specified properties.
+         * @function create
+         * @memberof pblucky.FindLuckyPrizeConfigReply
+         * @static
+         * @param {pblucky.IFindLuckyPrizeConfigReply=} [properties] Properties to set
+         * @returns {pblucky.FindLuckyPrizeConfigReply} FindLuckyPrizeConfigReply instance
+         */
+        FindLuckyPrizeConfigReply.create = function create(properties) {
+            return new FindLuckyPrizeConfigReply(properties);
+        };
+
+        /**
+         * Encodes the specified FindLuckyPrizeConfigReply message. Does not implicitly {@link pblucky.FindLuckyPrizeConfigReply.verify|verify} messages.
+         * @function encode
+         * @memberof pblucky.FindLuckyPrizeConfigReply
+         * @static
+         * @param {pblucky.IFindLuckyPrizeConfigReply} message FindLuckyPrizeConfigReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindLuckyPrizeConfigReply.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.data != null && Object.hasOwnProperty.call(message, "data"))
+                $root.pblucky.LuckyPrizeConfigModel.encode(message.data, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            if (message.list != null && message.list.length)
+                for (var i = 0; i < message.list.length; ++i)
+                    $root.pblucky.LuckyPrizeConfigModel.encode(message.list[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+            if (message.total != null && Object.hasOwnProperty.call(message, "total"))
+                writer.uint32(/* id 5, wireType 0 =*/40).int64(message.total);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified FindLuckyPrizeConfigReply message, length delimited. Does not implicitly {@link pblucky.FindLuckyPrizeConfigReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pblucky.FindLuckyPrizeConfigReply
+         * @static
+         * @param {pblucky.IFindLuckyPrizeConfigReply} message FindLuckyPrizeConfigReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindLuckyPrizeConfigReply.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a FindLuckyPrizeConfigReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pblucky.FindLuckyPrizeConfigReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pblucky.FindLuckyPrizeConfigReply} FindLuckyPrizeConfigReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindLuckyPrizeConfigReply.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pblucky.FindLuckyPrizeConfigReply();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.code = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.data = $root.pblucky.LuckyPrizeConfigModel.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 4: {
+                        if (!(message.list && message.list.length))
+                            message.list = [];
+                        message.list.push($root.pblucky.LuckyPrizeConfigModel.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 5: {
+                        message.total = reader.int64();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a FindLuckyPrizeConfigReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pblucky.FindLuckyPrizeConfigReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pblucky.FindLuckyPrizeConfigReply} FindLuckyPrizeConfigReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindLuckyPrizeConfigReply.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a FindLuckyPrizeConfigReply message.
+         * @function verify
+         * @memberof pblucky.FindLuckyPrizeConfigReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        FindLuckyPrizeConfigReply.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.code != null && message.hasOwnProperty("code"))
+                switch (message.code) {
+                default:
+                    return "code: enum value expected";
+                case 0:
+                case 200:
+                case 403:
+                case 500:
+                case 501:
+                case 502:
+                case 503:
+                case 504:
+                case 505:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
+                case 2002:
+                case 2003:
+                case 2004:
+                case 2005:
+                case 2006:
+                case 2007:
+                case 2008:
+                case 2009:
+                case 2010:
+                case 2011:
+                case 2012:
+                case 2013:
+                case 2014:
+                case 2015:
+                case 3001:
+                case 3002:
+                case 3003:
+                case 5001:
+                case 5002:
+                case 10001:
+                case 10002:
+                case 20001:
+                case 20002:
+                    break;
+                }
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                if (!$util.isString(message.msg))
+                    return "msg: string expected";
+            if (message.data != null && message.hasOwnProperty("data")) {
+                var error = $root.pblucky.LuckyPrizeConfigModel.verify(message.data);
+                if (error)
+                    return "data." + error;
+            }
+            if (message.list != null && message.hasOwnProperty("list")) {
+                if (!Array.isArray(message.list))
+                    return "list: array expected";
+                for (var i = 0; i < message.list.length; ++i) {
+                    var error = $root.pblucky.LuckyPrizeConfigModel.verify(message.list[i]);
+                    if (error)
+                        return "list." + error;
+                }
+            }
+            if (message.total != null && message.hasOwnProperty("total"))
+                if (!$util.isInteger(message.total) && !(message.total && $util.isInteger(message.total.low) && $util.isInteger(message.total.high)))
+                    return "total: integer|Long expected";
+            return null;
+        };
+
+        /**
+         * Creates a FindLuckyPrizeConfigReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pblucky.FindLuckyPrizeConfigReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pblucky.FindLuckyPrizeConfigReply} FindLuckyPrizeConfigReply
+         */
+        FindLuckyPrizeConfigReply.fromObject = function fromObject(object) {
+            if (object instanceof $root.pblucky.FindLuckyPrizeConfigReply)
+                return object;
+            var message = new $root.pblucky.FindLuckyPrizeConfigReply();
+            switch (object.code) {
+            default:
+                if (typeof object.code === "number") {
+                    message.code = object.code;
+                    break;
+                }
+                break;
+            case "None":
+            case 0:
+                message.code = 0;
+                break;
+            case "Success":
+            case 200:
+                message.code = 200;
+                break;
+            case "Forbidden":
+            case 403:
+                message.code = 403;
+                break;
+            case "Fail":
+            case 500:
+                message.code = 500;
+                break;
+            case "Unknown":
+            case 501:
+                message.code = 501;
+                break;
+            case "Internal":
+            case 502:
+                message.code = 502;
+                break;
+            case "Invalid":
+            case 503:
+                message.code = 503;
+                break;
+            case "InvalidParam":
+            case 504:
+                message.code = 504;
+                break;
+            case "ParamError":
+            case 505:
+                message.code = 505;
+                break;
+            case "FindError":
+            case 1001:
+                message.code = 1001;
+                break;
+            case "CreateError":
+            case 1002:
+                message.code = 1002;
+                break;
+            case "DeleteError":
+            case 1003:
+                message.code = 1003;
+                break;
+            case "UpdateError":
+            case 1004:
+                message.code = 1004;
+                break;
+            case "InvalidToken":
+            case 2002:
+                message.code = 2002;
+                break;
+            case "InvalidSign":
+            case 2003:
+                message.code = 2003;
+                break;
+            case "NotLogin":
+            case 2004:
+                message.code = 2004;
+                break;
+            case "LoginTimeout":
+            case 2005:
+                message.code = 2005;
+                break;
+            case "LoginError":
+            case 2006:
+                message.code = 2006;
+                break;
+            case "LoginForbidden":
+            case 2007:
+                message.code = 2007;
+                break;
+            case "LoginExpired":
+            case 2008:
+                message.code = 2008;
+                break;
+            case "LoginInvalid":
+            case 2009:
+                message.code = 2009;
+                break;
+            case "LoginInvalidPassword":
+            case 2010:
+                message.code = 2010;
+                break;
+            case "LoginInvalidUsername":
+            case 2011:
+                message.code = 2011;
+                break;
+            case "LoginInvalidEmail":
+            case 2012:
+                message.code = 2012;
+                break;
+            case "LoginInvalidPhone":
+            case 2013:
+                message.code = 2013;
+                break;
+            case "LoginInvalidUsernameOrEmail":
+            case 2014:
+                message.code = 2014;
+                break;
+            case "LoginSocketRepeat":
+            case 2015:
+                message.code = 2015;
+                break;
+            case "RoleIsNotExist":
+            case 3001:
+                message.code = 3001;
+                break;
+            case "UserIsExist":
+            case 3002:
+                message.code = 3002;
+                break;
+            case "UserIsBan":
+            case 3003:
+                message.code = 3003;
+                break;
+            case "TalkIsBan":
+            case 5001:
+                message.code = 5001;
+                break;
+            case "EnterRoomErr":
+            case 5002:
+                message.code = 5002;
+                break;
+            case "HalaChatNeedBuy":
+            case 10001:
+                message.code = 10001;
+                break;
+            case "HalaPriceOutRange":
+            case 10002:
+                message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            }
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.data != null) {
+                if (typeof object.data !== "object")
+                    throw TypeError(".pblucky.FindLuckyPrizeConfigReply.data: object expected");
+                message.data = $root.pblucky.LuckyPrizeConfigModel.fromObject(object.data);
+            }
+            if (object.list) {
+                if (!Array.isArray(object.list))
+                    throw TypeError(".pblucky.FindLuckyPrizeConfigReply.list: array expected");
+                message.list = [];
+                for (var i = 0; i < object.list.length; ++i) {
+                    if (typeof object.list[i] !== "object")
+                        throw TypeError(".pblucky.FindLuckyPrizeConfigReply.list: object expected");
+                    message.list[i] = $root.pblucky.LuckyPrizeConfigModel.fromObject(object.list[i]);
+                }
+            }
+            if (object.total != null)
+                if ($util.Long)
+                    (message.total = $util.Long.fromValue(object.total)).unsigned = false;
+                else if (typeof object.total === "string")
+                    message.total = parseInt(object.total, 10);
+                else if (typeof object.total === "number")
+                    message.total = object.total;
+                else if (typeof object.total === "object")
+                    message.total = new $util.LongBits(object.total.low >>> 0, object.total.high >>> 0).toNumber();
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a FindLuckyPrizeConfigReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pblucky.FindLuckyPrizeConfigReply
+         * @static
+         * @param {pblucky.FindLuckyPrizeConfigReply} message FindLuckyPrizeConfigReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FindLuckyPrizeConfigReply.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.list = [];
+            if (options.defaults) {
+                object.code = options.enums === String ? "None" : 0;
+                object.msg = "";
+                object.data = null;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.total = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.total = options.longs === String ? "0" : 0;
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.data != null && message.hasOwnProperty("data"))
+                object.data = $root.pblucky.LuckyPrizeConfigModel.toObject(message.data, options);
+            if (message.list && message.list.length) {
+                object.list = [];
+                for (var j = 0; j < message.list.length; ++j)
+                    object.list[j] = $root.pblucky.LuckyPrizeConfigModel.toObject(message.list[j], options);
+            }
+            if (message.total != null && message.hasOwnProperty("total"))
+                if (typeof message.total === "number")
+                    object.total = options.longs === String ? String(message.total) : message.total;
+                else
+                    object.total = options.longs === String ? $util.Long.prototype.toString.call(message.total) : options.longs === Number ? new $util.LongBits(message.total.low >>> 0, message.total.high >>> 0).toNumber() : message.total;
+            return object;
+        };
+
+        /**
+         * Converts this FindLuckyPrizeConfigReply to JSON.
+         * @function toJSON
+         * @memberof pblucky.FindLuckyPrizeConfigReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        FindLuckyPrizeConfigReply.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for FindLuckyPrizeConfigReply
+         * @function getTypeUrl
+         * @memberof pblucky.FindLuckyPrizeConfigReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        FindLuckyPrizeConfigReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pblucky.FindLuckyPrizeConfigReply";
+        };
+
+        return FindLuckyPrizeConfigReply;
+    })();
+
+    pblucky.LuckyRoundModel = (function() {
+
+        /**
+         * Properties of a LuckyRoundModel.
+         * @memberof pblucky
+         * @interface ILuckyRoundModel
+         * @property {number|Long|null} [id] LuckyRoundModel id
+         * @property {string|null} [createdAt] LuckyRoundModel createdAt
+         * @property {string|null} [updatedAt] LuckyRoundModel updatedAt
+         * @property {number|Long|null} [roundId] LuckyRoundModel roundId
+         * @property {string|null} [status] LuckyRoundModel status
+         * @property {string|null} [fieldType] LuckyRoundModel fieldType
+         * @property {number|null} [totalPrizes] LuckyRoundModel totalPrizes
+         * @property {number|null} [remainingCount] LuckyRoundModel remainingCount
+         * @property {number|Long|null} [totalValue] LuckyRoundModel totalValue
+         * @property {number|null} [drawCount] LuckyRoundModel drawCount
+         * @property {number|null} [drawOnce] LuckyRoundModel drawOnce
+         * @property {number|null} [drawTen] LuckyRoundModel drawTen
+         * @property {number|Long|null} [totalPayout] LuckyRoundModel totalPayout
+         * @property {string|null} [startedAt] LuckyRoundModel startedAt
+         * @property {string|null} [completedAt] LuckyRoundModel completedAt
+         */
+
+        /**
+         * Constructs a new LuckyRoundModel.
+         * @memberof pblucky
+         * @classdesc Represents a LuckyRoundModel.
+         * @implements ILuckyRoundModel
+         * @constructor
+         * @param {pblucky.ILuckyRoundModel=} [properties] Properties to set
+         */
+        function LuckyRoundModel(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * LuckyRoundModel id.
+         * @member {number|Long} id
+         * @memberof pblucky.LuckyRoundModel
+         * @instance
+         */
+        LuckyRoundModel.prototype.id = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * LuckyRoundModel createdAt.
+         * @member {string} createdAt
+         * @memberof pblucky.LuckyRoundModel
+         * @instance
+         */
+        LuckyRoundModel.prototype.createdAt = "";
+
+        /**
+         * LuckyRoundModel updatedAt.
+         * @member {string} updatedAt
+         * @memberof pblucky.LuckyRoundModel
+         * @instance
+         */
+        LuckyRoundModel.prototype.updatedAt = "";
+
+        /**
+         * LuckyRoundModel roundId.
+         * @member {number|Long} roundId
+         * @memberof pblucky.LuckyRoundModel
+         * @instance
+         */
+        LuckyRoundModel.prototype.roundId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * LuckyRoundModel status.
+         * @member {string} status
+         * @memberof pblucky.LuckyRoundModel
+         * @instance
+         */
+        LuckyRoundModel.prototype.status = "";
+
+        /**
+         * LuckyRoundModel fieldType.
+         * @member {string} fieldType
+         * @memberof pblucky.LuckyRoundModel
+         * @instance
+         */
+        LuckyRoundModel.prototype.fieldType = "";
+
+        /**
+         * LuckyRoundModel totalPrizes.
+         * @member {number} totalPrizes
+         * @memberof pblucky.LuckyRoundModel
+         * @instance
+         */
+        LuckyRoundModel.prototype.totalPrizes = 0;
+
+        /**
+         * LuckyRoundModel remainingCount.
+         * @member {number} remainingCount
+         * @memberof pblucky.LuckyRoundModel
+         * @instance
+         */
+        LuckyRoundModel.prototype.remainingCount = 0;
+
+        /**
+         * LuckyRoundModel totalValue.
+         * @member {number|Long} totalValue
+         * @memberof pblucky.LuckyRoundModel
+         * @instance
+         */
+        LuckyRoundModel.prototype.totalValue = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * LuckyRoundModel drawCount.
+         * @member {number} drawCount
+         * @memberof pblucky.LuckyRoundModel
+         * @instance
+         */
+        LuckyRoundModel.prototype.drawCount = 0;
+
+        /**
+         * LuckyRoundModel drawOnce.
+         * @member {number} drawOnce
+         * @memberof pblucky.LuckyRoundModel
+         * @instance
+         */
+        LuckyRoundModel.prototype.drawOnce = 0;
+
+        /**
+         * LuckyRoundModel drawTen.
+         * @member {number} drawTen
+         * @memberof pblucky.LuckyRoundModel
+         * @instance
+         */
+        LuckyRoundModel.prototype.drawTen = 0;
+
+        /**
+         * LuckyRoundModel totalPayout.
+         * @member {number|Long} totalPayout
+         * @memberof pblucky.LuckyRoundModel
+         * @instance
+         */
+        LuckyRoundModel.prototype.totalPayout = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * LuckyRoundModel startedAt.
+         * @member {string} startedAt
+         * @memberof pblucky.LuckyRoundModel
+         * @instance
+         */
+        LuckyRoundModel.prototype.startedAt = "";
+
+        /**
+         * LuckyRoundModel completedAt.
+         * @member {string} completedAt
+         * @memberof pblucky.LuckyRoundModel
+         * @instance
+         */
+        LuckyRoundModel.prototype.completedAt = "";
+
+        /**
+         * Creates a new LuckyRoundModel instance using the specified properties.
+         * @function create
+         * @memberof pblucky.LuckyRoundModel
+         * @static
+         * @param {pblucky.ILuckyRoundModel=} [properties] Properties to set
+         * @returns {pblucky.LuckyRoundModel} LuckyRoundModel instance
+         */
+        LuckyRoundModel.create = function create(properties) {
+            return new LuckyRoundModel(properties);
+        };
+
+        /**
+         * Encodes the specified LuckyRoundModel message. Does not implicitly {@link pblucky.LuckyRoundModel.verify|verify} messages.
+         * @function encode
+         * @memberof pblucky.LuckyRoundModel
+         * @static
+         * @param {pblucky.ILuckyRoundModel} message LuckyRoundModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        LuckyRoundModel.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id);
+            if (message.createdAt != null && Object.hasOwnProperty.call(message, "createdAt"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.createdAt);
+            if (message.updatedAt != null && Object.hasOwnProperty.call(message, "updatedAt"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.updatedAt);
+            if (message.roundId != null && Object.hasOwnProperty.call(message, "roundId"))
+                writer.uint32(/* id 10, wireType 0 =*/80).int64(message.roundId);
+            if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+                writer.uint32(/* id 11, wireType 2 =*/90).string(message.status);
+            if (message.fieldType != null && Object.hasOwnProperty.call(message, "fieldType"))
+                writer.uint32(/* id 12, wireType 2 =*/98).string(message.fieldType);
+            if (message.totalPrizes != null && Object.hasOwnProperty.call(message, "totalPrizes"))
+                writer.uint32(/* id 20, wireType 0 =*/160).int32(message.totalPrizes);
+            if (message.remainingCount != null && Object.hasOwnProperty.call(message, "remainingCount"))
+                writer.uint32(/* id 21, wireType 0 =*/168).int32(message.remainingCount);
+            if (message.totalValue != null && Object.hasOwnProperty.call(message, "totalValue"))
+                writer.uint32(/* id 22, wireType 0 =*/176).int64(message.totalValue);
+            if (message.drawCount != null && Object.hasOwnProperty.call(message, "drawCount"))
+                writer.uint32(/* id 30, wireType 0 =*/240).int32(message.drawCount);
+            if (message.drawOnce != null && Object.hasOwnProperty.call(message, "drawOnce"))
+                writer.uint32(/* id 31, wireType 0 =*/248).int32(message.drawOnce);
+            if (message.drawTen != null && Object.hasOwnProperty.call(message, "drawTen"))
+                writer.uint32(/* id 32, wireType 0 =*/256).int32(message.drawTen);
+            if (message.totalPayout != null && Object.hasOwnProperty.call(message, "totalPayout"))
+                writer.uint32(/* id 33, wireType 0 =*/264).int64(message.totalPayout);
+            if (message.startedAt != null && Object.hasOwnProperty.call(message, "startedAt"))
+                writer.uint32(/* id 40, wireType 2 =*/322).string(message.startedAt);
+            if (message.completedAt != null && Object.hasOwnProperty.call(message, "completedAt"))
+                writer.uint32(/* id 41, wireType 2 =*/330).string(message.completedAt);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified LuckyRoundModel message, length delimited. Does not implicitly {@link pblucky.LuckyRoundModel.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pblucky.LuckyRoundModel
+         * @static
+         * @param {pblucky.ILuckyRoundModel} message LuckyRoundModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        LuckyRoundModel.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a LuckyRoundModel message from the specified reader or buffer.
+         * @function decode
+         * @memberof pblucky.LuckyRoundModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pblucky.LuckyRoundModel} LuckyRoundModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        LuckyRoundModel.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pblucky.LuckyRoundModel();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.id = reader.int64();
+                        break;
+                    }
+                case 2: {
+                        message.createdAt = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.updatedAt = reader.string();
+                        break;
+                    }
+                case 10: {
+                        message.roundId = reader.int64();
+                        break;
+                    }
+                case 11: {
+                        message.status = reader.string();
+                        break;
+                    }
+                case 12: {
+                        message.fieldType = reader.string();
+                        break;
+                    }
+                case 20: {
+                        message.totalPrizes = reader.int32();
+                        break;
+                    }
+                case 21: {
+                        message.remainingCount = reader.int32();
+                        break;
+                    }
+                case 22: {
+                        message.totalValue = reader.int64();
+                        break;
+                    }
+                case 30: {
+                        message.drawCount = reader.int32();
+                        break;
+                    }
+                case 31: {
+                        message.drawOnce = reader.int32();
+                        break;
+                    }
+                case 32: {
+                        message.drawTen = reader.int32();
+                        break;
+                    }
+                case 33: {
+                        message.totalPayout = reader.int64();
+                        break;
+                    }
+                case 40: {
+                        message.startedAt = reader.string();
+                        break;
+                    }
+                case 41: {
+                        message.completedAt = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a LuckyRoundModel message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pblucky.LuckyRoundModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pblucky.LuckyRoundModel} LuckyRoundModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        LuckyRoundModel.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a LuckyRoundModel message.
+         * @function verify
+         * @memberof pblucky.LuckyRoundModel
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        LuckyRoundModel.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (!$util.isInteger(message.id) && !(message.id && $util.isInteger(message.id.low) && $util.isInteger(message.id.high)))
+                    return "id: integer|Long expected";
+            if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                if (!$util.isString(message.createdAt))
+                    return "createdAt: string expected";
+            if (message.updatedAt != null && message.hasOwnProperty("updatedAt"))
+                if (!$util.isString(message.updatedAt))
+                    return "updatedAt: string expected";
+            if (message.roundId != null && message.hasOwnProperty("roundId"))
+                if (!$util.isInteger(message.roundId) && !(message.roundId && $util.isInteger(message.roundId.low) && $util.isInteger(message.roundId.high)))
+                    return "roundId: integer|Long expected";
+            if (message.status != null && message.hasOwnProperty("status"))
+                if (!$util.isString(message.status))
+                    return "status: string expected";
+            if (message.fieldType != null && message.hasOwnProperty("fieldType"))
+                if (!$util.isString(message.fieldType))
+                    return "fieldType: string expected";
+            if (message.totalPrizes != null && message.hasOwnProperty("totalPrizes"))
+                if (!$util.isInteger(message.totalPrizes))
+                    return "totalPrizes: integer expected";
+            if (message.remainingCount != null && message.hasOwnProperty("remainingCount"))
+                if (!$util.isInteger(message.remainingCount))
+                    return "remainingCount: integer expected";
+            if (message.totalValue != null && message.hasOwnProperty("totalValue"))
+                if (!$util.isInteger(message.totalValue) && !(message.totalValue && $util.isInteger(message.totalValue.low) && $util.isInteger(message.totalValue.high)))
+                    return "totalValue: integer|Long expected";
+            if (message.drawCount != null && message.hasOwnProperty("drawCount"))
+                if (!$util.isInteger(message.drawCount))
+                    return "drawCount: integer expected";
+            if (message.drawOnce != null && message.hasOwnProperty("drawOnce"))
+                if (!$util.isInteger(message.drawOnce))
+                    return "drawOnce: integer expected";
+            if (message.drawTen != null && message.hasOwnProperty("drawTen"))
+                if (!$util.isInteger(message.drawTen))
+                    return "drawTen: integer expected";
+            if (message.totalPayout != null && message.hasOwnProperty("totalPayout"))
+                if (!$util.isInteger(message.totalPayout) && !(message.totalPayout && $util.isInteger(message.totalPayout.low) && $util.isInteger(message.totalPayout.high)))
+                    return "totalPayout: integer|Long expected";
+            if (message.startedAt != null && message.hasOwnProperty("startedAt"))
+                if (!$util.isString(message.startedAt))
+                    return "startedAt: string expected";
+            if (message.completedAt != null && message.hasOwnProperty("completedAt"))
+                if (!$util.isString(message.completedAt))
+                    return "completedAt: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a LuckyRoundModel message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pblucky.LuckyRoundModel
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pblucky.LuckyRoundModel} LuckyRoundModel
+         */
+        LuckyRoundModel.fromObject = function fromObject(object) {
+            if (object instanceof $root.pblucky.LuckyRoundModel)
+                return object;
+            var message = new $root.pblucky.LuckyRoundModel();
+            if (object.id != null)
+                if ($util.Long)
+                    (message.id = $util.Long.fromValue(object.id)).unsigned = false;
+                else if (typeof object.id === "string")
+                    message.id = parseInt(object.id, 10);
+                else if (typeof object.id === "number")
+                    message.id = object.id;
+                else if (typeof object.id === "object")
+                    message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber();
+            if (object.createdAt != null)
+                message.createdAt = String(object.createdAt);
+            if (object.updatedAt != null)
+                message.updatedAt = String(object.updatedAt);
+            if (object.roundId != null)
+                if ($util.Long)
+                    (message.roundId = $util.Long.fromValue(object.roundId)).unsigned = false;
+                else if (typeof object.roundId === "string")
+                    message.roundId = parseInt(object.roundId, 10);
+                else if (typeof object.roundId === "number")
+                    message.roundId = object.roundId;
+                else if (typeof object.roundId === "object")
+                    message.roundId = new $util.LongBits(object.roundId.low >>> 0, object.roundId.high >>> 0).toNumber();
+            if (object.status != null)
+                message.status = String(object.status);
+            if (object.fieldType != null)
+                message.fieldType = String(object.fieldType);
+            if (object.totalPrizes != null)
+                message.totalPrizes = object.totalPrizes | 0;
+            if (object.remainingCount != null)
+                message.remainingCount = object.remainingCount | 0;
+            if (object.totalValue != null)
+                if ($util.Long)
+                    (message.totalValue = $util.Long.fromValue(object.totalValue)).unsigned = false;
+                else if (typeof object.totalValue === "string")
+                    message.totalValue = parseInt(object.totalValue, 10);
+                else if (typeof object.totalValue === "number")
+                    message.totalValue = object.totalValue;
+                else if (typeof object.totalValue === "object")
+                    message.totalValue = new $util.LongBits(object.totalValue.low >>> 0, object.totalValue.high >>> 0).toNumber();
+            if (object.drawCount != null)
+                message.drawCount = object.drawCount | 0;
+            if (object.drawOnce != null)
+                message.drawOnce = object.drawOnce | 0;
+            if (object.drawTen != null)
+                message.drawTen = object.drawTen | 0;
+            if (object.totalPayout != null)
+                if ($util.Long)
+                    (message.totalPayout = $util.Long.fromValue(object.totalPayout)).unsigned = false;
+                else if (typeof object.totalPayout === "string")
+                    message.totalPayout = parseInt(object.totalPayout, 10);
+                else if (typeof object.totalPayout === "number")
+                    message.totalPayout = object.totalPayout;
+                else if (typeof object.totalPayout === "object")
+                    message.totalPayout = new $util.LongBits(object.totalPayout.low >>> 0, object.totalPayout.high >>> 0).toNumber();
+            if (object.startedAt != null)
+                message.startedAt = String(object.startedAt);
+            if (object.completedAt != null)
+                message.completedAt = String(object.completedAt);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a LuckyRoundModel message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pblucky.LuckyRoundModel
+         * @static
+         * @param {pblucky.LuckyRoundModel} message LuckyRoundModel
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        LuckyRoundModel.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.id = options.longs === String ? "0" : 0;
+                object.createdAt = "";
+                object.updatedAt = "";
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.roundId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.roundId = options.longs === String ? "0" : 0;
+                object.status = "";
+                object.fieldType = "";
+                object.totalPrizes = 0;
+                object.remainingCount = 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.totalValue = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.totalValue = options.longs === String ? "0" : 0;
+                object.drawCount = 0;
+                object.drawOnce = 0;
+                object.drawTen = 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.totalPayout = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.totalPayout = options.longs === String ? "0" : 0;
+                object.startedAt = "";
+                object.completedAt = "";
+            }
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (typeof message.id === "number")
+                    object.id = options.longs === String ? String(message.id) : message.id;
+                else
+                    object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id;
+            if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                object.createdAt = message.createdAt;
+            if (message.updatedAt != null && message.hasOwnProperty("updatedAt"))
+                object.updatedAt = message.updatedAt;
+            if (message.roundId != null && message.hasOwnProperty("roundId"))
+                if (typeof message.roundId === "number")
+                    object.roundId = options.longs === String ? String(message.roundId) : message.roundId;
+                else
+                    object.roundId = options.longs === String ? $util.Long.prototype.toString.call(message.roundId) : options.longs === Number ? new $util.LongBits(message.roundId.low >>> 0, message.roundId.high >>> 0).toNumber() : message.roundId;
+            if (message.status != null && message.hasOwnProperty("status"))
+                object.status = message.status;
+            if (message.fieldType != null && message.hasOwnProperty("fieldType"))
+                object.fieldType = message.fieldType;
+            if (message.totalPrizes != null && message.hasOwnProperty("totalPrizes"))
+                object.totalPrizes = message.totalPrizes;
+            if (message.remainingCount != null && message.hasOwnProperty("remainingCount"))
+                object.remainingCount = message.remainingCount;
+            if (message.totalValue != null && message.hasOwnProperty("totalValue"))
+                if (typeof message.totalValue === "number")
+                    object.totalValue = options.longs === String ? String(message.totalValue) : message.totalValue;
+                else
+                    object.totalValue = options.longs === String ? $util.Long.prototype.toString.call(message.totalValue) : options.longs === Number ? new $util.LongBits(message.totalValue.low >>> 0, message.totalValue.high >>> 0).toNumber() : message.totalValue;
+            if (message.drawCount != null && message.hasOwnProperty("drawCount"))
+                object.drawCount = message.drawCount;
+            if (message.drawOnce != null && message.hasOwnProperty("drawOnce"))
+                object.drawOnce = message.drawOnce;
+            if (message.drawTen != null && message.hasOwnProperty("drawTen"))
+                object.drawTen = message.drawTen;
+            if (message.totalPayout != null && message.hasOwnProperty("totalPayout"))
+                if (typeof message.totalPayout === "number")
+                    object.totalPayout = options.longs === String ? String(message.totalPayout) : message.totalPayout;
+                else
+                    object.totalPayout = options.longs === String ? $util.Long.prototype.toString.call(message.totalPayout) : options.longs === Number ? new $util.LongBits(message.totalPayout.low >>> 0, message.totalPayout.high >>> 0).toNumber() : message.totalPayout;
+            if (message.startedAt != null && message.hasOwnProperty("startedAt"))
+                object.startedAt = message.startedAt;
+            if (message.completedAt != null && message.hasOwnProperty("completedAt"))
+                object.completedAt = message.completedAt;
+            return object;
+        };
+
+        /**
+         * Converts this LuckyRoundModel to JSON.
+         * @function toJSON
+         * @memberof pblucky.LuckyRoundModel
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        LuckyRoundModel.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for LuckyRoundModel
+         * @function getTypeUrl
+         * @memberof pblucky.LuckyRoundModel
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        LuckyRoundModel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pblucky.LuckyRoundModel";
+        };
+
+        return LuckyRoundModel;
+    })();
+
+    pblucky.FindLuckyRoundArgs = (function() {
+
+        /**
+         * Properties of a FindLuckyRoundArgs.
+         * @memberof pblucky
+         * @interface IFindLuckyRoundArgs
+         * @property {pbcommon.IPageInfo|null} [pageInfo] FindLuckyRoundArgs pageInfo
+         * @property {pblucky.ILuckyRoundModel|null} [query] FindLuckyRoundArgs query
+         * @property {string|null} [keyword] FindLuckyRoundArgs keyword
+         * @property {Array.<string>|null} [fieldTypeList] FindLuckyRoundArgs fieldTypeList
+         * @property {Array.<string>|null} [statusList] FindLuckyRoundArgs statusList
+         * @property {string|null} [startDate] FindLuckyRoundArgs startDate
+         * @property {string|null} [endDate] FindLuckyRoundArgs endDate
+         */
+
+        /**
+         * Constructs a new FindLuckyRoundArgs.
+         * @memberof pblucky
+         * @classdesc Represents a FindLuckyRoundArgs.
+         * @implements IFindLuckyRoundArgs
+         * @constructor
+         * @param {pblucky.IFindLuckyRoundArgs=} [properties] Properties to set
+         */
+        function FindLuckyRoundArgs(properties) {
+            this.fieldTypeList = [];
+            this.statusList = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * FindLuckyRoundArgs pageInfo.
+         * @member {pbcommon.IPageInfo|null|undefined} pageInfo
+         * @memberof pblucky.FindLuckyRoundArgs
+         * @instance
+         */
+        FindLuckyRoundArgs.prototype.pageInfo = null;
+
+        /**
+         * FindLuckyRoundArgs query.
+         * @member {pblucky.ILuckyRoundModel|null|undefined} query
+         * @memberof pblucky.FindLuckyRoundArgs
+         * @instance
+         */
+        FindLuckyRoundArgs.prototype.query = null;
+
+        /**
+         * FindLuckyRoundArgs keyword.
+         * @member {string} keyword
+         * @memberof pblucky.FindLuckyRoundArgs
+         * @instance
+         */
+        FindLuckyRoundArgs.prototype.keyword = "";
+
+        /**
+         * FindLuckyRoundArgs fieldTypeList.
+         * @member {Array.<string>} fieldTypeList
+         * @memberof pblucky.FindLuckyRoundArgs
+         * @instance
+         */
+        FindLuckyRoundArgs.prototype.fieldTypeList = $util.emptyArray;
+
+        /**
+         * FindLuckyRoundArgs statusList.
+         * @member {Array.<string>} statusList
+         * @memberof pblucky.FindLuckyRoundArgs
+         * @instance
+         */
+        FindLuckyRoundArgs.prototype.statusList = $util.emptyArray;
+
+        /**
+         * FindLuckyRoundArgs startDate.
+         * @member {string} startDate
+         * @memberof pblucky.FindLuckyRoundArgs
+         * @instance
+         */
+        FindLuckyRoundArgs.prototype.startDate = "";
+
+        /**
+         * FindLuckyRoundArgs endDate.
+         * @member {string} endDate
+         * @memberof pblucky.FindLuckyRoundArgs
+         * @instance
+         */
+        FindLuckyRoundArgs.prototype.endDate = "";
+
+        /**
+         * Creates a new FindLuckyRoundArgs instance using the specified properties.
+         * @function create
+         * @memberof pblucky.FindLuckyRoundArgs
+         * @static
+         * @param {pblucky.IFindLuckyRoundArgs=} [properties] Properties to set
+         * @returns {pblucky.FindLuckyRoundArgs} FindLuckyRoundArgs instance
+         */
+        FindLuckyRoundArgs.create = function create(properties) {
+            return new FindLuckyRoundArgs(properties);
+        };
+
+        /**
+         * Encodes the specified FindLuckyRoundArgs message. Does not implicitly {@link pblucky.FindLuckyRoundArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pblucky.FindLuckyRoundArgs
+         * @static
+         * @param {pblucky.IFindLuckyRoundArgs} message FindLuckyRoundArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindLuckyRoundArgs.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.pageInfo != null && Object.hasOwnProperty.call(message, "pageInfo"))
+                $root.pbcommon.PageInfo.encode(message.pageInfo, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.query != null && Object.hasOwnProperty.call(message, "query"))
+                $root.pblucky.LuckyRoundModel.encode(message.query, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            if (message.keyword != null && Object.hasOwnProperty.call(message, "keyword"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.keyword);
+            if (message.fieldTypeList != null && message.fieldTypeList.length)
+                for (var i = 0; i < message.fieldTypeList.length; ++i)
+                    writer.uint32(/* id 4, wireType 2 =*/34).string(message.fieldTypeList[i]);
+            if (message.statusList != null && message.statusList.length)
+                for (var i = 0; i < message.statusList.length; ++i)
+                    writer.uint32(/* id 5, wireType 2 =*/42).string(message.statusList[i]);
+            if (message.startDate != null && Object.hasOwnProperty.call(message, "startDate"))
+                writer.uint32(/* id 6, wireType 2 =*/50).string(message.startDate);
+            if (message.endDate != null && Object.hasOwnProperty.call(message, "endDate"))
+                writer.uint32(/* id 7, wireType 2 =*/58).string(message.endDate);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified FindLuckyRoundArgs message, length delimited. Does not implicitly {@link pblucky.FindLuckyRoundArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pblucky.FindLuckyRoundArgs
+         * @static
+         * @param {pblucky.IFindLuckyRoundArgs} message FindLuckyRoundArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindLuckyRoundArgs.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a FindLuckyRoundArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pblucky.FindLuckyRoundArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pblucky.FindLuckyRoundArgs} FindLuckyRoundArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindLuckyRoundArgs.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pblucky.FindLuckyRoundArgs();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.pageInfo = $root.pbcommon.PageInfo.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 2: {
+                        message.query = $root.pblucky.LuckyRoundModel.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 3: {
+                        message.keyword = reader.string();
+                        break;
+                    }
+                case 4: {
+                        if (!(message.fieldTypeList && message.fieldTypeList.length))
+                            message.fieldTypeList = [];
+                        message.fieldTypeList.push(reader.string());
+                        break;
+                    }
+                case 5: {
+                        if (!(message.statusList && message.statusList.length))
+                            message.statusList = [];
+                        message.statusList.push(reader.string());
+                        break;
+                    }
+                case 6: {
+                        message.startDate = reader.string();
+                        break;
+                    }
+                case 7: {
+                        message.endDate = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a FindLuckyRoundArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pblucky.FindLuckyRoundArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pblucky.FindLuckyRoundArgs} FindLuckyRoundArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindLuckyRoundArgs.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a FindLuckyRoundArgs message.
+         * @function verify
+         * @memberof pblucky.FindLuckyRoundArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        FindLuckyRoundArgs.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.pageInfo != null && message.hasOwnProperty("pageInfo")) {
+                var error = $root.pbcommon.PageInfo.verify(message.pageInfo);
+                if (error)
+                    return "pageInfo." + error;
+            }
+            if (message.query != null && message.hasOwnProperty("query")) {
+                var error = $root.pblucky.LuckyRoundModel.verify(message.query);
+                if (error)
+                    return "query." + error;
+            }
+            if (message.keyword != null && message.hasOwnProperty("keyword"))
+                if (!$util.isString(message.keyword))
+                    return "keyword: string expected";
+            if (message.fieldTypeList != null && message.hasOwnProperty("fieldTypeList")) {
+                if (!Array.isArray(message.fieldTypeList))
+                    return "fieldTypeList: array expected";
+                for (var i = 0; i < message.fieldTypeList.length; ++i)
+                    if (!$util.isString(message.fieldTypeList[i]))
+                        return "fieldTypeList: string[] expected";
+            }
+            if (message.statusList != null && message.hasOwnProperty("statusList")) {
+                if (!Array.isArray(message.statusList))
+                    return "statusList: array expected";
+                for (var i = 0; i < message.statusList.length; ++i)
+                    if (!$util.isString(message.statusList[i]))
+                        return "statusList: string[] expected";
+            }
+            if (message.startDate != null && message.hasOwnProperty("startDate"))
+                if (!$util.isString(message.startDate))
+                    return "startDate: string expected";
+            if (message.endDate != null && message.hasOwnProperty("endDate"))
+                if (!$util.isString(message.endDate))
+                    return "endDate: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a FindLuckyRoundArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pblucky.FindLuckyRoundArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pblucky.FindLuckyRoundArgs} FindLuckyRoundArgs
+         */
+        FindLuckyRoundArgs.fromObject = function fromObject(object) {
+            if (object instanceof $root.pblucky.FindLuckyRoundArgs)
+                return object;
+            var message = new $root.pblucky.FindLuckyRoundArgs();
+            if (object.pageInfo != null) {
+                if (typeof object.pageInfo !== "object")
+                    throw TypeError(".pblucky.FindLuckyRoundArgs.pageInfo: object expected");
+                message.pageInfo = $root.pbcommon.PageInfo.fromObject(object.pageInfo);
+            }
+            if (object.query != null) {
+                if (typeof object.query !== "object")
+                    throw TypeError(".pblucky.FindLuckyRoundArgs.query: object expected");
+                message.query = $root.pblucky.LuckyRoundModel.fromObject(object.query);
+            }
+            if (object.keyword != null)
+                message.keyword = String(object.keyword);
+            if (object.fieldTypeList) {
+                if (!Array.isArray(object.fieldTypeList))
+                    throw TypeError(".pblucky.FindLuckyRoundArgs.fieldTypeList: array expected");
+                message.fieldTypeList = [];
+                for (var i = 0; i < object.fieldTypeList.length; ++i)
+                    message.fieldTypeList[i] = String(object.fieldTypeList[i]);
+            }
+            if (object.statusList) {
+                if (!Array.isArray(object.statusList))
+                    throw TypeError(".pblucky.FindLuckyRoundArgs.statusList: array expected");
+                message.statusList = [];
+                for (var i = 0; i < object.statusList.length; ++i)
+                    message.statusList[i] = String(object.statusList[i]);
+            }
+            if (object.startDate != null)
+                message.startDate = String(object.startDate);
+            if (object.endDate != null)
+                message.endDate = String(object.endDate);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a FindLuckyRoundArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pblucky.FindLuckyRoundArgs
+         * @static
+         * @param {pblucky.FindLuckyRoundArgs} message FindLuckyRoundArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FindLuckyRoundArgs.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults) {
+                object.fieldTypeList = [];
+                object.statusList = [];
+            }
+            if (options.defaults) {
+                object.pageInfo = null;
+                object.query = null;
+                object.keyword = "";
+                object.startDate = "";
+                object.endDate = "";
+            }
+            if (message.pageInfo != null && message.hasOwnProperty("pageInfo"))
+                object.pageInfo = $root.pbcommon.PageInfo.toObject(message.pageInfo, options);
+            if (message.query != null && message.hasOwnProperty("query"))
+                object.query = $root.pblucky.LuckyRoundModel.toObject(message.query, options);
+            if (message.keyword != null && message.hasOwnProperty("keyword"))
+                object.keyword = message.keyword;
+            if (message.fieldTypeList && message.fieldTypeList.length) {
+                object.fieldTypeList = [];
+                for (var j = 0; j < message.fieldTypeList.length; ++j)
+                    object.fieldTypeList[j] = message.fieldTypeList[j];
+            }
+            if (message.statusList && message.statusList.length) {
+                object.statusList = [];
+                for (var j = 0; j < message.statusList.length; ++j)
+                    object.statusList[j] = message.statusList[j];
+            }
+            if (message.startDate != null && message.hasOwnProperty("startDate"))
+                object.startDate = message.startDate;
+            if (message.endDate != null && message.hasOwnProperty("endDate"))
+                object.endDate = message.endDate;
+            return object;
+        };
+
+        /**
+         * Converts this FindLuckyRoundArgs to JSON.
+         * @function toJSON
+         * @memberof pblucky.FindLuckyRoundArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        FindLuckyRoundArgs.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for FindLuckyRoundArgs
+         * @function getTypeUrl
+         * @memberof pblucky.FindLuckyRoundArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        FindLuckyRoundArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pblucky.FindLuckyRoundArgs";
+        };
+
+        return FindLuckyRoundArgs;
+    })();
+
+    pblucky.FindLuckyRoundReply = (function() {
+
+        /**
+         * Properties of a FindLuckyRoundReply.
+         * @memberof pblucky
+         * @interface IFindLuckyRoundReply
+         * @property {pbcommon.EnumCode|null} [code] FindLuckyRoundReply code
+         * @property {string|null} [msg] FindLuckyRoundReply msg
+         * @property {pblucky.ILuckyRoundModel|null} [data] FindLuckyRoundReply data
+         * @property {Array.<pblucky.ILuckyRoundModel>|null} [list] FindLuckyRoundReply list
+         * @property {number|Long|null} [total] FindLuckyRoundReply total
+         */
+
+        /**
+         * Constructs a new FindLuckyRoundReply.
+         * @memberof pblucky
+         * @classdesc Represents a FindLuckyRoundReply.
+         * @implements IFindLuckyRoundReply
+         * @constructor
+         * @param {pblucky.IFindLuckyRoundReply=} [properties] Properties to set
+         */
+        function FindLuckyRoundReply(properties) {
+            this.list = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * FindLuckyRoundReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pblucky.FindLuckyRoundReply
+         * @instance
+         */
+        FindLuckyRoundReply.prototype.code = 0;
+
+        /**
+         * FindLuckyRoundReply msg.
+         * @member {string} msg
+         * @memberof pblucky.FindLuckyRoundReply
+         * @instance
+         */
+        FindLuckyRoundReply.prototype.msg = "";
+
+        /**
+         * FindLuckyRoundReply data.
+         * @member {pblucky.ILuckyRoundModel|null|undefined} data
+         * @memberof pblucky.FindLuckyRoundReply
+         * @instance
+         */
+        FindLuckyRoundReply.prototype.data = null;
+
+        /**
+         * FindLuckyRoundReply list.
+         * @member {Array.<pblucky.ILuckyRoundModel>} list
+         * @memberof pblucky.FindLuckyRoundReply
+         * @instance
+         */
+        FindLuckyRoundReply.prototype.list = $util.emptyArray;
+
+        /**
+         * FindLuckyRoundReply total.
+         * @member {number|Long} total
+         * @memberof pblucky.FindLuckyRoundReply
+         * @instance
+         */
+        FindLuckyRoundReply.prototype.total = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * Creates a new FindLuckyRoundReply instance using the specified properties.
+         * @function create
+         * @memberof pblucky.FindLuckyRoundReply
+         * @static
+         * @param {pblucky.IFindLuckyRoundReply=} [properties] Properties to set
+         * @returns {pblucky.FindLuckyRoundReply} FindLuckyRoundReply instance
+         */
+        FindLuckyRoundReply.create = function create(properties) {
+            return new FindLuckyRoundReply(properties);
+        };
+
+        /**
+         * Encodes the specified FindLuckyRoundReply message. Does not implicitly {@link pblucky.FindLuckyRoundReply.verify|verify} messages.
+         * @function encode
+         * @memberof pblucky.FindLuckyRoundReply
+         * @static
+         * @param {pblucky.IFindLuckyRoundReply} message FindLuckyRoundReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindLuckyRoundReply.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.data != null && Object.hasOwnProperty.call(message, "data"))
+                $root.pblucky.LuckyRoundModel.encode(message.data, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            if (message.list != null && message.list.length)
+                for (var i = 0; i < message.list.length; ++i)
+                    $root.pblucky.LuckyRoundModel.encode(message.list[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+            if (message.total != null && Object.hasOwnProperty.call(message, "total"))
+                writer.uint32(/* id 5, wireType 0 =*/40).int64(message.total);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified FindLuckyRoundReply message, length delimited. Does not implicitly {@link pblucky.FindLuckyRoundReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pblucky.FindLuckyRoundReply
+         * @static
+         * @param {pblucky.IFindLuckyRoundReply} message FindLuckyRoundReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindLuckyRoundReply.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a FindLuckyRoundReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pblucky.FindLuckyRoundReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pblucky.FindLuckyRoundReply} FindLuckyRoundReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindLuckyRoundReply.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pblucky.FindLuckyRoundReply();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.code = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.data = $root.pblucky.LuckyRoundModel.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 4: {
+                        if (!(message.list && message.list.length))
+                            message.list = [];
+                        message.list.push($root.pblucky.LuckyRoundModel.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 5: {
+                        message.total = reader.int64();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a FindLuckyRoundReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pblucky.FindLuckyRoundReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pblucky.FindLuckyRoundReply} FindLuckyRoundReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindLuckyRoundReply.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a FindLuckyRoundReply message.
+         * @function verify
+         * @memberof pblucky.FindLuckyRoundReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        FindLuckyRoundReply.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.code != null && message.hasOwnProperty("code"))
+                switch (message.code) {
+                default:
+                    return "code: enum value expected";
+                case 0:
+                case 200:
+                case 403:
+                case 500:
+                case 501:
+                case 502:
+                case 503:
+                case 504:
+                case 505:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
+                case 2002:
+                case 2003:
+                case 2004:
+                case 2005:
+                case 2006:
+                case 2007:
+                case 2008:
+                case 2009:
+                case 2010:
+                case 2011:
+                case 2012:
+                case 2013:
+                case 2014:
+                case 2015:
+                case 3001:
+                case 3002:
+                case 3003:
+                case 5001:
+                case 5002:
+                case 10001:
+                case 10002:
+                case 20001:
+                case 20002:
+                    break;
+                }
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                if (!$util.isString(message.msg))
+                    return "msg: string expected";
+            if (message.data != null && message.hasOwnProperty("data")) {
+                var error = $root.pblucky.LuckyRoundModel.verify(message.data);
+                if (error)
+                    return "data." + error;
+            }
+            if (message.list != null && message.hasOwnProperty("list")) {
+                if (!Array.isArray(message.list))
+                    return "list: array expected";
+                for (var i = 0; i < message.list.length; ++i) {
+                    var error = $root.pblucky.LuckyRoundModel.verify(message.list[i]);
+                    if (error)
+                        return "list." + error;
+                }
+            }
+            if (message.total != null && message.hasOwnProperty("total"))
+                if (!$util.isInteger(message.total) && !(message.total && $util.isInteger(message.total.low) && $util.isInteger(message.total.high)))
+                    return "total: integer|Long expected";
+            return null;
+        };
+
+        /**
+         * Creates a FindLuckyRoundReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pblucky.FindLuckyRoundReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pblucky.FindLuckyRoundReply} FindLuckyRoundReply
+         */
+        FindLuckyRoundReply.fromObject = function fromObject(object) {
+            if (object instanceof $root.pblucky.FindLuckyRoundReply)
+                return object;
+            var message = new $root.pblucky.FindLuckyRoundReply();
+            switch (object.code) {
+            default:
+                if (typeof object.code === "number") {
+                    message.code = object.code;
+                    break;
+                }
+                break;
+            case "None":
+            case 0:
+                message.code = 0;
+                break;
+            case "Success":
+            case 200:
+                message.code = 200;
+                break;
+            case "Forbidden":
+            case 403:
+                message.code = 403;
+                break;
+            case "Fail":
+            case 500:
+                message.code = 500;
+                break;
+            case "Unknown":
+            case 501:
+                message.code = 501;
+                break;
+            case "Internal":
+            case 502:
+                message.code = 502;
+                break;
+            case "Invalid":
+            case 503:
+                message.code = 503;
+                break;
+            case "InvalidParam":
+            case 504:
+                message.code = 504;
+                break;
+            case "ParamError":
+            case 505:
+                message.code = 505;
+                break;
+            case "FindError":
+            case 1001:
+                message.code = 1001;
+                break;
+            case "CreateError":
+            case 1002:
+                message.code = 1002;
+                break;
+            case "DeleteError":
+            case 1003:
+                message.code = 1003;
+                break;
+            case "UpdateError":
+            case 1004:
+                message.code = 1004;
+                break;
+            case "InvalidToken":
+            case 2002:
+                message.code = 2002;
+                break;
+            case "InvalidSign":
+            case 2003:
+                message.code = 2003;
+                break;
+            case "NotLogin":
+            case 2004:
+                message.code = 2004;
+                break;
+            case "LoginTimeout":
+            case 2005:
+                message.code = 2005;
+                break;
+            case "LoginError":
+            case 2006:
+                message.code = 2006;
+                break;
+            case "LoginForbidden":
+            case 2007:
+                message.code = 2007;
+                break;
+            case "LoginExpired":
+            case 2008:
+                message.code = 2008;
+                break;
+            case "LoginInvalid":
+            case 2009:
+                message.code = 2009;
+                break;
+            case "LoginInvalidPassword":
+            case 2010:
+                message.code = 2010;
+                break;
+            case "LoginInvalidUsername":
+            case 2011:
+                message.code = 2011;
+                break;
+            case "LoginInvalidEmail":
+            case 2012:
+                message.code = 2012;
+                break;
+            case "LoginInvalidPhone":
+            case 2013:
+                message.code = 2013;
+                break;
+            case "LoginInvalidUsernameOrEmail":
+            case 2014:
+                message.code = 2014;
+                break;
+            case "LoginSocketRepeat":
+            case 2015:
+                message.code = 2015;
+                break;
+            case "RoleIsNotExist":
+            case 3001:
+                message.code = 3001;
+                break;
+            case "UserIsExist":
+            case 3002:
+                message.code = 3002;
+                break;
+            case "UserIsBan":
+            case 3003:
+                message.code = 3003;
+                break;
+            case "TalkIsBan":
+            case 5001:
+                message.code = 5001;
+                break;
+            case "EnterRoomErr":
+            case 5002:
+                message.code = 5002;
+                break;
+            case "HalaChatNeedBuy":
+            case 10001:
+                message.code = 10001;
+                break;
+            case "HalaPriceOutRange":
+            case 10002:
+                message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            }
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.data != null) {
+                if (typeof object.data !== "object")
+                    throw TypeError(".pblucky.FindLuckyRoundReply.data: object expected");
+                message.data = $root.pblucky.LuckyRoundModel.fromObject(object.data);
+            }
+            if (object.list) {
+                if (!Array.isArray(object.list))
+                    throw TypeError(".pblucky.FindLuckyRoundReply.list: array expected");
+                message.list = [];
+                for (var i = 0; i < object.list.length; ++i) {
+                    if (typeof object.list[i] !== "object")
+                        throw TypeError(".pblucky.FindLuckyRoundReply.list: object expected");
+                    message.list[i] = $root.pblucky.LuckyRoundModel.fromObject(object.list[i]);
+                }
+            }
+            if (object.total != null)
+                if ($util.Long)
+                    (message.total = $util.Long.fromValue(object.total)).unsigned = false;
+                else if (typeof object.total === "string")
+                    message.total = parseInt(object.total, 10);
+                else if (typeof object.total === "number")
+                    message.total = object.total;
+                else if (typeof object.total === "object")
+                    message.total = new $util.LongBits(object.total.low >>> 0, object.total.high >>> 0).toNumber();
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a FindLuckyRoundReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pblucky.FindLuckyRoundReply
+         * @static
+         * @param {pblucky.FindLuckyRoundReply} message FindLuckyRoundReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FindLuckyRoundReply.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.list = [];
+            if (options.defaults) {
+                object.code = options.enums === String ? "None" : 0;
+                object.msg = "";
+                object.data = null;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.total = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.total = options.longs === String ? "0" : 0;
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.data != null && message.hasOwnProperty("data"))
+                object.data = $root.pblucky.LuckyRoundModel.toObject(message.data, options);
+            if (message.list && message.list.length) {
+                object.list = [];
+                for (var j = 0; j < message.list.length; ++j)
+                    object.list[j] = $root.pblucky.LuckyRoundModel.toObject(message.list[j], options);
+            }
+            if (message.total != null && message.hasOwnProperty("total"))
+                if (typeof message.total === "number")
+                    object.total = options.longs === String ? String(message.total) : message.total;
+                else
+                    object.total = options.longs === String ? $util.Long.prototype.toString.call(message.total) : options.longs === Number ? new $util.LongBits(message.total.low >>> 0, message.total.high >>> 0).toNumber() : message.total;
+            return object;
+        };
+
+        /**
+         * Converts this FindLuckyRoundReply to JSON.
+         * @function toJSON
+         * @memberof pblucky.FindLuckyRoundReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        FindLuckyRoundReply.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for FindLuckyRoundReply
+         * @function getTypeUrl
+         * @memberof pblucky.FindLuckyRoundReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        FindLuckyRoundReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pblucky.FindLuckyRoundReply";
+        };
+
+        return FindLuckyRoundReply;
+    })();
+
+    pblucky.ResetLuckyPoolArgs = (function() {
+
+        /**
+         * Properties of a ResetLuckyPoolArgs.
+         * @memberof pblucky
+         * @interface IResetLuckyPoolArgs
+         * @property {string|null} [fieldType] ResetLuckyPoolArgs fieldType
+         */
+
+        /**
+         * Constructs a new ResetLuckyPoolArgs.
+         * @memberof pblucky
+         * @classdesc Represents a ResetLuckyPoolArgs.
+         * @implements IResetLuckyPoolArgs
+         * @constructor
+         * @param {pblucky.IResetLuckyPoolArgs=} [properties] Properties to set
+         */
+        function ResetLuckyPoolArgs(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ResetLuckyPoolArgs fieldType.
+         * @member {string} fieldType
+         * @memberof pblucky.ResetLuckyPoolArgs
+         * @instance
+         */
+        ResetLuckyPoolArgs.prototype.fieldType = "";
+
+        /**
+         * Creates a new ResetLuckyPoolArgs instance using the specified properties.
+         * @function create
+         * @memberof pblucky.ResetLuckyPoolArgs
+         * @static
+         * @param {pblucky.IResetLuckyPoolArgs=} [properties] Properties to set
+         * @returns {pblucky.ResetLuckyPoolArgs} ResetLuckyPoolArgs instance
+         */
+        ResetLuckyPoolArgs.create = function create(properties) {
+            return new ResetLuckyPoolArgs(properties);
+        };
+
+        /**
+         * Encodes the specified ResetLuckyPoolArgs message. Does not implicitly {@link pblucky.ResetLuckyPoolArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pblucky.ResetLuckyPoolArgs
+         * @static
+         * @param {pblucky.IResetLuckyPoolArgs} message ResetLuckyPoolArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        ResetLuckyPoolArgs.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.fieldType != null && Object.hasOwnProperty.call(message, "fieldType"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.fieldType);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified ResetLuckyPoolArgs message, length delimited. Does not implicitly {@link pblucky.ResetLuckyPoolArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pblucky.ResetLuckyPoolArgs
+         * @static
+         * @param {pblucky.IResetLuckyPoolArgs} message ResetLuckyPoolArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        ResetLuckyPoolArgs.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a ResetLuckyPoolArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pblucky.ResetLuckyPoolArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pblucky.ResetLuckyPoolArgs} ResetLuckyPoolArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        ResetLuckyPoolArgs.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pblucky.ResetLuckyPoolArgs();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.fieldType = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a ResetLuckyPoolArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pblucky.ResetLuckyPoolArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pblucky.ResetLuckyPoolArgs} ResetLuckyPoolArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        ResetLuckyPoolArgs.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a ResetLuckyPoolArgs message.
+         * @function verify
+         * @memberof pblucky.ResetLuckyPoolArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        ResetLuckyPoolArgs.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.fieldType != null && message.hasOwnProperty("fieldType"))
+                if (!$util.isString(message.fieldType))
+                    return "fieldType: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a ResetLuckyPoolArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pblucky.ResetLuckyPoolArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pblucky.ResetLuckyPoolArgs} ResetLuckyPoolArgs
+         */
+        ResetLuckyPoolArgs.fromObject = function fromObject(object) {
+            if (object instanceof $root.pblucky.ResetLuckyPoolArgs)
+                return object;
+            var message = new $root.pblucky.ResetLuckyPoolArgs();
+            if (object.fieldType != null)
+                message.fieldType = String(object.fieldType);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a ResetLuckyPoolArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pblucky.ResetLuckyPoolArgs
+         * @static
+         * @param {pblucky.ResetLuckyPoolArgs} message ResetLuckyPoolArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        ResetLuckyPoolArgs.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.fieldType = "";
+            if (message.fieldType != null && message.hasOwnProperty("fieldType"))
+                object.fieldType = message.fieldType;
+            return object;
+        };
+
+        /**
+         * Converts this ResetLuckyPoolArgs to JSON.
+         * @function toJSON
+         * @memberof pblucky.ResetLuckyPoolArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        ResetLuckyPoolArgs.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for ResetLuckyPoolArgs
+         * @function getTypeUrl
+         * @memberof pblucky.ResetLuckyPoolArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        ResetLuckyPoolArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pblucky.ResetLuckyPoolArgs";
+        };
+
+        return ResetLuckyPoolArgs;
+    })();
+
+    pblucky.LuckyDrawModel = (function() {
+
+        /**
+         * Properties of a LuckyDrawModel.
+         * @memberof pblucky
+         * @interface ILuckyDrawModel
+         * @property {number|Long|null} [id] LuckyDrawModel id
+         * @property {string|null} [createdAt] LuckyDrawModel createdAt
+         * @property {string|null} [updatedAt] LuckyDrawModel updatedAt
+         * @property {number|Long|null} [roundId] LuckyDrawModel roundId
+         * @property {number|Long|null} [userId] LuckyDrawModel userId
+         * @property {string|null} [fieldType] LuckyDrawModel fieldType
+         * @property {string|null} [drawType] LuckyDrawModel drawType
+         * @property {number|null} [drawCount] LuckyDrawModel drawCount
+         * @property {number|null} [costGold] LuckyDrawModel costGold
+         * @property {string|null} [prizeType] LuckyDrawModel prizeType
+         * @property {string|null} [prizeName] LuckyDrawModel prizeName
+         * @property {number|null} [prizeValue] LuckyDrawModel prizeValue
+         * @property {string|null} [prizeDetail] LuckyDrawModel prizeDetail
+         */
+
+        /**
+         * Constructs a new LuckyDrawModel.
+         * @memberof pblucky
+         * @classdesc Represents a LuckyDrawModel.
+         * @implements ILuckyDrawModel
+         * @constructor
+         * @param {pblucky.ILuckyDrawModel=} [properties] Properties to set
+         */
+        function LuckyDrawModel(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * LuckyDrawModel id.
+         * @member {number|Long} id
+         * @memberof pblucky.LuckyDrawModel
+         * @instance
+         */
+        LuckyDrawModel.prototype.id = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * LuckyDrawModel createdAt.
+         * @member {string} createdAt
+         * @memberof pblucky.LuckyDrawModel
+         * @instance
+         */
+        LuckyDrawModel.prototype.createdAt = "";
+
+        /**
+         * LuckyDrawModel updatedAt.
+         * @member {string} updatedAt
+         * @memberof pblucky.LuckyDrawModel
+         * @instance
+         */
+        LuckyDrawModel.prototype.updatedAt = "";
+
+        /**
+         * LuckyDrawModel roundId.
+         * @member {number|Long} roundId
+         * @memberof pblucky.LuckyDrawModel
+         * @instance
+         */
+        LuckyDrawModel.prototype.roundId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * LuckyDrawModel userId.
+         * @member {number|Long} userId
+         * @memberof pblucky.LuckyDrawModel
+         * @instance
+         */
+        LuckyDrawModel.prototype.userId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * LuckyDrawModel fieldType.
+         * @member {string} fieldType
+         * @memberof pblucky.LuckyDrawModel
+         * @instance
+         */
+        LuckyDrawModel.prototype.fieldType = "";
+
+        /**
+         * LuckyDrawModel drawType.
+         * @member {string} drawType
+         * @memberof pblucky.LuckyDrawModel
+         * @instance
+         */
+        LuckyDrawModel.prototype.drawType = "";
+
+        /**
+         * LuckyDrawModel drawCount.
+         * @member {number} drawCount
+         * @memberof pblucky.LuckyDrawModel
+         * @instance
+         */
+        LuckyDrawModel.prototype.drawCount = 0;
+
+        /**
+         * LuckyDrawModel costGold.
+         * @member {number} costGold
+         * @memberof pblucky.LuckyDrawModel
+         * @instance
+         */
+        LuckyDrawModel.prototype.costGold = 0;
+
+        /**
+         * LuckyDrawModel prizeType.
+         * @member {string} prizeType
+         * @memberof pblucky.LuckyDrawModel
+         * @instance
+         */
+        LuckyDrawModel.prototype.prizeType = "";
+
+        /**
+         * LuckyDrawModel prizeName.
+         * @member {string} prizeName
+         * @memberof pblucky.LuckyDrawModel
+         * @instance
+         */
+        LuckyDrawModel.prototype.prizeName = "";
+
+        /**
+         * LuckyDrawModel prizeValue.
+         * @member {number} prizeValue
+         * @memberof pblucky.LuckyDrawModel
+         * @instance
+         */
+        LuckyDrawModel.prototype.prizeValue = 0;
+
+        /**
+         * LuckyDrawModel prizeDetail.
+         * @member {string} prizeDetail
+         * @memberof pblucky.LuckyDrawModel
+         * @instance
+         */
+        LuckyDrawModel.prototype.prizeDetail = "";
+
+        /**
+         * Creates a new LuckyDrawModel instance using the specified properties.
+         * @function create
+         * @memberof pblucky.LuckyDrawModel
+         * @static
+         * @param {pblucky.ILuckyDrawModel=} [properties] Properties to set
+         * @returns {pblucky.LuckyDrawModel} LuckyDrawModel instance
+         */
+        LuckyDrawModel.create = function create(properties) {
+            return new LuckyDrawModel(properties);
+        };
+
+        /**
+         * Encodes the specified LuckyDrawModel message. Does not implicitly {@link pblucky.LuckyDrawModel.verify|verify} messages.
+         * @function encode
+         * @memberof pblucky.LuckyDrawModel
+         * @static
+         * @param {pblucky.ILuckyDrawModel} message LuckyDrawModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        LuckyDrawModel.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id);
+            if (message.createdAt != null && Object.hasOwnProperty.call(message, "createdAt"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.createdAt);
+            if (message.updatedAt != null && Object.hasOwnProperty.call(message, "updatedAt"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.updatedAt);
+            if (message.roundId != null && Object.hasOwnProperty.call(message, "roundId"))
+                writer.uint32(/* id 10, wireType 0 =*/80).int64(message.roundId);
+            if (message.userId != null && Object.hasOwnProperty.call(message, "userId"))
+                writer.uint32(/* id 11, wireType 0 =*/88).int64(message.userId);
+            if (message.fieldType != null && Object.hasOwnProperty.call(message, "fieldType"))
+                writer.uint32(/* id 20, wireType 2 =*/162).string(message.fieldType);
+            if (message.drawType != null && Object.hasOwnProperty.call(message, "drawType"))
+                writer.uint32(/* id 21, wireType 2 =*/170).string(message.drawType);
+            if (message.drawCount != null && Object.hasOwnProperty.call(message, "drawCount"))
+                writer.uint32(/* id 22, wireType 0 =*/176).int32(message.drawCount);
+            if (message.costGold != null && Object.hasOwnProperty.call(message, "costGold"))
+                writer.uint32(/* id 23, wireType 0 =*/184).int32(message.costGold);
+            if (message.prizeType != null && Object.hasOwnProperty.call(message, "prizeType"))
+                writer.uint32(/* id 30, wireType 2 =*/242).string(message.prizeType);
+            if (message.prizeName != null && Object.hasOwnProperty.call(message, "prizeName"))
+                writer.uint32(/* id 31, wireType 2 =*/250).string(message.prizeName);
+            if (message.prizeValue != null && Object.hasOwnProperty.call(message, "prizeValue"))
+                writer.uint32(/* id 32, wireType 0 =*/256).int32(message.prizeValue);
+            if (message.prizeDetail != null && Object.hasOwnProperty.call(message, "prizeDetail"))
+                writer.uint32(/* id 33, wireType 2 =*/266).string(message.prizeDetail);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified LuckyDrawModel message, length delimited. Does not implicitly {@link pblucky.LuckyDrawModel.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pblucky.LuckyDrawModel
+         * @static
+         * @param {pblucky.ILuckyDrawModel} message LuckyDrawModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        LuckyDrawModel.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a LuckyDrawModel message from the specified reader or buffer.
+         * @function decode
+         * @memberof pblucky.LuckyDrawModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pblucky.LuckyDrawModel} LuckyDrawModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        LuckyDrawModel.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pblucky.LuckyDrawModel();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.id = reader.int64();
+                        break;
+                    }
+                case 2: {
+                        message.createdAt = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.updatedAt = reader.string();
+                        break;
+                    }
+                case 10: {
+                        message.roundId = reader.int64();
+                        break;
+                    }
+                case 11: {
+                        message.userId = reader.int64();
+                        break;
+                    }
+                case 20: {
+                        message.fieldType = reader.string();
+                        break;
+                    }
+                case 21: {
+                        message.drawType = reader.string();
+                        break;
+                    }
+                case 22: {
+                        message.drawCount = reader.int32();
+                        break;
+                    }
+                case 23: {
+                        message.costGold = reader.int32();
+                        break;
+                    }
+                case 30: {
+                        message.prizeType = reader.string();
+                        break;
+                    }
+                case 31: {
+                        message.prizeName = reader.string();
+                        break;
+                    }
+                case 32: {
+                        message.prizeValue = reader.int32();
+                        break;
+                    }
+                case 33: {
+                        message.prizeDetail = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a LuckyDrawModel message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pblucky.LuckyDrawModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pblucky.LuckyDrawModel} LuckyDrawModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        LuckyDrawModel.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a LuckyDrawModel message.
+         * @function verify
+         * @memberof pblucky.LuckyDrawModel
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        LuckyDrawModel.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (!$util.isInteger(message.id) && !(message.id && $util.isInteger(message.id.low) && $util.isInteger(message.id.high)))
+                    return "id: integer|Long expected";
+            if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                if (!$util.isString(message.createdAt))
+                    return "createdAt: string expected";
+            if (message.updatedAt != null && message.hasOwnProperty("updatedAt"))
+                if (!$util.isString(message.updatedAt))
+                    return "updatedAt: string expected";
+            if (message.roundId != null && message.hasOwnProperty("roundId"))
+                if (!$util.isInteger(message.roundId) && !(message.roundId && $util.isInteger(message.roundId.low) && $util.isInteger(message.roundId.high)))
+                    return "roundId: integer|Long expected";
+            if (message.userId != null && message.hasOwnProperty("userId"))
+                if (!$util.isInteger(message.userId) && !(message.userId && $util.isInteger(message.userId.low) && $util.isInteger(message.userId.high)))
+                    return "userId: integer|Long expected";
+            if (message.fieldType != null && message.hasOwnProperty("fieldType"))
+                if (!$util.isString(message.fieldType))
+                    return "fieldType: string expected";
+            if (message.drawType != null && message.hasOwnProperty("drawType"))
+                if (!$util.isString(message.drawType))
+                    return "drawType: string expected";
+            if (message.drawCount != null && message.hasOwnProperty("drawCount"))
+                if (!$util.isInteger(message.drawCount))
+                    return "drawCount: integer expected";
+            if (message.costGold != null && message.hasOwnProperty("costGold"))
+                if (!$util.isInteger(message.costGold))
+                    return "costGold: integer expected";
+            if (message.prizeType != null && message.hasOwnProperty("prizeType"))
+                if (!$util.isString(message.prizeType))
+                    return "prizeType: string expected";
+            if (message.prizeName != null && message.hasOwnProperty("prizeName"))
+                if (!$util.isString(message.prizeName))
+                    return "prizeName: string expected";
+            if (message.prizeValue != null && message.hasOwnProperty("prizeValue"))
+                if (!$util.isInteger(message.prizeValue))
+                    return "prizeValue: integer expected";
+            if (message.prizeDetail != null && message.hasOwnProperty("prizeDetail"))
+                if (!$util.isString(message.prizeDetail))
+                    return "prizeDetail: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a LuckyDrawModel message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pblucky.LuckyDrawModel
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pblucky.LuckyDrawModel} LuckyDrawModel
+         */
+        LuckyDrawModel.fromObject = function fromObject(object) {
+            if (object instanceof $root.pblucky.LuckyDrawModel)
+                return object;
+            var message = new $root.pblucky.LuckyDrawModel();
+            if (object.id != null)
+                if ($util.Long)
+                    (message.id = $util.Long.fromValue(object.id)).unsigned = false;
+                else if (typeof object.id === "string")
+                    message.id = parseInt(object.id, 10);
+                else if (typeof object.id === "number")
+                    message.id = object.id;
+                else if (typeof object.id === "object")
+                    message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber();
+            if (object.createdAt != null)
+                message.createdAt = String(object.createdAt);
+            if (object.updatedAt != null)
+                message.updatedAt = String(object.updatedAt);
+            if (object.roundId != null)
+                if ($util.Long)
+                    (message.roundId = $util.Long.fromValue(object.roundId)).unsigned = false;
+                else if (typeof object.roundId === "string")
+                    message.roundId = parseInt(object.roundId, 10);
+                else if (typeof object.roundId === "number")
+                    message.roundId = object.roundId;
+                else if (typeof object.roundId === "object")
+                    message.roundId = new $util.LongBits(object.roundId.low >>> 0, object.roundId.high >>> 0).toNumber();
+            if (object.userId != null)
+                if ($util.Long)
+                    (message.userId = $util.Long.fromValue(object.userId)).unsigned = false;
+                else if (typeof object.userId === "string")
+                    message.userId = parseInt(object.userId, 10);
+                else if (typeof object.userId === "number")
+                    message.userId = object.userId;
+                else if (typeof object.userId === "object")
+                    message.userId = new $util.LongBits(object.userId.low >>> 0, object.userId.high >>> 0).toNumber();
+            if (object.fieldType != null)
+                message.fieldType = String(object.fieldType);
+            if (object.drawType != null)
+                message.drawType = String(object.drawType);
+            if (object.drawCount != null)
+                message.drawCount = object.drawCount | 0;
+            if (object.costGold != null)
+                message.costGold = object.costGold | 0;
+            if (object.prizeType != null)
+                message.prizeType = String(object.prizeType);
+            if (object.prizeName != null)
+                message.prizeName = String(object.prizeName);
+            if (object.prizeValue != null)
+                message.prizeValue = object.prizeValue | 0;
+            if (object.prizeDetail != null)
+                message.prizeDetail = String(object.prizeDetail);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a LuckyDrawModel message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pblucky.LuckyDrawModel
+         * @static
+         * @param {pblucky.LuckyDrawModel} message LuckyDrawModel
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        LuckyDrawModel.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.id = options.longs === String ? "0" : 0;
+                object.createdAt = "";
+                object.updatedAt = "";
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.roundId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.roundId = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.userId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.userId = options.longs === String ? "0" : 0;
+                object.fieldType = "";
+                object.drawType = "";
+                object.drawCount = 0;
+                object.costGold = 0;
+                object.prizeType = "";
+                object.prizeName = "";
+                object.prizeValue = 0;
+                object.prizeDetail = "";
+            }
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (typeof message.id === "number")
+                    object.id = options.longs === String ? String(message.id) : message.id;
+                else
+                    object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id;
+            if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                object.createdAt = message.createdAt;
+            if (message.updatedAt != null && message.hasOwnProperty("updatedAt"))
+                object.updatedAt = message.updatedAt;
+            if (message.roundId != null && message.hasOwnProperty("roundId"))
+                if (typeof message.roundId === "number")
+                    object.roundId = options.longs === String ? String(message.roundId) : message.roundId;
+                else
+                    object.roundId = options.longs === String ? $util.Long.prototype.toString.call(message.roundId) : options.longs === Number ? new $util.LongBits(message.roundId.low >>> 0, message.roundId.high >>> 0).toNumber() : message.roundId;
+            if (message.userId != null && message.hasOwnProperty("userId"))
+                if (typeof message.userId === "number")
+                    object.userId = options.longs === String ? String(message.userId) : message.userId;
+                else
+                    object.userId = options.longs === String ? $util.Long.prototype.toString.call(message.userId) : options.longs === Number ? new $util.LongBits(message.userId.low >>> 0, message.userId.high >>> 0).toNumber() : message.userId;
+            if (message.fieldType != null && message.hasOwnProperty("fieldType"))
+                object.fieldType = message.fieldType;
+            if (message.drawType != null && message.hasOwnProperty("drawType"))
+                object.drawType = message.drawType;
+            if (message.drawCount != null && message.hasOwnProperty("drawCount"))
+                object.drawCount = message.drawCount;
+            if (message.costGold != null && message.hasOwnProperty("costGold"))
+                object.costGold = message.costGold;
+            if (message.prizeType != null && message.hasOwnProperty("prizeType"))
+                object.prizeType = message.prizeType;
+            if (message.prizeName != null && message.hasOwnProperty("prizeName"))
+                object.prizeName = message.prizeName;
+            if (message.prizeValue != null && message.hasOwnProperty("prizeValue"))
+                object.prizeValue = message.prizeValue;
+            if (message.prizeDetail != null && message.hasOwnProperty("prizeDetail"))
+                object.prizeDetail = message.prizeDetail;
+            return object;
+        };
+
+        /**
+         * Converts this LuckyDrawModel to JSON.
+         * @function toJSON
+         * @memberof pblucky.LuckyDrawModel
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        LuckyDrawModel.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for LuckyDrawModel
+         * @function getTypeUrl
+         * @memberof pblucky.LuckyDrawModel
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        LuckyDrawModel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pblucky.LuckyDrawModel";
+        };
+
+        return LuckyDrawModel;
+    })();
+
+    pblucky.FindLuckyDrawArgs = (function() {
+
+        /**
+         * Properties of a FindLuckyDrawArgs.
+         * @memberof pblucky
+         * @interface IFindLuckyDrawArgs
+         * @property {pbcommon.IPageInfo|null} [pageInfo] FindLuckyDrawArgs pageInfo
+         * @property {pblucky.ILuckyDrawModel|null} [query] FindLuckyDrawArgs query
+         * @property {string|null} [keyword] FindLuckyDrawArgs keyword
+         * @property {Array.<string>|null} [fieldTypeList] FindLuckyDrawArgs fieldTypeList
+         * @property {Array.<string>|null} [drawTypeList] FindLuckyDrawArgs drawTypeList
+         * @property {number|Long|null} [roundId] FindLuckyDrawArgs roundId
+         * @property {number|Long|null} [userId] FindLuckyDrawArgs userId
+         * @property {string|null} [startDate] FindLuckyDrawArgs startDate
+         * @property {string|null} [endDate] FindLuckyDrawArgs endDate
+         */
+
+        /**
+         * Constructs a new FindLuckyDrawArgs.
+         * @memberof pblucky
+         * @classdesc Represents a FindLuckyDrawArgs.
+         * @implements IFindLuckyDrawArgs
+         * @constructor
+         * @param {pblucky.IFindLuckyDrawArgs=} [properties] Properties to set
+         */
+        function FindLuckyDrawArgs(properties) {
+            this.fieldTypeList = [];
+            this.drawTypeList = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * FindLuckyDrawArgs pageInfo.
+         * @member {pbcommon.IPageInfo|null|undefined} pageInfo
+         * @memberof pblucky.FindLuckyDrawArgs
+         * @instance
+         */
+        FindLuckyDrawArgs.prototype.pageInfo = null;
+
+        /**
+         * FindLuckyDrawArgs query.
+         * @member {pblucky.ILuckyDrawModel|null|undefined} query
+         * @memberof pblucky.FindLuckyDrawArgs
+         * @instance
+         */
+        FindLuckyDrawArgs.prototype.query = null;
+
+        /**
+         * FindLuckyDrawArgs keyword.
+         * @member {string} keyword
+         * @memberof pblucky.FindLuckyDrawArgs
+         * @instance
+         */
+        FindLuckyDrawArgs.prototype.keyword = "";
+
+        /**
+         * FindLuckyDrawArgs fieldTypeList.
+         * @member {Array.<string>} fieldTypeList
+         * @memberof pblucky.FindLuckyDrawArgs
+         * @instance
+         */
+        FindLuckyDrawArgs.prototype.fieldTypeList = $util.emptyArray;
+
+        /**
+         * FindLuckyDrawArgs drawTypeList.
+         * @member {Array.<string>} drawTypeList
+         * @memberof pblucky.FindLuckyDrawArgs
+         * @instance
+         */
+        FindLuckyDrawArgs.prototype.drawTypeList = $util.emptyArray;
+
+        /**
+         * FindLuckyDrawArgs roundId.
+         * @member {number|Long} roundId
+         * @memberof pblucky.FindLuckyDrawArgs
+         * @instance
+         */
+        FindLuckyDrawArgs.prototype.roundId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * FindLuckyDrawArgs userId.
+         * @member {number|Long} userId
+         * @memberof pblucky.FindLuckyDrawArgs
+         * @instance
+         */
+        FindLuckyDrawArgs.prototype.userId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * FindLuckyDrawArgs startDate.
+         * @member {string} startDate
+         * @memberof pblucky.FindLuckyDrawArgs
+         * @instance
+         */
+        FindLuckyDrawArgs.prototype.startDate = "";
+
+        /**
+         * FindLuckyDrawArgs endDate.
+         * @member {string} endDate
+         * @memberof pblucky.FindLuckyDrawArgs
+         * @instance
+         */
+        FindLuckyDrawArgs.prototype.endDate = "";
+
+        /**
+         * Creates a new FindLuckyDrawArgs instance using the specified properties.
+         * @function create
+         * @memberof pblucky.FindLuckyDrawArgs
+         * @static
+         * @param {pblucky.IFindLuckyDrawArgs=} [properties] Properties to set
+         * @returns {pblucky.FindLuckyDrawArgs} FindLuckyDrawArgs instance
+         */
+        FindLuckyDrawArgs.create = function create(properties) {
+            return new FindLuckyDrawArgs(properties);
+        };
+
+        /**
+         * Encodes the specified FindLuckyDrawArgs message. Does not implicitly {@link pblucky.FindLuckyDrawArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pblucky.FindLuckyDrawArgs
+         * @static
+         * @param {pblucky.IFindLuckyDrawArgs} message FindLuckyDrawArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindLuckyDrawArgs.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.pageInfo != null && Object.hasOwnProperty.call(message, "pageInfo"))
+                $root.pbcommon.PageInfo.encode(message.pageInfo, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.query != null && Object.hasOwnProperty.call(message, "query"))
+                $root.pblucky.LuckyDrawModel.encode(message.query, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            if (message.keyword != null && Object.hasOwnProperty.call(message, "keyword"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.keyword);
+            if (message.fieldTypeList != null && message.fieldTypeList.length)
+                for (var i = 0; i < message.fieldTypeList.length; ++i)
+                    writer.uint32(/* id 4, wireType 2 =*/34).string(message.fieldTypeList[i]);
+            if (message.drawTypeList != null && message.drawTypeList.length)
+                for (var i = 0; i < message.drawTypeList.length; ++i)
+                    writer.uint32(/* id 5, wireType 2 =*/42).string(message.drawTypeList[i]);
+            if (message.roundId != null && Object.hasOwnProperty.call(message, "roundId"))
+                writer.uint32(/* id 6, wireType 0 =*/48).int64(message.roundId);
+            if (message.userId != null && Object.hasOwnProperty.call(message, "userId"))
+                writer.uint32(/* id 7, wireType 0 =*/56).int64(message.userId);
+            if (message.startDate != null && Object.hasOwnProperty.call(message, "startDate"))
+                writer.uint32(/* id 8, wireType 2 =*/66).string(message.startDate);
+            if (message.endDate != null && Object.hasOwnProperty.call(message, "endDate"))
+                writer.uint32(/* id 9, wireType 2 =*/74).string(message.endDate);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified FindLuckyDrawArgs message, length delimited. Does not implicitly {@link pblucky.FindLuckyDrawArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pblucky.FindLuckyDrawArgs
+         * @static
+         * @param {pblucky.IFindLuckyDrawArgs} message FindLuckyDrawArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindLuckyDrawArgs.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a FindLuckyDrawArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pblucky.FindLuckyDrawArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pblucky.FindLuckyDrawArgs} FindLuckyDrawArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindLuckyDrawArgs.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pblucky.FindLuckyDrawArgs();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.pageInfo = $root.pbcommon.PageInfo.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 2: {
+                        message.query = $root.pblucky.LuckyDrawModel.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 3: {
+                        message.keyword = reader.string();
+                        break;
+                    }
+                case 4: {
+                        if (!(message.fieldTypeList && message.fieldTypeList.length))
+                            message.fieldTypeList = [];
+                        message.fieldTypeList.push(reader.string());
+                        break;
+                    }
+                case 5: {
+                        if (!(message.drawTypeList && message.drawTypeList.length))
+                            message.drawTypeList = [];
+                        message.drawTypeList.push(reader.string());
+                        break;
+                    }
+                case 6: {
+                        message.roundId = reader.int64();
+                        break;
+                    }
+                case 7: {
+                        message.userId = reader.int64();
+                        break;
+                    }
+                case 8: {
+                        message.startDate = reader.string();
+                        break;
+                    }
+                case 9: {
+                        message.endDate = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a FindLuckyDrawArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pblucky.FindLuckyDrawArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pblucky.FindLuckyDrawArgs} FindLuckyDrawArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindLuckyDrawArgs.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a FindLuckyDrawArgs message.
+         * @function verify
+         * @memberof pblucky.FindLuckyDrawArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        FindLuckyDrawArgs.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.pageInfo != null && message.hasOwnProperty("pageInfo")) {
+                var error = $root.pbcommon.PageInfo.verify(message.pageInfo);
+                if (error)
+                    return "pageInfo." + error;
+            }
+            if (message.query != null && message.hasOwnProperty("query")) {
+                var error = $root.pblucky.LuckyDrawModel.verify(message.query);
+                if (error)
+                    return "query." + error;
+            }
+            if (message.keyword != null && message.hasOwnProperty("keyword"))
+                if (!$util.isString(message.keyword))
+                    return "keyword: string expected";
+            if (message.fieldTypeList != null && message.hasOwnProperty("fieldTypeList")) {
+                if (!Array.isArray(message.fieldTypeList))
+                    return "fieldTypeList: array expected";
+                for (var i = 0; i < message.fieldTypeList.length; ++i)
+                    if (!$util.isString(message.fieldTypeList[i]))
+                        return "fieldTypeList: string[] expected";
+            }
+            if (message.drawTypeList != null && message.hasOwnProperty("drawTypeList")) {
+                if (!Array.isArray(message.drawTypeList))
+                    return "drawTypeList: array expected";
+                for (var i = 0; i < message.drawTypeList.length; ++i)
+                    if (!$util.isString(message.drawTypeList[i]))
+                        return "drawTypeList: string[] expected";
+            }
+            if (message.roundId != null && message.hasOwnProperty("roundId"))
+                if (!$util.isInteger(message.roundId) && !(message.roundId && $util.isInteger(message.roundId.low) && $util.isInteger(message.roundId.high)))
+                    return "roundId: integer|Long expected";
+            if (message.userId != null && message.hasOwnProperty("userId"))
+                if (!$util.isInteger(message.userId) && !(message.userId && $util.isInteger(message.userId.low) && $util.isInteger(message.userId.high)))
+                    return "userId: integer|Long expected";
+            if (message.startDate != null && message.hasOwnProperty("startDate"))
+                if (!$util.isString(message.startDate))
+                    return "startDate: string expected";
+            if (message.endDate != null && message.hasOwnProperty("endDate"))
+                if (!$util.isString(message.endDate))
+                    return "endDate: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a FindLuckyDrawArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pblucky.FindLuckyDrawArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pblucky.FindLuckyDrawArgs} FindLuckyDrawArgs
+         */
+        FindLuckyDrawArgs.fromObject = function fromObject(object) {
+            if (object instanceof $root.pblucky.FindLuckyDrawArgs)
+                return object;
+            var message = new $root.pblucky.FindLuckyDrawArgs();
+            if (object.pageInfo != null) {
+                if (typeof object.pageInfo !== "object")
+                    throw TypeError(".pblucky.FindLuckyDrawArgs.pageInfo: object expected");
+                message.pageInfo = $root.pbcommon.PageInfo.fromObject(object.pageInfo);
+            }
+            if (object.query != null) {
+                if (typeof object.query !== "object")
+                    throw TypeError(".pblucky.FindLuckyDrawArgs.query: object expected");
+                message.query = $root.pblucky.LuckyDrawModel.fromObject(object.query);
+            }
+            if (object.keyword != null)
+                message.keyword = String(object.keyword);
+            if (object.fieldTypeList) {
+                if (!Array.isArray(object.fieldTypeList))
+                    throw TypeError(".pblucky.FindLuckyDrawArgs.fieldTypeList: array expected");
+                message.fieldTypeList = [];
+                for (var i = 0; i < object.fieldTypeList.length; ++i)
+                    message.fieldTypeList[i] = String(object.fieldTypeList[i]);
+            }
+            if (object.drawTypeList) {
+                if (!Array.isArray(object.drawTypeList))
+                    throw TypeError(".pblucky.FindLuckyDrawArgs.drawTypeList: array expected");
+                message.drawTypeList = [];
+                for (var i = 0; i < object.drawTypeList.length; ++i)
+                    message.drawTypeList[i] = String(object.drawTypeList[i]);
+            }
+            if (object.roundId != null)
+                if ($util.Long)
+                    (message.roundId = $util.Long.fromValue(object.roundId)).unsigned = false;
+                else if (typeof object.roundId === "string")
+                    message.roundId = parseInt(object.roundId, 10);
+                else if (typeof object.roundId === "number")
+                    message.roundId = object.roundId;
+                else if (typeof object.roundId === "object")
+                    message.roundId = new $util.LongBits(object.roundId.low >>> 0, object.roundId.high >>> 0).toNumber();
+            if (object.userId != null)
+                if ($util.Long)
+                    (message.userId = $util.Long.fromValue(object.userId)).unsigned = false;
+                else if (typeof object.userId === "string")
+                    message.userId = parseInt(object.userId, 10);
+                else if (typeof object.userId === "number")
+                    message.userId = object.userId;
+                else if (typeof object.userId === "object")
+                    message.userId = new $util.LongBits(object.userId.low >>> 0, object.userId.high >>> 0).toNumber();
+            if (object.startDate != null)
+                message.startDate = String(object.startDate);
+            if (object.endDate != null)
+                message.endDate = String(object.endDate);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a FindLuckyDrawArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pblucky.FindLuckyDrawArgs
+         * @static
+         * @param {pblucky.FindLuckyDrawArgs} message FindLuckyDrawArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FindLuckyDrawArgs.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults) {
+                object.fieldTypeList = [];
+                object.drawTypeList = [];
+            }
+            if (options.defaults) {
+                object.pageInfo = null;
+                object.query = null;
+                object.keyword = "";
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.roundId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.roundId = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.userId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.userId = options.longs === String ? "0" : 0;
+                object.startDate = "";
+                object.endDate = "";
+            }
+            if (message.pageInfo != null && message.hasOwnProperty("pageInfo"))
+                object.pageInfo = $root.pbcommon.PageInfo.toObject(message.pageInfo, options);
+            if (message.query != null && message.hasOwnProperty("query"))
+                object.query = $root.pblucky.LuckyDrawModel.toObject(message.query, options);
+            if (message.keyword != null && message.hasOwnProperty("keyword"))
+                object.keyword = message.keyword;
+            if (message.fieldTypeList && message.fieldTypeList.length) {
+                object.fieldTypeList = [];
+                for (var j = 0; j < message.fieldTypeList.length; ++j)
+                    object.fieldTypeList[j] = message.fieldTypeList[j];
+            }
+            if (message.drawTypeList && message.drawTypeList.length) {
+                object.drawTypeList = [];
+                for (var j = 0; j < message.drawTypeList.length; ++j)
+                    object.drawTypeList[j] = message.drawTypeList[j];
+            }
+            if (message.roundId != null && message.hasOwnProperty("roundId"))
+                if (typeof message.roundId === "number")
+                    object.roundId = options.longs === String ? String(message.roundId) : message.roundId;
+                else
+                    object.roundId = options.longs === String ? $util.Long.prototype.toString.call(message.roundId) : options.longs === Number ? new $util.LongBits(message.roundId.low >>> 0, message.roundId.high >>> 0).toNumber() : message.roundId;
+            if (message.userId != null && message.hasOwnProperty("userId"))
+                if (typeof message.userId === "number")
+                    object.userId = options.longs === String ? String(message.userId) : message.userId;
+                else
+                    object.userId = options.longs === String ? $util.Long.prototype.toString.call(message.userId) : options.longs === Number ? new $util.LongBits(message.userId.low >>> 0, message.userId.high >>> 0).toNumber() : message.userId;
+            if (message.startDate != null && message.hasOwnProperty("startDate"))
+                object.startDate = message.startDate;
+            if (message.endDate != null && message.hasOwnProperty("endDate"))
+                object.endDate = message.endDate;
+            return object;
+        };
+
+        /**
+         * Converts this FindLuckyDrawArgs to JSON.
+         * @function toJSON
+         * @memberof pblucky.FindLuckyDrawArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        FindLuckyDrawArgs.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for FindLuckyDrawArgs
+         * @function getTypeUrl
+         * @memberof pblucky.FindLuckyDrawArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        FindLuckyDrawArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pblucky.FindLuckyDrawArgs";
+        };
+
+        return FindLuckyDrawArgs;
+    })();
+
+    pblucky.FindLuckyDrawReply = (function() {
+
+        /**
+         * Properties of a FindLuckyDrawReply.
+         * @memberof pblucky
+         * @interface IFindLuckyDrawReply
+         * @property {pbcommon.EnumCode|null} [code] FindLuckyDrawReply code
+         * @property {string|null} [msg] FindLuckyDrawReply msg
+         * @property {pblucky.ILuckyDrawModel|null} [data] FindLuckyDrawReply data
+         * @property {Array.<pblucky.ILuckyDrawModel>|null} [list] FindLuckyDrawReply list
+         * @property {number|Long|null} [total] FindLuckyDrawReply total
+         */
+
+        /**
+         * Constructs a new FindLuckyDrawReply.
+         * @memberof pblucky
+         * @classdesc Represents a FindLuckyDrawReply.
+         * @implements IFindLuckyDrawReply
+         * @constructor
+         * @param {pblucky.IFindLuckyDrawReply=} [properties] Properties to set
+         */
+        function FindLuckyDrawReply(properties) {
+            this.list = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * FindLuckyDrawReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pblucky.FindLuckyDrawReply
+         * @instance
+         */
+        FindLuckyDrawReply.prototype.code = 0;
+
+        /**
+         * FindLuckyDrawReply msg.
+         * @member {string} msg
+         * @memberof pblucky.FindLuckyDrawReply
+         * @instance
+         */
+        FindLuckyDrawReply.prototype.msg = "";
+
+        /**
+         * FindLuckyDrawReply data.
+         * @member {pblucky.ILuckyDrawModel|null|undefined} data
+         * @memberof pblucky.FindLuckyDrawReply
+         * @instance
+         */
+        FindLuckyDrawReply.prototype.data = null;
+
+        /**
+         * FindLuckyDrawReply list.
+         * @member {Array.<pblucky.ILuckyDrawModel>} list
+         * @memberof pblucky.FindLuckyDrawReply
+         * @instance
+         */
+        FindLuckyDrawReply.prototype.list = $util.emptyArray;
+
+        /**
+         * FindLuckyDrawReply total.
+         * @member {number|Long} total
+         * @memberof pblucky.FindLuckyDrawReply
+         * @instance
+         */
+        FindLuckyDrawReply.prototype.total = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * Creates a new FindLuckyDrawReply instance using the specified properties.
+         * @function create
+         * @memberof pblucky.FindLuckyDrawReply
+         * @static
+         * @param {pblucky.IFindLuckyDrawReply=} [properties] Properties to set
+         * @returns {pblucky.FindLuckyDrawReply} FindLuckyDrawReply instance
+         */
+        FindLuckyDrawReply.create = function create(properties) {
+            return new FindLuckyDrawReply(properties);
+        };
+
+        /**
+         * Encodes the specified FindLuckyDrawReply message. Does not implicitly {@link pblucky.FindLuckyDrawReply.verify|verify} messages.
+         * @function encode
+         * @memberof pblucky.FindLuckyDrawReply
+         * @static
+         * @param {pblucky.IFindLuckyDrawReply} message FindLuckyDrawReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindLuckyDrawReply.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.data != null && Object.hasOwnProperty.call(message, "data"))
+                $root.pblucky.LuckyDrawModel.encode(message.data, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            if (message.list != null && message.list.length)
+                for (var i = 0; i < message.list.length; ++i)
+                    $root.pblucky.LuckyDrawModel.encode(message.list[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+            if (message.total != null && Object.hasOwnProperty.call(message, "total"))
+                writer.uint32(/* id 5, wireType 0 =*/40).int64(message.total);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified FindLuckyDrawReply message, length delimited. Does not implicitly {@link pblucky.FindLuckyDrawReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pblucky.FindLuckyDrawReply
+         * @static
+         * @param {pblucky.IFindLuckyDrawReply} message FindLuckyDrawReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindLuckyDrawReply.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a FindLuckyDrawReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pblucky.FindLuckyDrawReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pblucky.FindLuckyDrawReply} FindLuckyDrawReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindLuckyDrawReply.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pblucky.FindLuckyDrawReply();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.code = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.data = $root.pblucky.LuckyDrawModel.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 4: {
+                        if (!(message.list && message.list.length))
+                            message.list = [];
+                        message.list.push($root.pblucky.LuckyDrawModel.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 5: {
+                        message.total = reader.int64();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a FindLuckyDrawReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pblucky.FindLuckyDrawReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pblucky.FindLuckyDrawReply} FindLuckyDrawReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindLuckyDrawReply.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a FindLuckyDrawReply message.
+         * @function verify
+         * @memberof pblucky.FindLuckyDrawReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        FindLuckyDrawReply.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.code != null && message.hasOwnProperty("code"))
+                switch (message.code) {
+                default:
+                    return "code: enum value expected";
+                case 0:
+                case 200:
+                case 403:
+                case 500:
+                case 501:
+                case 502:
+                case 503:
+                case 504:
+                case 505:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
+                case 2002:
+                case 2003:
+                case 2004:
+                case 2005:
+                case 2006:
+                case 2007:
+                case 2008:
+                case 2009:
+                case 2010:
+                case 2011:
+                case 2012:
+                case 2013:
+                case 2014:
+                case 2015:
+                case 3001:
+                case 3002:
+                case 3003:
+                case 5001:
+                case 5002:
+                case 10001:
+                case 10002:
+                case 20001:
+                case 20002:
+                    break;
+                }
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                if (!$util.isString(message.msg))
+                    return "msg: string expected";
+            if (message.data != null && message.hasOwnProperty("data")) {
+                var error = $root.pblucky.LuckyDrawModel.verify(message.data);
+                if (error)
+                    return "data." + error;
+            }
+            if (message.list != null && message.hasOwnProperty("list")) {
+                if (!Array.isArray(message.list))
+                    return "list: array expected";
+                for (var i = 0; i < message.list.length; ++i) {
+                    var error = $root.pblucky.LuckyDrawModel.verify(message.list[i]);
+                    if (error)
+                        return "list." + error;
+                }
+            }
+            if (message.total != null && message.hasOwnProperty("total"))
+                if (!$util.isInteger(message.total) && !(message.total && $util.isInteger(message.total.low) && $util.isInteger(message.total.high)))
+                    return "total: integer|Long expected";
+            return null;
+        };
+
+        /**
+         * Creates a FindLuckyDrawReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pblucky.FindLuckyDrawReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pblucky.FindLuckyDrawReply} FindLuckyDrawReply
+         */
+        FindLuckyDrawReply.fromObject = function fromObject(object) {
+            if (object instanceof $root.pblucky.FindLuckyDrawReply)
+                return object;
+            var message = new $root.pblucky.FindLuckyDrawReply();
+            switch (object.code) {
+            default:
+                if (typeof object.code === "number") {
+                    message.code = object.code;
+                    break;
+                }
+                break;
+            case "None":
+            case 0:
+                message.code = 0;
+                break;
+            case "Success":
+            case 200:
+                message.code = 200;
+                break;
+            case "Forbidden":
+            case 403:
+                message.code = 403;
+                break;
+            case "Fail":
+            case 500:
+                message.code = 500;
+                break;
+            case "Unknown":
+            case 501:
+                message.code = 501;
+                break;
+            case "Internal":
+            case 502:
+                message.code = 502;
+                break;
+            case "Invalid":
+            case 503:
+                message.code = 503;
+                break;
+            case "InvalidParam":
+            case 504:
+                message.code = 504;
+                break;
+            case "ParamError":
+            case 505:
+                message.code = 505;
+                break;
+            case "FindError":
+            case 1001:
+                message.code = 1001;
+                break;
+            case "CreateError":
+            case 1002:
+                message.code = 1002;
+                break;
+            case "DeleteError":
+            case 1003:
+                message.code = 1003;
+                break;
+            case "UpdateError":
+            case 1004:
+                message.code = 1004;
+                break;
+            case "InvalidToken":
+            case 2002:
+                message.code = 2002;
+                break;
+            case "InvalidSign":
+            case 2003:
+                message.code = 2003;
+                break;
+            case "NotLogin":
+            case 2004:
+                message.code = 2004;
+                break;
+            case "LoginTimeout":
+            case 2005:
+                message.code = 2005;
+                break;
+            case "LoginError":
+            case 2006:
+                message.code = 2006;
+                break;
+            case "LoginForbidden":
+            case 2007:
+                message.code = 2007;
+                break;
+            case "LoginExpired":
+            case 2008:
+                message.code = 2008;
+                break;
+            case "LoginInvalid":
+            case 2009:
+                message.code = 2009;
+                break;
+            case "LoginInvalidPassword":
+            case 2010:
+                message.code = 2010;
+                break;
+            case "LoginInvalidUsername":
+            case 2011:
+                message.code = 2011;
+                break;
+            case "LoginInvalidEmail":
+            case 2012:
+                message.code = 2012;
+                break;
+            case "LoginInvalidPhone":
+            case 2013:
+                message.code = 2013;
+                break;
+            case "LoginInvalidUsernameOrEmail":
+            case 2014:
+                message.code = 2014;
+                break;
+            case "LoginSocketRepeat":
+            case 2015:
+                message.code = 2015;
+                break;
+            case "RoleIsNotExist":
+            case 3001:
+                message.code = 3001;
+                break;
+            case "UserIsExist":
+            case 3002:
+                message.code = 3002;
+                break;
+            case "UserIsBan":
+            case 3003:
+                message.code = 3003;
+                break;
+            case "TalkIsBan":
+            case 5001:
+                message.code = 5001;
+                break;
+            case "EnterRoomErr":
+            case 5002:
+                message.code = 5002;
+                break;
+            case "HalaChatNeedBuy":
+            case 10001:
+                message.code = 10001;
+                break;
+            case "HalaPriceOutRange":
+            case 10002:
+                message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            }
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.data != null) {
+                if (typeof object.data !== "object")
+                    throw TypeError(".pblucky.FindLuckyDrawReply.data: object expected");
+                message.data = $root.pblucky.LuckyDrawModel.fromObject(object.data);
+            }
+            if (object.list) {
+                if (!Array.isArray(object.list))
+                    throw TypeError(".pblucky.FindLuckyDrawReply.list: array expected");
+                message.list = [];
+                for (var i = 0; i < object.list.length; ++i) {
+                    if (typeof object.list[i] !== "object")
+                        throw TypeError(".pblucky.FindLuckyDrawReply.list: object expected");
+                    message.list[i] = $root.pblucky.LuckyDrawModel.fromObject(object.list[i]);
+                }
+            }
+            if (object.total != null)
+                if ($util.Long)
+                    (message.total = $util.Long.fromValue(object.total)).unsigned = false;
+                else if (typeof object.total === "string")
+                    message.total = parseInt(object.total, 10);
+                else if (typeof object.total === "number")
+                    message.total = object.total;
+                else if (typeof object.total === "object")
+                    message.total = new $util.LongBits(object.total.low >>> 0, object.total.high >>> 0).toNumber();
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a FindLuckyDrawReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pblucky.FindLuckyDrawReply
+         * @static
+         * @param {pblucky.FindLuckyDrawReply} message FindLuckyDrawReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FindLuckyDrawReply.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.list = [];
+            if (options.defaults) {
+                object.code = options.enums === String ? "None" : 0;
+                object.msg = "";
+                object.data = null;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.total = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.total = options.longs === String ? "0" : 0;
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.data != null && message.hasOwnProperty("data"))
+                object.data = $root.pblucky.LuckyDrawModel.toObject(message.data, options);
+            if (message.list && message.list.length) {
+                object.list = [];
+                for (var j = 0; j < message.list.length; ++j)
+                    object.list[j] = $root.pblucky.LuckyDrawModel.toObject(message.list[j], options);
+            }
+            if (message.total != null && message.hasOwnProperty("total"))
+                if (typeof message.total === "number")
+                    object.total = options.longs === String ? String(message.total) : message.total;
+                else
+                    object.total = options.longs === String ? $util.Long.prototype.toString.call(message.total) : options.longs === Number ? new $util.LongBits(message.total.low >>> 0, message.total.high >>> 0).toNumber() : message.total;
+            return object;
+        };
+
+        /**
+         * Converts this FindLuckyDrawReply to JSON.
+         * @function toJSON
+         * @memberof pblucky.FindLuckyDrawReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        FindLuckyDrawReply.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for FindLuckyDrawReply
+         * @function getTypeUrl
+         * @memberof pblucky.FindLuckyDrawReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        FindLuckyDrawReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pblucky.FindLuckyDrawReply";
+        };
+
+        return FindLuckyDrawReply;
+    })();
+
+    pblucky.LuckyStatisticsModel = (function() {
+
+        /**
+         * Properties of a LuckyStatisticsModel.
+         * @memberof pblucky
+         * @interface ILuckyStatisticsModel
+         * @property {pblucky.ILuckyRoundModel|null} [currentRound] LuckyStatisticsModel currentRound
+         * @property {number|Long|null} [totalDraws] LuckyStatisticsModel totalDraws
+         * @property {number|Long|null} [totalPayout] LuckyStatisticsModel totalPayout
+         * @property {number|Long|null} [totalRounds] LuckyStatisticsModel totalRounds
+         * @property {number|Long|null} [completedRounds] LuckyStatisticsModel completedRounds
+         */
+
+        /**
+         * Constructs a new LuckyStatisticsModel.
+         * @memberof pblucky
+         * @classdesc Represents a LuckyStatisticsModel.
+         * @implements ILuckyStatisticsModel
+         * @constructor
+         * @param {pblucky.ILuckyStatisticsModel=} [properties] Properties to set
+         */
+        function LuckyStatisticsModel(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * LuckyStatisticsModel currentRound.
+         * @member {pblucky.ILuckyRoundModel|null|undefined} currentRound
+         * @memberof pblucky.LuckyStatisticsModel
+         * @instance
+         */
+        LuckyStatisticsModel.prototype.currentRound = null;
+
+        /**
+         * LuckyStatisticsModel totalDraws.
+         * @member {number|Long} totalDraws
+         * @memberof pblucky.LuckyStatisticsModel
+         * @instance
+         */
+        LuckyStatisticsModel.prototype.totalDraws = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * LuckyStatisticsModel totalPayout.
+         * @member {number|Long} totalPayout
+         * @memberof pblucky.LuckyStatisticsModel
+         * @instance
+         */
+        LuckyStatisticsModel.prototype.totalPayout = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * LuckyStatisticsModel totalRounds.
+         * @member {number|Long} totalRounds
+         * @memberof pblucky.LuckyStatisticsModel
+         * @instance
+         */
+        LuckyStatisticsModel.prototype.totalRounds = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * LuckyStatisticsModel completedRounds.
+         * @member {number|Long} completedRounds
+         * @memberof pblucky.LuckyStatisticsModel
+         * @instance
+         */
+        LuckyStatisticsModel.prototype.completedRounds = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * Creates a new LuckyStatisticsModel instance using the specified properties.
+         * @function create
+         * @memberof pblucky.LuckyStatisticsModel
+         * @static
+         * @param {pblucky.ILuckyStatisticsModel=} [properties] Properties to set
+         * @returns {pblucky.LuckyStatisticsModel} LuckyStatisticsModel instance
+         */
+        LuckyStatisticsModel.create = function create(properties) {
+            return new LuckyStatisticsModel(properties);
+        };
+
+        /**
+         * Encodes the specified LuckyStatisticsModel message. Does not implicitly {@link pblucky.LuckyStatisticsModel.verify|verify} messages.
+         * @function encode
+         * @memberof pblucky.LuckyStatisticsModel
+         * @static
+         * @param {pblucky.ILuckyStatisticsModel} message LuckyStatisticsModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        LuckyStatisticsModel.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.currentRound != null && Object.hasOwnProperty.call(message, "currentRound"))
+                $root.pblucky.LuckyRoundModel.encode(message.currentRound, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.totalDraws != null && Object.hasOwnProperty.call(message, "totalDraws"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int64(message.totalDraws);
+            if (message.totalPayout != null && Object.hasOwnProperty.call(message, "totalPayout"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int64(message.totalPayout);
+            if (message.totalRounds != null && Object.hasOwnProperty.call(message, "totalRounds"))
+                writer.uint32(/* id 4, wireType 0 =*/32).int64(message.totalRounds);
+            if (message.completedRounds != null && Object.hasOwnProperty.call(message, "completedRounds"))
+                writer.uint32(/* id 5, wireType 0 =*/40).int64(message.completedRounds);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified LuckyStatisticsModel message, length delimited. Does not implicitly {@link pblucky.LuckyStatisticsModel.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pblucky.LuckyStatisticsModel
+         * @static
+         * @param {pblucky.ILuckyStatisticsModel} message LuckyStatisticsModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        LuckyStatisticsModel.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a LuckyStatisticsModel message from the specified reader or buffer.
+         * @function decode
+         * @memberof pblucky.LuckyStatisticsModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pblucky.LuckyStatisticsModel} LuckyStatisticsModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        LuckyStatisticsModel.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pblucky.LuckyStatisticsModel();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.currentRound = $root.pblucky.LuckyRoundModel.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 2: {
+                        message.totalDraws = reader.int64();
+                        break;
+                    }
+                case 3: {
+                        message.totalPayout = reader.int64();
+                        break;
+                    }
+                case 4: {
+                        message.totalRounds = reader.int64();
+                        break;
+                    }
+                case 5: {
+                        message.completedRounds = reader.int64();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a LuckyStatisticsModel message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pblucky.LuckyStatisticsModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pblucky.LuckyStatisticsModel} LuckyStatisticsModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        LuckyStatisticsModel.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a LuckyStatisticsModel message.
+         * @function verify
+         * @memberof pblucky.LuckyStatisticsModel
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        LuckyStatisticsModel.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.currentRound != null && message.hasOwnProperty("currentRound")) {
+                var error = $root.pblucky.LuckyRoundModel.verify(message.currentRound);
+                if (error)
+                    return "currentRound." + error;
+            }
+            if (message.totalDraws != null && message.hasOwnProperty("totalDraws"))
+                if (!$util.isInteger(message.totalDraws) && !(message.totalDraws && $util.isInteger(message.totalDraws.low) && $util.isInteger(message.totalDraws.high)))
+                    return "totalDraws: integer|Long expected";
+            if (message.totalPayout != null && message.hasOwnProperty("totalPayout"))
+                if (!$util.isInteger(message.totalPayout) && !(message.totalPayout && $util.isInteger(message.totalPayout.low) && $util.isInteger(message.totalPayout.high)))
+                    return "totalPayout: integer|Long expected";
+            if (message.totalRounds != null && message.hasOwnProperty("totalRounds"))
+                if (!$util.isInteger(message.totalRounds) && !(message.totalRounds && $util.isInteger(message.totalRounds.low) && $util.isInteger(message.totalRounds.high)))
+                    return "totalRounds: integer|Long expected";
+            if (message.completedRounds != null && message.hasOwnProperty("completedRounds"))
+                if (!$util.isInteger(message.completedRounds) && !(message.completedRounds && $util.isInteger(message.completedRounds.low) && $util.isInteger(message.completedRounds.high)))
+                    return "completedRounds: integer|Long expected";
+            return null;
+        };
+
+        /**
+         * Creates a LuckyStatisticsModel message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pblucky.LuckyStatisticsModel
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pblucky.LuckyStatisticsModel} LuckyStatisticsModel
+         */
+        LuckyStatisticsModel.fromObject = function fromObject(object) {
+            if (object instanceof $root.pblucky.LuckyStatisticsModel)
+                return object;
+            var message = new $root.pblucky.LuckyStatisticsModel();
+            if (object.currentRound != null) {
+                if (typeof object.currentRound !== "object")
+                    throw TypeError(".pblucky.LuckyStatisticsModel.currentRound: object expected");
+                message.currentRound = $root.pblucky.LuckyRoundModel.fromObject(object.currentRound);
+            }
+            if (object.totalDraws != null)
+                if ($util.Long)
+                    (message.totalDraws = $util.Long.fromValue(object.totalDraws)).unsigned = false;
+                else if (typeof object.totalDraws === "string")
+                    message.totalDraws = parseInt(object.totalDraws, 10);
+                else if (typeof object.totalDraws === "number")
+                    message.totalDraws = object.totalDraws;
+                else if (typeof object.totalDraws === "object")
+                    message.totalDraws = new $util.LongBits(object.totalDraws.low >>> 0, object.totalDraws.high >>> 0).toNumber();
+            if (object.totalPayout != null)
+                if ($util.Long)
+                    (message.totalPayout = $util.Long.fromValue(object.totalPayout)).unsigned = false;
+                else if (typeof object.totalPayout === "string")
+                    message.totalPayout = parseInt(object.totalPayout, 10);
+                else if (typeof object.totalPayout === "number")
+                    message.totalPayout = object.totalPayout;
+                else if (typeof object.totalPayout === "object")
+                    message.totalPayout = new $util.LongBits(object.totalPayout.low >>> 0, object.totalPayout.high >>> 0).toNumber();
+            if (object.totalRounds != null)
+                if ($util.Long)
+                    (message.totalRounds = $util.Long.fromValue(object.totalRounds)).unsigned = false;
+                else if (typeof object.totalRounds === "string")
+                    message.totalRounds = parseInt(object.totalRounds, 10);
+                else if (typeof object.totalRounds === "number")
+                    message.totalRounds = object.totalRounds;
+                else if (typeof object.totalRounds === "object")
+                    message.totalRounds = new $util.LongBits(object.totalRounds.low >>> 0, object.totalRounds.high >>> 0).toNumber();
+            if (object.completedRounds != null)
+                if ($util.Long)
+                    (message.completedRounds = $util.Long.fromValue(object.completedRounds)).unsigned = false;
+                else if (typeof object.completedRounds === "string")
+                    message.completedRounds = parseInt(object.completedRounds, 10);
+                else if (typeof object.completedRounds === "number")
+                    message.completedRounds = object.completedRounds;
+                else if (typeof object.completedRounds === "object")
+                    message.completedRounds = new $util.LongBits(object.completedRounds.low >>> 0, object.completedRounds.high >>> 0).toNumber();
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a LuckyStatisticsModel message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pblucky.LuckyStatisticsModel
+         * @static
+         * @param {pblucky.LuckyStatisticsModel} message LuckyStatisticsModel
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        LuckyStatisticsModel.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.currentRound = null;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.totalDraws = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.totalDraws = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.totalPayout = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.totalPayout = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.totalRounds = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.totalRounds = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.completedRounds = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.completedRounds = options.longs === String ? "0" : 0;
+            }
+            if (message.currentRound != null && message.hasOwnProperty("currentRound"))
+                object.currentRound = $root.pblucky.LuckyRoundModel.toObject(message.currentRound, options);
+            if (message.totalDraws != null && message.hasOwnProperty("totalDraws"))
+                if (typeof message.totalDraws === "number")
+                    object.totalDraws = options.longs === String ? String(message.totalDraws) : message.totalDraws;
+                else
+                    object.totalDraws = options.longs === String ? $util.Long.prototype.toString.call(message.totalDraws) : options.longs === Number ? new $util.LongBits(message.totalDraws.low >>> 0, message.totalDraws.high >>> 0).toNumber() : message.totalDraws;
+            if (message.totalPayout != null && message.hasOwnProperty("totalPayout"))
+                if (typeof message.totalPayout === "number")
+                    object.totalPayout = options.longs === String ? String(message.totalPayout) : message.totalPayout;
+                else
+                    object.totalPayout = options.longs === String ? $util.Long.prototype.toString.call(message.totalPayout) : options.longs === Number ? new $util.LongBits(message.totalPayout.low >>> 0, message.totalPayout.high >>> 0).toNumber() : message.totalPayout;
+            if (message.totalRounds != null && message.hasOwnProperty("totalRounds"))
+                if (typeof message.totalRounds === "number")
+                    object.totalRounds = options.longs === String ? String(message.totalRounds) : message.totalRounds;
+                else
+                    object.totalRounds = options.longs === String ? $util.Long.prototype.toString.call(message.totalRounds) : options.longs === Number ? new $util.LongBits(message.totalRounds.low >>> 0, message.totalRounds.high >>> 0).toNumber() : message.totalRounds;
+            if (message.completedRounds != null && message.hasOwnProperty("completedRounds"))
+                if (typeof message.completedRounds === "number")
+                    object.completedRounds = options.longs === String ? String(message.completedRounds) : message.completedRounds;
+                else
+                    object.completedRounds = options.longs === String ? $util.Long.prototype.toString.call(message.completedRounds) : options.longs === Number ? new $util.LongBits(message.completedRounds.low >>> 0, message.completedRounds.high >>> 0).toNumber() : message.completedRounds;
+            return object;
+        };
+
+        /**
+         * Converts this LuckyStatisticsModel to JSON.
+         * @function toJSON
+         * @memberof pblucky.LuckyStatisticsModel
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        LuckyStatisticsModel.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for LuckyStatisticsModel
+         * @function getTypeUrl
+         * @memberof pblucky.LuckyStatisticsModel
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        LuckyStatisticsModel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pblucky.LuckyStatisticsModel";
+        };
+
+        return LuckyStatisticsModel;
+    })();
+
+    pblucky.GetLuckyStatisticsArgs = (function() {
+
+        /**
+         * Properties of a GetLuckyStatisticsArgs.
+         * @memberof pblucky
+         * @interface IGetLuckyStatisticsArgs
+         * @property {string|null} [fieldType] GetLuckyStatisticsArgs fieldType
+         */
+
+        /**
+         * Constructs a new GetLuckyStatisticsArgs.
+         * @memberof pblucky
+         * @classdesc Represents a GetLuckyStatisticsArgs.
+         * @implements IGetLuckyStatisticsArgs
+         * @constructor
+         * @param {pblucky.IGetLuckyStatisticsArgs=} [properties] Properties to set
+         */
+        function GetLuckyStatisticsArgs(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GetLuckyStatisticsArgs fieldType.
+         * @member {string} fieldType
+         * @memberof pblucky.GetLuckyStatisticsArgs
+         * @instance
+         */
+        GetLuckyStatisticsArgs.prototype.fieldType = "";
+
+        /**
+         * Creates a new GetLuckyStatisticsArgs instance using the specified properties.
+         * @function create
+         * @memberof pblucky.GetLuckyStatisticsArgs
+         * @static
+         * @param {pblucky.IGetLuckyStatisticsArgs=} [properties] Properties to set
+         * @returns {pblucky.GetLuckyStatisticsArgs} GetLuckyStatisticsArgs instance
+         */
+        GetLuckyStatisticsArgs.create = function create(properties) {
+            return new GetLuckyStatisticsArgs(properties);
+        };
+
+        /**
+         * Encodes the specified GetLuckyStatisticsArgs message. Does not implicitly {@link pblucky.GetLuckyStatisticsArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pblucky.GetLuckyStatisticsArgs
+         * @static
+         * @param {pblucky.IGetLuckyStatisticsArgs} message GetLuckyStatisticsArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetLuckyStatisticsArgs.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.fieldType != null && Object.hasOwnProperty.call(message, "fieldType"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.fieldType);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GetLuckyStatisticsArgs message, length delimited. Does not implicitly {@link pblucky.GetLuckyStatisticsArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pblucky.GetLuckyStatisticsArgs
+         * @static
+         * @param {pblucky.IGetLuckyStatisticsArgs} message GetLuckyStatisticsArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetLuckyStatisticsArgs.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GetLuckyStatisticsArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pblucky.GetLuckyStatisticsArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pblucky.GetLuckyStatisticsArgs} GetLuckyStatisticsArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetLuckyStatisticsArgs.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pblucky.GetLuckyStatisticsArgs();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.fieldType = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GetLuckyStatisticsArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pblucky.GetLuckyStatisticsArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pblucky.GetLuckyStatisticsArgs} GetLuckyStatisticsArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetLuckyStatisticsArgs.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GetLuckyStatisticsArgs message.
+         * @function verify
+         * @memberof pblucky.GetLuckyStatisticsArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GetLuckyStatisticsArgs.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.fieldType != null && message.hasOwnProperty("fieldType"))
+                if (!$util.isString(message.fieldType))
+                    return "fieldType: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a GetLuckyStatisticsArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pblucky.GetLuckyStatisticsArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pblucky.GetLuckyStatisticsArgs} GetLuckyStatisticsArgs
+         */
+        GetLuckyStatisticsArgs.fromObject = function fromObject(object) {
+            if (object instanceof $root.pblucky.GetLuckyStatisticsArgs)
+                return object;
+            var message = new $root.pblucky.GetLuckyStatisticsArgs();
+            if (object.fieldType != null)
+                message.fieldType = String(object.fieldType);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GetLuckyStatisticsArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pblucky.GetLuckyStatisticsArgs
+         * @static
+         * @param {pblucky.GetLuckyStatisticsArgs} message GetLuckyStatisticsArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GetLuckyStatisticsArgs.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.fieldType = "";
+            if (message.fieldType != null && message.hasOwnProperty("fieldType"))
+                object.fieldType = message.fieldType;
+            return object;
+        };
+
+        /**
+         * Converts this GetLuckyStatisticsArgs to JSON.
+         * @function toJSON
+         * @memberof pblucky.GetLuckyStatisticsArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GetLuckyStatisticsArgs.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GetLuckyStatisticsArgs
+         * @function getTypeUrl
+         * @memberof pblucky.GetLuckyStatisticsArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GetLuckyStatisticsArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pblucky.GetLuckyStatisticsArgs";
+        };
+
+        return GetLuckyStatisticsArgs;
+    })();
+
+    pblucky.GetLuckyStatisticsReply = (function() {
+
+        /**
+         * Properties of a GetLuckyStatisticsReply.
+         * @memberof pblucky
+         * @interface IGetLuckyStatisticsReply
+         * @property {pbcommon.EnumCode|null} [code] GetLuckyStatisticsReply code
+         * @property {string|null} [msg] GetLuckyStatisticsReply msg
+         * @property {pblucky.ILuckyStatisticsModel|null} [data] GetLuckyStatisticsReply data
+         */
+
+        /**
+         * Constructs a new GetLuckyStatisticsReply.
+         * @memberof pblucky
+         * @classdesc Represents a GetLuckyStatisticsReply.
+         * @implements IGetLuckyStatisticsReply
+         * @constructor
+         * @param {pblucky.IGetLuckyStatisticsReply=} [properties] Properties to set
+         */
+        function GetLuckyStatisticsReply(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GetLuckyStatisticsReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pblucky.GetLuckyStatisticsReply
+         * @instance
+         */
+        GetLuckyStatisticsReply.prototype.code = 0;
+
+        /**
+         * GetLuckyStatisticsReply msg.
+         * @member {string} msg
+         * @memberof pblucky.GetLuckyStatisticsReply
+         * @instance
+         */
+        GetLuckyStatisticsReply.prototype.msg = "";
+
+        /**
+         * GetLuckyStatisticsReply data.
+         * @member {pblucky.ILuckyStatisticsModel|null|undefined} data
+         * @memberof pblucky.GetLuckyStatisticsReply
+         * @instance
+         */
+        GetLuckyStatisticsReply.prototype.data = null;
+
+        /**
+         * Creates a new GetLuckyStatisticsReply instance using the specified properties.
+         * @function create
+         * @memberof pblucky.GetLuckyStatisticsReply
+         * @static
+         * @param {pblucky.IGetLuckyStatisticsReply=} [properties] Properties to set
+         * @returns {pblucky.GetLuckyStatisticsReply} GetLuckyStatisticsReply instance
+         */
+        GetLuckyStatisticsReply.create = function create(properties) {
+            return new GetLuckyStatisticsReply(properties);
+        };
+
+        /**
+         * Encodes the specified GetLuckyStatisticsReply message. Does not implicitly {@link pblucky.GetLuckyStatisticsReply.verify|verify} messages.
+         * @function encode
+         * @memberof pblucky.GetLuckyStatisticsReply
+         * @static
+         * @param {pblucky.IGetLuckyStatisticsReply} message GetLuckyStatisticsReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetLuckyStatisticsReply.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.data != null && Object.hasOwnProperty.call(message, "data"))
+                $root.pblucky.LuckyStatisticsModel.encode(message.data, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GetLuckyStatisticsReply message, length delimited. Does not implicitly {@link pblucky.GetLuckyStatisticsReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pblucky.GetLuckyStatisticsReply
+         * @static
+         * @param {pblucky.IGetLuckyStatisticsReply} message GetLuckyStatisticsReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetLuckyStatisticsReply.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GetLuckyStatisticsReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pblucky.GetLuckyStatisticsReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pblucky.GetLuckyStatisticsReply} GetLuckyStatisticsReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetLuckyStatisticsReply.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pblucky.GetLuckyStatisticsReply();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.code = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.data = $root.pblucky.LuckyStatisticsModel.decode(reader, reader.uint32());
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GetLuckyStatisticsReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pblucky.GetLuckyStatisticsReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pblucky.GetLuckyStatisticsReply} GetLuckyStatisticsReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetLuckyStatisticsReply.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GetLuckyStatisticsReply message.
+         * @function verify
+         * @memberof pblucky.GetLuckyStatisticsReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GetLuckyStatisticsReply.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.code != null && message.hasOwnProperty("code"))
+                switch (message.code) {
+                default:
+                    return "code: enum value expected";
+                case 0:
+                case 200:
+                case 403:
+                case 500:
+                case 501:
+                case 502:
+                case 503:
+                case 504:
+                case 505:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
+                case 2002:
+                case 2003:
+                case 2004:
+                case 2005:
+                case 2006:
+                case 2007:
+                case 2008:
+                case 2009:
+                case 2010:
+                case 2011:
+                case 2012:
+                case 2013:
+                case 2014:
+                case 2015:
+                case 3001:
+                case 3002:
+                case 3003:
+                case 5001:
+                case 5002:
+                case 10001:
+                case 10002:
+                case 20001:
+                case 20002:
+                    break;
+                }
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                if (!$util.isString(message.msg))
+                    return "msg: string expected";
+            if (message.data != null && message.hasOwnProperty("data")) {
+                var error = $root.pblucky.LuckyStatisticsModel.verify(message.data);
+                if (error)
+                    return "data." + error;
+            }
+            return null;
+        };
+
+        /**
+         * Creates a GetLuckyStatisticsReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pblucky.GetLuckyStatisticsReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pblucky.GetLuckyStatisticsReply} GetLuckyStatisticsReply
+         */
+        GetLuckyStatisticsReply.fromObject = function fromObject(object) {
+            if (object instanceof $root.pblucky.GetLuckyStatisticsReply)
+                return object;
+            var message = new $root.pblucky.GetLuckyStatisticsReply();
+            switch (object.code) {
+            default:
+                if (typeof object.code === "number") {
+                    message.code = object.code;
+                    break;
+                }
+                break;
+            case "None":
+            case 0:
+                message.code = 0;
+                break;
+            case "Success":
+            case 200:
+                message.code = 200;
+                break;
+            case "Forbidden":
+            case 403:
+                message.code = 403;
+                break;
+            case "Fail":
+            case 500:
+                message.code = 500;
+                break;
+            case "Unknown":
+            case 501:
+                message.code = 501;
+                break;
+            case "Internal":
+            case 502:
+                message.code = 502;
+                break;
+            case "Invalid":
+            case 503:
+                message.code = 503;
+                break;
+            case "InvalidParam":
+            case 504:
+                message.code = 504;
+                break;
+            case "ParamError":
+            case 505:
+                message.code = 505;
+                break;
+            case "FindError":
+            case 1001:
+                message.code = 1001;
+                break;
+            case "CreateError":
+            case 1002:
+                message.code = 1002;
+                break;
+            case "DeleteError":
+            case 1003:
+                message.code = 1003;
+                break;
+            case "UpdateError":
+            case 1004:
+                message.code = 1004;
+                break;
+            case "InvalidToken":
+            case 2002:
+                message.code = 2002;
+                break;
+            case "InvalidSign":
+            case 2003:
+                message.code = 2003;
+                break;
+            case "NotLogin":
+            case 2004:
+                message.code = 2004;
+                break;
+            case "LoginTimeout":
+            case 2005:
+                message.code = 2005;
+                break;
+            case "LoginError":
+            case 2006:
+                message.code = 2006;
+                break;
+            case "LoginForbidden":
+            case 2007:
+                message.code = 2007;
+                break;
+            case "LoginExpired":
+            case 2008:
+                message.code = 2008;
+                break;
+            case "LoginInvalid":
+            case 2009:
+                message.code = 2009;
+                break;
+            case "LoginInvalidPassword":
+            case 2010:
+                message.code = 2010;
+                break;
+            case "LoginInvalidUsername":
+            case 2011:
+                message.code = 2011;
+                break;
+            case "LoginInvalidEmail":
+            case 2012:
+                message.code = 2012;
+                break;
+            case "LoginInvalidPhone":
+            case 2013:
+                message.code = 2013;
+                break;
+            case "LoginInvalidUsernameOrEmail":
+            case 2014:
+                message.code = 2014;
+                break;
+            case "LoginSocketRepeat":
+            case 2015:
+                message.code = 2015;
+                break;
+            case "RoleIsNotExist":
+            case 3001:
+                message.code = 3001;
+                break;
+            case "UserIsExist":
+            case 3002:
+                message.code = 3002;
+                break;
+            case "UserIsBan":
+            case 3003:
+                message.code = 3003;
+                break;
+            case "TalkIsBan":
+            case 5001:
+                message.code = 5001;
+                break;
+            case "EnterRoomErr":
+            case 5002:
+                message.code = 5002;
+                break;
+            case "HalaChatNeedBuy":
+            case 10001:
+                message.code = 10001;
+                break;
+            case "HalaPriceOutRange":
+            case 10002:
+                message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            }
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.data != null) {
+                if (typeof object.data !== "object")
+                    throw TypeError(".pblucky.GetLuckyStatisticsReply.data: object expected");
+                message.data = $root.pblucky.LuckyStatisticsModel.fromObject(object.data);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GetLuckyStatisticsReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pblucky.GetLuckyStatisticsReply
+         * @static
+         * @param {pblucky.GetLuckyStatisticsReply} message GetLuckyStatisticsReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GetLuckyStatisticsReply.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.code = options.enums === String ? "None" : 0;
+                object.msg = "";
+                object.data = null;
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.data != null && message.hasOwnProperty("data"))
+                object.data = $root.pblucky.LuckyStatisticsModel.toObject(message.data, options);
+            return object;
+        };
+
+        /**
+         * Converts this GetLuckyStatisticsReply to JSON.
+         * @function toJSON
+         * @memberof pblucky.GetLuckyStatisticsReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GetLuckyStatisticsReply.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GetLuckyStatisticsReply
+         * @function getTypeUrl
+         * @memberof pblucky.GetLuckyStatisticsReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GetLuckyStatisticsReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pblucky.GetLuckyStatisticsReply";
+        };
+
+        return GetLuckyStatisticsReply;
+    })();
+
+    pblucky.LuckyPrizeStatisticsModel = (function() {
+
+        /**
+         * Properties of a LuckyPrizeStatisticsModel.
+         * @memberof pblucky
+         * @interface ILuckyPrizeStatisticsModel
+         * @property {number|Long|null} [configId] LuckyPrizeStatisticsModel configId
+         * @property {string|null} [prizeName] LuckyPrizeStatisticsModel prizeName
+         * @property {string|null} [prizeType] LuckyPrizeStatisticsModel prizeType
+         * @property {number|null} [totalCount] LuckyPrizeStatisticsModel totalCount
+         * @property {number|Long|null} [totalValue] LuckyPrizeStatisticsModel totalValue
+         * @property {number|null} [winRate] LuckyPrizeStatisticsModel winRate
+         */
+
+        /**
+         * Constructs a new LuckyPrizeStatisticsModel.
+         * @memberof pblucky
+         * @classdesc Represents a LuckyPrizeStatisticsModel.
+         * @implements ILuckyPrizeStatisticsModel
+         * @constructor
+         * @param {pblucky.ILuckyPrizeStatisticsModel=} [properties] Properties to set
+         */
+        function LuckyPrizeStatisticsModel(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * LuckyPrizeStatisticsModel configId.
+         * @member {number|Long} configId
+         * @memberof pblucky.LuckyPrizeStatisticsModel
+         * @instance
+         */
+        LuckyPrizeStatisticsModel.prototype.configId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * LuckyPrizeStatisticsModel prizeName.
+         * @member {string} prizeName
+         * @memberof pblucky.LuckyPrizeStatisticsModel
+         * @instance
+         */
+        LuckyPrizeStatisticsModel.prototype.prizeName = "";
+
+        /**
+         * LuckyPrizeStatisticsModel prizeType.
+         * @member {string} prizeType
+         * @memberof pblucky.LuckyPrizeStatisticsModel
+         * @instance
+         */
+        LuckyPrizeStatisticsModel.prototype.prizeType = "";
+
+        /**
+         * LuckyPrizeStatisticsModel totalCount.
+         * @member {number} totalCount
+         * @memberof pblucky.LuckyPrizeStatisticsModel
+         * @instance
+         */
+        LuckyPrizeStatisticsModel.prototype.totalCount = 0;
+
+        /**
+         * LuckyPrizeStatisticsModel totalValue.
+         * @member {number|Long} totalValue
+         * @memberof pblucky.LuckyPrizeStatisticsModel
+         * @instance
+         */
+        LuckyPrizeStatisticsModel.prototype.totalValue = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * LuckyPrizeStatisticsModel winRate.
+         * @member {number} winRate
+         * @memberof pblucky.LuckyPrizeStatisticsModel
+         * @instance
+         */
+        LuckyPrizeStatisticsModel.prototype.winRate = 0;
+
+        /**
+         * Creates a new LuckyPrizeStatisticsModel instance using the specified properties.
+         * @function create
+         * @memberof pblucky.LuckyPrizeStatisticsModel
+         * @static
+         * @param {pblucky.ILuckyPrizeStatisticsModel=} [properties] Properties to set
+         * @returns {pblucky.LuckyPrizeStatisticsModel} LuckyPrizeStatisticsModel instance
+         */
+        LuckyPrizeStatisticsModel.create = function create(properties) {
+            return new LuckyPrizeStatisticsModel(properties);
+        };
+
+        /**
+         * Encodes the specified LuckyPrizeStatisticsModel message. Does not implicitly {@link pblucky.LuckyPrizeStatisticsModel.verify|verify} messages.
+         * @function encode
+         * @memberof pblucky.LuckyPrizeStatisticsModel
+         * @static
+         * @param {pblucky.ILuckyPrizeStatisticsModel} message LuckyPrizeStatisticsModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        LuckyPrizeStatisticsModel.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.configId != null && Object.hasOwnProperty.call(message, "configId"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int64(message.configId);
+            if (message.prizeName != null && Object.hasOwnProperty.call(message, "prizeName"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.prizeName);
+            if (message.prizeType != null && Object.hasOwnProperty.call(message, "prizeType"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.prizeType);
+            if (message.totalCount != null && Object.hasOwnProperty.call(message, "totalCount"))
+                writer.uint32(/* id 4, wireType 0 =*/32).int32(message.totalCount);
+            if (message.totalValue != null && Object.hasOwnProperty.call(message, "totalValue"))
+                writer.uint32(/* id 5, wireType 0 =*/40).int64(message.totalValue);
+            if (message.winRate != null && Object.hasOwnProperty.call(message, "winRate"))
+                writer.uint32(/* id 6, wireType 1 =*/49).double(message.winRate);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified LuckyPrizeStatisticsModel message, length delimited. Does not implicitly {@link pblucky.LuckyPrizeStatisticsModel.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pblucky.LuckyPrizeStatisticsModel
+         * @static
+         * @param {pblucky.ILuckyPrizeStatisticsModel} message LuckyPrizeStatisticsModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        LuckyPrizeStatisticsModel.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a LuckyPrizeStatisticsModel message from the specified reader or buffer.
+         * @function decode
+         * @memberof pblucky.LuckyPrizeStatisticsModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pblucky.LuckyPrizeStatisticsModel} LuckyPrizeStatisticsModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        LuckyPrizeStatisticsModel.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pblucky.LuckyPrizeStatisticsModel();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.configId = reader.int64();
+                        break;
+                    }
+                case 2: {
+                        message.prizeName = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.prizeType = reader.string();
+                        break;
+                    }
+                case 4: {
+                        message.totalCount = reader.int32();
+                        break;
+                    }
+                case 5: {
+                        message.totalValue = reader.int64();
+                        break;
+                    }
+                case 6: {
+                        message.winRate = reader.double();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a LuckyPrizeStatisticsModel message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pblucky.LuckyPrizeStatisticsModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pblucky.LuckyPrizeStatisticsModel} LuckyPrizeStatisticsModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        LuckyPrizeStatisticsModel.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a LuckyPrizeStatisticsModel message.
+         * @function verify
+         * @memberof pblucky.LuckyPrizeStatisticsModel
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        LuckyPrizeStatisticsModel.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.configId != null && message.hasOwnProperty("configId"))
+                if (!$util.isInteger(message.configId) && !(message.configId && $util.isInteger(message.configId.low) && $util.isInteger(message.configId.high)))
+                    return "configId: integer|Long expected";
+            if (message.prizeName != null && message.hasOwnProperty("prizeName"))
+                if (!$util.isString(message.prizeName))
+                    return "prizeName: string expected";
+            if (message.prizeType != null && message.hasOwnProperty("prizeType"))
+                if (!$util.isString(message.prizeType))
+                    return "prizeType: string expected";
+            if (message.totalCount != null && message.hasOwnProperty("totalCount"))
+                if (!$util.isInteger(message.totalCount))
+                    return "totalCount: integer expected";
+            if (message.totalValue != null && message.hasOwnProperty("totalValue"))
+                if (!$util.isInteger(message.totalValue) && !(message.totalValue && $util.isInteger(message.totalValue.low) && $util.isInteger(message.totalValue.high)))
+                    return "totalValue: integer|Long expected";
+            if (message.winRate != null && message.hasOwnProperty("winRate"))
+                if (typeof message.winRate !== "number")
+                    return "winRate: number expected";
+            return null;
+        };
+
+        /**
+         * Creates a LuckyPrizeStatisticsModel message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pblucky.LuckyPrizeStatisticsModel
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pblucky.LuckyPrizeStatisticsModel} LuckyPrizeStatisticsModel
+         */
+        LuckyPrizeStatisticsModel.fromObject = function fromObject(object) {
+            if (object instanceof $root.pblucky.LuckyPrizeStatisticsModel)
+                return object;
+            var message = new $root.pblucky.LuckyPrizeStatisticsModel();
+            if (object.configId != null)
+                if ($util.Long)
+                    (message.configId = $util.Long.fromValue(object.configId)).unsigned = false;
+                else if (typeof object.configId === "string")
+                    message.configId = parseInt(object.configId, 10);
+                else if (typeof object.configId === "number")
+                    message.configId = object.configId;
+                else if (typeof object.configId === "object")
+                    message.configId = new $util.LongBits(object.configId.low >>> 0, object.configId.high >>> 0).toNumber();
+            if (object.prizeName != null)
+                message.prizeName = String(object.prizeName);
+            if (object.prizeType != null)
+                message.prizeType = String(object.prizeType);
+            if (object.totalCount != null)
+                message.totalCount = object.totalCount | 0;
+            if (object.totalValue != null)
+                if ($util.Long)
+                    (message.totalValue = $util.Long.fromValue(object.totalValue)).unsigned = false;
+                else if (typeof object.totalValue === "string")
+                    message.totalValue = parseInt(object.totalValue, 10);
+                else if (typeof object.totalValue === "number")
+                    message.totalValue = object.totalValue;
+                else if (typeof object.totalValue === "object")
+                    message.totalValue = new $util.LongBits(object.totalValue.low >>> 0, object.totalValue.high >>> 0).toNumber();
+            if (object.winRate != null)
+                message.winRate = Number(object.winRate);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a LuckyPrizeStatisticsModel message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pblucky.LuckyPrizeStatisticsModel
+         * @static
+         * @param {pblucky.LuckyPrizeStatisticsModel} message LuckyPrizeStatisticsModel
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        LuckyPrizeStatisticsModel.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.configId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.configId = options.longs === String ? "0" : 0;
+                object.prizeName = "";
+                object.prizeType = "";
+                object.totalCount = 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.totalValue = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.totalValue = options.longs === String ? "0" : 0;
+                object.winRate = 0;
+            }
+            if (message.configId != null && message.hasOwnProperty("configId"))
+                if (typeof message.configId === "number")
+                    object.configId = options.longs === String ? String(message.configId) : message.configId;
+                else
+                    object.configId = options.longs === String ? $util.Long.prototype.toString.call(message.configId) : options.longs === Number ? new $util.LongBits(message.configId.low >>> 0, message.configId.high >>> 0).toNumber() : message.configId;
+            if (message.prizeName != null && message.hasOwnProperty("prizeName"))
+                object.prizeName = message.prizeName;
+            if (message.prizeType != null && message.hasOwnProperty("prizeType"))
+                object.prizeType = message.prizeType;
+            if (message.totalCount != null && message.hasOwnProperty("totalCount"))
+                object.totalCount = message.totalCount;
+            if (message.totalValue != null && message.hasOwnProperty("totalValue"))
+                if (typeof message.totalValue === "number")
+                    object.totalValue = options.longs === String ? String(message.totalValue) : message.totalValue;
+                else
+                    object.totalValue = options.longs === String ? $util.Long.prototype.toString.call(message.totalValue) : options.longs === Number ? new $util.LongBits(message.totalValue.low >>> 0, message.totalValue.high >>> 0).toNumber() : message.totalValue;
+            if (message.winRate != null && message.hasOwnProperty("winRate"))
+                object.winRate = options.json && !isFinite(message.winRate) ? String(message.winRate) : message.winRate;
+            return object;
+        };
+
+        /**
+         * Converts this LuckyPrizeStatisticsModel to JSON.
+         * @function toJSON
+         * @memberof pblucky.LuckyPrizeStatisticsModel
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        LuckyPrizeStatisticsModel.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for LuckyPrizeStatisticsModel
+         * @function getTypeUrl
+         * @memberof pblucky.LuckyPrizeStatisticsModel
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        LuckyPrizeStatisticsModel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pblucky.LuckyPrizeStatisticsModel";
+        };
+
+        return LuckyPrizeStatisticsModel;
+    })();
+
+    pblucky.GetLuckyPrizeStatisticsArgs = (function() {
+
+        /**
+         * Properties of a GetLuckyPrizeStatisticsArgs.
+         * @memberof pblucky
+         * @interface IGetLuckyPrizeStatisticsArgs
+         * @property {string|null} [fieldType] GetLuckyPrizeStatisticsArgs fieldType
+         * @property {string|null} [startDate] GetLuckyPrizeStatisticsArgs startDate
+         * @property {string|null} [endDate] GetLuckyPrizeStatisticsArgs endDate
+         */
+
+        /**
+         * Constructs a new GetLuckyPrizeStatisticsArgs.
+         * @memberof pblucky
+         * @classdesc Represents a GetLuckyPrizeStatisticsArgs.
+         * @implements IGetLuckyPrizeStatisticsArgs
+         * @constructor
+         * @param {pblucky.IGetLuckyPrizeStatisticsArgs=} [properties] Properties to set
+         */
+        function GetLuckyPrizeStatisticsArgs(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GetLuckyPrizeStatisticsArgs fieldType.
+         * @member {string} fieldType
+         * @memberof pblucky.GetLuckyPrizeStatisticsArgs
+         * @instance
+         */
+        GetLuckyPrizeStatisticsArgs.prototype.fieldType = "";
+
+        /**
+         * GetLuckyPrizeStatisticsArgs startDate.
+         * @member {string} startDate
+         * @memberof pblucky.GetLuckyPrizeStatisticsArgs
+         * @instance
+         */
+        GetLuckyPrizeStatisticsArgs.prototype.startDate = "";
+
+        /**
+         * GetLuckyPrizeStatisticsArgs endDate.
+         * @member {string} endDate
+         * @memberof pblucky.GetLuckyPrizeStatisticsArgs
+         * @instance
+         */
+        GetLuckyPrizeStatisticsArgs.prototype.endDate = "";
+
+        /**
+         * Creates a new GetLuckyPrizeStatisticsArgs instance using the specified properties.
+         * @function create
+         * @memberof pblucky.GetLuckyPrizeStatisticsArgs
+         * @static
+         * @param {pblucky.IGetLuckyPrizeStatisticsArgs=} [properties] Properties to set
+         * @returns {pblucky.GetLuckyPrizeStatisticsArgs} GetLuckyPrizeStatisticsArgs instance
+         */
+        GetLuckyPrizeStatisticsArgs.create = function create(properties) {
+            return new GetLuckyPrizeStatisticsArgs(properties);
+        };
+
+        /**
+         * Encodes the specified GetLuckyPrizeStatisticsArgs message. Does not implicitly {@link pblucky.GetLuckyPrizeStatisticsArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pblucky.GetLuckyPrizeStatisticsArgs
+         * @static
+         * @param {pblucky.IGetLuckyPrizeStatisticsArgs} message GetLuckyPrizeStatisticsArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetLuckyPrizeStatisticsArgs.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.fieldType != null && Object.hasOwnProperty.call(message, "fieldType"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.fieldType);
+            if (message.startDate != null && Object.hasOwnProperty.call(message, "startDate"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.startDate);
+            if (message.endDate != null && Object.hasOwnProperty.call(message, "endDate"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.endDate);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GetLuckyPrizeStatisticsArgs message, length delimited. Does not implicitly {@link pblucky.GetLuckyPrizeStatisticsArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pblucky.GetLuckyPrizeStatisticsArgs
+         * @static
+         * @param {pblucky.IGetLuckyPrizeStatisticsArgs} message GetLuckyPrizeStatisticsArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetLuckyPrizeStatisticsArgs.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GetLuckyPrizeStatisticsArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pblucky.GetLuckyPrizeStatisticsArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pblucky.GetLuckyPrizeStatisticsArgs} GetLuckyPrizeStatisticsArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetLuckyPrizeStatisticsArgs.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pblucky.GetLuckyPrizeStatisticsArgs();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.fieldType = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message.startDate = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.endDate = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GetLuckyPrizeStatisticsArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pblucky.GetLuckyPrizeStatisticsArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pblucky.GetLuckyPrizeStatisticsArgs} GetLuckyPrizeStatisticsArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetLuckyPrizeStatisticsArgs.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GetLuckyPrizeStatisticsArgs message.
+         * @function verify
+         * @memberof pblucky.GetLuckyPrizeStatisticsArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GetLuckyPrizeStatisticsArgs.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.fieldType != null && message.hasOwnProperty("fieldType"))
+                if (!$util.isString(message.fieldType))
+                    return "fieldType: string expected";
+            if (message.startDate != null && message.hasOwnProperty("startDate"))
+                if (!$util.isString(message.startDate))
+                    return "startDate: string expected";
+            if (message.endDate != null && message.hasOwnProperty("endDate"))
+                if (!$util.isString(message.endDate))
+                    return "endDate: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a GetLuckyPrizeStatisticsArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pblucky.GetLuckyPrizeStatisticsArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pblucky.GetLuckyPrizeStatisticsArgs} GetLuckyPrizeStatisticsArgs
+         */
+        GetLuckyPrizeStatisticsArgs.fromObject = function fromObject(object) {
+            if (object instanceof $root.pblucky.GetLuckyPrizeStatisticsArgs)
+                return object;
+            var message = new $root.pblucky.GetLuckyPrizeStatisticsArgs();
+            if (object.fieldType != null)
+                message.fieldType = String(object.fieldType);
+            if (object.startDate != null)
+                message.startDate = String(object.startDate);
+            if (object.endDate != null)
+                message.endDate = String(object.endDate);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GetLuckyPrizeStatisticsArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pblucky.GetLuckyPrizeStatisticsArgs
+         * @static
+         * @param {pblucky.GetLuckyPrizeStatisticsArgs} message GetLuckyPrizeStatisticsArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GetLuckyPrizeStatisticsArgs.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.fieldType = "";
+                object.startDate = "";
+                object.endDate = "";
+            }
+            if (message.fieldType != null && message.hasOwnProperty("fieldType"))
+                object.fieldType = message.fieldType;
+            if (message.startDate != null && message.hasOwnProperty("startDate"))
+                object.startDate = message.startDate;
+            if (message.endDate != null && message.hasOwnProperty("endDate"))
+                object.endDate = message.endDate;
+            return object;
+        };
+
+        /**
+         * Converts this GetLuckyPrizeStatisticsArgs to JSON.
+         * @function toJSON
+         * @memberof pblucky.GetLuckyPrizeStatisticsArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GetLuckyPrizeStatisticsArgs.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GetLuckyPrizeStatisticsArgs
+         * @function getTypeUrl
+         * @memberof pblucky.GetLuckyPrizeStatisticsArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GetLuckyPrizeStatisticsArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pblucky.GetLuckyPrizeStatisticsArgs";
+        };
+
+        return GetLuckyPrizeStatisticsArgs;
+    })();
+
+    pblucky.GetLuckyPrizeStatisticsReply = (function() {
+
+        /**
+         * Properties of a GetLuckyPrizeStatisticsReply.
+         * @memberof pblucky
+         * @interface IGetLuckyPrizeStatisticsReply
+         * @property {pbcommon.EnumCode|null} [code] GetLuckyPrizeStatisticsReply code
+         * @property {string|null} [msg] GetLuckyPrizeStatisticsReply msg
+         * @property {Array.<pblucky.ILuckyPrizeStatisticsModel>|null} [list] GetLuckyPrizeStatisticsReply list
+         */
+
+        /**
+         * Constructs a new GetLuckyPrizeStatisticsReply.
+         * @memberof pblucky
+         * @classdesc Represents a GetLuckyPrizeStatisticsReply.
+         * @implements IGetLuckyPrizeStatisticsReply
+         * @constructor
+         * @param {pblucky.IGetLuckyPrizeStatisticsReply=} [properties] Properties to set
+         */
+        function GetLuckyPrizeStatisticsReply(properties) {
+            this.list = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GetLuckyPrizeStatisticsReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pblucky.GetLuckyPrizeStatisticsReply
+         * @instance
+         */
+        GetLuckyPrizeStatisticsReply.prototype.code = 0;
+
+        /**
+         * GetLuckyPrizeStatisticsReply msg.
+         * @member {string} msg
+         * @memberof pblucky.GetLuckyPrizeStatisticsReply
+         * @instance
+         */
+        GetLuckyPrizeStatisticsReply.prototype.msg = "";
+
+        /**
+         * GetLuckyPrizeStatisticsReply list.
+         * @member {Array.<pblucky.ILuckyPrizeStatisticsModel>} list
+         * @memberof pblucky.GetLuckyPrizeStatisticsReply
+         * @instance
+         */
+        GetLuckyPrizeStatisticsReply.prototype.list = $util.emptyArray;
+
+        /**
+         * Creates a new GetLuckyPrizeStatisticsReply instance using the specified properties.
+         * @function create
+         * @memberof pblucky.GetLuckyPrizeStatisticsReply
+         * @static
+         * @param {pblucky.IGetLuckyPrizeStatisticsReply=} [properties] Properties to set
+         * @returns {pblucky.GetLuckyPrizeStatisticsReply} GetLuckyPrizeStatisticsReply instance
+         */
+        GetLuckyPrizeStatisticsReply.create = function create(properties) {
+            return new GetLuckyPrizeStatisticsReply(properties);
+        };
+
+        /**
+         * Encodes the specified GetLuckyPrizeStatisticsReply message. Does not implicitly {@link pblucky.GetLuckyPrizeStatisticsReply.verify|verify} messages.
+         * @function encode
+         * @memberof pblucky.GetLuckyPrizeStatisticsReply
+         * @static
+         * @param {pblucky.IGetLuckyPrizeStatisticsReply} message GetLuckyPrizeStatisticsReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetLuckyPrizeStatisticsReply.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.list != null && message.list.length)
+                for (var i = 0; i < message.list.length; ++i)
+                    $root.pblucky.LuckyPrizeStatisticsModel.encode(message.list[i], writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GetLuckyPrizeStatisticsReply message, length delimited. Does not implicitly {@link pblucky.GetLuckyPrizeStatisticsReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pblucky.GetLuckyPrizeStatisticsReply
+         * @static
+         * @param {pblucky.IGetLuckyPrizeStatisticsReply} message GetLuckyPrizeStatisticsReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetLuckyPrizeStatisticsReply.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GetLuckyPrizeStatisticsReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pblucky.GetLuckyPrizeStatisticsReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pblucky.GetLuckyPrizeStatisticsReply} GetLuckyPrizeStatisticsReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetLuckyPrizeStatisticsReply.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pblucky.GetLuckyPrizeStatisticsReply();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.code = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        if (!(message.list && message.list.length))
+                            message.list = [];
+                        message.list.push($root.pblucky.LuckyPrizeStatisticsModel.decode(reader, reader.uint32()));
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GetLuckyPrizeStatisticsReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pblucky.GetLuckyPrizeStatisticsReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pblucky.GetLuckyPrizeStatisticsReply} GetLuckyPrizeStatisticsReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetLuckyPrizeStatisticsReply.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GetLuckyPrizeStatisticsReply message.
+         * @function verify
+         * @memberof pblucky.GetLuckyPrizeStatisticsReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GetLuckyPrizeStatisticsReply.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.code != null && message.hasOwnProperty("code"))
+                switch (message.code) {
+                default:
+                    return "code: enum value expected";
+                case 0:
+                case 200:
+                case 403:
+                case 500:
+                case 501:
+                case 502:
+                case 503:
+                case 504:
+                case 505:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
+                case 2002:
+                case 2003:
+                case 2004:
+                case 2005:
+                case 2006:
+                case 2007:
+                case 2008:
+                case 2009:
+                case 2010:
+                case 2011:
+                case 2012:
+                case 2013:
+                case 2014:
+                case 2015:
+                case 3001:
+                case 3002:
+                case 3003:
+                case 5001:
+                case 5002:
+                case 10001:
+                case 10002:
+                case 20001:
+                case 20002:
+                    break;
+                }
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                if (!$util.isString(message.msg))
+                    return "msg: string expected";
+            if (message.list != null && message.hasOwnProperty("list")) {
+                if (!Array.isArray(message.list))
+                    return "list: array expected";
+                for (var i = 0; i < message.list.length; ++i) {
+                    var error = $root.pblucky.LuckyPrizeStatisticsModel.verify(message.list[i]);
+                    if (error)
+                        return "list." + error;
+                }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a GetLuckyPrizeStatisticsReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pblucky.GetLuckyPrizeStatisticsReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pblucky.GetLuckyPrizeStatisticsReply} GetLuckyPrizeStatisticsReply
+         */
+        GetLuckyPrizeStatisticsReply.fromObject = function fromObject(object) {
+            if (object instanceof $root.pblucky.GetLuckyPrizeStatisticsReply)
+                return object;
+            var message = new $root.pblucky.GetLuckyPrizeStatisticsReply();
+            switch (object.code) {
+            default:
+                if (typeof object.code === "number") {
+                    message.code = object.code;
+                    break;
+                }
+                break;
+            case "None":
+            case 0:
+                message.code = 0;
+                break;
+            case "Success":
+            case 200:
+                message.code = 200;
+                break;
+            case "Forbidden":
+            case 403:
+                message.code = 403;
+                break;
+            case "Fail":
+            case 500:
+                message.code = 500;
+                break;
+            case "Unknown":
+            case 501:
+                message.code = 501;
+                break;
+            case "Internal":
+            case 502:
+                message.code = 502;
+                break;
+            case "Invalid":
+            case 503:
+                message.code = 503;
+                break;
+            case "InvalidParam":
+            case 504:
+                message.code = 504;
+                break;
+            case "ParamError":
+            case 505:
+                message.code = 505;
+                break;
+            case "FindError":
+            case 1001:
+                message.code = 1001;
+                break;
+            case "CreateError":
+            case 1002:
+                message.code = 1002;
+                break;
+            case "DeleteError":
+            case 1003:
+                message.code = 1003;
+                break;
+            case "UpdateError":
+            case 1004:
+                message.code = 1004;
+                break;
+            case "InvalidToken":
+            case 2002:
+                message.code = 2002;
+                break;
+            case "InvalidSign":
+            case 2003:
+                message.code = 2003;
+                break;
+            case "NotLogin":
+            case 2004:
+                message.code = 2004;
+                break;
+            case "LoginTimeout":
+            case 2005:
+                message.code = 2005;
+                break;
+            case "LoginError":
+            case 2006:
+                message.code = 2006;
+                break;
+            case "LoginForbidden":
+            case 2007:
+                message.code = 2007;
+                break;
+            case "LoginExpired":
+            case 2008:
+                message.code = 2008;
+                break;
+            case "LoginInvalid":
+            case 2009:
+                message.code = 2009;
+                break;
+            case "LoginInvalidPassword":
+            case 2010:
+                message.code = 2010;
+                break;
+            case "LoginInvalidUsername":
+            case 2011:
+                message.code = 2011;
+                break;
+            case "LoginInvalidEmail":
+            case 2012:
+                message.code = 2012;
+                break;
+            case "LoginInvalidPhone":
+            case 2013:
+                message.code = 2013;
+                break;
+            case "LoginInvalidUsernameOrEmail":
+            case 2014:
+                message.code = 2014;
+                break;
+            case "LoginSocketRepeat":
+            case 2015:
+                message.code = 2015;
+                break;
+            case "RoleIsNotExist":
+            case 3001:
+                message.code = 3001;
+                break;
+            case "UserIsExist":
+            case 3002:
+                message.code = 3002;
+                break;
+            case "UserIsBan":
+            case 3003:
+                message.code = 3003;
+                break;
+            case "TalkIsBan":
+            case 5001:
+                message.code = 5001;
+                break;
+            case "EnterRoomErr":
+            case 5002:
+                message.code = 5002;
+                break;
+            case "HalaChatNeedBuy":
+            case 10001:
+                message.code = 10001;
+                break;
+            case "HalaPriceOutRange":
+            case 10002:
+                message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            }
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.list) {
+                if (!Array.isArray(object.list))
+                    throw TypeError(".pblucky.GetLuckyPrizeStatisticsReply.list: array expected");
+                message.list = [];
+                for (var i = 0; i < object.list.length; ++i) {
+                    if (typeof object.list[i] !== "object")
+                        throw TypeError(".pblucky.GetLuckyPrizeStatisticsReply.list: object expected");
+                    message.list[i] = $root.pblucky.LuckyPrizeStatisticsModel.fromObject(object.list[i]);
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GetLuckyPrizeStatisticsReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pblucky.GetLuckyPrizeStatisticsReply
+         * @static
+         * @param {pblucky.GetLuckyPrizeStatisticsReply} message GetLuckyPrizeStatisticsReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GetLuckyPrizeStatisticsReply.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.list = [];
+            if (options.defaults) {
+                object.code = options.enums === String ? "None" : 0;
+                object.msg = "";
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.list && message.list.length) {
+                object.list = [];
+                for (var j = 0; j < message.list.length; ++j)
+                    object.list[j] = $root.pblucky.LuckyPrizeStatisticsModel.toObject(message.list[j], options);
+            }
+            return object;
+        };
+
+        /**
+         * Converts this GetLuckyPrizeStatisticsReply to JSON.
+         * @function toJSON
+         * @memberof pblucky.GetLuckyPrizeStatisticsReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GetLuckyPrizeStatisticsReply.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GetLuckyPrizeStatisticsReply
+         * @function getTypeUrl
+         * @memberof pblucky.GetLuckyPrizeStatisticsReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GetLuckyPrizeStatisticsReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pblucky.GetLuckyPrizeStatisticsReply";
+        };
+
+        return GetLuckyPrizeStatisticsReply;
+    })();
+
+    pblucky.LuckyAdmin = (function() {
+
+        /**
+         * Constructs a new LuckyAdmin service.
+         * @memberof pblucky
+         * @classdesc Represents a LuckyAdmin
+         * @extends $protobuf.rpc.Service
+         * @constructor
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         */
+        function LuckyAdmin(rpcImpl, requestDelimited, responseDelimited) {
+            $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited);
+        }
+
+        (LuckyAdmin.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = LuckyAdmin;
+
+        /**
+         * Creates new LuckyAdmin service using the specified rpc implementation.
+         * @function create
+         * @memberof pblucky.LuckyAdmin
+         * @static
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         * @returns {LuckyAdmin} RPC service. Useful where requests and/or responses are streamed.
+         */
+        LuckyAdmin.create = function create(rpcImpl, requestDelimited, responseDelimited) {
+            return new this(rpcImpl, requestDelimited, responseDelimited);
+        };
+
+        /**
+         * Callback as used by {@link pblucky.LuckyAdmin#createPrizeConfig}.
+         * @memberof pblucky.LuckyAdmin
+         * @typedef CreatePrizeConfigCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls CreatePrizeConfig.
+         * @function createPrizeConfig
+         * @memberof pblucky.LuckyAdmin
+         * @instance
+         * @param {pblucky.ILuckyPrizeConfigModel} request LuckyPrizeConfigModel message or plain object
+         * @param {pblucky.LuckyAdmin.CreatePrizeConfigCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(LuckyAdmin.prototype.createPrizeConfig = function createPrizeConfig(request, callback) {
+            return this.rpcCall(createPrizeConfig, $root.pblucky.LuckyPrizeConfigModel, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "CreatePrizeConfig" });
+
+        /**
+         * Calls CreatePrizeConfig.
+         * @function createPrizeConfig
+         * @memberof pblucky.LuckyAdmin
+         * @instance
+         * @param {pblucky.ILuckyPrizeConfigModel} request LuckyPrizeConfigModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pblucky.LuckyAdmin#updatePrizeConfig}.
+         * @memberof pblucky.LuckyAdmin
+         * @typedef UpdatePrizeConfigCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls UpdatePrizeConfig.
+         * @function updatePrizeConfig
+         * @memberof pblucky.LuckyAdmin
+         * @instance
+         * @param {pblucky.ILuckyPrizeConfigModel} request LuckyPrizeConfigModel message or plain object
+         * @param {pblucky.LuckyAdmin.UpdatePrizeConfigCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(LuckyAdmin.prototype.updatePrizeConfig = function updatePrizeConfig(request, callback) {
+            return this.rpcCall(updatePrizeConfig, $root.pblucky.LuckyPrizeConfigModel, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "UpdatePrizeConfig" });
+
+        /**
+         * Calls UpdatePrizeConfig.
+         * @function updatePrizeConfig
+         * @memberof pblucky.LuckyAdmin
+         * @instance
+         * @param {pblucky.ILuckyPrizeConfigModel} request LuckyPrizeConfigModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pblucky.LuckyAdmin#deletePrizeConfig}.
+         * @memberof pblucky.LuckyAdmin
+         * @typedef DeletePrizeConfigCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls DeletePrizeConfig.
+         * @function deletePrizeConfig
+         * @memberof pblucky.LuckyAdmin
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pblucky.LuckyAdmin.DeletePrizeConfigCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(LuckyAdmin.prototype.deletePrizeConfig = function deletePrizeConfig(request, callback) {
+            return this.rpcCall(deletePrizeConfig, $root.pbcommon.IdArgs, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "DeletePrizeConfig" });
+
+        /**
+         * Calls DeletePrizeConfig.
+         * @function deletePrizeConfig
+         * @memberof pblucky.LuckyAdmin
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pblucky.LuckyAdmin#findPrizeConfigById}.
+         * @memberof pblucky.LuckyAdmin
+         * @typedef FindPrizeConfigByIdCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pblucky.FindLuckyPrizeConfigReply} [response] FindLuckyPrizeConfigReply
+         */
+
+        /**
+         * Calls FindPrizeConfigById.
+         * @function findPrizeConfigById
+         * @memberof pblucky.LuckyAdmin
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pblucky.LuckyAdmin.FindPrizeConfigByIdCallback} callback Node-style callback called with the error, if any, and FindLuckyPrizeConfigReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(LuckyAdmin.prototype.findPrizeConfigById = function findPrizeConfigById(request, callback) {
+            return this.rpcCall(findPrizeConfigById, $root.pbcommon.IdArgs, $root.pblucky.FindLuckyPrizeConfigReply, request, callback);
+        }, "name", { value: "FindPrizeConfigById" });
+
+        /**
+         * Calls FindPrizeConfigById.
+         * @function findPrizeConfigById
+         * @memberof pblucky.LuckyAdmin
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pblucky.FindLuckyPrizeConfigReply>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pblucky.LuckyAdmin#findPrizeConfigList}.
+         * @memberof pblucky.LuckyAdmin
+         * @typedef FindPrizeConfigListCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pblucky.FindLuckyPrizeConfigReply} [response] FindLuckyPrizeConfigReply
+         */
+
+        /**
+         * Calls FindPrizeConfigList.
+         * @function findPrizeConfigList
+         * @memberof pblucky.LuckyAdmin
+         * @instance
+         * @param {pblucky.IFindLuckyPrizeConfigArgs} request FindLuckyPrizeConfigArgs message or plain object
+         * @param {pblucky.LuckyAdmin.FindPrizeConfigListCallback} callback Node-style callback called with the error, if any, and FindLuckyPrizeConfigReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(LuckyAdmin.prototype.findPrizeConfigList = function findPrizeConfigList(request, callback) {
+            return this.rpcCall(findPrizeConfigList, $root.pblucky.FindLuckyPrizeConfigArgs, $root.pblucky.FindLuckyPrizeConfigReply, request, callback);
+        }, "name", { value: "FindPrizeConfigList" });
+
+        /**
+         * Calls FindPrizeConfigList.
+         * @function findPrizeConfigList
+         * @memberof pblucky.LuckyAdmin
+         * @instance
+         * @param {pblucky.IFindLuckyPrizeConfigArgs} request FindLuckyPrizeConfigArgs message or plain object
+         * @returns {Promise<pblucky.FindLuckyPrizeConfigReply>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pblucky.LuckyAdmin#findLuckyRoundById}.
+         * @memberof pblucky.LuckyAdmin
+         * @typedef FindLuckyRoundByIdCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pblucky.FindLuckyRoundReply} [response] FindLuckyRoundReply
+         */
+
+        /**
+         * Calls FindLuckyRoundById.
+         * @function findLuckyRoundById
+         * @memberof pblucky.LuckyAdmin
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pblucky.LuckyAdmin.FindLuckyRoundByIdCallback} callback Node-style callback called with the error, if any, and FindLuckyRoundReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(LuckyAdmin.prototype.findLuckyRoundById = function findLuckyRoundById(request, callback) {
+            return this.rpcCall(findLuckyRoundById, $root.pbcommon.IdArgs, $root.pblucky.FindLuckyRoundReply, request, callback);
+        }, "name", { value: "FindLuckyRoundById" });
+
+        /**
+         * Calls FindLuckyRoundById.
+         * @function findLuckyRoundById
+         * @memberof pblucky.LuckyAdmin
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pblucky.FindLuckyRoundReply>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pblucky.LuckyAdmin#findLuckyRoundList}.
+         * @memberof pblucky.LuckyAdmin
+         * @typedef FindLuckyRoundListCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pblucky.FindLuckyRoundReply} [response] FindLuckyRoundReply
+         */
+
+        /**
+         * Calls FindLuckyRoundList.
+         * @function findLuckyRoundList
+         * @memberof pblucky.LuckyAdmin
+         * @instance
+         * @param {pblucky.IFindLuckyRoundArgs} request FindLuckyRoundArgs message or plain object
+         * @param {pblucky.LuckyAdmin.FindLuckyRoundListCallback} callback Node-style callback called with the error, if any, and FindLuckyRoundReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(LuckyAdmin.prototype.findLuckyRoundList = function findLuckyRoundList(request, callback) {
+            return this.rpcCall(findLuckyRoundList, $root.pblucky.FindLuckyRoundArgs, $root.pblucky.FindLuckyRoundReply, request, callback);
+        }, "name", { value: "FindLuckyRoundList" });
+
+        /**
+         * Calls FindLuckyRoundList.
+         * @function findLuckyRoundList
+         * @memberof pblucky.LuckyAdmin
+         * @instance
+         * @param {pblucky.IFindLuckyRoundArgs} request FindLuckyRoundArgs message or plain object
+         * @returns {Promise<pblucky.FindLuckyRoundReply>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pblucky.LuckyAdmin#completeLuckyRound}.
+         * @memberof pblucky.LuckyAdmin
+         * @typedef CompleteLuckyRoundCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls CompleteLuckyRound.
+         * @function completeLuckyRound
+         * @memberof pblucky.LuckyAdmin
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pblucky.LuckyAdmin.CompleteLuckyRoundCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(LuckyAdmin.prototype.completeLuckyRound = function completeLuckyRound(request, callback) {
+            return this.rpcCall(completeLuckyRound, $root.pbcommon.IdArgs, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "CompleteLuckyRound" });
+
+        /**
+         * Calls CompleteLuckyRound.
+         * @function completeLuckyRound
+         * @memberof pblucky.LuckyAdmin
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pblucky.LuckyAdmin#resetLuckyPrizePool}.
+         * @memberof pblucky.LuckyAdmin
+         * @typedef ResetLuckyPrizePoolCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls ResetLuckyPrizePool.
+         * @function resetLuckyPrizePool
+         * @memberof pblucky.LuckyAdmin
+         * @instance
+         * @param {pblucky.IResetLuckyPoolArgs} request ResetLuckyPoolArgs message or plain object
+         * @param {pblucky.LuckyAdmin.ResetLuckyPrizePoolCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(LuckyAdmin.prototype.resetLuckyPrizePool = function resetLuckyPrizePool(request, callback) {
+            return this.rpcCall(resetLuckyPrizePool, $root.pblucky.ResetLuckyPoolArgs, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "ResetLuckyPrizePool" });
+
+        /**
+         * Calls ResetLuckyPrizePool.
+         * @function resetLuckyPrizePool
+         * @memberof pblucky.LuckyAdmin
+         * @instance
+         * @param {pblucky.IResetLuckyPoolArgs} request ResetLuckyPoolArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pblucky.LuckyAdmin#findLuckyDrawById}.
+         * @memberof pblucky.LuckyAdmin
+         * @typedef FindLuckyDrawByIdCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pblucky.FindLuckyDrawReply} [response] FindLuckyDrawReply
+         */
+
+        /**
+         * Calls FindLuckyDrawById.
+         * @function findLuckyDrawById
+         * @memberof pblucky.LuckyAdmin
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pblucky.LuckyAdmin.FindLuckyDrawByIdCallback} callback Node-style callback called with the error, if any, and FindLuckyDrawReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(LuckyAdmin.prototype.findLuckyDrawById = function findLuckyDrawById(request, callback) {
+            return this.rpcCall(findLuckyDrawById, $root.pbcommon.IdArgs, $root.pblucky.FindLuckyDrawReply, request, callback);
+        }, "name", { value: "FindLuckyDrawById" });
+
+        /**
+         * Calls FindLuckyDrawById.
+         * @function findLuckyDrawById
+         * @memberof pblucky.LuckyAdmin
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pblucky.FindLuckyDrawReply>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pblucky.LuckyAdmin#findLuckyDrawList}.
+         * @memberof pblucky.LuckyAdmin
+         * @typedef FindLuckyDrawListCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pblucky.FindLuckyDrawReply} [response] FindLuckyDrawReply
+         */
+
+        /**
+         * Calls FindLuckyDrawList.
+         * @function findLuckyDrawList
+         * @memberof pblucky.LuckyAdmin
+         * @instance
+         * @param {pblucky.IFindLuckyDrawArgs} request FindLuckyDrawArgs message or plain object
+         * @param {pblucky.LuckyAdmin.FindLuckyDrawListCallback} callback Node-style callback called with the error, if any, and FindLuckyDrawReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(LuckyAdmin.prototype.findLuckyDrawList = function findLuckyDrawList(request, callback) {
+            return this.rpcCall(findLuckyDrawList, $root.pblucky.FindLuckyDrawArgs, $root.pblucky.FindLuckyDrawReply, request, callback);
+        }, "name", { value: "FindLuckyDrawList" });
+
+        /**
+         * Calls FindLuckyDrawList.
+         * @function findLuckyDrawList
+         * @memberof pblucky.LuckyAdmin
+         * @instance
+         * @param {pblucky.IFindLuckyDrawArgs} request FindLuckyDrawArgs message or plain object
+         * @returns {Promise<pblucky.FindLuckyDrawReply>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pblucky.LuckyAdmin#getLuckyStatistics}.
+         * @memberof pblucky.LuckyAdmin
+         * @typedef GetLuckyStatisticsCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pblucky.GetLuckyStatisticsReply} [response] GetLuckyStatisticsReply
+         */
+
+        /**
+         * Calls GetLuckyStatistics.
+         * @function getLuckyStatistics
+         * @memberof pblucky.LuckyAdmin
+         * @instance
+         * @param {pblucky.IGetLuckyStatisticsArgs} request GetLuckyStatisticsArgs message or plain object
+         * @param {pblucky.LuckyAdmin.GetLuckyStatisticsCallback} callback Node-style callback called with the error, if any, and GetLuckyStatisticsReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(LuckyAdmin.prototype.getLuckyStatistics = function getLuckyStatistics(request, callback) {
+            return this.rpcCall(getLuckyStatistics, $root.pblucky.GetLuckyStatisticsArgs, $root.pblucky.GetLuckyStatisticsReply, request, callback);
+        }, "name", { value: "GetLuckyStatistics" });
+
+        /**
+         * Calls GetLuckyStatistics.
+         * @function getLuckyStatistics
+         * @memberof pblucky.LuckyAdmin
+         * @instance
+         * @param {pblucky.IGetLuckyStatisticsArgs} request GetLuckyStatisticsArgs message or plain object
+         * @returns {Promise<pblucky.GetLuckyStatisticsReply>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pblucky.LuckyAdmin#getLuckyPrizeStatistics}.
+         * @memberof pblucky.LuckyAdmin
+         * @typedef GetLuckyPrizeStatisticsCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pblucky.GetLuckyPrizeStatisticsReply} [response] GetLuckyPrizeStatisticsReply
+         */
+
+        /**
+         * Calls GetLuckyPrizeStatistics.
+         * @function getLuckyPrizeStatistics
+         * @memberof pblucky.LuckyAdmin
+         * @instance
+         * @param {pblucky.IGetLuckyPrizeStatisticsArgs} request GetLuckyPrizeStatisticsArgs message or plain object
+         * @param {pblucky.LuckyAdmin.GetLuckyPrizeStatisticsCallback} callback Node-style callback called with the error, if any, and GetLuckyPrizeStatisticsReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(LuckyAdmin.prototype.getLuckyPrizeStatistics = function getLuckyPrizeStatistics(request, callback) {
+            return this.rpcCall(getLuckyPrizeStatistics, $root.pblucky.GetLuckyPrizeStatisticsArgs, $root.pblucky.GetLuckyPrizeStatisticsReply, request, callback);
+        }, "name", { value: "GetLuckyPrizeStatistics" });
+
+        /**
+         * Calls GetLuckyPrizeStatistics.
+         * @function getLuckyPrizeStatistics
+         * @memberof pblucky.LuckyAdmin
+         * @instance
+         * @param {pblucky.IGetLuckyPrizeStatisticsArgs} request GetLuckyPrizeStatisticsArgs message or plain object
+         * @returns {Promise<pblucky.GetLuckyPrizeStatisticsReply>} Promise
+         * @variation 2
+         */
+
+        return LuckyAdmin;
+    })();
+
+    return pblucky;
 })();
 
 module.exports = $root;

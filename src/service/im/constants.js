@@ -140,8 +140,8 @@ export const RECONNECT_CONFIG = {
 
 // Heartbeat Config
 export const HEARTBEAT_CONFIG = {
-  INTERVAL: 30000, // 30 seconds
-  TIMEOUT: 10000 // 10 seconds
+  INTERVAL: 10000, // 10 seconds
+  TIMEOUT: 30000 // 30 seconds
 }
 
 // Default WebSocket URL (can be overridden by config)

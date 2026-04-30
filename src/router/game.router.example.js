@@ -56,6 +56,12 @@ export default {
       name: 'SystemUsers',
       component: () => import('@/views/game/systemUsers'),
       meta: { title: '系统号管理', icon: 'user' }
+    },
+    {
+      path: 'wallet-manage',
+      name: 'walletManage',
+      component: () => import('@/views/game/walletManage'),
+      meta: { title: '钱包管理', icon: 'wallet' }
     }
   ]
 }
