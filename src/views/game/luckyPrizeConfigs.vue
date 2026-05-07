@@ -12,6 +12,28 @@
         <el-radio-button label="SENIOR">高级场</el-radio-button>
       </el-radio-group>
 
+      <!-- 消耗金币配置 -->
+      <el-card shadow="never" style="margin: 16px 0" v-loading="costLoading">
+        <div slot="header"><span>消耗金币配置</span></div>
+        <el-form :inline="true" size="small">
+          <el-form-item label="初级场单抽">
+            <el-input-number v-model="costConfigs.JUNIOR.costOnce" :min="0" :step="10" />
+          </el-form-item>
+          <el-form-item label="初级场十连抽">
+            <el-input-number v-model="costConfigs.JUNIOR.costTen" :min="0" :step="10" />
+          </el-form-item>
+          <el-form-item label="高级场单抽">
+            <el-input-number v-model="costConfigs.SENIOR.costOnce" :min="0" :step="10" />
+          </el-form-item>
+          <el-form-item label="高级场十连抽">
+            <el-input-number v-model="costConfigs.SENIOR.costTen" :min="0" :step="10" />
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" @click="handleSaveCostConfigs">保存消耗配置</el-button>
+          </el-form-item>
+        </el-form>
+      </el-card>
+
       <!-- 数据表格 -->
       <el-table :data="tableData" v-loading="loading" border stripe>
         <el-table-column prop="id" label="ID" width="80" />
@@ -51,7 +73,10 @@
           </el-select>
         </el-form-item>
         <el-form-item label="奖品类型" prop="prizeType">
-          <el-input v-model="formData.prizeType" placeholder="如：COIN、PROP等" />
+          <el-select v-model="formData.prizeType" placeholder="请选择奖品类型" style="width: 100%">
+            <el-option label="金币(开发中)" value="COIN" disabled />
+            <el-option label="道具" value="PROP" />
+          </el-select>
         </el-form-item>
         <el-form-item label="奖品名称" prop="prizeName">
           <el-input v-model="formData.prizeName" placeholder="如：金币x10" />
@@ -69,8 +94,13 @@
         <el-form-item label="是否启用" prop="isEnabled">
           <el-switch v-model="formData.isEnabled" />
         </el-form-item>
-        <el-form-item label="图片URL" prop="imageUrl">
-          <el-input v-model="formData.imageUrl" placeholder="奖品图片URL" />
+        <el-form-item label="图片" prop="imageUrl">
+          <ImageUpload
+            v-model="formData.imageUrl"
+            accept="image/*"
+            :max-size="5"
+            tip="支持 jpg、png 格式，文件大小不超过 5MB"
+          />
         </el-form-item>
       </el-form>
       <div slot="footer">
@@ -82,10 +112,14 @@
 </template>
 
 <script>
-import { findLuckyPrizeConfigList, createLuckyPrizeConfig, updateLuckyPrizeConfig, deleteLuckyPrizeConfig } from '@/api/luckyAdminService'
+import { findLuckyPrizeConfigList, createLuckyPrizeConfig, updateLuckyPrizeConfig, deleteLuckyPrizeConfig, getLuckyCostConfigs, updateLuckyCostConfig } from '@/api/luckyAdminService'
+import ImageUpload from '@/components/ImageUpload/index.vue'
 
 export default {
   name: 'LuckyPrizeConfigs',
+  components: {
+    ImageUpload
+  },
   data() {
     return {
       fieldType: 'JUNIOR',
@@ -112,17 +146,24 @@ export default {
         prizeName: [{ required: true, message: '请输入奖品名称', trigger: 'blur' }],
         prizeValue: [{ required: true, message: '请输入奖品价值', trigger: 'blur' }],
         weight: [{ required: true, message: '请输入权重', trigger: 'blur' }]
-      }
+      },
+      // 消耗配置
+      costConfigs: {
+        JUNIOR: { costOnce: 10, costTen: 100 },
+        SENIOR: { costOnce: 100, costTen: 1000 }
+      },
+      costLoading: false
     }
   },
   mounted() {
     this.loadData()
+    this.loadCostConfigs()
   },
   methods: {
     async loadData() {
       this.loading = true
       try {
-        const response = await findLuckyPrizeConfigList({ fieldType: this.fieldType })
+        const response = await findLuckyPrizeConfigList({ query: { fieldType: this.fieldType } })
         if (response.code === "Success") {
           this.tableData = response.list || []
         } else {
@@ -197,6 +238,38 @@ export default {
         imageUrl: ''
       }
       this.$refs.form?.clearValidate()
+    },
+    async loadCostConfigs() {
+      this.costLoading = true
+      try {
+        const response = await getLuckyCostConfigs()
+        if (response.code === "Success" && response.list) {
+          for (const cfg of response.list) {
+            if (this.costConfigs[cfg.fieldType]) {
+              this.costConfigs[cfg.fieldType].costOnce = cfg.costOnce
+              this.costConfigs[cfg.fieldType].costTen = cfg.costTen
+            }
+          }
+        }
+      } catch (error) {
+        console.error('加载消耗配置失败:', error)
+      } finally {
+        this.costLoading = false
+      }
+    },
+    async handleSaveCostConfigs() {
+      try {
+        for (const [fieldType, config] of Object.entries(this.costConfigs)) {
+          await updateLuckyCostConfig({
+            fieldType: fieldType,
+            costOnce: config.costOnce,
+            costTen: config.costTen
+          })
+        }
+        this.$message.success('保存消耗配置成功')
+      } catch (error) {
+        this.$message.error('保存消耗配置失败')
+      }
     }
   }
 }

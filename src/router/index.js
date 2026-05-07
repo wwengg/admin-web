@@ -92,7 +92,7 @@ export const constantRoutes = [
         path: '/child/app',
         component: () => import('@/layout/components/vue2'),
         name: 'childApp',
-        meta: { title: '子应用', icon: 'dashboard', affix: true }
+        meta: { title: '直播平台后台', icon: 'dashboard', affix: true }
       }
     ]
   },
@@ -110,50 +110,50 @@ export const constantRoutes = [
       }
     ]
   },
-  {
-    path: '/erp',
-    component: Layout,
-    redirect: '/erp/dashboard',
-    alwaysShow: true,
-    children: [
-      {
-        path: 'dashboard',
-        component: () => import('@/views/erp/dashboard'),
-        name: 'ERPDashboard',
-        meta: { title: 'ERP工作台', icon: 'dashboard' }
-      },
-      {
-        path: 'production',
-        component: () => import('@/views/erp/production'),
-        name: 'ERPProduction',
-        meta: { title: '生产管理', icon: 'example' }
-      },
-      {
-        path: 'purchase',
-        component: () => import('@/views/erp/purchase'),
-        name: 'ERPPurchase',
-        meta: { title: '采购管理', icon: 'shopping' }
-      },
-      {
-        path: 'sales',
-        component: () => import('@/views/erp/sales'),
-        name: 'ERPSales',
-        meta: { title: '销售管理', icon: 'chart' }
-      },
-      {
-        path: 'inventory',
-        component: () => import('@/views/erp/inventory'),
-        name: 'ERPInventory',
-        meta: { title: '库存管理', icon: 'list' }
-      },
-      {
-        path: 'organization',
-        component: () => import('@/views/upms/organization'),
-        name: 'Organization',
-        meta: { title: '组织管理', icon: 's-grid' }
-      }
-    ]
-  },
+  // {
+  //   path: '/erp',
+  //   component: Layout,
+  //   redirect: '/erp/dashboard',
+  //   alwaysShow: true,
+  //   children: [
+  //     {
+  //       path: 'dashboard',
+  //       component: () => import('@/views/erp/dashboard'),
+  //       name: 'ERPDashboard',
+  //       meta: { title: 'ERP工作台', icon: 'dashboard' }
+  //     },
+  //     {
+  //       path: 'production',
+  //       component: () => import('@/views/erp/production'),
+  //       name: 'ERPProduction',
+  //       meta: { title: '生产管理', icon: 'example' }
+  //     },
+  //     {
+  //       path: 'purchase',
+  //       component: () => import('@/views/erp/purchase'),
+  //       name: 'ERPPurchase',
+  //       meta: { title: '采购管理', icon: 'shopping' }
+  //     },
+  //     {
+  //       path: 'sales',
+  //       component: () => import('@/views/erp/sales'),
+  //       name: 'ERPSales',
+  //       meta: { title: '销售管理', icon: 'chart' }
+  //     },
+  //     {
+  //       path: 'inventory',
+  //       component: () => import('@/views/erp/inventory'),
+  //       name: 'ERPInventory',
+  //       meta: { title: '库存管理', icon: 'list' }
+  //     },
+  //     {
+  //       path: 'organization',
+  //       component: () => import('@/views/upms/organization'),
+  //       name: 'Organization',
+  //       meta: { title: '组织管理', icon: 's-grid' }
+  //     }
+  //   ]
+  // },
   {
     path: '/game',
     component: Layout,

@@ -160,3 +160,34 @@ export function getLuckyPrizeStatistics(data) {
     pb: 'pblucky.GetLuckyPrizeStatisticsReply'
   })
 }
+
+// ========== 消耗配置管理 ==========
+
+/**
+ * 获取抽奖消耗配置
+ * @returns {Promise<GetLuckyCostConfigsReply>}
+ */
+export function getLuckyCostConfigs() {
+  const buffer = pbcommon.Empty.encode({}).finish().slice().buffer
+  return request({
+    url: '/v2/luckyAdmin/getLuckyCostConfigs',
+    method: 'post',
+    buffer,
+    pb: 'pblucky.GetLuckyCostConfigsReply'
+  })
+}
+
+/**
+ * 更新抽奖消耗配置
+ * @param {LuckyCostConfigModel} data
+ * @returns {Promise<CommonResult>}
+ */
+export function updateLuckyCostConfig(data) {
+  const buffer = pblucky.LuckyCostConfigModel.encode(data).finish().slice().buffer
+  return request({
+    url: '/v2/luckyAdmin/updateLuckyCostConfig',
+    method: 'post',
+    buffer,
+    pb: 'pbcommon.CommonResult'
+  })
+}

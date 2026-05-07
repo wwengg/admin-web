@@ -31,6 +31,7 @@ $root.pbcommon = (function() {
      * @property {number} Invalid=503 Invalid value
      * @property {number} InvalidParam=504 InvalidParam value
      * @property {number} ParamError=505 ParamError value
+     * @property {number} TooManyRequests=511 TooManyRequests value
      * @property {number} FindError=1001 FindError value
      * @property {number} CreateError=1002 CreateError value
      * @property {number} DeleteError=1003 DeleteError value
@@ -58,6 +59,7 @@ $root.pbcommon = (function() {
      * @property {number} HalaPriceOutRange=10002 HalaPriceOutRange value
      * @property {number} GamePhaseNotMatch=20001 GamePhaseNotMatch value
      * @property {number} GameNotStarted=20002 GameNotStarted value
+     * @property {number} InsufficientBalance=20003 InsufficientBalance value
      */
     pbcommon.EnumCode = (function() {
         var valuesById = {}, values = Object.create(valuesById);
@@ -70,6 +72,7 @@ $root.pbcommon = (function() {
         values[valuesById[503] = "Invalid"] = 503;
         values[valuesById[504] = "InvalidParam"] = 504;
         values[valuesById[505] = "ParamError"] = 505;
+        values[valuesById[511] = "TooManyRequests"] = 511;
         values[valuesById[1001] = "FindError"] = 1001;
         values[valuesById[1002] = "CreateError"] = 1002;
         values[valuesById[1003] = "DeleteError"] = 1003;
@@ -97,6 +100,7 @@ $root.pbcommon = (function() {
         values[valuesById[10002] = "HalaPriceOutRange"] = 10002;
         values[valuesById[20001] = "GamePhaseNotMatch"] = 20001;
         values[valuesById[20002] = "GameNotStarted"] = 20002;
+        values[valuesById[20003] = "InsufficientBalance"] = 20003;
         return values;
     })();
 
@@ -261,6 +265,7 @@ $root.pbcommon = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -288,6 +293,7 @@ $root.pbcommon = (function() {
                 case 10002:
                 case 20001:
                 case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -350,6 +356,10 @@ $root.pbcommon = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -458,6 +468,10 @@ $root.pbcommon = (function() {
             case "GameNotStarted":
             case 20002:
                 message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -3302,6 +3316,7 @@ $root.pbbattle = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -3329,6 +3344,7 @@ $root.pbbattle = (function() {
                 case 10002:
                 case 20001:
                 case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -3420,6 +3436,10 @@ $root.pbbattle = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -3528,6 +3548,10 @@ $root.pbbattle = (function() {
             case "GameNotStarted":
             case 20002:
                 message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -4105,6 +4129,7 @@ $root.pbbattle = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -4132,6 +4157,7 @@ $root.pbbattle = (function() {
                 case 10002:
                 case 20001:
                 case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -4206,6 +4232,10 @@ $root.pbbattle = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -4315,6 +4345,10 @@ $root.pbbattle = (function() {
             case 20002:
                 message.code = 20002;
                 break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
+                break;
             }
             if (object.msg != null)
                 message.msg = String(object.msg);
@@ -4403,7 +4437,7 @@ $root.pbbattle = (function() {
          * @memberof pbbattle
          * @interface IAssistActionReq
          * @property {number|Long|null} [generalId] AssistActionReq generalId
-         * @property {pbbattle.AssistOption|null} [option] AssistActionReq option
+         * @property {number|null} [assistValue] AssistActionReq assistValue
          */
 
         /**
@@ -4430,12 +4464,12 @@ $root.pbbattle = (function() {
         AssistActionReq.prototype.generalId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
 
         /**
-         * AssistActionReq option.
-         * @member {pbbattle.AssistOption} option
+         * AssistActionReq assistValue.
+         * @member {number} assistValue
          * @memberof pbbattle.AssistActionReq
          * @instance
          */
-        AssistActionReq.prototype.option = 0;
+        AssistActionReq.prototype.assistValue = 0;
 
         /**
          * Creates a new AssistActionReq instance using the specified properties.
@@ -4463,8 +4497,8 @@ $root.pbbattle = (function() {
                 writer = $Writer.create();
             if (message.generalId != null && Object.hasOwnProperty.call(message, "generalId"))
                 writer.uint32(/* id 1, wireType 0 =*/8).int64(message.generalId);
-            if (message.option != null && Object.hasOwnProperty.call(message, "option"))
-                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.option);
+            if (message.assistValue != null && Object.hasOwnProperty.call(message, "assistValue"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.assistValue);
             return writer;
         };
 
@@ -4506,7 +4540,7 @@ $root.pbbattle = (function() {
                         break;
                     }
                 case 2: {
-                        message.option = reader.int32();
+                        message.assistValue = reader.int32();
                         break;
                     }
                 default:
@@ -4547,19 +4581,9 @@ $root.pbbattle = (function() {
             if (message.generalId != null && message.hasOwnProperty("generalId"))
                 if (!$util.isInteger(message.generalId) && !(message.generalId && $util.isInteger(message.generalId.low) && $util.isInteger(message.generalId.high)))
                     return "generalId: integer|Long expected";
-            if (message.option != null && message.hasOwnProperty("option"))
-                switch (message.option) {
-                default:
-                    return "option: enum value expected";
-                case 0:
-                case 1:
-                case 2:
-                case 3:
-                case 4:
-                case 5:
-                case 6:
-                    break;
-                }
+            if (message.assistValue != null && message.hasOwnProperty("assistValue"))
+                if (!$util.isInteger(message.assistValue))
+                    return "assistValue: integer expected";
             return null;
         };
 
@@ -4584,42 +4608,8 @@ $root.pbbattle = (function() {
                     message.generalId = object.generalId;
                 else if (typeof object.generalId === "object")
                     message.generalId = new $util.LongBits(object.generalId.low >>> 0, object.generalId.high >>> 0).toNumber();
-            switch (object.option) {
-            default:
-                if (typeof object.option === "number") {
-                    message.option = object.option;
-                    break;
-                }
-                break;
-            case "OPTION_UNKNOWN":
-            case 0:
-                message.option = 0;
-                break;
-            case "PLUS_1":
-            case 1:
-                message.option = 1;
-                break;
-            case "PLUS_3":
-            case 2:
-                message.option = 2;
-                break;
-            case "PLUS_5":
-            case 3:
-                message.option = 3;
-                break;
-            case "PLUS_10":
-            case 4:
-                message.option = 4;
-                break;
-            case "PLUS_25":
-            case 5:
-                message.option = 5;
-                break;
-            case "PLUS_50":
-            case 6:
-                message.option = 6;
-                break;
-            }
+            if (object.assistValue != null)
+                message.assistValue = object.assistValue | 0;
             return message;
         };
 
@@ -4642,15 +4632,15 @@ $root.pbbattle = (function() {
                     object.generalId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
                 } else
                     object.generalId = options.longs === String ? "0" : 0;
-                object.option = options.enums === String ? "OPTION_UNKNOWN" : 0;
+                object.assistValue = 0;
             }
             if (message.generalId != null && message.hasOwnProperty("generalId"))
                 if (typeof message.generalId === "number")
                     object.generalId = options.longs === String ? String(message.generalId) : message.generalId;
                 else
                     object.generalId = options.longs === String ? $util.Long.prototype.toString.call(message.generalId) : options.longs === Number ? new $util.LongBits(message.generalId.low >>> 0, message.generalId.high >>> 0).toNumber() : message.generalId;
-            if (message.option != null && message.hasOwnProperty("option"))
-                object.option = options.enums === String ? $root.pbbattle.AssistOption[message.option] === undefined ? message.option : $root.pbbattle.AssistOption[message.option] : message.option;
+            if (message.assistValue != null && message.hasOwnProperty("assistValue"))
+                object.assistValue = message.assistValue;
             return object;
         };
 
@@ -4681,6 +4671,225 @@ $root.pbbattle = (function() {
         };
 
         return AssistActionReq;
+    })();
+
+    pbbattle.GetBalanceReq = (function() {
+
+        /**
+         * Properties of a GetBalanceReq.
+         * @memberof pbbattle
+         * @interface IGetBalanceReq
+         * @property {number|Long|null} [userId] GetBalanceReq userId
+         */
+
+        /**
+         * Constructs a new GetBalanceReq.
+         * @memberof pbbattle
+         * @classdesc Represents a GetBalanceReq.
+         * @implements IGetBalanceReq
+         * @constructor
+         * @param {pbbattle.IGetBalanceReq=} [properties] Properties to set
+         */
+        function GetBalanceReq(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GetBalanceReq userId.
+         * @member {number|Long} userId
+         * @memberof pbbattle.GetBalanceReq
+         * @instance
+         */
+        GetBalanceReq.prototype.userId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * Creates a new GetBalanceReq instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.GetBalanceReq
+         * @static
+         * @param {pbbattle.IGetBalanceReq=} [properties] Properties to set
+         * @returns {pbbattle.GetBalanceReq} GetBalanceReq instance
+         */
+        GetBalanceReq.create = function create(properties) {
+            return new GetBalanceReq(properties);
+        };
+
+        /**
+         * Encodes the specified GetBalanceReq message. Does not implicitly {@link pbbattle.GetBalanceReq.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.GetBalanceReq
+         * @static
+         * @param {pbbattle.IGetBalanceReq} message GetBalanceReq message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetBalanceReq.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.userId != null && Object.hasOwnProperty.call(message, "userId"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int64(message.userId);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GetBalanceReq message, length delimited. Does not implicitly {@link pbbattle.GetBalanceReq.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.GetBalanceReq
+         * @static
+         * @param {pbbattle.IGetBalanceReq} message GetBalanceReq message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetBalanceReq.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GetBalanceReq message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.GetBalanceReq
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.GetBalanceReq} GetBalanceReq
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetBalanceReq.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.GetBalanceReq();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.userId = reader.int64();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GetBalanceReq message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.GetBalanceReq
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.GetBalanceReq} GetBalanceReq
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetBalanceReq.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GetBalanceReq message.
+         * @function verify
+         * @memberof pbbattle.GetBalanceReq
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GetBalanceReq.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.userId != null && message.hasOwnProperty("userId"))
+                if (!$util.isInteger(message.userId) && !(message.userId && $util.isInteger(message.userId.low) && $util.isInteger(message.userId.high)))
+                    return "userId: integer|Long expected";
+            return null;
+        };
+
+        /**
+         * Creates a GetBalanceReq message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.GetBalanceReq
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.GetBalanceReq} GetBalanceReq
+         */
+        GetBalanceReq.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.GetBalanceReq)
+                return object;
+            var message = new $root.pbbattle.GetBalanceReq();
+            if (object.userId != null)
+                if ($util.Long)
+                    (message.userId = $util.Long.fromValue(object.userId)).unsigned = false;
+                else if (typeof object.userId === "string")
+                    message.userId = parseInt(object.userId, 10);
+                else if (typeof object.userId === "number")
+                    message.userId = object.userId;
+                else if (typeof object.userId === "object")
+                    message.userId = new $util.LongBits(object.userId.low >>> 0, object.userId.high >>> 0).toNumber();
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GetBalanceReq message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.GetBalanceReq
+         * @static
+         * @param {pbbattle.GetBalanceReq} message GetBalanceReq
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GetBalanceReq.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.userId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.userId = options.longs === String ? "0" : 0;
+            if (message.userId != null && message.hasOwnProperty("userId"))
+                if (typeof message.userId === "number")
+                    object.userId = options.longs === String ? String(message.userId) : message.userId;
+                else
+                    object.userId = options.longs === String ? $util.Long.prototype.toString.call(message.userId) : options.longs === Number ? new $util.LongBits(message.userId.low >>> 0, message.userId.high >>> 0).toNumber() : message.userId;
+            return object;
+        };
+
+        /**
+         * Converts this GetBalanceReq to JSON.
+         * @function toJSON
+         * @memberof pbbattle.GetBalanceReq
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GetBalanceReq.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GetBalanceReq
+         * @function getTypeUrl
+         * @memberof pbbattle.GetBalanceReq
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GetBalanceReq.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.GetBalanceReq";
+        };
+
+        return GetBalanceReq;
     })();
 
     pbbattle.AssistActionResp = (function() {
@@ -4874,6 +5083,7 @@ $root.pbbattle = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -4901,6 +5111,7 @@ $root.pbbattle = (function() {
                 case 10002:
                 case 20001:
                 case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -4971,6 +5182,10 @@ $root.pbbattle = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -5080,6 +5295,10 @@ $root.pbbattle = (function() {
             case 20002:
                 message.code = 20002;
                 break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
+                break;
             }
             if (object.msg != null)
                 message.msg = String(object.msg);
@@ -5164,6 +5383,508 @@ $root.pbbattle = (function() {
         };
 
         return AssistActionResp;
+    })();
+
+    pbbattle.GetBalanceResp = (function() {
+
+        /**
+         * Properties of a GetBalanceResp.
+         * @memberof pbbattle
+         * @interface IGetBalanceResp
+         * @property {pbcommon.EnumCode|null} [code] GetBalanceResp code
+         * @property {string|null} [msg] GetBalanceResp msg
+         * @property {number|Long|null} [userId] GetBalanceResp userId
+         * @property {number|Long|null} [balance] GetBalanceResp balance
+         */
+
+        /**
+         * Constructs a new GetBalanceResp.
+         * @memberof pbbattle
+         * @classdesc Represents a GetBalanceResp.
+         * @implements IGetBalanceResp
+         * @constructor
+         * @param {pbbattle.IGetBalanceResp=} [properties] Properties to set
+         */
+        function GetBalanceResp(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GetBalanceResp code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbbattle.GetBalanceResp
+         * @instance
+         */
+        GetBalanceResp.prototype.code = 0;
+
+        /**
+         * GetBalanceResp msg.
+         * @member {string} msg
+         * @memberof pbbattle.GetBalanceResp
+         * @instance
+         */
+        GetBalanceResp.prototype.msg = "";
+
+        /**
+         * GetBalanceResp userId.
+         * @member {number|Long} userId
+         * @memberof pbbattle.GetBalanceResp
+         * @instance
+         */
+        GetBalanceResp.prototype.userId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * GetBalanceResp balance.
+         * @member {number|Long} balance
+         * @memberof pbbattle.GetBalanceResp
+         * @instance
+         */
+        GetBalanceResp.prototype.balance = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * Creates a new GetBalanceResp instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.GetBalanceResp
+         * @static
+         * @param {pbbattle.IGetBalanceResp=} [properties] Properties to set
+         * @returns {pbbattle.GetBalanceResp} GetBalanceResp instance
+         */
+        GetBalanceResp.create = function create(properties) {
+            return new GetBalanceResp(properties);
+        };
+
+        /**
+         * Encodes the specified GetBalanceResp message. Does not implicitly {@link pbbattle.GetBalanceResp.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.GetBalanceResp
+         * @static
+         * @param {pbbattle.IGetBalanceResp} message GetBalanceResp message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetBalanceResp.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.userId != null && Object.hasOwnProperty.call(message, "userId"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int64(message.userId);
+            if (message.balance != null && Object.hasOwnProperty.call(message, "balance"))
+                writer.uint32(/* id 4, wireType 0 =*/32).int64(message.balance);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GetBalanceResp message, length delimited. Does not implicitly {@link pbbattle.GetBalanceResp.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.GetBalanceResp
+         * @static
+         * @param {pbbattle.IGetBalanceResp} message GetBalanceResp message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetBalanceResp.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GetBalanceResp message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.GetBalanceResp
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.GetBalanceResp} GetBalanceResp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetBalanceResp.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.GetBalanceResp();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.code = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.userId = reader.int64();
+                        break;
+                    }
+                case 4: {
+                        message.balance = reader.int64();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GetBalanceResp message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.GetBalanceResp
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.GetBalanceResp} GetBalanceResp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetBalanceResp.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GetBalanceResp message.
+         * @function verify
+         * @memberof pbbattle.GetBalanceResp
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GetBalanceResp.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.code != null && message.hasOwnProperty("code"))
+                switch (message.code) {
+                default:
+                    return "code: enum value expected";
+                case 0:
+                case 200:
+                case 403:
+                case 500:
+                case 501:
+                case 502:
+                case 503:
+                case 504:
+                case 505:
+                case 511:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
+                case 2002:
+                case 2003:
+                case 2004:
+                case 2005:
+                case 2006:
+                case 2007:
+                case 2008:
+                case 2009:
+                case 2010:
+                case 2011:
+                case 2012:
+                case 2013:
+                case 2014:
+                case 2015:
+                case 3001:
+                case 3002:
+                case 3003:
+                case 5001:
+                case 5002:
+                case 10001:
+                case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
+                    break;
+                }
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                if (!$util.isString(message.msg))
+                    return "msg: string expected";
+            if (message.userId != null && message.hasOwnProperty("userId"))
+                if (!$util.isInteger(message.userId) && !(message.userId && $util.isInteger(message.userId.low) && $util.isInteger(message.userId.high)))
+                    return "userId: integer|Long expected";
+            if (message.balance != null && message.hasOwnProperty("balance"))
+                if (!$util.isInteger(message.balance) && !(message.balance && $util.isInteger(message.balance.low) && $util.isInteger(message.balance.high)))
+                    return "balance: integer|Long expected";
+            return null;
+        };
+
+        /**
+         * Creates a GetBalanceResp message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.GetBalanceResp
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.GetBalanceResp} GetBalanceResp
+         */
+        GetBalanceResp.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.GetBalanceResp)
+                return object;
+            var message = new $root.pbbattle.GetBalanceResp();
+            switch (object.code) {
+            default:
+                if (typeof object.code === "number") {
+                    message.code = object.code;
+                    break;
+                }
+                break;
+            case "None":
+            case 0:
+                message.code = 0;
+                break;
+            case "Success":
+            case 200:
+                message.code = 200;
+                break;
+            case "Forbidden":
+            case 403:
+                message.code = 403;
+                break;
+            case "Fail":
+            case 500:
+                message.code = 500;
+                break;
+            case "Unknown":
+            case 501:
+                message.code = 501;
+                break;
+            case "Internal":
+            case 502:
+                message.code = 502;
+                break;
+            case "Invalid":
+            case 503:
+                message.code = 503;
+                break;
+            case "InvalidParam":
+            case 504:
+                message.code = 504;
+                break;
+            case "ParamError":
+            case 505:
+                message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
+                break;
+            case "FindError":
+            case 1001:
+                message.code = 1001;
+                break;
+            case "CreateError":
+            case 1002:
+                message.code = 1002;
+                break;
+            case "DeleteError":
+            case 1003:
+                message.code = 1003;
+                break;
+            case "UpdateError":
+            case 1004:
+                message.code = 1004;
+                break;
+            case "InvalidToken":
+            case 2002:
+                message.code = 2002;
+                break;
+            case "InvalidSign":
+            case 2003:
+                message.code = 2003;
+                break;
+            case "NotLogin":
+            case 2004:
+                message.code = 2004;
+                break;
+            case "LoginTimeout":
+            case 2005:
+                message.code = 2005;
+                break;
+            case "LoginError":
+            case 2006:
+                message.code = 2006;
+                break;
+            case "LoginForbidden":
+            case 2007:
+                message.code = 2007;
+                break;
+            case "LoginExpired":
+            case 2008:
+                message.code = 2008;
+                break;
+            case "LoginInvalid":
+            case 2009:
+                message.code = 2009;
+                break;
+            case "LoginInvalidPassword":
+            case 2010:
+                message.code = 2010;
+                break;
+            case "LoginInvalidUsername":
+            case 2011:
+                message.code = 2011;
+                break;
+            case "LoginInvalidEmail":
+            case 2012:
+                message.code = 2012;
+                break;
+            case "LoginInvalidPhone":
+            case 2013:
+                message.code = 2013;
+                break;
+            case "LoginInvalidUsernameOrEmail":
+            case 2014:
+                message.code = 2014;
+                break;
+            case "LoginSocketRepeat":
+            case 2015:
+                message.code = 2015;
+                break;
+            case "RoleIsNotExist":
+            case 3001:
+                message.code = 3001;
+                break;
+            case "UserIsExist":
+            case 3002:
+                message.code = 3002;
+                break;
+            case "UserIsBan":
+            case 3003:
+                message.code = 3003;
+                break;
+            case "TalkIsBan":
+            case 5001:
+                message.code = 5001;
+                break;
+            case "EnterRoomErr":
+            case 5002:
+                message.code = 5002;
+                break;
+            case "HalaChatNeedBuy":
+            case 10001:
+                message.code = 10001;
+                break;
+            case "HalaPriceOutRange":
+            case 10002:
+                message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
+                break;
+            }
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.userId != null)
+                if ($util.Long)
+                    (message.userId = $util.Long.fromValue(object.userId)).unsigned = false;
+                else if (typeof object.userId === "string")
+                    message.userId = parseInt(object.userId, 10);
+                else if (typeof object.userId === "number")
+                    message.userId = object.userId;
+                else if (typeof object.userId === "object")
+                    message.userId = new $util.LongBits(object.userId.low >>> 0, object.userId.high >>> 0).toNumber();
+            if (object.balance != null)
+                if ($util.Long)
+                    (message.balance = $util.Long.fromValue(object.balance)).unsigned = false;
+                else if (typeof object.balance === "string")
+                    message.balance = parseInt(object.balance, 10);
+                else if (typeof object.balance === "number")
+                    message.balance = object.balance;
+                else if (typeof object.balance === "object")
+                    message.balance = new $util.LongBits(object.balance.low >>> 0, object.balance.high >>> 0).toNumber();
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GetBalanceResp message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.GetBalanceResp
+         * @static
+         * @param {pbbattle.GetBalanceResp} message GetBalanceResp
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GetBalanceResp.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.code = options.enums === String ? "None" : 0;
+                object.msg = "";
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.userId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.userId = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.balance = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.balance = options.longs === String ? "0" : 0;
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.userId != null && message.hasOwnProperty("userId"))
+                if (typeof message.userId === "number")
+                    object.userId = options.longs === String ? String(message.userId) : message.userId;
+                else
+                    object.userId = options.longs === String ? $util.Long.prototype.toString.call(message.userId) : options.longs === Number ? new $util.LongBits(message.userId.low >>> 0, message.userId.high >>> 0).toNumber() : message.userId;
+            if (message.balance != null && message.hasOwnProperty("balance"))
+                if (typeof message.balance === "number")
+                    object.balance = options.longs === String ? String(message.balance) : message.balance;
+                else
+                    object.balance = options.longs === String ? $util.Long.prototype.toString.call(message.balance) : options.longs === Number ? new $util.LongBits(message.balance.low >>> 0, message.balance.high >>> 0).toNumber() : message.balance;
+            return object;
+        };
+
+        /**
+         * Converts this GetBalanceResp to JSON.
+         * @function toJSON
+         * @memberof pbbattle.GetBalanceResp
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GetBalanceResp.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GetBalanceResp
+         * @function getTypeUrl
+         * @memberof pbbattle.GetBalanceResp
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GetBalanceResp.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.GetBalanceResp";
+        };
+
+        return GetBalanceResp;
     })();
 
     pbbattle.RepeatAssistReq = (function() {
@@ -5587,6 +6308,7 @@ $root.pbbattle = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -5614,6 +6336,7 @@ $root.pbbattle = (function() {
                 case 10002:
                 case 20001:
                 case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -5688,6 +6411,10 @@ $root.pbbattle = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -5796,6 +6523,10 @@ $root.pbbattle = (function() {
             case "GameNotStarted":
             case 20002:
                 message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -6520,6 +7251,7 @@ $root.pbbattle = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -6547,6 +7279,7 @@ $root.pbbattle = (function() {
                 case 10002:
                 case 20001:
                 case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -6618,6 +7351,10 @@ $root.pbbattle = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -6726,6 +7463,10 @@ $root.pbbattle = (function() {
             case "GameNotStarted":
             case 20002:
                 message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -7845,6 +8586,39 @@ $root.pbbattle = (function() {
          * @instance
          * @param {pbbattle.IGetGameStateReq} request GetGameStateReq message or plain object
          * @returns {Promise<pbbattle.GetGameStateResp>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.Battle#getBalance}.
+         * @memberof pbbattle.Battle
+         * @typedef GetBalanceCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbbattle.GetBalanceResp} [response] GetBalanceResp
+         */
+
+        /**
+         * Calls GetBalance.
+         * @function getBalance
+         * @memberof pbbattle.Battle
+         * @instance
+         * @param {pbbattle.IGetBalanceReq} request GetBalanceReq message or plain object
+         * @param {pbbattle.Battle.GetBalanceCallback} callback Node-style callback called with the error, if any, and GetBalanceResp
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(Battle.prototype.getBalance = function getBalance(request, callback) {
+            return this.rpcCall(getBalance, $root.pbbattle.GetBalanceReq, $root.pbbattle.GetBalanceResp, request, callback);
+        }, "name", { value: "GetBalance" });
+
+        /**
+         * Calls GetBalance.
+         * @function getBalance
+         * @memberof pbbattle.Battle
+         * @instance
+         * @param {pbbattle.IGetBalanceReq} request GetBalanceReq message or plain object
+         * @returns {Promise<pbbattle.GetBalanceResp>} Promise
          * @variation 2
          */
 
@@ -9152,6 +9926,7 @@ $root.pbbattle = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -9179,6 +9954,7 @@ $root.pbbattle = (function() {
                 case 10002:
                 case 20001:
                 case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -9258,6 +10034,10 @@ $root.pbbattle = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -9366,6 +10146,10 @@ $root.pbbattle = (function() {
             case "GameNotStarted":
             case 20002:
                 message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -10399,6 +11183,7 @@ $root.pbbattle = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -10426,6 +11211,7 @@ $root.pbbattle = (function() {
                 case 10002:
                 case 20001:
                 case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -10505,6 +11291,10 @@ $root.pbbattle = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -10613,6 +11403,10 @@ $root.pbbattle = (function() {
             case "GameNotStarted":
             case 20002:
                 message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -11769,6 +12563,7 @@ $root.pbbattle = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -11796,6 +12591,7 @@ $root.pbbattle = (function() {
                 case 10002:
                 case 20001:
                 case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -11875,6 +12671,10 @@ $root.pbbattle = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -11983,6 +12783,10 @@ $root.pbbattle = (function() {
             case "GameNotStarted":
             case 20002:
                 message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -13294,6 +14098,7 @@ $root.pbbattle = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -13321,6 +14126,7 @@ $root.pbbattle = (function() {
                 case 10002:
                 case 20001:
                 case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -13400,6 +14206,10 @@ $root.pbbattle = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -13508,6 +14318,10 @@ $root.pbbattle = (function() {
             case "GameNotStarted":
             case 20002:
                 message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -14682,6 +15496,7 @@ $root.pbbattle = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -14709,6 +15524,7 @@ $root.pbbattle = (function() {
                 case 10002:
                 case 20001:
                 case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -14788,6 +15604,10 @@ $root.pbbattle = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -14896,6 +15716,10 @@ $root.pbbattle = (function() {
             case "GameNotStarted":
             case 20002:
                 message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -16032,6 +16856,7 @@ $root.pbbattle = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -16059,6 +16884,7 @@ $root.pbbattle = (function() {
                 case 10002:
                 case 20001:
                 case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -16138,6 +16964,10 @@ $root.pbbattle = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -16246,6 +17076,10 @@ $root.pbbattle = (function() {
             case "GameNotStarted":
             case 20002:
                 message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -17434,6 +18268,7 @@ $root.pbbattle = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -17461,6 +18296,7 @@ $root.pbbattle = (function() {
                 case 10002:
                 case 20001:
                 case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -17540,6 +18376,10 @@ $root.pbbattle = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -17648,6 +18488,10 @@ $root.pbbattle = (function() {
             case "GameNotStarted":
             case 20002:
                 message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -18667,6 +19511,7 @@ $root.pbbattle = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -18694,6 +19539,7 @@ $root.pbbattle = (function() {
                 case 10002:
                 case 20001:
                 case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -18773,6 +19619,10 @@ $root.pbbattle = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -18881,6 +19731,10 @@ $root.pbbattle = (function() {
             case "GameNotStarted":
             case 20002:
                 message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -19545,6 +20399,7 @@ $root.pbbattle = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -19572,6 +20427,7 @@ $root.pbbattle = (function() {
                 case 10002:
                 case 20001:
                 case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -19651,6 +20507,10 @@ $root.pbbattle = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -19759,6 +20619,10 @@ $root.pbbattle = (function() {
             case "GameNotStarted":
             case 20002:
                 message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -20784,6 +21648,7 @@ $root.pbbattle = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -20811,6 +21676,7 @@ $root.pbbattle = (function() {
                 case 10002:
                 case 20001:
                 case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -20878,6 +21744,10 @@ $root.pbbattle = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -20986,6 +21856,10 @@ $root.pbbattle = (function() {
             case "GameNotStarted":
             case 20002:
                 message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -21849,6 +22723,7 @@ $root.pbbattle = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -21876,6 +22751,7 @@ $root.pbbattle = (function() {
                 case 10002:
                 case 20001:
                 case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -21947,6 +22823,10 @@ $root.pbbattle = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -22055,6 +22935,10 @@ $root.pbbattle = (function() {
             case "GameNotStarted":
             case 20002:
                 message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -24932,6 +25816,7 @@ $root.pblucky = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -24959,6 +25844,7 @@ $root.pblucky = (function() {
                 case 10002:
                 case 20001:
                 case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -25038,6 +25924,10 @@ $root.pblucky = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -25146,6 +26036,10 @@ $root.pblucky = (function() {
             case "GameNotStarted":
             case 20002:
                 message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -26432,6 +27326,7 @@ $root.pblucky = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -26459,6 +27354,7 @@ $root.pblucky = (function() {
                 case 10002:
                 case 20001:
                 case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -26538,6 +27434,10 @@ $root.pblucky = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -26646,6 +27546,10 @@ $root.pblucky = (function() {
             case "GameNotStarted":
             case 20002:
                 message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -28151,6 +29055,7 @@ $root.pblucky = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -28178,6 +29083,7 @@ $root.pblucky = (function() {
                 case 10002:
                 case 20001:
                 case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -28257,6 +29163,10 @@ $root.pblucky = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -28365,6 +29275,10 @@ $root.pblucky = (function() {
             case "GameNotStarted":
             case 20002:
                 message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -29209,6 +30123,7 @@ $root.pblucky = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -29236,6 +30151,7 @@ $root.pblucky = (function() {
                 case 10002:
                 case 20001:
                 case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -29303,6 +30219,10 @@ $root.pblucky = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -29411,6 +30331,10 @@ $root.pblucky = (function() {
             case "GameNotStarted":
             case 20002:
                 message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -30260,6 +31184,7 @@ $root.pblucky = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -30287,6 +31212,7 @@ $root.pblucky = (function() {
                 case 10002:
                 case 20001:
                 case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -30358,6 +31284,10 @@ $root.pblucky = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -30466,6 +31396,10 @@ $root.pblucky = (function() {
             case "GameNotStarted":
             case 20002:
                 message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -31004,7 +31938,798 @@ $root.pblucky = (function() {
          * @variation 2
          */
 
+        /**
+         * Callback as used by {@link pblucky.LuckyAdmin#getLuckyCostConfigs}.
+         * @memberof pblucky.LuckyAdmin
+         * @typedef GetLuckyCostConfigsCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pblucky.GetLuckyCostConfigsReply} [response] GetLuckyCostConfigsReply
+         */
+
+        /**
+         * Calls GetLuckyCostConfigs.
+         * @function getLuckyCostConfigs
+         * @memberof pblucky.LuckyAdmin
+         * @instance
+         * @param {pbcommon.IEmpty} request Empty message or plain object
+         * @param {pblucky.LuckyAdmin.GetLuckyCostConfigsCallback} callback Node-style callback called with the error, if any, and GetLuckyCostConfigsReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(LuckyAdmin.prototype.getLuckyCostConfigs = function getLuckyCostConfigs(request, callback) {
+            return this.rpcCall(getLuckyCostConfigs, $root.pbcommon.Empty, $root.pblucky.GetLuckyCostConfigsReply, request, callback);
+        }, "name", { value: "GetLuckyCostConfigs" });
+
+        /**
+         * Calls GetLuckyCostConfigs.
+         * @function getLuckyCostConfigs
+         * @memberof pblucky.LuckyAdmin
+         * @instance
+         * @param {pbcommon.IEmpty} request Empty message or plain object
+         * @returns {Promise<pblucky.GetLuckyCostConfigsReply>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pblucky.LuckyAdmin#updateLuckyCostConfig}.
+         * @memberof pblucky.LuckyAdmin
+         * @typedef UpdateLuckyCostConfigCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls UpdateLuckyCostConfig.
+         * @function updateLuckyCostConfig
+         * @memberof pblucky.LuckyAdmin
+         * @instance
+         * @param {pblucky.ILuckyCostConfigModel} request LuckyCostConfigModel message or plain object
+         * @param {pblucky.LuckyAdmin.UpdateLuckyCostConfigCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(LuckyAdmin.prototype.updateLuckyCostConfig = function updateLuckyCostConfig(request, callback) {
+            return this.rpcCall(updateLuckyCostConfig, $root.pblucky.LuckyCostConfigModel, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "UpdateLuckyCostConfig" });
+
+        /**
+         * Calls UpdateLuckyCostConfig.
+         * @function updateLuckyCostConfig
+         * @memberof pblucky.LuckyAdmin
+         * @instance
+         * @param {pblucky.ILuckyCostConfigModel} request LuckyCostConfigModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
         return LuckyAdmin;
+    })();
+
+    pblucky.LuckyCostConfigModel = (function() {
+
+        /**
+         * Properties of a LuckyCostConfigModel.
+         * @memberof pblucky
+         * @interface ILuckyCostConfigModel
+         * @property {string|null} [fieldType] LuckyCostConfigModel fieldType
+         * @property {number|null} [costOnce] LuckyCostConfigModel costOnce
+         * @property {number|null} [costTen] LuckyCostConfigModel costTen
+         */
+
+        /**
+         * Constructs a new LuckyCostConfigModel.
+         * @memberof pblucky
+         * @classdesc Represents a LuckyCostConfigModel.
+         * @implements ILuckyCostConfigModel
+         * @constructor
+         * @param {pblucky.ILuckyCostConfigModel=} [properties] Properties to set
+         */
+        function LuckyCostConfigModel(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * LuckyCostConfigModel fieldType.
+         * @member {string} fieldType
+         * @memberof pblucky.LuckyCostConfigModel
+         * @instance
+         */
+        LuckyCostConfigModel.prototype.fieldType = "";
+
+        /**
+         * LuckyCostConfigModel costOnce.
+         * @member {number} costOnce
+         * @memberof pblucky.LuckyCostConfigModel
+         * @instance
+         */
+        LuckyCostConfigModel.prototype.costOnce = 0;
+
+        /**
+         * LuckyCostConfigModel costTen.
+         * @member {number} costTen
+         * @memberof pblucky.LuckyCostConfigModel
+         * @instance
+         */
+        LuckyCostConfigModel.prototype.costTen = 0;
+
+        /**
+         * Creates a new LuckyCostConfigModel instance using the specified properties.
+         * @function create
+         * @memberof pblucky.LuckyCostConfigModel
+         * @static
+         * @param {pblucky.ILuckyCostConfigModel=} [properties] Properties to set
+         * @returns {pblucky.LuckyCostConfigModel} LuckyCostConfigModel instance
+         */
+        LuckyCostConfigModel.create = function create(properties) {
+            return new LuckyCostConfigModel(properties);
+        };
+
+        /**
+         * Encodes the specified LuckyCostConfigModel message. Does not implicitly {@link pblucky.LuckyCostConfigModel.verify|verify} messages.
+         * @function encode
+         * @memberof pblucky.LuckyCostConfigModel
+         * @static
+         * @param {pblucky.ILuckyCostConfigModel} message LuckyCostConfigModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        LuckyCostConfigModel.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.fieldType != null && Object.hasOwnProperty.call(message, "fieldType"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.fieldType);
+            if (message.costOnce != null && Object.hasOwnProperty.call(message, "costOnce"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.costOnce);
+            if (message.costTen != null && Object.hasOwnProperty.call(message, "costTen"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int32(message.costTen);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified LuckyCostConfigModel message, length delimited. Does not implicitly {@link pblucky.LuckyCostConfigModel.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pblucky.LuckyCostConfigModel
+         * @static
+         * @param {pblucky.ILuckyCostConfigModel} message LuckyCostConfigModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        LuckyCostConfigModel.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a LuckyCostConfigModel message from the specified reader or buffer.
+         * @function decode
+         * @memberof pblucky.LuckyCostConfigModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pblucky.LuckyCostConfigModel} LuckyCostConfigModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        LuckyCostConfigModel.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pblucky.LuckyCostConfigModel();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.fieldType = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message.costOnce = reader.int32();
+                        break;
+                    }
+                case 3: {
+                        message.costTen = reader.int32();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a LuckyCostConfigModel message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pblucky.LuckyCostConfigModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pblucky.LuckyCostConfigModel} LuckyCostConfigModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        LuckyCostConfigModel.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a LuckyCostConfigModel message.
+         * @function verify
+         * @memberof pblucky.LuckyCostConfigModel
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        LuckyCostConfigModel.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.fieldType != null && message.hasOwnProperty("fieldType"))
+                if (!$util.isString(message.fieldType))
+                    return "fieldType: string expected";
+            if (message.costOnce != null && message.hasOwnProperty("costOnce"))
+                if (!$util.isInteger(message.costOnce))
+                    return "costOnce: integer expected";
+            if (message.costTen != null && message.hasOwnProperty("costTen"))
+                if (!$util.isInteger(message.costTen))
+                    return "costTen: integer expected";
+            return null;
+        };
+
+        /**
+         * Creates a LuckyCostConfigModel message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pblucky.LuckyCostConfigModel
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pblucky.LuckyCostConfigModel} LuckyCostConfigModel
+         */
+        LuckyCostConfigModel.fromObject = function fromObject(object) {
+            if (object instanceof $root.pblucky.LuckyCostConfigModel)
+                return object;
+            var message = new $root.pblucky.LuckyCostConfigModel();
+            if (object.fieldType != null)
+                message.fieldType = String(object.fieldType);
+            if (object.costOnce != null)
+                message.costOnce = object.costOnce | 0;
+            if (object.costTen != null)
+                message.costTen = object.costTen | 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a LuckyCostConfigModel message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pblucky.LuckyCostConfigModel
+         * @static
+         * @param {pblucky.LuckyCostConfigModel} message LuckyCostConfigModel
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        LuckyCostConfigModel.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.fieldType = "";
+                object.costOnce = 0;
+                object.costTen = 0;
+            }
+            if (message.fieldType != null && message.hasOwnProperty("fieldType"))
+                object.fieldType = message.fieldType;
+            if (message.costOnce != null && message.hasOwnProperty("costOnce"))
+                object.costOnce = message.costOnce;
+            if (message.costTen != null && message.hasOwnProperty("costTen"))
+                object.costTen = message.costTen;
+            return object;
+        };
+
+        /**
+         * Converts this LuckyCostConfigModel to JSON.
+         * @function toJSON
+         * @memberof pblucky.LuckyCostConfigModel
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        LuckyCostConfigModel.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for LuckyCostConfigModel
+         * @function getTypeUrl
+         * @memberof pblucky.LuckyCostConfigModel
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        LuckyCostConfigModel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pblucky.LuckyCostConfigModel";
+        };
+
+        return LuckyCostConfigModel;
+    })();
+
+    pblucky.GetLuckyCostConfigsReply = (function() {
+
+        /**
+         * Properties of a GetLuckyCostConfigsReply.
+         * @memberof pblucky
+         * @interface IGetLuckyCostConfigsReply
+         * @property {pbcommon.EnumCode|null} [code] GetLuckyCostConfigsReply code
+         * @property {string|null} [msg] GetLuckyCostConfigsReply msg
+         * @property {Array.<pblucky.ILuckyCostConfigModel>|null} [list] GetLuckyCostConfigsReply list
+         */
+
+        /**
+         * Constructs a new GetLuckyCostConfigsReply.
+         * @memberof pblucky
+         * @classdesc Represents a GetLuckyCostConfigsReply.
+         * @implements IGetLuckyCostConfigsReply
+         * @constructor
+         * @param {pblucky.IGetLuckyCostConfigsReply=} [properties] Properties to set
+         */
+        function GetLuckyCostConfigsReply(properties) {
+            this.list = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GetLuckyCostConfigsReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pblucky.GetLuckyCostConfigsReply
+         * @instance
+         */
+        GetLuckyCostConfigsReply.prototype.code = 0;
+
+        /**
+         * GetLuckyCostConfigsReply msg.
+         * @member {string} msg
+         * @memberof pblucky.GetLuckyCostConfigsReply
+         * @instance
+         */
+        GetLuckyCostConfigsReply.prototype.msg = "";
+
+        /**
+         * GetLuckyCostConfigsReply list.
+         * @member {Array.<pblucky.ILuckyCostConfigModel>} list
+         * @memberof pblucky.GetLuckyCostConfigsReply
+         * @instance
+         */
+        GetLuckyCostConfigsReply.prototype.list = $util.emptyArray;
+
+        /**
+         * Creates a new GetLuckyCostConfigsReply instance using the specified properties.
+         * @function create
+         * @memberof pblucky.GetLuckyCostConfigsReply
+         * @static
+         * @param {pblucky.IGetLuckyCostConfigsReply=} [properties] Properties to set
+         * @returns {pblucky.GetLuckyCostConfigsReply} GetLuckyCostConfigsReply instance
+         */
+        GetLuckyCostConfigsReply.create = function create(properties) {
+            return new GetLuckyCostConfigsReply(properties);
+        };
+
+        /**
+         * Encodes the specified GetLuckyCostConfigsReply message. Does not implicitly {@link pblucky.GetLuckyCostConfigsReply.verify|verify} messages.
+         * @function encode
+         * @memberof pblucky.GetLuckyCostConfigsReply
+         * @static
+         * @param {pblucky.IGetLuckyCostConfigsReply} message GetLuckyCostConfigsReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetLuckyCostConfigsReply.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.list != null && message.list.length)
+                for (var i = 0; i < message.list.length; ++i)
+                    $root.pblucky.LuckyCostConfigModel.encode(message.list[i], writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GetLuckyCostConfigsReply message, length delimited. Does not implicitly {@link pblucky.GetLuckyCostConfigsReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pblucky.GetLuckyCostConfigsReply
+         * @static
+         * @param {pblucky.IGetLuckyCostConfigsReply} message GetLuckyCostConfigsReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetLuckyCostConfigsReply.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GetLuckyCostConfigsReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pblucky.GetLuckyCostConfigsReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pblucky.GetLuckyCostConfigsReply} GetLuckyCostConfigsReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetLuckyCostConfigsReply.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pblucky.GetLuckyCostConfigsReply();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.code = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        if (!(message.list && message.list.length))
+                            message.list = [];
+                        message.list.push($root.pblucky.LuckyCostConfigModel.decode(reader, reader.uint32()));
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GetLuckyCostConfigsReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pblucky.GetLuckyCostConfigsReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pblucky.GetLuckyCostConfigsReply} GetLuckyCostConfigsReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetLuckyCostConfigsReply.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GetLuckyCostConfigsReply message.
+         * @function verify
+         * @memberof pblucky.GetLuckyCostConfigsReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GetLuckyCostConfigsReply.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.code != null && message.hasOwnProperty("code"))
+                switch (message.code) {
+                default:
+                    return "code: enum value expected";
+                case 0:
+                case 200:
+                case 403:
+                case 500:
+                case 501:
+                case 502:
+                case 503:
+                case 504:
+                case 505:
+                case 511:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
+                case 2002:
+                case 2003:
+                case 2004:
+                case 2005:
+                case 2006:
+                case 2007:
+                case 2008:
+                case 2009:
+                case 2010:
+                case 2011:
+                case 2012:
+                case 2013:
+                case 2014:
+                case 2015:
+                case 3001:
+                case 3002:
+                case 3003:
+                case 5001:
+                case 5002:
+                case 10001:
+                case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
+                    break;
+                }
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                if (!$util.isString(message.msg))
+                    return "msg: string expected";
+            if (message.list != null && message.hasOwnProperty("list")) {
+                if (!Array.isArray(message.list))
+                    return "list: array expected";
+                for (var i = 0; i < message.list.length; ++i) {
+                    var error = $root.pblucky.LuckyCostConfigModel.verify(message.list[i]);
+                    if (error)
+                        return "list." + error;
+                }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a GetLuckyCostConfigsReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pblucky.GetLuckyCostConfigsReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pblucky.GetLuckyCostConfigsReply} GetLuckyCostConfigsReply
+         */
+        GetLuckyCostConfigsReply.fromObject = function fromObject(object) {
+            if (object instanceof $root.pblucky.GetLuckyCostConfigsReply)
+                return object;
+            var message = new $root.pblucky.GetLuckyCostConfigsReply();
+            switch (object.code) {
+            default:
+                if (typeof object.code === "number") {
+                    message.code = object.code;
+                    break;
+                }
+                break;
+            case "None":
+            case 0:
+                message.code = 0;
+                break;
+            case "Success":
+            case 200:
+                message.code = 200;
+                break;
+            case "Forbidden":
+            case 403:
+                message.code = 403;
+                break;
+            case "Fail":
+            case 500:
+                message.code = 500;
+                break;
+            case "Unknown":
+            case 501:
+                message.code = 501;
+                break;
+            case "Internal":
+            case 502:
+                message.code = 502;
+                break;
+            case "Invalid":
+            case 503:
+                message.code = 503;
+                break;
+            case "InvalidParam":
+            case 504:
+                message.code = 504;
+                break;
+            case "ParamError":
+            case 505:
+                message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
+                break;
+            case "FindError":
+            case 1001:
+                message.code = 1001;
+                break;
+            case "CreateError":
+            case 1002:
+                message.code = 1002;
+                break;
+            case "DeleteError":
+            case 1003:
+                message.code = 1003;
+                break;
+            case "UpdateError":
+            case 1004:
+                message.code = 1004;
+                break;
+            case "InvalidToken":
+            case 2002:
+                message.code = 2002;
+                break;
+            case "InvalidSign":
+            case 2003:
+                message.code = 2003;
+                break;
+            case "NotLogin":
+            case 2004:
+                message.code = 2004;
+                break;
+            case "LoginTimeout":
+            case 2005:
+                message.code = 2005;
+                break;
+            case "LoginError":
+            case 2006:
+                message.code = 2006;
+                break;
+            case "LoginForbidden":
+            case 2007:
+                message.code = 2007;
+                break;
+            case "LoginExpired":
+            case 2008:
+                message.code = 2008;
+                break;
+            case "LoginInvalid":
+            case 2009:
+                message.code = 2009;
+                break;
+            case "LoginInvalidPassword":
+            case 2010:
+                message.code = 2010;
+                break;
+            case "LoginInvalidUsername":
+            case 2011:
+                message.code = 2011;
+                break;
+            case "LoginInvalidEmail":
+            case 2012:
+                message.code = 2012;
+                break;
+            case "LoginInvalidPhone":
+            case 2013:
+                message.code = 2013;
+                break;
+            case "LoginInvalidUsernameOrEmail":
+            case 2014:
+                message.code = 2014;
+                break;
+            case "LoginSocketRepeat":
+            case 2015:
+                message.code = 2015;
+                break;
+            case "RoleIsNotExist":
+            case 3001:
+                message.code = 3001;
+                break;
+            case "UserIsExist":
+            case 3002:
+                message.code = 3002;
+                break;
+            case "UserIsBan":
+            case 3003:
+                message.code = 3003;
+                break;
+            case "TalkIsBan":
+            case 5001:
+                message.code = 5001;
+                break;
+            case "EnterRoomErr":
+            case 5002:
+                message.code = 5002;
+                break;
+            case "HalaChatNeedBuy":
+            case 10001:
+                message.code = 10001;
+                break;
+            case "HalaPriceOutRange":
+            case 10002:
+                message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
+                break;
+            }
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.list) {
+                if (!Array.isArray(object.list))
+                    throw TypeError(".pblucky.GetLuckyCostConfigsReply.list: array expected");
+                message.list = [];
+                for (var i = 0; i < object.list.length; ++i) {
+                    if (typeof object.list[i] !== "object")
+                        throw TypeError(".pblucky.GetLuckyCostConfigsReply.list: object expected");
+                    message.list[i] = $root.pblucky.LuckyCostConfigModel.fromObject(object.list[i]);
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GetLuckyCostConfigsReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pblucky.GetLuckyCostConfigsReply
+         * @static
+         * @param {pblucky.GetLuckyCostConfigsReply} message GetLuckyCostConfigsReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GetLuckyCostConfigsReply.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.list = [];
+            if (options.defaults) {
+                object.code = options.enums === String ? "None" : 0;
+                object.msg = "";
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.list && message.list.length) {
+                object.list = [];
+                for (var j = 0; j < message.list.length; ++j)
+                    object.list[j] = $root.pblucky.LuckyCostConfigModel.toObject(message.list[j], options);
+            }
+            return object;
+        };
+
+        /**
+         * Converts this GetLuckyCostConfigsReply to JSON.
+         * @function toJSON
+         * @memberof pblucky.GetLuckyCostConfigsReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GetLuckyCostConfigsReply.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GetLuckyCostConfigsReply
+         * @function getTypeUrl
+         * @memberof pblucky.GetLuckyCostConfigsReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GetLuckyCostConfigsReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pblucky.GetLuckyCostConfigsReply";
+        };
+
+        return GetLuckyCostConfigsReply;
     })();
 
     return pblucky;
