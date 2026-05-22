@@ -244,6 +244,12 @@ export const constantRoutes = [
         name: 'walletManage',
         component: () => import('@/views/game/walletManage'),
         meta: { title: '钱包管理', icon: 'wallet' }
+      },
+      {
+        path: 'exchange-configs',
+        name: 'exchangeConfigs',
+        component: () => import('@/views/game/exchangeConfigs'),
+        meta: { title: '兑换配置', icon: 'money' }
       }
     ]
   }

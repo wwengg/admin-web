@@ -83,7 +83,7 @@
 </template>
 
 <script>
-import { findWinRecordList } from '@/api/battleAdminService'
+import { findWinRecordList, findGeneralList } from '@/api/battleAdminService'
 
 export default {
   name: 'WinRecords',
@@ -103,22 +103,24 @@ export default {
         endDate: ''
       },
       dateRange: [],
-      generals: [
-        { id: 1, name: '地狱犬' },
-        { id: 2, name: '九尾狐' },
-        { id: 3, name: '夔牛' },
-        { id: 4, name: '麒麟' },
-        { id: 5, name: '朱雀' },
-        { id: 6, name: '玄武' },
-        { id: 7, name: '白虎' },
-        { id: 8, name: '青龙' }
-      ]
+      generals: []
     }
   },
   mounted() {
+    this.loadGenerals()
     this.loadData()
   },
   methods: {
+    async loadGenerals() {
+      try {
+        const res = await findGeneralList({ pageInfo: { page: 1, pageSize: 100 } })
+        if (res.code === 'Success') {
+          this.generals = (res.list || []).map(g => ({ id: g.id, name: g.name }))
+        }
+      } catch (e) {
+        console.error('加载武将列表失败:', e)
+      }
+    },
     async loadData() {
       try {
         this.loading = true

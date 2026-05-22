@@ -371,3 +371,45 @@ export function getGeneralStatistics(data) {
     pb: 'pbbattle.GetGeneralStatisticsReply'
   })
 }
+
+// ========== 兑换配置管理 ==========
+
+export function createExchangeConfig(data) {
+  const buffer = pbbattle.ExchangeConfigModel.encode(data).finish().slice().buffer
+  return request({
+    url: '/v2/battleAdmin/createExchangeConfig',
+    method: 'post',
+    buffer,
+    pb: 'pbcommon.CommonResult'
+  })
+}
+
+export function updateExchangeConfig(data) {
+  const buffer = pbbattle.ExchangeConfigModel.encode(data).finish().slice().buffer
+  return request({
+    url: '/v2/battleAdmin/updateExchangeConfig',
+    method: 'post',
+    buffer,
+    pb: 'pbcommon.CommonResult'
+  })
+}
+
+export function deleteExchangeConfig(data) {
+  const buffer = pbcommon.IdArgs.encode(data).finish().slice().buffer
+  return request({
+    url: '/v2/battleAdmin/deleteExchangeConfig',
+    method: 'post',
+    buffer,
+    pb: 'pbcommon.CommonResult'
+  })
+}
+
+export function findExchangeConfigList(data) {
+  const buffer = pbbattle.FindExchangeConfigListArgs.encode(data).finish().slice().buffer
+  return request({
+    url: '/v2/battleAdmin/findExchangeConfigList',
+    method: 'post',
+    buffer,
+    pb: 'pbbattle.FindExchangeConfigListReply'
+  })
+}

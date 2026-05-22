@@ -8754,6 +8754,72 @@ $root.pbbattle = (function() {
          * @variation 2
          */
 
+        /**
+         * Callback as used by {@link pbbattle.Battle#getExchangeConfigs}.
+         * @memberof pbbattle.Battle
+         * @typedef GetExchangeConfigsCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbbattle.GetExchangeConfigsResp} [response] GetExchangeConfigsResp
+         */
+
+        /**
+         * Calls GetExchangeConfigs.
+         * @function getExchangeConfigs
+         * @memberof pbbattle.Battle
+         * @instance
+         * @param {pbbattle.IGetExchangeConfigsReq} request GetExchangeConfigsReq message or plain object
+         * @param {pbbattle.Battle.GetExchangeConfigsCallback} callback Node-style callback called with the error, if any, and GetExchangeConfigsResp
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(Battle.prototype.getExchangeConfigs = function getExchangeConfigs(request, callback) {
+            return this.rpcCall(getExchangeConfigs, $root.pbbattle.GetExchangeConfigsReq, $root.pbbattle.GetExchangeConfigsResp, request, callback);
+        }, "name", { value: "GetExchangeConfigs" });
+
+        /**
+         * Calls GetExchangeConfigs.
+         * @function getExchangeConfigs
+         * @memberof pbbattle.Battle
+         * @instance
+         * @param {pbbattle.IGetExchangeConfigsReq} request GetExchangeConfigsReq message or plain object
+         * @returns {Promise<pbbattle.GetExchangeConfigsResp>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.Battle#exchange}.
+         * @memberof pbbattle.Battle
+         * @typedef ExchangeCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbbattle.ExchangeResp} [response] ExchangeResp
+         */
+
+        /**
+         * Calls Exchange.
+         * @function exchange
+         * @memberof pbbattle.Battle
+         * @instance
+         * @param {pbbattle.IExchangeReq} request ExchangeReq message or plain object
+         * @param {pbbattle.Battle.ExchangeCallback} callback Node-style callback called with the error, if any, and ExchangeResp
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(Battle.prototype.exchange = function exchange(request, callback) {
+            return this.rpcCall(exchange, $root.pbbattle.ExchangeReq, $root.pbbattle.ExchangeResp, request, callback);
+        }, "name", { value: "Exchange" });
+
+        /**
+         * Calls Exchange.
+         * @function exchange
+         * @memberof pbbattle.Battle
+         * @instance
+         * @param {pbbattle.IExchangeReq} request ExchangeReq message or plain object
+         * @returns {Promise<pbbattle.ExchangeResp>} Promise
+         * @variation 2
+         */
+
         return Battle;
     })();
 
@@ -24203,7 +24269,2533 @@ $root.pbbattle = (function() {
          * @variation 2
          */
 
+        /**
+         * Callback as used by {@link pbbattle.BattleAdmin#createExchangeConfig}.
+         * @memberof pbbattle.BattleAdmin
+         * @typedef CreateExchangeConfigCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls CreateExchangeConfig.
+         * @function createExchangeConfig
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IExchangeConfigModel} request ExchangeConfigModel message or plain object
+         * @param {pbbattle.BattleAdmin.CreateExchangeConfigCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattleAdmin.prototype.createExchangeConfig = function createExchangeConfig(request, callback) {
+            return this.rpcCall(createExchangeConfig, $root.pbbattle.ExchangeConfigModel, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "CreateExchangeConfig" });
+
+        /**
+         * Calls CreateExchangeConfig.
+         * @function createExchangeConfig
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IExchangeConfigModel} request ExchangeConfigModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.BattleAdmin#updateExchangeConfig}.
+         * @memberof pbbattle.BattleAdmin
+         * @typedef UpdateExchangeConfigCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls UpdateExchangeConfig.
+         * @function updateExchangeConfig
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IExchangeConfigModel} request ExchangeConfigModel message or plain object
+         * @param {pbbattle.BattleAdmin.UpdateExchangeConfigCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattleAdmin.prototype.updateExchangeConfig = function updateExchangeConfig(request, callback) {
+            return this.rpcCall(updateExchangeConfig, $root.pbbattle.ExchangeConfigModel, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "UpdateExchangeConfig" });
+
+        /**
+         * Calls UpdateExchangeConfig.
+         * @function updateExchangeConfig
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IExchangeConfigModel} request ExchangeConfigModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.BattleAdmin#deleteExchangeConfig}.
+         * @memberof pbbattle.BattleAdmin
+         * @typedef DeleteExchangeConfigCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls DeleteExchangeConfig.
+         * @function deleteExchangeConfig
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbbattle.BattleAdmin.DeleteExchangeConfigCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattleAdmin.prototype.deleteExchangeConfig = function deleteExchangeConfig(request, callback) {
+            return this.rpcCall(deleteExchangeConfig, $root.pbcommon.IdArgs, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "DeleteExchangeConfig" });
+
+        /**
+         * Calls DeleteExchangeConfig.
+         * @function deleteExchangeConfig
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.BattleAdmin#findExchangeConfigList}.
+         * @memberof pbbattle.BattleAdmin
+         * @typedef FindExchangeConfigListCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbbattle.FindExchangeConfigListReply} [response] FindExchangeConfigListReply
+         */
+
+        /**
+         * Calls FindExchangeConfigList.
+         * @function findExchangeConfigList
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IFindExchangeConfigListArgs} request FindExchangeConfigListArgs message or plain object
+         * @param {pbbattle.BattleAdmin.FindExchangeConfigListCallback} callback Node-style callback called with the error, if any, and FindExchangeConfigListReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattleAdmin.prototype.findExchangeConfigList = function findExchangeConfigList(request, callback) {
+            return this.rpcCall(findExchangeConfigList, $root.pbbattle.FindExchangeConfigListArgs, $root.pbbattle.FindExchangeConfigListReply, request, callback);
+        }, "name", { value: "FindExchangeConfigList" });
+
+        /**
+         * Calls FindExchangeConfigList.
+         * @function findExchangeConfigList
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IFindExchangeConfigListArgs} request FindExchangeConfigListArgs message or plain object
+         * @returns {Promise<pbbattle.FindExchangeConfigListReply>} Promise
+         * @variation 2
+         */
+
         return BattleAdmin;
+    })();
+
+    pbbattle.FindExchangeConfigListArgs = (function() {
+
+        /**
+         * Properties of a FindExchangeConfigListArgs.
+         * @memberof pbbattle
+         * @interface IFindExchangeConfigListArgs
+         * @property {pbcommon.IPageInfo|null} [pageInfo] FindExchangeConfigListArgs pageInfo
+         */
+
+        /**
+         * Constructs a new FindExchangeConfigListArgs.
+         * @memberof pbbattle
+         * @classdesc Represents a FindExchangeConfigListArgs.
+         * @implements IFindExchangeConfigListArgs
+         * @constructor
+         * @param {pbbattle.IFindExchangeConfigListArgs=} [properties] Properties to set
+         */
+        function FindExchangeConfigListArgs(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * FindExchangeConfigListArgs pageInfo.
+         * @member {pbcommon.IPageInfo|null|undefined} pageInfo
+         * @memberof pbbattle.FindExchangeConfigListArgs
+         * @instance
+         */
+        FindExchangeConfigListArgs.prototype.pageInfo = null;
+
+        /**
+         * Creates a new FindExchangeConfigListArgs instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.FindExchangeConfigListArgs
+         * @static
+         * @param {pbbattle.IFindExchangeConfigListArgs=} [properties] Properties to set
+         * @returns {pbbattle.FindExchangeConfigListArgs} FindExchangeConfigListArgs instance
+         */
+        FindExchangeConfigListArgs.create = function create(properties) {
+            return new FindExchangeConfigListArgs(properties);
+        };
+
+        /**
+         * Encodes the specified FindExchangeConfigListArgs message. Does not implicitly {@link pbbattle.FindExchangeConfigListArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.FindExchangeConfigListArgs
+         * @static
+         * @param {pbbattle.IFindExchangeConfigListArgs} message FindExchangeConfigListArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindExchangeConfigListArgs.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.pageInfo != null && Object.hasOwnProperty.call(message, "pageInfo"))
+                $root.pbcommon.PageInfo.encode(message.pageInfo, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified FindExchangeConfigListArgs message, length delimited. Does not implicitly {@link pbbattle.FindExchangeConfigListArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.FindExchangeConfigListArgs
+         * @static
+         * @param {pbbattle.IFindExchangeConfigListArgs} message FindExchangeConfigListArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindExchangeConfigListArgs.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a FindExchangeConfigListArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.FindExchangeConfigListArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.FindExchangeConfigListArgs} FindExchangeConfigListArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindExchangeConfigListArgs.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.FindExchangeConfigListArgs();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.pageInfo = $root.pbcommon.PageInfo.decode(reader, reader.uint32());
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a FindExchangeConfigListArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.FindExchangeConfigListArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.FindExchangeConfigListArgs} FindExchangeConfigListArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindExchangeConfigListArgs.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a FindExchangeConfigListArgs message.
+         * @function verify
+         * @memberof pbbattle.FindExchangeConfigListArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        FindExchangeConfigListArgs.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.pageInfo != null && message.hasOwnProperty("pageInfo")) {
+                var error = $root.pbcommon.PageInfo.verify(message.pageInfo);
+                if (error)
+                    return "pageInfo." + error;
+            }
+            return null;
+        };
+
+        /**
+         * Creates a FindExchangeConfigListArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.FindExchangeConfigListArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.FindExchangeConfigListArgs} FindExchangeConfigListArgs
+         */
+        FindExchangeConfigListArgs.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.FindExchangeConfigListArgs)
+                return object;
+            var message = new $root.pbbattle.FindExchangeConfigListArgs();
+            if (object.pageInfo != null) {
+                if (typeof object.pageInfo !== "object")
+                    throw TypeError(".pbbattle.FindExchangeConfigListArgs.pageInfo: object expected");
+                message.pageInfo = $root.pbcommon.PageInfo.fromObject(object.pageInfo);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a FindExchangeConfigListArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.FindExchangeConfigListArgs
+         * @static
+         * @param {pbbattle.FindExchangeConfigListArgs} message FindExchangeConfigListArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FindExchangeConfigListArgs.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.pageInfo = null;
+            if (message.pageInfo != null && message.hasOwnProperty("pageInfo"))
+                object.pageInfo = $root.pbcommon.PageInfo.toObject(message.pageInfo, options);
+            return object;
+        };
+
+        /**
+         * Converts this FindExchangeConfigListArgs to JSON.
+         * @function toJSON
+         * @memberof pbbattle.FindExchangeConfigListArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        FindExchangeConfigListArgs.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for FindExchangeConfigListArgs
+         * @function getTypeUrl
+         * @memberof pbbattle.FindExchangeConfigListArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        FindExchangeConfigListArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.FindExchangeConfigListArgs";
+        };
+
+        return FindExchangeConfigListArgs;
+    })();
+
+    pbbattle.FindExchangeConfigListReply = (function() {
+
+        /**
+         * Properties of a FindExchangeConfigListReply.
+         * @memberof pbbattle
+         * @interface IFindExchangeConfigListReply
+         * @property {pbcommon.EnumCode|null} [code] FindExchangeConfigListReply code
+         * @property {string|null} [msg] FindExchangeConfigListReply msg
+         * @property {Array.<pbbattle.IExchangeConfigModel>|null} [list] FindExchangeConfigListReply list
+         * @property {number|Long|null} [total] FindExchangeConfigListReply total
+         */
+
+        /**
+         * Constructs a new FindExchangeConfigListReply.
+         * @memberof pbbattle
+         * @classdesc Represents a FindExchangeConfigListReply.
+         * @implements IFindExchangeConfigListReply
+         * @constructor
+         * @param {pbbattle.IFindExchangeConfigListReply=} [properties] Properties to set
+         */
+        function FindExchangeConfigListReply(properties) {
+            this.list = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * FindExchangeConfigListReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbbattle.FindExchangeConfigListReply
+         * @instance
+         */
+        FindExchangeConfigListReply.prototype.code = 0;
+
+        /**
+         * FindExchangeConfigListReply msg.
+         * @member {string} msg
+         * @memberof pbbattle.FindExchangeConfigListReply
+         * @instance
+         */
+        FindExchangeConfigListReply.prototype.msg = "";
+
+        /**
+         * FindExchangeConfigListReply list.
+         * @member {Array.<pbbattle.IExchangeConfigModel>} list
+         * @memberof pbbattle.FindExchangeConfigListReply
+         * @instance
+         */
+        FindExchangeConfigListReply.prototype.list = $util.emptyArray;
+
+        /**
+         * FindExchangeConfigListReply total.
+         * @member {number|Long} total
+         * @memberof pbbattle.FindExchangeConfigListReply
+         * @instance
+         */
+        FindExchangeConfigListReply.prototype.total = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * Creates a new FindExchangeConfigListReply instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.FindExchangeConfigListReply
+         * @static
+         * @param {pbbattle.IFindExchangeConfigListReply=} [properties] Properties to set
+         * @returns {pbbattle.FindExchangeConfigListReply} FindExchangeConfigListReply instance
+         */
+        FindExchangeConfigListReply.create = function create(properties) {
+            return new FindExchangeConfigListReply(properties);
+        };
+
+        /**
+         * Encodes the specified FindExchangeConfigListReply message. Does not implicitly {@link pbbattle.FindExchangeConfigListReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.FindExchangeConfigListReply
+         * @static
+         * @param {pbbattle.IFindExchangeConfigListReply} message FindExchangeConfigListReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindExchangeConfigListReply.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.list != null && message.list.length)
+                for (var i = 0; i < message.list.length; ++i)
+                    $root.pbbattle.ExchangeConfigModel.encode(message.list[i], writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            if (message.total != null && Object.hasOwnProperty.call(message, "total"))
+                writer.uint32(/* id 4, wireType 0 =*/32).int64(message.total);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified FindExchangeConfigListReply message, length delimited. Does not implicitly {@link pbbattle.FindExchangeConfigListReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.FindExchangeConfigListReply
+         * @static
+         * @param {pbbattle.IFindExchangeConfigListReply} message FindExchangeConfigListReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindExchangeConfigListReply.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a FindExchangeConfigListReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.FindExchangeConfigListReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.FindExchangeConfigListReply} FindExchangeConfigListReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindExchangeConfigListReply.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.FindExchangeConfigListReply();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.code = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        if (!(message.list && message.list.length))
+                            message.list = [];
+                        message.list.push($root.pbbattle.ExchangeConfigModel.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 4: {
+                        message.total = reader.int64();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a FindExchangeConfigListReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.FindExchangeConfigListReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.FindExchangeConfigListReply} FindExchangeConfigListReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindExchangeConfigListReply.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a FindExchangeConfigListReply message.
+         * @function verify
+         * @memberof pbbattle.FindExchangeConfigListReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        FindExchangeConfigListReply.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.code != null && message.hasOwnProperty("code"))
+                switch (message.code) {
+                default:
+                    return "code: enum value expected";
+                case 0:
+                case 200:
+                case 403:
+                case 500:
+                case 501:
+                case 502:
+                case 503:
+                case 504:
+                case 505:
+                case 511:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
+                case 2002:
+                case 2003:
+                case 2004:
+                case 2005:
+                case 2006:
+                case 2007:
+                case 2008:
+                case 2009:
+                case 2010:
+                case 2011:
+                case 2012:
+                case 2013:
+                case 2014:
+                case 2015:
+                case 3001:
+                case 3002:
+                case 3003:
+                case 5001:
+                case 5002:
+                case 10001:
+                case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
+                    break;
+                }
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                if (!$util.isString(message.msg))
+                    return "msg: string expected";
+            if (message.list != null && message.hasOwnProperty("list")) {
+                if (!Array.isArray(message.list))
+                    return "list: array expected";
+                for (var i = 0; i < message.list.length; ++i) {
+                    var error = $root.pbbattle.ExchangeConfigModel.verify(message.list[i]);
+                    if (error)
+                        return "list." + error;
+                }
+            }
+            if (message.total != null && message.hasOwnProperty("total"))
+                if (!$util.isInteger(message.total) && !(message.total && $util.isInteger(message.total.low) && $util.isInteger(message.total.high)))
+                    return "total: integer|Long expected";
+            return null;
+        };
+
+        /**
+         * Creates a FindExchangeConfigListReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.FindExchangeConfigListReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.FindExchangeConfigListReply} FindExchangeConfigListReply
+         */
+        FindExchangeConfigListReply.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.FindExchangeConfigListReply)
+                return object;
+            var message = new $root.pbbattle.FindExchangeConfigListReply();
+            switch (object.code) {
+            default:
+                if (typeof object.code === "number") {
+                    message.code = object.code;
+                    break;
+                }
+                break;
+            case "None":
+            case 0:
+                message.code = 0;
+                break;
+            case "Success":
+            case 200:
+                message.code = 200;
+                break;
+            case "Forbidden":
+            case 403:
+                message.code = 403;
+                break;
+            case "Fail":
+            case 500:
+                message.code = 500;
+                break;
+            case "Unknown":
+            case 501:
+                message.code = 501;
+                break;
+            case "Internal":
+            case 502:
+                message.code = 502;
+                break;
+            case "Invalid":
+            case 503:
+                message.code = 503;
+                break;
+            case "InvalidParam":
+            case 504:
+                message.code = 504;
+                break;
+            case "ParamError":
+            case 505:
+                message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
+                break;
+            case "FindError":
+            case 1001:
+                message.code = 1001;
+                break;
+            case "CreateError":
+            case 1002:
+                message.code = 1002;
+                break;
+            case "DeleteError":
+            case 1003:
+                message.code = 1003;
+                break;
+            case "UpdateError":
+            case 1004:
+                message.code = 1004;
+                break;
+            case "InvalidToken":
+            case 2002:
+                message.code = 2002;
+                break;
+            case "InvalidSign":
+            case 2003:
+                message.code = 2003;
+                break;
+            case "NotLogin":
+            case 2004:
+                message.code = 2004;
+                break;
+            case "LoginTimeout":
+            case 2005:
+                message.code = 2005;
+                break;
+            case "LoginError":
+            case 2006:
+                message.code = 2006;
+                break;
+            case "LoginForbidden":
+            case 2007:
+                message.code = 2007;
+                break;
+            case "LoginExpired":
+            case 2008:
+                message.code = 2008;
+                break;
+            case "LoginInvalid":
+            case 2009:
+                message.code = 2009;
+                break;
+            case "LoginInvalidPassword":
+            case 2010:
+                message.code = 2010;
+                break;
+            case "LoginInvalidUsername":
+            case 2011:
+                message.code = 2011;
+                break;
+            case "LoginInvalidEmail":
+            case 2012:
+                message.code = 2012;
+                break;
+            case "LoginInvalidPhone":
+            case 2013:
+                message.code = 2013;
+                break;
+            case "LoginInvalidUsernameOrEmail":
+            case 2014:
+                message.code = 2014;
+                break;
+            case "LoginSocketRepeat":
+            case 2015:
+                message.code = 2015;
+                break;
+            case "RoleIsNotExist":
+            case 3001:
+                message.code = 3001;
+                break;
+            case "UserIsExist":
+            case 3002:
+                message.code = 3002;
+                break;
+            case "UserIsBan":
+            case 3003:
+                message.code = 3003;
+                break;
+            case "TalkIsBan":
+            case 5001:
+                message.code = 5001;
+                break;
+            case "EnterRoomErr":
+            case 5002:
+                message.code = 5002;
+                break;
+            case "HalaChatNeedBuy":
+            case 10001:
+                message.code = 10001;
+                break;
+            case "HalaPriceOutRange":
+            case 10002:
+                message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
+                break;
+            }
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.list) {
+                if (!Array.isArray(object.list))
+                    throw TypeError(".pbbattle.FindExchangeConfigListReply.list: array expected");
+                message.list = [];
+                for (var i = 0; i < object.list.length; ++i) {
+                    if (typeof object.list[i] !== "object")
+                        throw TypeError(".pbbattle.FindExchangeConfigListReply.list: object expected");
+                    message.list[i] = $root.pbbattle.ExchangeConfigModel.fromObject(object.list[i]);
+                }
+            }
+            if (object.total != null)
+                if ($util.Long)
+                    (message.total = $util.Long.fromValue(object.total)).unsigned = false;
+                else if (typeof object.total === "string")
+                    message.total = parseInt(object.total, 10);
+                else if (typeof object.total === "number")
+                    message.total = object.total;
+                else if (typeof object.total === "object")
+                    message.total = new $util.LongBits(object.total.low >>> 0, object.total.high >>> 0).toNumber();
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a FindExchangeConfigListReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.FindExchangeConfigListReply
+         * @static
+         * @param {pbbattle.FindExchangeConfigListReply} message FindExchangeConfigListReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FindExchangeConfigListReply.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.list = [];
+            if (options.defaults) {
+                object.code = options.enums === String ? "None" : 0;
+                object.msg = "";
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.total = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.total = options.longs === String ? "0" : 0;
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.list && message.list.length) {
+                object.list = [];
+                for (var j = 0; j < message.list.length; ++j)
+                    object.list[j] = $root.pbbattle.ExchangeConfigModel.toObject(message.list[j], options);
+            }
+            if (message.total != null && message.hasOwnProperty("total"))
+                if (typeof message.total === "number")
+                    object.total = options.longs === String ? String(message.total) : message.total;
+                else
+                    object.total = options.longs === String ? $util.Long.prototype.toString.call(message.total) : options.longs === Number ? new $util.LongBits(message.total.low >>> 0, message.total.high >>> 0).toNumber() : message.total;
+            return object;
+        };
+
+        /**
+         * Converts this FindExchangeConfigListReply to JSON.
+         * @function toJSON
+         * @memberof pbbattle.FindExchangeConfigListReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        FindExchangeConfigListReply.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for FindExchangeConfigListReply
+         * @function getTypeUrl
+         * @memberof pbbattle.FindExchangeConfigListReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        FindExchangeConfigListReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.FindExchangeConfigListReply";
+        };
+
+        return FindExchangeConfigListReply;
+    })();
+
+    pbbattle.ExchangeConfigModel = (function() {
+
+        /**
+         * Properties of an ExchangeConfigModel.
+         * @memberof pbbattle
+         * @interface IExchangeConfigModel
+         * @property {number|Long|null} [id] ExchangeConfigModel id
+         * @property {number|Long|null} [diamondAmount] ExchangeConfigModel diamondAmount
+         * @property {number|Long|null} [coinAmount] ExchangeConfigModel coinAmount
+         * @property {number|null} [sortOrder] ExchangeConfigModel sortOrder
+         * @property {boolean|null} [isEnabled] ExchangeConfigModel isEnabled
+         */
+
+        /**
+         * Constructs a new ExchangeConfigModel.
+         * @memberof pbbattle
+         * @classdesc Represents an ExchangeConfigModel.
+         * @implements IExchangeConfigModel
+         * @constructor
+         * @param {pbbattle.IExchangeConfigModel=} [properties] Properties to set
+         */
+        function ExchangeConfigModel(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ExchangeConfigModel id.
+         * @member {number|Long} id
+         * @memberof pbbattle.ExchangeConfigModel
+         * @instance
+         */
+        ExchangeConfigModel.prototype.id = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * ExchangeConfigModel diamondAmount.
+         * @member {number|Long} diamondAmount
+         * @memberof pbbattle.ExchangeConfigModel
+         * @instance
+         */
+        ExchangeConfigModel.prototype.diamondAmount = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * ExchangeConfigModel coinAmount.
+         * @member {number|Long} coinAmount
+         * @memberof pbbattle.ExchangeConfigModel
+         * @instance
+         */
+        ExchangeConfigModel.prototype.coinAmount = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * ExchangeConfigModel sortOrder.
+         * @member {number} sortOrder
+         * @memberof pbbattle.ExchangeConfigModel
+         * @instance
+         */
+        ExchangeConfigModel.prototype.sortOrder = 0;
+
+        /**
+         * ExchangeConfigModel isEnabled.
+         * @member {boolean} isEnabled
+         * @memberof pbbattle.ExchangeConfigModel
+         * @instance
+         */
+        ExchangeConfigModel.prototype.isEnabled = false;
+
+        /**
+         * Creates a new ExchangeConfigModel instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.ExchangeConfigModel
+         * @static
+         * @param {pbbattle.IExchangeConfigModel=} [properties] Properties to set
+         * @returns {pbbattle.ExchangeConfigModel} ExchangeConfigModel instance
+         */
+        ExchangeConfigModel.create = function create(properties) {
+            return new ExchangeConfigModel(properties);
+        };
+
+        /**
+         * Encodes the specified ExchangeConfigModel message. Does not implicitly {@link pbbattle.ExchangeConfigModel.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.ExchangeConfigModel
+         * @static
+         * @param {pbbattle.IExchangeConfigModel} message ExchangeConfigModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        ExchangeConfigModel.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id);
+            if (message.diamondAmount != null && Object.hasOwnProperty.call(message, "diamondAmount"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int64(message.diamondAmount);
+            if (message.coinAmount != null && Object.hasOwnProperty.call(message, "coinAmount"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int64(message.coinAmount);
+            if (message.sortOrder != null && Object.hasOwnProperty.call(message, "sortOrder"))
+                writer.uint32(/* id 4, wireType 0 =*/32).int32(message.sortOrder);
+            if (message.isEnabled != null && Object.hasOwnProperty.call(message, "isEnabled"))
+                writer.uint32(/* id 5, wireType 0 =*/40).bool(message.isEnabled);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified ExchangeConfigModel message, length delimited. Does not implicitly {@link pbbattle.ExchangeConfigModel.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.ExchangeConfigModel
+         * @static
+         * @param {pbbattle.IExchangeConfigModel} message ExchangeConfigModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        ExchangeConfigModel.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an ExchangeConfigModel message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.ExchangeConfigModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.ExchangeConfigModel} ExchangeConfigModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        ExchangeConfigModel.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.ExchangeConfigModel();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.id = reader.int64();
+                        break;
+                    }
+                case 2: {
+                        message.diamondAmount = reader.int64();
+                        break;
+                    }
+                case 3: {
+                        message.coinAmount = reader.int64();
+                        break;
+                    }
+                case 4: {
+                        message.sortOrder = reader.int32();
+                        break;
+                    }
+                case 5: {
+                        message.isEnabled = reader.bool();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an ExchangeConfigModel message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.ExchangeConfigModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.ExchangeConfigModel} ExchangeConfigModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        ExchangeConfigModel.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an ExchangeConfigModel message.
+         * @function verify
+         * @memberof pbbattle.ExchangeConfigModel
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        ExchangeConfigModel.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (!$util.isInteger(message.id) && !(message.id && $util.isInteger(message.id.low) && $util.isInteger(message.id.high)))
+                    return "id: integer|Long expected";
+            if (message.diamondAmount != null && message.hasOwnProperty("diamondAmount"))
+                if (!$util.isInteger(message.diamondAmount) && !(message.diamondAmount && $util.isInteger(message.diamondAmount.low) && $util.isInteger(message.diamondAmount.high)))
+                    return "diamondAmount: integer|Long expected";
+            if (message.coinAmount != null && message.hasOwnProperty("coinAmount"))
+                if (!$util.isInteger(message.coinAmount) && !(message.coinAmount && $util.isInteger(message.coinAmount.low) && $util.isInteger(message.coinAmount.high)))
+                    return "coinAmount: integer|Long expected";
+            if (message.sortOrder != null && message.hasOwnProperty("sortOrder"))
+                if (!$util.isInteger(message.sortOrder))
+                    return "sortOrder: integer expected";
+            if (message.isEnabled != null && message.hasOwnProperty("isEnabled"))
+                if (typeof message.isEnabled !== "boolean")
+                    return "isEnabled: boolean expected";
+            return null;
+        };
+
+        /**
+         * Creates an ExchangeConfigModel message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.ExchangeConfigModel
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.ExchangeConfigModel} ExchangeConfigModel
+         */
+        ExchangeConfigModel.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.ExchangeConfigModel)
+                return object;
+            var message = new $root.pbbattle.ExchangeConfigModel();
+            if (object.id != null)
+                if ($util.Long)
+                    (message.id = $util.Long.fromValue(object.id)).unsigned = false;
+                else if (typeof object.id === "string")
+                    message.id = parseInt(object.id, 10);
+                else if (typeof object.id === "number")
+                    message.id = object.id;
+                else if (typeof object.id === "object")
+                    message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber();
+            if (object.diamondAmount != null)
+                if ($util.Long)
+                    (message.diamondAmount = $util.Long.fromValue(object.diamondAmount)).unsigned = false;
+                else if (typeof object.diamondAmount === "string")
+                    message.diamondAmount = parseInt(object.diamondAmount, 10);
+                else if (typeof object.diamondAmount === "number")
+                    message.diamondAmount = object.diamondAmount;
+                else if (typeof object.diamondAmount === "object")
+                    message.diamondAmount = new $util.LongBits(object.diamondAmount.low >>> 0, object.diamondAmount.high >>> 0).toNumber();
+            if (object.coinAmount != null)
+                if ($util.Long)
+                    (message.coinAmount = $util.Long.fromValue(object.coinAmount)).unsigned = false;
+                else if (typeof object.coinAmount === "string")
+                    message.coinAmount = parseInt(object.coinAmount, 10);
+                else if (typeof object.coinAmount === "number")
+                    message.coinAmount = object.coinAmount;
+                else if (typeof object.coinAmount === "object")
+                    message.coinAmount = new $util.LongBits(object.coinAmount.low >>> 0, object.coinAmount.high >>> 0).toNumber();
+            if (object.sortOrder != null)
+                message.sortOrder = object.sortOrder | 0;
+            if (object.isEnabled != null)
+                message.isEnabled = Boolean(object.isEnabled);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an ExchangeConfigModel message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.ExchangeConfigModel
+         * @static
+         * @param {pbbattle.ExchangeConfigModel} message ExchangeConfigModel
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        ExchangeConfigModel.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.id = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.diamondAmount = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.diamondAmount = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.coinAmount = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.coinAmount = options.longs === String ? "0" : 0;
+                object.sortOrder = 0;
+                object.isEnabled = false;
+            }
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (typeof message.id === "number")
+                    object.id = options.longs === String ? String(message.id) : message.id;
+                else
+                    object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id;
+            if (message.diamondAmount != null && message.hasOwnProperty("diamondAmount"))
+                if (typeof message.diamondAmount === "number")
+                    object.diamondAmount = options.longs === String ? String(message.diamondAmount) : message.diamondAmount;
+                else
+                    object.diamondAmount = options.longs === String ? $util.Long.prototype.toString.call(message.diamondAmount) : options.longs === Number ? new $util.LongBits(message.diamondAmount.low >>> 0, message.diamondAmount.high >>> 0).toNumber() : message.diamondAmount;
+            if (message.coinAmount != null && message.hasOwnProperty("coinAmount"))
+                if (typeof message.coinAmount === "number")
+                    object.coinAmount = options.longs === String ? String(message.coinAmount) : message.coinAmount;
+                else
+                    object.coinAmount = options.longs === String ? $util.Long.prototype.toString.call(message.coinAmount) : options.longs === Number ? new $util.LongBits(message.coinAmount.low >>> 0, message.coinAmount.high >>> 0).toNumber() : message.coinAmount;
+            if (message.sortOrder != null && message.hasOwnProperty("sortOrder"))
+                object.sortOrder = message.sortOrder;
+            if (message.isEnabled != null && message.hasOwnProperty("isEnabled"))
+                object.isEnabled = message.isEnabled;
+            return object;
+        };
+
+        /**
+         * Converts this ExchangeConfigModel to JSON.
+         * @function toJSON
+         * @memberof pbbattle.ExchangeConfigModel
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        ExchangeConfigModel.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for ExchangeConfigModel
+         * @function getTypeUrl
+         * @memberof pbbattle.ExchangeConfigModel
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        ExchangeConfigModel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.ExchangeConfigModel";
+        };
+
+        return ExchangeConfigModel;
+    })();
+
+    pbbattle.GetExchangeConfigsReq = (function() {
+
+        /**
+         * Properties of a GetExchangeConfigsReq.
+         * @memberof pbbattle
+         * @interface IGetExchangeConfigsReq
+         */
+
+        /**
+         * Constructs a new GetExchangeConfigsReq.
+         * @memberof pbbattle
+         * @classdesc Represents a GetExchangeConfigsReq.
+         * @implements IGetExchangeConfigsReq
+         * @constructor
+         * @param {pbbattle.IGetExchangeConfigsReq=} [properties] Properties to set
+         */
+        function GetExchangeConfigsReq(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * Creates a new GetExchangeConfigsReq instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.GetExchangeConfigsReq
+         * @static
+         * @param {pbbattle.IGetExchangeConfigsReq=} [properties] Properties to set
+         * @returns {pbbattle.GetExchangeConfigsReq} GetExchangeConfigsReq instance
+         */
+        GetExchangeConfigsReq.create = function create(properties) {
+            return new GetExchangeConfigsReq(properties);
+        };
+
+        /**
+         * Encodes the specified GetExchangeConfigsReq message. Does not implicitly {@link pbbattle.GetExchangeConfigsReq.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.GetExchangeConfigsReq
+         * @static
+         * @param {pbbattle.IGetExchangeConfigsReq} message GetExchangeConfigsReq message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetExchangeConfigsReq.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GetExchangeConfigsReq message, length delimited. Does not implicitly {@link pbbattle.GetExchangeConfigsReq.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.GetExchangeConfigsReq
+         * @static
+         * @param {pbbattle.IGetExchangeConfigsReq} message GetExchangeConfigsReq message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetExchangeConfigsReq.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GetExchangeConfigsReq message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.GetExchangeConfigsReq
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.GetExchangeConfigsReq} GetExchangeConfigsReq
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetExchangeConfigsReq.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.GetExchangeConfigsReq();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GetExchangeConfigsReq message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.GetExchangeConfigsReq
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.GetExchangeConfigsReq} GetExchangeConfigsReq
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetExchangeConfigsReq.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GetExchangeConfigsReq message.
+         * @function verify
+         * @memberof pbbattle.GetExchangeConfigsReq
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GetExchangeConfigsReq.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            return null;
+        };
+
+        /**
+         * Creates a GetExchangeConfigsReq message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.GetExchangeConfigsReq
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.GetExchangeConfigsReq} GetExchangeConfigsReq
+         */
+        GetExchangeConfigsReq.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.GetExchangeConfigsReq)
+                return object;
+            return new $root.pbbattle.GetExchangeConfigsReq();
+        };
+
+        /**
+         * Creates a plain object from a GetExchangeConfigsReq message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.GetExchangeConfigsReq
+         * @static
+         * @param {pbbattle.GetExchangeConfigsReq} message GetExchangeConfigsReq
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GetExchangeConfigsReq.toObject = function toObject() {
+            return {};
+        };
+
+        /**
+         * Converts this GetExchangeConfigsReq to JSON.
+         * @function toJSON
+         * @memberof pbbattle.GetExchangeConfigsReq
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GetExchangeConfigsReq.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GetExchangeConfigsReq
+         * @function getTypeUrl
+         * @memberof pbbattle.GetExchangeConfigsReq
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GetExchangeConfigsReq.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.GetExchangeConfigsReq";
+        };
+
+        return GetExchangeConfigsReq;
+    })();
+
+    pbbattle.GetExchangeConfigsResp = (function() {
+
+        /**
+         * Properties of a GetExchangeConfigsResp.
+         * @memberof pbbattle
+         * @interface IGetExchangeConfigsResp
+         * @property {pbcommon.EnumCode|null} [code] GetExchangeConfigsResp code
+         * @property {string|null} [msg] GetExchangeConfigsResp msg
+         * @property {Array.<pbbattle.IExchangeConfigModel>|null} [list] GetExchangeConfigsResp list
+         */
+
+        /**
+         * Constructs a new GetExchangeConfigsResp.
+         * @memberof pbbattle
+         * @classdesc Represents a GetExchangeConfigsResp.
+         * @implements IGetExchangeConfigsResp
+         * @constructor
+         * @param {pbbattle.IGetExchangeConfigsResp=} [properties] Properties to set
+         */
+        function GetExchangeConfigsResp(properties) {
+            this.list = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GetExchangeConfigsResp code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbbattle.GetExchangeConfigsResp
+         * @instance
+         */
+        GetExchangeConfigsResp.prototype.code = 0;
+
+        /**
+         * GetExchangeConfigsResp msg.
+         * @member {string} msg
+         * @memberof pbbattle.GetExchangeConfigsResp
+         * @instance
+         */
+        GetExchangeConfigsResp.prototype.msg = "";
+
+        /**
+         * GetExchangeConfigsResp list.
+         * @member {Array.<pbbattle.IExchangeConfigModel>} list
+         * @memberof pbbattle.GetExchangeConfigsResp
+         * @instance
+         */
+        GetExchangeConfigsResp.prototype.list = $util.emptyArray;
+
+        /**
+         * Creates a new GetExchangeConfigsResp instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.GetExchangeConfigsResp
+         * @static
+         * @param {pbbattle.IGetExchangeConfigsResp=} [properties] Properties to set
+         * @returns {pbbattle.GetExchangeConfigsResp} GetExchangeConfigsResp instance
+         */
+        GetExchangeConfigsResp.create = function create(properties) {
+            return new GetExchangeConfigsResp(properties);
+        };
+
+        /**
+         * Encodes the specified GetExchangeConfigsResp message. Does not implicitly {@link pbbattle.GetExchangeConfigsResp.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.GetExchangeConfigsResp
+         * @static
+         * @param {pbbattle.IGetExchangeConfigsResp} message GetExchangeConfigsResp message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetExchangeConfigsResp.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.list != null && message.list.length)
+                for (var i = 0; i < message.list.length; ++i)
+                    $root.pbbattle.ExchangeConfigModel.encode(message.list[i], writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GetExchangeConfigsResp message, length delimited. Does not implicitly {@link pbbattle.GetExchangeConfigsResp.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.GetExchangeConfigsResp
+         * @static
+         * @param {pbbattle.IGetExchangeConfigsResp} message GetExchangeConfigsResp message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetExchangeConfigsResp.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GetExchangeConfigsResp message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.GetExchangeConfigsResp
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.GetExchangeConfigsResp} GetExchangeConfigsResp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetExchangeConfigsResp.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.GetExchangeConfigsResp();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.code = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        if (!(message.list && message.list.length))
+                            message.list = [];
+                        message.list.push($root.pbbattle.ExchangeConfigModel.decode(reader, reader.uint32()));
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GetExchangeConfigsResp message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.GetExchangeConfigsResp
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.GetExchangeConfigsResp} GetExchangeConfigsResp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetExchangeConfigsResp.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GetExchangeConfigsResp message.
+         * @function verify
+         * @memberof pbbattle.GetExchangeConfigsResp
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GetExchangeConfigsResp.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.code != null && message.hasOwnProperty("code"))
+                switch (message.code) {
+                default:
+                    return "code: enum value expected";
+                case 0:
+                case 200:
+                case 403:
+                case 500:
+                case 501:
+                case 502:
+                case 503:
+                case 504:
+                case 505:
+                case 511:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
+                case 2002:
+                case 2003:
+                case 2004:
+                case 2005:
+                case 2006:
+                case 2007:
+                case 2008:
+                case 2009:
+                case 2010:
+                case 2011:
+                case 2012:
+                case 2013:
+                case 2014:
+                case 2015:
+                case 3001:
+                case 3002:
+                case 3003:
+                case 5001:
+                case 5002:
+                case 10001:
+                case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
+                    break;
+                }
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                if (!$util.isString(message.msg))
+                    return "msg: string expected";
+            if (message.list != null && message.hasOwnProperty("list")) {
+                if (!Array.isArray(message.list))
+                    return "list: array expected";
+                for (var i = 0; i < message.list.length; ++i) {
+                    var error = $root.pbbattle.ExchangeConfigModel.verify(message.list[i]);
+                    if (error)
+                        return "list." + error;
+                }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a GetExchangeConfigsResp message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.GetExchangeConfigsResp
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.GetExchangeConfigsResp} GetExchangeConfigsResp
+         */
+        GetExchangeConfigsResp.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.GetExchangeConfigsResp)
+                return object;
+            var message = new $root.pbbattle.GetExchangeConfigsResp();
+            switch (object.code) {
+            default:
+                if (typeof object.code === "number") {
+                    message.code = object.code;
+                    break;
+                }
+                break;
+            case "None":
+            case 0:
+                message.code = 0;
+                break;
+            case "Success":
+            case 200:
+                message.code = 200;
+                break;
+            case "Forbidden":
+            case 403:
+                message.code = 403;
+                break;
+            case "Fail":
+            case 500:
+                message.code = 500;
+                break;
+            case "Unknown":
+            case 501:
+                message.code = 501;
+                break;
+            case "Internal":
+            case 502:
+                message.code = 502;
+                break;
+            case "Invalid":
+            case 503:
+                message.code = 503;
+                break;
+            case "InvalidParam":
+            case 504:
+                message.code = 504;
+                break;
+            case "ParamError":
+            case 505:
+                message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
+                break;
+            case "FindError":
+            case 1001:
+                message.code = 1001;
+                break;
+            case "CreateError":
+            case 1002:
+                message.code = 1002;
+                break;
+            case "DeleteError":
+            case 1003:
+                message.code = 1003;
+                break;
+            case "UpdateError":
+            case 1004:
+                message.code = 1004;
+                break;
+            case "InvalidToken":
+            case 2002:
+                message.code = 2002;
+                break;
+            case "InvalidSign":
+            case 2003:
+                message.code = 2003;
+                break;
+            case "NotLogin":
+            case 2004:
+                message.code = 2004;
+                break;
+            case "LoginTimeout":
+            case 2005:
+                message.code = 2005;
+                break;
+            case "LoginError":
+            case 2006:
+                message.code = 2006;
+                break;
+            case "LoginForbidden":
+            case 2007:
+                message.code = 2007;
+                break;
+            case "LoginExpired":
+            case 2008:
+                message.code = 2008;
+                break;
+            case "LoginInvalid":
+            case 2009:
+                message.code = 2009;
+                break;
+            case "LoginInvalidPassword":
+            case 2010:
+                message.code = 2010;
+                break;
+            case "LoginInvalidUsername":
+            case 2011:
+                message.code = 2011;
+                break;
+            case "LoginInvalidEmail":
+            case 2012:
+                message.code = 2012;
+                break;
+            case "LoginInvalidPhone":
+            case 2013:
+                message.code = 2013;
+                break;
+            case "LoginInvalidUsernameOrEmail":
+            case 2014:
+                message.code = 2014;
+                break;
+            case "LoginSocketRepeat":
+            case 2015:
+                message.code = 2015;
+                break;
+            case "RoleIsNotExist":
+            case 3001:
+                message.code = 3001;
+                break;
+            case "UserIsExist":
+            case 3002:
+                message.code = 3002;
+                break;
+            case "UserIsBan":
+            case 3003:
+                message.code = 3003;
+                break;
+            case "TalkIsBan":
+            case 5001:
+                message.code = 5001;
+                break;
+            case "EnterRoomErr":
+            case 5002:
+                message.code = 5002;
+                break;
+            case "HalaChatNeedBuy":
+            case 10001:
+                message.code = 10001;
+                break;
+            case "HalaPriceOutRange":
+            case 10002:
+                message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
+                break;
+            }
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.list) {
+                if (!Array.isArray(object.list))
+                    throw TypeError(".pbbattle.GetExchangeConfigsResp.list: array expected");
+                message.list = [];
+                for (var i = 0; i < object.list.length; ++i) {
+                    if (typeof object.list[i] !== "object")
+                        throw TypeError(".pbbattle.GetExchangeConfigsResp.list: object expected");
+                    message.list[i] = $root.pbbattle.ExchangeConfigModel.fromObject(object.list[i]);
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GetExchangeConfigsResp message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.GetExchangeConfigsResp
+         * @static
+         * @param {pbbattle.GetExchangeConfigsResp} message GetExchangeConfigsResp
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GetExchangeConfigsResp.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.list = [];
+            if (options.defaults) {
+                object.code = options.enums === String ? "None" : 0;
+                object.msg = "";
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.list && message.list.length) {
+                object.list = [];
+                for (var j = 0; j < message.list.length; ++j)
+                    object.list[j] = $root.pbbattle.ExchangeConfigModel.toObject(message.list[j], options);
+            }
+            return object;
+        };
+
+        /**
+         * Converts this GetExchangeConfigsResp to JSON.
+         * @function toJSON
+         * @memberof pbbattle.GetExchangeConfigsResp
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GetExchangeConfigsResp.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GetExchangeConfigsResp
+         * @function getTypeUrl
+         * @memberof pbbattle.GetExchangeConfigsResp
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GetExchangeConfigsResp.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.GetExchangeConfigsResp";
+        };
+
+        return GetExchangeConfigsResp;
+    })();
+
+    pbbattle.ExchangeReq = (function() {
+
+        /**
+         * Properties of an ExchangeReq.
+         * @memberof pbbattle
+         * @interface IExchangeReq
+         * @property {number|Long|null} [configId] ExchangeReq configId
+         */
+
+        /**
+         * Constructs a new ExchangeReq.
+         * @memberof pbbattle
+         * @classdesc Represents an ExchangeReq.
+         * @implements IExchangeReq
+         * @constructor
+         * @param {pbbattle.IExchangeReq=} [properties] Properties to set
+         */
+        function ExchangeReq(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ExchangeReq configId.
+         * @member {number|Long} configId
+         * @memberof pbbattle.ExchangeReq
+         * @instance
+         */
+        ExchangeReq.prototype.configId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * Creates a new ExchangeReq instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.ExchangeReq
+         * @static
+         * @param {pbbattle.IExchangeReq=} [properties] Properties to set
+         * @returns {pbbattle.ExchangeReq} ExchangeReq instance
+         */
+        ExchangeReq.create = function create(properties) {
+            return new ExchangeReq(properties);
+        };
+
+        /**
+         * Encodes the specified ExchangeReq message. Does not implicitly {@link pbbattle.ExchangeReq.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.ExchangeReq
+         * @static
+         * @param {pbbattle.IExchangeReq} message ExchangeReq message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        ExchangeReq.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.configId != null && Object.hasOwnProperty.call(message, "configId"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int64(message.configId);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified ExchangeReq message, length delimited. Does not implicitly {@link pbbattle.ExchangeReq.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.ExchangeReq
+         * @static
+         * @param {pbbattle.IExchangeReq} message ExchangeReq message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        ExchangeReq.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an ExchangeReq message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.ExchangeReq
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.ExchangeReq} ExchangeReq
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        ExchangeReq.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.ExchangeReq();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.configId = reader.int64();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an ExchangeReq message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.ExchangeReq
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.ExchangeReq} ExchangeReq
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        ExchangeReq.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an ExchangeReq message.
+         * @function verify
+         * @memberof pbbattle.ExchangeReq
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        ExchangeReq.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.configId != null && message.hasOwnProperty("configId"))
+                if (!$util.isInteger(message.configId) && !(message.configId && $util.isInteger(message.configId.low) && $util.isInteger(message.configId.high)))
+                    return "configId: integer|Long expected";
+            return null;
+        };
+
+        /**
+         * Creates an ExchangeReq message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.ExchangeReq
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.ExchangeReq} ExchangeReq
+         */
+        ExchangeReq.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.ExchangeReq)
+                return object;
+            var message = new $root.pbbattle.ExchangeReq();
+            if (object.configId != null)
+                if ($util.Long)
+                    (message.configId = $util.Long.fromValue(object.configId)).unsigned = false;
+                else if (typeof object.configId === "string")
+                    message.configId = parseInt(object.configId, 10);
+                else if (typeof object.configId === "number")
+                    message.configId = object.configId;
+                else if (typeof object.configId === "object")
+                    message.configId = new $util.LongBits(object.configId.low >>> 0, object.configId.high >>> 0).toNumber();
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an ExchangeReq message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.ExchangeReq
+         * @static
+         * @param {pbbattle.ExchangeReq} message ExchangeReq
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        ExchangeReq.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.configId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.configId = options.longs === String ? "0" : 0;
+            if (message.configId != null && message.hasOwnProperty("configId"))
+                if (typeof message.configId === "number")
+                    object.configId = options.longs === String ? String(message.configId) : message.configId;
+                else
+                    object.configId = options.longs === String ? $util.Long.prototype.toString.call(message.configId) : options.longs === Number ? new $util.LongBits(message.configId.low >>> 0, message.configId.high >>> 0).toNumber() : message.configId;
+            return object;
+        };
+
+        /**
+         * Converts this ExchangeReq to JSON.
+         * @function toJSON
+         * @memberof pbbattle.ExchangeReq
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        ExchangeReq.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for ExchangeReq
+         * @function getTypeUrl
+         * @memberof pbbattle.ExchangeReq
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        ExchangeReq.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.ExchangeReq";
+        };
+
+        return ExchangeReq;
+    })();
+
+    pbbattle.ExchangeResp = (function() {
+
+        /**
+         * Properties of an ExchangeResp.
+         * @memberof pbbattle
+         * @interface IExchangeResp
+         * @property {pbcommon.EnumCode|null} [code] ExchangeResp code
+         * @property {string|null} [msg] ExchangeResp msg
+         * @property {number|Long|null} [coinBalance] ExchangeResp coinBalance
+         */
+
+        /**
+         * Constructs a new ExchangeResp.
+         * @memberof pbbattle
+         * @classdesc Represents an ExchangeResp.
+         * @implements IExchangeResp
+         * @constructor
+         * @param {pbbattle.IExchangeResp=} [properties] Properties to set
+         */
+        function ExchangeResp(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ExchangeResp code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbbattle.ExchangeResp
+         * @instance
+         */
+        ExchangeResp.prototype.code = 0;
+
+        /**
+         * ExchangeResp msg.
+         * @member {string} msg
+         * @memberof pbbattle.ExchangeResp
+         * @instance
+         */
+        ExchangeResp.prototype.msg = "";
+
+        /**
+         * ExchangeResp coinBalance.
+         * @member {number|Long} coinBalance
+         * @memberof pbbattle.ExchangeResp
+         * @instance
+         */
+        ExchangeResp.prototype.coinBalance = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * Creates a new ExchangeResp instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.ExchangeResp
+         * @static
+         * @param {pbbattle.IExchangeResp=} [properties] Properties to set
+         * @returns {pbbattle.ExchangeResp} ExchangeResp instance
+         */
+        ExchangeResp.create = function create(properties) {
+            return new ExchangeResp(properties);
+        };
+
+        /**
+         * Encodes the specified ExchangeResp message. Does not implicitly {@link pbbattle.ExchangeResp.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.ExchangeResp
+         * @static
+         * @param {pbbattle.IExchangeResp} message ExchangeResp message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        ExchangeResp.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.coinBalance != null && Object.hasOwnProperty.call(message, "coinBalance"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int64(message.coinBalance);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified ExchangeResp message, length delimited. Does not implicitly {@link pbbattle.ExchangeResp.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.ExchangeResp
+         * @static
+         * @param {pbbattle.IExchangeResp} message ExchangeResp message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        ExchangeResp.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an ExchangeResp message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.ExchangeResp
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.ExchangeResp} ExchangeResp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        ExchangeResp.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.ExchangeResp();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.code = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.coinBalance = reader.int64();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an ExchangeResp message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.ExchangeResp
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.ExchangeResp} ExchangeResp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        ExchangeResp.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an ExchangeResp message.
+         * @function verify
+         * @memberof pbbattle.ExchangeResp
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        ExchangeResp.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.code != null && message.hasOwnProperty("code"))
+                switch (message.code) {
+                default:
+                    return "code: enum value expected";
+                case 0:
+                case 200:
+                case 403:
+                case 500:
+                case 501:
+                case 502:
+                case 503:
+                case 504:
+                case 505:
+                case 511:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
+                case 2002:
+                case 2003:
+                case 2004:
+                case 2005:
+                case 2006:
+                case 2007:
+                case 2008:
+                case 2009:
+                case 2010:
+                case 2011:
+                case 2012:
+                case 2013:
+                case 2014:
+                case 2015:
+                case 3001:
+                case 3002:
+                case 3003:
+                case 5001:
+                case 5002:
+                case 10001:
+                case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
+                    break;
+                }
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                if (!$util.isString(message.msg))
+                    return "msg: string expected";
+            if (message.coinBalance != null && message.hasOwnProperty("coinBalance"))
+                if (!$util.isInteger(message.coinBalance) && !(message.coinBalance && $util.isInteger(message.coinBalance.low) && $util.isInteger(message.coinBalance.high)))
+                    return "coinBalance: integer|Long expected";
+            return null;
+        };
+
+        /**
+         * Creates an ExchangeResp message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.ExchangeResp
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.ExchangeResp} ExchangeResp
+         */
+        ExchangeResp.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.ExchangeResp)
+                return object;
+            var message = new $root.pbbattle.ExchangeResp();
+            switch (object.code) {
+            default:
+                if (typeof object.code === "number") {
+                    message.code = object.code;
+                    break;
+                }
+                break;
+            case "None":
+            case 0:
+                message.code = 0;
+                break;
+            case "Success":
+            case 200:
+                message.code = 200;
+                break;
+            case "Forbidden":
+            case 403:
+                message.code = 403;
+                break;
+            case "Fail":
+            case 500:
+                message.code = 500;
+                break;
+            case "Unknown":
+            case 501:
+                message.code = 501;
+                break;
+            case "Internal":
+            case 502:
+                message.code = 502;
+                break;
+            case "Invalid":
+            case 503:
+                message.code = 503;
+                break;
+            case "InvalidParam":
+            case 504:
+                message.code = 504;
+                break;
+            case "ParamError":
+            case 505:
+                message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
+                break;
+            case "FindError":
+            case 1001:
+                message.code = 1001;
+                break;
+            case "CreateError":
+            case 1002:
+                message.code = 1002;
+                break;
+            case "DeleteError":
+            case 1003:
+                message.code = 1003;
+                break;
+            case "UpdateError":
+            case 1004:
+                message.code = 1004;
+                break;
+            case "InvalidToken":
+            case 2002:
+                message.code = 2002;
+                break;
+            case "InvalidSign":
+            case 2003:
+                message.code = 2003;
+                break;
+            case "NotLogin":
+            case 2004:
+                message.code = 2004;
+                break;
+            case "LoginTimeout":
+            case 2005:
+                message.code = 2005;
+                break;
+            case "LoginError":
+            case 2006:
+                message.code = 2006;
+                break;
+            case "LoginForbidden":
+            case 2007:
+                message.code = 2007;
+                break;
+            case "LoginExpired":
+            case 2008:
+                message.code = 2008;
+                break;
+            case "LoginInvalid":
+            case 2009:
+                message.code = 2009;
+                break;
+            case "LoginInvalidPassword":
+            case 2010:
+                message.code = 2010;
+                break;
+            case "LoginInvalidUsername":
+            case 2011:
+                message.code = 2011;
+                break;
+            case "LoginInvalidEmail":
+            case 2012:
+                message.code = 2012;
+                break;
+            case "LoginInvalidPhone":
+            case 2013:
+                message.code = 2013;
+                break;
+            case "LoginInvalidUsernameOrEmail":
+            case 2014:
+                message.code = 2014;
+                break;
+            case "LoginSocketRepeat":
+            case 2015:
+                message.code = 2015;
+                break;
+            case "RoleIsNotExist":
+            case 3001:
+                message.code = 3001;
+                break;
+            case "UserIsExist":
+            case 3002:
+                message.code = 3002;
+                break;
+            case "UserIsBan":
+            case 3003:
+                message.code = 3003;
+                break;
+            case "TalkIsBan":
+            case 5001:
+                message.code = 5001;
+                break;
+            case "EnterRoomErr":
+            case 5002:
+                message.code = 5002;
+                break;
+            case "HalaChatNeedBuy":
+            case 10001:
+                message.code = 10001;
+                break;
+            case "HalaPriceOutRange":
+            case 10002:
+                message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
+                break;
+            }
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.coinBalance != null)
+                if ($util.Long)
+                    (message.coinBalance = $util.Long.fromValue(object.coinBalance)).unsigned = false;
+                else if (typeof object.coinBalance === "string")
+                    message.coinBalance = parseInt(object.coinBalance, 10);
+                else if (typeof object.coinBalance === "number")
+                    message.coinBalance = object.coinBalance;
+                else if (typeof object.coinBalance === "object")
+                    message.coinBalance = new $util.LongBits(object.coinBalance.low >>> 0, object.coinBalance.high >>> 0).toNumber();
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an ExchangeResp message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.ExchangeResp
+         * @static
+         * @param {pbbattle.ExchangeResp} message ExchangeResp
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        ExchangeResp.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.code = options.enums === String ? "None" : 0;
+                object.msg = "";
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.coinBalance = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.coinBalance = options.longs === String ? "0" : 0;
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.coinBalance != null && message.hasOwnProperty("coinBalance"))
+                if (typeof message.coinBalance === "number")
+                    object.coinBalance = options.longs === String ? String(message.coinBalance) : message.coinBalance;
+                else
+                    object.coinBalance = options.longs === String ? $util.Long.prototype.toString.call(message.coinBalance) : options.longs === Number ? new $util.LongBits(message.coinBalance.low >>> 0, message.coinBalance.high >>> 0).toNumber() : message.coinBalance;
+            return object;
+        };
+
+        /**
+         * Converts this ExchangeResp to JSON.
+         * @function toJSON
+         * @memberof pbbattle.ExchangeResp
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        ExchangeResp.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for ExchangeResp
+         * @function getTypeUrl
+         * @memberof pbbattle.ExchangeResp
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        ExchangeResp.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.ExchangeResp";
+        };
+
+        return ExchangeResp;
     })();
 
     return pbbattle;
