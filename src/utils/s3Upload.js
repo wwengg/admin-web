@@ -3,7 +3,6 @@
  * Handles S3 presigned URL uploads
  */
 
-import axios from 'axios'
 import request from '@/utils/request'
 import protoUpload from '@/proto/upload.js'
 
@@ -32,7 +31,7 @@ export async function getPreSignUploadUrl(fileName) {
 }
 
 /**
- * Upload file to S3 using presigned URL
+ * Upload file to S3 using presigned URL (native XHR to avoid axios 0.18.x build bug)
  * @param {File} file - The file to upload
  * @param {Function} onProgress - Progress callback (percent: number)
  * @returns {Promise<string>} The final CDN URL
@@ -47,17 +46,29 @@ export async function uploadToS3(file, onProgress) {
     // 2. Get presigned URL
     const { url, baseUrl } = await getPreSignUploadUrl(fileName)
 
-    // 3. Upload to S3 using PUT (direct S3 upload, not through the API server)
-    await axios.put(url, file, {
-      headers: {
-        'Content-Type': file.type || `image/${extension}`
-      },
-      onUploadProgress: (progressEvent) => {
-        if (onProgress && progressEvent.total) {
-          const percent = Math.round((progressEvent.loaded * 100) / progressEvent.total)
-          onProgress(percent)
+    // 3. Upload to S3 using native XMLHttpRequest (avoids axios 0.18.x onUploadProgress bug in prod build)
+    await new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest()
+      xhr.open('PUT', url, true)
+      xhr.setRequestHeader('Content-Type', file.type || `image/${extension}`)
+
+      if (onProgress) {
+        xhr.upload.onprogress = (e) => {
+          if (e.lengthComputable) {
+            onProgress(Math.round((e.loaded * 100) / e.total))
+          }
         }
       }
+
+      xhr.onload = () => {
+        if (xhr.status >= 200 && xhr.status < 300) {
+          resolve()
+        } else {
+          reject(new Error(`S3 upload failed: ${xhr.status}`))
+        }
+      }
+      xhr.onerror = () => reject(new Error('S3 upload network error'))
+      xhr.send(file)
     })
 
     // 4. Extract actual file path from presigned URL

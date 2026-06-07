@@ -144,8 +144,8 @@ export const HEARTBEAT_CONFIG = {
   TIMEOUT: 30000 // 30 seconds
 }
 
-// Default WebSocket URL (can be overridden by config)
-export const DEFAULT_WS_URL = 'wss://api.wwengg.cn:21997'
+// Default WebSocket URL (from env, fallback to hardcoded)
+export const DEFAULT_WS_URL = process.env.VUE_APP_WS_URL || 'wss://api.wwengg.cn:21997'
 
 // Error Codes (from pbcommon.proto)
 export const ErrorCode = {

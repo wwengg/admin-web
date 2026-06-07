@@ -8820,6 +8820,72 @@ $root.pbbattle = (function() {
          * @variation 2
          */
 
+        /**
+         * Callback as used by {@link pbbattle.Battle#getLeaderboard}.
+         * @memberof pbbattle.Battle
+         * @typedef GetLeaderboardCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbbattle.GetLeaderboardResp} [response] GetLeaderboardResp
+         */
+
+        /**
+         * Calls GetLeaderboard.
+         * @function getLeaderboard
+         * @memberof pbbattle.Battle
+         * @instance
+         * @param {pbbattle.IGetLeaderboardReq} request GetLeaderboardReq message or plain object
+         * @param {pbbattle.Battle.GetLeaderboardCallback} callback Node-style callback called with the error, if any, and GetLeaderboardResp
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(Battle.prototype.getLeaderboard = function getLeaderboard(request, callback) {
+            return this.rpcCall(getLeaderboard, $root.pbbattle.GetLeaderboardReq, $root.pbbattle.GetLeaderboardResp, request, callback);
+        }, "name", { value: "GetLeaderboard" });
+
+        /**
+         * Calls GetLeaderboard.
+         * @function getLeaderboard
+         * @memberof pbbattle.Battle
+         * @instance
+         * @param {pbbattle.IGetLeaderboardReq} request GetLeaderboardReq message or plain object
+         * @returns {Promise<pbbattle.GetLeaderboardResp>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.Battle#checkGameCenterVisibility}.
+         * @memberof pbbattle.Battle
+         * @typedef CheckGameCenterVisibilityCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbbattle.CheckGameCenterVisibilityResp} [response] CheckGameCenterVisibilityResp
+         */
+
+        /**
+         * Calls CheckGameCenterVisibility.
+         * @function checkGameCenterVisibility
+         * @memberof pbbattle.Battle
+         * @instance
+         * @param {pbbattle.ICheckGameCenterVisibilityReq} request CheckGameCenterVisibilityReq message or plain object
+         * @param {pbbattle.Battle.CheckGameCenterVisibilityCallback} callback Node-style callback called with the error, if any, and CheckGameCenterVisibilityResp
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(Battle.prototype.checkGameCenterVisibility = function checkGameCenterVisibility(request, callback) {
+            return this.rpcCall(checkGameCenterVisibility, $root.pbbattle.CheckGameCenterVisibilityReq, $root.pbbattle.CheckGameCenterVisibilityResp, request, callback);
+        }, "name", { value: "CheckGameCenterVisibility" });
+
+        /**
+         * Calls CheckGameCenterVisibility.
+         * @function checkGameCenterVisibility
+         * @memberof pbbattle.Battle
+         * @instance
+         * @param {pbbattle.ICheckGameCenterVisibilityReq} request CheckGameCenterVisibilityReq message or plain object
+         * @returns {Promise<pbbattle.CheckGameCenterVisibilityResp>} Promise
+         * @variation 2
+         */
+
         return Battle;
     })();
 
@@ -9103,6 +9169,7 @@ $root.pbbattle = (function() {
          * @property {string|null} [optionCode] AssistOptionModel optionCode
          * @property {number|null} [optionValue] AssistOptionModel optionValue
          * @property {number|null} [costGold] AssistOptionModel costGold
+         * @property {number|null} [poolRate] AssistOptionModel poolRate
          * @property {number|null} [sortOrder] AssistOptionModel sortOrder
          * @property {boolean|null} [isEnabled] AssistOptionModel isEnabled
          */
@@ -9171,6 +9238,14 @@ $root.pbbattle = (function() {
         AssistOptionModel.prototype.costGold = 0;
 
         /**
+         * AssistOptionModel poolRate.
+         * @member {number} poolRate
+         * @memberof pbbattle.AssistOptionModel
+         * @instance
+         */
+        AssistOptionModel.prototype.poolRate = 0;
+
+        /**
          * AssistOptionModel sortOrder.
          * @member {number} sortOrder
          * @memberof pbbattle.AssistOptionModel
@@ -9226,6 +9301,8 @@ $root.pbbattle = (function() {
                 writer.uint32(/* id 13, wireType 0 =*/104).int32(message.sortOrder);
             if (message.isEnabled != null && Object.hasOwnProperty.call(message, "isEnabled"))
                 writer.uint32(/* id 14, wireType 0 =*/112).bool(message.isEnabled);
+            if (message.poolRate != null && Object.hasOwnProperty.call(message, "poolRate"))
+                writer.uint32(/* id 15, wireType 0 =*/120).int32(message.poolRate);
             return writer;
         };
 
@@ -9284,6 +9361,10 @@ $root.pbbattle = (function() {
                     }
                 case 12: {
                         message.costGold = reader.int32();
+                        break;
+                    }
+                case 15: {
+                        message.poolRate = reader.int32();
                         break;
                     }
                 case 13: {
@@ -9347,6 +9428,9 @@ $root.pbbattle = (function() {
             if (message.costGold != null && message.hasOwnProperty("costGold"))
                 if (!$util.isInteger(message.costGold))
                     return "costGold: integer expected";
+            if (message.poolRate != null && message.hasOwnProperty("poolRate"))
+                if (!$util.isInteger(message.poolRate))
+                    return "poolRate: integer expected";
             if (message.sortOrder != null && message.hasOwnProperty("sortOrder"))
                 if (!$util.isInteger(message.sortOrder))
                     return "sortOrder: integer expected";
@@ -9387,6 +9471,8 @@ $root.pbbattle = (function() {
                 message.optionValue = object.optionValue | 0;
             if (object.costGold != null)
                 message.costGold = object.costGold | 0;
+            if (object.poolRate != null)
+                message.poolRate = object.poolRate | 0;
             if (object.sortOrder != null)
                 message.sortOrder = object.sortOrder | 0;
             if (object.isEnabled != null)
@@ -9420,6 +9506,7 @@ $root.pbbattle = (function() {
                 object.costGold = 0;
                 object.sortOrder = 0;
                 object.isEnabled = false;
+                object.poolRate = 0;
             }
             if (message.id != null && message.hasOwnProperty("id"))
                 if (typeof message.id === "number")
@@ -9440,6 +9527,8 @@ $root.pbbattle = (function() {
                 object.sortOrder = message.sortOrder;
             if (message.isEnabled != null && message.hasOwnProperty("isEnabled"))
                 object.isEnabled = message.isEnabled;
+            if (message.poolRate != null && message.hasOwnProperty("poolRate"))
+                object.poolRate = message.poolRate;
             return object;
         };
 
@@ -24401,6 +24490,171 @@ $root.pbbattle = (function() {
          * @variation 2
          */
 
+        /**
+         * Callback as used by {@link pbbattle.BattleAdmin#saveGameCenterConfig}.
+         * @memberof pbbattle.BattleAdmin
+         * @typedef SaveGameCenterConfigCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls SaveGameCenterConfig.
+         * @function saveGameCenterConfig
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IGameCenterConfigModel} request GameCenterConfigModel message or plain object
+         * @param {pbbattle.BattleAdmin.SaveGameCenterConfigCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattleAdmin.prototype.saveGameCenterConfig = function saveGameCenterConfig(request, callback) {
+            return this.rpcCall(saveGameCenterConfig, $root.pbbattle.GameCenterConfigModel, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "SaveGameCenterConfig" });
+
+        /**
+         * Calls SaveGameCenterConfig.
+         * @function saveGameCenterConfig
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IGameCenterConfigModel} request GameCenterConfigModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.BattleAdmin#getGameCenterConfig}.
+         * @memberof pbbattle.BattleAdmin
+         * @typedef GetGameCenterConfigCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbbattle.GetGameCenterConfigReply} [response] GetGameCenterConfigReply
+         */
+
+        /**
+         * Calls GetGameCenterConfig.
+         * @function getGameCenterConfig
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbcommon.IEmpty} request Empty message or plain object
+         * @param {pbbattle.BattleAdmin.GetGameCenterConfigCallback} callback Node-style callback called with the error, if any, and GetGameCenterConfigReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattleAdmin.prototype.getGameCenterConfig = function getGameCenterConfig(request, callback) {
+            return this.rpcCall(getGameCenterConfig, $root.pbcommon.Empty, $root.pbbattle.GetGameCenterConfigReply, request, callback);
+        }, "name", { value: "GetGameCenterConfig" });
+
+        /**
+         * Calls GetGameCenterConfig.
+         * @function getGameCenterConfig
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbcommon.IEmpty} request Empty message or plain object
+         * @returns {Promise<pbbattle.GetGameCenterConfigReply>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.BattleAdmin#createGameCenterUser}.
+         * @memberof pbbattle.BattleAdmin
+         * @typedef CreateGameCenterUserCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls CreateGameCenterUser.
+         * @function createGameCenterUser
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IGameCenterUserModel} request GameCenterUserModel message or plain object
+         * @param {pbbattle.BattleAdmin.CreateGameCenterUserCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattleAdmin.prototype.createGameCenterUser = function createGameCenterUser(request, callback) {
+            return this.rpcCall(createGameCenterUser, $root.pbbattle.GameCenterUserModel, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "CreateGameCenterUser" });
+
+        /**
+         * Calls CreateGameCenterUser.
+         * @function createGameCenterUser
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IGameCenterUserModel} request GameCenterUserModel message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.BattleAdmin#deleteGameCenterUser}.
+         * @memberof pbbattle.BattleAdmin
+         * @typedef DeleteGameCenterUserCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls DeleteGameCenterUser.
+         * @function deleteGameCenterUser
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbbattle.BattleAdmin.DeleteGameCenterUserCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattleAdmin.prototype.deleteGameCenterUser = function deleteGameCenterUser(request, callback) {
+            return this.rpcCall(deleteGameCenterUser, $root.pbcommon.IdArgs, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "DeleteGameCenterUser" });
+
+        /**
+         * Calls DeleteGameCenterUser.
+         * @function deleteGameCenterUser
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbbattle.BattleAdmin#findGameCenterUserList}.
+         * @memberof pbbattle.BattleAdmin
+         * @typedef FindGameCenterUserListCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbbattle.FindGameCenterUserReply} [response] FindGameCenterUserReply
+         */
+
+        /**
+         * Calls FindGameCenterUserList.
+         * @function findGameCenterUserList
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IFindGameCenterUserArgs} request FindGameCenterUserArgs message or plain object
+         * @param {pbbattle.BattleAdmin.FindGameCenterUserListCallback} callback Node-style callback called with the error, if any, and FindGameCenterUserReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(BattleAdmin.prototype.findGameCenterUserList = function findGameCenterUserList(request, callback) {
+            return this.rpcCall(findGameCenterUserList, $root.pbbattle.FindGameCenterUserArgs, $root.pbbattle.FindGameCenterUserReply, request, callback);
+        }, "name", { value: "FindGameCenterUserList" });
+
+        /**
+         * Calls FindGameCenterUserList.
+         * @function findGameCenterUserList
+         * @memberof pbbattle.BattleAdmin
+         * @instance
+         * @param {pbbattle.IFindGameCenterUserArgs} request FindGameCenterUserArgs message or plain object
+         * @returns {Promise<pbbattle.FindGameCenterUserReply>} Promise
+         * @variation 2
+         */
+
         return BattleAdmin;
     })();
 
@@ -26796,6 +27050,3719 @@ $root.pbbattle = (function() {
         };
 
         return ExchangeResp;
+    })();
+
+    /**
+     * LeaderboardPeriod enum.
+     * @name pbbattle.LeaderboardPeriod
+     * @enum {number}
+     * @property {number} DAILY=0 DAILY value
+     * @property {number} WEEKLY=1 WEEKLY value
+     * @property {number} MONTHLY=2 MONTHLY value
+     */
+    pbbattle.LeaderboardPeriod = (function() {
+        var valuesById = {}, values = Object.create(valuesById);
+        values[valuesById[0] = "DAILY"] = 0;
+        values[valuesById[1] = "WEEKLY"] = 1;
+        values[valuesById[2] = "MONTHLY"] = 2;
+        return values;
+    })();
+
+    pbbattle.GetLeaderboardReq = (function() {
+
+        /**
+         * Properties of a GetLeaderboardReq.
+         * @memberof pbbattle
+         * @interface IGetLeaderboardReq
+         * @property {pbbattle.LeaderboardPeriod|null} [period] GetLeaderboardReq period
+         * @property {number|null} [topN] GetLeaderboardReq topN
+         */
+
+        /**
+         * Constructs a new GetLeaderboardReq.
+         * @memberof pbbattle
+         * @classdesc Represents a GetLeaderboardReq.
+         * @implements IGetLeaderboardReq
+         * @constructor
+         * @param {pbbattle.IGetLeaderboardReq=} [properties] Properties to set
+         */
+        function GetLeaderboardReq(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GetLeaderboardReq period.
+         * @member {pbbattle.LeaderboardPeriod} period
+         * @memberof pbbattle.GetLeaderboardReq
+         * @instance
+         */
+        GetLeaderboardReq.prototype.period = 0;
+
+        /**
+         * GetLeaderboardReq topN.
+         * @member {number} topN
+         * @memberof pbbattle.GetLeaderboardReq
+         * @instance
+         */
+        GetLeaderboardReq.prototype.topN = 0;
+
+        /**
+         * Creates a new GetLeaderboardReq instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.GetLeaderboardReq
+         * @static
+         * @param {pbbattle.IGetLeaderboardReq=} [properties] Properties to set
+         * @returns {pbbattle.GetLeaderboardReq} GetLeaderboardReq instance
+         */
+        GetLeaderboardReq.create = function create(properties) {
+            return new GetLeaderboardReq(properties);
+        };
+
+        /**
+         * Encodes the specified GetLeaderboardReq message. Does not implicitly {@link pbbattle.GetLeaderboardReq.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.GetLeaderboardReq
+         * @static
+         * @param {pbbattle.IGetLeaderboardReq} message GetLeaderboardReq message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetLeaderboardReq.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.period != null && Object.hasOwnProperty.call(message, "period"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.period);
+            if (message.topN != null && Object.hasOwnProperty.call(message, "topN"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.topN);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GetLeaderboardReq message, length delimited. Does not implicitly {@link pbbattle.GetLeaderboardReq.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.GetLeaderboardReq
+         * @static
+         * @param {pbbattle.IGetLeaderboardReq} message GetLeaderboardReq message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetLeaderboardReq.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GetLeaderboardReq message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.GetLeaderboardReq
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.GetLeaderboardReq} GetLeaderboardReq
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetLeaderboardReq.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.GetLeaderboardReq();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.period = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.topN = reader.int32();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GetLeaderboardReq message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.GetLeaderboardReq
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.GetLeaderboardReq} GetLeaderboardReq
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetLeaderboardReq.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GetLeaderboardReq message.
+         * @function verify
+         * @memberof pbbattle.GetLeaderboardReq
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GetLeaderboardReq.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.period != null && message.hasOwnProperty("period"))
+                switch (message.period) {
+                default:
+                    return "period: enum value expected";
+                case 0:
+                case 1:
+                case 2:
+                    break;
+                }
+            if (message.topN != null && message.hasOwnProperty("topN"))
+                if (!$util.isInteger(message.topN))
+                    return "topN: integer expected";
+            return null;
+        };
+
+        /**
+         * Creates a GetLeaderboardReq message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.GetLeaderboardReq
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.GetLeaderboardReq} GetLeaderboardReq
+         */
+        GetLeaderboardReq.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.GetLeaderboardReq)
+                return object;
+            var message = new $root.pbbattle.GetLeaderboardReq();
+            switch (object.period) {
+            default:
+                if (typeof object.period === "number") {
+                    message.period = object.period;
+                    break;
+                }
+                break;
+            case "DAILY":
+            case 0:
+                message.period = 0;
+                break;
+            case "WEEKLY":
+            case 1:
+                message.period = 1;
+                break;
+            case "MONTHLY":
+            case 2:
+                message.period = 2;
+                break;
+            }
+            if (object.topN != null)
+                message.topN = object.topN | 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GetLeaderboardReq message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.GetLeaderboardReq
+         * @static
+         * @param {pbbattle.GetLeaderboardReq} message GetLeaderboardReq
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GetLeaderboardReq.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.period = options.enums === String ? "DAILY" : 0;
+                object.topN = 0;
+            }
+            if (message.period != null && message.hasOwnProperty("period"))
+                object.period = options.enums === String ? $root.pbbattle.LeaderboardPeriod[message.period] === undefined ? message.period : $root.pbbattle.LeaderboardPeriod[message.period] : message.period;
+            if (message.topN != null && message.hasOwnProperty("topN"))
+                object.topN = message.topN;
+            return object;
+        };
+
+        /**
+         * Converts this GetLeaderboardReq to JSON.
+         * @function toJSON
+         * @memberof pbbattle.GetLeaderboardReq
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GetLeaderboardReq.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GetLeaderboardReq
+         * @function getTypeUrl
+         * @memberof pbbattle.GetLeaderboardReq
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GetLeaderboardReq.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.GetLeaderboardReq";
+        };
+
+        return GetLeaderboardReq;
+    })();
+
+    pbbattle.LeaderboardItem = (function() {
+
+        /**
+         * Properties of a LeaderboardItem.
+         * @memberof pbbattle
+         * @interface ILeaderboardItem
+         * @property {number|Long|null} [userId] LeaderboardItem userId
+         * @property {number|Long|null} [winAmount] LeaderboardItem winAmount
+         * @property {number|null} [rank] LeaderboardItem rank
+         * @property {string|null} [nickname] LeaderboardItem nickname
+         * @property {string|null} [avatar] LeaderboardItem avatar
+         */
+
+        /**
+         * Constructs a new LeaderboardItem.
+         * @memberof pbbattle
+         * @classdesc Represents a LeaderboardItem.
+         * @implements ILeaderboardItem
+         * @constructor
+         * @param {pbbattle.ILeaderboardItem=} [properties] Properties to set
+         */
+        function LeaderboardItem(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * LeaderboardItem userId.
+         * @member {number|Long} userId
+         * @memberof pbbattle.LeaderboardItem
+         * @instance
+         */
+        LeaderboardItem.prototype.userId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * LeaderboardItem winAmount.
+         * @member {number|Long} winAmount
+         * @memberof pbbattle.LeaderboardItem
+         * @instance
+         */
+        LeaderboardItem.prototype.winAmount = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * LeaderboardItem rank.
+         * @member {number} rank
+         * @memberof pbbattle.LeaderboardItem
+         * @instance
+         */
+        LeaderboardItem.prototype.rank = 0;
+
+        /**
+         * LeaderboardItem nickname.
+         * @member {string} nickname
+         * @memberof pbbattle.LeaderboardItem
+         * @instance
+         */
+        LeaderboardItem.prototype.nickname = "";
+
+        /**
+         * LeaderboardItem avatar.
+         * @member {string} avatar
+         * @memberof pbbattle.LeaderboardItem
+         * @instance
+         */
+        LeaderboardItem.prototype.avatar = "";
+
+        /**
+         * Creates a new LeaderboardItem instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.LeaderboardItem
+         * @static
+         * @param {pbbattle.ILeaderboardItem=} [properties] Properties to set
+         * @returns {pbbattle.LeaderboardItem} LeaderboardItem instance
+         */
+        LeaderboardItem.create = function create(properties) {
+            return new LeaderboardItem(properties);
+        };
+
+        /**
+         * Encodes the specified LeaderboardItem message. Does not implicitly {@link pbbattle.LeaderboardItem.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.LeaderboardItem
+         * @static
+         * @param {pbbattle.ILeaderboardItem} message LeaderboardItem message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        LeaderboardItem.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.userId != null && Object.hasOwnProperty.call(message, "userId"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int64(message.userId);
+            if (message.winAmount != null && Object.hasOwnProperty.call(message, "winAmount"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int64(message.winAmount);
+            if (message.rank != null && Object.hasOwnProperty.call(message, "rank"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int32(message.rank);
+            if (message.nickname != null && Object.hasOwnProperty.call(message, "nickname"))
+                writer.uint32(/* id 4, wireType 2 =*/34).string(message.nickname);
+            if (message.avatar != null && Object.hasOwnProperty.call(message, "avatar"))
+                writer.uint32(/* id 5, wireType 2 =*/42).string(message.avatar);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified LeaderboardItem message, length delimited. Does not implicitly {@link pbbattle.LeaderboardItem.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.LeaderboardItem
+         * @static
+         * @param {pbbattle.ILeaderboardItem} message LeaderboardItem message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        LeaderboardItem.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a LeaderboardItem message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.LeaderboardItem
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.LeaderboardItem} LeaderboardItem
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        LeaderboardItem.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.LeaderboardItem();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.userId = reader.int64();
+                        break;
+                    }
+                case 2: {
+                        message.winAmount = reader.int64();
+                        break;
+                    }
+                case 3: {
+                        message.rank = reader.int32();
+                        break;
+                    }
+                case 4: {
+                        message.nickname = reader.string();
+                        break;
+                    }
+                case 5: {
+                        message.avatar = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a LeaderboardItem message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.LeaderboardItem
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.LeaderboardItem} LeaderboardItem
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        LeaderboardItem.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a LeaderboardItem message.
+         * @function verify
+         * @memberof pbbattle.LeaderboardItem
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        LeaderboardItem.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.userId != null && message.hasOwnProperty("userId"))
+                if (!$util.isInteger(message.userId) && !(message.userId && $util.isInteger(message.userId.low) && $util.isInteger(message.userId.high)))
+                    return "userId: integer|Long expected";
+            if (message.winAmount != null && message.hasOwnProperty("winAmount"))
+                if (!$util.isInteger(message.winAmount) && !(message.winAmount && $util.isInteger(message.winAmount.low) && $util.isInteger(message.winAmount.high)))
+                    return "winAmount: integer|Long expected";
+            if (message.rank != null && message.hasOwnProperty("rank"))
+                if (!$util.isInteger(message.rank))
+                    return "rank: integer expected";
+            if (message.nickname != null && message.hasOwnProperty("nickname"))
+                if (!$util.isString(message.nickname))
+                    return "nickname: string expected";
+            if (message.avatar != null && message.hasOwnProperty("avatar"))
+                if (!$util.isString(message.avatar))
+                    return "avatar: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a LeaderboardItem message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.LeaderboardItem
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.LeaderboardItem} LeaderboardItem
+         */
+        LeaderboardItem.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.LeaderboardItem)
+                return object;
+            var message = new $root.pbbattle.LeaderboardItem();
+            if (object.userId != null)
+                if ($util.Long)
+                    (message.userId = $util.Long.fromValue(object.userId)).unsigned = false;
+                else if (typeof object.userId === "string")
+                    message.userId = parseInt(object.userId, 10);
+                else if (typeof object.userId === "number")
+                    message.userId = object.userId;
+                else if (typeof object.userId === "object")
+                    message.userId = new $util.LongBits(object.userId.low >>> 0, object.userId.high >>> 0).toNumber();
+            if (object.winAmount != null)
+                if ($util.Long)
+                    (message.winAmount = $util.Long.fromValue(object.winAmount)).unsigned = false;
+                else if (typeof object.winAmount === "string")
+                    message.winAmount = parseInt(object.winAmount, 10);
+                else if (typeof object.winAmount === "number")
+                    message.winAmount = object.winAmount;
+                else if (typeof object.winAmount === "object")
+                    message.winAmount = new $util.LongBits(object.winAmount.low >>> 0, object.winAmount.high >>> 0).toNumber();
+            if (object.rank != null)
+                message.rank = object.rank | 0;
+            if (object.nickname != null)
+                message.nickname = String(object.nickname);
+            if (object.avatar != null)
+                message.avatar = String(object.avatar);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a LeaderboardItem message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.LeaderboardItem
+         * @static
+         * @param {pbbattle.LeaderboardItem} message LeaderboardItem
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        LeaderboardItem.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.userId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.userId = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.winAmount = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.winAmount = options.longs === String ? "0" : 0;
+                object.rank = 0;
+                object.nickname = "";
+                object.avatar = "";
+            }
+            if (message.userId != null && message.hasOwnProperty("userId"))
+                if (typeof message.userId === "number")
+                    object.userId = options.longs === String ? String(message.userId) : message.userId;
+                else
+                    object.userId = options.longs === String ? $util.Long.prototype.toString.call(message.userId) : options.longs === Number ? new $util.LongBits(message.userId.low >>> 0, message.userId.high >>> 0).toNumber() : message.userId;
+            if (message.winAmount != null && message.hasOwnProperty("winAmount"))
+                if (typeof message.winAmount === "number")
+                    object.winAmount = options.longs === String ? String(message.winAmount) : message.winAmount;
+                else
+                    object.winAmount = options.longs === String ? $util.Long.prototype.toString.call(message.winAmount) : options.longs === Number ? new $util.LongBits(message.winAmount.low >>> 0, message.winAmount.high >>> 0).toNumber() : message.winAmount;
+            if (message.rank != null && message.hasOwnProperty("rank"))
+                object.rank = message.rank;
+            if (message.nickname != null && message.hasOwnProperty("nickname"))
+                object.nickname = message.nickname;
+            if (message.avatar != null && message.hasOwnProperty("avatar"))
+                object.avatar = message.avatar;
+            return object;
+        };
+
+        /**
+         * Converts this LeaderboardItem to JSON.
+         * @function toJSON
+         * @memberof pbbattle.LeaderboardItem
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        LeaderboardItem.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for LeaderboardItem
+         * @function getTypeUrl
+         * @memberof pbbattle.LeaderboardItem
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        LeaderboardItem.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.LeaderboardItem";
+        };
+
+        return LeaderboardItem;
+    })();
+
+    pbbattle.GetLeaderboardResp = (function() {
+
+        /**
+         * Properties of a GetLeaderboardResp.
+         * @memberof pbbattle
+         * @interface IGetLeaderboardResp
+         * @property {pbcommon.EnumCode|null} [code] GetLeaderboardResp code
+         * @property {string|null} [msg] GetLeaderboardResp msg
+         * @property {Array.<pbbattle.ILeaderboardItem>|null} [list] GetLeaderboardResp list
+         */
+
+        /**
+         * Constructs a new GetLeaderboardResp.
+         * @memberof pbbattle
+         * @classdesc Represents a GetLeaderboardResp.
+         * @implements IGetLeaderboardResp
+         * @constructor
+         * @param {pbbattle.IGetLeaderboardResp=} [properties] Properties to set
+         */
+        function GetLeaderboardResp(properties) {
+            this.list = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GetLeaderboardResp code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbbattle.GetLeaderboardResp
+         * @instance
+         */
+        GetLeaderboardResp.prototype.code = 0;
+
+        /**
+         * GetLeaderboardResp msg.
+         * @member {string} msg
+         * @memberof pbbattle.GetLeaderboardResp
+         * @instance
+         */
+        GetLeaderboardResp.prototype.msg = "";
+
+        /**
+         * GetLeaderboardResp list.
+         * @member {Array.<pbbattle.ILeaderboardItem>} list
+         * @memberof pbbattle.GetLeaderboardResp
+         * @instance
+         */
+        GetLeaderboardResp.prototype.list = $util.emptyArray;
+
+        /**
+         * Creates a new GetLeaderboardResp instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.GetLeaderboardResp
+         * @static
+         * @param {pbbattle.IGetLeaderboardResp=} [properties] Properties to set
+         * @returns {pbbattle.GetLeaderboardResp} GetLeaderboardResp instance
+         */
+        GetLeaderboardResp.create = function create(properties) {
+            return new GetLeaderboardResp(properties);
+        };
+
+        /**
+         * Encodes the specified GetLeaderboardResp message. Does not implicitly {@link pbbattle.GetLeaderboardResp.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.GetLeaderboardResp
+         * @static
+         * @param {pbbattle.IGetLeaderboardResp} message GetLeaderboardResp message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetLeaderboardResp.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.list != null && message.list.length)
+                for (var i = 0; i < message.list.length; ++i)
+                    $root.pbbattle.LeaderboardItem.encode(message.list[i], writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GetLeaderboardResp message, length delimited. Does not implicitly {@link pbbattle.GetLeaderboardResp.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.GetLeaderboardResp
+         * @static
+         * @param {pbbattle.IGetLeaderboardResp} message GetLeaderboardResp message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetLeaderboardResp.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GetLeaderboardResp message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.GetLeaderboardResp
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.GetLeaderboardResp} GetLeaderboardResp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetLeaderboardResp.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.GetLeaderboardResp();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.code = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        if (!(message.list && message.list.length))
+                            message.list = [];
+                        message.list.push($root.pbbattle.LeaderboardItem.decode(reader, reader.uint32()));
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GetLeaderboardResp message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.GetLeaderboardResp
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.GetLeaderboardResp} GetLeaderboardResp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetLeaderboardResp.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GetLeaderboardResp message.
+         * @function verify
+         * @memberof pbbattle.GetLeaderboardResp
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GetLeaderboardResp.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.code != null && message.hasOwnProperty("code"))
+                switch (message.code) {
+                default:
+                    return "code: enum value expected";
+                case 0:
+                case 200:
+                case 403:
+                case 500:
+                case 501:
+                case 502:
+                case 503:
+                case 504:
+                case 505:
+                case 511:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
+                case 2002:
+                case 2003:
+                case 2004:
+                case 2005:
+                case 2006:
+                case 2007:
+                case 2008:
+                case 2009:
+                case 2010:
+                case 2011:
+                case 2012:
+                case 2013:
+                case 2014:
+                case 2015:
+                case 3001:
+                case 3002:
+                case 3003:
+                case 5001:
+                case 5002:
+                case 10001:
+                case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
+                    break;
+                }
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                if (!$util.isString(message.msg))
+                    return "msg: string expected";
+            if (message.list != null && message.hasOwnProperty("list")) {
+                if (!Array.isArray(message.list))
+                    return "list: array expected";
+                for (var i = 0; i < message.list.length; ++i) {
+                    var error = $root.pbbattle.LeaderboardItem.verify(message.list[i]);
+                    if (error)
+                        return "list." + error;
+                }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a GetLeaderboardResp message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.GetLeaderboardResp
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.GetLeaderboardResp} GetLeaderboardResp
+         */
+        GetLeaderboardResp.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.GetLeaderboardResp)
+                return object;
+            var message = new $root.pbbattle.GetLeaderboardResp();
+            switch (object.code) {
+            default:
+                if (typeof object.code === "number") {
+                    message.code = object.code;
+                    break;
+                }
+                break;
+            case "None":
+            case 0:
+                message.code = 0;
+                break;
+            case "Success":
+            case 200:
+                message.code = 200;
+                break;
+            case "Forbidden":
+            case 403:
+                message.code = 403;
+                break;
+            case "Fail":
+            case 500:
+                message.code = 500;
+                break;
+            case "Unknown":
+            case 501:
+                message.code = 501;
+                break;
+            case "Internal":
+            case 502:
+                message.code = 502;
+                break;
+            case "Invalid":
+            case 503:
+                message.code = 503;
+                break;
+            case "InvalidParam":
+            case 504:
+                message.code = 504;
+                break;
+            case "ParamError":
+            case 505:
+                message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
+                break;
+            case "FindError":
+            case 1001:
+                message.code = 1001;
+                break;
+            case "CreateError":
+            case 1002:
+                message.code = 1002;
+                break;
+            case "DeleteError":
+            case 1003:
+                message.code = 1003;
+                break;
+            case "UpdateError":
+            case 1004:
+                message.code = 1004;
+                break;
+            case "InvalidToken":
+            case 2002:
+                message.code = 2002;
+                break;
+            case "InvalidSign":
+            case 2003:
+                message.code = 2003;
+                break;
+            case "NotLogin":
+            case 2004:
+                message.code = 2004;
+                break;
+            case "LoginTimeout":
+            case 2005:
+                message.code = 2005;
+                break;
+            case "LoginError":
+            case 2006:
+                message.code = 2006;
+                break;
+            case "LoginForbidden":
+            case 2007:
+                message.code = 2007;
+                break;
+            case "LoginExpired":
+            case 2008:
+                message.code = 2008;
+                break;
+            case "LoginInvalid":
+            case 2009:
+                message.code = 2009;
+                break;
+            case "LoginInvalidPassword":
+            case 2010:
+                message.code = 2010;
+                break;
+            case "LoginInvalidUsername":
+            case 2011:
+                message.code = 2011;
+                break;
+            case "LoginInvalidEmail":
+            case 2012:
+                message.code = 2012;
+                break;
+            case "LoginInvalidPhone":
+            case 2013:
+                message.code = 2013;
+                break;
+            case "LoginInvalidUsernameOrEmail":
+            case 2014:
+                message.code = 2014;
+                break;
+            case "LoginSocketRepeat":
+            case 2015:
+                message.code = 2015;
+                break;
+            case "RoleIsNotExist":
+            case 3001:
+                message.code = 3001;
+                break;
+            case "UserIsExist":
+            case 3002:
+                message.code = 3002;
+                break;
+            case "UserIsBan":
+            case 3003:
+                message.code = 3003;
+                break;
+            case "TalkIsBan":
+            case 5001:
+                message.code = 5001;
+                break;
+            case "EnterRoomErr":
+            case 5002:
+                message.code = 5002;
+                break;
+            case "HalaChatNeedBuy":
+            case 10001:
+                message.code = 10001;
+                break;
+            case "HalaPriceOutRange":
+            case 10002:
+                message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
+                break;
+            }
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.list) {
+                if (!Array.isArray(object.list))
+                    throw TypeError(".pbbattle.GetLeaderboardResp.list: array expected");
+                message.list = [];
+                for (var i = 0; i < object.list.length; ++i) {
+                    if (typeof object.list[i] !== "object")
+                        throw TypeError(".pbbattle.GetLeaderboardResp.list: object expected");
+                    message.list[i] = $root.pbbattle.LeaderboardItem.fromObject(object.list[i]);
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GetLeaderboardResp message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.GetLeaderboardResp
+         * @static
+         * @param {pbbattle.GetLeaderboardResp} message GetLeaderboardResp
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GetLeaderboardResp.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.list = [];
+            if (options.defaults) {
+                object.code = options.enums === String ? "None" : 0;
+                object.msg = "";
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.list && message.list.length) {
+                object.list = [];
+                for (var j = 0; j < message.list.length; ++j)
+                    object.list[j] = $root.pbbattle.LeaderboardItem.toObject(message.list[j], options);
+            }
+            return object;
+        };
+
+        /**
+         * Converts this GetLeaderboardResp to JSON.
+         * @function toJSON
+         * @memberof pbbattle.GetLeaderboardResp
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GetLeaderboardResp.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GetLeaderboardResp
+         * @function getTypeUrl
+         * @memberof pbbattle.GetLeaderboardResp
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GetLeaderboardResp.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.GetLeaderboardResp";
+        };
+
+        return GetLeaderboardResp;
+    })();
+
+    /**
+     * GameCenterListType enum.
+     * @name pbbattle.GameCenterListType
+     * @enum {number}
+     * @property {number} WHITE=0 WHITE value
+     * @property {number} BLACK=1 BLACK value
+     */
+    pbbattle.GameCenterListType = (function() {
+        var valuesById = {}, values = Object.create(valuesById);
+        values[valuesById[0] = "WHITE"] = 0;
+        values[valuesById[1] = "BLACK"] = 1;
+        return values;
+    })();
+
+    pbbattle.CheckGameCenterVisibilityReq = (function() {
+
+        /**
+         * Properties of a CheckGameCenterVisibilityReq.
+         * @memberof pbbattle
+         * @interface ICheckGameCenterVisibilityReq
+         */
+
+        /**
+         * Constructs a new CheckGameCenterVisibilityReq.
+         * @memberof pbbattle
+         * @classdesc Represents a CheckGameCenterVisibilityReq.
+         * @implements ICheckGameCenterVisibilityReq
+         * @constructor
+         * @param {pbbattle.ICheckGameCenterVisibilityReq=} [properties] Properties to set
+         */
+        function CheckGameCenterVisibilityReq(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * Creates a new CheckGameCenterVisibilityReq instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.CheckGameCenterVisibilityReq
+         * @static
+         * @param {pbbattle.ICheckGameCenterVisibilityReq=} [properties] Properties to set
+         * @returns {pbbattle.CheckGameCenterVisibilityReq} CheckGameCenterVisibilityReq instance
+         */
+        CheckGameCenterVisibilityReq.create = function create(properties) {
+            return new CheckGameCenterVisibilityReq(properties);
+        };
+
+        /**
+         * Encodes the specified CheckGameCenterVisibilityReq message. Does not implicitly {@link pbbattle.CheckGameCenterVisibilityReq.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.CheckGameCenterVisibilityReq
+         * @static
+         * @param {pbbattle.ICheckGameCenterVisibilityReq} message CheckGameCenterVisibilityReq message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        CheckGameCenterVisibilityReq.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified CheckGameCenterVisibilityReq message, length delimited. Does not implicitly {@link pbbattle.CheckGameCenterVisibilityReq.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.CheckGameCenterVisibilityReq
+         * @static
+         * @param {pbbattle.ICheckGameCenterVisibilityReq} message CheckGameCenterVisibilityReq message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        CheckGameCenterVisibilityReq.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a CheckGameCenterVisibilityReq message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.CheckGameCenterVisibilityReq
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.CheckGameCenterVisibilityReq} CheckGameCenterVisibilityReq
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        CheckGameCenterVisibilityReq.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.CheckGameCenterVisibilityReq();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a CheckGameCenterVisibilityReq message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.CheckGameCenterVisibilityReq
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.CheckGameCenterVisibilityReq} CheckGameCenterVisibilityReq
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        CheckGameCenterVisibilityReq.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a CheckGameCenterVisibilityReq message.
+         * @function verify
+         * @memberof pbbattle.CheckGameCenterVisibilityReq
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        CheckGameCenterVisibilityReq.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            return null;
+        };
+
+        /**
+         * Creates a CheckGameCenterVisibilityReq message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.CheckGameCenterVisibilityReq
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.CheckGameCenterVisibilityReq} CheckGameCenterVisibilityReq
+         */
+        CheckGameCenterVisibilityReq.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.CheckGameCenterVisibilityReq)
+                return object;
+            return new $root.pbbattle.CheckGameCenterVisibilityReq();
+        };
+
+        /**
+         * Creates a plain object from a CheckGameCenterVisibilityReq message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.CheckGameCenterVisibilityReq
+         * @static
+         * @param {pbbattle.CheckGameCenterVisibilityReq} message CheckGameCenterVisibilityReq
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        CheckGameCenterVisibilityReq.toObject = function toObject() {
+            return {};
+        };
+
+        /**
+         * Converts this CheckGameCenterVisibilityReq to JSON.
+         * @function toJSON
+         * @memberof pbbattle.CheckGameCenterVisibilityReq
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        CheckGameCenterVisibilityReq.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for CheckGameCenterVisibilityReq
+         * @function getTypeUrl
+         * @memberof pbbattle.CheckGameCenterVisibilityReq
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        CheckGameCenterVisibilityReq.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.CheckGameCenterVisibilityReq";
+        };
+
+        return CheckGameCenterVisibilityReq;
+    })();
+
+    pbbattle.CheckGameCenterVisibilityResp = (function() {
+
+        /**
+         * Properties of a CheckGameCenterVisibilityResp.
+         * @memberof pbbattle
+         * @interface ICheckGameCenterVisibilityResp
+         * @property {pbcommon.EnumCode|null} [code] CheckGameCenterVisibilityResp code
+         * @property {string|null} [msg] CheckGameCenterVisibilityResp msg
+         * @property {boolean|null} [visible] CheckGameCenterVisibilityResp visible
+         */
+
+        /**
+         * Constructs a new CheckGameCenterVisibilityResp.
+         * @memberof pbbattle
+         * @classdesc Represents a CheckGameCenterVisibilityResp.
+         * @implements ICheckGameCenterVisibilityResp
+         * @constructor
+         * @param {pbbattle.ICheckGameCenterVisibilityResp=} [properties] Properties to set
+         */
+        function CheckGameCenterVisibilityResp(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * CheckGameCenterVisibilityResp code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbbattle.CheckGameCenterVisibilityResp
+         * @instance
+         */
+        CheckGameCenterVisibilityResp.prototype.code = 0;
+
+        /**
+         * CheckGameCenterVisibilityResp msg.
+         * @member {string} msg
+         * @memberof pbbattle.CheckGameCenterVisibilityResp
+         * @instance
+         */
+        CheckGameCenterVisibilityResp.prototype.msg = "";
+
+        /**
+         * CheckGameCenterVisibilityResp visible.
+         * @member {boolean} visible
+         * @memberof pbbattle.CheckGameCenterVisibilityResp
+         * @instance
+         */
+        CheckGameCenterVisibilityResp.prototype.visible = false;
+
+        /**
+         * Creates a new CheckGameCenterVisibilityResp instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.CheckGameCenterVisibilityResp
+         * @static
+         * @param {pbbattle.ICheckGameCenterVisibilityResp=} [properties] Properties to set
+         * @returns {pbbattle.CheckGameCenterVisibilityResp} CheckGameCenterVisibilityResp instance
+         */
+        CheckGameCenterVisibilityResp.create = function create(properties) {
+            return new CheckGameCenterVisibilityResp(properties);
+        };
+
+        /**
+         * Encodes the specified CheckGameCenterVisibilityResp message. Does not implicitly {@link pbbattle.CheckGameCenterVisibilityResp.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.CheckGameCenterVisibilityResp
+         * @static
+         * @param {pbbattle.ICheckGameCenterVisibilityResp} message CheckGameCenterVisibilityResp message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        CheckGameCenterVisibilityResp.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.visible != null && Object.hasOwnProperty.call(message, "visible"))
+                writer.uint32(/* id 3, wireType 0 =*/24).bool(message.visible);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified CheckGameCenterVisibilityResp message, length delimited. Does not implicitly {@link pbbattle.CheckGameCenterVisibilityResp.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.CheckGameCenterVisibilityResp
+         * @static
+         * @param {pbbattle.ICheckGameCenterVisibilityResp} message CheckGameCenterVisibilityResp message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        CheckGameCenterVisibilityResp.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a CheckGameCenterVisibilityResp message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.CheckGameCenterVisibilityResp
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.CheckGameCenterVisibilityResp} CheckGameCenterVisibilityResp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        CheckGameCenterVisibilityResp.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.CheckGameCenterVisibilityResp();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.code = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.visible = reader.bool();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a CheckGameCenterVisibilityResp message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.CheckGameCenterVisibilityResp
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.CheckGameCenterVisibilityResp} CheckGameCenterVisibilityResp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        CheckGameCenterVisibilityResp.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a CheckGameCenterVisibilityResp message.
+         * @function verify
+         * @memberof pbbattle.CheckGameCenterVisibilityResp
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        CheckGameCenterVisibilityResp.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.code != null && message.hasOwnProperty("code"))
+                switch (message.code) {
+                default:
+                    return "code: enum value expected";
+                case 0:
+                case 200:
+                case 403:
+                case 500:
+                case 501:
+                case 502:
+                case 503:
+                case 504:
+                case 505:
+                case 511:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
+                case 2002:
+                case 2003:
+                case 2004:
+                case 2005:
+                case 2006:
+                case 2007:
+                case 2008:
+                case 2009:
+                case 2010:
+                case 2011:
+                case 2012:
+                case 2013:
+                case 2014:
+                case 2015:
+                case 3001:
+                case 3002:
+                case 3003:
+                case 5001:
+                case 5002:
+                case 10001:
+                case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
+                    break;
+                }
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                if (!$util.isString(message.msg))
+                    return "msg: string expected";
+            if (message.visible != null && message.hasOwnProperty("visible"))
+                if (typeof message.visible !== "boolean")
+                    return "visible: boolean expected";
+            return null;
+        };
+
+        /**
+         * Creates a CheckGameCenterVisibilityResp message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.CheckGameCenterVisibilityResp
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.CheckGameCenterVisibilityResp} CheckGameCenterVisibilityResp
+         */
+        CheckGameCenterVisibilityResp.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.CheckGameCenterVisibilityResp)
+                return object;
+            var message = new $root.pbbattle.CheckGameCenterVisibilityResp();
+            switch (object.code) {
+            default:
+                if (typeof object.code === "number") {
+                    message.code = object.code;
+                    break;
+                }
+                break;
+            case "None":
+            case 0:
+                message.code = 0;
+                break;
+            case "Success":
+            case 200:
+                message.code = 200;
+                break;
+            case "Forbidden":
+            case 403:
+                message.code = 403;
+                break;
+            case "Fail":
+            case 500:
+                message.code = 500;
+                break;
+            case "Unknown":
+            case 501:
+                message.code = 501;
+                break;
+            case "Internal":
+            case 502:
+                message.code = 502;
+                break;
+            case "Invalid":
+            case 503:
+                message.code = 503;
+                break;
+            case "InvalidParam":
+            case 504:
+                message.code = 504;
+                break;
+            case "ParamError":
+            case 505:
+                message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
+                break;
+            case "FindError":
+            case 1001:
+                message.code = 1001;
+                break;
+            case "CreateError":
+            case 1002:
+                message.code = 1002;
+                break;
+            case "DeleteError":
+            case 1003:
+                message.code = 1003;
+                break;
+            case "UpdateError":
+            case 1004:
+                message.code = 1004;
+                break;
+            case "InvalidToken":
+            case 2002:
+                message.code = 2002;
+                break;
+            case "InvalidSign":
+            case 2003:
+                message.code = 2003;
+                break;
+            case "NotLogin":
+            case 2004:
+                message.code = 2004;
+                break;
+            case "LoginTimeout":
+            case 2005:
+                message.code = 2005;
+                break;
+            case "LoginError":
+            case 2006:
+                message.code = 2006;
+                break;
+            case "LoginForbidden":
+            case 2007:
+                message.code = 2007;
+                break;
+            case "LoginExpired":
+            case 2008:
+                message.code = 2008;
+                break;
+            case "LoginInvalid":
+            case 2009:
+                message.code = 2009;
+                break;
+            case "LoginInvalidPassword":
+            case 2010:
+                message.code = 2010;
+                break;
+            case "LoginInvalidUsername":
+            case 2011:
+                message.code = 2011;
+                break;
+            case "LoginInvalidEmail":
+            case 2012:
+                message.code = 2012;
+                break;
+            case "LoginInvalidPhone":
+            case 2013:
+                message.code = 2013;
+                break;
+            case "LoginInvalidUsernameOrEmail":
+            case 2014:
+                message.code = 2014;
+                break;
+            case "LoginSocketRepeat":
+            case 2015:
+                message.code = 2015;
+                break;
+            case "RoleIsNotExist":
+            case 3001:
+                message.code = 3001;
+                break;
+            case "UserIsExist":
+            case 3002:
+                message.code = 3002;
+                break;
+            case "UserIsBan":
+            case 3003:
+                message.code = 3003;
+                break;
+            case "TalkIsBan":
+            case 5001:
+                message.code = 5001;
+                break;
+            case "EnterRoomErr":
+            case 5002:
+                message.code = 5002;
+                break;
+            case "HalaChatNeedBuy":
+            case 10001:
+                message.code = 10001;
+                break;
+            case "HalaPriceOutRange":
+            case 10002:
+                message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
+                break;
+            }
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.visible != null)
+                message.visible = Boolean(object.visible);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a CheckGameCenterVisibilityResp message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.CheckGameCenterVisibilityResp
+         * @static
+         * @param {pbbattle.CheckGameCenterVisibilityResp} message CheckGameCenterVisibilityResp
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        CheckGameCenterVisibilityResp.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.code = options.enums === String ? "None" : 0;
+                object.msg = "";
+                object.visible = false;
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.visible != null && message.hasOwnProperty("visible"))
+                object.visible = message.visible;
+            return object;
+        };
+
+        /**
+         * Converts this CheckGameCenterVisibilityResp to JSON.
+         * @function toJSON
+         * @memberof pbbattle.CheckGameCenterVisibilityResp
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        CheckGameCenterVisibilityResp.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for CheckGameCenterVisibilityResp
+         * @function getTypeUrl
+         * @memberof pbbattle.CheckGameCenterVisibilityResp
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        CheckGameCenterVisibilityResp.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.CheckGameCenterVisibilityResp";
+        };
+
+        return CheckGameCenterVisibilityResp;
+    })();
+
+    pbbattle.GameCenterConfigModel = (function() {
+
+        /**
+         * Properties of a GameCenterConfigModel.
+         * @memberof pbbattle
+         * @interface IGameCenterConfigModel
+         * @property {number|Long|null} [id] GameCenterConfigModel id
+         * @property {string|null} [createdAt] GameCenterConfigModel createdAt
+         * @property {string|null} [updatedAt] GameCenterConfigModel updatedAt
+         * @property {number|null} [minLevel] GameCenterConfigModel minLevel
+         * @property {boolean|null} [isOpen] GameCenterConfigModel isOpen
+         */
+
+        /**
+         * Constructs a new GameCenterConfigModel.
+         * @memberof pbbattle
+         * @classdesc Represents a GameCenterConfigModel.
+         * @implements IGameCenterConfigModel
+         * @constructor
+         * @param {pbbattle.IGameCenterConfigModel=} [properties] Properties to set
+         */
+        function GameCenterConfigModel(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GameCenterConfigModel id.
+         * @member {number|Long} id
+         * @memberof pbbattle.GameCenterConfigModel
+         * @instance
+         */
+        GameCenterConfigModel.prototype.id = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * GameCenterConfigModel createdAt.
+         * @member {string} createdAt
+         * @memberof pbbattle.GameCenterConfigModel
+         * @instance
+         */
+        GameCenterConfigModel.prototype.createdAt = "";
+
+        /**
+         * GameCenterConfigModel updatedAt.
+         * @member {string} updatedAt
+         * @memberof pbbattle.GameCenterConfigModel
+         * @instance
+         */
+        GameCenterConfigModel.prototype.updatedAt = "";
+
+        /**
+         * GameCenterConfigModel minLevel.
+         * @member {number} minLevel
+         * @memberof pbbattle.GameCenterConfigModel
+         * @instance
+         */
+        GameCenterConfigModel.prototype.minLevel = 0;
+
+        /**
+         * GameCenterConfigModel isOpen.
+         * @member {boolean} isOpen
+         * @memberof pbbattle.GameCenterConfigModel
+         * @instance
+         */
+        GameCenterConfigModel.prototype.isOpen = false;
+
+        /**
+         * Creates a new GameCenterConfigModel instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.GameCenterConfigModel
+         * @static
+         * @param {pbbattle.IGameCenterConfigModel=} [properties] Properties to set
+         * @returns {pbbattle.GameCenterConfigModel} GameCenterConfigModel instance
+         */
+        GameCenterConfigModel.create = function create(properties) {
+            return new GameCenterConfigModel(properties);
+        };
+
+        /**
+         * Encodes the specified GameCenterConfigModel message. Does not implicitly {@link pbbattle.GameCenterConfigModel.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.GameCenterConfigModel
+         * @static
+         * @param {pbbattle.IGameCenterConfigModel} message GameCenterConfigModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GameCenterConfigModel.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id);
+            if (message.createdAt != null && Object.hasOwnProperty.call(message, "createdAt"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.createdAt);
+            if (message.updatedAt != null && Object.hasOwnProperty.call(message, "updatedAt"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.updatedAt);
+            if (message.minLevel != null && Object.hasOwnProperty.call(message, "minLevel"))
+                writer.uint32(/* id 10, wireType 0 =*/80).int32(message.minLevel);
+            if (message.isOpen != null && Object.hasOwnProperty.call(message, "isOpen"))
+                writer.uint32(/* id 11, wireType 0 =*/88).bool(message.isOpen);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GameCenterConfigModel message, length delimited. Does not implicitly {@link pbbattle.GameCenterConfigModel.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.GameCenterConfigModel
+         * @static
+         * @param {pbbattle.IGameCenterConfigModel} message GameCenterConfigModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GameCenterConfigModel.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GameCenterConfigModel message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.GameCenterConfigModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.GameCenterConfigModel} GameCenterConfigModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GameCenterConfigModel.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.GameCenterConfigModel();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.id = reader.int64();
+                        break;
+                    }
+                case 2: {
+                        message.createdAt = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.updatedAt = reader.string();
+                        break;
+                    }
+                case 10: {
+                        message.minLevel = reader.int32();
+                        break;
+                    }
+                case 11: {
+                        message.isOpen = reader.bool();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GameCenterConfigModel message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.GameCenterConfigModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.GameCenterConfigModel} GameCenterConfigModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GameCenterConfigModel.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GameCenterConfigModel message.
+         * @function verify
+         * @memberof pbbattle.GameCenterConfigModel
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GameCenterConfigModel.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (!$util.isInteger(message.id) && !(message.id && $util.isInteger(message.id.low) && $util.isInteger(message.id.high)))
+                    return "id: integer|Long expected";
+            if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                if (!$util.isString(message.createdAt))
+                    return "createdAt: string expected";
+            if (message.updatedAt != null && message.hasOwnProperty("updatedAt"))
+                if (!$util.isString(message.updatedAt))
+                    return "updatedAt: string expected";
+            if (message.minLevel != null && message.hasOwnProperty("minLevel"))
+                if (!$util.isInteger(message.minLevel))
+                    return "minLevel: integer expected";
+            if (message.isOpen != null && message.hasOwnProperty("isOpen"))
+                if (typeof message.isOpen !== "boolean")
+                    return "isOpen: boolean expected";
+            return null;
+        };
+
+        /**
+         * Creates a GameCenterConfigModel message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.GameCenterConfigModel
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.GameCenterConfigModel} GameCenterConfigModel
+         */
+        GameCenterConfigModel.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.GameCenterConfigModel)
+                return object;
+            var message = new $root.pbbattle.GameCenterConfigModel();
+            if (object.id != null)
+                if ($util.Long)
+                    (message.id = $util.Long.fromValue(object.id)).unsigned = false;
+                else if (typeof object.id === "string")
+                    message.id = parseInt(object.id, 10);
+                else if (typeof object.id === "number")
+                    message.id = object.id;
+                else if (typeof object.id === "object")
+                    message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber();
+            if (object.createdAt != null)
+                message.createdAt = String(object.createdAt);
+            if (object.updatedAt != null)
+                message.updatedAt = String(object.updatedAt);
+            if (object.minLevel != null)
+                message.minLevel = object.minLevel | 0;
+            if (object.isOpen != null)
+                message.isOpen = Boolean(object.isOpen);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GameCenterConfigModel message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.GameCenterConfigModel
+         * @static
+         * @param {pbbattle.GameCenterConfigModel} message GameCenterConfigModel
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GameCenterConfigModel.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.id = options.longs === String ? "0" : 0;
+                object.createdAt = "";
+                object.updatedAt = "";
+                object.minLevel = 0;
+                object.isOpen = false;
+            }
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (typeof message.id === "number")
+                    object.id = options.longs === String ? String(message.id) : message.id;
+                else
+                    object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id;
+            if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                object.createdAt = message.createdAt;
+            if (message.updatedAt != null && message.hasOwnProperty("updatedAt"))
+                object.updatedAt = message.updatedAt;
+            if (message.minLevel != null && message.hasOwnProperty("minLevel"))
+                object.minLevel = message.minLevel;
+            if (message.isOpen != null && message.hasOwnProperty("isOpen"))
+                object.isOpen = message.isOpen;
+            return object;
+        };
+
+        /**
+         * Converts this GameCenterConfigModel to JSON.
+         * @function toJSON
+         * @memberof pbbattle.GameCenterConfigModel
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GameCenterConfigModel.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GameCenterConfigModel
+         * @function getTypeUrl
+         * @memberof pbbattle.GameCenterConfigModel
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GameCenterConfigModel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.GameCenterConfigModel";
+        };
+
+        return GameCenterConfigModel;
+    })();
+
+    pbbattle.GetGameCenterConfigReply = (function() {
+
+        /**
+         * Properties of a GetGameCenterConfigReply.
+         * @memberof pbbattle
+         * @interface IGetGameCenterConfigReply
+         * @property {pbcommon.EnumCode|null} [code] GetGameCenterConfigReply code
+         * @property {string|null} [msg] GetGameCenterConfigReply msg
+         * @property {pbbattle.IGameCenterConfigModel|null} [data] GetGameCenterConfigReply data
+         */
+
+        /**
+         * Constructs a new GetGameCenterConfigReply.
+         * @memberof pbbattle
+         * @classdesc Represents a GetGameCenterConfigReply.
+         * @implements IGetGameCenterConfigReply
+         * @constructor
+         * @param {pbbattle.IGetGameCenterConfigReply=} [properties] Properties to set
+         */
+        function GetGameCenterConfigReply(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GetGameCenterConfigReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbbattle.GetGameCenterConfigReply
+         * @instance
+         */
+        GetGameCenterConfigReply.prototype.code = 0;
+
+        /**
+         * GetGameCenterConfigReply msg.
+         * @member {string} msg
+         * @memberof pbbattle.GetGameCenterConfigReply
+         * @instance
+         */
+        GetGameCenterConfigReply.prototype.msg = "";
+
+        /**
+         * GetGameCenterConfigReply data.
+         * @member {pbbattle.IGameCenterConfigModel|null|undefined} data
+         * @memberof pbbattle.GetGameCenterConfigReply
+         * @instance
+         */
+        GetGameCenterConfigReply.prototype.data = null;
+
+        /**
+         * Creates a new GetGameCenterConfigReply instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.GetGameCenterConfigReply
+         * @static
+         * @param {pbbattle.IGetGameCenterConfigReply=} [properties] Properties to set
+         * @returns {pbbattle.GetGameCenterConfigReply} GetGameCenterConfigReply instance
+         */
+        GetGameCenterConfigReply.create = function create(properties) {
+            return new GetGameCenterConfigReply(properties);
+        };
+
+        /**
+         * Encodes the specified GetGameCenterConfigReply message. Does not implicitly {@link pbbattle.GetGameCenterConfigReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.GetGameCenterConfigReply
+         * @static
+         * @param {pbbattle.IGetGameCenterConfigReply} message GetGameCenterConfigReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetGameCenterConfigReply.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.data != null && Object.hasOwnProperty.call(message, "data"))
+                $root.pbbattle.GameCenterConfigModel.encode(message.data, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GetGameCenterConfigReply message, length delimited. Does not implicitly {@link pbbattle.GetGameCenterConfigReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.GetGameCenterConfigReply
+         * @static
+         * @param {pbbattle.IGetGameCenterConfigReply} message GetGameCenterConfigReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetGameCenterConfigReply.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GetGameCenterConfigReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.GetGameCenterConfigReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.GetGameCenterConfigReply} GetGameCenterConfigReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetGameCenterConfigReply.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.GetGameCenterConfigReply();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.code = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.data = $root.pbbattle.GameCenterConfigModel.decode(reader, reader.uint32());
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GetGameCenterConfigReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.GetGameCenterConfigReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.GetGameCenterConfigReply} GetGameCenterConfigReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetGameCenterConfigReply.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GetGameCenterConfigReply message.
+         * @function verify
+         * @memberof pbbattle.GetGameCenterConfigReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GetGameCenterConfigReply.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.code != null && message.hasOwnProperty("code"))
+                switch (message.code) {
+                default:
+                    return "code: enum value expected";
+                case 0:
+                case 200:
+                case 403:
+                case 500:
+                case 501:
+                case 502:
+                case 503:
+                case 504:
+                case 505:
+                case 511:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
+                case 2002:
+                case 2003:
+                case 2004:
+                case 2005:
+                case 2006:
+                case 2007:
+                case 2008:
+                case 2009:
+                case 2010:
+                case 2011:
+                case 2012:
+                case 2013:
+                case 2014:
+                case 2015:
+                case 3001:
+                case 3002:
+                case 3003:
+                case 5001:
+                case 5002:
+                case 10001:
+                case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
+                    break;
+                }
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                if (!$util.isString(message.msg))
+                    return "msg: string expected";
+            if (message.data != null && message.hasOwnProperty("data")) {
+                var error = $root.pbbattle.GameCenterConfigModel.verify(message.data);
+                if (error)
+                    return "data." + error;
+            }
+            return null;
+        };
+
+        /**
+         * Creates a GetGameCenterConfigReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.GetGameCenterConfigReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.GetGameCenterConfigReply} GetGameCenterConfigReply
+         */
+        GetGameCenterConfigReply.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.GetGameCenterConfigReply)
+                return object;
+            var message = new $root.pbbattle.GetGameCenterConfigReply();
+            switch (object.code) {
+            default:
+                if (typeof object.code === "number") {
+                    message.code = object.code;
+                    break;
+                }
+                break;
+            case "None":
+            case 0:
+                message.code = 0;
+                break;
+            case "Success":
+            case 200:
+                message.code = 200;
+                break;
+            case "Forbidden":
+            case 403:
+                message.code = 403;
+                break;
+            case "Fail":
+            case 500:
+                message.code = 500;
+                break;
+            case "Unknown":
+            case 501:
+                message.code = 501;
+                break;
+            case "Internal":
+            case 502:
+                message.code = 502;
+                break;
+            case "Invalid":
+            case 503:
+                message.code = 503;
+                break;
+            case "InvalidParam":
+            case 504:
+                message.code = 504;
+                break;
+            case "ParamError":
+            case 505:
+                message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
+                break;
+            case "FindError":
+            case 1001:
+                message.code = 1001;
+                break;
+            case "CreateError":
+            case 1002:
+                message.code = 1002;
+                break;
+            case "DeleteError":
+            case 1003:
+                message.code = 1003;
+                break;
+            case "UpdateError":
+            case 1004:
+                message.code = 1004;
+                break;
+            case "InvalidToken":
+            case 2002:
+                message.code = 2002;
+                break;
+            case "InvalidSign":
+            case 2003:
+                message.code = 2003;
+                break;
+            case "NotLogin":
+            case 2004:
+                message.code = 2004;
+                break;
+            case "LoginTimeout":
+            case 2005:
+                message.code = 2005;
+                break;
+            case "LoginError":
+            case 2006:
+                message.code = 2006;
+                break;
+            case "LoginForbidden":
+            case 2007:
+                message.code = 2007;
+                break;
+            case "LoginExpired":
+            case 2008:
+                message.code = 2008;
+                break;
+            case "LoginInvalid":
+            case 2009:
+                message.code = 2009;
+                break;
+            case "LoginInvalidPassword":
+            case 2010:
+                message.code = 2010;
+                break;
+            case "LoginInvalidUsername":
+            case 2011:
+                message.code = 2011;
+                break;
+            case "LoginInvalidEmail":
+            case 2012:
+                message.code = 2012;
+                break;
+            case "LoginInvalidPhone":
+            case 2013:
+                message.code = 2013;
+                break;
+            case "LoginInvalidUsernameOrEmail":
+            case 2014:
+                message.code = 2014;
+                break;
+            case "LoginSocketRepeat":
+            case 2015:
+                message.code = 2015;
+                break;
+            case "RoleIsNotExist":
+            case 3001:
+                message.code = 3001;
+                break;
+            case "UserIsExist":
+            case 3002:
+                message.code = 3002;
+                break;
+            case "UserIsBan":
+            case 3003:
+                message.code = 3003;
+                break;
+            case "TalkIsBan":
+            case 5001:
+                message.code = 5001;
+                break;
+            case "EnterRoomErr":
+            case 5002:
+                message.code = 5002;
+                break;
+            case "HalaChatNeedBuy":
+            case 10001:
+                message.code = 10001;
+                break;
+            case "HalaPriceOutRange":
+            case 10002:
+                message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
+                break;
+            }
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.data != null) {
+                if (typeof object.data !== "object")
+                    throw TypeError(".pbbattle.GetGameCenterConfigReply.data: object expected");
+                message.data = $root.pbbattle.GameCenterConfigModel.fromObject(object.data);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GetGameCenterConfigReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.GetGameCenterConfigReply
+         * @static
+         * @param {pbbattle.GetGameCenterConfigReply} message GetGameCenterConfigReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GetGameCenterConfigReply.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.code = options.enums === String ? "None" : 0;
+                object.msg = "";
+                object.data = null;
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.data != null && message.hasOwnProperty("data"))
+                object.data = $root.pbbattle.GameCenterConfigModel.toObject(message.data, options);
+            return object;
+        };
+
+        /**
+         * Converts this GetGameCenterConfigReply to JSON.
+         * @function toJSON
+         * @memberof pbbattle.GetGameCenterConfigReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GetGameCenterConfigReply.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GetGameCenterConfigReply
+         * @function getTypeUrl
+         * @memberof pbbattle.GetGameCenterConfigReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GetGameCenterConfigReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.GetGameCenterConfigReply";
+        };
+
+        return GetGameCenterConfigReply;
+    })();
+
+    pbbattle.GameCenterUserModel = (function() {
+
+        /**
+         * Properties of a GameCenterUserModel.
+         * @memberof pbbattle
+         * @interface IGameCenterUserModel
+         * @property {number|Long|null} [id] GameCenterUserModel id
+         * @property {string|null} [createdAt] GameCenterUserModel createdAt
+         * @property {string|null} [updatedAt] GameCenterUserModel updatedAt
+         * @property {number|Long|null} [userId] GameCenterUserModel userId
+         * @property {pbbattle.GameCenterListType|null} [listType] GameCenterUserModel listType
+         * @property {string|null} [reason] GameCenterUserModel reason
+         */
+
+        /**
+         * Constructs a new GameCenterUserModel.
+         * @memberof pbbattle
+         * @classdesc Represents a GameCenterUserModel.
+         * @implements IGameCenterUserModel
+         * @constructor
+         * @param {pbbattle.IGameCenterUserModel=} [properties] Properties to set
+         */
+        function GameCenterUserModel(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GameCenterUserModel id.
+         * @member {number|Long} id
+         * @memberof pbbattle.GameCenterUserModel
+         * @instance
+         */
+        GameCenterUserModel.prototype.id = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * GameCenterUserModel createdAt.
+         * @member {string} createdAt
+         * @memberof pbbattle.GameCenterUserModel
+         * @instance
+         */
+        GameCenterUserModel.prototype.createdAt = "";
+
+        /**
+         * GameCenterUserModel updatedAt.
+         * @member {string} updatedAt
+         * @memberof pbbattle.GameCenterUserModel
+         * @instance
+         */
+        GameCenterUserModel.prototype.updatedAt = "";
+
+        /**
+         * GameCenterUserModel userId.
+         * @member {number|Long} userId
+         * @memberof pbbattle.GameCenterUserModel
+         * @instance
+         */
+        GameCenterUserModel.prototype.userId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * GameCenterUserModel listType.
+         * @member {pbbattle.GameCenterListType} listType
+         * @memberof pbbattle.GameCenterUserModel
+         * @instance
+         */
+        GameCenterUserModel.prototype.listType = 0;
+
+        /**
+         * GameCenterUserModel reason.
+         * @member {string} reason
+         * @memberof pbbattle.GameCenterUserModel
+         * @instance
+         */
+        GameCenterUserModel.prototype.reason = "";
+
+        /**
+         * Creates a new GameCenterUserModel instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.GameCenterUserModel
+         * @static
+         * @param {pbbattle.IGameCenterUserModel=} [properties] Properties to set
+         * @returns {pbbattle.GameCenterUserModel} GameCenterUserModel instance
+         */
+        GameCenterUserModel.create = function create(properties) {
+            return new GameCenterUserModel(properties);
+        };
+
+        /**
+         * Encodes the specified GameCenterUserModel message. Does not implicitly {@link pbbattle.GameCenterUserModel.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.GameCenterUserModel
+         * @static
+         * @param {pbbattle.IGameCenterUserModel} message GameCenterUserModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GameCenterUserModel.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id);
+            if (message.createdAt != null && Object.hasOwnProperty.call(message, "createdAt"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.createdAt);
+            if (message.updatedAt != null && Object.hasOwnProperty.call(message, "updatedAt"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.updatedAt);
+            if (message.userId != null && Object.hasOwnProperty.call(message, "userId"))
+                writer.uint32(/* id 10, wireType 0 =*/80).int64(message.userId);
+            if (message.listType != null && Object.hasOwnProperty.call(message, "listType"))
+                writer.uint32(/* id 11, wireType 0 =*/88).int32(message.listType);
+            if (message.reason != null && Object.hasOwnProperty.call(message, "reason"))
+                writer.uint32(/* id 12, wireType 2 =*/98).string(message.reason);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GameCenterUserModel message, length delimited. Does not implicitly {@link pbbattle.GameCenterUserModel.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.GameCenterUserModel
+         * @static
+         * @param {pbbattle.IGameCenterUserModel} message GameCenterUserModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GameCenterUserModel.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GameCenterUserModel message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.GameCenterUserModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.GameCenterUserModel} GameCenterUserModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GameCenterUserModel.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.GameCenterUserModel();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.id = reader.int64();
+                        break;
+                    }
+                case 2: {
+                        message.createdAt = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.updatedAt = reader.string();
+                        break;
+                    }
+                case 10: {
+                        message.userId = reader.int64();
+                        break;
+                    }
+                case 11: {
+                        message.listType = reader.int32();
+                        break;
+                    }
+                case 12: {
+                        message.reason = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GameCenterUserModel message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.GameCenterUserModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.GameCenterUserModel} GameCenterUserModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GameCenterUserModel.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GameCenterUserModel message.
+         * @function verify
+         * @memberof pbbattle.GameCenterUserModel
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GameCenterUserModel.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (!$util.isInteger(message.id) && !(message.id && $util.isInteger(message.id.low) && $util.isInteger(message.id.high)))
+                    return "id: integer|Long expected";
+            if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                if (!$util.isString(message.createdAt))
+                    return "createdAt: string expected";
+            if (message.updatedAt != null && message.hasOwnProperty("updatedAt"))
+                if (!$util.isString(message.updatedAt))
+                    return "updatedAt: string expected";
+            if (message.userId != null && message.hasOwnProperty("userId"))
+                if (!$util.isInteger(message.userId) && !(message.userId && $util.isInteger(message.userId.low) && $util.isInteger(message.userId.high)))
+                    return "userId: integer|Long expected";
+            if (message.listType != null && message.hasOwnProperty("listType"))
+                switch (message.listType) {
+                default:
+                    return "listType: enum value expected";
+                case 0:
+                case 1:
+                    break;
+                }
+            if (message.reason != null && message.hasOwnProperty("reason"))
+                if (!$util.isString(message.reason))
+                    return "reason: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a GameCenterUserModel message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.GameCenterUserModel
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.GameCenterUserModel} GameCenterUserModel
+         */
+        GameCenterUserModel.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.GameCenterUserModel)
+                return object;
+            var message = new $root.pbbattle.GameCenterUserModel();
+            if (object.id != null)
+                if ($util.Long)
+                    (message.id = $util.Long.fromValue(object.id)).unsigned = false;
+                else if (typeof object.id === "string")
+                    message.id = parseInt(object.id, 10);
+                else if (typeof object.id === "number")
+                    message.id = object.id;
+                else if (typeof object.id === "object")
+                    message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber();
+            if (object.createdAt != null)
+                message.createdAt = String(object.createdAt);
+            if (object.updatedAt != null)
+                message.updatedAt = String(object.updatedAt);
+            if (object.userId != null)
+                if ($util.Long)
+                    (message.userId = $util.Long.fromValue(object.userId)).unsigned = false;
+                else if (typeof object.userId === "string")
+                    message.userId = parseInt(object.userId, 10);
+                else if (typeof object.userId === "number")
+                    message.userId = object.userId;
+                else if (typeof object.userId === "object")
+                    message.userId = new $util.LongBits(object.userId.low >>> 0, object.userId.high >>> 0).toNumber();
+            switch (object.listType) {
+            default:
+                if (typeof object.listType === "number") {
+                    message.listType = object.listType;
+                    break;
+                }
+                break;
+            case "WHITE":
+            case 0:
+                message.listType = 0;
+                break;
+            case "BLACK":
+            case 1:
+                message.listType = 1;
+                break;
+            }
+            if (object.reason != null)
+                message.reason = String(object.reason);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GameCenterUserModel message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.GameCenterUserModel
+         * @static
+         * @param {pbbattle.GameCenterUserModel} message GameCenterUserModel
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GameCenterUserModel.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.id = options.longs === String ? "0" : 0;
+                object.createdAt = "";
+                object.updatedAt = "";
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.userId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.userId = options.longs === String ? "0" : 0;
+                object.listType = options.enums === String ? "WHITE" : 0;
+                object.reason = "";
+            }
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (typeof message.id === "number")
+                    object.id = options.longs === String ? String(message.id) : message.id;
+                else
+                    object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id;
+            if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                object.createdAt = message.createdAt;
+            if (message.updatedAt != null && message.hasOwnProperty("updatedAt"))
+                object.updatedAt = message.updatedAt;
+            if (message.userId != null && message.hasOwnProperty("userId"))
+                if (typeof message.userId === "number")
+                    object.userId = options.longs === String ? String(message.userId) : message.userId;
+                else
+                    object.userId = options.longs === String ? $util.Long.prototype.toString.call(message.userId) : options.longs === Number ? new $util.LongBits(message.userId.low >>> 0, message.userId.high >>> 0).toNumber() : message.userId;
+            if (message.listType != null && message.hasOwnProperty("listType"))
+                object.listType = options.enums === String ? $root.pbbattle.GameCenterListType[message.listType] === undefined ? message.listType : $root.pbbattle.GameCenterListType[message.listType] : message.listType;
+            if (message.reason != null && message.hasOwnProperty("reason"))
+                object.reason = message.reason;
+            return object;
+        };
+
+        /**
+         * Converts this GameCenterUserModel to JSON.
+         * @function toJSON
+         * @memberof pbbattle.GameCenterUserModel
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GameCenterUserModel.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GameCenterUserModel
+         * @function getTypeUrl
+         * @memberof pbbattle.GameCenterUserModel
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GameCenterUserModel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.GameCenterUserModel";
+        };
+
+        return GameCenterUserModel;
+    })();
+
+    pbbattle.FindGameCenterUserArgs = (function() {
+
+        /**
+         * Properties of a FindGameCenterUserArgs.
+         * @memberof pbbattle
+         * @interface IFindGameCenterUserArgs
+         * @property {pbcommon.IPageInfo|null} [pageInfo] FindGameCenterUserArgs pageInfo
+         * @property {pbbattle.IGameCenterUserModel|null} [query] FindGameCenterUserArgs query
+         * @property {string|null} [keyword] FindGameCenterUserArgs keyword
+         * @property {Array.<pbbattle.GameCenterListType>|null} [listTypeList] FindGameCenterUserArgs listTypeList
+         */
+
+        /**
+         * Constructs a new FindGameCenterUserArgs.
+         * @memberof pbbattle
+         * @classdesc Represents a FindGameCenterUserArgs.
+         * @implements IFindGameCenterUserArgs
+         * @constructor
+         * @param {pbbattle.IFindGameCenterUserArgs=} [properties] Properties to set
+         */
+        function FindGameCenterUserArgs(properties) {
+            this.listTypeList = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * FindGameCenterUserArgs pageInfo.
+         * @member {pbcommon.IPageInfo|null|undefined} pageInfo
+         * @memberof pbbattle.FindGameCenterUserArgs
+         * @instance
+         */
+        FindGameCenterUserArgs.prototype.pageInfo = null;
+
+        /**
+         * FindGameCenterUserArgs query.
+         * @member {pbbattle.IGameCenterUserModel|null|undefined} query
+         * @memberof pbbattle.FindGameCenterUserArgs
+         * @instance
+         */
+        FindGameCenterUserArgs.prototype.query = null;
+
+        /**
+         * FindGameCenterUserArgs keyword.
+         * @member {string} keyword
+         * @memberof pbbattle.FindGameCenterUserArgs
+         * @instance
+         */
+        FindGameCenterUserArgs.prototype.keyword = "";
+
+        /**
+         * FindGameCenterUserArgs listTypeList.
+         * @member {Array.<pbbattle.GameCenterListType>} listTypeList
+         * @memberof pbbattle.FindGameCenterUserArgs
+         * @instance
+         */
+        FindGameCenterUserArgs.prototype.listTypeList = $util.emptyArray;
+
+        /**
+         * Creates a new FindGameCenterUserArgs instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.FindGameCenterUserArgs
+         * @static
+         * @param {pbbattle.IFindGameCenterUserArgs=} [properties] Properties to set
+         * @returns {pbbattle.FindGameCenterUserArgs} FindGameCenterUserArgs instance
+         */
+        FindGameCenterUserArgs.create = function create(properties) {
+            return new FindGameCenterUserArgs(properties);
+        };
+
+        /**
+         * Encodes the specified FindGameCenterUserArgs message. Does not implicitly {@link pbbattle.FindGameCenterUserArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.FindGameCenterUserArgs
+         * @static
+         * @param {pbbattle.IFindGameCenterUserArgs} message FindGameCenterUserArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindGameCenterUserArgs.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.pageInfo != null && Object.hasOwnProperty.call(message, "pageInfo"))
+                $root.pbcommon.PageInfo.encode(message.pageInfo, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.query != null && Object.hasOwnProperty.call(message, "query"))
+                $root.pbbattle.GameCenterUserModel.encode(message.query, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            if (message.keyword != null && Object.hasOwnProperty.call(message, "keyword"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.keyword);
+            if (message.listTypeList != null && message.listTypeList.length) {
+                writer.uint32(/* id 4, wireType 2 =*/34).fork();
+                for (var i = 0; i < message.listTypeList.length; ++i)
+                    writer.int32(message.listTypeList[i]);
+                writer.ldelim();
+            }
+            return writer;
+        };
+
+        /**
+         * Encodes the specified FindGameCenterUserArgs message, length delimited. Does not implicitly {@link pbbattle.FindGameCenterUserArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.FindGameCenterUserArgs
+         * @static
+         * @param {pbbattle.IFindGameCenterUserArgs} message FindGameCenterUserArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindGameCenterUserArgs.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a FindGameCenterUserArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.FindGameCenterUserArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.FindGameCenterUserArgs} FindGameCenterUserArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindGameCenterUserArgs.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.FindGameCenterUserArgs();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.pageInfo = $root.pbcommon.PageInfo.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 2: {
+                        message.query = $root.pbbattle.GameCenterUserModel.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 3: {
+                        message.keyword = reader.string();
+                        break;
+                    }
+                case 4: {
+                        if (!(message.listTypeList && message.listTypeList.length))
+                            message.listTypeList = [];
+                        if ((tag & 7) === 2) {
+                            var end2 = reader.uint32() + reader.pos;
+                            while (reader.pos < end2)
+                                message.listTypeList.push(reader.int32());
+                        } else
+                            message.listTypeList.push(reader.int32());
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a FindGameCenterUserArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.FindGameCenterUserArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.FindGameCenterUserArgs} FindGameCenterUserArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindGameCenterUserArgs.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a FindGameCenterUserArgs message.
+         * @function verify
+         * @memberof pbbattle.FindGameCenterUserArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        FindGameCenterUserArgs.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.pageInfo != null && message.hasOwnProperty("pageInfo")) {
+                var error = $root.pbcommon.PageInfo.verify(message.pageInfo);
+                if (error)
+                    return "pageInfo." + error;
+            }
+            if (message.query != null && message.hasOwnProperty("query")) {
+                var error = $root.pbbattle.GameCenterUserModel.verify(message.query);
+                if (error)
+                    return "query." + error;
+            }
+            if (message.keyword != null && message.hasOwnProperty("keyword"))
+                if (!$util.isString(message.keyword))
+                    return "keyword: string expected";
+            if (message.listTypeList != null && message.hasOwnProperty("listTypeList")) {
+                if (!Array.isArray(message.listTypeList))
+                    return "listTypeList: array expected";
+                for (var i = 0; i < message.listTypeList.length; ++i)
+                    switch (message.listTypeList[i]) {
+                    default:
+                        return "listTypeList: enum value[] expected";
+                    case 0:
+                    case 1:
+                        break;
+                    }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a FindGameCenterUserArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.FindGameCenterUserArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.FindGameCenterUserArgs} FindGameCenterUserArgs
+         */
+        FindGameCenterUserArgs.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.FindGameCenterUserArgs)
+                return object;
+            var message = new $root.pbbattle.FindGameCenterUserArgs();
+            if (object.pageInfo != null) {
+                if (typeof object.pageInfo !== "object")
+                    throw TypeError(".pbbattle.FindGameCenterUserArgs.pageInfo: object expected");
+                message.pageInfo = $root.pbcommon.PageInfo.fromObject(object.pageInfo);
+            }
+            if (object.query != null) {
+                if (typeof object.query !== "object")
+                    throw TypeError(".pbbattle.FindGameCenterUserArgs.query: object expected");
+                message.query = $root.pbbattle.GameCenterUserModel.fromObject(object.query);
+            }
+            if (object.keyword != null)
+                message.keyword = String(object.keyword);
+            if (object.listTypeList) {
+                if (!Array.isArray(object.listTypeList))
+                    throw TypeError(".pbbattle.FindGameCenterUserArgs.listTypeList: array expected");
+                message.listTypeList = [];
+                for (var i = 0; i < object.listTypeList.length; ++i)
+                    switch (object.listTypeList[i]) {
+                    default:
+                        if (typeof object.listTypeList[i] === "number") {
+                            message.listTypeList[i] = object.listTypeList[i];
+                            break;
+                        }
+                    case "WHITE":
+                    case 0:
+                        message.listTypeList[i] = 0;
+                        break;
+                    case "BLACK":
+                    case 1:
+                        message.listTypeList[i] = 1;
+                        break;
+                    }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a FindGameCenterUserArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.FindGameCenterUserArgs
+         * @static
+         * @param {pbbattle.FindGameCenterUserArgs} message FindGameCenterUserArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FindGameCenterUserArgs.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.listTypeList = [];
+            if (options.defaults) {
+                object.pageInfo = null;
+                object.query = null;
+                object.keyword = "";
+            }
+            if (message.pageInfo != null && message.hasOwnProperty("pageInfo"))
+                object.pageInfo = $root.pbcommon.PageInfo.toObject(message.pageInfo, options);
+            if (message.query != null && message.hasOwnProperty("query"))
+                object.query = $root.pbbattle.GameCenterUserModel.toObject(message.query, options);
+            if (message.keyword != null && message.hasOwnProperty("keyword"))
+                object.keyword = message.keyword;
+            if (message.listTypeList && message.listTypeList.length) {
+                object.listTypeList = [];
+                for (var j = 0; j < message.listTypeList.length; ++j)
+                    object.listTypeList[j] = options.enums === String ? $root.pbbattle.GameCenterListType[message.listTypeList[j]] === undefined ? message.listTypeList[j] : $root.pbbattle.GameCenterListType[message.listTypeList[j]] : message.listTypeList[j];
+            }
+            return object;
+        };
+
+        /**
+         * Converts this FindGameCenterUserArgs to JSON.
+         * @function toJSON
+         * @memberof pbbattle.FindGameCenterUserArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        FindGameCenterUserArgs.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for FindGameCenterUserArgs
+         * @function getTypeUrl
+         * @memberof pbbattle.FindGameCenterUserArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        FindGameCenterUserArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.FindGameCenterUserArgs";
+        };
+
+        return FindGameCenterUserArgs;
+    })();
+
+    pbbattle.FindGameCenterUserReply = (function() {
+
+        /**
+         * Properties of a FindGameCenterUserReply.
+         * @memberof pbbattle
+         * @interface IFindGameCenterUserReply
+         * @property {pbcommon.EnumCode|null} [code] FindGameCenterUserReply code
+         * @property {string|null} [msg] FindGameCenterUserReply msg
+         * @property {pbbattle.IGameCenterUserModel|null} [data] FindGameCenterUserReply data
+         * @property {Array.<pbbattle.IGameCenterUserModel>|null} [list] FindGameCenterUserReply list
+         * @property {number|Long|null} [total] FindGameCenterUserReply total
+         */
+
+        /**
+         * Constructs a new FindGameCenterUserReply.
+         * @memberof pbbattle
+         * @classdesc Represents a FindGameCenterUserReply.
+         * @implements IFindGameCenterUserReply
+         * @constructor
+         * @param {pbbattle.IFindGameCenterUserReply=} [properties] Properties to set
+         */
+        function FindGameCenterUserReply(properties) {
+            this.list = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * FindGameCenterUserReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbbattle.FindGameCenterUserReply
+         * @instance
+         */
+        FindGameCenterUserReply.prototype.code = 0;
+
+        /**
+         * FindGameCenterUserReply msg.
+         * @member {string} msg
+         * @memberof pbbattle.FindGameCenterUserReply
+         * @instance
+         */
+        FindGameCenterUserReply.prototype.msg = "";
+
+        /**
+         * FindGameCenterUserReply data.
+         * @member {pbbattle.IGameCenterUserModel|null|undefined} data
+         * @memberof pbbattle.FindGameCenterUserReply
+         * @instance
+         */
+        FindGameCenterUserReply.prototype.data = null;
+
+        /**
+         * FindGameCenterUserReply list.
+         * @member {Array.<pbbattle.IGameCenterUserModel>} list
+         * @memberof pbbattle.FindGameCenterUserReply
+         * @instance
+         */
+        FindGameCenterUserReply.prototype.list = $util.emptyArray;
+
+        /**
+         * FindGameCenterUserReply total.
+         * @member {number|Long} total
+         * @memberof pbbattle.FindGameCenterUserReply
+         * @instance
+         */
+        FindGameCenterUserReply.prototype.total = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * Creates a new FindGameCenterUserReply instance using the specified properties.
+         * @function create
+         * @memberof pbbattle.FindGameCenterUserReply
+         * @static
+         * @param {pbbattle.IFindGameCenterUserReply=} [properties] Properties to set
+         * @returns {pbbattle.FindGameCenterUserReply} FindGameCenterUserReply instance
+         */
+        FindGameCenterUserReply.create = function create(properties) {
+            return new FindGameCenterUserReply(properties);
+        };
+
+        /**
+         * Encodes the specified FindGameCenterUserReply message. Does not implicitly {@link pbbattle.FindGameCenterUserReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbbattle.FindGameCenterUserReply
+         * @static
+         * @param {pbbattle.IFindGameCenterUserReply} message FindGameCenterUserReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindGameCenterUserReply.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.data != null && Object.hasOwnProperty.call(message, "data"))
+                $root.pbbattle.GameCenterUserModel.encode(message.data, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            if (message.list != null && message.list.length)
+                for (var i = 0; i < message.list.length; ++i)
+                    $root.pbbattle.GameCenterUserModel.encode(message.list[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+            if (message.total != null && Object.hasOwnProperty.call(message, "total"))
+                writer.uint32(/* id 5, wireType 0 =*/40).int64(message.total);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified FindGameCenterUserReply message, length delimited. Does not implicitly {@link pbbattle.FindGameCenterUserReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbbattle.FindGameCenterUserReply
+         * @static
+         * @param {pbbattle.IFindGameCenterUserReply} message FindGameCenterUserReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindGameCenterUserReply.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a FindGameCenterUserReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbbattle.FindGameCenterUserReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbbattle.FindGameCenterUserReply} FindGameCenterUserReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindGameCenterUserReply.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.FindGameCenterUserReply();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.code = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.data = $root.pbbattle.GameCenterUserModel.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 4: {
+                        if (!(message.list && message.list.length))
+                            message.list = [];
+                        message.list.push($root.pbbattle.GameCenterUserModel.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 5: {
+                        message.total = reader.int64();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a FindGameCenterUserReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbbattle.FindGameCenterUserReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbbattle.FindGameCenterUserReply} FindGameCenterUserReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindGameCenterUserReply.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a FindGameCenterUserReply message.
+         * @function verify
+         * @memberof pbbattle.FindGameCenterUserReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        FindGameCenterUserReply.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.code != null && message.hasOwnProperty("code"))
+                switch (message.code) {
+                default:
+                    return "code: enum value expected";
+                case 0:
+                case 200:
+                case 403:
+                case 500:
+                case 501:
+                case 502:
+                case 503:
+                case 504:
+                case 505:
+                case 511:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
+                case 2002:
+                case 2003:
+                case 2004:
+                case 2005:
+                case 2006:
+                case 2007:
+                case 2008:
+                case 2009:
+                case 2010:
+                case 2011:
+                case 2012:
+                case 2013:
+                case 2014:
+                case 2015:
+                case 3001:
+                case 3002:
+                case 3003:
+                case 5001:
+                case 5002:
+                case 10001:
+                case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
+                    break;
+                }
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                if (!$util.isString(message.msg))
+                    return "msg: string expected";
+            if (message.data != null && message.hasOwnProperty("data")) {
+                var error = $root.pbbattle.GameCenterUserModel.verify(message.data);
+                if (error)
+                    return "data." + error;
+            }
+            if (message.list != null && message.hasOwnProperty("list")) {
+                if (!Array.isArray(message.list))
+                    return "list: array expected";
+                for (var i = 0; i < message.list.length; ++i) {
+                    var error = $root.pbbattle.GameCenterUserModel.verify(message.list[i]);
+                    if (error)
+                        return "list." + error;
+                }
+            }
+            if (message.total != null && message.hasOwnProperty("total"))
+                if (!$util.isInteger(message.total) && !(message.total && $util.isInteger(message.total.low) && $util.isInteger(message.total.high)))
+                    return "total: integer|Long expected";
+            return null;
+        };
+
+        /**
+         * Creates a FindGameCenterUserReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbbattle.FindGameCenterUserReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbbattle.FindGameCenterUserReply} FindGameCenterUserReply
+         */
+        FindGameCenterUserReply.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbbattle.FindGameCenterUserReply)
+                return object;
+            var message = new $root.pbbattle.FindGameCenterUserReply();
+            switch (object.code) {
+            default:
+                if (typeof object.code === "number") {
+                    message.code = object.code;
+                    break;
+                }
+                break;
+            case "None":
+            case 0:
+                message.code = 0;
+                break;
+            case "Success":
+            case 200:
+                message.code = 200;
+                break;
+            case "Forbidden":
+            case 403:
+                message.code = 403;
+                break;
+            case "Fail":
+            case 500:
+                message.code = 500;
+                break;
+            case "Unknown":
+            case 501:
+                message.code = 501;
+                break;
+            case "Internal":
+            case 502:
+                message.code = 502;
+                break;
+            case "Invalid":
+            case 503:
+                message.code = 503;
+                break;
+            case "InvalidParam":
+            case 504:
+                message.code = 504;
+                break;
+            case "ParamError":
+            case 505:
+                message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
+                break;
+            case "FindError":
+            case 1001:
+                message.code = 1001;
+                break;
+            case "CreateError":
+            case 1002:
+                message.code = 1002;
+                break;
+            case "DeleteError":
+            case 1003:
+                message.code = 1003;
+                break;
+            case "UpdateError":
+            case 1004:
+                message.code = 1004;
+                break;
+            case "InvalidToken":
+            case 2002:
+                message.code = 2002;
+                break;
+            case "InvalidSign":
+            case 2003:
+                message.code = 2003;
+                break;
+            case "NotLogin":
+            case 2004:
+                message.code = 2004;
+                break;
+            case "LoginTimeout":
+            case 2005:
+                message.code = 2005;
+                break;
+            case "LoginError":
+            case 2006:
+                message.code = 2006;
+                break;
+            case "LoginForbidden":
+            case 2007:
+                message.code = 2007;
+                break;
+            case "LoginExpired":
+            case 2008:
+                message.code = 2008;
+                break;
+            case "LoginInvalid":
+            case 2009:
+                message.code = 2009;
+                break;
+            case "LoginInvalidPassword":
+            case 2010:
+                message.code = 2010;
+                break;
+            case "LoginInvalidUsername":
+            case 2011:
+                message.code = 2011;
+                break;
+            case "LoginInvalidEmail":
+            case 2012:
+                message.code = 2012;
+                break;
+            case "LoginInvalidPhone":
+            case 2013:
+                message.code = 2013;
+                break;
+            case "LoginInvalidUsernameOrEmail":
+            case 2014:
+                message.code = 2014;
+                break;
+            case "LoginSocketRepeat":
+            case 2015:
+                message.code = 2015;
+                break;
+            case "RoleIsNotExist":
+            case 3001:
+                message.code = 3001;
+                break;
+            case "UserIsExist":
+            case 3002:
+                message.code = 3002;
+                break;
+            case "UserIsBan":
+            case 3003:
+                message.code = 3003;
+                break;
+            case "TalkIsBan":
+            case 5001:
+                message.code = 5001;
+                break;
+            case "EnterRoomErr":
+            case 5002:
+                message.code = 5002;
+                break;
+            case "HalaChatNeedBuy":
+            case 10001:
+                message.code = 10001;
+                break;
+            case "HalaPriceOutRange":
+            case 10002:
+                message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
+                break;
+            }
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.data != null) {
+                if (typeof object.data !== "object")
+                    throw TypeError(".pbbattle.FindGameCenterUserReply.data: object expected");
+                message.data = $root.pbbattle.GameCenterUserModel.fromObject(object.data);
+            }
+            if (object.list) {
+                if (!Array.isArray(object.list))
+                    throw TypeError(".pbbattle.FindGameCenterUserReply.list: array expected");
+                message.list = [];
+                for (var i = 0; i < object.list.length; ++i) {
+                    if (typeof object.list[i] !== "object")
+                        throw TypeError(".pbbattle.FindGameCenterUserReply.list: object expected");
+                    message.list[i] = $root.pbbattle.GameCenterUserModel.fromObject(object.list[i]);
+                }
+            }
+            if (object.total != null)
+                if ($util.Long)
+                    (message.total = $util.Long.fromValue(object.total)).unsigned = false;
+                else if (typeof object.total === "string")
+                    message.total = parseInt(object.total, 10);
+                else if (typeof object.total === "number")
+                    message.total = object.total;
+                else if (typeof object.total === "object")
+                    message.total = new $util.LongBits(object.total.low >>> 0, object.total.high >>> 0).toNumber();
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a FindGameCenterUserReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbbattle.FindGameCenterUserReply
+         * @static
+         * @param {pbbattle.FindGameCenterUserReply} message FindGameCenterUserReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FindGameCenterUserReply.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.list = [];
+            if (options.defaults) {
+                object.code = options.enums === String ? "None" : 0;
+                object.msg = "";
+                object.data = null;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.total = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.total = options.longs === String ? "0" : 0;
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.data != null && message.hasOwnProperty("data"))
+                object.data = $root.pbbattle.GameCenterUserModel.toObject(message.data, options);
+            if (message.list && message.list.length) {
+                object.list = [];
+                for (var j = 0; j < message.list.length; ++j)
+                    object.list[j] = $root.pbbattle.GameCenterUserModel.toObject(message.list[j], options);
+            }
+            if (message.total != null && message.hasOwnProperty("total"))
+                if (typeof message.total === "number")
+                    object.total = options.longs === String ? String(message.total) : message.total;
+                else
+                    object.total = options.longs === String ? $util.Long.prototype.toString.call(message.total) : options.longs === Number ? new $util.LongBits(message.total.low >>> 0, message.total.high >>> 0).toNumber() : message.total;
+            return object;
+        };
+
+        /**
+         * Converts this FindGameCenterUserReply to JSON.
+         * @function toJSON
+         * @memberof pbbattle.FindGameCenterUserReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        FindGameCenterUserReply.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for FindGameCenterUserReply
+         * @function getTypeUrl
+         * @memberof pbbattle.FindGameCenterUserReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        FindGameCenterUserReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbbattle.FindGameCenterUserReply";
+        };
+
+        return FindGameCenterUserReply;
     })();
 
     return pbbattle;

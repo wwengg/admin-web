@@ -250,6 +250,12 @@ export const constantRoutes = [
         name: 'exchangeConfigs',
         component: () => import('@/views/game/exchangeConfigs'),
         meta: { title: '兑换配置', icon: 'money' }
+      },
+      {
+        path: 'game-center-config',
+        name: 'gameCenterConfig',
+        component: () => import('@/views/game/gameCenterConfig'),
+        meta: { title: '游戏中心配置', icon: 'eye-open' }
       }
     ]
   }

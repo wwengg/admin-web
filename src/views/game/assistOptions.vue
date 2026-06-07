@@ -32,6 +32,11 @@
             <span class="gold-text">🪙 {{ scope.row.costGold }}</span>
           </template>
         </el-table-column>
+        <el-table-column prop="poolRate" label="奖池比例" width="100" align="center">
+          <template slot-scope="scope">
+            <span>{{ scope.row.poolRate }}%</span>
+          </template>
+        </el-table-column>
         <el-table-column prop="sortOrder" label="排序" width="80" align="center" />
         <el-table-column prop="isEnabled" label="状态" width="80" align="center">
           <template slot-scope="scope">
@@ -88,6 +93,10 @@
         <el-form-item label="消耗金币" prop="costGold">
           <el-input-number v-model="formData.costGold" :min="0" :max="100000" />
         </el-form-item>
+        <el-form-item label="奖池比例" prop="poolRate">
+          <el-input-number v-model="formData.poolRate" :min="0" :max="100" />
+          <span style="margin-left: 8px; color: #909399; font-size: 12px">%</span>
+        </el-form-item>
         <el-form-item label="排序" prop="sortOrder">
           <el-input-number v-model="formData.sortOrder" :min="0" :max="999" />
         </el-form-item>
@@ -130,6 +139,7 @@ export default {
         optionCode: '',
         optionValue: 1,
         costGold: 0,
+        poolRate: 100,
         sortOrder: 0,
         isEnabled: true
       },
@@ -137,6 +147,7 @@ export default {
         optionCode: [{ required: true, message: '请选择选项代码', trigger: 'change' }],
         optionValue: [{ required: true, message: '请输入助战值', trigger: 'blur' }],
         costGold: [{ required: true, message: '请输入消耗金币', trigger: 'blur' }],
+        poolRate: [{ required: true, message: '请输入奖池比例', trigger: 'blur' }],
         sortOrder: [{ required: true, message: '请输入排序', trigger: 'blur' }]
       }
     }
@@ -176,6 +187,7 @@ export default {
         optionCode: '',
         optionValue: 1,
         costGold: 0,
+        poolRate: 100,
         sortOrder: 0,
         isEnabled: true
       }
@@ -189,6 +201,7 @@ export default {
         optionCode: row.optionCode,
         optionValue: row.optionValue,
         costGold: row.costGold,
+        poolRate: row.poolRate,
         sortOrder: row.sortOrder,
         isEnabled: row.isEnabled
       }

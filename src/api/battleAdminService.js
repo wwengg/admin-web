@@ -413,3 +413,55 @@ export function findExchangeConfigList(data) {
     pb: 'pbbattle.FindExchangeConfigListReply'
   })
 }
+
+// ========== 游戏中心可见性管理 ==========
+
+export function saveGameCenterConfig(data) {
+  const buffer = pbbattle.GameCenterConfigModel.encode(data).finish().slice().buffer
+  return request({
+    url: '/v2/battleAdmin/saveGameCenterConfig',
+    method: 'post',
+    buffer,
+    pb: 'pbcommon.CommonResult'
+  })
+}
+
+export function getGameCenterConfig(data) {
+  const buffer = pbcommon.Empty.encode(data || {}).finish().slice().buffer
+  return request({
+    url: '/v2/battleAdmin/getGameCenterConfig',
+    method: 'post',
+    buffer,
+    pb: 'pbbattle.GetGameCenterConfigReply'
+  })
+}
+
+export function createGameCenterUser(data) {
+  const buffer = pbbattle.GameCenterUserModel.encode(data).finish().slice().buffer
+  return request({
+    url: '/v2/battleAdmin/createGameCenterUser',
+    method: 'post',
+    buffer,
+    pb: 'pbcommon.CommonResult'
+  })
+}
+
+export function deleteGameCenterUser(data) {
+  const buffer = pbcommon.IdArgs.encode(data).finish().slice().buffer
+  return request({
+    url: '/v2/battleAdmin/deleteGameCenterUser',
+    method: 'post',
+    buffer,
+    pb: 'pbcommon.CommonResult'
+  })
+}
+
+export function findGameCenterUserList(data) {
+  const buffer = pbbattle.FindGameCenterUserArgs.encode(data).finish().slice().buffer
+  return request({
+    url: '/v2/battleAdmin/findGameCenterUserList',
+    method: 'post',
+    buffer,
+    pb: 'pbbattle.FindGameCenterUserReply'
+  })
+}
