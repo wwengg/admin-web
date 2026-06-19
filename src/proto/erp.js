@@ -31,6 +31,7 @@ $root.pbcommon = (function() {
      * @property {number} Invalid=503 Invalid value
      * @property {number} InvalidParam=504 InvalidParam value
      * @property {number} ParamError=505 ParamError value
+     * @property {number} TooManyRequests=511 TooManyRequests value
      * @property {number} FindError=1001 FindError value
      * @property {number} CreateError=1002 CreateError value
      * @property {number} DeleteError=1003 DeleteError value
@@ -56,6 +57,9 @@ $root.pbcommon = (function() {
      * @property {number} EnterRoomErr=5002 EnterRoomErr value
      * @property {number} HalaChatNeedBuy=10001 HalaChatNeedBuy value
      * @property {number} HalaPriceOutRange=10002 HalaPriceOutRange value
+     * @property {number} GamePhaseNotMatch=20001 GamePhaseNotMatch value
+     * @property {number} GameNotStarted=20002 GameNotStarted value
+     * @property {number} InsufficientBalance=20003 InsufficientBalance value
      */
     pbcommon.EnumCode = (function() {
         var valuesById = {}, values = Object.create(valuesById);
@@ -68,6 +72,7 @@ $root.pbcommon = (function() {
         values[valuesById[503] = "Invalid"] = 503;
         values[valuesById[504] = "InvalidParam"] = 504;
         values[valuesById[505] = "ParamError"] = 505;
+        values[valuesById[511] = "TooManyRequests"] = 511;
         values[valuesById[1001] = "FindError"] = 1001;
         values[valuesById[1002] = "CreateError"] = 1002;
         values[valuesById[1003] = "DeleteError"] = 1003;
@@ -93,6 +98,9 @@ $root.pbcommon = (function() {
         values[valuesById[5002] = "EnterRoomErr"] = 5002;
         values[valuesById[10001] = "HalaChatNeedBuy"] = 10001;
         values[valuesById[10002] = "HalaPriceOutRange"] = 10002;
+        values[valuesById[20001] = "GamePhaseNotMatch"] = 20001;
+        values[valuesById[20002] = "GameNotStarted"] = 20002;
+        values[valuesById[20003] = "InsufficientBalance"] = 20003;
         return values;
     })();
 
@@ -104,6 +112,7 @@ $root.pbcommon = (function() {
          * @interface ICommonResult
          * @property {pbcommon.EnumCode|null} [code] CommonResult code
          * @property {string|null} [msg] CommonResult msg
+         * @property {number|null} [subCode] CommonResult subCode
          */
 
         /**
@@ -138,6 +147,14 @@ $root.pbcommon = (function() {
         CommonResult.prototype.msg = "";
 
         /**
+         * CommonResult subCode.
+         * @member {number} subCode
+         * @memberof pbcommon.CommonResult
+         * @instance
+         */
+        CommonResult.prototype.subCode = 0;
+
+        /**
          * Creates a new CommonResult instance using the specified properties.
          * @function create
          * @memberof pbcommon.CommonResult
@@ -165,6 +182,8 @@ $root.pbcommon = (function() {
                 writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
             if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
                 writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.subCode != null && Object.hasOwnProperty.call(message, "subCode"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int32(message.subCode);
             return writer;
         };
 
@@ -207,6 +226,10 @@ $root.pbcommon = (function() {
                     }
                 case 2: {
                         message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.subCode = reader.int32();
                         break;
                     }
                 default:
@@ -257,6 +280,7 @@ $root.pbcommon = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -282,11 +306,17 @@ $root.pbcommon = (function() {
                 case 5002:
                 case 10001:
                 case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
                 if (!$util.isString(message.msg))
                     return "msg: string expected";
+            if (message.subCode != null && message.hasOwnProperty("subCode"))
+                if (!$util.isInteger(message.subCode))
+                    return "subCode: integer expected";
             return null;
         };
 
@@ -344,6 +374,10 @@ $root.pbcommon = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -445,9 +479,23 @@ $root.pbcommon = (function() {
             case 10002:
                 message.code = 10002;
                 break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
+                break;
             }
             if (object.msg != null)
                 message.msg = String(object.msg);
+            if (object.subCode != null)
+                message.subCode = object.subCode | 0;
             return message;
         };
 
@@ -467,11 +515,14 @@ $root.pbcommon = (function() {
             if (options.defaults) {
                 object.code = options.enums === String ? "None" : 0;
                 object.msg = "";
+                object.subCode = 0;
             }
             if (message.code != null && message.hasOwnProperty("code"))
                 object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
             if (message.msg != null && message.hasOwnProperty("msg"))
                 object.msg = message.msg;
+            if (message.subCode != null && message.hasOwnProperty("subCode"))
+                object.subCode = message.subCode;
             return object;
         };
 
@@ -5805,6 +5856,7 @@ $root.pbErpInventory = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -5830,6 +5882,9 @@ $root.pbErpInventory = (function() {
                 case 5002:
                 case 10001:
                 case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -5909,6 +5964,10 @@ $root.pbErpInventory = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -6009,6 +6068,18 @@ $root.pbErpInventory = (function() {
             case "HalaPriceOutRange":
             case 10002:
                 message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -6323,6 +6394,7 @@ $root.pbErpInventory = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -6348,6 +6420,9 @@ $root.pbErpInventory = (function() {
                 case 5002:
                 case 10001:
                 case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -6427,6 +6502,10 @@ $root.pbErpInventory = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -6527,6 +6606,18 @@ $root.pbErpInventory = (function() {
             case "HalaPriceOutRange":
             case 10002:
                 message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -6841,6 +6932,7 @@ $root.pbErpInventory = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -6866,6 +6958,9 @@ $root.pbErpInventory = (function() {
                 case 5002:
                 case 10001:
                 case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -6945,6 +7040,10 @@ $root.pbErpInventory = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -7045,6 +7144,18 @@ $root.pbErpInventory = (function() {
             case "HalaPriceOutRange":
             case 10002:
                 message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -7329,6 +7440,7 @@ $root.pbErpInventory = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -7354,6 +7466,9 @@ $root.pbErpInventory = (function() {
                 case 5002:
                 case 10001:
                 case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -7425,6 +7540,10 @@ $root.pbErpInventory = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -7525,6 +7644,18 @@ $root.pbErpInventory = (function() {
             case "HalaPriceOutRange":
             case 10002:
                 message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -7778,6 +7909,7 @@ $root.pbErpInventory = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -7803,6 +7935,9 @@ $root.pbErpInventory = (function() {
                 case 5002:
                 case 10001:
                 case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -7870,6 +8005,10 @@ $root.pbErpInventory = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -7970,6 +8109,18 @@ $root.pbErpInventory = (function() {
             case "HalaPriceOutRange":
             case 10002:
                 message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -10862,6 +11013,7 @@ $root.pbErpProduct = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -10887,6 +11039,9 @@ $root.pbErpProduct = (function() {
                 case 5002:
                 case 10001:
                 case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -10966,6 +11121,10 @@ $root.pbErpProduct = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -11066,6 +11225,18 @@ $root.pbErpProduct = (function() {
             case "HalaPriceOutRange":
             case 10002:
                 message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -11991,6 +12162,7 @@ $root.pbErpProduct = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -12016,6 +12188,9 @@ $root.pbErpProduct = (function() {
                 case 5002:
                 case 10001:
                 case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -12095,6 +12270,10 @@ $root.pbErpProduct = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -12195,6 +12374,18 @@ $root.pbErpProduct = (function() {
             case "HalaPriceOutRange":
             case 10002:
                 message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -12661,6 +12852,105 @@ $root.pbErpProduct = (function() {
          * @variation 2
          */
 
+        /**
+         * Callback as used by {@link pbErpProduct.ProductService#createProductImage}.
+         * @memberof pbErpProduct.ProductService
+         * @typedef CreateProductImageCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls CreateProductImage.
+         * @function createProductImage
+         * @memberof pbErpProduct.ProductService
+         * @instance
+         * @param {pbErpProduct.IProductImage} request ProductImage message or plain object
+         * @param {pbErpProduct.ProductService.CreateProductImageCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(ProductService.prototype.createProductImage = function createProductImage(request, callback) {
+            return this.rpcCall(createProductImage, $root.pbErpProduct.ProductImage, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "CreateProductImage" });
+
+        /**
+         * Calls CreateProductImage.
+         * @function createProductImage
+         * @memberof pbErpProduct.ProductService
+         * @instance
+         * @param {pbErpProduct.IProductImage} request ProductImage message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbErpProduct.ProductService#deleteProductImage}.
+         * @memberof pbErpProduct.ProductService
+         * @typedef DeleteProductImageCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls DeleteProductImage.
+         * @function deleteProductImage
+         * @memberof pbErpProduct.ProductService
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbErpProduct.ProductService.DeleteProductImageCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(ProductService.prototype.deleteProductImage = function deleteProductImage(request, callback) {
+            return this.rpcCall(deleteProductImage, $root.pbcommon.IdArgs, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "DeleteProductImage" });
+
+        /**
+         * Calls DeleteProductImage.
+         * @function deleteProductImage
+         * @memberof pbErpProduct.ProductService
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbErpProduct.ProductService#findProductImageList}.
+         * @memberof pbErpProduct.ProductService
+         * @typedef FindProductImageListCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbErpProduct.FindProductImageReply} [response] FindProductImageReply
+         */
+
+        /**
+         * Calls FindProductImageList.
+         * @function findProductImageList
+         * @memberof pbErpProduct.ProductService
+         * @instance
+         * @param {pbErpProduct.IFindProductImageArgs} request FindProductImageArgs message or plain object
+         * @param {pbErpProduct.ProductService.FindProductImageListCallback} callback Node-style callback called with the error, if any, and FindProductImageReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(ProductService.prototype.findProductImageList = function findProductImageList(request, callback) {
+            return this.rpcCall(findProductImageList, $root.pbErpProduct.FindProductImageArgs, $root.pbErpProduct.FindProductImageReply, request, callback);
+        }, "name", { value: "FindProductImageList" });
+
+        /**
+         * Calls FindProductImageList.
+         * @function findProductImageList
+         * @memberof pbErpProduct.ProductService
+         * @instance
+         * @param {pbErpProduct.IFindProductImageArgs} request FindProductImageArgs message or plain object
+         * @returns {Promise<pbErpProduct.FindProductImageReply>} Promise
+         * @variation 2
+         */
+
         return ProductService;
     })();
 
@@ -13012,6 +13302,1187 @@ $root.pbErpProduct = (function() {
         };
 
         return UpdateStockArgs;
+    })();
+
+    pbErpProduct.ProductImage = (function() {
+
+        /**
+         * Properties of a ProductImage.
+         * @memberof pbErpProduct
+         * @interface IProductImage
+         * @property {number|Long|null} [id] ProductImage id
+         * @property {string|null} [createdAt] ProductImage createdAt
+         * @property {string|null} [updatedAt] ProductImage updatedAt
+         * @property {number|Long|null} [productId] ProductImage productId
+         * @property {string|null} [url] ProductImage url
+         * @property {number|null} [sort] ProductImage sort
+         * @property {string|null} [type] ProductImage type
+         */
+
+        /**
+         * Constructs a new ProductImage.
+         * @memberof pbErpProduct
+         * @classdesc Represents a ProductImage.
+         * @implements IProductImage
+         * @constructor
+         * @param {pbErpProduct.IProductImage=} [properties] Properties to set
+         */
+        function ProductImage(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ProductImage id.
+         * @member {number|Long} id
+         * @memberof pbErpProduct.ProductImage
+         * @instance
+         */
+        ProductImage.prototype.id = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * ProductImage createdAt.
+         * @member {string} createdAt
+         * @memberof pbErpProduct.ProductImage
+         * @instance
+         */
+        ProductImage.prototype.createdAt = "";
+
+        /**
+         * ProductImage updatedAt.
+         * @member {string} updatedAt
+         * @memberof pbErpProduct.ProductImage
+         * @instance
+         */
+        ProductImage.prototype.updatedAt = "";
+
+        /**
+         * ProductImage productId.
+         * @member {number|Long} productId
+         * @memberof pbErpProduct.ProductImage
+         * @instance
+         */
+        ProductImage.prototype.productId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * ProductImage url.
+         * @member {string} url
+         * @memberof pbErpProduct.ProductImage
+         * @instance
+         */
+        ProductImage.prototype.url = "";
+
+        /**
+         * ProductImage sort.
+         * @member {number} sort
+         * @memberof pbErpProduct.ProductImage
+         * @instance
+         */
+        ProductImage.prototype.sort = 0;
+
+        /**
+         * ProductImage type.
+         * @member {string} type
+         * @memberof pbErpProduct.ProductImage
+         * @instance
+         */
+        ProductImage.prototype.type = "";
+
+        /**
+         * Creates a new ProductImage instance using the specified properties.
+         * @function create
+         * @memberof pbErpProduct.ProductImage
+         * @static
+         * @param {pbErpProduct.IProductImage=} [properties] Properties to set
+         * @returns {pbErpProduct.ProductImage} ProductImage instance
+         */
+        ProductImage.create = function create(properties) {
+            return new ProductImage(properties);
+        };
+
+        /**
+         * Encodes the specified ProductImage message. Does not implicitly {@link pbErpProduct.ProductImage.verify|verify} messages.
+         * @function encode
+         * @memberof pbErpProduct.ProductImage
+         * @static
+         * @param {pbErpProduct.IProductImage} message ProductImage message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        ProductImage.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id);
+            if (message.createdAt != null && Object.hasOwnProperty.call(message, "createdAt"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.createdAt);
+            if (message.updatedAt != null && Object.hasOwnProperty.call(message, "updatedAt"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.updatedAt);
+            if (message.productId != null && Object.hasOwnProperty.call(message, "productId"))
+                writer.uint32(/* id 4, wireType 0 =*/32).int64(message.productId);
+            if (message.url != null && Object.hasOwnProperty.call(message, "url"))
+                writer.uint32(/* id 5, wireType 2 =*/42).string(message.url);
+            if (message.sort != null && Object.hasOwnProperty.call(message, "sort"))
+                writer.uint32(/* id 6, wireType 0 =*/48).int32(message.sort);
+            if (message.type != null && Object.hasOwnProperty.call(message, "type"))
+                writer.uint32(/* id 7, wireType 2 =*/58).string(message.type);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified ProductImage message, length delimited. Does not implicitly {@link pbErpProduct.ProductImage.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbErpProduct.ProductImage
+         * @static
+         * @param {pbErpProduct.IProductImage} message ProductImage message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        ProductImage.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a ProductImage message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbErpProduct.ProductImage
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbErpProduct.ProductImage} ProductImage
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        ProductImage.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbErpProduct.ProductImage();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.id = reader.int64();
+                        break;
+                    }
+                case 2: {
+                        message.createdAt = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.updatedAt = reader.string();
+                        break;
+                    }
+                case 4: {
+                        message.productId = reader.int64();
+                        break;
+                    }
+                case 5: {
+                        message.url = reader.string();
+                        break;
+                    }
+                case 6: {
+                        message.sort = reader.int32();
+                        break;
+                    }
+                case 7: {
+                        message.type = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a ProductImage message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbErpProduct.ProductImage
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbErpProduct.ProductImage} ProductImage
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        ProductImage.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a ProductImage message.
+         * @function verify
+         * @memberof pbErpProduct.ProductImage
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        ProductImage.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (!$util.isInteger(message.id) && !(message.id && $util.isInteger(message.id.low) && $util.isInteger(message.id.high)))
+                    return "id: integer|Long expected";
+            if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                if (!$util.isString(message.createdAt))
+                    return "createdAt: string expected";
+            if (message.updatedAt != null && message.hasOwnProperty("updatedAt"))
+                if (!$util.isString(message.updatedAt))
+                    return "updatedAt: string expected";
+            if (message.productId != null && message.hasOwnProperty("productId"))
+                if (!$util.isInteger(message.productId) && !(message.productId && $util.isInteger(message.productId.low) && $util.isInteger(message.productId.high)))
+                    return "productId: integer|Long expected";
+            if (message.url != null && message.hasOwnProperty("url"))
+                if (!$util.isString(message.url))
+                    return "url: string expected";
+            if (message.sort != null && message.hasOwnProperty("sort"))
+                if (!$util.isInteger(message.sort))
+                    return "sort: integer expected";
+            if (message.type != null && message.hasOwnProperty("type"))
+                if (!$util.isString(message.type))
+                    return "type: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a ProductImage message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbErpProduct.ProductImage
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbErpProduct.ProductImage} ProductImage
+         */
+        ProductImage.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbErpProduct.ProductImage)
+                return object;
+            var message = new $root.pbErpProduct.ProductImage();
+            if (object.id != null)
+                if ($util.Long)
+                    (message.id = $util.Long.fromValue(object.id)).unsigned = false;
+                else if (typeof object.id === "string")
+                    message.id = parseInt(object.id, 10);
+                else if (typeof object.id === "number")
+                    message.id = object.id;
+                else if (typeof object.id === "object")
+                    message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber();
+            if (object.createdAt != null)
+                message.createdAt = String(object.createdAt);
+            if (object.updatedAt != null)
+                message.updatedAt = String(object.updatedAt);
+            if (object.productId != null)
+                if ($util.Long)
+                    (message.productId = $util.Long.fromValue(object.productId)).unsigned = false;
+                else if (typeof object.productId === "string")
+                    message.productId = parseInt(object.productId, 10);
+                else if (typeof object.productId === "number")
+                    message.productId = object.productId;
+                else if (typeof object.productId === "object")
+                    message.productId = new $util.LongBits(object.productId.low >>> 0, object.productId.high >>> 0).toNumber();
+            if (object.url != null)
+                message.url = String(object.url);
+            if (object.sort != null)
+                message.sort = object.sort | 0;
+            if (object.type != null)
+                message.type = String(object.type);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a ProductImage message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbErpProduct.ProductImage
+         * @static
+         * @param {pbErpProduct.ProductImage} message ProductImage
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        ProductImage.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.id = options.longs === String ? "0" : 0;
+                object.createdAt = "";
+                object.updatedAt = "";
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.productId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.productId = options.longs === String ? "0" : 0;
+                object.url = "";
+                object.sort = 0;
+                object.type = "";
+            }
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (typeof message.id === "number")
+                    object.id = options.longs === String ? String(message.id) : message.id;
+                else
+                    object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id;
+            if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                object.createdAt = message.createdAt;
+            if (message.updatedAt != null && message.hasOwnProperty("updatedAt"))
+                object.updatedAt = message.updatedAt;
+            if (message.productId != null && message.hasOwnProperty("productId"))
+                if (typeof message.productId === "number")
+                    object.productId = options.longs === String ? String(message.productId) : message.productId;
+                else
+                    object.productId = options.longs === String ? $util.Long.prototype.toString.call(message.productId) : options.longs === Number ? new $util.LongBits(message.productId.low >>> 0, message.productId.high >>> 0).toNumber() : message.productId;
+            if (message.url != null && message.hasOwnProperty("url"))
+                object.url = message.url;
+            if (message.sort != null && message.hasOwnProperty("sort"))
+                object.sort = message.sort;
+            if (message.type != null && message.hasOwnProperty("type"))
+                object.type = message.type;
+            return object;
+        };
+
+        /**
+         * Converts this ProductImage to JSON.
+         * @function toJSON
+         * @memberof pbErpProduct.ProductImage
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        ProductImage.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for ProductImage
+         * @function getTypeUrl
+         * @memberof pbErpProduct.ProductImage
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        ProductImage.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbErpProduct.ProductImage";
+        };
+
+        return ProductImage;
+    })();
+
+    pbErpProduct.FindProductImageArgs = (function() {
+
+        /**
+         * Properties of a FindProductImageArgs.
+         * @memberof pbErpProduct
+         * @interface IFindProductImageArgs
+         * @property {pbcommon.IPageInfo|null} [pageInfo] FindProductImageArgs pageInfo
+         * @property {number|Long|null} [productId] FindProductImageArgs productId
+         * @property {string|null} [type] FindProductImageArgs type
+         */
+
+        /**
+         * Constructs a new FindProductImageArgs.
+         * @memberof pbErpProduct
+         * @classdesc Represents a FindProductImageArgs.
+         * @implements IFindProductImageArgs
+         * @constructor
+         * @param {pbErpProduct.IFindProductImageArgs=} [properties] Properties to set
+         */
+        function FindProductImageArgs(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * FindProductImageArgs pageInfo.
+         * @member {pbcommon.IPageInfo|null|undefined} pageInfo
+         * @memberof pbErpProduct.FindProductImageArgs
+         * @instance
+         */
+        FindProductImageArgs.prototype.pageInfo = null;
+
+        /**
+         * FindProductImageArgs productId.
+         * @member {number|Long} productId
+         * @memberof pbErpProduct.FindProductImageArgs
+         * @instance
+         */
+        FindProductImageArgs.prototype.productId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * FindProductImageArgs type.
+         * @member {string} type
+         * @memberof pbErpProduct.FindProductImageArgs
+         * @instance
+         */
+        FindProductImageArgs.prototype.type = "";
+
+        /**
+         * Creates a new FindProductImageArgs instance using the specified properties.
+         * @function create
+         * @memberof pbErpProduct.FindProductImageArgs
+         * @static
+         * @param {pbErpProduct.IFindProductImageArgs=} [properties] Properties to set
+         * @returns {pbErpProduct.FindProductImageArgs} FindProductImageArgs instance
+         */
+        FindProductImageArgs.create = function create(properties) {
+            return new FindProductImageArgs(properties);
+        };
+
+        /**
+         * Encodes the specified FindProductImageArgs message. Does not implicitly {@link pbErpProduct.FindProductImageArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbErpProduct.FindProductImageArgs
+         * @static
+         * @param {pbErpProduct.IFindProductImageArgs} message FindProductImageArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindProductImageArgs.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.pageInfo != null && Object.hasOwnProperty.call(message, "pageInfo"))
+                $root.pbcommon.PageInfo.encode(message.pageInfo, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.productId != null && Object.hasOwnProperty.call(message, "productId"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int64(message.productId);
+            if (message.type != null && Object.hasOwnProperty.call(message, "type"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.type);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified FindProductImageArgs message, length delimited. Does not implicitly {@link pbErpProduct.FindProductImageArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbErpProduct.FindProductImageArgs
+         * @static
+         * @param {pbErpProduct.IFindProductImageArgs} message FindProductImageArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindProductImageArgs.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a FindProductImageArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbErpProduct.FindProductImageArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbErpProduct.FindProductImageArgs} FindProductImageArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindProductImageArgs.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbErpProduct.FindProductImageArgs();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.pageInfo = $root.pbcommon.PageInfo.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 2: {
+                        message.productId = reader.int64();
+                        break;
+                    }
+                case 3: {
+                        message.type = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a FindProductImageArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbErpProduct.FindProductImageArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbErpProduct.FindProductImageArgs} FindProductImageArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindProductImageArgs.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a FindProductImageArgs message.
+         * @function verify
+         * @memberof pbErpProduct.FindProductImageArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        FindProductImageArgs.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.pageInfo != null && message.hasOwnProperty("pageInfo")) {
+                var error = $root.pbcommon.PageInfo.verify(message.pageInfo);
+                if (error)
+                    return "pageInfo." + error;
+            }
+            if (message.productId != null && message.hasOwnProperty("productId"))
+                if (!$util.isInteger(message.productId) && !(message.productId && $util.isInteger(message.productId.low) && $util.isInteger(message.productId.high)))
+                    return "productId: integer|Long expected";
+            if (message.type != null && message.hasOwnProperty("type"))
+                if (!$util.isString(message.type))
+                    return "type: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a FindProductImageArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbErpProduct.FindProductImageArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbErpProduct.FindProductImageArgs} FindProductImageArgs
+         */
+        FindProductImageArgs.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbErpProduct.FindProductImageArgs)
+                return object;
+            var message = new $root.pbErpProduct.FindProductImageArgs();
+            if (object.pageInfo != null) {
+                if (typeof object.pageInfo !== "object")
+                    throw TypeError(".pbErpProduct.FindProductImageArgs.pageInfo: object expected");
+                message.pageInfo = $root.pbcommon.PageInfo.fromObject(object.pageInfo);
+            }
+            if (object.productId != null)
+                if ($util.Long)
+                    (message.productId = $util.Long.fromValue(object.productId)).unsigned = false;
+                else if (typeof object.productId === "string")
+                    message.productId = parseInt(object.productId, 10);
+                else if (typeof object.productId === "number")
+                    message.productId = object.productId;
+                else if (typeof object.productId === "object")
+                    message.productId = new $util.LongBits(object.productId.low >>> 0, object.productId.high >>> 0).toNumber();
+            if (object.type != null)
+                message.type = String(object.type);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a FindProductImageArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbErpProduct.FindProductImageArgs
+         * @static
+         * @param {pbErpProduct.FindProductImageArgs} message FindProductImageArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FindProductImageArgs.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.pageInfo = null;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.productId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.productId = options.longs === String ? "0" : 0;
+                object.type = "";
+            }
+            if (message.pageInfo != null && message.hasOwnProperty("pageInfo"))
+                object.pageInfo = $root.pbcommon.PageInfo.toObject(message.pageInfo, options);
+            if (message.productId != null && message.hasOwnProperty("productId"))
+                if (typeof message.productId === "number")
+                    object.productId = options.longs === String ? String(message.productId) : message.productId;
+                else
+                    object.productId = options.longs === String ? $util.Long.prototype.toString.call(message.productId) : options.longs === Number ? new $util.LongBits(message.productId.low >>> 0, message.productId.high >>> 0).toNumber() : message.productId;
+            if (message.type != null && message.hasOwnProperty("type"))
+                object.type = message.type;
+            return object;
+        };
+
+        /**
+         * Converts this FindProductImageArgs to JSON.
+         * @function toJSON
+         * @memberof pbErpProduct.FindProductImageArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        FindProductImageArgs.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for FindProductImageArgs
+         * @function getTypeUrl
+         * @memberof pbErpProduct.FindProductImageArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        FindProductImageArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbErpProduct.FindProductImageArgs";
+        };
+
+        return FindProductImageArgs;
+    })();
+
+    pbErpProduct.FindProductImageReply = (function() {
+
+        /**
+         * Properties of a FindProductImageReply.
+         * @memberof pbErpProduct
+         * @interface IFindProductImageReply
+         * @property {pbcommon.EnumCode|null} [code] FindProductImageReply code
+         * @property {string|null} [msg] FindProductImageReply msg
+         * @property {pbErpProduct.IProductImage|null} [data] FindProductImageReply data
+         * @property {Array.<pbErpProduct.IProductImage>|null} [list] FindProductImageReply list
+         * @property {number|Long|null} [total] FindProductImageReply total
+         */
+
+        /**
+         * Constructs a new FindProductImageReply.
+         * @memberof pbErpProduct
+         * @classdesc Represents a FindProductImageReply.
+         * @implements IFindProductImageReply
+         * @constructor
+         * @param {pbErpProduct.IFindProductImageReply=} [properties] Properties to set
+         */
+        function FindProductImageReply(properties) {
+            this.list = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * FindProductImageReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbErpProduct.FindProductImageReply
+         * @instance
+         */
+        FindProductImageReply.prototype.code = 0;
+
+        /**
+         * FindProductImageReply msg.
+         * @member {string} msg
+         * @memberof pbErpProduct.FindProductImageReply
+         * @instance
+         */
+        FindProductImageReply.prototype.msg = "";
+
+        /**
+         * FindProductImageReply data.
+         * @member {pbErpProduct.IProductImage|null|undefined} data
+         * @memberof pbErpProduct.FindProductImageReply
+         * @instance
+         */
+        FindProductImageReply.prototype.data = null;
+
+        /**
+         * FindProductImageReply list.
+         * @member {Array.<pbErpProduct.IProductImage>} list
+         * @memberof pbErpProduct.FindProductImageReply
+         * @instance
+         */
+        FindProductImageReply.prototype.list = $util.emptyArray;
+
+        /**
+         * FindProductImageReply total.
+         * @member {number|Long} total
+         * @memberof pbErpProduct.FindProductImageReply
+         * @instance
+         */
+        FindProductImageReply.prototype.total = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * Creates a new FindProductImageReply instance using the specified properties.
+         * @function create
+         * @memberof pbErpProduct.FindProductImageReply
+         * @static
+         * @param {pbErpProduct.IFindProductImageReply=} [properties] Properties to set
+         * @returns {pbErpProduct.FindProductImageReply} FindProductImageReply instance
+         */
+        FindProductImageReply.create = function create(properties) {
+            return new FindProductImageReply(properties);
+        };
+
+        /**
+         * Encodes the specified FindProductImageReply message. Does not implicitly {@link pbErpProduct.FindProductImageReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbErpProduct.FindProductImageReply
+         * @static
+         * @param {pbErpProduct.IFindProductImageReply} message FindProductImageReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindProductImageReply.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.data != null && Object.hasOwnProperty.call(message, "data"))
+                $root.pbErpProduct.ProductImage.encode(message.data, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            if (message.list != null && message.list.length)
+                for (var i = 0; i < message.list.length; ++i)
+                    $root.pbErpProduct.ProductImage.encode(message.list[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+            if (message.total != null && Object.hasOwnProperty.call(message, "total"))
+                writer.uint32(/* id 5, wireType 0 =*/40).int64(message.total);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified FindProductImageReply message, length delimited. Does not implicitly {@link pbErpProduct.FindProductImageReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbErpProduct.FindProductImageReply
+         * @static
+         * @param {pbErpProduct.IFindProductImageReply} message FindProductImageReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindProductImageReply.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a FindProductImageReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbErpProduct.FindProductImageReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbErpProduct.FindProductImageReply} FindProductImageReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindProductImageReply.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbErpProduct.FindProductImageReply();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.code = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.data = $root.pbErpProduct.ProductImage.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 4: {
+                        if (!(message.list && message.list.length))
+                            message.list = [];
+                        message.list.push($root.pbErpProduct.ProductImage.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 5: {
+                        message.total = reader.int64();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a FindProductImageReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbErpProduct.FindProductImageReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbErpProduct.FindProductImageReply} FindProductImageReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindProductImageReply.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a FindProductImageReply message.
+         * @function verify
+         * @memberof pbErpProduct.FindProductImageReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        FindProductImageReply.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.code != null && message.hasOwnProperty("code"))
+                switch (message.code) {
+                default:
+                    return "code: enum value expected";
+                case 0:
+                case 200:
+                case 403:
+                case 500:
+                case 501:
+                case 502:
+                case 503:
+                case 504:
+                case 505:
+                case 511:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
+                case 2002:
+                case 2003:
+                case 2004:
+                case 2005:
+                case 2006:
+                case 2007:
+                case 2008:
+                case 2009:
+                case 2010:
+                case 2011:
+                case 2012:
+                case 2013:
+                case 2014:
+                case 2015:
+                case 3001:
+                case 3002:
+                case 3003:
+                case 5001:
+                case 5002:
+                case 10001:
+                case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
+                    break;
+                }
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                if (!$util.isString(message.msg))
+                    return "msg: string expected";
+            if (message.data != null && message.hasOwnProperty("data")) {
+                var error = $root.pbErpProduct.ProductImage.verify(message.data);
+                if (error)
+                    return "data." + error;
+            }
+            if (message.list != null && message.hasOwnProperty("list")) {
+                if (!Array.isArray(message.list))
+                    return "list: array expected";
+                for (var i = 0; i < message.list.length; ++i) {
+                    var error = $root.pbErpProduct.ProductImage.verify(message.list[i]);
+                    if (error)
+                        return "list." + error;
+                }
+            }
+            if (message.total != null && message.hasOwnProperty("total"))
+                if (!$util.isInteger(message.total) && !(message.total && $util.isInteger(message.total.low) && $util.isInteger(message.total.high)))
+                    return "total: integer|Long expected";
+            return null;
+        };
+
+        /**
+         * Creates a FindProductImageReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbErpProduct.FindProductImageReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbErpProduct.FindProductImageReply} FindProductImageReply
+         */
+        FindProductImageReply.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbErpProduct.FindProductImageReply)
+                return object;
+            var message = new $root.pbErpProduct.FindProductImageReply();
+            switch (object.code) {
+            default:
+                if (typeof object.code === "number") {
+                    message.code = object.code;
+                    break;
+                }
+                break;
+            case "None":
+            case 0:
+                message.code = 0;
+                break;
+            case "Success":
+            case 200:
+                message.code = 200;
+                break;
+            case "Forbidden":
+            case 403:
+                message.code = 403;
+                break;
+            case "Fail":
+            case 500:
+                message.code = 500;
+                break;
+            case "Unknown":
+            case 501:
+                message.code = 501;
+                break;
+            case "Internal":
+            case 502:
+                message.code = 502;
+                break;
+            case "Invalid":
+            case 503:
+                message.code = 503;
+                break;
+            case "InvalidParam":
+            case 504:
+                message.code = 504;
+                break;
+            case "ParamError":
+            case 505:
+                message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
+                break;
+            case "FindError":
+            case 1001:
+                message.code = 1001;
+                break;
+            case "CreateError":
+            case 1002:
+                message.code = 1002;
+                break;
+            case "DeleteError":
+            case 1003:
+                message.code = 1003;
+                break;
+            case "UpdateError":
+            case 1004:
+                message.code = 1004;
+                break;
+            case "InvalidToken":
+            case 2002:
+                message.code = 2002;
+                break;
+            case "InvalidSign":
+            case 2003:
+                message.code = 2003;
+                break;
+            case "NotLogin":
+            case 2004:
+                message.code = 2004;
+                break;
+            case "LoginTimeout":
+            case 2005:
+                message.code = 2005;
+                break;
+            case "LoginError":
+            case 2006:
+                message.code = 2006;
+                break;
+            case "LoginForbidden":
+            case 2007:
+                message.code = 2007;
+                break;
+            case "LoginExpired":
+            case 2008:
+                message.code = 2008;
+                break;
+            case "LoginInvalid":
+            case 2009:
+                message.code = 2009;
+                break;
+            case "LoginInvalidPassword":
+            case 2010:
+                message.code = 2010;
+                break;
+            case "LoginInvalidUsername":
+            case 2011:
+                message.code = 2011;
+                break;
+            case "LoginInvalidEmail":
+            case 2012:
+                message.code = 2012;
+                break;
+            case "LoginInvalidPhone":
+            case 2013:
+                message.code = 2013;
+                break;
+            case "LoginInvalidUsernameOrEmail":
+            case 2014:
+                message.code = 2014;
+                break;
+            case "LoginSocketRepeat":
+            case 2015:
+                message.code = 2015;
+                break;
+            case "RoleIsNotExist":
+            case 3001:
+                message.code = 3001;
+                break;
+            case "UserIsExist":
+            case 3002:
+                message.code = 3002;
+                break;
+            case "UserIsBan":
+            case 3003:
+                message.code = 3003;
+                break;
+            case "TalkIsBan":
+            case 5001:
+                message.code = 5001;
+                break;
+            case "EnterRoomErr":
+            case 5002:
+                message.code = 5002;
+                break;
+            case "HalaChatNeedBuy":
+            case 10001:
+                message.code = 10001;
+                break;
+            case "HalaPriceOutRange":
+            case 10002:
+                message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
+                break;
+            }
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.data != null) {
+                if (typeof object.data !== "object")
+                    throw TypeError(".pbErpProduct.FindProductImageReply.data: object expected");
+                message.data = $root.pbErpProduct.ProductImage.fromObject(object.data);
+            }
+            if (object.list) {
+                if (!Array.isArray(object.list))
+                    throw TypeError(".pbErpProduct.FindProductImageReply.list: array expected");
+                message.list = [];
+                for (var i = 0; i < object.list.length; ++i) {
+                    if (typeof object.list[i] !== "object")
+                        throw TypeError(".pbErpProduct.FindProductImageReply.list: object expected");
+                    message.list[i] = $root.pbErpProduct.ProductImage.fromObject(object.list[i]);
+                }
+            }
+            if (object.total != null)
+                if ($util.Long)
+                    (message.total = $util.Long.fromValue(object.total)).unsigned = false;
+                else if (typeof object.total === "string")
+                    message.total = parseInt(object.total, 10);
+                else if (typeof object.total === "number")
+                    message.total = object.total;
+                else if (typeof object.total === "object")
+                    message.total = new $util.LongBits(object.total.low >>> 0, object.total.high >>> 0).toNumber();
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a FindProductImageReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbErpProduct.FindProductImageReply
+         * @static
+         * @param {pbErpProduct.FindProductImageReply} message FindProductImageReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FindProductImageReply.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.list = [];
+            if (options.defaults) {
+                object.code = options.enums === String ? "None" : 0;
+                object.msg = "";
+                object.data = null;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.total = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.total = options.longs === String ? "0" : 0;
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.data != null && message.hasOwnProperty("data"))
+                object.data = $root.pbErpProduct.ProductImage.toObject(message.data, options);
+            if (message.list && message.list.length) {
+                object.list = [];
+                for (var j = 0; j < message.list.length; ++j)
+                    object.list[j] = $root.pbErpProduct.ProductImage.toObject(message.list[j], options);
+            }
+            if (message.total != null && message.hasOwnProperty("total"))
+                if (typeof message.total === "number")
+                    object.total = options.longs === String ? String(message.total) : message.total;
+                else
+                    object.total = options.longs === String ? $util.Long.prototype.toString.call(message.total) : options.longs === Number ? new $util.LongBits(message.total.low >>> 0, message.total.high >>> 0).toNumber() : message.total;
+            return object;
+        };
+
+        /**
+         * Converts this FindProductImageReply to JSON.
+         * @function toJSON
+         * @memberof pbErpProduct.FindProductImageReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        FindProductImageReply.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for FindProductImageReply
+         * @function getTypeUrl
+         * @memberof pbErpProduct.FindProductImageReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        FindProductImageReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbErpProduct.FindProductImageReply";
+        };
+
+        return FindProductImageReply;
     })();
 
     return pbErpProduct;
@@ -16878,6 +18349,7 @@ $root.pbErpProduction = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -16903,6 +18375,9 @@ $root.pbErpProduction = (function() {
                 case 5002:
                 case 10001:
                 case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -16982,6 +18457,10 @@ $root.pbErpProduction = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -17082,6 +18561,18 @@ $root.pbErpProduction = (function() {
             case "HalaPriceOutRange":
             case 10002:
                 message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -17396,6 +18887,7 @@ $root.pbErpProduction = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -17421,6 +18913,9 @@ $root.pbErpProduction = (function() {
                 case 5002:
                 case 10001:
                 case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -17500,6 +18995,10 @@ $root.pbErpProduction = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -17600,6 +19099,18 @@ $root.pbErpProduction = (function() {
             case "HalaPriceOutRange":
             case 10002:
                 message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -17914,6 +19425,7 @@ $root.pbErpProduction = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -17939,6 +19451,9 @@ $root.pbErpProduction = (function() {
                 case 5002:
                 case 10001:
                 case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -18018,6 +19533,10 @@ $root.pbErpProduction = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -18118,6 +19637,18 @@ $root.pbErpProduction = (function() {
             case "HalaPriceOutRange":
             case 10002:
                 message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -18432,6 +19963,7 @@ $root.pbErpProduction = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -18457,6 +19989,9 @@ $root.pbErpProduction = (function() {
                 case 5002:
                 case 10001:
                 case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -18536,6 +20071,10 @@ $root.pbErpProduction = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -18636,6 +20175,18 @@ $root.pbErpProduction = (function() {
             case "HalaPriceOutRange":
             case 10002:
                 message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -22686,6 +24237,7 @@ $root.pbErpPurchase = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -22711,6 +24263,9 @@ $root.pbErpPurchase = (function() {
                 case 5002:
                 case 10001:
                 case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -22790,6 +24345,10 @@ $root.pbErpPurchase = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -22890,6 +24449,18 @@ $root.pbErpPurchase = (function() {
             case "HalaPriceOutRange":
             case 10002:
                 message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -23174,6 +24745,7 @@ $root.pbErpPurchase = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -23199,6 +24771,9 @@ $root.pbErpPurchase = (function() {
                 case 5002:
                 case 10001:
                 case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -23270,6 +24845,10 @@ $root.pbErpPurchase = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -23370,6 +24949,18 @@ $root.pbErpPurchase = (function() {
             case "HalaPriceOutRange":
             case 10002:
                 message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -23657,6 +25248,7 @@ $root.pbErpPurchase = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -23682,6 +25274,9 @@ $root.pbErpPurchase = (function() {
                 case 5002:
                 case 10001:
                 case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -23761,6 +25356,10 @@ $root.pbErpPurchase = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -23861,6 +25460,18 @@ $root.pbErpPurchase = (function() {
             case "HalaPriceOutRange":
             case 10002:
                 message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -28076,6 +29687,7 @@ $root.pbErpSales = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -28101,6 +29713,9 @@ $root.pbErpSales = (function() {
                 case 5002:
                 case 10001:
                 case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -28180,6 +29795,10 @@ $root.pbErpSales = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -28280,6 +29899,18 @@ $root.pbErpSales = (function() {
             case "HalaPriceOutRange":
             case 10002:
                 message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -28564,6 +30195,7 @@ $root.pbErpSales = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -28589,6 +30221,9 @@ $root.pbErpSales = (function() {
                 case 5002:
                 case 10001:
                 case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -28660,6 +30295,10 @@ $root.pbErpSales = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -28760,6 +30399,18 @@ $root.pbErpSales = (function() {
             case "HalaPriceOutRange":
             case 10002:
                 message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -29047,6 +30698,7 @@ $root.pbErpSales = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -29072,6 +30724,9 @@ $root.pbErpSales = (function() {
                 case 5002:
                 case 10001:
                 case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -29151,6 +30806,10 @@ $root.pbErpSales = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -29251,6 +30910,18 @@ $root.pbErpSales = (function() {
             case "HalaPriceOutRange":
             case 10002:
                 message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -29531,6 +31202,7 @@ $root.pbErpSales = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -29556,6 +31228,9 @@ $root.pbErpSales = (function() {
                 case 5002:
                 case 10001:
                 case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -29623,6 +31298,10 @@ $root.pbErpSales = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -29723,6 +31402,18 @@ $root.pbErpSales = (function() {
             case "HalaPriceOutRange":
             case 10002:
                 message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -31123,6 +32814,2510 @@ $root.pbErpSales = (function() {
     })();
 
     return pbErpSales;
+})();
+
+$root.pbErpPrintTemplate = (function() {
+
+    /**
+     * Namespace pbErpPrintTemplate.
+     * @exports pbErpPrintTemplate
+     * @namespace
+     */
+    var pbErpPrintTemplate = {};
+
+    pbErpPrintTemplate.PrintTemplateModel = (function() {
+
+        /**
+         * Properties of a PrintTemplateModel.
+         * @memberof pbErpPrintTemplate
+         * @interface IPrintTemplateModel
+         * @property {number|Long|null} [id] PrintTemplateModel id
+         * @property {string|null} [createdAt] PrintTemplateModel createdAt
+         * @property {string|null} [updatedAt] PrintTemplateModel updatedAt
+         * @property {string|null} [name] PrintTemplateModel name
+         * @property {string|null} [category] PrintTemplateModel category
+         * @property {string|null} [paperName] PrintTemplateModel paperName
+         * @property {number|null} [paperWidth] PrintTemplateModel paperWidth
+         * @property {number|null} [paperHeight] PrintTemplateModel paperHeight
+         * @property {boolean|null} [paperIsCustom] PrintTemplateModel paperIsCustom
+         * @property {number|null} [orientation] PrintTemplateModel orientation
+         * @property {number|null} [marginTop] PrintTemplateModel marginTop
+         * @property {number|null} [marginBottom] PrintTemplateModel marginBottom
+         * @property {number|null} [marginLeft] PrintTemplateModel marginLeft
+         * @property {number|null} [marginRight] PrintTemplateModel marginRight
+         * @property {string|null} [components] PrintTemplateModel components
+         */
+
+        /**
+         * Constructs a new PrintTemplateModel.
+         * @memberof pbErpPrintTemplate
+         * @classdesc Represents a PrintTemplateModel.
+         * @implements IPrintTemplateModel
+         * @constructor
+         * @param {pbErpPrintTemplate.IPrintTemplateModel=} [properties] Properties to set
+         */
+        function PrintTemplateModel(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * PrintTemplateModel id.
+         * @member {number|Long} id
+         * @memberof pbErpPrintTemplate.PrintTemplateModel
+         * @instance
+         */
+        PrintTemplateModel.prototype.id = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * PrintTemplateModel createdAt.
+         * @member {string} createdAt
+         * @memberof pbErpPrintTemplate.PrintTemplateModel
+         * @instance
+         */
+        PrintTemplateModel.prototype.createdAt = "";
+
+        /**
+         * PrintTemplateModel updatedAt.
+         * @member {string} updatedAt
+         * @memberof pbErpPrintTemplate.PrintTemplateModel
+         * @instance
+         */
+        PrintTemplateModel.prototype.updatedAt = "";
+
+        /**
+         * PrintTemplateModel name.
+         * @member {string} name
+         * @memberof pbErpPrintTemplate.PrintTemplateModel
+         * @instance
+         */
+        PrintTemplateModel.prototype.name = "";
+
+        /**
+         * PrintTemplateModel category.
+         * @member {string} category
+         * @memberof pbErpPrintTemplate.PrintTemplateModel
+         * @instance
+         */
+        PrintTemplateModel.prototype.category = "";
+
+        /**
+         * PrintTemplateModel paperName.
+         * @member {string} paperName
+         * @memberof pbErpPrintTemplate.PrintTemplateModel
+         * @instance
+         */
+        PrintTemplateModel.prototype.paperName = "";
+
+        /**
+         * PrintTemplateModel paperWidth.
+         * @member {number} paperWidth
+         * @memberof pbErpPrintTemplate.PrintTemplateModel
+         * @instance
+         */
+        PrintTemplateModel.prototype.paperWidth = 0;
+
+        /**
+         * PrintTemplateModel paperHeight.
+         * @member {number} paperHeight
+         * @memberof pbErpPrintTemplate.PrintTemplateModel
+         * @instance
+         */
+        PrintTemplateModel.prototype.paperHeight = 0;
+
+        /**
+         * PrintTemplateModel paperIsCustom.
+         * @member {boolean} paperIsCustom
+         * @memberof pbErpPrintTemplate.PrintTemplateModel
+         * @instance
+         */
+        PrintTemplateModel.prototype.paperIsCustom = false;
+
+        /**
+         * PrintTemplateModel orientation.
+         * @member {number} orientation
+         * @memberof pbErpPrintTemplate.PrintTemplateModel
+         * @instance
+         */
+        PrintTemplateModel.prototype.orientation = 0;
+
+        /**
+         * PrintTemplateModel marginTop.
+         * @member {number} marginTop
+         * @memberof pbErpPrintTemplate.PrintTemplateModel
+         * @instance
+         */
+        PrintTemplateModel.prototype.marginTop = 0;
+
+        /**
+         * PrintTemplateModel marginBottom.
+         * @member {number} marginBottom
+         * @memberof pbErpPrintTemplate.PrintTemplateModel
+         * @instance
+         */
+        PrintTemplateModel.prototype.marginBottom = 0;
+
+        /**
+         * PrintTemplateModel marginLeft.
+         * @member {number} marginLeft
+         * @memberof pbErpPrintTemplate.PrintTemplateModel
+         * @instance
+         */
+        PrintTemplateModel.prototype.marginLeft = 0;
+
+        /**
+         * PrintTemplateModel marginRight.
+         * @member {number} marginRight
+         * @memberof pbErpPrintTemplate.PrintTemplateModel
+         * @instance
+         */
+        PrintTemplateModel.prototype.marginRight = 0;
+
+        /**
+         * PrintTemplateModel components.
+         * @member {string} components
+         * @memberof pbErpPrintTemplate.PrintTemplateModel
+         * @instance
+         */
+        PrintTemplateModel.prototype.components = "";
+
+        /**
+         * Creates a new PrintTemplateModel instance using the specified properties.
+         * @function create
+         * @memberof pbErpPrintTemplate.PrintTemplateModel
+         * @static
+         * @param {pbErpPrintTemplate.IPrintTemplateModel=} [properties] Properties to set
+         * @returns {pbErpPrintTemplate.PrintTemplateModel} PrintTemplateModel instance
+         */
+        PrintTemplateModel.create = function create(properties) {
+            return new PrintTemplateModel(properties);
+        };
+
+        /**
+         * Encodes the specified PrintTemplateModel message. Does not implicitly {@link pbErpPrintTemplate.PrintTemplateModel.verify|verify} messages.
+         * @function encode
+         * @memberof pbErpPrintTemplate.PrintTemplateModel
+         * @static
+         * @param {pbErpPrintTemplate.IPrintTemplateModel} message PrintTemplateModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        PrintTemplateModel.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id);
+            if (message.createdAt != null && Object.hasOwnProperty.call(message, "createdAt"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.createdAt);
+            if (message.updatedAt != null && Object.hasOwnProperty.call(message, "updatedAt"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.updatedAt);
+            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                writer.uint32(/* id 4, wireType 2 =*/34).string(message.name);
+            if (message.category != null && Object.hasOwnProperty.call(message, "category"))
+                writer.uint32(/* id 5, wireType 2 =*/42).string(message.category);
+            if (message.paperName != null && Object.hasOwnProperty.call(message, "paperName"))
+                writer.uint32(/* id 6, wireType 2 =*/50).string(message.paperName);
+            if (message.paperWidth != null && Object.hasOwnProperty.call(message, "paperWidth"))
+                writer.uint32(/* id 7, wireType 1 =*/57).double(message.paperWidth);
+            if (message.paperHeight != null && Object.hasOwnProperty.call(message, "paperHeight"))
+                writer.uint32(/* id 8, wireType 1 =*/65).double(message.paperHeight);
+            if (message.paperIsCustom != null && Object.hasOwnProperty.call(message, "paperIsCustom"))
+                writer.uint32(/* id 9, wireType 0 =*/72).bool(message.paperIsCustom);
+            if (message.orientation != null && Object.hasOwnProperty.call(message, "orientation"))
+                writer.uint32(/* id 10, wireType 0 =*/80).int32(message.orientation);
+            if (message.marginTop != null && Object.hasOwnProperty.call(message, "marginTop"))
+                writer.uint32(/* id 11, wireType 1 =*/89).double(message.marginTop);
+            if (message.marginBottom != null && Object.hasOwnProperty.call(message, "marginBottom"))
+                writer.uint32(/* id 12, wireType 1 =*/97).double(message.marginBottom);
+            if (message.marginLeft != null && Object.hasOwnProperty.call(message, "marginLeft"))
+                writer.uint32(/* id 13, wireType 1 =*/105).double(message.marginLeft);
+            if (message.marginRight != null && Object.hasOwnProperty.call(message, "marginRight"))
+                writer.uint32(/* id 14, wireType 1 =*/113).double(message.marginRight);
+            if (message.components != null && Object.hasOwnProperty.call(message, "components"))
+                writer.uint32(/* id 15, wireType 2 =*/122).string(message.components);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified PrintTemplateModel message, length delimited. Does not implicitly {@link pbErpPrintTemplate.PrintTemplateModel.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbErpPrintTemplate.PrintTemplateModel
+         * @static
+         * @param {pbErpPrintTemplate.IPrintTemplateModel} message PrintTemplateModel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        PrintTemplateModel.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a PrintTemplateModel message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbErpPrintTemplate.PrintTemplateModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbErpPrintTemplate.PrintTemplateModel} PrintTemplateModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        PrintTemplateModel.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbErpPrintTemplate.PrintTemplateModel();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.id = reader.int64();
+                        break;
+                    }
+                case 2: {
+                        message.createdAt = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.updatedAt = reader.string();
+                        break;
+                    }
+                case 4: {
+                        message.name = reader.string();
+                        break;
+                    }
+                case 5: {
+                        message.category = reader.string();
+                        break;
+                    }
+                case 6: {
+                        message.paperName = reader.string();
+                        break;
+                    }
+                case 7: {
+                        message.paperWidth = reader.double();
+                        break;
+                    }
+                case 8: {
+                        message.paperHeight = reader.double();
+                        break;
+                    }
+                case 9: {
+                        message.paperIsCustom = reader.bool();
+                        break;
+                    }
+                case 10: {
+                        message.orientation = reader.int32();
+                        break;
+                    }
+                case 11: {
+                        message.marginTop = reader.double();
+                        break;
+                    }
+                case 12: {
+                        message.marginBottom = reader.double();
+                        break;
+                    }
+                case 13: {
+                        message.marginLeft = reader.double();
+                        break;
+                    }
+                case 14: {
+                        message.marginRight = reader.double();
+                        break;
+                    }
+                case 15: {
+                        message.components = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a PrintTemplateModel message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbErpPrintTemplate.PrintTemplateModel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbErpPrintTemplate.PrintTemplateModel} PrintTemplateModel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        PrintTemplateModel.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a PrintTemplateModel message.
+         * @function verify
+         * @memberof pbErpPrintTemplate.PrintTemplateModel
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        PrintTemplateModel.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (!$util.isInteger(message.id) && !(message.id && $util.isInteger(message.id.low) && $util.isInteger(message.id.high)))
+                    return "id: integer|Long expected";
+            if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                if (!$util.isString(message.createdAt))
+                    return "createdAt: string expected";
+            if (message.updatedAt != null && message.hasOwnProperty("updatedAt"))
+                if (!$util.isString(message.updatedAt))
+                    return "updatedAt: string expected";
+            if (message.name != null && message.hasOwnProperty("name"))
+                if (!$util.isString(message.name))
+                    return "name: string expected";
+            if (message.category != null && message.hasOwnProperty("category"))
+                if (!$util.isString(message.category))
+                    return "category: string expected";
+            if (message.paperName != null && message.hasOwnProperty("paperName"))
+                if (!$util.isString(message.paperName))
+                    return "paperName: string expected";
+            if (message.paperWidth != null && message.hasOwnProperty("paperWidth"))
+                if (typeof message.paperWidth !== "number")
+                    return "paperWidth: number expected";
+            if (message.paperHeight != null && message.hasOwnProperty("paperHeight"))
+                if (typeof message.paperHeight !== "number")
+                    return "paperHeight: number expected";
+            if (message.paperIsCustom != null && message.hasOwnProperty("paperIsCustom"))
+                if (typeof message.paperIsCustom !== "boolean")
+                    return "paperIsCustom: boolean expected";
+            if (message.orientation != null && message.hasOwnProperty("orientation"))
+                if (!$util.isInteger(message.orientation))
+                    return "orientation: integer expected";
+            if (message.marginTop != null && message.hasOwnProperty("marginTop"))
+                if (typeof message.marginTop !== "number")
+                    return "marginTop: number expected";
+            if (message.marginBottom != null && message.hasOwnProperty("marginBottom"))
+                if (typeof message.marginBottom !== "number")
+                    return "marginBottom: number expected";
+            if (message.marginLeft != null && message.hasOwnProperty("marginLeft"))
+                if (typeof message.marginLeft !== "number")
+                    return "marginLeft: number expected";
+            if (message.marginRight != null && message.hasOwnProperty("marginRight"))
+                if (typeof message.marginRight !== "number")
+                    return "marginRight: number expected";
+            if (message.components != null && message.hasOwnProperty("components"))
+                if (!$util.isString(message.components))
+                    return "components: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a PrintTemplateModel message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbErpPrintTemplate.PrintTemplateModel
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbErpPrintTemplate.PrintTemplateModel} PrintTemplateModel
+         */
+        PrintTemplateModel.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbErpPrintTemplate.PrintTemplateModel)
+                return object;
+            var message = new $root.pbErpPrintTemplate.PrintTemplateModel();
+            if (object.id != null)
+                if ($util.Long)
+                    (message.id = $util.Long.fromValue(object.id)).unsigned = false;
+                else if (typeof object.id === "string")
+                    message.id = parseInt(object.id, 10);
+                else if (typeof object.id === "number")
+                    message.id = object.id;
+                else if (typeof object.id === "object")
+                    message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber();
+            if (object.createdAt != null)
+                message.createdAt = String(object.createdAt);
+            if (object.updatedAt != null)
+                message.updatedAt = String(object.updatedAt);
+            if (object.name != null)
+                message.name = String(object.name);
+            if (object.category != null)
+                message.category = String(object.category);
+            if (object.paperName != null)
+                message.paperName = String(object.paperName);
+            if (object.paperWidth != null)
+                message.paperWidth = Number(object.paperWidth);
+            if (object.paperHeight != null)
+                message.paperHeight = Number(object.paperHeight);
+            if (object.paperIsCustom != null)
+                message.paperIsCustom = Boolean(object.paperIsCustom);
+            if (object.orientation != null)
+                message.orientation = object.orientation | 0;
+            if (object.marginTop != null)
+                message.marginTop = Number(object.marginTop);
+            if (object.marginBottom != null)
+                message.marginBottom = Number(object.marginBottom);
+            if (object.marginLeft != null)
+                message.marginLeft = Number(object.marginLeft);
+            if (object.marginRight != null)
+                message.marginRight = Number(object.marginRight);
+            if (object.components != null)
+                message.components = String(object.components);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a PrintTemplateModel message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbErpPrintTemplate.PrintTemplateModel
+         * @static
+         * @param {pbErpPrintTemplate.PrintTemplateModel} message PrintTemplateModel
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        PrintTemplateModel.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.id = options.longs === String ? "0" : 0;
+                object.createdAt = "";
+                object.updatedAt = "";
+                object.name = "";
+                object.category = "";
+                object.paperName = "";
+                object.paperWidth = 0;
+                object.paperHeight = 0;
+                object.paperIsCustom = false;
+                object.orientation = 0;
+                object.marginTop = 0;
+                object.marginBottom = 0;
+                object.marginLeft = 0;
+                object.marginRight = 0;
+                object.components = "";
+            }
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (typeof message.id === "number")
+                    object.id = options.longs === String ? String(message.id) : message.id;
+                else
+                    object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id;
+            if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                object.createdAt = message.createdAt;
+            if (message.updatedAt != null && message.hasOwnProperty("updatedAt"))
+                object.updatedAt = message.updatedAt;
+            if (message.name != null && message.hasOwnProperty("name"))
+                object.name = message.name;
+            if (message.category != null && message.hasOwnProperty("category"))
+                object.category = message.category;
+            if (message.paperName != null && message.hasOwnProperty("paperName"))
+                object.paperName = message.paperName;
+            if (message.paperWidth != null && message.hasOwnProperty("paperWidth"))
+                object.paperWidth = options.json && !isFinite(message.paperWidth) ? String(message.paperWidth) : message.paperWidth;
+            if (message.paperHeight != null && message.hasOwnProperty("paperHeight"))
+                object.paperHeight = options.json && !isFinite(message.paperHeight) ? String(message.paperHeight) : message.paperHeight;
+            if (message.paperIsCustom != null && message.hasOwnProperty("paperIsCustom"))
+                object.paperIsCustom = message.paperIsCustom;
+            if (message.orientation != null && message.hasOwnProperty("orientation"))
+                object.orientation = message.orientation;
+            if (message.marginTop != null && message.hasOwnProperty("marginTop"))
+                object.marginTop = options.json && !isFinite(message.marginTop) ? String(message.marginTop) : message.marginTop;
+            if (message.marginBottom != null && message.hasOwnProperty("marginBottom"))
+                object.marginBottom = options.json && !isFinite(message.marginBottom) ? String(message.marginBottom) : message.marginBottom;
+            if (message.marginLeft != null && message.hasOwnProperty("marginLeft"))
+                object.marginLeft = options.json && !isFinite(message.marginLeft) ? String(message.marginLeft) : message.marginLeft;
+            if (message.marginRight != null && message.hasOwnProperty("marginRight"))
+                object.marginRight = options.json && !isFinite(message.marginRight) ? String(message.marginRight) : message.marginRight;
+            if (message.components != null && message.hasOwnProperty("components"))
+                object.components = message.components;
+            return object;
+        };
+
+        /**
+         * Converts this PrintTemplateModel to JSON.
+         * @function toJSON
+         * @memberof pbErpPrintTemplate.PrintTemplateModel
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        PrintTemplateModel.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for PrintTemplateModel
+         * @function getTypeUrl
+         * @memberof pbErpPrintTemplate.PrintTemplateModel
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        PrintTemplateModel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbErpPrintTemplate.PrintTemplateModel";
+        };
+
+        return PrintTemplateModel;
+    })();
+
+    pbErpPrintTemplate.FindPrintTemplateArgs = (function() {
+
+        /**
+         * Properties of a FindPrintTemplateArgs.
+         * @memberof pbErpPrintTemplate
+         * @interface IFindPrintTemplateArgs
+         * @property {pbcommon.IPageInfo|null} [pageInfo] FindPrintTemplateArgs pageInfo
+         * @property {string|null} [keyword] FindPrintTemplateArgs keyword
+         * @property {string|null} [category] FindPrintTemplateArgs category
+         */
+
+        /**
+         * Constructs a new FindPrintTemplateArgs.
+         * @memberof pbErpPrintTemplate
+         * @classdesc Represents a FindPrintTemplateArgs.
+         * @implements IFindPrintTemplateArgs
+         * @constructor
+         * @param {pbErpPrintTemplate.IFindPrintTemplateArgs=} [properties] Properties to set
+         */
+        function FindPrintTemplateArgs(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * FindPrintTemplateArgs pageInfo.
+         * @member {pbcommon.IPageInfo|null|undefined} pageInfo
+         * @memberof pbErpPrintTemplate.FindPrintTemplateArgs
+         * @instance
+         */
+        FindPrintTemplateArgs.prototype.pageInfo = null;
+
+        /**
+         * FindPrintTemplateArgs keyword.
+         * @member {string} keyword
+         * @memberof pbErpPrintTemplate.FindPrintTemplateArgs
+         * @instance
+         */
+        FindPrintTemplateArgs.prototype.keyword = "";
+
+        /**
+         * FindPrintTemplateArgs category.
+         * @member {string} category
+         * @memberof pbErpPrintTemplate.FindPrintTemplateArgs
+         * @instance
+         */
+        FindPrintTemplateArgs.prototype.category = "";
+
+        /**
+         * Creates a new FindPrintTemplateArgs instance using the specified properties.
+         * @function create
+         * @memberof pbErpPrintTemplate.FindPrintTemplateArgs
+         * @static
+         * @param {pbErpPrintTemplate.IFindPrintTemplateArgs=} [properties] Properties to set
+         * @returns {pbErpPrintTemplate.FindPrintTemplateArgs} FindPrintTemplateArgs instance
+         */
+        FindPrintTemplateArgs.create = function create(properties) {
+            return new FindPrintTemplateArgs(properties);
+        };
+
+        /**
+         * Encodes the specified FindPrintTemplateArgs message. Does not implicitly {@link pbErpPrintTemplate.FindPrintTemplateArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbErpPrintTemplate.FindPrintTemplateArgs
+         * @static
+         * @param {pbErpPrintTemplate.IFindPrintTemplateArgs} message FindPrintTemplateArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindPrintTemplateArgs.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.pageInfo != null && Object.hasOwnProperty.call(message, "pageInfo"))
+                $root.pbcommon.PageInfo.encode(message.pageInfo, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.keyword != null && Object.hasOwnProperty.call(message, "keyword"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.keyword);
+            if (message.category != null && Object.hasOwnProperty.call(message, "category"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.category);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified FindPrintTemplateArgs message, length delimited. Does not implicitly {@link pbErpPrintTemplate.FindPrintTemplateArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbErpPrintTemplate.FindPrintTemplateArgs
+         * @static
+         * @param {pbErpPrintTemplate.IFindPrintTemplateArgs} message FindPrintTemplateArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindPrintTemplateArgs.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a FindPrintTemplateArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbErpPrintTemplate.FindPrintTemplateArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbErpPrintTemplate.FindPrintTemplateArgs} FindPrintTemplateArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindPrintTemplateArgs.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbErpPrintTemplate.FindPrintTemplateArgs();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.pageInfo = $root.pbcommon.PageInfo.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 2: {
+                        message.keyword = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.category = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a FindPrintTemplateArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbErpPrintTemplate.FindPrintTemplateArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbErpPrintTemplate.FindPrintTemplateArgs} FindPrintTemplateArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindPrintTemplateArgs.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a FindPrintTemplateArgs message.
+         * @function verify
+         * @memberof pbErpPrintTemplate.FindPrintTemplateArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        FindPrintTemplateArgs.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.pageInfo != null && message.hasOwnProperty("pageInfo")) {
+                var error = $root.pbcommon.PageInfo.verify(message.pageInfo);
+                if (error)
+                    return "pageInfo." + error;
+            }
+            if (message.keyword != null && message.hasOwnProperty("keyword"))
+                if (!$util.isString(message.keyword))
+                    return "keyword: string expected";
+            if (message.category != null && message.hasOwnProperty("category"))
+                if (!$util.isString(message.category))
+                    return "category: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a FindPrintTemplateArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbErpPrintTemplate.FindPrintTemplateArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbErpPrintTemplate.FindPrintTemplateArgs} FindPrintTemplateArgs
+         */
+        FindPrintTemplateArgs.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbErpPrintTemplate.FindPrintTemplateArgs)
+                return object;
+            var message = new $root.pbErpPrintTemplate.FindPrintTemplateArgs();
+            if (object.pageInfo != null) {
+                if (typeof object.pageInfo !== "object")
+                    throw TypeError(".pbErpPrintTemplate.FindPrintTemplateArgs.pageInfo: object expected");
+                message.pageInfo = $root.pbcommon.PageInfo.fromObject(object.pageInfo);
+            }
+            if (object.keyword != null)
+                message.keyword = String(object.keyword);
+            if (object.category != null)
+                message.category = String(object.category);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a FindPrintTemplateArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbErpPrintTemplate.FindPrintTemplateArgs
+         * @static
+         * @param {pbErpPrintTemplate.FindPrintTemplateArgs} message FindPrintTemplateArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FindPrintTemplateArgs.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.pageInfo = null;
+                object.keyword = "";
+                object.category = "";
+            }
+            if (message.pageInfo != null && message.hasOwnProperty("pageInfo"))
+                object.pageInfo = $root.pbcommon.PageInfo.toObject(message.pageInfo, options);
+            if (message.keyword != null && message.hasOwnProperty("keyword"))
+                object.keyword = message.keyword;
+            if (message.category != null && message.hasOwnProperty("category"))
+                object.category = message.category;
+            return object;
+        };
+
+        /**
+         * Converts this FindPrintTemplateArgs to JSON.
+         * @function toJSON
+         * @memberof pbErpPrintTemplate.FindPrintTemplateArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        FindPrintTemplateArgs.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for FindPrintTemplateArgs
+         * @function getTypeUrl
+         * @memberof pbErpPrintTemplate.FindPrintTemplateArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        FindPrintTemplateArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbErpPrintTemplate.FindPrintTemplateArgs";
+        };
+
+        return FindPrintTemplateArgs;
+    })();
+
+    pbErpPrintTemplate.FindPrintTemplateReply = (function() {
+
+        /**
+         * Properties of a FindPrintTemplateReply.
+         * @memberof pbErpPrintTemplate
+         * @interface IFindPrintTemplateReply
+         * @property {pbcommon.EnumCode|null} [code] FindPrintTemplateReply code
+         * @property {string|null} [msg] FindPrintTemplateReply msg
+         * @property {pbErpPrintTemplate.IPrintTemplateModel|null} [data] FindPrintTemplateReply data
+         * @property {Array.<pbErpPrintTemplate.IPrintTemplateModel>|null} [list] FindPrintTemplateReply list
+         * @property {number|Long|null} [total] FindPrintTemplateReply total
+         */
+
+        /**
+         * Constructs a new FindPrintTemplateReply.
+         * @memberof pbErpPrintTemplate
+         * @classdesc Represents a FindPrintTemplateReply.
+         * @implements IFindPrintTemplateReply
+         * @constructor
+         * @param {pbErpPrintTemplate.IFindPrintTemplateReply=} [properties] Properties to set
+         */
+        function FindPrintTemplateReply(properties) {
+            this.list = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * FindPrintTemplateReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbErpPrintTemplate.FindPrintTemplateReply
+         * @instance
+         */
+        FindPrintTemplateReply.prototype.code = 0;
+
+        /**
+         * FindPrintTemplateReply msg.
+         * @member {string} msg
+         * @memberof pbErpPrintTemplate.FindPrintTemplateReply
+         * @instance
+         */
+        FindPrintTemplateReply.prototype.msg = "";
+
+        /**
+         * FindPrintTemplateReply data.
+         * @member {pbErpPrintTemplate.IPrintTemplateModel|null|undefined} data
+         * @memberof pbErpPrintTemplate.FindPrintTemplateReply
+         * @instance
+         */
+        FindPrintTemplateReply.prototype.data = null;
+
+        /**
+         * FindPrintTemplateReply list.
+         * @member {Array.<pbErpPrintTemplate.IPrintTemplateModel>} list
+         * @memberof pbErpPrintTemplate.FindPrintTemplateReply
+         * @instance
+         */
+        FindPrintTemplateReply.prototype.list = $util.emptyArray;
+
+        /**
+         * FindPrintTemplateReply total.
+         * @member {number|Long} total
+         * @memberof pbErpPrintTemplate.FindPrintTemplateReply
+         * @instance
+         */
+        FindPrintTemplateReply.prototype.total = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * Creates a new FindPrintTemplateReply instance using the specified properties.
+         * @function create
+         * @memberof pbErpPrintTemplate.FindPrintTemplateReply
+         * @static
+         * @param {pbErpPrintTemplate.IFindPrintTemplateReply=} [properties] Properties to set
+         * @returns {pbErpPrintTemplate.FindPrintTemplateReply} FindPrintTemplateReply instance
+         */
+        FindPrintTemplateReply.create = function create(properties) {
+            return new FindPrintTemplateReply(properties);
+        };
+
+        /**
+         * Encodes the specified FindPrintTemplateReply message. Does not implicitly {@link pbErpPrintTemplate.FindPrintTemplateReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbErpPrintTemplate.FindPrintTemplateReply
+         * @static
+         * @param {pbErpPrintTemplate.IFindPrintTemplateReply} message FindPrintTemplateReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindPrintTemplateReply.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.data != null && Object.hasOwnProperty.call(message, "data"))
+                $root.pbErpPrintTemplate.PrintTemplateModel.encode(message.data, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            if (message.list != null && message.list.length)
+                for (var i = 0; i < message.list.length; ++i)
+                    $root.pbErpPrintTemplate.PrintTemplateModel.encode(message.list[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+            if (message.total != null && Object.hasOwnProperty.call(message, "total"))
+                writer.uint32(/* id 5, wireType 0 =*/40).int64(message.total);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified FindPrintTemplateReply message, length delimited. Does not implicitly {@link pbErpPrintTemplate.FindPrintTemplateReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbErpPrintTemplate.FindPrintTemplateReply
+         * @static
+         * @param {pbErpPrintTemplate.IFindPrintTemplateReply} message FindPrintTemplateReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindPrintTemplateReply.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a FindPrintTemplateReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbErpPrintTemplate.FindPrintTemplateReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbErpPrintTemplate.FindPrintTemplateReply} FindPrintTemplateReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindPrintTemplateReply.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbErpPrintTemplate.FindPrintTemplateReply();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.code = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.data = $root.pbErpPrintTemplate.PrintTemplateModel.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 4: {
+                        if (!(message.list && message.list.length))
+                            message.list = [];
+                        message.list.push($root.pbErpPrintTemplate.PrintTemplateModel.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 5: {
+                        message.total = reader.int64();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a FindPrintTemplateReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbErpPrintTemplate.FindPrintTemplateReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbErpPrintTemplate.FindPrintTemplateReply} FindPrintTemplateReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindPrintTemplateReply.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a FindPrintTemplateReply message.
+         * @function verify
+         * @memberof pbErpPrintTemplate.FindPrintTemplateReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        FindPrintTemplateReply.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.code != null && message.hasOwnProperty("code"))
+                switch (message.code) {
+                default:
+                    return "code: enum value expected";
+                case 0:
+                case 200:
+                case 403:
+                case 500:
+                case 501:
+                case 502:
+                case 503:
+                case 504:
+                case 505:
+                case 511:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
+                case 2002:
+                case 2003:
+                case 2004:
+                case 2005:
+                case 2006:
+                case 2007:
+                case 2008:
+                case 2009:
+                case 2010:
+                case 2011:
+                case 2012:
+                case 2013:
+                case 2014:
+                case 2015:
+                case 3001:
+                case 3002:
+                case 3003:
+                case 5001:
+                case 5002:
+                case 10001:
+                case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
+                    break;
+                }
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                if (!$util.isString(message.msg))
+                    return "msg: string expected";
+            if (message.data != null && message.hasOwnProperty("data")) {
+                var error = $root.pbErpPrintTemplate.PrintTemplateModel.verify(message.data);
+                if (error)
+                    return "data." + error;
+            }
+            if (message.list != null && message.hasOwnProperty("list")) {
+                if (!Array.isArray(message.list))
+                    return "list: array expected";
+                for (var i = 0; i < message.list.length; ++i) {
+                    var error = $root.pbErpPrintTemplate.PrintTemplateModel.verify(message.list[i]);
+                    if (error)
+                        return "list." + error;
+                }
+            }
+            if (message.total != null && message.hasOwnProperty("total"))
+                if (!$util.isInteger(message.total) && !(message.total && $util.isInteger(message.total.low) && $util.isInteger(message.total.high)))
+                    return "total: integer|Long expected";
+            return null;
+        };
+
+        /**
+         * Creates a FindPrintTemplateReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbErpPrintTemplate.FindPrintTemplateReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbErpPrintTemplate.FindPrintTemplateReply} FindPrintTemplateReply
+         */
+        FindPrintTemplateReply.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbErpPrintTemplate.FindPrintTemplateReply)
+                return object;
+            var message = new $root.pbErpPrintTemplate.FindPrintTemplateReply();
+            switch (object.code) {
+            default:
+                if (typeof object.code === "number") {
+                    message.code = object.code;
+                    break;
+                }
+                break;
+            case "None":
+            case 0:
+                message.code = 0;
+                break;
+            case "Success":
+            case 200:
+                message.code = 200;
+                break;
+            case "Forbidden":
+            case 403:
+                message.code = 403;
+                break;
+            case "Fail":
+            case 500:
+                message.code = 500;
+                break;
+            case "Unknown":
+            case 501:
+                message.code = 501;
+                break;
+            case "Internal":
+            case 502:
+                message.code = 502;
+                break;
+            case "Invalid":
+            case 503:
+                message.code = 503;
+                break;
+            case "InvalidParam":
+            case 504:
+                message.code = 504;
+                break;
+            case "ParamError":
+            case 505:
+                message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
+                break;
+            case "FindError":
+            case 1001:
+                message.code = 1001;
+                break;
+            case "CreateError":
+            case 1002:
+                message.code = 1002;
+                break;
+            case "DeleteError":
+            case 1003:
+                message.code = 1003;
+                break;
+            case "UpdateError":
+            case 1004:
+                message.code = 1004;
+                break;
+            case "InvalidToken":
+            case 2002:
+                message.code = 2002;
+                break;
+            case "InvalidSign":
+            case 2003:
+                message.code = 2003;
+                break;
+            case "NotLogin":
+            case 2004:
+                message.code = 2004;
+                break;
+            case "LoginTimeout":
+            case 2005:
+                message.code = 2005;
+                break;
+            case "LoginError":
+            case 2006:
+                message.code = 2006;
+                break;
+            case "LoginForbidden":
+            case 2007:
+                message.code = 2007;
+                break;
+            case "LoginExpired":
+            case 2008:
+                message.code = 2008;
+                break;
+            case "LoginInvalid":
+            case 2009:
+                message.code = 2009;
+                break;
+            case "LoginInvalidPassword":
+            case 2010:
+                message.code = 2010;
+                break;
+            case "LoginInvalidUsername":
+            case 2011:
+                message.code = 2011;
+                break;
+            case "LoginInvalidEmail":
+            case 2012:
+                message.code = 2012;
+                break;
+            case "LoginInvalidPhone":
+            case 2013:
+                message.code = 2013;
+                break;
+            case "LoginInvalidUsernameOrEmail":
+            case 2014:
+                message.code = 2014;
+                break;
+            case "LoginSocketRepeat":
+            case 2015:
+                message.code = 2015;
+                break;
+            case "RoleIsNotExist":
+            case 3001:
+                message.code = 3001;
+                break;
+            case "UserIsExist":
+            case 3002:
+                message.code = 3002;
+                break;
+            case "UserIsBan":
+            case 3003:
+                message.code = 3003;
+                break;
+            case "TalkIsBan":
+            case 5001:
+                message.code = 5001;
+                break;
+            case "EnterRoomErr":
+            case 5002:
+                message.code = 5002;
+                break;
+            case "HalaChatNeedBuy":
+            case 10001:
+                message.code = 10001;
+                break;
+            case "HalaPriceOutRange":
+            case 10002:
+                message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
+                break;
+            }
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.data != null) {
+                if (typeof object.data !== "object")
+                    throw TypeError(".pbErpPrintTemplate.FindPrintTemplateReply.data: object expected");
+                message.data = $root.pbErpPrintTemplate.PrintTemplateModel.fromObject(object.data);
+            }
+            if (object.list) {
+                if (!Array.isArray(object.list))
+                    throw TypeError(".pbErpPrintTemplate.FindPrintTemplateReply.list: array expected");
+                message.list = [];
+                for (var i = 0; i < object.list.length; ++i) {
+                    if (typeof object.list[i] !== "object")
+                        throw TypeError(".pbErpPrintTemplate.FindPrintTemplateReply.list: object expected");
+                    message.list[i] = $root.pbErpPrintTemplate.PrintTemplateModel.fromObject(object.list[i]);
+                }
+            }
+            if (object.total != null)
+                if ($util.Long)
+                    (message.total = $util.Long.fromValue(object.total)).unsigned = false;
+                else if (typeof object.total === "string")
+                    message.total = parseInt(object.total, 10);
+                else if (typeof object.total === "number")
+                    message.total = object.total;
+                else if (typeof object.total === "object")
+                    message.total = new $util.LongBits(object.total.low >>> 0, object.total.high >>> 0).toNumber();
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a FindPrintTemplateReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbErpPrintTemplate.FindPrintTemplateReply
+         * @static
+         * @param {pbErpPrintTemplate.FindPrintTemplateReply} message FindPrintTemplateReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FindPrintTemplateReply.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.list = [];
+            if (options.defaults) {
+                object.code = options.enums === String ? "None" : 0;
+                object.msg = "";
+                object.data = null;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.total = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.total = options.longs === String ? "0" : 0;
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.data != null && message.hasOwnProperty("data"))
+                object.data = $root.pbErpPrintTemplate.PrintTemplateModel.toObject(message.data, options);
+            if (message.list && message.list.length) {
+                object.list = [];
+                for (var j = 0; j < message.list.length; ++j)
+                    object.list[j] = $root.pbErpPrintTemplate.PrintTemplateModel.toObject(message.list[j], options);
+            }
+            if (message.total != null && message.hasOwnProperty("total"))
+                if (typeof message.total === "number")
+                    object.total = options.longs === String ? String(message.total) : message.total;
+                else
+                    object.total = options.longs === String ? $util.Long.prototype.toString.call(message.total) : options.longs === Number ? new $util.LongBits(message.total.low >>> 0, message.total.high >>> 0).toNumber() : message.total;
+            return object;
+        };
+
+        /**
+         * Converts this FindPrintTemplateReply to JSON.
+         * @function toJSON
+         * @memberof pbErpPrintTemplate.FindPrintTemplateReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        FindPrintTemplateReply.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for FindPrintTemplateReply
+         * @function getTypeUrl
+         * @memberof pbErpPrintTemplate.FindPrintTemplateReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        FindPrintTemplateReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbErpPrintTemplate.FindPrintTemplateReply";
+        };
+
+        return FindPrintTemplateReply;
+    })();
+
+    pbErpPrintTemplate.CreatePrintTemplateArgs = (function() {
+
+        /**
+         * Properties of a CreatePrintTemplateArgs.
+         * @memberof pbErpPrintTemplate
+         * @interface ICreatePrintTemplateArgs
+         * @property {string|null} [name] CreatePrintTemplateArgs name
+         * @property {string|null} [category] CreatePrintTemplateArgs category
+         * @property {string|null} [paperName] CreatePrintTemplateArgs paperName
+         * @property {number|null} [paperWidth] CreatePrintTemplateArgs paperWidth
+         * @property {number|null} [paperHeight] CreatePrintTemplateArgs paperHeight
+         * @property {boolean|null} [paperIsCustom] CreatePrintTemplateArgs paperIsCustom
+         * @property {number|null} [orientation] CreatePrintTemplateArgs orientation
+         * @property {number|null} [marginTop] CreatePrintTemplateArgs marginTop
+         * @property {number|null} [marginBottom] CreatePrintTemplateArgs marginBottom
+         * @property {number|null} [marginLeft] CreatePrintTemplateArgs marginLeft
+         * @property {number|null} [marginRight] CreatePrintTemplateArgs marginRight
+         * @property {string|null} [components] CreatePrintTemplateArgs components
+         */
+
+        /**
+         * Constructs a new CreatePrintTemplateArgs.
+         * @memberof pbErpPrintTemplate
+         * @classdesc Represents a CreatePrintTemplateArgs.
+         * @implements ICreatePrintTemplateArgs
+         * @constructor
+         * @param {pbErpPrintTemplate.ICreatePrintTemplateArgs=} [properties] Properties to set
+         */
+        function CreatePrintTemplateArgs(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * CreatePrintTemplateArgs name.
+         * @member {string} name
+         * @memberof pbErpPrintTemplate.CreatePrintTemplateArgs
+         * @instance
+         */
+        CreatePrintTemplateArgs.prototype.name = "";
+
+        /**
+         * CreatePrintTemplateArgs category.
+         * @member {string} category
+         * @memberof pbErpPrintTemplate.CreatePrintTemplateArgs
+         * @instance
+         */
+        CreatePrintTemplateArgs.prototype.category = "";
+
+        /**
+         * CreatePrintTemplateArgs paperName.
+         * @member {string} paperName
+         * @memberof pbErpPrintTemplate.CreatePrintTemplateArgs
+         * @instance
+         */
+        CreatePrintTemplateArgs.prototype.paperName = "";
+
+        /**
+         * CreatePrintTemplateArgs paperWidth.
+         * @member {number} paperWidth
+         * @memberof pbErpPrintTemplate.CreatePrintTemplateArgs
+         * @instance
+         */
+        CreatePrintTemplateArgs.prototype.paperWidth = 0;
+
+        /**
+         * CreatePrintTemplateArgs paperHeight.
+         * @member {number} paperHeight
+         * @memberof pbErpPrintTemplate.CreatePrintTemplateArgs
+         * @instance
+         */
+        CreatePrintTemplateArgs.prototype.paperHeight = 0;
+
+        /**
+         * CreatePrintTemplateArgs paperIsCustom.
+         * @member {boolean} paperIsCustom
+         * @memberof pbErpPrintTemplate.CreatePrintTemplateArgs
+         * @instance
+         */
+        CreatePrintTemplateArgs.prototype.paperIsCustom = false;
+
+        /**
+         * CreatePrintTemplateArgs orientation.
+         * @member {number} orientation
+         * @memberof pbErpPrintTemplate.CreatePrintTemplateArgs
+         * @instance
+         */
+        CreatePrintTemplateArgs.prototype.orientation = 0;
+
+        /**
+         * CreatePrintTemplateArgs marginTop.
+         * @member {number} marginTop
+         * @memberof pbErpPrintTemplate.CreatePrintTemplateArgs
+         * @instance
+         */
+        CreatePrintTemplateArgs.prototype.marginTop = 0;
+
+        /**
+         * CreatePrintTemplateArgs marginBottom.
+         * @member {number} marginBottom
+         * @memberof pbErpPrintTemplate.CreatePrintTemplateArgs
+         * @instance
+         */
+        CreatePrintTemplateArgs.prototype.marginBottom = 0;
+
+        /**
+         * CreatePrintTemplateArgs marginLeft.
+         * @member {number} marginLeft
+         * @memberof pbErpPrintTemplate.CreatePrintTemplateArgs
+         * @instance
+         */
+        CreatePrintTemplateArgs.prototype.marginLeft = 0;
+
+        /**
+         * CreatePrintTemplateArgs marginRight.
+         * @member {number} marginRight
+         * @memberof pbErpPrintTemplate.CreatePrintTemplateArgs
+         * @instance
+         */
+        CreatePrintTemplateArgs.prototype.marginRight = 0;
+
+        /**
+         * CreatePrintTemplateArgs components.
+         * @member {string} components
+         * @memberof pbErpPrintTemplate.CreatePrintTemplateArgs
+         * @instance
+         */
+        CreatePrintTemplateArgs.prototype.components = "";
+
+        /**
+         * Creates a new CreatePrintTemplateArgs instance using the specified properties.
+         * @function create
+         * @memberof pbErpPrintTemplate.CreatePrintTemplateArgs
+         * @static
+         * @param {pbErpPrintTemplate.ICreatePrintTemplateArgs=} [properties] Properties to set
+         * @returns {pbErpPrintTemplate.CreatePrintTemplateArgs} CreatePrintTemplateArgs instance
+         */
+        CreatePrintTemplateArgs.create = function create(properties) {
+            return new CreatePrintTemplateArgs(properties);
+        };
+
+        /**
+         * Encodes the specified CreatePrintTemplateArgs message. Does not implicitly {@link pbErpPrintTemplate.CreatePrintTemplateArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbErpPrintTemplate.CreatePrintTemplateArgs
+         * @static
+         * @param {pbErpPrintTemplate.ICreatePrintTemplateArgs} message CreatePrintTemplateArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        CreatePrintTemplateArgs.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+            if (message.category != null && Object.hasOwnProperty.call(message, "category"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.category);
+            if (message.paperName != null && Object.hasOwnProperty.call(message, "paperName"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.paperName);
+            if (message.paperWidth != null && Object.hasOwnProperty.call(message, "paperWidth"))
+                writer.uint32(/* id 4, wireType 1 =*/33).double(message.paperWidth);
+            if (message.paperHeight != null && Object.hasOwnProperty.call(message, "paperHeight"))
+                writer.uint32(/* id 5, wireType 1 =*/41).double(message.paperHeight);
+            if (message.paperIsCustom != null && Object.hasOwnProperty.call(message, "paperIsCustom"))
+                writer.uint32(/* id 6, wireType 0 =*/48).bool(message.paperIsCustom);
+            if (message.orientation != null && Object.hasOwnProperty.call(message, "orientation"))
+                writer.uint32(/* id 7, wireType 0 =*/56).int32(message.orientation);
+            if (message.marginTop != null && Object.hasOwnProperty.call(message, "marginTop"))
+                writer.uint32(/* id 8, wireType 1 =*/65).double(message.marginTop);
+            if (message.marginBottom != null && Object.hasOwnProperty.call(message, "marginBottom"))
+                writer.uint32(/* id 9, wireType 1 =*/73).double(message.marginBottom);
+            if (message.marginLeft != null && Object.hasOwnProperty.call(message, "marginLeft"))
+                writer.uint32(/* id 10, wireType 1 =*/81).double(message.marginLeft);
+            if (message.marginRight != null && Object.hasOwnProperty.call(message, "marginRight"))
+                writer.uint32(/* id 11, wireType 1 =*/89).double(message.marginRight);
+            if (message.components != null && Object.hasOwnProperty.call(message, "components"))
+                writer.uint32(/* id 12, wireType 2 =*/98).string(message.components);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified CreatePrintTemplateArgs message, length delimited. Does not implicitly {@link pbErpPrintTemplate.CreatePrintTemplateArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbErpPrintTemplate.CreatePrintTemplateArgs
+         * @static
+         * @param {pbErpPrintTemplate.ICreatePrintTemplateArgs} message CreatePrintTemplateArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        CreatePrintTemplateArgs.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a CreatePrintTemplateArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbErpPrintTemplate.CreatePrintTemplateArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbErpPrintTemplate.CreatePrintTemplateArgs} CreatePrintTemplateArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        CreatePrintTemplateArgs.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbErpPrintTemplate.CreatePrintTemplateArgs();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.name = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message.category = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.paperName = reader.string();
+                        break;
+                    }
+                case 4: {
+                        message.paperWidth = reader.double();
+                        break;
+                    }
+                case 5: {
+                        message.paperHeight = reader.double();
+                        break;
+                    }
+                case 6: {
+                        message.paperIsCustom = reader.bool();
+                        break;
+                    }
+                case 7: {
+                        message.orientation = reader.int32();
+                        break;
+                    }
+                case 8: {
+                        message.marginTop = reader.double();
+                        break;
+                    }
+                case 9: {
+                        message.marginBottom = reader.double();
+                        break;
+                    }
+                case 10: {
+                        message.marginLeft = reader.double();
+                        break;
+                    }
+                case 11: {
+                        message.marginRight = reader.double();
+                        break;
+                    }
+                case 12: {
+                        message.components = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a CreatePrintTemplateArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbErpPrintTemplate.CreatePrintTemplateArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbErpPrintTemplate.CreatePrintTemplateArgs} CreatePrintTemplateArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        CreatePrintTemplateArgs.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a CreatePrintTemplateArgs message.
+         * @function verify
+         * @memberof pbErpPrintTemplate.CreatePrintTemplateArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        CreatePrintTemplateArgs.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.name != null && message.hasOwnProperty("name"))
+                if (!$util.isString(message.name))
+                    return "name: string expected";
+            if (message.category != null && message.hasOwnProperty("category"))
+                if (!$util.isString(message.category))
+                    return "category: string expected";
+            if (message.paperName != null && message.hasOwnProperty("paperName"))
+                if (!$util.isString(message.paperName))
+                    return "paperName: string expected";
+            if (message.paperWidth != null && message.hasOwnProperty("paperWidth"))
+                if (typeof message.paperWidth !== "number")
+                    return "paperWidth: number expected";
+            if (message.paperHeight != null && message.hasOwnProperty("paperHeight"))
+                if (typeof message.paperHeight !== "number")
+                    return "paperHeight: number expected";
+            if (message.paperIsCustom != null && message.hasOwnProperty("paperIsCustom"))
+                if (typeof message.paperIsCustom !== "boolean")
+                    return "paperIsCustom: boolean expected";
+            if (message.orientation != null && message.hasOwnProperty("orientation"))
+                if (!$util.isInteger(message.orientation))
+                    return "orientation: integer expected";
+            if (message.marginTop != null && message.hasOwnProperty("marginTop"))
+                if (typeof message.marginTop !== "number")
+                    return "marginTop: number expected";
+            if (message.marginBottom != null && message.hasOwnProperty("marginBottom"))
+                if (typeof message.marginBottom !== "number")
+                    return "marginBottom: number expected";
+            if (message.marginLeft != null && message.hasOwnProperty("marginLeft"))
+                if (typeof message.marginLeft !== "number")
+                    return "marginLeft: number expected";
+            if (message.marginRight != null && message.hasOwnProperty("marginRight"))
+                if (typeof message.marginRight !== "number")
+                    return "marginRight: number expected";
+            if (message.components != null && message.hasOwnProperty("components"))
+                if (!$util.isString(message.components))
+                    return "components: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a CreatePrintTemplateArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbErpPrintTemplate.CreatePrintTemplateArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbErpPrintTemplate.CreatePrintTemplateArgs} CreatePrintTemplateArgs
+         */
+        CreatePrintTemplateArgs.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbErpPrintTemplate.CreatePrintTemplateArgs)
+                return object;
+            var message = new $root.pbErpPrintTemplate.CreatePrintTemplateArgs();
+            if (object.name != null)
+                message.name = String(object.name);
+            if (object.category != null)
+                message.category = String(object.category);
+            if (object.paperName != null)
+                message.paperName = String(object.paperName);
+            if (object.paperWidth != null)
+                message.paperWidth = Number(object.paperWidth);
+            if (object.paperHeight != null)
+                message.paperHeight = Number(object.paperHeight);
+            if (object.paperIsCustom != null)
+                message.paperIsCustom = Boolean(object.paperIsCustom);
+            if (object.orientation != null)
+                message.orientation = object.orientation | 0;
+            if (object.marginTop != null)
+                message.marginTop = Number(object.marginTop);
+            if (object.marginBottom != null)
+                message.marginBottom = Number(object.marginBottom);
+            if (object.marginLeft != null)
+                message.marginLeft = Number(object.marginLeft);
+            if (object.marginRight != null)
+                message.marginRight = Number(object.marginRight);
+            if (object.components != null)
+                message.components = String(object.components);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a CreatePrintTemplateArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbErpPrintTemplate.CreatePrintTemplateArgs
+         * @static
+         * @param {pbErpPrintTemplate.CreatePrintTemplateArgs} message CreatePrintTemplateArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        CreatePrintTemplateArgs.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.name = "";
+                object.category = "";
+                object.paperName = "";
+                object.paperWidth = 0;
+                object.paperHeight = 0;
+                object.paperIsCustom = false;
+                object.orientation = 0;
+                object.marginTop = 0;
+                object.marginBottom = 0;
+                object.marginLeft = 0;
+                object.marginRight = 0;
+                object.components = "";
+            }
+            if (message.name != null && message.hasOwnProperty("name"))
+                object.name = message.name;
+            if (message.category != null && message.hasOwnProperty("category"))
+                object.category = message.category;
+            if (message.paperName != null && message.hasOwnProperty("paperName"))
+                object.paperName = message.paperName;
+            if (message.paperWidth != null && message.hasOwnProperty("paperWidth"))
+                object.paperWidth = options.json && !isFinite(message.paperWidth) ? String(message.paperWidth) : message.paperWidth;
+            if (message.paperHeight != null && message.hasOwnProperty("paperHeight"))
+                object.paperHeight = options.json && !isFinite(message.paperHeight) ? String(message.paperHeight) : message.paperHeight;
+            if (message.paperIsCustom != null && message.hasOwnProperty("paperIsCustom"))
+                object.paperIsCustom = message.paperIsCustom;
+            if (message.orientation != null && message.hasOwnProperty("orientation"))
+                object.orientation = message.orientation;
+            if (message.marginTop != null && message.hasOwnProperty("marginTop"))
+                object.marginTop = options.json && !isFinite(message.marginTop) ? String(message.marginTop) : message.marginTop;
+            if (message.marginBottom != null && message.hasOwnProperty("marginBottom"))
+                object.marginBottom = options.json && !isFinite(message.marginBottom) ? String(message.marginBottom) : message.marginBottom;
+            if (message.marginLeft != null && message.hasOwnProperty("marginLeft"))
+                object.marginLeft = options.json && !isFinite(message.marginLeft) ? String(message.marginLeft) : message.marginLeft;
+            if (message.marginRight != null && message.hasOwnProperty("marginRight"))
+                object.marginRight = options.json && !isFinite(message.marginRight) ? String(message.marginRight) : message.marginRight;
+            if (message.components != null && message.hasOwnProperty("components"))
+                object.components = message.components;
+            return object;
+        };
+
+        /**
+         * Converts this CreatePrintTemplateArgs to JSON.
+         * @function toJSON
+         * @memberof pbErpPrintTemplate.CreatePrintTemplateArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        CreatePrintTemplateArgs.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for CreatePrintTemplateArgs
+         * @function getTypeUrl
+         * @memberof pbErpPrintTemplate.CreatePrintTemplateArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        CreatePrintTemplateArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbErpPrintTemplate.CreatePrintTemplateArgs";
+        };
+
+        return CreatePrintTemplateArgs;
+    })();
+
+    pbErpPrintTemplate.UpdatePrintTemplateArgs = (function() {
+
+        /**
+         * Properties of an UpdatePrintTemplateArgs.
+         * @memberof pbErpPrintTemplate
+         * @interface IUpdatePrintTemplateArgs
+         * @property {number|Long|null} [id] UpdatePrintTemplateArgs id
+         * @property {string|null} [name] UpdatePrintTemplateArgs name
+         * @property {string|null} [category] UpdatePrintTemplateArgs category
+         * @property {string|null} [paperName] UpdatePrintTemplateArgs paperName
+         * @property {number|null} [paperWidth] UpdatePrintTemplateArgs paperWidth
+         * @property {number|null} [paperHeight] UpdatePrintTemplateArgs paperHeight
+         * @property {boolean|null} [paperIsCustom] UpdatePrintTemplateArgs paperIsCustom
+         * @property {number|null} [orientation] UpdatePrintTemplateArgs orientation
+         * @property {number|null} [marginTop] UpdatePrintTemplateArgs marginTop
+         * @property {number|null} [marginBottom] UpdatePrintTemplateArgs marginBottom
+         * @property {number|null} [marginLeft] UpdatePrintTemplateArgs marginLeft
+         * @property {number|null} [marginRight] UpdatePrintTemplateArgs marginRight
+         * @property {string|null} [components] UpdatePrintTemplateArgs components
+         */
+
+        /**
+         * Constructs a new UpdatePrintTemplateArgs.
+         * @memberof pbErpPrintTemplate
+         * @classdesc Represents an UpdatePrintTemplateArgs.
+         * @implements IUpdatePrintTemplateArgs
+         * @constructor
+         * @param {pbErpPrintTemplate.IUpdatePrintTemplateArgs=} [properties] Properties to set
+         */
+        function UpdatePrintTemplateArgs(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * UpdatePrintTemplateArgs id.
+         * @member {number|Long} id
+         * @memberof pbErpPrintTemplate.UpdatePrintTemplateArgs
+         * @instance
+         */
+        UpdatePrintTemplateArgs.prototype.id = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * UpdatePrintTemplateArgs name.
+         * @member {string} name
+         * @memberof pbErpPrintTemplate.UpdatePrintTemplateArgs
+         * @instance
+         */
+        UpdatePrintTemplateArgs.prototype.name = "";
+
+        /**
+         * UpdatePrintTemplateArgs category.
+         * @member {string} category
+         * @memberof pbErpPrintTemplate.UpdatePrintTemplateArgs
+         * @instance
+         */
+        UpdatePrintTemplateArgs.prototype.category = "";
+
+        /**
+         * UpdatePrintTemplateArgs paperName.
+         * @member {string} paperName
+         * @memberof pbErpPrintTemplate.UpdatePrintTemplateArgs
+         * @instance
+         */
+        UpdatePrintTemplateArgs.prototype.paperName = "";
+
+        /**
+         * UpdatePrintTemplateArgs paperWidth.
+         * @member {number} paperWidth
+         * @memberof pbErpPrintTemplate.UpdatePrintTemplateArgs
+         * @instance
+         */
+        UpdatePrintTemplateArgs.prototype.paperWidth = 0;
+
+        /**
+         * UpdatePrintTemplateArgs paperHeight.
+         * @member {number} paperHeight
+         * @memberof pbErpPrintTemplate.UpdatePrintTemplateArgs
+         * @instance
+         */
+        UpdatePrintTemplateArgs.prototype.paperHeight = 0;
+
+        /**
+         * UpdatePrintTemplateArgs paperIsCustom.
+         * @member {boolean} paperIsCustom
+         * @memberof pbErpPrintTemplate.UpdatePrintTemplateArgs
+         * @instance
+         */
+        UpdatePrintTemplateArgs.prototype.paperIsCustom = false;
+
+        /**
+         * UpdatePrintTemplateArgs orientation.
+         * @member {number} orientation
+         * @memberof pbErpPrintTemplate.UpdatePrintTemplateArgs
+         * @instance
+         */
+        UpdatePrintTemplateArgs.prototype.orientation = 0;
+
+        /**
+         * UpdatePrintTemplateArgs marginTop.
+         * @member {number} marginTop
+         * @memberof pbErpPrintTemplate.UpdatePrintTemplateArgs
+         * @instance
+         */
+        UpdatePrintTemplateArgs.prototype.marginTop = 0;
+
+        /**
+         * UpdatePrintTemplateArgs marginBottom.
+         * @member {number} marginBottom
+         * @memberof pbErpPrintTemplate.UpdatePrintTemplateArgs
+         * @instance
+         */
+        UpdatePrintTemplateArgs.prototype.marginBottom = 0;
+
+        /**
+         * UpdatePrintTemplateArgs marginLeft.
+         * @member {number} marginLeft
+         * @memberof pbErpPrintTemplate.UpdatePrintTemplateArgs
+         * @instance
+         */
+        UpdatePrintTemplateArgs.prototype.marginLeft = 0;
+
+        /**
+         * UpdatePrintTemplateArgs marginRight.
+         * @member {number} marginRight
+         * @memberof pbErpPrintTemplate.UpdatePrintTemplateArgs
+         * @instance
+         */
+        UpdatePrintTemplateArgs.prototype.marginRight = 0;
+
+        /**
+         * UpdatePrintTemplateArgs components.
+         * @member {string} components
+         * @memberof pbErpPrintTemplate.UpdatePrintTemplateArgs
+         * @instance
+         */
+        UpdatePrintTemplateArgs.prototype.components = "";
+
+        /**
+         * Creates a new UpdatePrintTemplateArgs instance using the specified properties.
+         * @function create
+         * @memberof pbErpPrintTemplate.UpdatePrintTemplateArgs
+         * @static
+         * @param {pbErpPrintTemplate.IUpdatePrintTemplateArgs=} [properties] Properties to set
+         * @returns {pbErpPrintTemplate.UpdatePrintTemplateArgs} UpdatePrintTemplateArgs instance
+         */
+        UpdatePrintTemplateArgs.create = function create(properties) {
+            return new UpdatePrintTemplateArgs(properties);
+        };
+
+        /**
+         * Encodes the specified UpdatePrintTemplateArgs message. Does not implicitly {@link pbErpPrintTemplate.UpdatePrintTemplateArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbErpPrintTemplate.UpdatePrintTemplateArgs
+         * @static
+         * @param {pbErpPrintTemplate.IUpdatePrintTemplateArgs} message UpdatePrintTemplateArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        UpdatePrintTemplateArgs.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id);
+            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.name);
+            if (message.category != null && Object.hasOwnProperty.call(message, "category"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.category);
+            if (message.paperName != null && Object.hasOwnProperty.call(message, "paperName"))
+                writer.uint32(/* id 4, wireType 2 =*/34).string(message.paperName);
+            if (message.paperWidth != null && Object.hasOwnProperty.call(message, "paperWidth"))
+                writer.uint32(/* id 5, wireType 1 =*/41).double(message.paperWidth);
+            if (message.paperHeight != null && Object.hasOwnProperty.call(message, "paperHeight"))
+                writer.uint32(/* id 6, wireType 1 =*/49).double(message.paperHeight);
+            if (message.paperIsCustom != null && Object.hasOwnProperty.call(message, "paperIsCustom"))
+                writer.uint32(/* id 7, wireType 0 =*/56).bool(message.paperIsCustom);
+            if (message.orientation != null && Object.hasOwnProperty.call(message, "orientation"))
+                writer.uint32(/* id 8, wireType 0 =*/64).int32(message.orientation);
+            if (message.marginTop != null && Object.hasOwnProperty.call(message, "marginTop"))
+                writer.uint32(/* id 9, wireType 1 =*/73).double(message.marginTop);
+            if (message.marginBottom != null && Object.hasOwnProperty.call(message, "marginBottom"))
+                writer.uint32(/* id 10, wireType 1 =*/81).double(message.marginBottom);
+            if (message.marginLeft != null && Object.hasOwnProperty.call(message, "marginLeft"))
+                writer.uint32(/* id 11, wireType 1 =*/89).double(message.marginLeft);
+            if (message.marginRight != null && Object.hasOwnProperty.call(message, "marginRight"))
+                writer.uint32(/* id 12, wireType 1 =*/97).double(message.marginRight);
+            if (message.components != null && Object.hasOwnProperty.call(message, "components"))
+                writer.uint32(/* id 13, wireType 2 =*/106).string(message.components);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified UpdatePrintTemplateArgs message, length delimited. Does not implicitly {@link pbErpPrintTemplate.UpdatePrintTemplateArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbErpPrintTemplate.UpdatePrintTemplateArgs
+         * @static
+         * @param {pbErpPrintTemplate.IUpdatePrintTemplateArgs} message UpdatePrintTemplateArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        UpdatePrintTemplateArgs.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an UpdatePrintTemplateArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbErpPrintTemplate.UpdatePrintTemplateArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbErpPrintTemplate.UpdatePrintTemplateArgs} UpdatePrintTemplateArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        UpdatePrintTemplateArgs.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbErpPrintTemplate.UpdatePrintTemplateArgs();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.id = reader.int64();
+                        break;
+                    }
+                case 2: {
+                        message.name = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.category = reader.string();
+                        break;
+                    }
+                case 4: {
+                        message.paperName = reader.string();
+                        break;
+                    }
+                case 5: {
+                        message.paperWidth = reader.double();
+                        break;
+                    }
+                case 6: {
+                        message.paperHeight = reader.double();
+                        break;
+                    }
+                case 7: {
+                        message.paperIsCustom = reader.bool();
+                        break;
+                    }
+                case 8: {
+                        message.orientation = reader.int32();
+                        break;
+                    }
+                case 9: {
+                        message.marginTop = reader.double();
+                        break;
+                    }
+                case 10: {
+                        message.marginBottom = reader.double();
+                        break;
+                    }
+                case 11: {
+                        message.marginLeft = reader.double();
+                        break;
+                    }
+                case 12: {
+                        message.marginRight = reader.double();
+                        break;
+                    }
+                case 13: {
+                        message.components = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an UpdatePrintTemplateArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbErpPrintTemplate.UpdatePrintTemplateArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbErpPrintTemplate.UpdatePrintTemplateArgs} UpdatePrintTemplateArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        UpdatePrintTemplateArgs.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an UpdatePrintTemplateArgs message.
+         * @function verify
+         * @memberof pbErpPrintTemplate.UpdatePrintTemplateArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        UpdatePrintTemplateArgs.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (!$util.isInteger(message.id) && !(message.id && $util.isInteger(message.id.low) && $util.isInteger(message.id.high)))
+                    return "id: integer|Long expected";
+            if (message.name != null && message.hasOwnProperty("name"))
+                if (!$util.isString(message.name))
+                    return "name: string expected";
+            if (message.category != null && message.hasOwnProperty("category"))
+                if (!$util.isString(message.category))
+                    return "category: string expected";
+            if (message.paperName != null && message.hasOwnProperty("paperName"))
+                if (!$util.isString(message.paperName))
+                    return "paperName: string expected";
+            if (message.paperWidth != null && message.hasOwnProperty("paperWidth"))
+                if (typeof message.paperWidth !== "number")
+                    return "paperWidth: number expected";
+            if (message.paperHeight != null && message.hasOwnProperty("paperHeight"))
+                if (typeof message.paperHeight !== "number")
+                    return "paperHeight: number expected";
+            if (message.paperIsCustom != null && message.hasOwnProperty("paperIsCustom"))
+                if (typeof message.paperIsCustom !== "boolean")
+                    return "paperIsCustom: boolean expected";
+            if (message.orientation != null && message.hasOwnProperty("orientation"))
+                if (!$util.isInteger(message.orientation))
+                    return "orientation: integer expected";
+            if (message.marginTop != null && message.hasOwnProperty("marginTop"))
+                if (typeof message.marginTop !== "number")
+                    return "marginTop: number expected";
+            if (message.marginBottom != null && message.hasOwnProperty("marginBottom"))
+                if (typeof message.marginBottom !== "number")
+                    return "marginBottom: number expected";
+            if (message.marginLeft != null && message.hasOwnProperty("marginLeft"))
+                if (typeof message.marginLeft !== "number")
+                    return "marginLeft: number expected";
+            if (message.marginRight != null && message.hasOwnProperty("marginRight"))
+                if (typeof message.marginRight !== "number")
+                    return "marginRight: number expected";
+            if (message.components != null && message.hasOwnProperty("components"))
+                if (!$util.isString(message.components))
+                    return "components: string expected";
+            return null;
+        };
+
+        /**
+         * Creates an UpdatePrintTemplateArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbErpPrintTemplate.UpdatePrintTemplateArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbErpPrintTemplate.UpdatePrintTemplateArgs} UpdatePrintTemplateArgs
+         */
+        UpdatePrintTemplateArgs.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbErpPrintTemplate.UpdatePrintTemplateArgs)
+                return object;
+            var message = new $root.pbErpPrintTemplate.UpdatePrintTemplateArgs();
+            if (object.id != null)
+                if ($util.Long)
+                    (message.id = $util.Long.fromValue(object.id)).unsigned = false;
+                else if (typeof object.id === "string")
+                    message.id = parseInt(object.id, 10);
+                else if (typeof object.id === "number")
+                    message.id = object.id;
+                else if (typeof object.id === "object")
+                    message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber();
+            if (object.name != null)
+                message.name = String(object.name);
+            if (object.category != null)
+                message.category = String(object.category);
+            if (object.paperName != null)
+                message.paperName = String(object.paperName);
+            if (object.paperWidth != null)
+                message.paperWidth = Number(object.paperWidth);
+            if (object.paperHeight != null)
+                message.paperHeight = Number(object.paperHeight);
+            if (object.paperIsCustom != null)
+                message.paperIsCustom = Boolean(object.paperIsCustom);
+            if (object.orientation != null)
+                message.orientation = object.orientation | 0;
+            if (object.marginTop != null)
+                message.marginTop = Number(object.marginTop);
+            if (object.marginBottom != null)
+                message.marginBottom = Number(object.marginBottom);
+            if (object.marginLeft != null)
+                message.marginLeft = Number(object.marginLeft);
+            if (object.marginRight != null)
+                message.marginRight = Number(object.marginRight);
+            if (object.components != null)
+                message.components = String(object.components);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an UpdatePrintTemplateArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbErpPrintTemplate.UpdatePrintTemplateArgs
+         * @static
+         * @param {pbErpPrintTemplate.UpdatePrintTemplateArgs} message UpdatePrintTemplateArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        UpdatePrintTemplateArgs.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.id = options.longs === String ? "0" : 0;
+                object.name = "";
+                object.category = "";
+                object.paperName = "";
+                object.paperWidth = 0;
+                object.paperHeight = 0;
+                object.paperIsCustom = false;
+                object.orientation = 0;
+                object.marginTop = 0;
+                object.marginBottom = 0;
+                object.marginLeft = 0;
+                object.marginRight = 0;
+                object.components = "";
+            }
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (typeof message.id === "number")
+                    object.id = options.longs === String ? String(message.id) : message.id;
+                else
+                    object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id;
+            if (message.name != null && message.hasOwnProperty("name"))
+                object.name = message.name;
+            if (message.category != null && message.hasOwnProperty("category"))
+                object.category = message.category;
+            if (message.paperName != null && message.hasOwnProperty("paperName"))
+                object.paperName = message.paperName;
+            if (message.paperWidth != null && message.hasOwnProperty("paperWidth"))
+                object.paperWidth = options.json && !isFinite(message.paperWidth) ? String(message.paperWidth) : message.paperWidth;
+            if (message.paperHeight != null && message.hasOwnProperty("paperHeight"))
+                object.paperHeight = options.json && !isFinite(message.paperHeight) ? String(message.paperHeight) : message.paperHeight;
+            if (message.paperIsCustom != null && message.hasOwnProperty("paperIsCustom"))
+                object.paperIsCustom = message.paperIsCustom;
+            if (message.orientation != null && message.hasOwnProperty("orientation"))
+                object.orientation = message.orientation;
+            if (message.marginTop != null && message.hasOwnProperty("marginTop"))
+                object.marginTop = options.json && !isFinite(message.marginTop) ? String(message.marginTop) : message.marginTop;
+            if (message.marginBottom != null && message.hasOwnProperty("marginBottom"))
+                object.marginBottom = options.json && !isFinite(message.marginBottom) ? String(message.marginBottom) : message.marginBottom;
+            if (message.marginLeft != null && message.hasOwnProperty("marginLeft"))
+                object.marginLeft = options.json && !isFinite(message.marginLeft) ? String(message.marginLeft) : message.marginLeft;
+            if (message.marginRight != null && message.hasOwnProperty("marginRight"))
+                object.marginRight = options.json && !isFinite(message.marginRight) ? String(message.marginRight) : message.marginRight;
+            if (message.components != null && message.hasOwnProperty("components"))
+                object.components = message.components;
+            return object;
+        };
+
+        /**
+         * Converts this UpdatePrintTemplateArgs to JSON.
+         * @function toJSON
+         * @memberof pbErpPrintTemplate.UpdatePrintTemplateArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        UpdatePrintTemplateArgs.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for UpdatePrintTemplateArgs
+         * @function getTypeUrl
+         * @memberof pbErpPrintTemplate.UpdatePrintTemplateArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        UpdatePrintTemplateArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbErpPrintTemplate.UpdatePrintTemplateArgs";
+        };
+
+        return UpdatePrintTemplateArgs;
+    })();
+
+    pbErpPrintTemplate.PrintTemplateService = (function() {
+
+        /**
+         * Constructs a new PrintTemplateService service.
+         * @memberof pbErpPrintTemplate
+         * @classdesc Represents a PrintTemplateService
+         * @extends $protobuf.rpc.Service
+         * @constructor
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         */
+        function PrintTemplateService(rpcImpl, requestDelimited, responseDelimited) {
+            $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited);
+        }
+
+        (PrintTemplateService.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = PrintTemplateService;
+
+        /**
+         * Creates new PrintTemplateService service using the specified rpc implementation.
+         * @function create
+         * @memberof pbErpPrintTemplate.PrintTemplateService
+         * @static
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         * @returns {PrintTemplateService} RPC service. Useful where requests and/or responses are streamed.
+         */
+        PrintTemplateService.create = function create(rpcImpl, requestDelimited, responseDelimited) {
+            return new this(rpcImpl, requestDelimited, responseDelimited);
+        };
+
+        /**
+         * Callback as used by {@link pbErpPrintTemplate.PrintTemplateService#createPrintTemplate}.
+         * @memberof pbErpPrintTemplate.PrintTemplateService
+         * @typedef CreatePrintTemplateCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls CreatePrintTemplate.
+         * @function createPrintTemplate
+         * @memberof pbErpPrintTemplate.PrintTemplateService
+         * @instance
+         * @param {pbErpPrintTemplate.ICreatePrintTemplateArgs} request CreatePrintTemplateArgs message or plain object
+         * @param {pbErpPrintTemplate.PrintTemplateService.CreatePrintTemplateCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(PrintTemplateService.prototype.createPrintTemplate = function createPrintTemplate(request, callback) {
+            return this.rpcCall(createPrintTemplate, $root.pbErpPrintTemplate.CreatePrintTemplateArgs, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "CreatePrintTemplate" });
+
+        /**
+         * Calls CreatePrintTemplate.
+         * @function createPrintTemplate
+         * @memberof pbErpPrintTemplate.PrintTemplateService
+         * @instance
+         * @param {pbErpPrintTemplate.ICreatePrintTemplateArgs} request CreatePrintTemplateArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbErpPrintTemplate.PrintTemplateService#updatePrintTemplate}.
+         * @memberof pbErpPrintTemplate.PrintTemplateService
+         * @typedef UpdatePrintTemplateCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls UpdatePrintTemplate.
+         * @function updatePrintTemplate
+         * @memberof pbErpPrintTemplate.PrintTemplateService
+         * @instance
+         * @param {pbErpPrintTemplate.IUpdatePrintTemplateArgs} request UpdatePrintTemplateArgs message or plain object
+         * @param {pbErpPrintTemplate.PrintTemplateService.UpdatePrintTemplateCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(PrintTemplateService.prototype.updatePrintTemplate = function updatePrintTemplate(request, callback) {
+            return this.rpcCall(updatePrintTemplate, $root.pbErpPrintTemplate.UpdatePrintTemplateArgs, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "UpdatePrintTemplate" });
+
+        /**
+         * Calls UpdatePrintTemplate.
+         * @function updatePrintTemplate
+         * @memberof pbErpPrintTemplate.PrintTemplateService
+         * @instance
+         * @param {pbErpPrintTemplate.IUpdatePrintTemplateArgs} request UpdatePrintTemplateArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbErpPrintTemplate.PrintTemplateService#deletePrintTemplate}.
+         * @memberof pbErpPrintTemplate.PrintTemplateService
+         * @typedef DeletePrintTemplateCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls DeletePrintTemplate.
+         * @function deletePrintTemplate
+         * @memberof pbErpPrintTemplate.PrintTemplateService
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbErpPrintTemplate.PrintTemplateService.DeletePrintTemplateCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(PrintTemplateService.prototype.deletePrintTemplate = function deletePrintTemplate(request, callback) {
+            return this.rpcCall(deletePrintTemplate, $root.pbcommon.IdArgs, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "DeletePrintTemplate" });
+
+        /**
+         * Calls DeletePrintTemplate.
+         * @function deletePrintTemplate
+         * @memberof pbErpPrintTemplate.PrintTemplateService
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbErpPrintTemplate.PrintTemplateService#findPrintTemplateById}.
+         * @memberof pbErpPrintTemplate.PrintTemplateService
+         * @typedef FindPrintTemplateByIdCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbErpPrintTemplate.FindPrintTemplateReply} [response] FindPrintTemplateReply
+         */
+
+        /**
+         * Calls FindPrintTemplateById.
+         * @function findPrintTemplateById
+         * @memberof pbErpPrintTemplate.PrintTemplateService
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbErpPrintTemplate.PrintTemplateService.FindPrintTemplateByIdCallback} callback Node-style callback called with the error, if any, and FindPrintTemplateReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(PrintTemplateService.prototype.findPrintTemplateById = function findPrintTemplateById(request, callback) {
+            return this.rpcCall(findPrintTemplateById, $root.pbcommon.IdArgs, $root.pbErpPrintTemplate.FindPrintTemplateReply, request, callback);
+        }, "name", { value: "FindPrintTemplateById" });
+
+        /**
+         * Calls FindPrintTemplateById.
+         * @function findPrintTemplateById
+         * @memberof pbErpPrintTemplate.PrintTemplateService
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbErpPrintTemplate.FindPrintTemplateReply>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbErpPrintTemplate.PrintTemplateService#findPrintTemplateList}.
+         * @memberof pbErpPrintTemplate.PrintTemplateService
+         * @typedef FindPrintTemplateListCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbErpPrintTemplate.FindPrintTemplateReply} [response] FindPrintTemplateReply
+         */
+
+        /**
+         * Calls FindPrintTemplateList.
+         * @function findPrintTemplateList
+         * @memberof pbErpPrintTemplate.PrintTemplateService
+         * @instance
+         * @param {pbErpPrintTemplate.IFindPrintTemplateArgs} request FindPrintTemplateArgs message or plain object
+         * @param {pbErpPrintTemplate.PrintTemplateService.FindPrintTemplateListCallback} callback Node-style callback called with the error, if any, and FindPrintTemplateReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(PrintTemplateService.prototype.findPrintTemplateList = function findPrintTemplateList(request, callback) {
+            return this.rpcCall(findPrintTemplateList, $root.pbErpPrintTemplate.FindPrintTemplateArgs, $root.pbErpPrintTemplate.FindPrintTemplateReply, request, callback);
+        }, "name", { value: "FindPrintTemplateList" });
+
+        /**
+         * Calls FindPrintTemplateList.
+         * @function findPrintTemplateList
+         * @memberof pbErpPrintTemplate.PrintTemplateService
+         * @instance
+         * @param {pbErpPrintTemplate.IFindPrintTemplateArgs} request FindPrintTemplateArgs message or plain object
+         * @returns {Promise<pbErpPrintTemplate.FindPrintTemplateReply>} Promise
+         * @variation 2
+         */
+
+        return PrintTemplateService;
+    })();
+
+    return pbErpPrintTemplate;
 })();
 
 module.exports = $root;

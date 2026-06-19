@@ -59,6 +59,7 @@ $root.pbcommon = (function() {
      * @property {number} HalaPriceOutRange=10002 HalaPriceOutRange value
      * @property {number} GamePhaseNotMatch=20001 GamePhaseNotMatch value
      * @property {number} GameNotStarted=20002 GameNotStarted value
+     * @property {number} InsufficientBalance=20003 InsufficientBalance value
      */
     pbcommon.EnumCode = (function() {
         var valuesById = {}, values = Object.create(valuesById);
@@ -99,6 +100,7 @@ $root.pbcommon = (function() {
         values[valuesById[10002] = "HalaPriceOutRange"] = 10002;
         values[valuesById[20001] = "GamePhaseNotMatch"] = 20001;
         values[valuesById[20002] = "GameNotStarted"] = 20002;
+        values[valuesById[20003] = "InsufficientBalance"] = 20003;
         return values;
     })();
 
@@ -110,6 +112,7 @@ $root.pbcommon = (function() {
          * @interface ICommonResult
          * @property {pbcommon.EnumCode|null} [code] CommonResult code
          * @property {string|null} [msg] CommonResult msg
+         * @property {number|null} [subCode] CommonResult subCode
          */
 
         /**
@@ -144,6 +147,14 @@ $root.pbcommon = (function() {
         CommonResult.prototype.msg = "";
 
         /**
+         * CommonResult subCode.
+         * @member {number} subCode
+         * @memberof pbcommon.CommonResult
+         * @instance
+         */
+        CommonResult.prototype.subCode = 0;
+
+        /**
          * Creates a new CommonResult instance using the specified properties.
          * @function create
          * @memberof pbcommon.CommonResult
@@ -171,6 +182,8 @@ $root.pbcommon = (function() {
                 writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
             if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
                 writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.subCode != null && Object.hasOwnProperty.call(message, "subCode"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int32(message.subCode);
             return writer;
         };
 
@@ -213,6 +226,10 @@ $root.pbcommon = (function() {
                     }
                 case 2: {
                         message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.subCode = reader.int32();
                         break;
                     }
                 default:
@@ -291,11 +308,15 @@ $root.pbcommon = (function() {
                 case 10002:
                 case 20001:
                 case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
                 if (!$util.isString(message.msg))
                     return "msg: string expected";
+            if (message.subCode != null && message.hasOwnProperty("subCode"))
+                if (!$util.isInteger(message.subCode))
+                    return "subCode: integer expected";
             return null;
         };
 
@@ -466,9 +487,15 @@ $root.pbcommon = (function() {
             case 20002:
                 message.code = 20002;
                 break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
+                break;
             }
             if (object.msg != null)
                 message.msg = String(object.msg);
+            if (object.subCode != null)
+                message.subCode = object.subCode | 0;
             return message;
         };
 
@@ -488,11 +515,14 @@ $root.pbcommon = (function() {
             if (options.defaults) {
                 object.code = options.enums === String ? "None" : 0;
                 object.msg = "";
+                object.subCode = 0;
             }
             if (message.code != null && message.hasOwnProperty("code"))
                 object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
             if (message.msg != null && message.hasOwnProperty("msg"))
                 object.msg = message.msg;
+            if (message.subCode != null && message.hasOwnProperty("subCode"))
+                object.subCode = message.subCode;
             return object;
         };
 

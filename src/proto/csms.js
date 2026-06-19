@@ -59,6 +59,7 @@ $root.pbcommon = (function() {
      * @property {number} HalaPriceOutRange=10002 HalaPriceOutRange value
      * @property {number} GamePhaseNotMatch=20001 GamePhaseNotMatch value
      * @property {number} GameNotStarted=20002 GameNotStarted value
+     * @property {number} InsufficientBalance=20003 InsufficientBalance value
      */
     pbcommon.EnumCode = (function() {
         var valuesById = {}, values = Object.create(valuesById);
@@ -99,6 +100,7 @@ $root.pbcommon = (function() {
         values[valuesById[10002] = "HalaPriceOutRange"] = 10002;
         values[valuesById[20001] = "GamePhaseNotMatch"] = 20001;
         values[valuesById[20002] = "GameNotStarted"] = 20002;
+        values[valuesById[20003] = "InsufficientBalance"] = 20003;
         return values;
     })();
 
@@ -110,6 +112,7 @@ $root.pbcommon = (function() {
          * @interface ICommonResult
          * @property {pbcommon.EnumCode|null} [code] CommonResult code
          * @property {string|null} [msg] CommonResult msg
+         * @property {number|null} [subCode] CommonResult subCode
          */
 
         /**
@@ -144,6 +147,14 @@ $root.pbcommon = (function() {
         CommonResult.prototype.msg = "";
 
         /**
+         * CommonResult subCode.
+         * @member {number} subCode
+         * @memberof pbcommon.CommonResult
+         * @instance
+         */
+        CommonResult.prototype.subCode = 0;
+
+        /**
          * Creates a new CommonResult instance using the specified properties.
          * @function create
          * @memberof pbcommon.CommonResult
@@ -171,6 +182,8 @@ $root.pbcommon = (function() {
                 writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
             if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
                 writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.subCode != null && Object.hasOwnProperty.call(message, "subCode"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int32(message.subCode);
             return writer;
         };
 
@@ -213,6 +226,10 @@ $root.pbcommon = (function() {
                     }
                 case 2: {
                         message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.subCode = reader.int32();
                         break;
                     }
                 default:
@@ -291,11 +308,15 @@ $root.pbcommon = (function() {
                 case 10002:
                 case 20001:
                 case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
                 if (!$util.isString(message.msg))
                     return "msg: string expected";
+            if (message.subCode != null && message.hasOwnProperty("subCode"))
+                if (!$util.isInteger(message.subCode))
+                    return "subCode: integer expected";
             return null;
         };
 
@@ -466,9 +487,15 @@ $root.pbcommon = (function() {
             case 20002:
                 message.code = 20002;
                 break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
+                break;
             }
             if (object.msg != null)
                 message.msg = String(object.msg);
+            if (object.subCode != null)
+                message.subCode = object.subCode | 0;
             return message;
         };
 
@@ -488,11 +515,14 @@ $root.pbcommon = (function() {
             if (options.defaults) {
                 object.code = options.enums === String ? "None" : 0;
                 object.msg = "";
+                object.subCode = 0;
             }
             if (message.code != null && message.hasOwnProperty("code"))
                 object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
             if (message.msg != null && message.hasOwnProperty("msg"))
                 object.msg = message.msg;
+            if (message.subCode != null && message.hasOwnProperty("subCode"))
+                object.subCode = message.subCode;
             return object;
         };
 
@@ -1858,6 +1888,530 @@ $root.pbCsms = (function() {
      */
     var pbCsms = {};
 
+    pbCsms.Customer = (function() {
+
+        /**
+         * Properties of a Customer.
+         * @memberof pbCsms
+         * @interface ICustomer
+         * @property {number|Long|null} [id] Customer id
+         * @property {string|null} [createdAt] Customer createdAt
+         * @property {string|null} [updatedAt] Customer updatedAt
+         * @property {string|null} [name] Customer name
+         * @property {string|null} [phone] Customer phone
+         * @property {string|null} [wechatOpenId] Customer wechatOpenId
+         * @property {string|null} [wechatNickname] Customer wechatNickname
+         * @property {string|null} [address] Customer address
+         * @property {number|null} [source] Customer source
+         * @property {number|null} [tag] Customer tag
+         * @property {string|null} [remark] Customer remark
+         * @property {number|Long|null} [userId] Customer userId
+         * @property {number|Long|null} [totalRepairOrders] Customer totalRepairOrders
+         */
+
+        /**
+         * Constructs a new Customer.
+         * @memberof pbCsms
+         * @classdesc Represents a Customer.
+         * @implements ICustomer
+         * @constructor
+         * @param {pbCsms.ICustomer=} [properties] Properties to set
+         */
+        function Customer(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * Customer id.
+         * @member {number|Long} id
+         * @memberof pbCsms.Customer
+         * @instance
+         */
+        Customer.prototype.id = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * Customer createdAt.
+         * @member {string} createdAt
+         * @memberof pbCsms.Customer
+         * @instance
+         */
+        Customer.prototype.createdAt = "";
+
+        /**
+         * Customer updatedAt.
+         * @member {string} updatedAt
+         * @memberof pbCsms.Customer
+         * @instance
+         */
+        Customer.prototype.updatedAt = "";
+
+        /**
+         * Customer name.
+         * @member {string} name
+         * @memberof pbCsms.Customer
+         * @instance
+         */
+        Customer.prototype.name = "";
+
+        /**
+         * Customer phone.
+         * @member {string} phone
+         * @memberof pbCsms.Customer
+         * @instance
+         */
+        Customer.prototype.phone = "";
+
+        /**
+         * Customer wechatOpenId.
+         * @member {string} wechatOpenId
+         * @memberof pbCsms.Customer
+         * @instance
+         */
+        Customer.prototype.wechatOpenId = "";
+
+        /**
+         * Customer wechatNickname.
+         * @member {string} wechatNickname
+         * @memberof pbCsms.Customer
+         * @instance
+         */
+        Customer.prototype.wechatNickname = "";
+
+        /**
+         * Customer address.
+         * @member {string} address
+         * @memberof pbCsms.Customer
+         * @instance
+         */
+        Customer.prototype.address = "";
+
+        /**
+         * Customer source.
+         * @member {number} source
+         * @memberof pbCsms.Customer
+         * @instance
+         */
+        Customer.prototype.source = 0;
+
+        /**
+         * Customer tag.
+         * @member {number} tag
+         * @memberof pbCsms.Customer
+         * @instance
+         */
+        Customer.prototype.tag = 0;
+
+        /**
+         * Customer remark.
+         * @member {string} remark
+         * @memberof pbCsms.Customer
+         * @instance
+         */
+        Customer.prototype.remark = "";
+
+        /**
+         * Customer userId.
+         * @member {number|Long} userId
+         * @memberof pbCsms.Customer
+         * @instance
+         */
+        Customer.prototype.userId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * Customer totalRepairOrders.
+         * @member {number|Long} totalRepairOrders
+         * @memberof pbCsms.Customer
+         * @instance
+         */
+        Customer.prototype.totalRepairOrders = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * Creates a new Customer instance using the specified properties.
+         * @function create
+         * @memberof pbCsms.Customer
+         * @static
+         * @param {pbCsms.ICustomer=} [properties] Properties to set
+         * @returns {pbCsms.Customer} Customer instance
+         */
+        Customer.create = function create(properties) {
+            return new Customer(properties);
+        };
+
+        /**
+         * Encodes the specified Customer message. Does not implicitly {@link pbCsms.Customer.verify|verify} messages.
+         * @function encode
+         * @memberof pbCsms.Customer
+         * @static
+         * @param {pbCsms.ICustomer} message Customer message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Customer.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id);
+            if (message.createdAt != null && Object.hasOwnProperty.call(message, "createdAt"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.createdAt);
+            if (message.updatedAt != null && Object.hasOwnProperty.call(message, "updatedAt"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.updatedAt);
+            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                writer.uint32(/* id 10, wireType 2 =*/82).string(message.name);
+            if (message.phone != null && Object.hasOwnProperty.call(message, "phone"))
+                writer.uint32(/* id 11, wireType 2 =*/90).string(message.phone);
+            if (message.wechatOpenId != null && Object.hasOwnProperty.call(message, "wechatOpenId"))
+                writer.uint32(/* id 12, wireType 2 =*/98).string(message.wechatOpenId);
+            if (message.wechatNickname != null && Object.hasOwnProperty.call(message, "wechatNickname"))
+                writer.uint32(/* id 13, wireType 2 =*/106).string(message.wechatNickname);
+            if (message.address != null && Object.hasOwnProperty.call(message, "address"))
+                writer.uint32(/* id 14, wireType 2 =*/114).string(message.address);
+            if (message.source != null && Object.hasOwnProperty.call(message, "source"))
+                writer.uint32(/* id 15, wireType 0 =*/120).int32(message.source);
+            if (message.tag != null && Object.hasOwnProperty.call(message, "tag"))
+                writer.uint32(/* id 16, wireType 0 =*/128).int32(message.tag);
+            if (message.remark != null && Object.hasOwnProperty.call(message, "remark"))
+                writer.uint32(/* id 17, wireType 2 =*/138).string(message.remark);
+            if (message.userId != null && Object.hasOwnProperty.call(message, "userId"))
+                writer.uint32(/* id 18, wireType 0 =*/144).int64(message.userId);
+            if (message.totalRepairOrders != null && Object.hasOwnProperty.call(message, "totalRepairOrders"))
+                writer.uint32(/* id 19, wireType 0 =*/152).int64(message.totalRepairOrders);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified Customer message, length delimited. Does not implicitly {@link pbCsms.Customer.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbCsms.Customer
+         * @static
+         * @param {pbCsms.ICustomer} message Customer message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Customer.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a Customer message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbCsms.Customer
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbCsms.Customer} Customer
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Customer.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbCsms.Customer();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.id = reader.int64();
+                        break;
+                    }
+                case 2: {
+                        message.createdAt = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.updatedAt = reader.string();
+                        break;
+                    }
+                case 10: {
+                        message.name = reader.string();
+                        break;
+                    }
+                case 11: {
+                        message.phone = reader.string();
+                        break;
+                    }
+                case 12: {
+                        message.wechatOpenId = reader.string();
+                        break;
+                    }
+                case 13: {
+                        message.wechatNickname = reader.string();
+                        break;
+                    }
+                case 14: {
+                        message.address = reader.string();
+                        break;
+                    }
+                case 15: {
+                        message.source = reader.int32();
+                        break;
+                    }
+                case 16: {
+                        message.tag = reader.int32();
+                        break;
+                    }
+                case 17: {
+                        message.remark = reader.string();
+                        break;
+                    }
+                case 18: {
+                        message.userId = reader.int64();
+                        break;
+                    }
+                case 19: {
+                        message.totalRepairOrders = reader.int64();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a Customer message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbCsms.Customer
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbCsms.Customer} Customer
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Customer.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a Customer message.
+         * @function verify
+         * @memberof pbCsms.Customer
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        Customer.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (!$util.isInteger(message.id) && !(message.id && $util.isInteger(message.id.low) && $util.isInteger(message.id.high)))
+                    return "id: integer|Long expected";
+            if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                if (!$util.isString(message.createdAt))
+                    return "createdAt: string expected";
+            if (message.updatedAt != null && message.hasOwnProperty("updatedAt"))
+                if (!$util.isString(message.updatedAt))
+                    return "updatedAt: string expected";
+            if (message.name != null && message.hasOwnProperty("name"))
+                if (!$util.isString(message.name))
+                    return "name: string expected";
+            if (message.phone != null && message.hasOwnProperty("phone"))
+                if (!$util.isString(message.phone))
+                    return "phone: string expected";
+            if (message.wechatOpenId != null && message.hasOwnProperty("wechatOpenId"))
+                if (!$util.isString(message.wechatOpenId))
+                    return "wechatOpenId: string expected";
+            if (message.wechatNickname != null && message.hasOwnProperty("wechatNickname"))
+                if (!$util.isString(message.wechatNickname))
+                    return "wechatNickname: string expected";
+            if (message.address != null && message.hasOwnProperty("address"))
+                if (!$util.isString(message.address))
+                    return "address: string expected";
+            if (message.source != null && message.hasOwnProperty("source"))
+                if (!$util.isInteger(message.source))
+                    return "source: integer expected";
+            if (message.tag != null && message.hasOwnProperty("tag"))
+                if (!$util.isInteger(message.tag))
+                    return "tag: integer expected";
+            if (message.remark != null && message.hasOwnProperty("remark"))
+                if (!$util.isString(message.remark))
+                    return "remark: string expected";
+            if (message.userId != null && message.hasOwnProperty("userId"))
+                if (!$util.isInteger(message.userId) && !(message.userId && $util.isInteger(message.userId.low) && $util.isInteger(message.userId.high)))
+                    return "userId: integer|Long expected";
+            if (message.totalRepairOrders != null && message.hasOwnProperty("totalRepairOrders"))
+                if (!$util.isInteger(message.totalRepairOrders) && !(message.totalRepairOrders && $util.isInteger(message.totalRepairOrders.low) && $util.isInteger(message.totalRepairOrders.high)))
+                    return "totalRepairOrders: integer|Long expected";
+            return null;
+        };
+
+        /**
+         * Creates a Customer message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbCsms.Customer
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbCsms.Customer} Customer
+         */
+        Customer.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbCsms.Customer)
+                return object;
+            var message = new $root.pbCsms.Customer();
+            if (object.id != null)
+                if ($util.Long)
+                    (message.id = $util.Long.fromValue(object.id)).unsigned = false;
+                else if (typeof object.id === "string")
+                    message.id = parseInt(object.id, 10);
+                else if (typeof object.id === "number")
+                    message.id = object.id;
+                else if (typeof object.id === "object")
+                    message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber();
+            if (object.createdAt != null)
+                message.createdAt = String(object.createdAt);
+            if (object.updatedAt != null)
+                message.updatedAt = String(object.updatedAt);
+            if (object.name != null)
+                message.name = String(object.name);
+            if (object.phone != null)
+                message.phone = String(object.phone);
+            if (object.wechatOpenId != null)
+                message.wechatOpenId = String(object.wechatOpenId);
+            if (object.wechatNickname != null)
+                message.wechatNickname = String(object.wechatNickname);
+            if (object.address != null)
+                message.address = String(object.address);
+            if (object.source != null)
+                message.source = object.source | 0;
+            if (object.tag != null)
+                message.tag = object.tag | 0;
+            if (object.remark != null)
+                message.remark = String(object.remark);
+            if (object.userId != null)
+                if ($util.Long)
+                    (message.userId = $util.Long.fromValue(object.userId)).unsigned = false;
+                else if (typeof object.userId === "string")
+                    message.userId = parseInt(object.userId, 10);
+                else if (typeof object.userId === "number")
+                    message.userId = object.userId;
+                else if (typeof object.userId === "object")
+                    message.userId = new $util.LongBits(object.userId.low >>> 0, object.userId.high >>> 0).toNumber();
+            if (object.totalRepairOrders != null)
+                if ($util.Long)
+                    (message.totalRepairOrders = $util.Long.fromValue(object.totalRepairOrders)).unsigned = false;
+                else if (typeof object.totalRepairOrders === "string")
+                    message.totalRepairOrders = parseInt(object.totalRepairOrders, 10);
+                else if (typeof object.totalRepairOrders === "number")
+                    message.totalRepairOrders = object.totalRepairOrders;
+                else if (typeof object.totalRepairOrders === "object")
+                    message.totalRepairOrders = new $util.LongBits(object.totalRepairOrders.low >>> 0, object.totalRepairOrders.high >>> 0).toNumber();
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Customer message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbCsms.Customer
+         * @static
+         * @param {pbCsms.Customer} message Customer
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Customer.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.id = options.longs === String ? "0" : 0;
+                object.createdAt = "";
+                object.updatedAt = "";
+                object.name = "";
+                object.phone = "";
+                object.wechatOpenId = "";
+                object.wechatNickname = "";
+                object.address = "";
+                object.source = 0;
+                object.tag = 0;
+                object.remark = "";
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.userId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.userId = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.totalRepairOrders = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.totalRepairOrders = options.longs === String ? "0" : 0;
+            }
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (typeof message.id === "number")
+                    object.id = options.longs === String ? String(message.id) : message.id;
+                else
+                    object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id;
+            if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                object.createdAt = message.createdAt;
+            if (message.updatedAt != null && message.hasOwnProperty("updatedAt"))
+                object.updatedAt = message.updatedAt;
+            if (message.name != null && message.hasOwnProperty("name"))
+                object.name = message.name;
+            if (message.phone != null && message.hasOwnProperty("phone"))
+                object.phone = message.phone;
+            if (message.wechatOpenId != null && message.hasOwnProperty("wechatOpenId"))
+                object.wechatOpenId = message.wechatOpenId;
+            if (message.wechatNickname != null && message.hasOwnProperty("wechatNickname"))
+                object.wechatNickname = message.wechatNickname;
+            if (message.address != null && message.hasOwnProperty("address"))
+                object.address = message.address;
+            if (message.source != null && message.hasOwnProperty("source"))
+                object.source = message.source;
+            if (message.tag != null && message.hasOwnProperty("tag"))
+                object.tag = message.tag;
+            if (message.remark != null && message.hasOwnProperty("remark"))
+                object.remark = message.remark;
+            if (message.userId != null && message.hasOwnProperty("userId"))
+                if (typeof message.userId === "number")
+                    object.userId = options.longs === String ? String(message.userId) : message.userId;
+                else
+                    object.userId = options.longs === String ? $util.Long.prototype.toString.call(message.userId) : options.longs === Number ? new $util.LongBits(message.userId.low >>> 0, message.userId.high >>> 0).toNumber() : message.userId;
+            if (message.totalRepairOrders != null && message.hasOwnProperty("totalRepairOrders"))
+                if (typeof message.totalRepairOrders === "number")
+                    object.totalRepairOrders = options.longs === String ? String(message.totalRepairOrders) : message.totalRepairOrders;
+                else
+                    object.totalRepairOrders = options.longs === String ? $util.Long.prototype.toString.call(message.totalRepairOrders) : options.longs === Number ? new $util.LongBits(message.totalRepairOrders.low >>> 0, message.totalRepairOrders.high >>> 0).toNumber() : message.totalRepairOrders;
+            return object;
+        };
+
+        /**
+         * Converts this Customer to JSON.
+         * @function toJSON
+         * @memberof pbCsms.Customer
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Customer.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for Customer
+         * @function getTypeUrl
+         * @memberof pbCsms.Customer
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        Customer.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbCsms.Customer";
+        };
+
+        return Customer;
+    })();
+
     pbCsms.RepairOrder = (function() {
 
         /**
@@ -1882,6 +2436,16 @@ $root.pbCsms = (function() {
          * @property {string|null} [acceptedAt] RepairOrder acceptedAt
          * @property {string|null} [completedAt] RepairOrder completedAt
          * @property {string|null} [remark] RepairOrder remark
+         * @property {number|Long|null} [customerId] RepairOrder customerId
+         * @property {string|null} [customerName] RepairOrder customerName
+         * @property {string|null} [customerPhone] RepairOrder customerPhone
+         * @property {number|null} [quoteAmount] RepairOrder quoteAmount
+         * @property {string|null} [quotedAt] RepairOrder quotedAt
+         * @property {string|null} [approvedAt] RepairOrder approvedAt
+         * @property {string|null} [paidAt] RepairOrder paidAt
+         * @property {number|null} [paymentMethod] RepairOrder paymentMethod
+         * @property {boolean|null} [isPickedUp] RepairOrder isPickedUp
+         * @property {string|null} [pickedUpAt] RepairOrder pickedUpAt
          */
 
         /**
@@ -2044,6 +2608,86 @@ $root.pbCsms = (function() {
         RepairOrder.prototype.remark = "";
 
         /**
+         * RepairOrder customerId.
+         * @member {number|Long} customerId
+         * @memberof pbCsms.RepairOrder
+         * @instance
+         */
+        RepairOrder.prototype.customerId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * RepairOrder customerName.
+         * @member {string} customerName
+         * @memberof pbCsms.RepairOrder
+         * @instance
+         */
+        RepairOrder.prototype.customerName = "";
+
+        /**
+         * RepairOrder customerPhone.
+         * @member {string} customerPhone
+         * @memberof pbCsms.RepairOrder
+         * @instance
+         */
+        RepairOrder.prototype.customerPhone = "";
+
+        /**
+         * RepairOrder quoteAmount.
+         * @member {number} quoteAmount
+         * @memberof pbCsms.RepairOrder
+         * @instance
+         */
+        RepairOrder.prototype.quoteAmount = 0;
+
+        /**
+         * RepairOrder quotedAt.
+         * @member {string} quotedAt
+         * @memberof pbCsms.RepairOrder
+         * @instance
+         */
+        RepairOrder.prototype.quotedAt = "";
+
+        /**
+         * RepairOrder approvedAt.
+         * @member {string} approvedAt
+         * @memberof pbCsms.RepairOrder
+         * @instance
+         */
+        RepairOrder.prototype.approvedAt = "";
+
+        /**
+         * RepairOrder paidAt.
+         * @member {string} paidAt
+         * @memberof pbCsms.RepairOrder
+         * @instance
+         */
+        RepairOrder.prototype.paidAt = "";
+
+        /**
+         * RepairOrder paymentMethod.
+         * @member {number} paymentMethod
+         * @memberof pbCsms.RepairOrder
+         * @instance
+         */
+        RepairOrder.prototype.paymentMethod = 0;
+
+        /**
+         * RepairOrder isPickedUp.
+         * @member {boolean} isPickedUp
+         * @memberof pbCsms.RepairOrder
+         * @instance
+         */
+        RepairOrder.prototype.isPickedUp = false;
+
+        /**
+         * RepairOrder pickedUpAt.
+         * @member {string} pickedUpAt
+         * @memberof pbCsms.RepairOrder
+         * @instance
+         */
+        RepairOrder.prototype.pickedUpAt = "";
+
+        /**
          * Creates a new RepairOrder instance using the specified properties.
          * @function create
          * @memberof pbCsms.RepairOrder
@@ -2103,6 +2747,26 @@ $root.pbCsms = (function() {
                 writer.uint32(/* id 23, wireType 2 =*/186).string(message.completedAt);
             if (message.remark != null && Object.hasOwnProperty.call(message, "remark"))
                 writer.uint32(/* id 24, wireType 2 =*/194).string(message.remark);
+            if (message.customerId != null && Object.hasOwnProperty.call(message, "customerId"))
+                writer.uint32(/* id 25, wireType 0 =*/200).int64(message.customerId);
+            if (message.customerName != null && Object.hasOwnProperty.call(message, "customerName"))
+                writer.uint32(/* id 26, wireType 2 =*/210).string(message.customerName);
+            if (message.customerPhone != null && Object.hasOwnProperty.call(message, "customerPhone"))
+                writer.uint32(/* id 27, wireType 2 =*/218).string(message.customerPhone);
+            if (message.quoteAmount != null && Object.hasOwnProperty.call(message, "quoteAmount"))
+                writer.uint32(/* id 28, wireType 1 =*/225).double(message.quoteAmount);
+            if (message.quotedAt != null && Object.hasOwnProperty.call(message, "quotedAt"))
+                writer.uint32(/* id 29, wireType 2 =*/234).string(message.quotedAt);
+            if (message.approvedAt != null && Object.hasOwnProperty.call(message, "approvedAt"))
+                writer.uint32(/* id 30, wireType 2 =*/242).string(message.approvedAt);
+            if (message.paidAt != null && Object.hasOwnProperty.call(message, "paidAt"))
+                writer.uint32(/* id 31, wireType 2 =*/250).string(message.paidAt);
+            if (message.paymentMethod != null && Object.hasOwnProperty.call(message, "paymentMethod"))
+                writer.uint32(/* id 32, wireType 0 =*/256).int32(message.paymentMethod);
+            if (message.isPickedUp != null && Object.hasOwnProperty.call(message, "isPickedUp"))
+                writer.uint32(/* id 33, wireType 0 =*/264).bool(message.isPickedUp);
+            if (message.pickedUpAt != null && Object.hasOwnProperty.call(message, "pickedUpAt"))
+                writer.uint32(/* id 34, wireType 2 =*/274).string(message.pickedUpAt);
             return writer;
         };
 
@@ -2211,6 +2875,46 @@ $root.pbCsms = (function() {
                         message.remark = reader.string();
                         break;
                     }
+                case 25: {
+                        message.customerId = reader.int64();
+                        break;
+                    }
+                case 26: {
+                        message.customerName = reader.string();
+                        break;
+                    }
+                case 27: {
+                        message.customerPhone = reader.string();
+                        break;
+                    }
+                case 28: {
+                        message.quoteAmount = reader.double();
+                        break;
+                    }
+                case 29: {
+                        message.quotedAt = reader.string();
+                        break;
+                    }
+                case 30: {
+                        message.approvedAt = reader.string();
+                        break;
+                    }
+                case 31: {
+                        message.paidAt = reader.string();
+                        break;
+                    }
+                case 32: {
+                        message.paymentMethod = reader.int32();
+                        break;
+                    }
+                case 33: {
+                        message.isPickedUp = reader.bool();
+                        break;
+                    }
+                case 34: {
+                        message.pickedUpAt = reader.string();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -2300,6 +3004,36 @@ $root.pbCsms = (function() {
             if (message.remark != null && message.hasOwnProperty("remark"))
                 if (!$util.isString(message.remark))
                     return "remark: string expected";
+            if (message.customerId != null && message.hasOwnProperty("customerId"))
+                if (!$util.isInteger(message.customerId) && !(message.customerId && $util.isInteger(message.customerId.low) && $util.isInteger(message.customerId.high)))
+                    return "customerId: integer|Long expected";
+            if (message.customerName != null && message.hasOwnProperty("customerName"))
+                if (!$util.isString(message.customerName))
+                    return "customerName: string expected";
+            if (message.customerPhone != null && message.hasOwnProperty("customerPhone"))
+                if (!$util.isString(message.customerPhone))
+                    return "customerPhone: string expected";
+            if (message.quoteAmount != null && message.hasOwnProperty("quoteAmount"))
+                if (typeof message.quoteAmount !== "number")
+                    return "quoteAmount: number expected";
+            if (message.quotedAt != null && message.hasOwnProperty("quotedAt"))
+                if (!$util.isString(message.quotedAt))
+                    return "quotedAt: string expected";
+            if (message.approvedAt != null && message.hasOwnProperty("approvedAt"))
+                if (!$util.isString(message.approvedAt))
+                    return "approvedAt: string expected";
+            if (message.paidAt != null && message.hasOwnProperty("paidAt"))
+                if (!$util.isString(message.paidAt))
+                    return "paidAt: string expected";
+            if (message.paymentMethod != null && message.hasOwnProperty("paymentMethod"))
+                if (!$util.isInteger(message.paymentMethod))
+                    return "paymentMethod: integer expected";
+            if (message.isPickedUp != null && message.hasOwnProperty("isPickedUp"))
+                if (typeof message.isPickedUp !== "boolean")
+                    return "isPickedUp: boolean expected";
+            if (message.pickedUpAt != null && message.hasOwnProperty("pickedUpAt"))
+                if (!$util.isString(message.pickedUpAt))
+                    return "pickedUpAt: string expected";
             return null;
         };
 
@@ -2358,6 +3092,33 @@ $root.pbCsms = (function() {
                 message.completedAt = String(object.completedAt);
             if (object.remark != null)
                 message.remark = String(object.remark);
+            if (object.customerId != null)
+                if ($util.Long)
+                    (message.customerId = $util.Long.fromValue(object.customerId)).unsigned = false;
+                else if (typeof object.customerId === "string")
+                    message.customerId = parseInt(object.customerId, 10);
+                else if (typeof object.customerId === "number")
+                    message.customerId = object.customerId;
+                else if (typeof object.customerId === "object")
+                    message.customerId = new $util.LongBits(object.customerId.low >>> 0, object.customerId.high >>> 0).toNumber();
+            if (object.customerName != null)
+                message.customerName = String(object.customerName);
+            if (object.customerPhone != null)
+                message.customerPhone = String(object.customerPhone);
+            if (object.quoteAmount != null)
+                message.quoteAmount = Number(object.quoteAmount);
+            if (object.quotedAt != null)
+                message.quotedAt = String(object.quotedAt);
+            if (object.approvedAt != null)
+                message.approvedAt = String(object.approvedAt);
+            if (object.paidAt != null)
+                message.paidAt = String(object.paidAt);
+            if (object.paymentMethod != null)
+                message.paymentMethod = object.paymentMethod | 0;
+            if (object.isPickedUp != null)
+                message.isPickedUp = Boolean(object.isPickedUp);
+            if (object.pickedUpAt != null)
+                message.pickedUpAt = String(object.pickedUpAt);
             return message;
         };
 
@@ -2397,6 +3158,20 @@ $root.pbCsms = (function() {
                 object.acceptedAt = "";
                 object.completedAt = "";
                 object.remark = "";
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.customerId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.customerId = options.longs === String ? "0" : 0;
+                object.customerName = "";
+                object.customerPhone = "";
+                object.quoteAmount = 0;
+                object.quotedAt = "";
+                object.approvedAt = "";
+                object.paidAt = "";
+                object.paymentMethod = 0;
+                object.isPickedUp = false;
+                object.pickedUpAt = "";
             }
             if (message.id != null && message.hasOwnProperty("id"))
                 if (typeof message.id === "number")
@@ -2437,6 +3212,29 @@ $root.pbCsms = (function() {
                 object.completedAt = message.completedAt;
             if (message.remark != null && message.hasOwnProperty("remark"))
                 object.remark = message.remark;
+            if (message.customerId != null && message.hasOwnProperty("customerId"))
+                if (typeof message.customerId === "number")
+                    object.customerId = options.longs === String ? String(message.customerId) : message.customerId;
+                else
+                    object.customerId = options.longs === String ? $util.Long.prototype.toString.call(message.customerId) : options.longs === Number ? new $util.LongBits(message.customerId.low >>> 0, message.customerId.high >>> 0).toNumber() : message.customerId;
+            if (message.customerName != null && message.hasOwnProperty("customerName"))
+                object.customerName = message.customerName;
+            if (message.customerPhone != null && message.hasOwnProperty("customerPhone"))
+                object.customerPhone = message.customerPhone;
+            if (message.quoteAmount != null && message.hasOwnProperty("quoteAmount"))
+                object.quoteAmount = options.json && !isFinite(message.quoteAmount) ? String(message.quoteAmount) : message.quoteAmount;
+            if (message.quotedAt != null && message.hasOwnProperty("quotedAt"))
+                object.quotedAt = message.quotedAt;
+            if (message.approvedAt != null && message.hasOwnProperty("approvedAt"))
+                object.approvedAt = message.approvedAt;
+            if (message.paidAt != null && message.hasOwnProperty("paidAt"))
+                object.paidAt = message.paidAt;
+            if (message.paymentMethod != null && message.hasOwnProperty("paymentMethod"))
+                object.paymentMethod = message.paymentMethod;
+            if (message.isPickedUp != null && message.hasOwnProperty("isPickedUp"))
+                object.isPickedUp = message.isPickedUp;
+            if (message.pickedUpAt != null && message.hasOwnProperty("pickedUpAt"))
+                object.pickedUpAt = message.pickedUpAt;
             return object;
         };
 
@@ -3282,6 +4080,424 @@ $root.pbCsms = (function() {
         return SparePartUsage;
     })();
 
+    pbCsms.RepairOrderImage = (function() {
+
+        /**
+         * Properties of a RepairOrderImage.
+         * @memberof pbCsms
+         * @interface IRepairOrderImage
+         * @property {number|Long|null} [id] RepairOrderImage id
+         * @property {string|null} [createdAt] RepairOrderImage createdAt
+         * @property {number|Long|null} [repairOrderId] RepairOrderImage repairOrderId
+         * @property {string|null} [url] RepairOrderImage url
+         * @property {number|null} [type] RepairOrderImage type
+         * @property {number|null} [sort] RepairOrderImage sort
+         * @property {string|null} [description] RepairOrderImage description
+         * @property {string|null} [operatorId] RepairOrderImage operatorId
+         * @property {string|null} [operatorName] RepairOrderImage operatorName
+         */
+
+        /**
+         * Constructs a new RepairOrderImage.
+         * @memberof pbCsms
+         * @classdesc Represents a RepairOrderImage.
+         * @implements IRepairOrderImage
+         * @constructor
+         * @param {pbCsms.IRepairOrderImage=} [properties] Properties to set
+         */
+        function RepairOrderImage(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * RepairOrderImage id.
+         * @member {number|Long} id
+         * @memberof pbCsms.RepairOrderImage
+         * @instance
+         */
+        RepairOrderImage.prototype.id = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * RepairOrderImage createdAt.
+         * @member {string} createdAt
+         * @memberof pbCsms.RepairOrderImage
+         * @instance
+         */
+        RepairOrderImage.prototype.createdAt = "";
+
+        /**
+         * RepairOrderImage repairOrderId.
+         * @member {number|Long} repairOrderId
+         * @memberof pbCsms.RepairOrderImage
+         * @instance
+         */
+        RepairOrderImage.prototype.repairOrderId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * RepairOrderImage url.
+         * @member {string} url
+         * @memberof pbCsms.RepairOrderImage
+         * @instance
+         */
+        RepairOrderImage.prototype.url = "";
+
+        /**
+         * RepairOrderImage type.
+         * @member {number} type
+         * @memberof pbCsms.RepairOrderImage
+         * @instance
+         */
+        RepairOrderImage.prototype.type = 0;
+
+        /**
+         * RepairOrderImage sort.
+         * @member {number} sort
+         * @memberof pbCsms.RepairOrderImage
+         * @instance
+         */
+        RepairOrderImage.prototype.sort = 0;
+
+        /**
+         * RepairOrderImage description.
+         * @member {string} description
+         * @memberof pbCsms.RepairOrderImage
+         * @instance
+         */
+        RepairOrderImage.prototype.description = "";
+
+        /**
+         * RepairOrderImage operatorId.
+         * @member {string} operatorId
+         * @memberof pbCsms.RepairOrderImage
+         * @instance
+         */
+        RepairOrderImage.prototype.operatorId = "";
+
+        /**
+         * RepairOrderImage operatorName.
+         * @member {string} operatorName
+         * @memberof pbCsms.RepairOrderImage
+         * @instance
+         */
+        RepairOrderImage.prototype.operatorName = "";
+
+        /**
+         * Creates a new RepairOrderImage instance using the specified properties.
+         * @function create
+         * @memberof pbCsms.RepairOrderImage
+         * @static
+         * @param {pbCsms.IRepairOrderImage=} [properties] Properties to set
+         * @returns {pbCsms.RepairOrderImage} RepairOrderImage instance
+         */
+        RepairOrderImage.create = function create(properties) {
+            return new RepairOrderImage(properties);
+        };
+
+        /**
+         * Encodes the specified RepairOrderImage message. Does not implicitly {@link pbCsms.RepairOrderImage.verify|verify} messages.
+         * @function encode
+         * @memberof pbCsms.RepairOrderImage
+         * @static
+         * @param {pbCsms.IRepairOrderImage} message RepairOrderImage message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        RepairOrderImage.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id);
+            if (message.createdAt != null && Object.hasOwnProperty.call(message, "createdAt"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.createdAt);
+            if (message.repairOrderId != null && Object.hasOwnProperty.call(message, "repairOrderId"))
+                writer.uint32(/* id 10, wireType 0 =*/80).int64(message.repairOrderId);
+            if (message.url != null && Object.hasOwnProperty.call(message, "url"))
+                writer.uint32(/* id 11, wireType 2 =*/90).string(message.url);
+            if (message.type != null && Object.hasOwnProperty.call(message, "type"))
+                writer.uint32(/* id 12, wireType 0 =*/96).int32(message.type);
+            if (message.sort != null && Object.hasOwnProperty.call(message, "sort"))
+                writer.uint32(/* id 13, wireType 0 =*/104).int32(message.sort);
+            if (message.description != null && Object.hasOwnProperty.call(message, "description"))
+                writer.uint32(/* id 14, wireType 2 =*/114).string(message.description);
+            if (message.operatorId != null && Object.hasOwnProperty.call(message, "operatorId"))
+                writer.uint32(/* id 15, wireType 2 =*/122).string(message.operatorId);
+            if (message.operatorName != null && Object.hasOwnProperty.call(message, "operatorName"))
+                writer.uint32(/* id 16, wireType 2 =*/130).string(message.operatorName);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified RepairOrderImage message, length delimited. Does not implicitly {@link pbCsms.RepairOrderImage.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbCsms.RepairOrderImage
+         * @static
+         * @param {pbCsms.IRepairOrderImage} message RepairOrderImage message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        RepairOrderImage.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a RepairOrderImage message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbCsms.RepairOrderImage
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbCsms.RepairOrderImage} RepairOrderImage
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        RepairOrderImage.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbCsms.RepairOrderImage();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.id = reader.int64();
+                        break;
+                    }
+                case 2: {
+                        message.createdAt = reader.string();
+                        break;
+                    }
+                case 10: {
+                        message.repairOrderId = reader.int64();
+                        break;
+                    }
+                case 11: {
+                        message.url = reader.string();
+                        break;
+                    }
+                case 12: {
+                        message.type = reader.int32();
+                        break;
+                    }
+                case 13: {
+                        message.sort = reader.int32();
+                        break;
+                    }
+                case 14: {
+                        message.description = reader.string();
+                        break;
+                    }
+                case 15: {
+                        message.operatorId = reader.string();
+                        break;
+                    }
+                case 16: {
+                        message.operatorName = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a RepairOrderImage message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbCsms.RepairOrderImage
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbCsms.RepairOrderImage} RepairOrderImage
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        RepairOrderImage.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a RepairOrderImage message.
+         * @function verify
+         * @memberof pbCsms.RepairOrderImage
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        RepairOrderImage.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (!$util.isInteger(message.id) && !(message.id && $util.isInteger(message.id.low) && $util.isInteger(message.id.high)))
+                    return "id: integer|Long expected";
+            if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                if (!$util.isString(message.createdAt))
+                    return "createdAt: string expected";
+            if (message.repairOrderId != null && message.hasOwnProperty("repairOrderId"))
+                if (!$util.isInteger(message.repairOrderId) && !(message.repairOrderId && $util.isInteger(message.repairOrderId.low) && $util.isInteger(message.repairOrderId.high)))
+                    return "repairOrderId: integer|Long expected";
+            if (message.url != null && message.hasOwnProperty("url"))
+                if (!$util.isString(message.url))
+                    return "url: string expected";
+            if (message.type != null && message.hasOwnProperty("type"))
+                if (!$util.isInteger(message.type))
+                    return "type: integer expected";
+            if (message.sort != null && message.hasOwnProperty("sort"))
+                if (!$util.isInteger(message.sort))
+                    return "sort: integer expected";
+            if (message.description != null && message.hasOwnProperty("description"))
+                if (!$util.isString(message.description))
+                    return "description: string expected";
+            if (message.operatorId != null && message.hasOwnProperty("operatorId"))
+                if (!$util.isString(message.operatorId))
+                    return "operatorId: string expected";
+            if (message.operatorName != null && message.hasOwnProperty("operatorName"))
+                if (!$util.isString(message.operatorName))
+                    return "operatorName: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a RepairOrderImage message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbCsms.RepairOrderImage
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbCsms.RepairOrderImage} RepairOrderImage
+         */
+        RepairOrderImage.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbCsms.RepairOrderImage)
+                return object;
+            var message = new $root.pbCsms.RepairOrderImage();
+            if (object.id != null)
+                if ($util.Long)
+                    (message.id = $util.Long.fromValue(object.id)).unsigned = false;
+                else if (typeof object.id === "string")
+                    message.id = parseInt(object.id, 10);
+                else if (typeof object.id === "number")
+                    message.id = object.id;
+                else if (typeof object.id === "object")
+                    message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber();
+            if (object.createdAt != null)
+                message.createdAt = String(object.createdAt);
+            if (object.repairOrderId != null)
+                if ($util.Long)
+                    (message.repairOrderId = $util.Long.fromValue(object.repairOrderId)).unsigned = false;
+                else if (typeof object.repairOrderId === "string")
+                    message.repairOrderId = parseInt(object.repairOrderId, 10);
+                else if (typeof object.repairOrderId === "number")
+                    message.repairOrderId = object.repairOrderId;
+                else if (typeof object.repairOrderId === "object")
+                    message.repairOrderId = new $util.LongBits(object.repairOrderId.low >>> 0, object.repairOrderId.high >>> 0).toNumber();
+            if (object.url != null)
+                message.url = String(object.url);
+            if (object.type != null)
+                message.type = object.type | 0;
+            if (object.sort != null)
+                message.sort = object.sort | 0;
+            if (object.description != null)
+                message.description = String(object.description);
+            if (object.operatorId != null)
+                message.operatorId = String(object.operatorId);
+            if (object.operatorName != null)
+                message.operatorName = String(object.operatorName);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a RepairOrderImage message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbCsms.RepairOrderImage
+         * @static
+         * @param {pbCsms.RepairOrderImage} message RepairOrderImage
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        RepairOrderImage.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.id = options.longs === String ? "0" : 0;
+                object.createdAt = "";
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.repairOrderId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.repairOrderId = options.longs === String ? "0" : 0;
+                object.url = "";
+                object.type = 0;
+                object.sort = 0;
+                object.description = "";
+                object.operatorId = "";
+                object.operatorName = "";
+            }
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (typeof message.id === "number")
+                    object.id = options.longs === String ? String(message.id) : message.id;
+                else
+                    object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id;
+            if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                object.createdAt = message.createdAt;
+            if (message.repairOrderId != null && message.hasOwnProperty("repairOrderId"))
+                if (typeof message.repairOrderId === "number")
+                    object.repairOrderId = options.longs === String ? String(message.repairOrderId) : message.repairOrderId;
+                else
+                    object.repairOrderId = options.longs === String ? $util.Long.prototype.toString.call(message.repairOrderId) : options.longs === Number ? new $util.LongBits(message.repairOrderId.low >>> 0, message.repairOrderId.high >>> 0).toNumber() : message.repairOrderId;
+            if (message.url != null && message.hasOwnProperty("url"))
+                object.url = message.url;
+            if (message.type != null && message.hasOwnProperty("type"))
+                object.type = message.type;
+            if (message.sort != null && message.hasOwnProperty("sort"))
+                object.sort = message.sort;
+            if (message.description != null && message.hasOwnProperty("description"))
+                object.description = message.description;
+            if (message.operatorId != null && message.hasOwnProperty("operatorId"))
+                object.operatorId = message.operatorId;
+            if (message.operatorName != null && message.hasOwnProperty("operatorName"))
+                object.operatorName = message.operatorName;
+            return object;
+        };
+
+        /**
+         * Converts this RepairOrderImage to JSON.
+         * @function toJSON
+         * @memberof pbCsms.RepairOrderImage
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        RepairOrderImage.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for RepairOrderImage
+         * @function getTypeUrl
+         * @memberof pbCsms.RepairOrderImage
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        RepairOrderImage.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbCsms.RepairOrderImage";
+        };
+
+        return RepairOrderImage;
+    })();
+
     pbCsms.CsmsService = (function() {
 
         /**
@@ -3313,6 +4529,171 @@ $root.pbCsms = (function() {
         CsmsService.create = function create(rpcImpl, requestDelimited, responseDelimited) {
             return new this(rpcImpl, requestDelimited, responseDelimited);
         };
+
+        /**
+         * Callback as used by {@link pbCsms.CsmsService#createCustomer}.
+         * @memberof pbCsms.CsmsService
+         * @typedef CreateCustomerCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls CreateCustomer.
+         * @function createCustomer
+         * @memberof pbCsms.CsmsService
+         * @instance
+         * @param {pbCsms.ICreateCustomerArgs} request CreateCustomerArgs message or plain object
+         * @param {pbCsms.CsmsService.CreateCustomerCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(CsmsService.prototype.createCustomer = function createCustomer(request, callback) {
+            return this.rpcCall(createCustomer, $root.pbCsms.CreateCustomerArgs, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "CreateCustomer" });
+
+        /**
+         * Calls CreateCustomer.
+         * @function createCustomer
+         * @memberof pbCsms.CsmsService
+         * @instance
+         * @param {pbCsms.ICreateCustomerArgs} request CreateCustomerArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbCsms.CsmsService#updateCustomer}.
+         * @memberof pbCsms.CsmsService
+         * @typedef UpdateCustomerCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls UpdateCustomer.
+         * @function updateCustomer
+         * @memberof pbCsms.CsmsService
+         * @instance
+         * @param {pbCsms.IUpdateCustomerArgs} request UpdateCustomerArgs message or plain object
+         * @param {pbCsms.CsmsService.UpdateCustomerCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(CsmsService.prototype.updateCustomer = function updateCustomer(request, callback) {
+            return this.rpcCall(updateCustomer, $root.pbCsms.UpdateCustomerArgs, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "UpdateCustomer" });
+
+        /**
+         * Calls UpdateCustomer.
+         * @function updateCustomer
+         * @memberof pbCsms.CsmsService
+         * @instance
+         * @param {pbCsms.IUpdateCustomerArgs} request UpdateCustomerArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbCsms.CsmsService#deleteCustomer}.
+         * @memberof pbCsms.CsmsService
+         * @typedef DeleteCustomerCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls DeleteCustomer.
+         * @function deleteCustomer
+         * @memberof pbCsms.CsmsService
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbCsms.CsmsService.DeleteCustomerCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(CsmsService.prototype.deleteCustomer = function deleteCustomer(request, callback) {
+            return this.rpcCall(deleteCustomer, $root.pbcommon.IdArgs, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "DeleteCustomer" });
+
+        /**
+         * Calls DeleteCustomer.
+         * @function deleteCustomer
+         * @memberof pbCsms.CsmsService
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbCsms.CsmsService#findCustomerById}.
+         * @memberof pbCsms.CsmsService
+         * @typedef FindCustomerByIdCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbCsms.FindCustomerReply} [response] FindCustomerReply
+         */
+
+        /**
+         * Calls FindCustomerById.
+         * @function findCustomerById
+         * @memberof pbCsms.CsmsService
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbCsms.CsmsService.FindCustomerByIdCallback} callback Node-style callback called with the error, if any, and FindCustomerReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(CsmsService.prototype.findCustomerById = function findCustomerById(request, callback) {
+            return this.rpcCall(findCustomerById, $root.pbcommon.IdArgs, $root.pbCsms.FindCustomerReply, request, callback);
+        }, "name", { value: "FindCustomerById" });
+
+        /**
+         * Calls FindCustomerById.
+         * @function findCustomerById
+         * @memberof pbCsms.CsmsService
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbCsms.FindCustomerReply>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbCsms.CsmsService#findCustomerList}.
+         * @memberof pbCsms.CsmsService
+         * @typedef FindCustomerListCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbCsms.FindCustomerReply} [response] FindCustomerReply
+         */
+
+        /**
+         * Calls FindCustomerList.
+         * @function findCustomerList
+         * @memberof pbCsms.CsmsService
+         * @instance
+         * @param {pbCsms.IFindCustomerListArgs} request FindCustomerListArgs message or plain object
+         * @param {pbCsms.CsmsService.FindCustomerListCallback} callback Node-style callback called with the error, if any, and FindCustomerReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(CsmsService.prototype.findCustomerList = function findCustomerList(request, callback) {
+            return this.rpcCall(findCustomerList, $root.pbCsms.FindCustomerListArgs, $root.pbCsms.FindCustomerReply, request, callback);
+        }, "name", { value: "FindCustomerList" });
+
+        /**
+         * Calls FindCustomerList.
+         * @function findCustomerList
+         * @memberof pbCsms.CsmsService
+         * @instance
+         * @param {pbCsms.IFindCustomerListArgs} request FindCustomerListArgs message or plain object
+         * @returns {Promise<pbCsms.FindCustomerReply>} Promise
+         * @variation 2
+         */
 
         /**
          * Callback as used by {@link pbCsms.CsmsService#createRepairOrder}.
@@ -3645,6 +5026,138 @@ $root.pbCsms = (function() {
          */
 
         /**
+         * Callback as used by {@link pbCsms.CsmsService#quoteRepairOrder}.
+         * @memberof pbCsms.CsmsService
+         * @typedef QuoteRepairOrderCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls QuoteRepairOrder.
+         * @function quoteRepairOrder
+         * @memberof pbCsms.CsmsService
+         * @instance
+         * @param {pbCsms.IQuoteRepairOrderArgs} request QuoteRepairOrderArgs message or plain object
+         * @param {pbCsms.CsmsService.QuoteRepairOrderCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(CsmsService.prototype.quoteRepairOrder = function quoteRepairOrder(request, callback) {
+            return this.rpcCall(quoteRepairOrder, $root.pbCsms.QuoteRepairOrderArgs, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "QuoteRepairOrder" });
+
+        /**
+         * Calls QuoteRepairOrder.
+         * @function quoteRepairOrder
+         * @memberof pbCsms.CsmsService
+         * @instance
+         * @param {pbCsms.IQuoteRepairOrderArgs} request QuoteRepairOrderArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbCsms.CsmsService#approveRepairOrder}.
+         * @memberof pbCsms.CsmsService
+         * @typedef ApproveRepairOrderCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls ApproveRepairOrder.
+         * @function approveRepairOrder
+         * @memberof pbCsms.CsmsService
+         * @instance
+         * @param {pbCsms.IApproveRepairOrderArgs} request ApproveRepairOrderArgs message or plain object
+         * @param {pbCsms.CsmsService.ApproveRepairOrderCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(CsmsService.prototype.approveRepairOrder = function approveRepairOrder(request, callback) {
+            return this.rpcCall(approveRepairOrder, $root.pbCsms.ApproveRepairOrderArgs, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "ApproveRepairOrder" });
+
+        /**
+         * Calls ApproveRepairOrder.
+         * @function approveRepairOrder
+         * @memberof pbCsms.CsmsService
+         * @instance
+         * @param {pbCsms.IApproveRepairOrderArgs} request ApproveRepairOrderArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbCsms.CsmsService#payRepairOrder}.
+         * @memberof pbCsms.CsmsService
+         * @typedef PayRepairOrderCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls PayRepairOrder.
+         * @function payRepairOrder
+         * @memberof pbCsms.CsmsService
+         * @instance
+         * @param {pbCsms.IPayRepairOrderArgs} request PayRepairOrderArgs message or plain object
+         * @param {pbCsms.CsmsService.PayRepairOrderCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(CsmsService.prototype.payRepairOrder = function payRepairOrder(request, callback) {
+            return this.rpcCall(payRepairOrder, $root.pbCsms.PayRepairOrderArgs, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "PayRepairOrder" });
+
+        /**
+         * Calls PayRepairOrder.
+         * @function payRepairOrder
+         * @memberof pbCsms.CsmsService
+         * @instance
+         * @param {pbCsms.IPayRepairOrderArgs} request PayRepairOrderArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbCsms.CsmsService#pickUpRepairOrder}.
+         * @memberof pbCsms.CsmsService
+         * @typedef PickUpRepairOrderCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls PickUpRepairOrder.
+         * @function pickUpRepairOrder
+         * @memberof pbCsms.CsmsService
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbCsms.CsmsService.PickUpRepairOrderCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(CsmsService.prototype.pickUpRepairOrder = function pickUpRepairOrder(request, callback) {
+            return this.rpcCall(pickUpRepairOrder, $root.pbcommon.IdArgs, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "PickUpRepairOrder" });
+
+        /**
+         * Calls PickUpRepairOrder.
+         * @function pickUpRepairOrder
+         * @memberof pbCsms.CsmsService
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
          * Callback as used by {@link pbCsms.CsmsService#findRepairRecordList}.
          * @memberof pbCsms.CsmsService
          * @typedef FindRepairRecordListCallback
@@ -3743,7 +5256,1741 @@ $root.pbCsms = (function() {
          * @variation 2
          */
 
+        /**
+         * Callback as used by {@link pbCsms.CsmsService#uploadRepairOrderImage}.
+         * @memberof pbCsms.CsmsService
+         * @typedef UploadRepairOrderImageCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls UploadRepairOrderImage.
+         * @function uploadRepairOrderImage
+         * @memberof pbCsms.CsmsService
+         * @instance
+         * @param {pbCsms.IUploadRepairOrderImageArgs} request UploadRepairOrderImageArgs message or plain object
+         * @param {pbCsms.CsmsService.UploadRepairOrderImageCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(CsmsService.prototype.uploadRepairOrderImage = function uploadRepairOrderImage(request, callback) {
+            return this.rpcCall(uploadRepairOrderImage, $root.pbCsms.UploadRepairOrderImageArgs, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "UploadRepairOrderImage" });
+
+        /**
+         * Calls UploadRepairOrderImage.
+         * @function uploadRepairOrderImage
+         * @memberof pbCsms.CsmsService
+         * @instance
+         * @param {pbCsms.IUploadRepairOrderImageArgs} request UploadRepairOrderImageArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbCsms.CsmsService#deleteRepairOrderImage}.
+         * @memberof pbCsms.CsmsService
+         * @typedef DeleteRepairOrderImageCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls DeleteRepairOrderImage.
+         * @function deleteRepairOrderImage
+         * @memberof pbCsms.CsmsService
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbCsms.CsmsService.DeleteRepairOrderImageCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(CsmsService.prototype.deleteRepairOrderImage = function deleteRepairOrderImage(request, callback) {
+            return this.rpcCall(deleteRepairOrderImage, $root.pbcommon.IdArgs, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "DeleteRepairOrderImage" });
+
+        /**
+         * Calls DeleteRepairOrderImage.
+         * @function deleteRepairOrderImage
+         * @memberof pbCsms.CsmsService
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbCsms.CsmsService#findRepairOrderImageList}.
+         * @memberof pbCsms.CsmsService
+         * @typedef FindRepairOrderImageListCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbCsms.FindRepairOrderImageListReply} [response] FindRepairOrderImageListReply
+         */
+
+        /**
+         * Calls FindRepairOrderImageList.
+         * @function findRepairOrderImageList
+         * @memberof pbCsms.CsmsService
+         * @instance
+         * @param {pbCsms.IFindRepairOrderImageListArgs} request FindRepairOrderImageListArgs message or plain object
+         * @param {pbCsms.CsmsService.FindRepairOrderImageListCallback} callback Node-style callback called with the error, if any, and FindRepairOrderImageListReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(CsmsService.prototype.findRepairOrderImageList = function findRepairOrderImageList(request, callback) {
+            return this.rpcCall(findRepairOrderImageList, $root.pbCsms.FindRepairOrderImageListArgs, $root.pbCsms.FindRepairOrderImageListReply, request, callback);
+        }, "name", { value: "FindRepairOrderImageList" });
+
+        /**
+         * Calls FindRepairOrderImageList.
+         * @function findRepairOrderImageList
+         * @memberof pbCsms.CsmsService
+         * @instance
+         * @param {pbCsms.IFindRepairOrderImageListArgs} request FindRepairOrderImageListArgs message or plain object
+         * @returns {Promise<pbCsms.FindRepairOrderImageListReply>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbCsms.CsmsService#getStatistics}.
+         * @memberof pbCsms.CsmsService
+         * @typedef GetStatisticsCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbCsms.GetStatisticsReply} [response] GetStatisticsReply
+         */
+
+        /**
+         * Calls GetStatistics.
+         * @function getStatistics
+         * @memberof pbCsms.CsmsService
+         * @instance
+         * @param {pbCsms.IGetStatisticsArgs} request GetStatisticsArgs message or plain object
+         * @param {pbCsms.CsmsService.GetStatisticsCallback} callback Node-style callback called with the error, if any, and GetStatisticsReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(CsmsService.prototype.getStatistics = function getStatistics(request, callback) {
+            return this.rpcCall(getStatistics, $root.pbCsms.GetStatisticsArgs, $root.pbCsms.GetStatisticsReply, request, callback);
+        }, "name", { value: "GetStatistics" });
+
+        /**
+         * Calls GetStatistics.
+         * @function getStatistics
+         * @memberof pbCsms.CsmsService
+         * @instance
+         * @param {pbCsms.IGetStatisticsArgs} request GetStatisticsArgs message or plain object
+         * @returns {Promise<pbCsms.GetStatisticsReply>} Promise
+         * @variation 2
+         */
+
         return CsmsService;
+    })();
+
+    pbCsms.CreateCustomerArgs = (function() {
+
+        /**
+         * Properties of a CreateCustomerArgs.
+         * @memberof pbCsms
+         * @interface ICreateCustomerArgs
+         * @property {string|null} [name] CreateCustomerArgs name
+         * @property {string|null} [phone] CreateCustomerArgs phone
+         * @property {string|null} [wechatOpenId] CreateCustomerArgs wechatOpenId
+         * @property {string|null} [wechatNickname] CreateCustomerArgs wechatNickname
+         * @property {string|null} [address] CreateCustomerArgs address
+         * @property {number|null} [source] CreateCustomerArgs source
+         * @property {number|null} [tag] CreateCustomerArgs tag
+         * @property {string|null} [remark] CreateCustomerArgs remark
+         * @property {number|Long|null} [userId] CreateCustomerArgs userId
+         */
+
+        /**
+         * Constructs a new CreateCustomerArgs.
+         * @memberof pbCsms
+         * @classdesc Represents a CreateCustomerArgs.
+         * @implements ICreateCustomerArgs
+         * @constructor
+         * @param {pbCsms.ICreateCustomerArgs=} [properties] Properties to set
+         */
+        function CreateCustomerArgs(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * CreateCustomerArgs name.
+         * @member {string} name
+         * @memberof pbCsms.CreateCustomerArgs
+         * @instance
+         */
+        CreateCustomerArgs.prototype.name = "";
+
+        /**
+         * CreateCustomerArgs phone.
+         * @member {string} phone
+         * @memberof pbCsms.CreateCustomerArgs
+         * @instance
+         */
+        CreateCustomerArgs.prototype.phone = "";
+
+        /**
+         * CreateCustomerArgs wechatOpenId.
+         * @member {string} wechatOpenId
+         * @memberof pbCsms.CreateCustomerArgs
+         * @instance
+         */
+        CreateCustomerArgs.prototype.wechatOpenId = "";
+
+        /**
+         * CreateCustomerArgs wechatNickname.
+         * @member {string} wechatNickname
+         * @memberof pbCsms.CreateCustomerArgs
+         * @instance
+         */
+        CreateCustomerArgs.prototype.wechatNickname = "";
+
+        /**
+         * CreateCustomerArgs address.
+         * @member {string} address
+         * @memberof pbCsms.CreateCustomerArgs
+         * @instance
+         */
+        CreateCustomerArgs.prototype.address = "";
+
+        /**
+         * CreateCustomerArgs source.
+         * @member {number} source
+         * @memberof pbCsms.CreateCustomerArgs
+         * @instance
+         */
+        CreateCustomerArgs.prototype.source = 0;
+
+        /**
+         * CreateCustomerArgs tag.
+         * @member {number} tag
+         * @memberof pbCsms.CreateCustomerArgs
+         * @instance
+         */
+        CreateCustomerArgs.prototype.tag = 0;
+
+        /**
+         * CreateCustomerArgs remark.
+         * @member {string} remark
+         * @memberof pbCsms.CreateCustomerArgs
+         * @instance
+         */
+        CreateCustomerArgs.prototype.remark = "";
+
+        /**
+         * CreateCustomerArgs userId.
+         * @member {number|Long} userId
+         * @memberof pbCsms.CreateCustomerArgs
+         * @instance
+         */
+        CreateCustomerArgs.prototype.userId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * Creates a new CreateCustomerArgs instance using the specified properties.
+         * @function create
+         * @memberof pbCsms.CreateCustomerArgs
+         * @static
+         * @param {pbCsms.ICreateCustomerArgs=} [properties] Properties to set
+         * @returns {pbCsms.CreateCustomerArgs} CreateCustomerArgs instance
+         */
+        CreateCustomerArgs.create = function create(properties) {
+            return new CreateCustomerArgs(properties);
+        };
+
+        /**
+         * Encodes the specified CreateCustomerArgs message. Does not implicitly {@link pbCsms.CreateCustomerArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbCsms.CreateCustomerArgs
+         * @static
+         * @param {pbCsms.ICreateCustomerArgs} message CreateCustomerArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        CreateCustomerArgs.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+            if (message.phone != null && Object.hasOwnProperty.call(message, "phone"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.phone);
+            if (message.wechatOpenId != null && Object.hasOwnProperty.call(message, "wechatOpenId"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.wechatOpenId);
+            if (message.wechatNickname != null && Object.hasOwnProperty.call(message, "wechatNickname"))
+                writer.uint32(/* id 4, wireType 2 =*/34).string(message.wechatNickname);
+            if (message.address != null && Object.hasOwnProperty.call(message, "address"))
+                writer.uint32(/* id 5, wireType 2 =*/42).string(message.address);
+            if (message.source != null && Object.hasOwnProperty.call(message, "source"))
+                writer.uint32(/* id 6, wireType 0 =*/48).int32(message.source);
+            if (message.tag != null && Object.hasOwnProperty.call(message, "tag"))
+                writer.uint32(/* id 7, wireType 0 =*/56).int32(message.tag);
+            if (message.remark != null && Object.hasOwnProperty.call(message, "remark"))
+                writer.uint32(/* id 8, wireType 2 =*/66).string(message.remark);
+            if (message.userId != null && Object.hasOwnProperty.call(message, "userId"))
+                writer.uint32(/* id 9, wireType 0 =*/72).int64(message.userId);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified CreateCustomerArgs message, length delimited. Does not implicitly {@link pbCsms.CreateCustomerArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbCsms.CreateCustomerArgs
+         * @static
+         * @param {pbCsms.ICreateCustomerArgs} message CreateCustomerArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        CreateCustomerArgs.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a CreateCustomerArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbCsms.CreateCustomerArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbCsms.CreateCustomerArgs} CreateCustomerArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        CreateCustomerArgs.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbCsms.CreateCustomerArgs();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.name = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message.phone = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.wechatOpenId = reader.string();
+                        break;
+                    }
+                case 4: {
+                        message.wechatNickname = reader.string();
+                        break;
+                    }
+                case 5: {
+                        message.address = reader.string();
+                        break;
+                    }
+                case 6: {
+                        message.source = reader.int32();
+                        break;
+                    }
+                case 7: {
+                        message.tag = reader.int32();
+                        break;
+                    }
+                case 8: {
+                        message.remark = reader.string();
+                        break;
+                    }
+                case 9: {
+                        message.userId = reader.int64();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a CreateCustomerArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbCsms.CreateCustomerArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbCsms.CreateCustomerArgs} CreateCustomerArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        CreateCustomerArgs.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a CreateCustomerArgs message.
+         * @function verify
+         * @memberof pbCsms.CreateCustomerArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        CreateCustomerArgs.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.name != null && message.hasOwnProperty("name"))
+                if (!$util.isString(message.name))
+                    return "name: string expected";
+            if (message.phone != null && message.hasOwnProperty("phone"))
+                if (!$util.isString(message.phone))
+                    return "phone: string expected";
+            if (message.wechatOpenId != null && message.hasOwnProperty("wechatOpenId"))
+                if (!$util.isString(message.wechatOpenId))
+                    return "wechatOpenId: string expected";
+            if (message.wechatNickname != null && message.hasOwnProperty("wechatNickname"))
+                if (!$util.isString(message.wechatNickname))
+                    return "wechatNickname: string expected";
+            if (message.address != null && message.hasOwnProperty("address"))
+                if (!$util.isString(message.address))
+                    return "address: string expected";
+            if (message.source != null && message.hasOwnProperty("source"))
+                if (!$util.isInteger(message.source))
+                    return "source: integer expected";
+            if (message.tag != null && message.hasOwnProperty("tag"))
+                if (!$util.isInteger(message.tag))
+                    return "tag: integer expected";
+            if (message.remark != null && message.hasOwnProperty("remark"))
+                if (!$util.isString(message.remark))
+                    return "remark: string expected";
+            if (message.userId != null && message.hasOwnProperty("userId"))
+                if (!$util.isInteger(message.userId) && !(message.userId && $util.isInteger(message.userId.low) && $util.isInteger(message.userId.high)))
+                    return "userId: integer|Long expected";
+            return null;
+        };
+
+        /**
+         * Creates a CreateCustomerArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbCsms.CreateCustomerArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbCsms.CreateCustomerArgs} CreateCustomerArgs
+         */
+        CreateCustomerArgs.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbCsms.CreateCustomerArgs)
+                return object;
+            var message = new $root.pbCsms.CreateCustomerArgs();
+            if (object.name != null)
+                message.name = String(object.name);
+            if (object.phone != null)
+                message.phone = String(object.phone);
+            if (object.wechatOpenId != null)
+                message.wechatOpenId = String(object.wechatOpenId);
+            if (object.wechatNickname != null)
+                message.wechatNickname = String(object.wechatNickname);
+            if (object.address != null)
+                message.address = String(object.address);
+            if (object.source != null)
+                message.source = object.source | 0;
+            if (object.tag != null)
+                message.tag = object.tag | 0;
+            if (object.remark != null)
+                message.remark = String(object.remark);
+            if (object.userId != null)
+                if ($util.Long)
+                    (message.userId = $util.Long.fromValue(object.userId)).unsigned = false;
+                else if (typeof object.userId === "string")
+                    message.userId = parseInt(object.userId, 10);
+                else if (typeof object.userId === "number")
+                    message.userId = object.userId;
+                else if (typeof object.userId === "object")
+                    message.userId = new $util.LongBits(object.userId.low >>> 0, object.userId.high >>> 0).toNumber();
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a CreateCustomerArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbCsms.CreateCustomerArgs
+         * @static
+         * @param {pbCsms.CreateCustomerArgs} message CreateCustomerArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        CreateCustomerArgs.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.name = "";
+                object.phone = "";
+                object.wechatOpenId = "";
+                object.wechatNickname = "";
+                object.address = "";
+                object.source = 0;
+                object.tag = 0;
+                object.remark = "";
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.userId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.userId = options.longs === String ? "0" : 0;
+            }
+            if (message.name != null && message.hasOwnProperty("name"))
+                object.name = message.name;
+            if (message.phone != null && message.hasOwnProperty("phone"))
+                object.phone = message.phone;
+            if (message.wechatOpenId != null && message.hasOwnProperty("wechatOpenId"))
+                object.wechatOpenId = message.wechatOpenId;
+            if (message.wechatNickname != null && message.hasOwnProperty("wechatNickname"))
+                object.wechatNickname = message.wechatNickname;
+            if (message.address != null && message.hasOwnProperty("address"))
+                object.address = message.address;
+            if (message.source != null && message.hasOwnProperty("source"))
+                object.source = message.source;
+            if (message.tag != null && message.hasOwnProperty("tag"))
+                object.tag = message.tag;
+            if (message.remark != null && message.hasOwnProperty("remark"))
+                object.remark = message.remark;
+            if (message.userId != null && message.hasOwnProperty("userId"))
+                if (typeof message.userId === "number")
+                    object.userId = options.longs === String ? String(message.userId) : message.userId;
+                else
+                    object.userId = options.longs === String ? $util.Long.prototype.toString.call(message.userId) : options.longs === Number ? new $util.LongBits(message.userId.low >>> 0, message.userId.high >>> 0).toNumber() : message.userId;
+            return object;
+        };
+
+        /**
+         * Converts this CreateCustomerArgs to JSON.
+         * @function toJSON
+         * @memberof pbCsms.CreateCustomerArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        CreateCustomerArgs.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for CreateCustomerArgs
+         * @function getTypeUrl
+         * @memberof pbCsms.CreateCustomerArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        CreateCustomerArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbCsms.CreateCustomerArgs";
+        };
+
+        return CreateCustomerArgs;
+    })();
+
+    pbCsms.UpdateCustomerArgs = (function() {
+
+        /**
+         * Properties of an UpdateCustomerArgs.
+         * @memberof pbCsms
+         * @interface IUpdateCustomerArgs
+         * @property {number|Long|null} [id] UpdateCustomerArgs id
+         * @property {string|null} [name] UpdateCustomerArgs name
+         * @property {string|null} [phone] UpdateCustomerArgs phone
+         * @property {string|null} [wechatOpenId] UpdateCustomerArgs wechatOpenId
+         * @property {string|null} [wechatNickname] UpdateCustomerArgs wechatNickname
+         * @property {string|null} [address] UpdateCustomerArgs address
+         * @property {number|null} [source] UpdateCustomerArgs source
+         * @property {number|null} [tag] UpdateCustomerArgs tag
+         * @property {string|null} [remark] UpdateCustomerArgs remark
+         */
+
+        /**
+         * Constructs a new UpdateCustomerArgs.
+         * @memberof pbCsms
+         * @classdesc Represents an UpdateCustomerArgs.
+         * @implements IUpdateCustomerArgs
+         * @constructor
+         * @param {pbCsms.IUpdateCustomerArgs=} [properties] Properties to set
+         */
+        function UpdateCustomerArgs(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * UpdateCustomerArgs id.
+         * @member {number|Long} id
+         * @memberof pbCsms.UpdateCustomerArgs
+         * @instance
+         */
+        UpdateCustomerArgs.prototype.id = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * UpdateCustomerArgs name.
+         * @member {string} name
+         * @memberof pbCsms.UpdateCustomerArgs
+         * @instance
+         */
+        UpdateCustomerArgs.prototype.name = "";
+
+        /**
+         * UpdateCustomerArgs phone.
+         * @member {string} phone
+         * @memberof pbCsms.UpdateCustomerArgs
+         * @instance
+         */
+        UpdateCustomerArgs.prototype.phone = "";
+
+        /**
+         * UpdateCustomerArgs wechatOpenId.
+         * @member {string} wechatOpenId
+         * @memberof pbCsms.UpdateCustomerArgs
+         * @instance
+         */
+        UpdateCustomerArgs.prototype.wechatOpenId = "";
+
+        /**
+         * UpdateCustomerArgs wechatNickname.
+         * @member {string} wechatNickname
+         * @memberof pbCsms.UpdateCustomerArgs
+         * @instance
+         */
+        UpdateCustomerArgs.prototype.wechatNickname = "";
+
+        /**
+         * UpdateCustomerArgs address.
+         * @member {string} address
+         * @memberof pbCsms.UpdateCustomerArgs
+         * @instance
+         */
+        UpdateCustomerArgs.prototype.address = "";
+
+        /**
+         * UpdateCustomerArgs source.
+         * @member {number} source
+         * @memberof pbCsms.UpdateCustomerArgs
+         * @instance
+         */
+        UpdateCustomerArgs.prototype.source = 0;
+
+        /**
+         * UpdateCustomerArgs tag.
+         * @member {number} tag
+         * @memberof pbCsms.UpdateCustomerArgs
+         * @instance
+         */
+        UpdateCustomerArgs.prototype.tag = 0;
+
+        /**
+         * UpdateCustomerArgs remark.
+         * @member {string} remark
+         * @memberof pbCsms.UpdateCustomerArgs
+         * @instance
+         */
+        UpdateCustomerArgs.prototype.remark = "";
+
+        /**
+         * Creates a new UpdateCustomerArgs instance using the specified properties.
+         * @function create
+         * @memberof pbCsms.UpdateCustomerArgs
+         * @static
+         * @param {pbCsms.IUpdateCustomerArgs=} [properties] Properties to set
+         * @returns {pbCsms.UpdateCustomerArgs} UpdateCustomerArgs instance
+         */
+        UpdateCustomerArgs.create = function create(properties) {
+            return new UpdateCustomerArgs(properties);
+        };
+
+        /**
+         * Encodes the specified UpdateCustomerArgs message. Does not implicitly {@link pbCsms.UpdateCustomerArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbCsms.UpdateCustomerArgs
+         * @static
+         * @param {pbCsms.IUpdateCustomerArgs} message UpdateCustomerArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        UpdateCustomerArgs.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id);
+            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.name);
+            if (message.phone != null && Object.hasOwnProperty.call(message, "phone"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.phone);
+            if (message.wechatOpenId != null && Object.hasOwnProperty.call(message, "wechatOpenId"))
+                writer.uint32(/* id 4, wireType 2 =*/34).string(message.wechatOpenId);
+            if (message.wechatNickname != null && Object.hasOwnProperty.call(message, "wechatNickname"))
+                writer.uint32(/* id 5, wireType 2 =*/42).string(message.wechatNickname);
+            if (message.address != null && Object.hasOwnProperty.call(message, "address"))
+                writer.uint32(/* id 6, wireType 2 =*/50).string(message.address);
+            if (message.source != null && Object.hasOwnProperty.call(message, "source"))
+                writer.uint32(/* id 7, wireType 0 =*/56).int32(message.source);
+            if (message.tag != null && Object.hasOwnProperty.call(message, "tag"))
+                writer.uint32(/* id 8, wireType 0 =*/64).int32(message.tag);
+            if (message.remark != null && Object.hasOwnProperty.call(message, "remark"))
+                writer.uint32(/* id 9, wireType 2 =*/74).string(message.remark);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified UpdateCustomerArgs message, length delimited. Does not implicitly {@link pbCsms.UpdateCustomerArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbCsms.UpdateCustomerArgs
+         * @static
+         * @param {pbCsms.IUpdateCustomerArgs} message UpdateCustomerArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        UpdateCustomerArgs.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an UpdateCustomerArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbCsms.UpdateCustomerArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbCsms.UpdateCustomerArgs} UpdateCustomerArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        UpdateCustomerArgs.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbCsms.UpdateCustomerArgs();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.id = reader.int64();
+                        break;
+                    }
+                case 2: {
+                        message.name = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.phone = reader.string();
+                        break;
+                    }
+                case 4: {
+                        message.wechatOpenId = reader.string();
+                        break;
+                    }
+                case 5: {
+                        message.wechatNickname = reader.string();
+                        break;
+                    }
+                case 6: {
+                        message.address = reader.string();
+                        break;
+                    }
+                case 7: {
+                        message.source = reader.int32();
+                        break;
+                    }
+                case 8: {
+                        message.tag = reader.int32();
+                        break;
+                    }
+                case 9: {
+                        message.remark = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an UpdateCustomerArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbCsms.UpdateCustomerArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbCsms.UpdateCustomerArgs} UpdateCustomerArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        UpdateCustomerArgs.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an UpdateCustomerArgs message.
+         * @function verify
+         * @memberof pbCsms.UpdateCustomerArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        UpdateCustomerArgs.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (!$util.isInteger(message.id) && !(message.id && $util.isInteger(message.id.low) && $util.isInteger(message.id.high)))
+                    return "id: integer|Long expected";
+            if (message.name != null && message.hasOwnProperty("name"))
+                if (!$util.isString(message.name))
+                    return "name: string expected";
+            if (message.phone != null && message.hasOwnProperty("phone"))
+                if (!$util.isString(message.phone))
+                    return "phone: string expected";
+            if (message.wechatOpenId != null && message.hasOwnProperty("wechatOpenId"))
+                if (!$util.isString(message.wechatOpenId))
+                    return "wechatOpenId: string expected";
+            if (message.wechatNickname != null && message.hasOwnProperty("wechatNickname"))
+                if (!$util.isString(message.wechatNickname))
+                    return "wechatNickname: string expected";
+            if (message.address != null && message.hasOwnProperty("address"))
+                if (!$util.isString(message.address))
+                    return "address: string expected";
+            if (message.source != null && message.hasOwnProperty("source"))
+                if (!$util.isInteger(message.source))
+                    return "source: integer expected";
+            if (message.tag != null && message.hasOwnProperty("tag"))
+                if (!$util.isInteger(message.tag))
+                    return "tag: integer expected";
+            if (message.remark != null && message.hasOwnProperty("remark"))
+                if (!$util.isString(message.remark))
+                    return "remark: string expected";
+            return null;
+        };
+
+        /**
+         * Creates an UpdateCustomerArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbCsms.UpdateCustomerArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbCsms.UpdateCustomerArgs} UpdateCustomerArgs
+         */
+        UpdateCustomerArgs.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbCsms.UpdateCustomerArgs)
+                return object;
+            var message = new $root.pbCsms.UpdateCustomerArgs();
+            if (object.id != null)
+                if ($util.Long)
+                    (message.id = $util.Long.fromValue(object.id)).unsigned = false;
+                else if (typeof object.id === "string")
+                    message.id = parseInt(object.id, 10);
+                else if (typeof object.id === "number")
+                    message.id = object.id;
+                else if (typeof object.id === "object")
+                    message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber();
+            if (object.name != null)
+                message.name = String(object.name);
+            if (object.phone != null)
+                message.phone = String(object.phone);
+            if (object.wechatOpenId != null)
+                message.wechatOpenId = String(object.wechatOpenId);
+            if (object.wechatNickname != null)
+                message.wechatNickname = String(object.wechatNickname);
+            if (object.address != null)
+                message.address = String(object.address);
+            if (object.source != null)
+                message.source = object.source | 0;
+            if (object.tag != null)
+                message.tag = object.tag | 0;
+            if (object.remark != null)
+                message.remark = String(object.remark);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an UpdateCustomerArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbCsms.UpdateCustomerArgs
+         * @static
+         * @param {pbCsms.UpdateCustomerArgs} message UpdateCustomerArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        UpdateCustomerArgs.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.id = options.longs === String ? "0" : 0;
+                object.name = "";
+                object.phone = "";
+                object.wechatOpenId = "";
+                object.wechatNickname = "";
+                object.address = "";
+                object.source = 0;
+                object.tag = 0;
+                object.remark = "";
+            }
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (typeof message.id === "number")
+                    object.id = options.longs === String ? String(message.id) : message.id;
+                else
+                    object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id;
+            if (message.name != null && message.hasOwnProperty("name"))
+                object.name = message.name;
+            if (message.phone != null && message.hasOwnProperty("phone"))
+                object.phone = message.phone;
+            if (message.wechatOpenId != null && message.hasOwnProperty("wechatOpenId"))
+                object.wechatOpenId = message.wechatOpenId;
+            if (message.wechatNickname != null && message.hasOwnProperty("wechatNickname"))
+                object.wechatNickname = message.wechatNickname;
+            if (message.address != null && message.hasOwnProperty("address"))
+                object.address = message.address;
+            if (message.source != null && message.hasOwnProperty("source"))
+                object.source = message.source;
+            if (message.tag != null && message.hasOwnProperty("tag"))
+                object.tag = message.tag;
+            if (message.remark != null && message.hasOwnProperty("remark"))
+                object.remark = message.remark;
+            return object;
+        };
+
+        /**
+         * Converts this UpdateCustomerArgs to JSON.
+         * @function toJSON
+         * @memberof pbCsms.UpdateCustomerArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        UpdateCustomerArgs.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for UpdateCustomerArgs
+         * @function getTypeUrl
+         * @memberof pbCsms.UpdateCustomerArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        UpdateCustomerArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbCsms.UpdateCustomerArgs";
+        };
+
+        return UpdateCustomerArgs;
+    })();
+
+    pbCsms.FindCustomerListArgs = (function() {
+
+        /**
+         * Properties of a FindCustomerListArgs.
+         * @memberof pbCsms
+         * @interface IFindCustomerListArgs
+         * @property {number|null} [page] FindCustomerListArgs page
+         * @property {number|null} [pageSize] FindCustomerListArgs pageSize
+         * @property {string|null} [keyword] FindCustomerListArgs keyword
+         * @property {number|null} [tag] FindCustomerListArgs tag
+         * @property {number|null} [source] FindCustomerListArgs source
+         */
+
+        /**
+         * Constructs a new FindCustomerListArgs.
+         * @memberof pbCsms
+         * @classdesc Represents a FindCustomerListArgs.
+         * @implements IFindCustomerListArgs
+         * @constructor
+         * @param {pbCsms.IFindCustomerListArgs=} [properties] Properties to set
+         */
+        function FindCustomerListArgs(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * FindCustomerListArgs page.
+         * @member {number} page
+         * @memberof pbCsms.FindCustomerListArgs
+         * @instance
+         */
+        FindCustomerListArgs.prototype.page = 0;
+
+        /**
+         * FindCustomerListArgs pageSize.
+         * @member {number} pageSize
+         * @memberof pbCsms.FindCustomerListArgs
+         * @instance
+         */
+        FindCustomerListArgs.prototype.pageSize = 0;
+
+        /**
+         * FindCustomerListArgs keyword.
+         * @member {string} keyword
+         * @memberof pbCsms.FindCustomerListArgs
+         * @instance
+         */
+        FindCustomerListArgs.prototype.keyword = "";
+
+        /**
+         * FindCustomerListArgs tag.
+         * @member {number} tag
+         * @memberof pbCsms.FindCustomerListArgs
+         * @instance
+         */
+        FindCustomerListArgs.prototype.tag = 0;
+
+        /**
+         * FindCustomerListArgs source.
+         * @member {number} source
+         * @memberof pbCsms.FindCustomerListArgs
+         * @instance
+         */
+        FindCustomerListArgs.prototype.source = 0;
+
+        /**
+         * Creates a new FindCustomerListArgs instance using the specified properties.
+         * @function create
+         * @memberof pbCsms.FindCustomerListArgs
+         * @static
+         * @param {pbCsms.IFindCustomerListArgs=} [properties] Properties to set
+         * @returns {pbCsms.FindCustomerListArgs} FindCustomerListArgs instance
+         */
+        FindCustomerListArgs.create = function create(properties) {
+            return new FindCustomerListArgs(properties);
+        };
+
+        /**
+         * Encodes the specified FindCustomerListArgs message. Does not implicitly {@link pbCsms.FindCustomerListArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbCsms.FindCustomerListArgs
+         * @static
+         * @param {pbCsms.IFindCustomerListArgs} message FindCustomerListArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindCustomerListArgs.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.page != null && Object.hasOwnProperty.call(message, "page"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.page);
+            if (message.pageSize != null && Object.hasOwnProperty.call(message, "pageSize"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.pageSize);
+            if (message.keyword != null && Object.hasOwnProperty.call(message, "keyword"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.keyword);
+            if (message.tag != null && Object.hasOwnProperty.call(message, "tag"))
+                writer.uint32(/* id 4, wireType 0 =*/32).int32(message.tag);
+            if (message.source != null && Object.hasOwnProperty.call(message, "source"))
+                writer.uint32(/* id 5, wireType 0 =*/40).int32(message.source);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified FindCustomerListArgs message, length delimited. Does not implicitly {@link pbCsms.FindCustomerListArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbCsms.FindCustomerListArgs
+         * @static
+         * @param {pbCsms.IFindCustomerListArgs} message FindCustomerListArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindCustomerListArgs.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a FindCustomerListArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbCsms.FindCustomerListArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbCsms.FindCustomerListArgs} FindCustomerListArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindCustomerListArgs.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbCsms.FindCustomerListArgs();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.page = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.pageSize = reader.int32();
+                        break;
+                    }
+                case 3: {
+                        message.keyword = reader.string();
+                        break;
+                    }
+                case 4: {
+                        message.tag = reader.int32();
+                        break;
+                    }
+                case 5: {
+                        message.source = reader.int32();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a FindCustomerListArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbCsms.FindCustomerListArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbCsms.FindCustomerListArgs} FindCustomerListArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindCustomerListArgs.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a FindCustomerListArgs message.
+         * @function verify
+         * @memberof pbCsms.FindCustomerListArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        FindCustomerListArgs.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.page != null && message.hasOwnProperty("page"))
+                if (!$util.isInteger(message.page))
+                    return "page: integer expected";
+            if (message.pageSize != null && message.hasOwnProperty("pageSize"))
+                if (!$util.isInteger(message.pageSize))
+                    return "pageSize: integer expected";
+            if (message.keyword != null && message.hasOwnProperty("keyword"))
+                if (!$util.isString(message.keyword))
+                    return "keyword: string expected";
+            if (message.tag != null && message.hasOwnProperty("tag"))
+                if (!$util.isInteger(message.tag))
+                    return "tag: integer expected";
+            if (message.source != null && message.hasOwnProperty("source"))
+                if (!$util.isInteger(message.source))
+                    return "source: integer expected";
+            return null;
+        };
+
+        /**
+         * Creates a FindCustomerListArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbCsms.FindCustomerListArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbCsms.FindCustomerListArgs} FindCustomerListArgs
+         */
+        FindCustomerListArgs.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbCsms.FindCustomerListArgs)
+                return object;
+            var message = new $root.pbCsms.FindCustomerListArgs();
+            if (object.page != null)
+                message.page = object.page | 0;
+            if (object.pageSize != null)
+                message.pageSize = object.pageSize | 0;
+            if (object.keyword != null)
+                message.keyword = String(object.keyword);
+            if (object.tag != null)
+                message.tag = object.tag | 0;
+            if (object.source != null)
+                message.source = object.source | 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a FindCustomerListArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbCsms.FindCustomerListArgs
+         * @static
+         * @param {pbCsms.FindCustomerListArgs} message FindCustomerListArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FindCustomerListArgs.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.page = 0;
+                object.pageSize = 0;
+                object.keyword = "";
+                object.tag = 0;
+                object.source = 0;
+            }
+            if (message.page != null && message.hasOwnProperty("page"))
+                object.page = message.page;
+            if (message.pageSize != null && message.hasOwnProperty("pageSize"))
+                object.pageSize = message.pageSize;
+            if (message.keyword != null && message.hasOwnProperty("keyword"))
+                object.keyword = message.keyword;
+            if (message.tag != null && message.hasOwnProperty("tag"))
+                object.tag = message.tag;
+            if (message.source != null && message.hasOwnProperty("source"))
+                object.source = message.source;
+            return object;
+        };
+
+        /**
+         * Converts this FindCustomerListArgs to JSON.
+         * @function toJSON
+         * @memberof pbCsms.FindCustomerListArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        FindCustomerListArgs.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for FindCustomerListArgs
+         * @function getTypeUrl
+         * @memberof pbCsms.FindCustomerListArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        FindCustomerListArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbCsms.FindCustomerListArgs";
+        };
+
+        return FindCustomerListArgs;
+    })();
+
+    pbCsms.FindCustomerReply = (function() {
+
+        /**
+         * Properties of a FindCustomerReply.
+         * @memberof pbCsms
+         * @interface IFindCustomerReply
+         * @property {pbcommon.EnumCode|null} [code] FindCustomerReply code
+         * @property {string|null} [msg] FindCustomerReply msg
+         * @property {Array.<pbCsms.ICustomer>|null} [data] FindCustomerReply data
+         * @property {number|null} [total] FindCustomerReply total
+         */
+
+        /**
+         * Constructs a new FindCustomerReply.
+         * @memberof pbCsms
+         * @classdesc Represents a FindCustomerReply.
+         * @implements IFindCustomerReply
+         * @constructor
+         * @param {pbCsms.IFindCustomerReply=} [properties] Properties to set
+         */
+        function FindCustomerReply(properties) {
+            this.data = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * FindCustomerReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbCsms.FindCustomerReply
+         * @instance
+         */
+        FindCustomerReply.prototype.code = 0;
+
+        /**
+         * FindCustomerReply msg.
+         * @member {string} msg
+         * @memberof pbCsms.FindCustomerReply
+         * @instance
+         */
+        FindCustomerReply.prototype.msg = "";
+
+        /**
+         * FindCustomerReply data.
+         * @member {Array.<pbCsms.ICustomer>} data
+         * @memberof pbCsms.FindCustomerReply
+         * @instance
+         */
+        FindCustomerReply.prototype.data = $util.emptyArray;
+
+        /**
+         * FindCustomerReply total.
+         * @member {number} total
+         * @memberof pbCsms.FindCustomerReply
+         * @instance
+         */
+        FindCustomerReply.prototype.total = 0;
+
+        /**
+         * Creates a new FindCustomerReply instance using the specified properties.
+         * @function create
+         * @memberof pbCsms.FindCustomerReply
+         * @static
+         * @param {pbCsms.IFindCustomerReply=} [properties] Properties to set
+         * @returns {pbCsms.FindCustomerReply} FindCustomerReply instance
+         */
+        FindCustomerReply.create = function create(properties) {
+            return new FindCustomerReply(properties);
+        };
+
+        /**
+         * Encodes the specified FindCustomerReply message. Does not implicitly {@link pbCsms.FindCustomerReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbCsms.FindCustomerReply
+         * @static
+         * @param {pbCsms.IFindCustomerReply} message FindCustomerReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindCustomerReply.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.data != null && message.data.length)
+                for (var i = 0; i < message.data.length; ++i)
+                    $root.pbCsms.Customer.encode(message.data[i], writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            if (message.total != null && Object.hasOwnProperty.call(message, "total"))
+                writer.uint32(/* id 4, wireType 0 =*/32).int32(message.total);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified FindCustomerReply message, length delimited. Does not implicitly {@link pbCsms.FindCustomerReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbCsms.FindCustomerReply
+         * @static
+         * @param {pbCsms.IFindCustomerReply} message FindCustomerReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindCustomerReply.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a FindCustomerReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbCsms.FindCustomerReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbCsms.FindCustomerReply} FindCustomerReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindCustomerReply.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbCsms.FindCustomerReply();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.code = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        if (!(message.data && message.data.length))
+                            message.data = [];
+                        message.data.push($root.pbCsms.Customer.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 4: {
+                        message.total = reader.int32();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a FindCustomerReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbCsms.FindCustomerReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbCsms.FindCustomerReply} FindCustomerReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindCustomerReply.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a FindCustomerReply message.
+         * @function verify
+         * @memberof pbCsms.FindCustomerReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        FindCustomerReply.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.code != null && message.hasOwnProperty("code"))
+                switch (message.code) {
+                default:
+                    return "code: enum value expected";
+                case 0:
+                case 200:
+                case 403:
+                case 500:
+                case 501:
+                case 502:
+                case 503:
+                case 504:
+                case 505:
+                case 511:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
+                case 2002:
+                case 2003:
+                case 2004:
+                case 2005:
+                case 2006:
+                case 2007:
+                case 2008:
+                case 2009:
+                case 2010:
+                case 2011:
+                case 2012:
+                case 2013:
+                case 2014:
+                case 2015:
+                case 3001:
+                case 3002:
+                case 3003:
+                case 5001:
+                case 5002:
+                case 10001:
+                case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
+                    break;
+                }
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                if (!$util.isString(message.msg))
+                    return "msg: string expected";
+            if (message.data != null && message.hasOwnProperty("data")) {
+                if (!Array.isArray(message.data))
+                    return "data: array expected";
+                for (var i = 0; i < message.data.length; ++i) {
+                    var error = $root.pbCsms.Customer.verify(message.data[i]);
+                    if (error)
+                        return "data." + error;
+                }
+            }
+            if (message.total != null && message.hasOwnProperty("total"))
+                if (!$util.isInteger(message.total))
+                    return "total: integer expected";
+            return null;
+        };
+
+        /**
+         * Creates a FindCustomerReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbCsms.FindCustomerReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbCsms.FindCustomerReply} FindCustomerReply
+         */
+        FindCustomerReply.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbCsms.FindCustomerReply)
+                return object;
+            var message = new $root.pbCsms.FindCustomerReply();
+            switch (object.code) {
+            default:
+                if (typeof object.code === "number") {
+                    message.code = object.code;
+                    break;
+                }
+                break;
+            case "None":
+            case 0:
+                message.code = 0;
+                break;
+            case "Success":
+            case 200:
+                message.code = 200;
+                break;
+            case "Forbidden":
+            case 403:
+                message.code = 403;
+                break;
+            case "Fail":
+            case 500:
+                message.code = 500;
+                break;
+            case "Unknown":
+            case 501:
+                message.code = 501;
+                break;
+            case "Internal":
+            case 502:
+                message.code = 502;
+                break;
+            case "Invalid":
+            case 503:
+                message.code = 503;
+                break;
+            case "InvalidParam":
+            case 504:
+                message.code = 504;
+                break;
+            case "ParamError":
+            case 505:
+                message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
+                break;
+            case "FindError":
+            case 1001:
+                message.code = 1001;
+                break;
+            case "CreateError":
+            case 1002:
+                message.code = 1002;
+                break;
+            case "DeleteError":
+            case 1003:
+                message.code = 1003;
+                break;
+            case "UpdateError":
+            case 1004:
+                message.code = 1004;
+                break;
+            case "InvalidToken":
+            case 2002:
+                message.code = 2002;
+                break;
+            case "InvalidSign":
+            case 2003:
+                message.code = 2003;
+                break;
+            case "NotLogin":
+            case 2004:
+                message.code = 2004;
+                break;
+            case "LoginTimeout":
+            case 2005:
+                message.code = 2005;
+                break;
+            case "LoginError":
+            case 2006:
+                message.code = 2006;
+                break;
+            case "LoginForbidden":
+            case 2007:
+                message.code = 2007;
+                break;
+            case "LoginExpired":
+            case 2008:
+                message.code = 2008;
+                break;
+            case "LoginInvalid":
+            case 2009:
+                message.code = 2009;
+                break;
+            case "LoginInvalidPassword":
+            case 2010:
+                message.code = 2010;
+                break;
+            case "LoginInvalidUsername":
+            case 2011:
+                message.code = 2011;
+                break;
+            case "LoginInvalidEmail":
+            case 2012:
+                message.code = 2012;
+                break;
+            case "LoginInvalidPhone":
+            case 2013:
+                message.code = 2013;
+                break;
+            case "LoginInvalidUsernameOrEmail":
+            case 2014:
+                message.code = 2014;
+                break;
+            case "LoginSocketRepeat":
+            case 2015:
+                message.code = 2015;
+                break;
+            case "RoleIsNotExist":
+            case 3001:
+                message.code = 3001;
+                break;
+            case "UserIsExist":
+            case 3002:
+                message.code = 3002;
+                break;
+            case "UserIsBan":
+            case 3003:
+                message.code = 3003;
+                break;
+            case "TalkIsBan":
+            case 5001:
+                message.code = 5001;
+                break;
+            case "EnterRoomErr":
+            case 5002:
+                message.code = 5002;
+                break;
+            case "HalaChatNeedBuy":
+            case 10001:
+                message.code = 10001;
+                break;
+            case "HalaPriceOutRange":
+            case 10002:
+                message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
+                break;
+            }
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.data) {
+                if (!Array.isArray(object.data))
+                    throw TypeError(".pbCsms.FindCustomerReply.data: array expected");
+                message.data = [];
+                for (var i = 0; i < object.data.length; ++i) {
+                    if (typeof object.data[i] !== "object")
+                        throw TypeError(".pbCsms.FindCustomerReply.data: object expected");
+                    message.data[i] = $root.pbCsms.Customer.fromObject(object.data[i]);
+                }
+            }
+            if (object.total != null)
+                message.total = object.total | 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a FindCustomerReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbCsms.FindCustomerReply
+         * @static
+         * @param {pbCsms.FindCustomerReply} message FindCustomerReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FindCustomerReply.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.data = [];
+            if (options.defaults) {
+                object.code = options.enums === String ? "None" : 0;
+                object.msg = "";
+                object.total = 0;
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.data && message.data.length) {
+                object.data = [];
+                for (var j = 0; j < message.data.length; ++j)
+                    object.data[j] = $root.pbCsms.Customer.toObject(message.data[j], options);
+            }
+            if (message.total != null && message.hasOwnProperty("total"))
+                object.total = message.total;
+            return object;
+        };
+
+        /**
+         * Converts this FindCustomerReply to JSON.
+         * @function toJSON
+         * @memberof pbCsms.FindCustomerReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        FindCustomerReply.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for FindCustomerReply
+         * @function getTypeUrl
+         * @memberof pbCsms.FindCustomerReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        FindCustomerReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbCsms.FindCustomerReply";
+        };
+
+        return FindCustomerReply;
     })();
 
     pbCsms.CreateRepairOrderArgs = (function() {
@@ -3760,6 +7007,9 @@ $root.pbCsms = (function() {
          * @property {string|null} [problem] CreateRepairOrderArgs problem
          * @property {string|null} [images] CreateRepairOrderArgs images
          * @property {number|null} [urgency] CreateRepairOrderArgs urgency
+         * @property {number|Long|null} [customerId] CreateRepairOrderArgs customerId
+         * @property {string|null} [customerName] CreateRepairOrderArgs customerName
+         * @property {string|null} [customerPhone] CreateRepairOrderArgs customerPhone
          */
 
         /**
@@ -3842,6 +7092,30 @@ $root.pbCsms = (function() {
         CreateRepairOrderArgs.prototype.urgency = 0;
 
         /**
+         * CreateRepairOrderArgs customerId.
+         * @member {number|Long} customerId
+         * @memberof pbCsms.CreateRepairOrderArgs
+         * @instance
+         */
+        CreateRepairOrderArgs.prototype.customerId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * CreateRepairOrderArgs customerName.
+         * @member {string} customerName
+         * @memberof pbCsms.CreateRepairOrderArgs
+         * @instance
+         */
+        CreateRepairOrderArgs.prototype.customerName = "";
+
+        /**
+         * CreateRepairOrderArgs customerPhone.
+         * @member {string} customerPhone
+         * @memberof pbCsms.CreateRepairOrderArgs
+         * @instance
+         */
+        CreateRepairOrderArgs.prototype.customerPhone = "";
+
+        /**
          * Creates a new CreateRepairOrderArgs instance using the specified properties.
          * @function create
          * @memberof pbCsms.CreateRepairOrderArgs
@@ -3881,6 +7155,12 @@ $root.pbCsms = (function() {
                 writer.uint32(/* id 7, wireType 2 =*/58).string(message.images);
             if (message.urgency != null && Object.hasOwnProperty.call(message, "urgency"))
                 writer.uint32(/* id 8, wireType 0 =*/64).int32(message.urgency);
+            if (message.customerId != null && Object.hasOwnProperty.call(message, "customerId"))
+                writer.uint32(/* id 9, wireType 0 =*/72).int64(message.customerId);
+            if (message.customerName != null && Object.hasOwnProperty.call(message, "customerName"))
+                writer.uint32(/* id 10, wireType 2 =*/82).string(message.customerName);
+            if (message.customerPhone != null && Object.hasOwnProperty.call(message, "customerPhone"))
+                writer.uint32(/* id 11, wireType 2 =*/90).string(message.customerPhone);
             return writer;
         };
 
@@ -3949,6 +7229,18 @@ $root.pbCsms = (function() {
                         message.urgency = reader.int32();
                         break;
                     }
+                case 9: {
+                        message.customerId = reader.int64();
+                        break;
+                    }
+                case 10: {
+                        message.customerName = reader.string();
+                        break;
+                    }
+                case 11: {
+                        message.customerPhone = reader.string();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -4008,6 +7300,15 @@ $root.pbCsms = (function() {
             if (message.urgency != null && message.hasOwnProperty("urgency"))
                 if (!$util.isInteger(message.urgency))
                     return "urgency: integer expected";
+            if (message.customerId != null && message.hasOwnProperty("customerId"))
+                if (!$util.isInteger(message.customerId) && !(message.customerId && $util.isInteger(message.customerId.low) && $util.isInteger(message.customerId.high)))
+                    return "customerId: integer|Long expected";
+            if (message.customerName != null && message.hasOwnProperty("customerName"))
+                if (!$util.isString(message.customerName))
+                    return "customerName: string expected";
+            if (message.customerPhone != null && message.hasOwnProperty("customerPhone"))
+                if (!$util.isString(message.customerPhone))
+                    return "customerPhone: string expected";
             return null;
         };
 
@@ -4039,6 +7340,19 @@ $root.pbCsms = (function() {
                 message.images = String(object.images);
             if (object.urgency != null)
                 message.urgency = object.urgency | 0;
+            if (object.customerId != null)
+                if ($util.Long)
+                    (message.customerId = $util.Long.fromValue(object.customerId)).unsigned = false;
+                else if (typeof object.customerId === "string")
+                    message.customerId = parseInt(object.customerId, 10);
+                else if (typeof object.customerId === "number")
+                    message.customerId = object.customerId;
+                else if (typeof object.customerId === "object")
+                    message.customerId = new $util.LongBits(object.customerId.low >>> 0, object.customerId.high >>> 0).toNumber();
+            if (object.customerName != null)
+                message.customerName = String(object.customerName);
+            if (object.customerPhone != null)
+                message.customerPhone = String(object.customerPhone);
             return message;
         };
 
@@ -4064,6 +7378,13 @@ $root.pbCsms = (function() {
                 object.problem = "";
                 object.images = "";
                 object.urgency = 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.customerId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.customerId = options.longs === String ? "0" : 0;
+                object.customerName = "";
+                object.customerPhone = "";
             }
             if (message.deviceName != null && message.hasOwnProperty("deviceName"))
                 object.deviceName = message.deviceName;
@@ -4081,6 +7402,15 @@ $root.pbCsms = (function() {
                 object.images = message.images;
             if (message.urgency != null && message.hasOwnProperty("urgency"))
                 object.urgency = message.urgency;
+            if (message.customerId != null && message.hasOwnProperty("customerId"))
+                if (typeof message.customerId === "number")
+                    object.customerId = options.longs === String ? String(message.customerId) : message.customerId;
+                else
+                    object.customerId = options.longs === String ? $util.Long.prototype.toString.call(message.customerId) : options.longs === Number ? new $util.LongBits(message.customerId.low >>> 0, message.customerId.high >>> 0).toNumber() : message.customerId;
+            if (message.customerName != null && message.hasOwnProperty("customerName"))
+                object.customerName = message.customerName;
+            if (message.customerPhone != null && message.hasOwnProperty("customerPhone"))
+                object.customerPhone = message.customerPhone;
             return object;
         };
 
@@ -4125,6 +7455,7 @@ $root.pbCsms = (function() {
          * @property {number|null} [status] FindRepairOrderArgs status
          * @property {number|null} [urgency] FindRepairOrderArgs urgency
          * @property {string|null} [technician] FindRepairOrderArgs technician
+         * @property {number|Long|null} [customerId] FindRepairOrderArgs customerId
          */
 
         /**
@@ -4191,6 +7522,14 @@ $root.pbCsms = (function() {
         FindRepairOrderArgs.prototype.technician = "";
 
         /**
+         * FindRepairOrderArgs customerId.
+         * @member {number|Long} customerId
+         * @memberof pbCsms.FindRepairOrderArgs
+         * @instance
+         */
+        FindRepairOrderArgs.prototype.customerId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
          * Creates a new FindRepairOrderArgs instance using the specified properties.
          * @function create
          * @memberof pbCsms.FindRepairOrderArgs
@@ -4226,6 +7565,8 @@ $root.pbCsms = (function() {
                 writer.uint32(/* id 5, wireType 0 =*/40).int32(message.urgency);
             if (message.technician != null && Object.hasOwnProperty.call(message, "technician"))
                 writer.uint32(/* id 6, wireType 2 =*/50).string(message.technician);
+            if (message.customerId != null && Object.hasOwnProperty.call(message, "customerId"))
+                writer.uint32(/* id 7, wireType 0 =*/56).int64(message.customerId);
             return writer;
         };
 
@@ -4286,6 +7627,10 @@ $root.pbCsms = (function() {
                         message.technician = reader.string();
                         break;
                     }
+                case 7: {
+                        message.customerId = reader.int64();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -4339,6 +7684,9 @@ $root.pbCsms = (function() {
             if (message.technician != null && message.hasOwnProperty("technician"))
                 if (!$util.isString(message.technician))
                     return "technician: string expected";
+            if (message.customerId != null && message.hasOwnProperty("customerId"))
+                if (!$util.isInteger(message.customerId) && !(message.customerId && $util.isInteger(message.customerId.low) && $util.isInteger(message.customerId.high)))
+                    return "customerId: integer|Long expected";
             return null;
         };
 
@@ -4366,6 +7714,15 @@ $root.pbCsms = (function() {
                 message.urgency = object.urgency | 0;
             if (object.technician != null)
                 message.technician = String(object.technician);
+            if (object.customerId != null)
+                if ($util.Long)
+                    (message.customerId = $util.Long.fromValue(object.customerId)).unsigned = false;
+                else if (typeof object.customerId === "string")
+                    message.customerId = parseInt(object.customerId, 10);
+                else if (typeof object.customerId === "number")
+                    message.customerId = object.customerId;
+                else if (typeof object.customerId === "object")
+                    message.customerId = new $util.LongBits(object.customerId.low >>> 0, object.customerId.high >>> 0).toNumber();
             return message;
         };
 
@@ -4389,6 +7746,11 @@ $root.pbCsms = (function() {
                 object.status = 0;
                 object.urgency = 0;
                 object.technician = "";
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.customerId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.customerId = options.longs === String ? "0" : 0;
             }
             if (message.page != null && message.hasOwnProperty("page"))
                 object.page = message.page;
@@ -4402,6 +7764,11 @@ $root.pbCsms = (function() {
                 object.urgency = message.urgency;
             if (message.technician != null && message.hasOwnProperty("technician"))
                 object.technician = message.technician;
+            if (message.customerId != null && message.hasOwnProperty("customerId"))
+                if (typeof message.customerId === "number")
+                    object.customerId = options.longs === String ? String(message.customerId) : message.customerId;
+                else
+                    object.customerId = options.longs === String ? $util.Long.prototype.toString.call(message.customerId) : options.longs === Number ? new $util.LongBits(message.customerId.low >>> 0, message.customerId.high >>> 0).toNumber() : message.customerId;
             return object;
         };
 
@@ -4440,7 +7807,7 @@ $root.pbCsms = (function() {
          * Properties of a FindRepairOrderReply.
          * @memberof pbCsms
          * @interface IFindRepairOrderReply
-         * @property {number|null} [code] FindRepairOrderReply code
+         * @property {pbcommon.EnumCode|null} [code] FindRepairOrderReply code
          * @property {string|null} [msg] FindRepairOrderReply msg
          * @property {Array.<pbCsms.IRepairOrder>|null} [data] FindRepairOrderReply data
          * @property {number|null} [total] FindRepairOrderReply total
@@ -4464,7 +7831,7 @@ $root.pbCsms = (function() {
 
         /**
          * FindRepairOrderReply code.
-         * @member {number} code
+         * @member {pbcommon.EnumCode} code
          * @memberof pbCsms.FindRepairOrderReply
          * @instance
          */
@@ -4617,8 +7984,49 @@ $root.pbCsms = (function() {
             if (typeof message !== "object" || message === null)
                 return "object expected";
             if (message.code != null && message.hasOwnProperty("code"))
-                if (!$util.isInteger(message.code))
-                    return "code: integer expected";
+                switch (message.code) {
+                default:
+                    return "code: enum value expected";
+                case 0:
+                case 200:
+                case 403:
+                case 500:
+                case 501:
+                case 502:
+                case 503:
+                case 504:
+                case 505:
+                case 511:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
+                case 2002:
+                case 2003:
+                case 2004:
+                case 2005:
+                case 2006:
+                case 2007:
+                case 2008:
+                case 2009:
+                case 2010:
+                case 2011:
+                case 2012:
+                case 2013:
+                case 2014:
+                case 2015:
+                case 3001:
+                case 3002:
+                case 3003:
+                case 5001:
+                case 5002:
+                case 10001:
+                case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
+                    break;
+                }
             if (message.msg != null && message.hasOwnProperty("msg"))
                 if (!$util.isString(message.msg))
                     return "msg: string expected";
@@ -4649,8 +8057,166 @@ $root.pbCsms = (function() {
             if (object instanceof $root.pbCsms.FindRepairOrderReply)
                 return object;
             var message = new $root.pbCsms.FindRepairOrderReply();
-            if (object.code != null)
-                message.code = object.code | 0;
+            switch (object.code) {
+            default:
+                if (typeof object.code === "number") {
+                    message.code = object.code;
+                    break;
+                }
+                break;
+            case "None":
+            case 0:
+                message.code = 0;
+                break;
+            case "Success":
+            case 200:
+                message.code = 200;
+                break;
+            case "Forbidden":
+            case 403:
+                message.code = 403;
+                break;
+            case "Fail":
+            case 500:
+                message.code = 500;
+                break;
+            case "Unknown":
+            case 501:
+                message.code = 501;
+                break;
+            case "Internal":
+            case 502:
+                message.code = 502;
+                break;
+            case "Invalid":
+            case 503:
+                message.code = 503;
+                break;
+            case "InvalidParam":
+            case 504:
+                message.code = 504;
+                break;
+            case "ParamError":
+            case 505:
+                message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
+                break;
+            case "FindError":
+            case 1001:
+                message.code = 1001;
+                break;
+            case "CreateError":
+            case 1002:
+                message.code = 1002;
+                break;
+            case "DeleteError":
+            case 1003:
+                message.code = 1003;
+                break;
+            case "UpdateError":
+            case 1004:
+                message.code = 1004;
+                break;
+            case "InvalidToken":
+            case 2002:
+                message.code = 2002;
+                break;
+            case "InvalidSign":
+            case 2003:
+                message.code = 2003;
+                break;
+            case "NotLogin":
+            case 2004:
+                message.code = 2004;
+                break;
+            case "LoginTimeout":
+            case 2005:
+                message.code = 2005;
+                break;
+            case "LoginError":
+            case 2006:
+                message.code = 2006;
+                break;
+            case "LoginForbidden":
+            case 2007:
+                message.code = 2007;
+                break;
+            case "LoginExpired":
+            case 2008:
+                message.code = 2008;
+                break;
+            case "LoginInvalid":
+            case 2009:
+                message.code = 2009;
+                break;
+            case "LoginInvalidPassword":
+            case 2010:
+                message.code = 2010;
+                break;
+            case "LoginInvalidUsername":
+            case 2011:
+                message.code = 2011;
+                break;
+            case "LoginInvalidEmail":
+            case 2012:
+                message.code = 2012;
+                break;
+            case "LoginInvalidPhone":
+            case 2013:
+                message.code = 2013;
+                break;
+            case "LoginInvalidUsernameOrEmail":
+            case 2014:
+                message.code = 2014;
+                break;
+            case "LoginSocketRepeat":
+            case 2015:
+                message.code = 2015;
+                break;
+            case "RoleIsNotExist":
+            case 3001:
+                message.code = 3001;
+                break;
+            case "UserIsExist":
+            case 3002:
+                message.code = 3002;
+                break;
+            case "UserIsBan":
+            case 3003:
+                message.code = 3003;
+                break;
+            case "TalkIsBan":
+            case 5001:
+                message.code = 5001;
+                break;
+            case "EnterRoomErr":
+            case 5002:
+                message.code = 5002;
+                break;
+            case "HalaChatNeedBuy":
+            case 10001:
+                message.code = 10001;
+                break;
+            case "HalaPriceOutRange":
+            case 10002:
+                message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
+                break;
+            }
             if (object.msg != null)
                 message.msg = String(object.msg);
             if (object.data) {
@@ -4684,12 +8250,12 @@ $root.pbCsms = (function() {
             if (options.arrays || options.defaults)
                 object.data = [];
             if (options.defaults) {
-                object.code = 0;
+                object.code = options.enums === String ? "None" : 0;
                 object.msg = "";
                 object.total = 0;
             }
             if (message.code != null && message.hasOwnProperty("code"))
-                object.code = message.code;
+                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
             if (message.msg != null && message.hasOwnProperty("msg"))
                 object.msg = message.msg;
             if (message.data && message.data.length) {
@@ -5847,7 +9413,7 @@ $root.pbCsms = (function() {
          * Properties of a FindRepairRecordReply.
          * @memberof pbCsms
          * @interface IFindRepairRecordReply
-         * @property {number|null} [code] FindRepairRecordReply code
+         * @property {pbcommon.EnumCode|null} [code] FindRepairRecordReply code
          * @property {string|null} [msg] FindRepairRecordReply msg
          * @property {Array.<pbCsms.IRepairRecord>|null} [data] FindRepairRecordReply data
          * @property {number|null} [total] FindRepairRecordReply total
@@ -5871,7 +9437,7 @@ $root.pbCsms = (function() {
 
         /**
          * FindRepairRecordReply code.
-         * @member {number} code
+         * @member {pbcommon.EnumCode} code
          * @memberof pbCsms.FindRepairRecordReply
          * @instance
          */
@@ -6024,8 +9590,49 @@ $root.pbCsms = (function() {
             if (typeof message !== "object" || message === null)
                 return "object expected";
             if (message.code != null && message.hasOwnProperty("code"))
-                if (!$util.isInteger(message.code))
-                    return "code: integer expected";
+                switch (message.code) {
+                default:
+                    return "code: enum value expected";
+                case 0:
+                case 200:
+                case 403:
+                case 500:
+                case 501:
+                case 502:
+                case 503:
+                case 504:
+                case 505:
+                case 511:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
+                case 2002:
+                case 2003:
+                case 2004:
+                case 2005:
+                case 2006:
+                case 2007:
+                case 2008:
+                case 2009:
+                case 2010:
+                case 2011:
+                case 2012:
+                case 2013:
+                case 2014:
+                case 2015:
+                case 3001:
+                case 3002:
+                case 3003:
+                case 5001:
+                case 5002:
+                case 10001:
+                case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
+                    break;
+                }
             if (message.msg != null && message.hasOwnProperty("msg"))
                 if (!$util.isString(message.msg))
                     return "msg: string expected";
@@ -6056,8 +9663,166 @@ $root.pbCsms = (function() {
             if (object instanceof $root.pbCsms.FindRepairRecordReply)
                 return object;
             var message = new $root.pbCsms.FindRepairRecordReply();
-            if (object.code != null)
-                message.code = object.code | 0;
+            switch (object.code) {
+            default:
+                if (typeof object.code === "number") {
+                    message.code = object.code;
+                    break;
+                }
+                break;
+            case "None":
+            case 0:
+                message.code = 0;
+                break;
+            case "Success":
+            case 200:
+                message.code = 200;
+                break;
+            case "Forbidden":
+            case 403:
+                message.code = 403;
+                break;
+            case "Fail":
+            case 500:
+                message.code = 500;
+                break;
+            case "Unknown":
+            case 501:
+                message.code = 501;
+                break;
+            case "Internal":
+            case 502:
+                message.code = 502;
+                break;
+            case "Invalid":
+            case 503:
+                message.code = 503;
+                break;
+            case "InvalidParam":
+            case 504:
+                message.code = 504;
+                break;
+            case "ParamError":
+            case 505:
+                message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
+                break;
+            case "FindError":
+            case 1001:
+                message.code = 1001;
+                break;
+            case "CreateError":
+            case 1002:
+                message.code = 1002;
+                break;
+            case "DeleteError":
+            case 1003:
+                message.code = 1003;
+                break;
+            case "UpdateError":
+            case 1004:
+                message.code = 1004;
+                break;
+            case "InvalidToken":
+            case 2002:
+                message.code = 2002;
+                break;
+            case "InvalidSign":
+            case 2003:
+                message.code = 2003;
+                break;
+            case "NotLogin":
+            case 2004:
+                message.code = 2004;
+                break;
+            case "LoginTimeout":
+            case 2005:
+                message.code = 2005;
+                break;
+            case "LoginError":
+            case 2006:
+                message.code = 2006;
+                break;
+            case "LoginForbidden":
+            case 2007:
+                message.code = 2007;
+                break;
+            case "LoginExpired":
+            case 2008:
+                message.code = 2008;
+                break;
+            case "LoginInvalid":
+            case 2009:
+                message.code = 2009;
+                break;
+            case "LoginInvalidPassword":
+            case 2010:
+                message.code = 2010;
+                break;
+            case "LoginInvalidUsername":
+            case 2011:
+                message.code = 2011;
+                break;
+            case "LoginInvalidEmail":
+            case 2012:
+                message.code = 2012;
+                break;
+            case "LoginInvalidPhone":
+            case 2013:
+                message.code = 2013;
+                break;
+            case "LoginInvalidUsernameOrEmail":
+            case 2014:
+                message.code = 2014;
+                break;
+            case "LoginSocketRepeat":
+            case 2015:
+                message.code = 2015;
+                break;
+            case "RoleIsNotExist":
+            case 3001:
+                message.code = 3001;
+                break;
+            case "UserIsExist":
+            case 3002:
+                message.code = 3002;
+                break;
+            case "UserIsBan":
+            case 3003:
+                message.code = 3003;
+                break;
+            case "TalkIsBan":
+            case 5001:
+                message.code = 5001;
+                break;
+            case "EnterRoomErr":
+            case 5002:
+                message.code = 5002;
+                break;
+            case "HalaChatNeedBuy":
+            case 10001:
+                message.code = 10001;
+                break;
+            case "HalaPriceOutRange":
+            case 10002:
+                message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
+                break;
+            }
             if (object.msg != null)
                 message.msg = String(object.msg);
             if (object.data) {
@@ -6091,12 +9856,12 @@ $root.pbCsms = (function() {
             if (options.arrays || options.defaults)
                 object.data = [];
             if (options.defaults) {
-                object.code = 0;
+                object.code = options.enums === String ? "None" : 0;
                 object.msg = "";
                 object.total = 0;
             }
             if (message.code != null && message.hasOwnProperty("code"))
-                object.code = message.code;
+                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
             if (message.msg != null && message.hasOwnProperty("msg"))
                 object.msg = message.msg;
             if (message.data && message.data.length) {
@@ -6699,7 +10464,7 @@ $root.pbCsms = (function() {
          * Properties of a FindSparePartUsageReply.
          * @memberof pbCsms
          * @interface IFindSparePartUsageReply
-         * @property {number|null} [code] FindSparePartUsageReply code
+         * @property {pbcommon.EnumCode|null} [code] FindSparePartUsageReply code
          * @property {string|null} [msg] FindSparePartUsageReply msg
          * @property {Array.<pbCsms.ISparePartUsage>|null} [data] FindSparePartUsageReply data
          * @property {number|null} [total] FindSparePartUsageReply total
@@ -6723,7 +10488,7 @@ $root.pbCsms = (function() {
 
         /**
          * FindSparePartUsageReply code.
-         * @member {number} code
+         * @member {pbcommon.EnumCode} code
          * @memberof pbCsms.FindSparePartUsageReply
          * @instance
          */
@@ -6876,8 +10641,49 @@ $root.pbCsms = (function() {
             if (typeof message !== "object" || message === null)
                 return "object expected";
             if (message.code != null && message.hasOwnProperty("code"))
-                if (!$util.isInteger(message.code))
-                    return "code: integer expected";
+                switch (message.code) {
+                default:
+                    return "code: enum value expected";
+                case 0:
+                case 200:
+                case 403:
+                case 500:
+                case 501:
+                case 502:
+                case 503:
+                case 504:
+                case 505:
+                case 511:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
+                case 2002:
+                case 2003:
+                case 2004:
+                case 2005:
+                case 2006:
+                case 2007:
+                case 2008:
+                case 2009:
+                case 2010:
+                case 2011:
+                case 2012:
+                case 2013:
+                case 2014:
+                case 2015:
+                case 3001:
+                case 3002:
+                case 3003:
+                case 5001:
+                case 5002:
+                case 10001:
+                case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
+                    break;
+                }
             if (message.msg != null && message.hasOwnProperty("msg"))
                 if (!$util.isString(message.msg))
                     return "msg: string expected";
@@ -6908,8 +10714,166 @@ $root.pbCsms = (function() {
             if (object instanceof $root.pbCsms.FindSparePartUsageReply)
                 return object;
             var message = new $root.pbCsms.FindSparePartUsageReply();
-            if (object.code != null)
-                message.code = object.code | 0;
+            switch (object.code) {
+            default:
+                if (typeof object.code === "number") {
+                    message.code = object.code;
+                    break;
+                }
+                break;
+            case "None":
+            case 0:
+                message.code = 0;
+                break;
+            case "Success":
+            case 200:
+                message.code = 200;
+                break;
+            case "Forbidden":
+            case 403:
+                message.code = 403;
+                break;
+            case "Fail":
+            case 500:
+                message.code = 500;
+                break;
+            case "Unknown":
+            case 501:
+                message.code = 501;
+                break;
+            case "Internal":
+            case 502:
+                message.code = 502;
+                break;
+            case "Invalid":
+            case 503:
+                message.code = 503;
+                break;
+            case "InvalidParam":
+            case 504:
+                message.code = 504;
+                break;
+            case "ParamError":
+            case 505:
+                message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
+                break;
+            case "FindError":
+            case 1001:
+                message.code = 1001;
+                break;
+            case "CreateError":
+            case 1002:
+                message.code = 1002;
+                break;
+            case "DeleteError":
+            case 1003:
+                message.code = 1003;
+                break;
+            case "UpdateError":
+            case 1004:
+                message.code = 1004;
+                break;
+            case "InvalidToken":
+            case 2002:
+                message.code = 2002;
+                break;
+            case "InvalidSign":
+            case 2003:
+                message.code = 2003;
+                break;
+            case "NotLogin":
+            case 2004:
+                message.code = 2004;
+                break;
+            case "LoginTimeout":
+            case 2005:
+                message.code = 2005;
+                break;
+            case "LoginError":
+            case 2006:
+                message.code = 2006;
+                break;
+            case "LoginForbidden":
+            case 2007:
+                message.code = 2007;
+                break;
+            case "LoginExpired":
+            case 2008:
+                message.code = 2008;
+                break;
+            case "LoginInvalid":
+            case 2009:
+                message.code = 2009;
+                break;
+            case "LoginInvalidPassword":
+            case 2010:
+                message.code = 2010;
+                break;
+            case "LoginInvalidUsername":
+            case 2011:
+                message.code = 2011;
+                break;
+            case "LoginInvalidEmail":
+            case 2012:
+                message.code = 2012;
+                break;
+            case "LoginInvalidPhone":
+            case 2013:
+                message.code = 2013;
+                break;
+            case "LoginInvalidUsernameOrEmail":
+            case 2014:
+                message.code = 2014;
+                break;
+            case "LoginSocketRepeat":
+            case 2015:
+                message.code = 2015;
+                break;
+            case "RoleIsNotExist":
+            case 3001:
+                message.code = 3001;
+                break;
+            case "UserIsExist":
+            case 3002:
+                message.code = 3002;
+                break;
+            case "UserIsBan":
+            case 3003:
+                message.code = 3003;
+                break;
+            case "TalkIsBan":
+            case 5001:
+                message.code = 5001;
+                break;
+            case "EnterRoomErr":
+            case 5002:
+                message.code = 5002;
+                break;
+            case "HalaChatNeedBuy":
+            case 10001:
+                message.code = 10001;
+                break;
+            case "HalaPriceOutRange":
+            case 10002:
+                message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
+                break;
+            }
             if (object.msg != null)
                 message.msg = String(object.msg);
             if (object.data) {
@@ -6943,12 +10907,12 @@ $root.pbCsms = (function() {
             if (options.arrays || options.defaults)
                 object.data = [];
             if (options.defaults) {
-                object.code = 0;
+                object.code = options.enums === String ? "None" : 0;
                 object.msg = "";
                 object.total = 0;
             }
             if (message.code != null && message.hasOwnProperty("code"))
-                object.code = message.code;
+                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
             if (message.msg != null && message.hasOwnProperty("msg"))
                 object.msg = message.msg;
             if (message.data && message.data.length) {
@@ -6988,6 +10952,3127 @@ $root.pbCsms = (function() {
         };
 
         return FindSparePartUsageReply;
+    })();
+
+    pbCsms.QuoteRepairOrderArgs = (function() {
+
+        /**
+         * Properties of a QuoteRepairOrderArgs.
+         * @memberof pbCsms
+         * @interface IQuoteRepairOrderArgs
+         * @property {number|Long|null} [id] QuoteRepairOrderArgs id
+         * @property {number|null} [quoteAmount] QuoteRepairOrderArgs quoteAmount
+         * @property {string|null} [remark] QuoteRepairOrderArgs remark
+         */
+
+        /**
+         * Constructs a new QuoteRepairOrderArgs.
+         * @memberof pbCsms
+         * @classdesc Represents a QuoteRepairOrderArgs.
+         * @implements IQuoteRepairOrderArgs
+         * @constructor
+         * @param {pbCsms.IQuoteRepairOrderArgs=} [properties] Properties to set
+         */
+        function QuoteRepairOrderArgs(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * QuoteRepairOrderArgs id.
+         * @member {number|Long} id
+         * @memberof pbCsms.QuoteRepairOrderArgs
+         * @instance
+         */
+        QuoteRepairOrderArgs.prototype.id = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * QuoteRepairOrderArgs quoteAmount.
+         * @member {number} quoteAmount
+         * @memberof pbCsms.QuoteRepairOrderArgs
+         * @instance
+         */
+        QuoteRepairOrderArgs.prototype.quoteAmount = 0;
+
+        /**
+         * QuoteRepairOrderArgs remark.
+         * @member {string} remark
+         * @memberof pbCsms.QuoteRepairOrderArgs
+         * @instance
+         */
+        QuoteRepairOrderArgs.prototype.remark = "";
+
+        /**
+         * Creates a new QuoteRepairOrderArgs instance using the specified properties.
+         * @function create
+         * @memberof pbCsms.QuoteRepairOrderArgs
+         * @static
+         * @param {pbCsms.IQuoteRepairOrderArgs=} [properties] Properties to set
+         * @returns {pbCsms.QuoteRepairOrderArgs} QuoteRepairOrderArgs instance
+         */
+        QuoteRepairOrderArgs.create = function create(properties) {
+            return new QuoteRepairOrderArgs(properties);
+        };
+
+        /**
+         * Encodes the specified QuoteRepairOrderArgs message. Does not implicitly {@link pbCsms.QuoteRepairOrderArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbCsms.QuoteRepairOrderArgs
+         * @static
+         * @param {pbCsms.IQuoteRepairOrderArgs} message QuoteRepairOrderArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        QuoteRepairOrderArgs.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id);
+            if (message.quoteAmount != null && Object.hasOwnProperty.call(message, "quoteAmount"))
+                writer.uint32(/* id 2, wireType 1 =*/17).double(message.quoteAmount);
+            if (message.remark != null && Object.hasOwnProperty.call(message, "remark"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.remark);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified QuoteRepairOrderArgs message, length delimited. Does not implicitly {@link pbCsms.QuoteRepairOrderArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbCsms.QuoteRepairOrderArgs
+         * @static
+         * @param {pbCsms.IQuoteRepairOrderArgs} message QuoteRepairOrderArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        QuoteRepairOrderArgs.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a QuoteRepairOrderArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbCsms.QuoteRepairOrderArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbCsms.QuoteRepairOrderArgs} QuoteRepairOrderArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        QuoteRepairOrderArgs.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbCsms.QuoteRepairOrderArgs();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.id = reader.int64();
+                        break;
+                    }
+                case 2: {
+                        message.quoteAmount = reader.double();
+                        break;
+                    }
+                case 3: {
+                        message.remark = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a QuoteRepairOrderArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbCsms.QuoteRepairOrderArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbCsms.QuoteRepairOrderArgs} QuoteRepairOrderArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        QuoteRepairOrderArgs.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a QuoteRepairOrderArgs message.
+         * @function verify
+         * @memberof pbCsms.QuoteRepairOrderArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        QuoteRepairOrderArgs.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (!$util.isInteger(message.id) && !(message.id && $util.isInteger(message.id.low) && $util.isInteger(message.id.high)))
+                    return "id: integer|Long expected";
+            if (message.quoteAmount != null && message.hasOwnProperty("quoteAmount"))
+                if (typeof message.quoteAmount !== "number")
+                    return "quoteAmount: number expected";
+            if (message.remark != null && message.hasOwnProperty("remark"))
+                if (!$util.isString(message.remark))
+                    return "remark: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a QuoteRepairOrderArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbCsms.QuoteRepairOrderArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbCsms.QuoteRepairOrderArgs} QuoteRepairOrderArgs
+         */
+        QuoteRepairOrderArgs.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbCsms.QuoteRepairOrderArgs)
+                return object;
+            var message = new $root.pbCsms.QuoteRepairOrderArgs();
+            if (object.id != null)
+                if ($util.Long)
+                    (message.id = $util.Long.fromValue(object.id)).unsigned = false;
+                else if (typeof object.id === "string")
+                    message.id = parseInt(object.id, 10);
+                else if (typeof object.id === "number")
+                    message.id = object.id;
+                else if (typeof object.id === "object")
+                    message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber();
+            if (object.quoteAmount != null)
+                message.quoteAmount = Number(object.quoteAmount);
+            if (object.remark != null)
+                message.remark = String(object.remark);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a QuoteRepairOrderArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbCsms.QuoteRepairOrderArgs
+         * @static
+         * @param {pbCsms.QuoteRepairOrderArgs} message QuoteRepairOrderArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        QuoteRepairOrderArgs.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.id = options.longs === String ? "0" : 0;
+                object.quoteAmount = 0;
+                object.remark = "";
+            }
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (typeof message.id === "number")
+                    object.id = options.longs === String ? String(message.id) : message.id;
+                else
+                    object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id;
+            if (message.quoteAmount != null && message.hasOwnProperty("quoteAmount"))
+                object.quoteAmount = options.json && !isFinite(message.quoteAmount) ? String(message.quoteAmount) : message.quoteAmount;
+            if (message.remark != null && message.hasOwnProperty("remark"))
+                object.remark = message.remark;
+            return object;
+        };
+
+        /**
+         * Converts this QuoteRepairOrderArgs to JSON.
+         * @function toJSON
+         * @memberof pbCsms.QuoteRepairOrderArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        QuoteRepairOrderArgs.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for QuoteRepairOrderArgs
+         * @function getTypeUrl
+         * @memberof pbCsms.QuoteRepairOrderArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        QuoteRepairOrderArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbCsms.QuoteRepairOrderArgs";
+        };
+
+        return QuoteRepairOrderArgs;
+    })();
+
+    pbCsms.ApproveRepairOrderArgs = (function() {
+
+        /**
+         * Properties of an ApproveRepairOrderArgs.
+         * @memberof pbCsms
+         * @interface IApproveRepairOrderArgs
+         * @property {number|Long|null} [id] ApproveRepairOrderArgs id
+         * @property {string|null} [remark] ApproveRepairOrderArgs remark
+         */
+
+        /**
+         * Constructs a new ApproveRepairOrderArgs.
+         * @memberof pbCsms
+         * @classdesc Represents an ApproveRepairOrderArgs.
+         * @implements IApproveRepairOrderArgs
+         * @constructor
+         * @param {pbCsms.IApproveRepairOrderArgs=} [properties] Properties to set
+         */
+        function ApproveRepairOrderArgs(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ApproveRepairOrderArgs id.
+         * @member {number|Long} id
+         * @memberof pbCsms.ApproveRepairOrderArgs
+         * @instance
+         */
+        ApproveRepairOrderArgs.prototype.id = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * ApproveRepairOrderArgs remark.
+         * @member {string} remark
+         * @memberof pbCsms.ApproveRepairOrderArgs
+         * @instance
+         */
+        ApproveRepairOrderArgs.prototype.remark = "";
+
+        /**
+         * Creates a new ApproveRepairOrderArgs instance using the specified properties.
+         * @function create
+         * @memberof pbCsms.ApproveRepairOrderArgs
+         * @static
+         * @param {pbCsms.IApproveRepairOrderArgs=} [properties] Properties to set
+         * @returns {pbCsms.ApproveRepairOrderArgs} ApproveRepairOrderArgs instance
+         */
+        ApproveRepairOrderArgs.create = function create(properties) {
+            return new ApproveRepairOrderArgs(properties);
+        };
+
+        /**
+         * Encodes the specified ApproveRepairOrderArgs message. Does not implicitly {@link pbCsms.ApproveRepairOrderArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbCsms.ApproveRepairOrderArgs
+         * @static
+         * @param {pbCsms.IApproveRepairOrderArgs} message ApproveRepairOrderArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        ApproveRepairOrderArgs.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id);
+            if (message.remark != null && Object.hasOwnProperty.call(message, "remark"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.remark);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified ApproveRepairOrderArgs message, length delimited. Does not implicitly {@link pbCsms.ApproveRepairOrderArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbCsms.ApproveRepairOrderArgs
+         * @static
+         * @param {pbCsms.IApproveRepairOrderArgs} message ApproveRepairOrderArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        ApproveRepairOrderArgs.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an ApproveRepairOrderArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbCsms.ApproveRepairOrderArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbCsms.ApproveRepairOrderArgs} ApproveRepairOrderArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        ApproveRepairOrderArgs.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbCsms.ApproveRepairOrderArgs();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.id = reader.int64();
+                        break;
+                    }
+                case 2: {
+                        message.remark = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an ApproveRepairOrderArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbCsms.ApproveRepairOrderArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbCsms.ApproveRepairOrderArgs} ApproveRepairOrderArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        ApproveRepairOrderArgs.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an ApproveRepairOrderArgs message.
+         * @function verify
+         * @memberof pbCsms.ApproveRepairOrderArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        ApproveRepairOrderArgs.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (!$util.isInteger(message.id) && !(message.id && $util.isInteger(message.id.low) && $util.isInteger(message.id.high)))
+                    return "id: integer|Long expected";
+            if (message.remark != null && message.hasOwnProperty("remark"))
+                if (!$util.isString(message.remark))
+                    return "remark: string expected";
+            return null;
+        };
+
+        /**
+         * Creates an ApproveRepairOrderArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbCsms.ApproveRepairOrderArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbCsms.ApproveRepairOrderArgs} ApproveRepairOrderArgs
+         */
+        ApproveRepairOrderArgs.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbCsms.ApproveRepairOrderArgs)
+                return object;
+            var message = new $root.pbCsms.ApproveRepairOrderArgs();
+            if (object.id != null)
+                if ($util.Long)
+                    (message.id = $util.Long.fromValue(object.id)).unsigned = false;
+                else if (typeof object.id === "string")
+                    message.id = parseInt(object.id, 10);
+                else if (typeof object.id === "number")
+                    message.id = object.id;
+                else if (typeof object.id === "object")
+                    message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber();
+            if (object.remark != null)
+                message.remark = String(object.remark);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an ApproveRepairOrderArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbCsms.ApproveRepairOrderArgs
+         * @static
+         * @param {pbCsms.ApproveRepairOrderArgs} message ApproveRepairOrderArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        ApproveRepairOrderArgs.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.id = options.longs === String ? "0" : 0;
+                object.remark = "";
+            }
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (typeof message.id === "number")
+                    object.id = options.longs === String ? String(message.id) : message.id;
+                else
+                    object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id;
+            if (message.remark != null && message.hasOwnProperty("remark"))
+                object.remark = message.remark;
+            return object;
+        };
+
+        /**
+         * Converts this ApproveRepairOrderArgs to JSON.
+         * @function toJSON
+         * @memberof pbCsms.ApproveRepairOrderArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        ApproveRepairOrderArgs.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for ApproveRepairOrderArgs
+         * @function getTypeUrl
+         * @memberof pbCsms.ApproveRepairOrderArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        ApproveRepairOrderArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbCsms.ApproveRepairOrderArgs";
+        };
+
+        return ApproveRepairOrderArgs;
+    })();
+
+    pbCsms.PayRepairOrderArgs = (function() {
+
+        /**
+         * Properties of a PayRepairOrderArgs.
+         * @memberof pbCsms
+         * @interface IPayRepairOrderArgs
+         * @property {number|Long|null} [id] PayRepairOrderArgs id
+         * @property {number|null} [paymentMethod] PayRepairOrderArgs paymentMethod
+         * @property {string|null} [remark] PayRepairOrderArgs remark
+         */
+
+        /**
+         * Constructs a new PayRepairOrderArgs.
+         * @memberof pbCsms
+         * @classdesc Represents a PayRepairOrderArgs.
+         * @implements IPayRepairOrderArgs
+         * @constructor
+         * @param {pbCsms.IPayRepairOrderArgs=} [properties] Properties to set
+         */
+        function PayRepairOrderArgs(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * PayRepairOrderArgs id.
+         * @member {number|Long} id
+         * @memberof pbCsms.PayRepairOrderArgs
+         * @instance
+         */
+        PayRepairOrderArgs.prototype.id = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * PayRepairOrderArgs paymentMethod.
+         * @member {number} paymentMethod
+         * @memberof pbCsms.PayRepairOrderArgs
+         * @instance
+         */
+        PayRepairOrderArgs.prototype.paymentMethod = 0;
+
+        /**
+         * PayRepairOrderArgs remark.
+         * @member {string} remark
+         * @memberof pbCsms.PayRepairOrderArgs
+         * @instance
+         */
+        PayRepairOrderArgs.prototype.remark = "";
+
+        /**
+         * Creates a new PayRepairOrderArgs instance using the specified properties.
+         * @function create
+         * @memberof pbCsms.PayRepairOrderArgs
+         * @static
+         * @param {pbCsms.IPayRepairOrderArgs=} [properties] Properties to set
+         * @returns {pbCsms.PayRepairOrderArgs} PayRepairOrderArgs instance
+         */
+        PayRepairOrderArgs.create = function create(properties) {
+            return new PayRepairOrderArgs(properties);
+        };
+
+        /**
+         * Encodes the specified PayRepairOrderArgs message. Does not implicitly {@link pbCsms.PayRepairOrderArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbCsms.PayRepairOrderArgs
+         * @static
+         * @param {pbCsms.IPayRepairOrderArgs} message PayRepairOrderArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        PayRepairOrderArgs.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id);
+            if (message.paymentMethod != null && Object.hasOwnProperty.call(message, "paymentMethod"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.paymentMethod);
+            if (message.remark != null && Object.hasOwnProperty.call(message, "remark"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.remark);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified PayRepairOrderArgs message, length delimited. Does not implicitly {@link pbCsms.PayRepairOrderArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbCsms.PayRepairOrderArgs
+         * @static
+         * @param {pbCsms.IPayRepairOrderArgs} message PayRepairOrderArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        PayRepairOrderArgs.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a PayRepairOrderArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbCsms.PayRepairOrderArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbCsms.PayRepairOrderArgs} PayRepairOrderArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        PayRepairOrderArgs.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbCsms.PayRepairOrderArgs();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.id = reader.int64();
+                        break;
+                    }
+                case 2: {
+                        message.paymentMethod = reader.int32();
+                        break;
+                    }
+                case 3: {
+                        message.remark = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a PayRepairOrderArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbCsms.PayRepairOrderArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbCsms.PayRepairOrderArgs} PayRepairOrderArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        PayRepairOrderArgs.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a PayRepairOrderArgs message.
+         * @function verify
+         * @memberof pbCsms.PayRepairOrderArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        PayRepairOrderArgs.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (!$util.isInteger(message.id) && !(message.id && $util.isInteger(message.id.low) && $util.isInteger(message.id.high)))
+                    return "id: integer|Long expected";
+            if (message.paymentMethod != null && message.hasOwnProperty("paymentMethod"))
+                if (!$util.isInteger(message.paymentMethod))
+                    return "paymentMethod: integer expected";
+            if (message.remark != null && message.hasOwnProperty("remark"))
+                if (!$util.isString(message.remark))
+                    return "remark: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a PayRepairOrderArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbCsms.PayRepairOrderArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbCsms.PayRepairOrderArgs} PayRepairOrderArgs
+         */
+        PayRepairOrderArgs.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbCsms.PayRepairOrderArgs)
+                return object;
+            var message = new $root.pbCsms.PayRepairOrderArgs();
+            if (object.id != null)
+                if ($util.Long)
+                    (message.id = $util.Long.fromValue(object.id)).unsigned = false;
+                else if (typeof object.id === "string")
+                    message.id = parseInt(object.id, 10);
+                else if (typeof object.id === "number")
+                    message.id = object.id;
+                else if (typeof object.id === "object")
+                    message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber();
+            if (object.paymentMethod != null)
+                message.paymentMethod = object.paymentMethod | 0;
+            if (object.remark != null)
+                message.remark = String(object.remark);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a PayRepairOrderArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbCsms.PayRepairOrderArgs
+         * @static
+         * @param {pbCsms.PayRepairOrderArgs} message PayRepairOrderArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        PayRepairOrderArgs.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.id = options.longs === String ? "0" : 0;
+                object.paymentMethod = 0;
+                object.remark = "";
+            }
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (typeof message.id === "number")
+                    object.id = options.longs === String ? String(message.id) : message.id;
+                else
+                    object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id;
+            if (message.paymentMethod != null && message.hasOwnProperty("paymentMethod"))
+                object.paymentMethod = message.paymentMethod;
+            if (message.remark != null && message.hasOwnProperty("remark"))
+                object.remark = message.remark;
+            return object;
+        };
+
+        /**
+         * Converts this PayRepairOrderArgs to JSON.
+         * @function toJSON
+         * @memberof pbCsms.PayRepairOrderArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        PayRepairOrderArgs.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for PayRepairOrderArgs
+         * @function getTypeUrl
+         * @memberof pbCsms.PayRepairOrderArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        PayRepairOrderArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbCsms.PayRepairOrderArgs";
+        };
+
+        return PayRepairOrderArgs;
+    })();
+
+    pbCsms.UploadRepairOrderImageArgs = (function() {
+
+        /**
+         * Properties of an UploadRepairOrderImageArgs.
+         * @memberof pbCsms
+         * @interface IUploadRepairOrderImageArgs
+         * @property {number|Long|null} [repairOrderId] UploadRepairOrderImageArgs repairOrderId
+         * @property {string|null} [url] UploadRepairOrderImageArgs url
+         * @property {number|null} [type] UploadRepairOrderImageArgs type
+         * @property {number|null} [sort] UploadRepairOrderImageArgs sort
+         * @property {string|null} [description] UploadRepairOrderImageArgs description
+         * @property {string|null} [operatorId] UploadRepairOrderImageArgs operatorId
+         * @property {string|null} [operatorName] UploadRepairOrderImageArgs operatorName
+         */
+
+        /**
+         * Constructs a new UploadRepairOrderImageArgs.
+         * @memberof pbCsms
+         * @classdesc Represents an UploadRepairOrderImageArgs.
+         * @implements IUploadRepairOrderImageArgs
+         * @constructor
+         * @param {pbCsms.IUploadRepairOrderImageArgs=} [properties] Properties to set
+         */
+        function UploadRepairOrderImageArgs(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * UploadRepairOrderImageArgs repairOrderId.
+         * @member {number|Long} repairOrderId
+         * @memberof pbCsms.UploadRepairOrderImageArgs
+         * @instance
+         */
+        UploadRepairOrderImageArgs.prototype.repairOrderId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * UploadRepairOrderImageArgs url.
+         * @member {string} url
+         * @memberof pbCsms.UploadRepairOrderImageArgs
+         * @instance
+         */
+        UploadRepairOrderImageArgs.prototype.url = "";
+
+        /**
+         * UploadRepairOrderImageArgs type.
+         * @member {number} type
+         * @memberof pbCsms.UploadRepairOrderImageArgs
+         * @instance
+         */
+        UploadRepairOrderImageArgs.prototype.type = 0;
+
+        /**
+         * UploadRepairOrderImageArgs sort.
+         * @member {number} sort
+         * @memberof pbCsms.UploadRepairOrderImageArgs
+         * @instance
+         */
+        UploadRepairOrderImageArgs.prototype.sort = 0;
+
+        /**
+         * UploadRepairOrderImageArgs description.
+         * @member {string} description
+         * @memberof pbCsms.UploadRepairOrderImageArgs
+         * @instance
+         */
+        UploadRepairOrderImageArgs.prototype.description = "";
+
+        /**
+         * UploadRepairOrderImageArgs operatorId.
+         * @member {string} operatorId
+         * @memberof pbCsms.UploadRepairOrderImageArgs
+         * @instance
+         */
+        UploadRepairOrderImageArgs.prototype.operatorId = "";
+
+        /**
+         * UploadRepairOrderImageArgs operatorName.
+         * @member {string} operatorName
+         * @memberof pbCsms.UploadRepairOrderImageArgs
+         * @instance
+         */
+        UploadRepairOrderImageArgs.prototype.operatorName = "";
+
+        /**
+         * Creates a new UploadRepairOrderImageArgs instance using the specified properties.
+         * @function create
+         * @memberof pbCsms.UploadRepairOrderImageArgs
+         * @static
+         * @param {pbCsms.IUploadRepairOrderImageArgs=} [properties] Properties to set
+         * @returns {pbCsms.UploadRepairOrderImageArgs} UploadRepairOrderImageArgs instance
+         */
+        UploadRepairOrderImageArgs.create = function create(properties) {
+            return new UploadRepairOrderImageArgs(properties);
+        };
+
+        /**
+         * Encodes the specified UploadRepairOrderImageArgs message. Does not implicitly {@link pbCsms.UploadRepairOrderImageArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbCsms.UploadRepairOrderImageArgs
+         * @static
+         * @param {pbCsms.IUploadRepairOrderImageArgs} message UploadRepairOrderImageArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        UploadRepairOrderImageArgs.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.repairOrderId != null && Object.hasOwnProperty.call(message, "repairOrderId"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int64(message.repairOrderId);
+            if (message.url != null && Object.hasOwnProperty.call(message, "url"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.url);
+            if (message.type != null && Object.hasOwnProperty.call(message, "type"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int32(message.type);
+            if (message.sort != null && Object.hasOwnProperty.call(message, "sort"))
+                writer.uint32(/* id 4, wireType 0 =*/32).int32(message.sort);
+            if (message.description != null && Object.hasOwnProperty.call(message, "description"))
+                writer.uint32(/* id 5, wireType 2 =*/42).string(message.description);
+            if (message.operatorId != null && Object.hasOwnProperty.call(message, "operatorId"))
+                writer.uint32(/* id 6, wireType 2 =*/50).string(message.operatorId);
+            if (message.operatorName != null && Object.hasOwnProperty.call(message, "operatorName"))
+                writer.uint32(/* id 7, wireType 2 =*/58).string(message.operatorName);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified UploadRepairOrderImageArgs message, length delimited. Does not implicitly {@link pbCsms.UploadRepairOrderImageArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbCsms.UploadRepairOrderImageArgs
+         * @static
+         * @param {pbCsms.IUploadRepairOrderImageArgs} message UploadRepairOrderImageArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        UploadRepairOrderImageArgs.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an UploadRepairOrderImageArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbCsms.UploadRepairOrderImageArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbCsms.UploadRepairOrderImageArgs} UploadRepairOrderImageArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        UploadRepairOrderImageArgs.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbCsms.UploadRepairOrderImageArgs();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.repairOrderId = reader.int64();
+                        break;
+                    }
+                case 2: {
+                        message.url = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.type = reader.int32();
+                        break;
+                    }
+                case 4: {
+                        message.sort = reader.int32();
+                        break;
+                    }
+                case 5: {
+                        message.description = reader.string();
+                        break;
+                    }
+                case 6: {
+                        message.operatorId = reader.string();
+                        break;
+                    }
+                case 7: {
+                        message.operatorName = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an UploadRepairOrderImageArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbCsms.UploadRepairOrderImageArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbCsms.UploadRepairOrderImageArgs} UploadRepairOrderImageArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        UploadRepairOrderImageArgs.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an UploadRepairOrderImageArgs message.
+         * @function verify
+         * @memberof pbCsms.UploadRepairOrderImageArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        UploadRepairOrderImageArgs.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.repairOrderId != null && message.hasOwnProperty("repairOrderId"))
+                if (!$util.isInteger(message.repairOrderId) && !(message.repairOrderId && $util.isInteger(message.repairOrderId.low) && $util.isInteger(message.repairOrderId.high)))
+                    return "repairOrderId: integer|Long expected";
+            if (message.url != null && message.hasOwnProperty("url"))
+                if (!$util.isString(message.url))
+                    return "url: string expected";
+            if (message.type != null && message.hasOwnProperty("type"))
+                if (!$util.isInteger(message.type))
+                    return "type: integer expected";
+            if (message.sort != null && message.hasOwnProperty("sort"))
+                if (!$util.isInteger(message.sort))
+                    return "sort: integer expected";
+            if (message.description != null && message.hasOwnProperty("description"))
+                if (!$util.isString(message.description))
+                    return "description: string expected";
+            if (message.operatorId != null && message.hasOwnProperty("operatorId"))
+                if (!$util.isString(message.operatorId))
+                    return "operatorId: string expected";
+            if (message.operatorName != null && message.hasOwnProperty("operatorName"))
+                if (!$util.isString(message.operatorName))
+                    return "operatorName: string expected";
+            return null;
+        };
+
+        /**
+         * Creates an UploadRepairOrderImageArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbCsms.UploadRepairOrderImageArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbCsms.UploadRepairOrderImageArgs} UploadRepairOrderImageArgs
+         */
+        UploadRepairOrderImageArgs.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbCsms.UploadRepairOrderImageArgs)
+                return object;
+            var message = new $root.pbCsms.UploadRepairOrderImageArgs();
+            if (object.repairOrderId != null)
+                if ($util.Long)
+                    (message.repairOrderId = $util.Long.fromValue(object.repairOrderId)).unsigned = false;
+                else if (typeof object.repairOrderId === "string")
+                    message.repairOrderId = parseInt(object.repairOrderId, 10);
+                else if (typeof object.repairOrderId === "number")
+                    message.repairOrderId = object.repairOrderId;
+                else if (typeof object.repairOrderId === "object")
+                    message.repairOrderId = new $util.LongBits(object.repairOrderId.low >>> 0, object.repairOrderId.high >>> 0).toNumber();
+            if (object.url != null)
+                message.url = String(object.url);
+            if (object.type != null)
+                message.type = object.type | 0;
+            if (object.sort != null)
+                message.sort = object.sort | 0;
+            if (object.description != null)
+                message.description = String(object.description);
+            if (object.operatorId != null)
+                message.operatorId = String(object.operatorId);
+            if (object.operatorName != null)
+                message.operatorName = String(object.operatorName);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an UploadRepairOrderImageArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbCsms.UploadRepairOrderImageArgs
+         * @static
+         * @param {pbCsms.UploadRepairOrderImageArgs} message UploadRepairOrderImageArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        UploadRepairOrderImageArgs.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.repairOrderId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.repairOrderId = options.longs === String ? "0" : 0;
+                object.url = "";
+                object.type = 0;
+                object.sort = 0;
+                object.description = "";
+                object.operatorId = "";
+                object.operatorName = "";
+            }
+            if (message.repairOrderId != null && message.hasOwnProperty("repairOrderId"))
+                if (typeof message.repairOrderId === "number")
+                    object.repairOrderId = options.longs === String ? String(message.repairOrderId) : message.repairOrderId;
+                else
+                    object.repairOrderId = options.longs === String ? $util.Long.prototype.toString.call(message.repairOrderId) : options.longs === Number ? new $util.LongBits(message.repairOrderId.low >>> 0, message.repairOrderId.high >>> 0).toNumber() : message.repairOrderId;
+            if (message.url != null && message.hasOwnProperty("url"))
+                object.url = message.url;
+            if (message.type != null && message.hasOwnProperty("type"))
+                object.type = message.type;
+            if (message.sort != null && message.hasOwnProperty("sort"))
+                object.sort = message.sort;
+            if (message.description != null && message.hasOwnProperty("description"))
+                object.description = message.description;
+            if (message.operatorId != null && message.hasOwnProperty("operatorId"))
+                object.operatorId = message.operatorId;
+            if (message.operatorName != null && message.hasOwnProperty("operatorName"))
+                object.operatorName = message.operatorName;
+            return object;
+        };
+
+        /**
+         * Converts this UploadRepairOrderImageArgs to JSON.
+         * @function toJSON
+         * @memberof pbCsms.UploadRepairOrderImageArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        UploadRepairOrderImageArgs.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for UploadRepairOrderImageArgs
+         * @function getTypeUrl
+         * @memberof pbCsms.UploadRepairOrderImageArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        UploadRepairOrderImageArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbCsms.UploadRepairOrderImageArgs";
+        };
+
+        return UploadRepairOrderImageArgs;
+    })();
+
+    pbCsms.FindRepairOrderImageListArgs = (function() {
+
+        /**
+         * Properties of a FindRepairOrderImageListArgs.
+         * @memberof pbCsms
+         * @interface IFindRepairOrderImageListArgs
+         * @property {number|Long|null} [repairOrderId] FindRepairOrderImageListArgs repairOrderId
+         * @property {number|null} [type] FindRepairOrderImageListArgs type
+         */
+
+        /**
+         * Constructs a new FindRepairOrderImageListArgs.
+         * @memberof pbCsms
+         * @classdesc Represents a FindRepairOrderImageListArgs.
+         * @implements IFindRepairOrderImageListArgs
+         * @constructor
+         * @param {pbCsms.IFindRepairOrderImageListArgs=} [properties] Properties to set
+         */
+        function FindRepairOrderImageListArgs(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * FindRepairOrderImageListArgs repairOrderId.
+         * @member {number|Long} repairOrderId
+         * @memberof pbCsms.FindRepairOrderImageListArgs
+         * @instance
+         */
+        FindRepairOrderImageListArgs.prototype.repairOrderId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * FindRepairOrderImageListArgs type.
+         * @member {number} type
+         * @memberof pbCsms.FindRepairOrderImageListArgs
+         * @instance
+         */
+        FindRepairOrderImageListArgs.prototype.type = 0;
+
+        /**
+         * Creates a new FindRepairOrderImageListArgs instance using the specified properties.
+         * @function create
+         * @memberof pbCsms.FindRepairOrderImageListArgs
+         * @static
+         * @param {pbCsms.IFindRepairOrderImageListArgs=} [properties] Properties to set
+         * @returns {pbCsms.FindRepairOrderImageListArgs} FindRepairOrderImageListArgs instance
+         */
+        FindRepairOrderImageListArgs.create = function create(properties) {
+            return new FindRepairOrderImageListArgs(properties);
+        };
+
+        /**
+         * Encodes the specified FindRepairOrderImageListArgs message. Does not implicitly {@link pbCsms.FindRepairOrderImageListArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbCsms.FindRepairOrderImageListArgs
+         * @static
+         * @param {pbCsms.IFindRepairOrderImageListArgs} message FindRepairOrderImageListArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindRepairOrderImageListArgs.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.repairOrderId != null && Object.hasOwnProperty.call(message, "repairOrderId"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int64(message.repairOrderId);
+            if (message.type != null && Object.hasOwnProperty.call(message, "type"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.type);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified FindRepairOrderImageListArgs message, length delimited. Does not implicitly {@link pbCsms.FindRepairOrderImageListArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbCsms.FindRepairOrderImageListArgs
+         * @static
+         * @param {pbCsms.IFindRepairOrderImageListArgs} message FindRepairOrderImageListArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindRepairOrderImageListArgs.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a FindRepairOrderImageListArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbCsms.FindRepairOrderImageListArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbCsms.FindRepairOrderImageListArgs} FindRepairOrderImageListArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindRepairOrderImageListArgs.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbCsms.FindRepairOrderImageListArgs();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.repairOrderId = reader.int64();
+                        break;
+                    }
+                case 2: {
+                        message.type = reader.int32();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a FindRepairOrderImageListArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbCsms.FindRepairOrderImageListArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbCsms.FindRepairOrderImageListArgs} FindRepairOrderImageListArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindRepairOrderImageListArgs.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a FindRepairOrderImageListArgs message.
+         * @function verify
+         * @memberof pbCsms.FindRepairOrderImageListArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        FindRepairOrderImageListArgs.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.repairOrderId != null && message.hasOwnProperty("repairOrderId"))
+                if (!$util.isInteger(message.repairOrderId) && !(message.repairOrderId && $util.isInteger(message.repairOrderId.low) && $util.isInteger(message.repairOrderId.high)))
+                    return "repairOrderId: integer|Long expected";
+            if (message.type != null && message.hasOwnProperty("type"))
+                if (!$util.isInteger(message.type))
+                    return "type: integer expected";
+            return null;
+        };
+
+        /**
+         * Creates a FindRepairOrderImageListArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbCsms.FindRepairOrderImageListArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbCsms.FindRepairOrderImageListArgs} FindRepairOrderImageListArgs
+         */
+        FindRepairOrderImageListArgs.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbCsms.FindRepairOrderImageListArgs)
+                return object;
+            var message = new $root.pbCsms.FindRepairOrderImageListArgs();
+            if (object.repairOrderId != null)
+                if ($util.Long)
+                    (message.repairOrderId = $util.Long.fromValue(object.repairOrderId)).unsigned = false;
+                else if (typeof object.repairOrderId === "string")
+                    message.repairOrderId = parseInt(object.repairOrderId, 10);
+                else if (typeof object.repairOrderId === "number")
+                    message.repairOrderId = object.repairOrderId;
+                else if (typeof object.repairOrderId === "object")
+                    message.repairOrderId = new $util.LongBits(object.repairOrderId.low >>> 0, object.repairOrderId.high >>> 0).toNumber();
+            if (object.type != null)
+                message.type = object.type | 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a FindRepairOrderImageListArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbCsms.FindRepairOrderImageListArgs
+         * @static
+         * @param {pbCsms.FindRepairOrderImageListArgs} message FindRepairOrderImageListArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FindRepairOrderImageListArgs.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.repairOrderId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.repairOrderId = options.longs === String ? "0" : 0;
+                object.type = 0;
+            }
+            if (message.repairOrderId != null && message.hasOwnProperty("repairOrderId"))
+                if (typeof message.repairOrderId === "number")
+                    object.repairOrderId = options.longs === String ? String(message.repairOrderId) : message.repairOrderId;
+                else
+                    object.repairOrderId = options.longs === String ? $util.Long.prototype.toString.call(message.repairOrderId) : options.longs === Number ? new $util.LongBits(message.repairOrderId.low >>> 0, message.repairOrderId.high >>> 0).toNumber() : message.repairOrderId;
+            if (message.type != null && message.hasOwnProperty("type"))
+                object.type = message.type;
+            return object;
+        };
+
+        /**
+         * Converts this FindRepairOrderImageListArgs to JSON.
+         * @function toJSON
+         * @memberof pbCsms.FindRepairOrderImageListArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        FindRepairOrderImageListArgs.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for FindRepairOrderImageListArgs
+         * @function getTypeUrl
+         * @memberof pbCsms.FindRepairOrderImageListArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        FindRepairOrderImageListArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbCsms.FindRepairOrderImageListArgs";
+        };
+
+        return FindRepairOrderImageListArgs;
+    })();
+
+    pbCsms.FindRepairOrderImageListReply = (function() {
+
+        /**
+         * Properties of a FindRepairOrderImageListReply.
+         * @memberof pbCsms
+         * @interface IFindRepairOrderImageListReply
+         * @property {pbcommon.EnumCode|null} [code] FindRepairOrderImageListReply code
+         * @property {string|null} [msg] FindRepairOrderImageListReply msg
+         * @property {Array.<pbCsms.IRepairOrderImage>|null} [data] FindRepairOrderImageListReply data
+         */
+
+        /**
+         * Constructs a new FindRepairOrderImageListReply.
+         * @memberof pbCsms
+         * @classdesc Represents a FindRepairOrderImageListReply.
+         * @implements IFindRepairOrderImageListReply
+         * @constructor
+         * @param {pbCsms.IFindRepairOrderImageListReply=} [properties] Properties to set
+         */
+        function FindRepairOrderImageListReply(properties) {
+            this.data = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * FindRepairOrderImageListReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbCsms.FindRepairOrderImageListReply
+         * @instance
+         */
+        FindRepairOrderImageListReply.prototype.code = 0;
+
+        /**
+         * FindRepairOrderImageListReply msg.
+         * @member {string} msg
+         * @memberof pbCsms.FindRepairOrderImageListReply
+         * @instance
+         */
+        FindRepairOrderImageListReply.prototype.msg = "";
+
+        /**
+         * FindRepairOrderImageListReply data.
+         * @member {Array.<pbCsms.IRepairOrderImage>} data
+         * @memberof pbCsms.FindRepairOrderImageListReply
+         * @instance
+         */
+        FindRepairOrderImageListReply.prototype.data = $util.emptyArray;
+
+        /**
+         * Creates a new FindRepairOrderImageListReply instance using the specified properties.
+         * @function create
+         * @memberof pbCsms.FindRepairOrderImageListReply
+         * @static
+         * @param {pbCsms.IFindRepairOrderImageListReply=} [properties] Properties to set
+         * @returns {pbCsms.FindRepairOrderImageListReply} FindRepairOrderImageListReply instance
+         */
+        FindRepairOrderImageListReply.create = function create(properties) {
+            return new FindRepairOrderImageListReply(properties);
+        };
+
+        /**
+         * Encodes the specified FindRepairOrderImageListReply message. Does not implicitly {@link pbCsms.FindRepairOrderImageListReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbCsms.FindRepairOrderImageListReply
+         * @static
+         * @param {pbCsms.IFindRepairOrderImageListReply} message FindRepairOrderImageListReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindRepairOrderImageListReply.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.data != null && message.data.length)
+                for (var i = 0; i < message.data.length; ++i)
+                    $root.pbCsms.RepairOrderImage.encode(message.data[i], writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified FindRepairOrderImageListReply message, length delimited. Does not implicitly {@link pbCsms.FindRepairOrderImageListReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbCsms.FindRepairOrderImageListReply
+         * @static
+         * @param {pbCsms.IFindRepairOrderImageListReply} message FindRepairOrderImageListReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindRepairOrderImageListReply.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a FindRepairOrderImageListReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbCsms.FindRepairOrderImageListReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbCsms.FindRepairOrderImageListReply} FindRepairOrderImageListReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindRepairOrderImageListReply.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbCsms.FindRepairOrderImageListReply();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.code = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        if (!(message.data && message.data.length))
+                            message.data = [];
+                        message.data.push($root.pbCsms.RepairOrderImage.decode(reader, reader.uint32()));
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a FindRepairOrderImageListReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbCsms.FindRepairOrderImageListReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbCsms.FindRepairOrderImageListReply} FindRepairOrderImageListReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindRepairOrderImageListReply.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a FindRepairOrderImageListReply message.
+         * @function verify
+         * @memberof pbCsms.FindRepairOrderImageListReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        FindRepairOrderImageListReply.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.code != null && message.hasOwnProperty("code"))
+                switch (message.code) {
+                default:
+                    return "code: enum value expected";
+                case 0:
+                case 200:
+                case 403:
+                case 500:
+                case 501:
+                case 502:
+                case 503:
+                case 504:
+                case 505:
+                case 511:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
+                case 2002:
+                case 2003:
+                case 2004:
+                case 2005:
+                case 2006:
+                case 2007:
+                case 2008:
+                case 2009:
+                case 2010:
+                case 2011:
+                case 2012:
+                case 2013:
+                case 2014:
+                case 2015:
+                case 3001:
+                case 3002:
+                case 3003:
+                case 5001:
+                case 5002:
+                case 10001:
+                case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
+                    break;
+                }
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                if (!$util.isString(message.msg))
+                    return "msg: string expected";
+            if (message.data != null && message.hasOwnProperty("data")) {
+                if (!Array.isArray(message.data))
+                    return "data: array expected";
+                for (var i = 0; i < message.data.length; ++i) {
+                    var error = $root.pbCsms.RepairOrderImage.verify(message.data[i]);
+                    if (error)
+                        return "data." + error;
+                }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a FindRepairOrderImageListReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbCsms.FindRepairOrderImageListReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbCsms.FindRepairOrderImageListReply} FindRepairOrderImageListReply
+         */
+        FindRepairOrderImageListReply.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbCsms.FindRepairOrderImageListReply)
+                return object;
+            var message = new $root.pbCsms.FindRepairOrderImageListReply();
+            switch (object.code) {
+            default:
+                if (typeof object.code === "number") {
+                    message.code = object.code;
+                    break;
+                }
+                break;
+            case "None":
+            case 0:
+                message.code = 0;
+                break;
+            case "Success":
+            case 200:
+                message.code = 200;
+                break;
+            case "Forbidden":
+            case 403:
+                message.code = 403;
+                break;
+            case "Fail":
+            case 500:
+                message.code = 500;
+                break;
+            case "Unknown":
+            case 501:
+                message.code = 501;
+                break;
+            case "Internal":
+            case 502:
+                message.code = 502;
+                break;
+            case "Invalid":
+            case 503:
+                message.code = 503;
+                break;
+            case "InvalidParam":
+            case 504:
+                message.code = 504;
+                break;
+            case "ParamError":
+            case 505:
+                message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
+                break;
+            case "FindError":
+            case 1001:
+                message.code = 1001;
+                break;
+            case "CreateError":
+            case 1002:
+                message.code = 1002;
+                break;
+            case "DeleteError":
+            case 1003:
+                message.code = 1003;
+                break;
+            case "UpdateError":
+            case 1004:
+                message.code = 1004;
+                break;
+            case "InvalidToken":
+            case 2002:
+                message.code = 2002;
+                break;
+            case "InvalidSign":
+            case 2003:
+                message.code = 2003;
+                break;
+            case "NotLogin":
+            case 2004:
+                message.code = 2004;
+                break;
+            case "LoginTimeout":
+            case 2005:
+                message.code = 2005;
+                break;
+            case "LoginError":
+            case 2006:
+                message.code = 2006;
+                break;
+            case "LoginForbidden":
+            case 2007:
+                message.code = 2007;
+                break;
+            case "LoginExpired":
+            case 2008:
+                message.code = 2008;
+                break;
+            case "LoginInvalid":
+            case 2009:
+                message.code = 2009;
+                break;
+            case "LoginInvalidPassword":
+            case 2010:
+                message.code = 2010;
+                break;
+            case "LoginInvalidUsername":
+            case 2011:
+                message.code = 2011;
+                break;
+            case "LoginInvalidEmail":
+            case 2012:
+                message.code = 2012;
+                break;
+            case "LoginInvalidPhone":
+            case 2013:
+                message.code = 2013;
+                break;
+            case "LoginInvalidUsernameOrEmail":
+            case 2014:
+                message.code = 2014;
+                break;
+            case "LoginSocketRepeat":
+            case 2015:
+                message.code = 2015;
+                break;
+            case "RoleIsNotExist":
+            case 3001:
+                message.code = 3001;
+                break;
+            case "UserIsExist":
+            case 3002:
+                message.code = 3002;
+                break;
+            case "UserIsBan":
+            case 3003:
+                message.code = 3003;
+                break;
+            case "TalkIsBan":
+            case 5001:
+                message.code = 5001;
+                break;
+            case "EnterRoomErr":
+            case 5002:
+                message.code = 5002;
+                break;
+            case "HalaChatNeedBuy":
+            case 10001:
+                message.code = 10001;
+                break;
+            case "HalaPriceOutRange":
+            case 10002:
+                message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
+                break;
+            }
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.data) {
+                if (!Array.isArray(object.data))
+                    throw TypeError(".pbCsms.FindRepairOrderImageListReply.data: array expected");
+                message.data = [];
+                for (var i = 0; i < object.data.length; ++i) {
+                    if (typeof object.data[i] !== "object")
+                        throw TypeError(".pbCsms.FindRepairOrderImageListReply.data: object expected");
+                    message.data[i] = $root.pbCsms.RepairOrderImage.fromObject(object.data[i]);
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a FindRepairOrderImageListReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbCsms.FindRepairOrderImageListReply
+         * @static
+         * @param {pbCsms.FindRepairOrderImageListReply} message FindRepairOrderImageListReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FindRepairOrderImageListReply.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.data = [];
+            if (options.defaults) {
+                object.code = options.enums === String ? "None" : 0;
+                object.msg = "";
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.data && message.data.length) {
+                object.data = [];
+                for (var j = 0; j < message.data.length; ++j)
+                    object.data[j] = $root.pbCsms.RepairOrderImage.toObject(message.data[j], options);
+            }
+            return object;
+        };
+
+        /**
+         * Converts this FindRepairOrderImageListReply to JSON.
+         * @function toJSON
+         * @memberof pbCsms.FindRepairOrderImageListReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        FindRepairOrderImageListReply.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for FindRepairOrderImageListReply
+         * @function getTypeUrl
+         * @memberof pbCsms.FindRepairOrderImageListReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        FindRepairOrderImageListReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbCsms.FindRepairOrderImageListReply";
+        };
+
+        return FindRepairOrderImageListReply;
+    })();
+
+    pbCsms.GetStatisticsArgs = (function() {
+
+        /**
+         * Properties of a GetStatisticsArgs.
+         * @memberof pbCsms
+         * @interface IGetStatisticsArgs
+         * @property {number|null} [timeRange] GetStatisticsArgs timeRange
+         */
+
+        /**
+         * Constructs a new GetStatisticsArgs.
+         * @memberof pbCsms
+         * @classdesc Represents a GetStatisticsArgs.
+         * @implements IGetStatisticsArgs
+         * @constructor
+         * @param {pbCsms.IGetStatisticsArgs=} [properties] Properties to set
+         */
+        function GetStatisticsArgs(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GetStatisticsArgs timeRange.
+         * @member {number} timeRange
+         * @memberof pbCsms.GetStatisticsArgs
+         * @instance
+         */
+        GetStatisticsArgs.prototype.timeRange = 0;
+
+        /**
+         * Creates a new GetStatisticsArgs instance using the specified properties.
+         * @function create
+         * @memberof pbCsms.GetStatisticsArgs
+         * @static
+         * @param {pbCsms.IGetStatisticsArgs=} [properties] Properties to set
+         * @returns {pbCsms.GetStatisticsArgs} GetStatisticsArgs instance
+         */
+        GetStatisticsArgs.create = function create(properties) {
+            return new GetStatisticsArgs(properties);
+        };
+
+        /**
+         * Encodes the specified GetStatisticsArgs message. Does not implicitly {@link pbCsms.GetStatisticsArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbCsms.GetStatisticsArgs
+         * @static
+         * @param {pbCsms.IGetStatisticsArgs} message GetStatisticsArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetStatisticsArgs.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.timeRange != null && Object.hasOwnProperty.call(message, "timeRange"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.timeRange);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GetStatisticsArgs message, length delimited. Does not implicitly {@link pbCsms.GetStatisticsArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbCsms.GetStatisticsArgs
+         * @static
+         * @param {pbCsms.IGetStatisticsArgs} message GetStatisticsArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetStatisticsArgs.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GetStatisticsArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbCsms.GetStatisticsArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbCsms.GetStatisticsArgs} GetStatisticsArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetStatisticsArgs.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbCsms.GetStatisticsArgs();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.timeRange = reader.int32();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GetStatisticsArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbCsms.GetStatisticsArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbCsms.GetStatisticsArgs} GetStatisticsArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetStatisticsArgs.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GetStatisticsArgs message.
+         * @function verify
+         * @memberof pbCsms.GetStatisticsArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GetStatisticsArgs.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.timeRange != null && message.hasOwnProperty("timeRange"))
+                if (!$util.isInteger(message.timeRange))
+                    return "timeRange: integer expected";
+            return null;
+        };
+
+        /**
+         * Creates a GetStatisticsArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbCsms.GetStatisticsArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbCsms.GetStatisticsArgs} GetStatisticsArgs
+         */
+        GetStatisticsArgs.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbCsms.GetStatisticsArgs)
+                return object;
+            var message = new $root.pbCsms.GetStatisticsArgs();
+            if (object.timeRange != null)
+                message.timeRange = object.timeRange | 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GetStatisticsArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbCsms.GetStatisticsArgs
+         * @static
+         * @param {pbCsms.GetStatisticsArgs} message GetStatisticsArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GetStatisticsArgs.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.timeRange = 0;
+            if (message.timeRange != null && message.hasOwnProperty("timeRange"))
+                object.timeRange = message.timeRange;
+            return object;
+        };
+
+        /**
+         * Converts this GetStatisticsArgs to JSON.
+         * @function toJSON
+         * @memberof pbCsms.GetStatisticsArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GetStatisticsArgs.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GetStatisticsArgs
+         * @function getTypeUrl
+         * @memberof pbCsms.GetStatisticsArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GetStatisticsArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbCsms.GetStatisticsArgs";
+        };
+
+        return GetStatisticsArgs;
+    })();
+
+    pbCsms.GetStatisticsReply = (function() {
+
+        /**
+         * Properties of a GetStatisticsReply.
+         * @memberof pbCsms
+         * @interface IGetStatisticsReply
+         * @property {pbcommon.EnumCode|null} [code] GetStatisticsReply code
+         * @property {string|null} [msg] GetStatisticsReply msg
+         * @property {pbCsms.IStatistics|null} [data] GetStatisticsReply data
+         */
+
+        /**
+         * Constructs a new GetStatisticsReply.
+         * @memberof pbCsms
+         * @classdesc Represents a GetStatisticsReply.
+         * @implements IGetStatisticsReply
+         * @constructor
+         * @param {pbCsms.IGetStatisticsReply=} [properties] Properties to set
+         */
+        function GetStatisticsReply(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GetStatisticsReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbCsms.GetStatisticsReply
+         * @instance
+         */
+        GetStatisticsReply.prototype.code = 0;
+
+        /**
+         * GetStatisticsReply msg.
+         * @member {string} msg
+         * @memberof pbCsms.GetStatisticsReply
+         * @instance
+         */
+        GetStatisticsReply.prototype.msg = "";
+
+        /**
+         * GetStatisticsReply data.
+         * @member {pbCsms.IStatistics|null|undefined} data
+         * @memberof pbCsms.GetStatisticsReply
+         * @instance
+         */
+        GetStatisticsReply.prototype.data = null;
+
+        /**
+         * Creates a new GetStatisticsReply instance using the specified properties.
+         * @function create
+         * @memberof pbCsms.GetStatisticsReply
+         * @static
+         * @param {pbCsms.IGetStatisticsReply=} [properties] Properties to set
+         * @returns {pbCsms.GetStatisticsReply} GetStatisticsReply instance
+         */
+        GetStatisticsReply.create = function create(properties) {
+            return new GetStatisticsReply(properties);
+        };
+
+        /**
+         * Encodes the specified GetStatisticsReply message. Does not implicitly {@link pbCsms.GetStatisticsReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbCsms.GetStatisticsReply
+         * @static
+         * @param {pbCsms.IGetStatisticsReply} message GetStatisticsReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetStatisticsReply.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.data != null && Object.hasOwnProperty.call(message, "data"))
+                $root.pbCsms.Statistics.encode(message.data, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GetStatisticsReply message, length delimited. Does not implicitly {@link pbCsms.GetStatisticsReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbCsms.GetStatisticsReply
+         * @static
+         * @param {pbCsms.IGetStatisticsReply} message GetStatisticsReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetStatisticsReply.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GetStatisticsReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbCsms.GetStatisticsReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbCsms.GetStatisticsReply} GetStatisticsReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetStatisticsReply.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbCsms.GetStatisticsReply();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.code = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.data = $root.pbCsms.Statistics.decode(reader, reader.uint32());
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GetStatisticsReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbCsms.GetStatisticsReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbCsms.GetStatisticsReply} GetStatisticsReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetStatisticsReply.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GetStatisticsReply message.
+         * @function verify
+         * @memberof pbCsms.GetStatisticsReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GetStatisticsReply.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.code != null && message.hasOwnProperty("code"))
+                switch (message.code) {
+                default:
+                    return "code: enum value expected";
+                case 0:
+                case 200:
+                case 403:
+                case 500:
+                case 501:
+                case 502:
+                case 503:
+                case 504:
+                case 505:
+                case 511:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
+                case 2002:
+                case 2003:
+                case 2004:
+                case 2005:
+                case 2006:
+                case 2007:
+                case 2008:
+                case 2009:
+                case 2010:
+                case 2011:
+                case 2012:
+                case 2013:
+                case 2014:
+                case 2015:
+                case 3001:
+                case 3002:
+                case 3003:
+                case 5001:
+                case 5002:
+                case 10001:
+                case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
+                    break;
+                }
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                if (!$util.isString(message.msg))
+                    return "msg: string expected";
+            if (message.data != null && message.hasOwnProperty("data")) {
+                var error = $root.pbCsms.Statistics.verify(message.data);
+                if (error)
+                    return "data." + error;
+            }
+            return null;
+        };
+
+        /**
+         * Creates a GetStatisticsReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbCsms.GetStatisticsReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbCsms.GetStatisticsReply} GetStatisticsReply
+         */
+        GetStatisticsReply.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbCsms.GetStatisticsReply)
+                return object;
+            var message = new $root.pbCsms.GetStatisticsReply();
+            switch (object.code) {
+            default:
+                if (typeof object.code === "number") {
+                    message.code = object.code;
+                    break;
+                }
+                break;
+            case "None":
+            case 0:
+                message.code = 0;
+                break;
+            case "Success":
+            case 200:
+                message.code = 200;
+                break;
+            case "Forbidden":
+            case 403:
+                message.code = 403;
+                break;
+            case "Fail":
+            case 500:
+                message.code = 500;
+                break;
+            case "Unknown":
+            case 501:
+                message.code = 501;
+                break;
+            case "Internal":
+            case 502:
+                message.code = 502;
+                break;
+            case "Invalid":
+            case 503:
+                message.code = 503;
+                break;
+            case "InvalidParam":
+            case 504:
+                message.code = 504;
+                break;
+            case "ParamError":
+            case 505:
+                message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
+                break;
+            case "FindError":
+            case 1001:
+                message.code = 1001;
+                break;
+            case "CreateError":
+            case 1002:
+                message.code = 1002;
+                break;
+            case "DeleteError":
+            case 1003:
+                message.code = 1003;
+                break;
+            case "UpdateError":
+            case 1004:
+                message.code = 1004;
+                break;
+            case "InvalidToken":
+            case 2002:
+                message.code = 2002;
+                break;
+            case "InvalidSign":
+            case 2003:
+                message.code = 2003;
+                break;
+            case "NotLogin":
+            case 2004:
+                message.code = 2004;
+                break;
+            case "LoginTimeout":
+            case 2005:
+                message.code = 2005;
+                break;
+            case "LoginError":
+            case 2006:
+                message.code = 2006;
+                break;
+            case "LoginForbidden":
+            case 2007:
+                message.code = 2007;
+                break;
+            case "LoginExpired":
+            case 2008:
+                message.code = 2008;
+                break;
+            case "LoginInvalid":
+            case 2009:
+                message.code = 2009;
+                break;
+            case "LoginInvalidPassword":
+            case 2010:
+                message.code = 2010;
+                break;
+            case "LoginInvalidUsername":
+            case 2011:
+                message.code = 2011;
+                break;
+            case "LoginInvalidEmail":
+            case 2012:
+                message.code = 2012;
+                break;
+            case "LoginInvalidPhone":
+            case 2013:
+                message.code = 2013;
+                break;
+            case "LoginInvalidUsernameOrEmail":
+            case 2014:
+                message.code = 2014;
+                break;
+            case "LoginSocketRepeat":
+            case 2015:
+                message.code = 2015;
+                break;
+            case "RoleIsNotExist":
+            case 3001:
+                message.code = 3001;
+                break;
+            case "UserIsExist":
+            case 3002:
+                message.code = 3002;
+                break;
+            case "UserIsBan":
+            case 3003:
+                message.code = 3003;
+                break;
+            case "TalkIsBan":
+            case 5001:
+                message.code = 5001;
+                break;
+            case "EnterRoomErr":
+            case 5002:
+                message.code = 5002;
+                break;
+            case "HalaChatNeedBuy":
+            case 10001:
+                message.code = 10001;
+                break;
+            case "HalaPriceOutRange":
+            case 10002:
+                message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
+                break;
+            }
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.data != null) {
+                if (typeof object.data !== "object")
+                    throw TypeError(".pbCsms.GetStatisticsReply.data: object expected");
+                message.data = $root.pbCsms.Statistics.fromObject(object.data);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GetStatisticsReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbCsms.GetStatisticsReply
+         * @static
+         * @param {pbCsms.GetStatisticsReply} message GetStatisticsReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GetStatisticsReply.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.code = options.enums === String ? "None" : 0;
+                object.msg = "";
+                object.data = null;
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.data != null && message.hasOwnProperty("data"))
+                object.data = $root.pbCsms.Statistics.toObject(message.data, options);
+            return object;
+        };
+
+        /**
+         * Converts this GetStatisticsReply to JSON.
+         * @function toJSON
+         * @memberof pbCsms.GetStatisticsReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GetStatisticsReply.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GetStatisticsReply
+         * @function getTypeUrl
+         * @memberof pbCsms.GetStatisticsReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GetStatisticsReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbCsms.GetStatisticsReply";
+        };
+
+        return GetStatisticsReply;
+    })();
+
+    pbCsms.Statistics = (function() {
+
+        /**
+         * Properties of a Statistics.
+         * @memberof pbCsms
+         * @interface IStatistics
+         * @property {number|null} [periodOrders] Statistics periodOrders
+         * @property {number|null} [pendingCount] Statistics pendingCount
+         * @property {number|null} [revenue] Statistics revenue
+         * @property {number|null} [avgResponseMinutes] Statistics avgResponseMinutes
+         * @property {Object.<string,number>|null} [statusCount] Statistics statusCount
+         * @property {Array.<pbCsms.ITrendPoint>|null} [trend] Statistics trend
+         */
+
+        /**
+         * Constructs a new Statistics.
+         * @memberof pbCsms
+         * @classdesc Represents a Statistics.
+         * @implements IStatistics
+         * @constructor
+         * @param {pbCsms.IStatistics=} [properties] Properties to set
+         */
+        function Statistics(properties) {
+            this.statusCount = {};
+            this.trend = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * Statistics periodOrders.
+         * @member {number} periodOrders
+         * @memberof pbCsms.Statistics
+         * @instance
+         */
+        Statistics.prototype.periodOrders = 0;
+
+        /**
+         * Statistics pendingCount.
+         * @member {number} pendingCount
+         * @memberof pbCsms.Statistics
+         * @instance
+         */
+        Statistics.prototype.pendingCount = 0;
+
+        /**
+         * Statistics revenue.
+         * @member {number} revenue
+         * @memberof pbCsms.Statistics
+         * @instance
+         */
+        Statistics.prototype.revenue = 0;
+
+        /**
+         * Statistics avgResponseMinutes.
+         * @member {number} avgResponseMinutes
+         * @memberof pbCsms.Statistics
+         * @instance
+         */
+        Statistics.prototype.avgResponseMinutes = 0;
+
+        /**
+         * Statistics statusCount.
+         * @member {Object.<string,number>} statusCount
+         * @memberof pbCsms.Statistics
+         * @instance
+         */
+        Statistics.prototype.statusCount = $util.emptyObject;
+
+        /**
+         * Statistics trend.
+         * @member {Array.<pbCsms.ITrendPoint>} trend
+         * @memberof pbCsms.Statistics
+         * @instance
+         */
+        Statistics.prototype.trend = $util.emptyArray;
+
+        /**
+         * Creates a new Statistics instance using the specified properties.
+         * @function create
+         * @memberof pbCsms.Statistics
+         * @static
+         * @param {pbCsms.IStatistics=} [properties] Properties to set
+         * @returns {pbCsms.Statistics} Statistics instance
+         */
+        Statistics.create = function create(properties) {
+            return new Statistics(properties);
+        };
+
+        /**
+         * Encodes the specified Statistics message. Does not implicitly {@link pbCsms.Statistics.verify|verify} messages.
+         * @function encode
+         * @memberof pbCsms.Statistics
+         * @static
+         * @param {pbCsms.IStatistics} message Statistics message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Statistics.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.periodOrders != null && Object.hasOwnProperty.call(message, "periodOrders"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.periodOrders);
+            if (message.pendingCount != null && Object.hasOwnProperty.call(message, "pendingCount"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.pendingCount);
+            if (message.revenue != null && Object.hasOwnProperty.call(message, "revenue"))
+                writer.uint32(/* id 3, wireType 1 =*/25).double(message.revenue);
+            if (message.avgResponseMinutes != null && Object.hasOwnProperty.call(message, "avgResponseMinutes"))
+                writer.uint32(/* id 4, wireType 1 =*/33).double(message.avgResponseMinutes);
+            if (message.statusCount != null && Object.hasOwnProperty.call(message, "statusCount"))
+                for (var keys = Object.keys(message.statusCount), i = 0; i < keys.length; ++i)
+                    writer.uint32(/* id 5, wireType 2 =*/42).fork().uint32(/* id 1, wireType 0 =*/8).int32(keys[i]).uint32(/* id 2, wireType 0 =*/16).int32(message.statusCount[keys[i]]).ldelim();
+            if (message.trend != null && message.trend.length)
+                for (var i = 0; i < message.trend.length; ++i)
+                    $root.pbCsms.TrendPoint.encode(message.trend[i], writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified Statistics message, length delimited. Does not implicitly {@link pbCsms.Statistics.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbCsms.Statistics
+         * @static
+         * @param {pbCsms.IStatistics} message Statistics message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Statistics.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a Statistics message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbCsms.Statistics
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbCsms.Statistics} Statistics
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Statistics.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbCsms.Statistics(), key, value;
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.periodOrders = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.pendingCount = reader.int32();
+                        break;
+                    }
+                case 3: {
+                        message.revenue = reader.double();
+                        break;
+                    }
+                case 4: {
+                        message.avgResponseMinutes = reader.double();
+                        break;
+                    }
+                case 5: {
+                        if (message.statusCount === $util.emptyObject)
+                            message.statusCount = {};
+                        var end2 = reader.uint32() + reader.pos;
+                        key = 0;
+                        value = 0;
+                        while (reader.pos < end2) {
+                            var tag2 = reader.uint32();
+                            switch (tag2 >>> 3) {
+                            case 1:
+                                key = reader.int32();
+                                break;
+                            case 2:
+                                value = reader.int32();
+                                break;
+                            default:
+                                reader.skipType(tag2 & 7);
+                                break;
+                            }
+                        }
+                        message.statusCount[key] = value;
+                        break;
+                    }
+                case 6: {
+                        if (!(message.trend && message.trend.length))
+                            message.trend = [];
+                        message.trend.push($root.pbCsms.TrendPoint.decode(reader, reader.uint32()));
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a Statistics message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbCsms.Statistics
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbCsms.Statistics} Statistics
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Statistics.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a Statistics message.
+         * @function verify
+         * @memberof pbCsms.Statistics
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        Statistics.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.periodOrders != null && message.hasOwnProperty("periodOrders"))
+                if (!$util.isInteger(message.periodOrders))
+                    return "periodOrders: integer expected";
+            if (message.pendingCount != null && message.hasOwnProperty("pendingCount"))
+                if (!$util.isInteger(message.pendingCount))
+                    return "pendingCount: integer expected";
+            if (message.revenue != null && message.hasOwnProperty("revenue"))
+                if (typeof message.revenue !== "number")
+                    return "revenue: number expected";
+            if (message.avgResponseMinutes != null && message.hasOwnProperty("avgResponseMinutes"))
+                if (typeof message.avgResponseMinutes !== "number")
+                    return "avgResponseMinutes: number expected";
+            if (message.statusCount != null && message.hasOwnProperty("statusCount")) {
+                if (!$util.isObject(message.statusCount))
+                    return "statusCount: object expected";
+                var key = Object.keys(message.statusCount);
+                for (var i = 0; i < key.length; ++i) {
+                    if (!$util.key32Re.test(key[i]))
+                        return "statusCount: integer key{k:int32} expected";
+                    if (!$util.isInteger(message.statusCount[key[i]]))
+                        return "statusCount: integer{k:int32} expected";
+                }
+            }
+            if (message.trend != null && message.hasOwnProperty("trend")) {
+                if (!Array.isArray(message.trend))
+                    return "trend: array expected";
+                for (var i = 0; i < message.trend.length; ++i) {
+                    var error = $root.pbCsms.TrendPoint.verify(message.trend[i]);
+                    if (error)
+                        return "trend." + error;
+                }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a Statistics message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbCsms.Statistics
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbCsms.Statistics} Statistics
+         */
+        Statistics.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbCsms.Statistics)
+                return object;
+            var message = new $root.pbCsms.Statistics();
+            if (object.periodOrders != null)
+                message.periodOrders = object.periodOrders | 0;
+            if (object.pendingCount != null)
+                message.pendingCount = object.pendingCount | 0;
+            if (object.revenue != null)
+                message.revenue = Number(object.revenue);
+            if (object.avgResponseMinutes != null)
+                message.avgResponseMinutes = Number(object.avgResponseMinutes);
+            if (object.statusCount) {
+                if (typeof object.statusCount !== "object")
+                    throw TypeError(".pbCsms.Statistics.statusCount: object expected");
+                message.statusCount = {};
+                for (var keys = Object.keys(object.statusCount), i = 0; i < keys.length; ++i)
+                    message.statusCount[keys[i]] = object.statusCount[keys[i]] | 0;
+            }
+            if (object.trend) {
+                if (!Array.isArray(object.trend))
+                    throw TypeError(".pbCsms.Statistics.trend: array expected");
+                message.trend = [];
+                for (var i = 0; i < object.trend.length; ++i) {
+                    if (typeof object.trend[i] !== "object")
+                        throw TypeError(".pbCsms.Statistics.trend: object expected");
+                    message.trend[i] = $root.pbCsms.TrendPoint.fromObject(object.trend[i]);
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Statistics message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbCsms.Statistics
+         * @static
+         * @param {pbCsms.Statistics} message Statistics
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Statistics.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.trend = [];
+            if (options.objects || options.defaults)
+                object.statusCount = {};
+            if (options.defaults) {
+                object.periodOrders = 0;
+                object.pendingCount = 0;
+                object.revenue = 0;
+                object.avgResponseMinutes = 0;
+            }
+            if (message.periodOrders != null && message.hasOwnProperty("periodOrders"))
+                object.periodOrders = message.periodOrders;
+            if (message.pendingCount != null && message.hasOwnProperty("pendingCount"))
+                object.pendingCount = message.pendingCount;
+            if (message.revenue != null && message.hasOwnProperty("revenue"))
+                object.revenue = options.json && !isFinite(message.revenue) ? String(message.revenue) : message.revenue;
+            if (message.avgResponseMinutes != null && message.hasOwnProperty("avgResponseMinutes"))
+                object.avgResponseMinutes = options.json && !isFinite(message.avgResponseMinutes) ? String(message.avgResponseMinutes) : message.avgResponseMinutes;
+            var keys2;
+            if (message.statusCount && (keys2 = Object.keys(message.statusCount)).length) {
+                object.statusCount = {};
+                for (var j = 0; j < keys2.length; ++j)
+                    object.statusCount[keys2[j]] = message.statusCount[keys2[j]];
+            }
+            if (message.trend && message.trend.length) {
+                object.trend = [];
+                for (var j = 0; j < message.trend.length; ++j)
+                    object.trend[j] = $root.pbCsms.TrendPoint.toObject(message.trend[j], options);
+            }
+            return object;
+        };
+
+        /**
+         * Converts this Statistics to JSON.
+         * @function toJSON
+         * @memberof pbCsms.Statistics
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Statistics.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for Statistics
+         * @function getTypeUrl
+         * @memberof pbCsms.Statistics
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        Statistics.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbCsms.Statistics";
+        };
+
+        return Statistics;
+    })();
+
+    pbCsms.TrendPoint = (function() {
+
+        /**
+         * Properties of a TrendPoint.
+         * @memberof pbCsms
+         * @interface ITrendPoint
+         * @property {string|null} [label] TrendPoint label
+         * @property {number|null} [value] TrendPoint value
+         */
+
+        /**
+         * Constructs a new TrendPoint.
+         * @memberof pbCsms
+         * @classdesc Represents a TrendPoint.
+         * @implements ITrendPoint
+         * @constructor
+         * @param {pbCsms.ITrendPoint=} [properties] Properties to set
+         */
+        function TrendPoint(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * TrendPoint label.
+         * @member {string} label
+         * @memberof pbCsms.TrendPoint
+         * @instance
+         */
+        TrendPoint.prototype.label = "";
+
+        /**
+         * TrendPoint value.
+         * @member {number} value
+         * @memberof pbCsms.TrendPoint
+         * @instance
+         */
+        TrendPoint.prototype.value = 0;
+
+        /**
+         * Creates a new TrendPoint instance using the specified properties.
+         * @function create
+         * @memberof pbCsms.TrendPoint
+         * @static
+         * @param {pbCsms.ITrendPoint=} [properties] Properties to set
+         * @returns {pbCsms.TrendPoint} TrendPoint instance
+         */
+        TrendPoint.create = function create(properties) {
+            return new TrendPoint(properties);
+        };
+
+        /**
+         * Encodes the specified TrendPoint message. Does not implicitly {@link pbCsms.TrendPoint.verify|verify} messages.
+         * @function encode
+         * @memberof pbCsms.TrendPoint
+         * @static
+         * @param {pbCsms.ITrendPoint} message TrendPoint message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        TrendPoint.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.label != null && Object.hasOwnProperty.call(message, "label"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.label);
+            if (message.value != null && Object.hasOwnProperty.call(message, "value"))
+                writer.uint32(/* id 2, wireType 1 =*/17).double(message.value);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified TrendPoint message, length delimited. Does not implicitly {@link pbCsms.TrendPoint.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbCsms.TrendPoint
+         * @static
+         * @param {pbCsms.ITrendPoint} message TrendPoint message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        TrendPoint.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a TrendPoint message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbCsms.TrendPoint
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbCsms.TrendPoint} TrendPoint
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        TrendPoint.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbCsms.TrendPoint();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.label = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message.value = reader.double();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a TrendPoint message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbCsms.TrendPoint
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbCsms.TrendPoint} TrendPoint
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        TrendPoint.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a TrendPoint message.
+         * @function verify
+         * @memberof pbCsms.TrendPoint
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        TrendPoint.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.label != null && message.hasOwnProperty("label"))
+                if (!$util.isString(message.label))
+                    return "label: string expected";
+            if (message.value != null && message.hasOwnProperty("value"))
+                if (typeof message.value !== "number")
+                    return "value: number expected";
+            return null;
+        };
+
+        /**
+         * Creates a TrendPoint message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbCsms.TrendPoint
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbCsms.TrendPoint} TrendPoint
+         */
+        TrendPoint.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbCsms.TrendPoint)
+                return object;
+            var message = new $root.pbCsms.TrendPoint();
+            if (object.label != null)
+                message.label = String(object.label);
+            if (object.value != null)
+                message.value = Number(object.value);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a TrendPoint message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbCsms.TrendPoint
+         * @static
+         * @param {pbCsms.TrendPoint} message TrendPoint
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        TrendPoint.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.label = "";
+                object.value = 0;
+            }
+            if (message.label != null && message.hasOwnProperty("label"))
+                object.label = message.label;
+            if (message.value != null && message.hasOwnProperty("value"))
+                object.value = options.json && !isFinite(message.value) ? String(message.value) : message.value;
+            return object;
+        };
+
+        /**
+         * Converts this TrendPoint to JSON.
+         * @function toJSON
+         * @memberof pbCsms.TrendPoint
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        TrendPoint.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for TrendPoint
+         * @function getTypeUrl
+         * @memberof pbCsms.TrendPoint
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        TrendPoint.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbCsms.TrendPoint";
+        };
+
+        return TrendPoint;
     })();
 
     return pbCsms;

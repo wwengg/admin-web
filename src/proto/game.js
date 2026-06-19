@@ -112,6 +112,7 @@ $root.pbcommon = (function() {
          * @interface ICommonResult
          * @property {pbcommon.EnumCode|null} [code] CommonResult code
          * @property {string|null} [msg] CommonResult msg
+         * @property {number|null} [subCode] CommonResult subCode
          */
 
         /**
@@ -146,6 +147,14 @@ $root.pbcommon = (function() {
         CommonResult.prototype.msg = "";
 
         /**
+         * CommonResult subCode.
+         * @member {number} subCode
+         * @memberof pbcommon.CommonResult
+         * @instance
+         */
+        CommonResult.prototype.subCode = 0;
+
+        /**
          * Creates a new CommonResult instance using the specified properties.
          * @function create
          * @memberof pbcommon.CommonResult
@@ -173,6 +182,8 @@ $root.pbcommon = (function() {
                 writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
             if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
                 writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.subCode != null && Object.hasOwnProperty.call(message, "subCode"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int32(message.subCode);
             return writer;
         };
 
@@ -215,6 +226,10 @@ $root.pbcommon = (function() {
                     }
                 case 2: {
                         message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.subCode = reader.int32();
                         break;
                     }
                 default:
@@ -299,6 +314,9 @@ $root.pbcommon = (function() {
             if (message.msg != null && message.hasOwnProperty("msg"))
                 if (!$util.isString(message.msg))
                     return "msg: string expected";
+            if (message.subCode != null && message.hasOwnProperty("subCode"))
+                if (!$util.isInteger(message.subCode))
+                    return "subCode: integer expected";
             return null;
         };
 
@@ -476,6 +494,8 @@ $root.pbcommon = (function() {
             }
             if (object.msg != null)
                 message.msg = String(object.msg);
+            if (object.subCode != null)
+                message.subCode = object.subCode | 0;
             return message;
         };
 
@@ -495,11 +515,14 @@ $root.pbcommon = (function() {
             if (options.defaults) {
                 object.code = options.enums === String ? "None" : 0;
                 object.msg = "";
+                object.subCode = 0;
             }
             if (message.code != null && message.hasOwnProperty("code"))
                 object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
             if (message.msg != null && message.hasOwnProperty("msg"))
                 object.msg = message.msg;
+            if (message.subCode != null && message.hasOwnProperty("subCode"))
+                object.subCode = message.subCode;
             return object;
         };
 
@@ -8850,39 +8873,6 @@ $root.pbbattle = (function() {
          * @instance
          * @param {pbbattle.IGetLeaderboardReq} request GetLeaderboardReq message or plain object
          * @returns {Promise<pbbattle.GetLeaderboardResp>} Promise
-         * @variation 2
-         */
-
-        /**
-         * Callback as used by {@link pbbattle.Battle#checkGameCenterVisibility}.
-         * @memberof pbbattle.Battle
-         * @typedef CheckGameCenterVisibilityCallback
-         * @type {function}
-         * @param {Error|null} error Error, if any
-         * @param {pbbattle.CheckGameCenterVisibilityResp} [response] CheckGameCenterVisibilityResp
-         */
-
-        /**
-         * Calls CheckGameCenterVisibility.
-         * @function checkGameCenterVisibility
-         * @memberof pbbattle.Battle
-         * @instance
-         * @param {pbbattle.ICheckGameCenterVisibilityReq} request CheckGameCenterVisibilityReq message or plain object
-         * @param {pbbattle.Battle.CheckGameCenterVisibilityCallback} callback Node-style callback called with the error, if any, and CheckGameCenterVisibilityResp
-         * @returns {undefined}
-         * @variation 1
-         */
-        Object.defineProperty(Battle.prototype.checkGameCenterVisibility = function checkGameCenterVisibility(request, callback) {
-            return this.rpcCall(checkGameCenterVisibility, $root.pbbattle.CheckGameCenterVisibilityReq, $root.pbbattle.CheckGameCenterVisibilityResp, request, callback);
-        }, "name", { value: "CheckGameCenterVisibility" });
-
-        /**
-         * Calls CheckGameCenterVisibility.
-         * @function checkGameCenterVisibility
-         * @memberof pbbattle.Battle
-         * @instance
-         * @param {pbbattle.ICheckGameCenterVisibilityReq} request CheckGameCenterVisibilityReq message or plain object
-         * @returns {Promise<pbbattle.CheckGameCenterVisibilityResp>} Promise
          * @variation 2
          */
 
@@ -28132,634 +28122,6 @@ $root.pbbattle = (function() {
         values[valuesById[0] = "WHITE"] = 0;
         values[valuesById[1] = "BLACK"] = 1;
         return values;
-    })();
-
-    pbbattle.CheckGameCenterVisibilityReq = (function() {
-
-        /**
-         * Properties of a CheckGameCenterVisibilityReq.
-         * @memberof pbbattle
-         * @interface ICheckGameCenterVisibilityReq
-         */
-
-        /**
-         * Constructs a new CheckGameCenterVisibilityReq.
-         * @memberof pbbattle
-         * @classdesc Represents a CheckGameCenterVisibilityReq.
-         * @implements ICheckGameCenterVisibilityReq
-         * @constructor
-         * @param {pbbattle.ICheckGameCenterVisibilityReq=} [properties] Properties to set
-         */
-        function CheckGameCenterVisibilityReq(properties) {
-            if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
-                        this[keys[i]] = properties[keys[i]];
-        }
-
-        /**
-         * Creates a new CheckGameCenterVisibilityReq instance using the specified properties.
-         * @function create
-         * @memberof pbbattle.CheckGameCenterVisibilityReq
-         * @static
-         * @param {pbbattle.ICheckGameCenterVisibilityReq=} [properties] Properties to set
-         * @returns {pbbattle.CheckGameCenterVisibilityReq} CheckGameCenterVisibilityReq instance
-         */
-        CheckGameCenterVisibilityReq.create = function create(properties) {
-            return new CheckGameCenterVisibilityReq(properties);
-        };
-
-        /**
-         * Encodes the specified CheckGameCenterVisibilityReq message. Does not implicitly {@link pbbattle.CheckGameCenterVisibilityReq.verify|verify} messages.
-         * @function encode
-         * @memberof pbbattle.CheckGameCenterVisibilityReq
-         * @static
-         * @param {pbbattle.ICheckGameCenterVisibilityReq} message CheckGameCenterVisibilityReq message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        CheckGameCenterVisibilityReq.encode = function encode(message, writer) {
-            if (!writer)
-                writer = $Writer.create();
-            return writer;
-        };
-
-        /**
-         * Encodes the specified CheckGameCenterVisibilityReq message, length delimited. Does not implicitly {@link pbbattle.CheckGameCenterVisibilityReq.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof pbbattle.CheckGameCenterVisibilityReq
-         * @static
-         * @param {pbbattle.ICheckGameCenterVisibilityReq} message CheckGameCenterVisibilityReq message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        CheckGameCenterVisibilityReq.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
-         * Decodes a CheckGameCenterVisibilityReq message from the specified reader or buffer.
-         * @function decode
-         * @memberof pbbattle.CheckGameCenterVisibilityReq
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {pbbattle.CheckGameCenterVisibilityReq} CheckGameCenterVisibilityReq
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        CheckGameCenterVisibilityReq.decode = function decode(reader, length, error) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.CheckGameCenterVisibilityReq();
-            while (reader.pos < end) {
-                var tag = reader.uint32();
-                if (tag === error)
-                    break;
-                switch (tag >>> 3) {
-                default:
-                    reader.skipType(tag & 7);
-                    break;
-                }
-            }
-            return message;
-        };
-
-        /**
-         * Decodes a CheckGameCenterVisibilityReq message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof pbbattle.CheckGameCenterVisibilityReq
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {pbbattle.CheckGameCenterVisibilityReq} CheckGameCenterVisibilityReq
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        CheckGameCenterVisibilityReq.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies a CheckGameCenterVisibilityReq message.
-         * @function verify
-         * @memberof pbbattle.CheckGameCenterVisibilityReq
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-        CheckGameCenterVisibilityReq.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            return null;
-        };
-
-        /**
-         * Creates a CheckGameCenterVisibilityReq message from a plain object. Also converts values to their respective internal types.
-         * @function fromObject
-         * @memberof pbbattle.CheckGameCenterVisibilityReq
-         * @static
-         * @param {Object.<string,*>} object Plain object
-         * @returns {pbbattle.CheckGameCenterVisibilityReq} CheckGameCenterVisibilityReq
-         */
-        CheckGameCenterVisibilityReq.fromObject = function fromObject(object) {
-            if (object instanceof $root.pbbattle.CheckGameCenterVisibilityReq)
-                return object;
-            return new $root.pbbattle.CheckGameCenterVisibilityReq();
-        };
-
-        /**
-         * Creates a plain object from a CheckGameCenterVisibilityReq message. Also converts values to other types if specified.
-         * @function toObject
-         * @memberof pbbattle.CheckGameCenterVisibilityReq
-         * @static
-         * @param {pbbattle.CheckGameCenterVisibilityReq} message CheckGameCenterVisibilityReq
-         * @param {$protobuf.IConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        CheckGameCenterVisibilityReq.toObject = function toObject() {
-            return {};
-        };
-
-        /**
-         * Converts this CheckGameCenterVisibilityReq to JSON.
-         * @function toJSON
-         * @memberof pbbattle.CheckGameCenterVisibilityReq
-         * @instance
-         * @returns {Object.<string,*>} JSON object
-         */
-        CheckGameCenterVisibilityReq.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-        };
-
-        /**
-         * Gets the default type url for CheckGameCenterVisibilityReq
-         * @function getTypeUrl
-         * @memberof pbbattle.CheckGameCenterVisibilityReq
-         * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
-         */
-        CheckGameCenterVisibilityReq.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-            if (typeUrlPrefix === undefined) {
-                typeUrlPrefix = "type.googleapis.com";
-            }
-            return typeUrlPrefix + "/pbbattle.CheckGameCenterVisibilityReq";
-        };
-
-        return CheckGameCenterVisibilityReq;
-    })();
-
-    pbbattle.CheckGameCenterVisibilityResp = (function() {
-
-        /**
-         * Properties of a CheckGameCenterVisibilityResp.
-         * @memberof pbbattle
-         * @interface ICheckGameCenterVisibilityResp
-         * @property {pbcommon.EnumCode|null} [code] CheckGameCenterVisibilityResp code
-         * @property {string|null} [msg] CheckGameCenterVisibilityResp msg
-         * @property {boolean|null} [visible] CheckGameCenterVisibilityResp visible
-         */
-
-        /**
-         * Constructs a new CheckGameCenterVisibilityResp.
-         * @memberof pbbattle
-         * @classdesc Represents a CheckGameCenterVisibilityResp.
-         * @implements ICheckGameCenterVisibilityResp
-         * @constructor
-         * @param {pbbattle.ICheckGameCenterVisibilityResp=} [properties] Properties to set
-         */
-        function CheckGameCenterVisibilityResp(properties) {
-            if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
-                        this[keys[i]] = properties[keys[i]];
-        }
-
-        /**
-         * CheckGameCenterVisibilityResp code.
-         * @member {pbcommon.EnumCode} code
-         * @memberof pbbattle.CheckGameCenterVisibilityResp
-         * @instance
-         */
-        CheckGameCenterVisibilityResp.prototype.code = 0;
-
-        /**
-         * CheckGameCenterVisibilityResp msg.
-         * @member {string} msg
-         * @memberof pbbattle.CheckGameCenterVisibilityResp
-         * @instance
-         */
-        CheckGameCenterVisibilityResp.prototype.msg = "";
-
-        /**
-         * CheckGameCenterVisibilityResp visible.
-         * @member {boolean} visible
-         * @memberof pbbattle.CheckGameCenterVisibilityResp
-         * @instance
-         */
-        CheckGameCenterVisibilityResp.prototype.visible = false;
-
-        /**
-         * Creates a new CheckGameCenterVisibilityResp instance using the specified properties.
-         * @function create
-         * @memberof pbbattle.CheckGameCenterVisibilityResp
-         * @static
-         * @param {pbbattle.ICheckGameCenterVisibilityResp=} [properties] Properties to set
-         * @returns {pbbattle.CheckGameCenterVisibilityResp} CheckGameCenterVisibilityResp instance
-         */
-        CheckGameCenterVisibilityResp.create = function create(properties) {
-            return new CheckGameCenterVisibilityResp(properties);
-        };
-
-        /**
-         * Encodes the specified CheckGameCenterVisibilityResp message. Does not implicitly {@link pbbattle.CheckGameCenterVisibilityResp.verify|verify} messages.
-         * @function encode
-         * @memberof pbbattle.CheckGameCenterVisibilityResp
-         * @static
-         * @param {pbbattle.ICheckGameCenterVisibilityResp} message CheckGameCenterVisibilityResp message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        CheckGameCenterVisibilityResp.encode = function encode(message, writer) {
-            if (!writer)
-                writer = $Writer.create();
-            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
-                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
-            if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
-                writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
-            if (message.visible != null && Object.hasOwnProperty.call(message, "visible"))
-                writer.uint32(/* id 3, wireType 0 =*/24).bool(message.visible);
-            return writer;
-        };
-
-        /**
-         * Encodes the specified CheckGameCenterVisibilityResp message, length delimited. Does not implicitly {@link pbbattle.CheckGameCenterVisibilityResp.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof pbbattle.CheckGameCenterVisibilityResp
-         * @static
-         * @param {pbbattle.ICheckGameCenterVisibilityResp} message CheckGameCenterVisibilityResp message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        CheckGameCenterVisibilityResp.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
-         * Decodes a CheckGameCenterVisibilityResp message from the specified reader or buffer.
-         * @function decode
-         * @memberof pbbattle.CheckGameCenterVisibilityResp
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {pbbattle.CheckGameCenterVisibilityResp} CheckGameCenterVisibilityResp
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        CheckGameCenterVisibilityResp.decode = function decode(reader, length, error) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbbattle.CheckGameCenterVisibilityResp();
-            while (reader.pos < end) {
-                var tag = reader.uint32();
-                if (tag === error)
-                    break;
-                switch (tag >>> 3) {
-                case 1: {
-                        message.code = reader.int32();
-                        break;
-                    }
-                case 2: {
-                        message.msg = reader.string();
-                        break;
-                    }
-                case 3: {
-                        message.visible = reader.bool();
-                        break;
-                    }
-                default:
-                    reader.skipType(tag & 7);
-                    break;
-                }
-            }
-            return message;
-        };
-
-        /**
-         * Decodes a CheckGameCenterVisibilityResp message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof pbbattle.CheckGameCenterVisibilityResp
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {pbbattle.CheckGameCenterVisibilityResp} CheckGameCenterVisibilityResp
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        CheckGameCenterVisibilityResp.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies a CheckGameCenterVisibilityResp message.
-         * @function verify
-         * @memberof pbbattle.CheckGameCenterVisibilityResp
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-        CheckGameCenterVisibilityResp.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            if (message.code != null && message.hasOwnProperty("code"))
-                switch (message.code) {
-                default:
-                    return "code: enum value expected";
-                case 0:
-                case 200:
-                case 403:
-                case 500:
-                case 501:
-                case 502:
-                case 503:
-                case 504:
-                case 505:
-                case 511:
-                case 1001:
-                case 1002:
-                case 1003:
-                case 1004:
-                case 2002:
-                case 2003:
-                case 2004:
-                case 2005:
-                case 2006:
-                case 2007:
-                case 2008:
-                case 2009:
-                case 2010:
-                case 2011:
-                case 2012:
-                case 2013:
-                case 2014:
-                case 2015:
-                case 3001:
-                case 3002:
-                case 3003:
-                case 5001:
-                case 5002:
-                case 10001:
-                case 10002:
-                case 20001:
-                case 20002:
-                case 20003:
-                    break;
-                }
-            if (message.msg != null && message.hasOwnProperty("msg"))
-                if (!$util.isString(message.msg))
-                    return "msg: string expected";
-            if (message.visible != null && message.hasOwnProperty("visible"))
-                if (typeof message.visible !== "boolean")
-                    return "visible: boolean expected";
-            return null;
-        };
-
-        /**
-         * Creates a CheckGameCenterVisibilityResp message from a plain object. Also converts values to their respective internal types.
-         * @function fromObject
-         * @memberof pbbattle.CheckGameCenterVisibilityResp
-         * @static
-         * @param {Object.<string,*>} object Plain object
-         * @returns {pbbattle.CheckGameCenterVisibilityResp} CheckGameCenterVisibilityResp
-         */
-        CheckGameCenterVisibilityResp.fromObject = function fromObject(object) {
-            if (object instanceof $root.pbbattle.CheckGameCenterVisibilityResp)
-                return object;
-            var message = new $root.pbbattle.CheckGameCenterVisibilityResp();
-            switch (object.code) {
-            default:
-                if (typeof object.code === "number") {
-                    message.code = object.code;
-                    break;
-                }
-                break;
-            case "None":
-            case 0:
-                message.code = 0;
-                break;
-            case "Success":
-            case 200:
-                message.code = 200;
-                break;
-            case "Forbidden":
-            case 403:
-                message.code = 403;
-                break;
-            case "Fail":
-            case 500:
-                message.code = 500;
-                break;
-            case "Unknown":
-            case 501:
-                message.code = 501;
-                break;
-            case "Internal":
-            case 502:
-                message.code = 502;
-                break;
-            case "Invalid":
-            case 503:
-                message.code = 503;
-                break;
-            case "InvalidParam":
-            case 504:
-                message.code = 504;
-                break;
-            case "ParamError":
-            case 505:
-                message.code = 505;
-                break;
-            case "TooManyRequests":
-            case 511:
-                message.code = 511;
-                break;
-            case "FindError":
-            case 1001:
-                message.code = 1001;
-                break;
-            case "CreateError":
-            case 1002:
-                message.code = 1002;
-                break;
-            case "DeleteError":
-            case 1003:
-                message.code = 1003;
-                break;
-            case "UpdateError":
-            case 1004:
-                message.code = 1004;
-                break;
-            case "InvalidToken":
-            case 2002:
-                message.code = 2002;
-                break;
-            case "InvalidSign":
-            case 2003:
-                message.code = 2003;
-                break;
-            case "NotLogin":
-            case 2004:
-                message.code = 2004;
-                break;
-            case "LoginTimeout":
-            case 2005:
-                message.code = 2005;
-                break;
-            case "LoginError":
-            case 2006:
-                message.code = 2006;
-                break;
-            case "LoginForbidden":
-            case 2007:
-                message.code = 2007;
-                break;
-            case "LoginExpired":
-            case 2008:
-                message.code = 2008;
-                break;
-            case "LoginInvalid":
-            case 2009:
-                message.code = 2009;
-                break;
-            case "LoginInvalidPassword":
-            case 2010:
-                message.code = 2010;
-                break;
-            case "LoginInvalidUsername":
-            case 2011:
-                message.code = 2011;
-                break;
-            case "LoginInvalidEmail":
-            case 2012:
-                message.code = 2012;
-                break;
-            case "LoginInvalidPhone":
-            case 2013:
-                message.code = 2013;
-                break;
-            case "LoginInvalidUsernameOrEmail":
-            case 2014:
-                message.code = 2014;
-                break;
-            case "LoginSocketRepeat":
-            case 2015:
-                message.code = 2015;
-                break;
-            case "RoleIsNotExist":
-            case 3001:
-                message.code = 3001;
-                break;
-            case "UserIsExist":
-            case 3002:
-                message.code = 3002;
-                break;
-            case "UserIsBan":
-            case 3003:
-                message.code = 3003;
-                break;
-            case "TalkIsBan":
-            case 5001:
-                message.code = 5001;
-                break;
-            case "EnterRoomErr":
-            case 5002:
-                message.code = 5002;
-                break;
-            case "HalaChatNeedBuy":
-            case 10001:
-                message.code = 10001;
-                break;
-            case "HalaPriceOutRange":
-            case 10002:
-                message.code = 10002;
-                break;
-            case "GamePhaseNotMatch":
-            case 20001:
-                message.code = 20001;
-                break;
-            case "GameNotStarted":
-            case 20002:
-                message.code = 20002;
-                break;
-            case "InsufficientBalance":
-            case 20003:
-                message.code = 20003;
-                break;
-            }
-            if (object.msg != null)
-                message.msg = String(object.msg);
-            if (object.visible != null)
-                message.visible = Boolean(object.visible);
-            return message;
-        };
-
-        /**
-         * Creates a plain object from a CheckGameCenterVisibilityResp message. Also converts values to other types if specified.
-         * @function toObject
-         * @memberof pbbattle.CheckGameCenterVisibilityResp
-         * @static
-         * @param {pbbattle.CheckGameCenterVisibilityResp} message CheckGameCenterVisibilityResp
-         * @param {$protobuf.IConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        CheckGameCenterVisibilityResp.toObject = function toObject(message, options) {
-            if (!options)
-                options = {};
-            var object = {};
-            if (options.defaults) {
-                object.code = options.enums === String ? "None" : 0;
-                object.msg = "";
-                object.visible = false;
-            }
-            if (message.code != null && message.hasOwnProperty("code"))
-                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
-            if (message.msg != null && message.hasOwnProperty("msg"))
-                object.msg = message.msg;
-            if (message.visible != null && message.hasOwnProperty("visible"))
-                object.visible = message.visible;
-            return object;
-        };
-
-        /**
-         * Converts this CheckGameCenterVisibilityResp to JSON.
-         * @function toJSON
-         * @memberof pbbattle.CheckGameCenterVisibilityResp
-         * @instance
-         * @returns {Object.<string,*>} JSON object
-         */
-        CheckGameCenterVisibilityResp.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-        };
-
-        /**
-         * Gets the default type url for CheckGameCenterVisibilityResp
-         * @function getTypeUrl
-         * @memberof pbbattle.CheckGameCenterVisibilityResp
-         * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
-         */
-        CheckGameCenterVisibilityResp.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-            if (typeUrlPrefix === undefined) {
-                typeUrlPrefix = "type.googleapis.com";
-            }
-            return typeUrlPrefix + "/pbbattle.CheckGameCenterVisibilityResp";
-        };
-
-        return CheckGameCenterVisibilityResp;
     })();
 
     pbbattle.GameCenterConfigModel = (function() {

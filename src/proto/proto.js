@@ -31,6 +31,7 @@ $root.pbcommon = (function() {
      * @property {number} Invalid=503 Invalid value
      * @property {number} InvalidParam=504 InvalidParam value
      * @property {number} ParamError=505 ParamError value
+     * @property {number} TooManyRequests=511 TooManyRequests value
      * @property {number} FindError=1001 FindError value
      * @property {number} CreateError=1002 CreateError value
      * @property {number} DeleteError=1003 DeleteError value
@@ -56,6 +57,9 @@ $root.pbcommon = (function() {
      * @property {number} EnterRoomErr=5002 EnterRoomErr value
      * @property {number} HalaChatNeedBuy=10001 HalaChatNeedBuy value
      * @property {number} HalaPriceOutRange=10002 HalaPriceOutRange value
+     * @property {number} GamePhaseNotMatch=20001 GamePhaseNotMatch value
+     * @property {number} GameNotStarted=20002 GameNotStarted value
+     * @property {number} InsufficientBalance=20003 InsufficientBalance value
      */
     pbcommon.EnumCode = (function() {
         var valuesById = {}, values = Object.create(valuesById);
@@ -68,6 +72,7 @@ $root.pbcommon = (function() {
         values[valuesById[503] = "Invalid"] = 503;
         values[valuesById[504] = "InvalidParam"] = 504;
         values[valuesById[505] = "ParamError"] = 505;
+        values[valuesById[511] = "TooManyRequests"] = 511;
         values[valuesById[1001] = "FindError"] = 1001;
         values[valuesById[1002] = "CreateError"] = 1002;
         values[valuesById[1003] = "DeleteError"] = 1003;
@@ -93,6 +98,9 @@ $root.pbcommon = (function() {
         values[valuesById[5002] = "EnterRoomErr"] = 5002;
         values[valuesById[10001] = "HalaChatNeedBuy"] = 10001;
         values[valuesById[10002] = "HalaPriceOutRange"] = 10002;
+        values[valuesById[20001] = "GamePhaseNotMatch"] = 20001;
+        values[valuesById[20002] = "GameNotStarted"] = 20002;
+        values[valuesById[20003] = "InsufficientBalance"] = 20003;
         return values;
     })();
 
@@ -104,6 +112,7 @@ $root.pbcommon = (function() {
          * @interface ICommonResult
          * @property {pbcommon.EnumCode|null} [code] CommonResult code
          * @property {string|null} [msg] CommonResult msg
+         * @property {number|null} [subCode] CommonResult subCode
          */
 
         /**
@@ -138,6 +147,14 @@ $root.pbcommon = (function() {
         CommonResult.prototype.msg = "";
 
         /**
+         * CommonResult subCode.
+         * @member {number} subCode
+         * @memberof pbcommon.CommonResult
+         * @instance
+         */
+        CommonResult.prototype.subCode = 0;
+
+        /**
          * Creates a new CommonResult instance using the specified properties.
          * @function create
          * @memberof pbcommon.CommonResult
@@ -165,6 +182,8 @@ $root.pbcommon = (function() {
                 writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
             if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
                 writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.subCode != null && Object.hasOwnProperty.call(message, "subCode"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int32(message.subCode);
             return writer;
         };
 
@@ -207,6 +226,10 @@ $root.pbcommon = (function() {
                     }
                 case 2: {
                         message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.subCode = reader.int32();
                         break;
                     }
                 default:
@@ -257,6 +280,7 @@ $root.pbcommon = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -282,11 +306,17 @@ $root.pbcommon = (function() {
                 case 5002:
                 case 10001:
                 case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
                 if (!$util.isString(message.msg))
                     return "msg: string expected";
+            if (message.subCode != null && message.hasOwnProperty("subCode"))
+                if (!$util.isInteger(message.subCode))
+                    return "subCode: integer expected";
             return null;
         };
 
@@ -344,6 +374,10 @@ $root.pbcommon = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -445,9 +479,23 @@ $root.pbcommon = (function() {
             case 10002:
                 message.code = 10002;
                 break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
+                break;
             }
             if (object.msg != null)
                 message.msg = String(object.msg);
+            if (object.subCode != null)
+                message.subCode = object.subCode | 0;
             return message;
         };
 
@@ -467,11 +515,14 @@ $root.pbcommon = (function() {
             if (options.defaults) {
                 object.code = options.enums === String ? "None" : 0;
                 object.msg = "";
+                object.subCode = 0;
             }
             if (message.code != null && message.hasOwnProperty("code"))
                 object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
             if (message.msg != null && message.hasOwnProperty("msg"))
                 object.msg = message.msg;
+            if (message.subCode != null && message.hasOwnProperty("subCode"))
+                object.subCode = message.subCode;
             return object;
         };
 
@@ -2736,6 +2787,7 @@ $root.pbapi = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -2761,6 +2813,9 @@ $root.pbapi = (function() {
                 case 5002:
                 case 10001:
                 case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -2840,6 +2895,10 @@ $root.pbapi = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -2940,6 +2999,18 @@ $root.pbapi = (function() {
             case "HalaPriceOutRange":
             case 10002:
                 message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -3443,6 +3514,7 @@ $root.pbapi = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -3468,6 +3540,9 @@ $root.pbapi = (function() {
                 case 5002:
                 case 10001:
                 case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -3539,6 +3614,10 @@ $root.pbapi = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -3639,6 +3718,18 @@ $root.pbapi = (function() {
             case "HalaPriceOutRange":
             case 10002:
                 message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -5389,6 +5480,7 @@ $root.pbpermission = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -5414,6 +5506,9 @@ $root.pbpermission = (function() {
                 case 5002:
                 case 10001:
                 case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -5500,6 +5595,10 @@ $root.pbpermission = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -5600,6 +5699,18 @@ $root.pbpermission = (function() {
             case "HalaPriceOutRange":
             case 10002:
                 message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -6958,6 +7069,7 @@ $root.pbrole = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -6983,6 +7095,9 @@ $root.pbrole = (function() {
                 case 5002:
                 case 10001:
                 case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -7062,6 +7177,10 @@ $root.pbrole = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -7162,6 +7281,18 @@ $root.pbrole = (function() {
             case "HalaPriceOutRange":
             case 10002:
                 message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -7654,6 +7785,7 @@ $root.pbauth = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -7679,6 +7811,9 @@ $root.pbauth = (function() {
                 case 5002:
                 case 10001:
                 case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
                     break;
                 }
             if (message.token != null && message.hasOwnProperty("token"))
@@ -7746,6 +7881,10 @@ $root.pbauth = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -7846,6 +7985,18 @@ $root.pbauth = (function() {
             case "HalaPriceOutRange":
             case 10002:
                 message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.token != null)
@@ -8075,6 +8226,7 @@ $root.pbauth = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -8100,6 +8252,9 @@ $root.pbauth = (function() {
                 case 5002:
                 case 10001:
                 case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
                     break;
                 }
             if (message.uploadCode != null && message.hasOwnProperty("uploadCode"))
@@ -8162,6 +8317,10 @@ $root.pbauth = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -8262,6 +8421,18 @@ $root.pbauth = (function() {
             case "HalaPriceOutRange":
             case 10002:
                 message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.uploadCode != null)
@@ -9045,6 +9216,8 @@ $root.pbauth = (function() {
          * @property {string|null} [password] LoginArgs password
          * @property {string|null} [captchaId] LoginArgs captchaId
          * @property {string|null} [captchaCode] LoginArgs captchaCode
+         * @property {string|null} [phone] LoginArgs phone
+         * @property {string|null} [smsCode] LoginArgs smsCode
          */
 
         /**
@@ -9127,6 +9300,22 @@ $root.pbauth = (function() {
         LoginArgs.prototype.captchaCode = "";
 
         /**
+         * LoginArgs phone.
+         * @member {string} phone
+         * @memberof pbauth.LoginArgs
+         * @instance
+         */
+        LoginArgs.prototype.phone = "";
+
+        /**
+         * LoginArgs smsCode.
+         * @member {string} smsCode
+         * @memberof pbauth.LoginArgs
+         * @instance
+         */
+        LoginArgs.prototype.smsCode = "";
+
+        /**
          * Creates a new LoginArgs instance using the specified properties.
          * @function create
          * @memberof pbauth.LoginArgs
@@ -9166,6 +9355,10 @@ $root.pbauth = (function() {
                 writer.uint32(/* id 7, wireType 2 =*/58).string(message.captchaId);
             if (message.captchaCode != null && Object.hasOwnProperty.call(message, "captchaCode"))
                 writer.uint32(/* id 8, wireType 2 =*/66).string(message.captchaCode);
+            if (message.phone != null && Object.hasOwnProperty.call(message, "phone"))
+                writer.uint32(/* id 9, wireType 2 =*/74).string(message.phone);
+            if (message.smsCode != null && Object.hasOwnProperty.call(message, "smsCode"))
+                writer.uint32(/* id 10, wireType 2 =*/82).string(message.smsCode);
             return writer;
         };
 
@@ -9234,6 +9427,14 @@ $root.pbauth = (function() {
                         message.captchaCode = reader.string();
                         break;
                     }
+                case 9: {
+                        message.phone = reader.string();
+                        break;
+                    }
+                case 10: {
+                        message.smsCode = reader.string();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -9280,6 +9481,8 @@ $root.pbauth = (function() {
                 case 4:
                 case 5:
                 case 6:
+                case 7:
+                case 8:
                     break;
                 }
             if (message.code != null && message.hasOwnProperty("code"))
@@ -9303,6 +9506,12 @@ $root.pbauth = (function() {
             if (message.captchaCode != null && message.hasOwnProperty("captchaCode"))
                 if (!$util.isString(message.captchaCode))
                     return "captchaCode: string expected";
+            if (message.phone != null && message.hasOwnProperty("phone"))
+                if (!$util.isString(message.phone))
+                    return "phone: string expected";
+            if (message.smsCode != null && message.hasOwnProperty("smsCode"))
+                if (!$util.isString(message.smsCode))
+                    return "smsCode: string expected";
             return null;
         };
 
@@ -9353,6 +9562,14 @@ $root.pbauth = (function() {
             case 6:
                 message.type = 6;
                 break;
+            case "PhoneSmsCode":
+            case 7:
+                message.type = 7;
+                break;
+            case "PhonePassword":
+            case 8:
+                message.type = 8;
+                break;
             }
             if (object.code != null)
                 message.code = String(object.code);
@@ -9368,6 +9585,10 @@ $root.pbauth = (function() {
                 message.captchaId = String(object.captchaId);
             if (object.captchaCode != null)
                 message.captchaCode = String(object.captchaCode);
+            if (object.phone != null)
+                message.phone = String(object.phone);
+            if (object.smsCode != null)
+                message.smsCode = String(object.smsCode);
             return message;
         };
 
@@ -9393,6 +9614,8 @@ $root.pbauth = (function() {
                 object.password = "";
                 object.captchaId = "";
                 object.captchaCode = "";
+                object.phone = "";
+                object.smsCode = "";
             }
             if (message.type != null && message.hasOwnProperty("type"))
                 object.type = options.enums === String ? $root.pbauth.LoginArgs.loginType[message.type] === undefined ? message.type : $root.pbauth.LoginArgs.loginType[message.type] : message.type;
@@ -9410,6 +9633,10 @@ $root.pbauth = (function() {
                 object.captchaId = message.captchaId;
             if (message.captchaCode != null && message.hasOwnProperty("captchaCode"))
                 object.captchaCode = message.captchaCode;
+            if (message.phone != null && message.hasOwnProperty("phone"))
+                object.phone = message.phone;
+            if (message.smsCode != null && message.hasOwnProperty("smsCode"))
+                object.smsCode = message.smsCode;
             return object;
         };
 
@@ -9450,6 +9677,8 @@ $root.pbauth = (function() {
          * @property {number} Anonymously=4 Anonymously value
          * @property {number} hala=5 hala value
          * @property {number} halaPhonePwd=6 halaPhonePwd value
+         * @property {number} PhoneSmsCode=7 PhoneSmsCode value
+         * @property {number} PhonePassword=8 PhonePassword value
          */
         LoginArgs.loginType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -9460,6 +9689,8 @@ $root.pbauth = (function() {
             values[valuesById[4] = "Anonymously"] = 4;
             values[valuesById[5] = "hala"] = 5;
             values[valuesById[6] = "halaPhonePwd"] = 6;
+            values[valuesById[7] = "PhoneSmsCode"] = 7;
+            values[valuesById[8] = "PhonePassword"] = 8;
             return values;
         })();
 
@@ -9669,6 +9900,685 @@ $root.pbauth = (function() {
         };
 
         return RefreshTokenArgs;
+    })();
+
+    pbauth.SendSmsCodeArgs = (function() {
+
+        /**
+         * Properties of a SendSmsCodeArgs.
+         * @memberof pbauth
+         * @interface ISendSmsCodeArgs
+         * @property {string|null} [phone] SendSmsCodeArgs phone
+         */
+
+        /**
+         * Constructs a new SendSmsCodeArgs.
+         * @memberof pbauth
+         * @classdesc Represents a SendSmsCodeArgs.
+         * @implements ISendSmsCodeArgs
+         * @constructor
+         * @param {pbauth.ISendSmsCodeArgs=} [properties] Properties to set
+         */
+        function SendSmsCodeArgs(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * SendSmsCodeArgs phone.
+         * @member {string} phone
+         * @memberof pbauth.SendSmsCodeArgs
+         * @instance
+         */
+        SendSmsCodeArgs.prototype.phone = "";
+
+        /**
+         * Creates a new SendSmsCodeArgs instance using the specified properties.
+         * @function create
+         * @memberof pbauth.SendSmsCodeArgs
+         * @static
+         * @param {pbauth.ISendSmsCodeArgs=} [properties] Properties to set
+         * @returns {pbauth.SendSmsCodeArgs} SendSmsCodeArgs instance
+         */
+        SendSmsCodeArgs.create = function create(properties) {
+            return new SendSmsCodeArgs(properties);
+        };
+
+        /**
+         * Encodes the specified SendSmsCodeArgs message. Does not implicitly {@link pbauth.SendSmsCodeArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbauth.SendSmsCodeArgs
+         * @static
+         * @param {pbauth.ISendSmsCodeArgs} message SendSmsCodeArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        SendSmsCodeArgs.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.phone != null && Object.hasOwnProperty.call(message, "phone"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.phone);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified SendSmsCodeArgs message, length delimited. Does not implicitly {@link pbauth.SendSmsCodeArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbauth.SendSmsCodeArgs
+         * @static
+         * @param {pbauth.ISendSmsCodeArgs} message SendSmsCodeArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        SendSmsCodeArgs.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a SendSmsCodeArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbauth.SendSmsCodeArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbauth.SendSmsCodeArgs} SendSmsCodeArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        SendSmsCodeArgs.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbauth.SendSmsCodeArgs();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.phone = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a SendSmsCodeArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbauth.SendSmsCodeArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbauth.SendSmsCodeArgs} SendSmsCodeArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        SendSmsCodeArgs.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a SendSmsCodeArgs message.
+         * @function verify
+         * @memberof pbauth.SendSmsCodeArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        SendSmsCodeArgs.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.phone != null && message.hasOwnProperty("phone"))
+                if (!$util.isString(message.phone))
+                    return "phone: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a SendSmsCodeArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbauth.SendSmsCodeArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbauth.SendSmsCodeArgs} SendSmsCodeArgs
+         */
+        SendSmsCodeArgs.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbauth.SendSmsCodeArgs)
+                return object;
+            var message = new $root.pbauth.SendSmsCodeArgs();
+            if (object.phone != null)
+                message.phone = String(object.phone);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a SendSmsCodeArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbauth.SendSmsCodeArgs
+         * @static
+         * @param {pbauth.SendSmsCodeArgs} message SendSmsCodeArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        SendSmsCodeArgs.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.phone = "";
+            if (message.phone != null && message.hasOwnProperty("phone"))
+                object.phone = message.phone;
+            return object;
+        };
+
+        /**
+         * Converts this SendSmsCodeArgs to JSON.
+         * @function toJSON
+         * @memberof pbauth.SendSmsCodeArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        SendSmsCodeArgs.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for SendSmsCodeArgs
+         * @function getTypeUrl
+         * @memberof pbauth.SendSmsCodeArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        SendSmsCodeArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbauth.SendSmsCodeArgs";
+        };
+
+        return SendSmsCodeArgs;
+    })();
+
+    pbauth.SendSmsCodeReply = (function() {
+
+        /**
+         * Properties of a SendSmsCodeReply.
+         * @memberof pbauth
+         * @interface ISendSmsCodeReply
+         * @property {pbcommon.EnumCode|null} [code] SendSmsCodeReply code
+         * @property {string|null} [msg] SendSmsCodeReply msg
+         * @property {number|null} [expire] SendSmsCodeReply expire
+         * @property {string|null} [bizCode] SendSmsCodeReply bizCode
+         */
+
+        /**
+         * Constructs a new SendSmsCodeReply.
+         * @memberof pbauth
+         * @classdesc Represents a SendSmsCodeReply.
+         * @implements ISendSmsCodeReply
+         * @constructor
+         * @param {pbauth.ISendSmsCodeReply=} [properties] Properties to set
+         */
+        function SendSmsCodeReply(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * SendSmsCodeReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbauth.SendSmsCodeReply
+         * @instance
+         */
+        SendSmsCodeReply.prototype.code = 0;
+
+        /**
+         * SendSmsCodeReply msg.
+         * @member {string} msg
+         * @memberof pbauth.SendSmsCodeReply
+         * @instance
+         */
+        SendSmsCodeReply.prototype.msg = "";
+
+        /**
+         * SendSmsCodeReply expire.
+         * @member {number} expire
+         * @memberof pbauth.SendSmsCodeReply
+         * @instance
+         */
+        SendSmsCodeReply.prototype.expire = 0;
+
+        /**
+         * SendSmsCodeReply bizCode.
+         * @member {string} bizCode
+         * @memberof pbauth.SendSmsCodeReply
+         * @instance
+         */
+        SendSmsCodeReply.prototype.bizCode = "";
+
+        /**
+         * Creates a new SendSmsCodeReply instance using the specified properties.
+         * @function create
+         * @memberof pbauth.SendSmsCodeReply
+         * @static
+         * @param {pbauth.ISendSmsCodeReply=} [properties] Properties to set
+         * @returns {pbauth.SendSmsCodeReply} SendSmsCodeReply instance
+         */
+        SendSmsCodeReply.create = function create(properties) {
+            return new SendSmsCodeReply(properties);
+        };
+
+        /**
+         * Encodes the specified SendSmsCodeReply message. Does not implicitly {@link pbauth.SendSmsCodeReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbauth.SendSmsCodeReply
+         * @static
+         * @param {pbauth.ISendSmsCodeReply} message SendSmsCodeReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        SendSmsCodeReply.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.expire != null && Object.hasOwnProperty.call(message, "expire"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int32(message.expire);
+            if (message.bizCode != null && Object.hasOwnProperty.call(message, "bizCode"))
+                writer.uint32(/* id 4, wireType 2 =*/34).string(message.bizCode);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified SendSmsCodeReply message, length delimited. Does not implicitly {@link pbauth.SendSmsCodeReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbauth.SendSmsCodeReply
+         * @static
+         * @param {pbauth.ISendSmsCodeReply} message SendSmsCodeReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        SendSmsCodeReply.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a SendSmsCodeReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbauth.SendSmsCodeReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbauth.SendSmsCodeReply} SendSmsCodeReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        SendSmsCodeReply.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbauth.SendSmsCodeReply();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.code = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.expire = reader.int32();
+                        break;
+                    }
+                case 4: {
+                        message.bizCode = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a SendSmsCodeReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbauth.SendSmsCodeReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbauth.SendSmsCodeReply} SendSmsCodeReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        SendSmsCodeReply.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a SendSmsCodeReply message.
+         * @function verify
+         * @memberof pbauth.SendSmsCodeReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        SendSmsCodeReply.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.code != null && message.hasOwnProperty("code"))
+                switch (message.code) {
+                default:
+                    return "code: enum value expected";
+                case 0:
+                case 200:
+                case 403:
+                case 500:
+                case 501:
+                case 502:
+                case 503:
+                case 504:
+                case 505:
+                case 511:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
+                case 2002:
+                case 2003:
+                case 2004:
+                case 2005:
+                case 2006:
+                case 2007:
+                case 2008:
+                case 2009:
+                case 2010:
+                case 2011:
+                case 2012:
+                case 2013:
+                case 2014:
+                case 2015:
+                case 3001:
+                case 3002:
+                case 3003:
+                case 5001:
+                case 5002:
+                case 10001:
+                case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
+                    break;
+                }
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                if (!$util.isString(message.msg))
+                    return "msg: string expected";
+            if (message.expire != null && message.hasOwnProperty("expire"))
+                if (!$util.isInteger(message.expire))
+                    return "expire: integer expected";
+            if (message.bizCode != null && message.hasOwnProperty("bizCode"))
+                if (!$util.isString(message.bizCode))
+                    return "bizCode: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a SendSmsCodeReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbauth.SendSmsCodeReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbauth.SendSmsCodeReply} SendSmsCodeReply
+         */
+        SendSmsCodeReply.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbauth.SendSmsCodeReply)
+                return object;
+            var message = new $root.pbauth.SendSmsCodeReply();
+            switch (object.code) {
+            default:
+                if (typeof object.code === "number") {
+                    message.code = object.code;
+                    break;
+                }
+                break;
+            case "None":
+            case 0:
+                message.code = 0;
+                break;
+            case "Success":
+            case 200:
+                message.code = 200;
+                break;
+            case "Forbidden":
+            case 403:
+                message.code = 403;
+                break;
+            case "Fail":
+            case 500:
+                message.code = 500;
+                break;
+            case "Unknown":
+            case 501:
+                message.code = 501;
+                break;
+            case "Internal":
+            case 502:
+                message.code = 502;
+                break;
+            case "Invalid":
+            case 503:
+                message.code = 503;
+                break;
+            case "InvalidParam":
+            case 504:
+                message.code = 504;
+                break;
+            case "ParamError":
+            case 505:
+                message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
+                break;
+            case "FindError":
+            case 1001:
+                message.code = 1001;
+                break;
+            case "CreateError":
+            case 1002:
+                message.code = 1002;
+                break;
+            case "DeleteError":
+            case 1003:
+                message.code = 1003;
+                break;
+            case "UpdateError":
+            case 1004:
+                message.code = 1004;
+                break;
+            case "InvalidToken":
+            case 2002:
+                message.code = 2002;
+                break;
+            case "InvalidSign":
+            case 2003:
+                message.code = 2003;
+                break;
+            case "NotLogin":
+            case 2004:
+                message.code = 2004;
+                break;
+            case "LoginTimeout":
+            case 2005:
+                message.code = 2005;
+                break;
+            case "LoginError":
+            case 2006:
+                message.code = 2006;
+                break;
+            case "LoginForbidden":
+            case 2007:
+                message.code = 2007;
+                break;
+            case "LoginExpired":
+            case 2008:
+                message.code = 2008;
+                break;
+            case "LoginInvalid":
+            case 2009:
+                message.code = 2009;
+                break;
+            case "LoginInvalidPassword":
+            case 2010:
+                message.code = 2010;
+                break;
+            case "LoginInvalidUsername":
+            case 2011:
+                message.code = 2011;
+                break;
+            case "LoginInvalidEmail":
+            case 2012:
+                message.code = 2012;
+                break;
+            case "LoginInvalidPhone":
+            case 2013:
+                message.code = 2013;
+                break;
+            case "LoginInvalidUsernameOrEmail":
+            case 2014:
+                message.code = 2014;
+                break;
+            case "LoginSocketRepeat":
+            case 2015:
+                message.code = 2015;
+                break;
+            case "RoleIsNotExist":
+            case 3001:
+                message.code = 3001;
+                break;
+            case "UserIsExist":
+            case 3002:
+                message.code = 3002;
+                break;
+            case "UserIsBan":
+            case 3003:
+                message.code = 3003;
+                break;
+            case "TalkIsBan":
+            case 5001:
+                message.code = 5001;
+                break;
+            case "EnterRoomErr":
+            case 5002:
+                message.code = 5002;
+                break;
+            case "HalaChatNeedBuy":
+            case 10001:
+                message.code = 10001;
+                break;
+            case "HalaPriceOutRange":
+            case 10002:
+                message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
+                break;
+            }
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.expire != null)
+                message.expire = object.expire | 0;
+            if (object.bizCode != null)
+                message.bizCode = String(object.bizCode);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a SendSmsCodeReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbauth.SendSmsCodeReply
+         * @static
+         * @param {pbauth.SendSmsCodeReply} message SendSmsCodeReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        SendSmsCodeReply.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.code = options.enums === String ? "None" : 0;
+                object.msg = "";
+                object.expire = 0;
+                object.bizCode = "";
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.expire != null && message.hasOwnProperty("expire"))
+                object.expire = message.expire;
+            if (message.bizCode != null && message.hasOwnProperty("bizCode"))
+                object.bizCode = message.bizCode;
+            return object;
+        };
+
+        /**
+         * Converts this SendSmsCodeReply to JSON.
+         * @function toJSON
+         * @memberof pbauth.SendSmsCodeReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        SendSmsCodeReply.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for SendSmsCodeReply
+         * @function getTypeUrl
+         * @memberof pbauth.SendSmsCodeReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        SendSmsCodeReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbauth.SendSmsCodeReply";
+        };
+
+        return SendSmsCodeReply;
     })();
 
     pbauth.Auth = (function() {
@@ -9901,6 +10811,39 @@ $root.pbauth = (function() {
          * @variation 2
          */
 
+        /**
+         * Callback as used by {@link pbauth.Auth#sendSmsCode}.
+         * @memberof pbauth.Auth
+         * @typedef SendSmsCodeCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbauth.SendSmsCodeReply} [response] SendSmsCodeReply
+         */
+
+        /**
+         * Calls SendSmsCode.
+         * @function sendSmsCode
+         * @memberof pbauth.Auth
+         * @instance
+         * @param {pbauth.ISendSmsCodeArgs} request SendSmsCodeArgs message or plain object
+         * @param {pbauth.Auth.SendSmsCodeCallback} callback Node-style callback called with the error, if any, and SendSmsCodeReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(Auth.prototype.sendSmsCode = function sendSmsCode(request, callback) {
+            return this.rpcCall(sendSmsCode, $root.pbauth.SendSmsCodeArgs, $root.pbauth.SendSmsCodeReply, request, callback);
+        }, "name", { value: "SendSmsCode" });
+
+        /**
+         * Calls SendSmsCode.
+         * @function sendSmsCode
+         * @memberof pbauth.Auth
+         * @instance
+         * @param {pbauth.ISendSmsCodeArgs} request SendSmsCodeArgs message or plain object
+         * @returns {Promise<pbauth.SendSmsCodeReply>} Promise
+         * @variation 2
+         */
+
         return Auth;
     })();
 
@@ -9963,6 +10906,9 @@ $root.pbuser = (function() {
          * @property {Array.<pbuser.IUserModel>|null} [fans] UserModel fans
          * @property {Array.<pbuser.IUserModel>|null} [follows] UserModel follows
          * @property {pbuserOauth.IUserOauthModel|null} [userOauth] UserModel userOauth
+         * @property {number|Long|null} [currentOrgId] UserModel currentOrgId
+         * @property {string|null} [currentOrgName] UserModel currentOrgName
+         * @property {Array.<pbOrganization.IOrganization>|null} [OrgList] UserModel OrgList
          */
 
         /**
@@ -9977,6 +10923,7 @@ $root.pbuser = (function() {
             this.roles = [];
             this.fans = [];
             this.follows = [];
+            this.OrgList = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -10312,6 +11259,30 @@ $root.pbuser = (function() {
         UserModel.prototype.userOauth = null;
 
         /**
+         * UserModel currentOrgId.
+         * @member {number|Long} currentOrgId
+         * @memberof pbuser.UserModel
+         * @instance
+         */
+        UserModel.prototype.currentOrgId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * UserModel currentOrgName.
+         * @member {string} currentOrgName
+         * @memberof pbuser.UserModel
+         * @instance
+         */
+        UserModel.prototype.currentOrgName = "";
+
+        /**
+         * UserModel OrgList.
+         * @member {Array.<pbOrganization.IOrganization>} OrgList
+         * @memberof pbuser.UserModel
+         * @instance
+         */
+        UserModel.prototype.OrgList = $util.emptyArray;
+
+        /**
          * Creates a new UserModel instance using the specified properties.
          * @function create
          * @memberof pbuser.UserModel
@@ -10420,6 +11391,13 @@ $root.pbuser = (function() {
                     $root.pbuser.UserModel.encode(message.follows[i], writer.uint32(/* id 41, wireType 2 =*/330).fork()).ldelim();
             if (message.userOauth != null && Object.hasOwnProperty.call(message, "userOauth"))
                 $root.pbuserOauth.UserOauthModel.encode(message.userOauth, writer.uint32(/* id 42, wireType 2 =*/338).fork()).ldelim();
+            if (message.currentOrgId != null && Object.hasOwnProperty.call(message, "currentOrgId"))
+                writer.uint32(/* id 43, wireType 0 =*/344).int64(message.currentOrgId);
+            if (message.currentOrgName != null && Object.hasOwnProperty.call(message, "currentOrgName"))
+                writer.uint32(/* id 44, wireType 2 =*/354).string(message.currentOrgName);
+            if (message.OrgList != null && message.OrgList.length)
+                for (var i = 0; i < message.OrgList.length; ++i)
+                    $root.pbOrganization.Organization.encode(message.OrgList[i], writer.uint32(/* id 45, wireType 2 =*/362).fork()).ldelim();
             return writer;
         };
 
@@ -10626,6 +11604,20 @@ $root.pbuser = (function() {
                         message.userOauth = $root.pbuserOauth.UserOauthModel.decode(reader, reader.uint32());
                         break;
                     }
+                case 43: {
+                        message.currentOrgId = reader.int64();
+                        break;
+                    }
+                case 44: {
+                        message.currentOrgName = reader.string();
+                        break;
+                    }
+                case 45: {
+                        if (!(message.OrgList && message.OrgList.length))
+                            message.OrgList = [];
+                        message.OrgList.push($root.pbOrganization.Organization.decode(reader, reader.uint32()));
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -10811,6 +11803,21 @@ $root.pbuser = (function() {
                 var error = $root.pbuserOauth.UserOauthModel.verify(message.userOauth);
                 if (error)
                     return "userOauth." + error;
+            }
+            if (message.currentOrgId != null && message.hasOwnProperty("currentOrgId"))
+                if (!$util.isInteger(message.currentOrgId) && !(message.currentOrgId && $util.isInteger(message.currentOrgId.low) && $util.isInteger(message.currentOrgId.high)))
+                    return "currentOrgId: integer|Long expected";
+            if (message.currentOrgName != null && message.hasOwnProperty("currentOrgName"))
+                if (!$util.isString(message.currentOrgName))
+                    return "currentOrgName: string expected";
+            if (message.OrgList != null && message.hasOwnProperty("OrgList")) {
+                if (!Array.isArray(message.OrgList))
+                    return "OrgList: array expected";
+                for (var i = 0; i < message.OrgList.length; ++i) {
+                    var error = $root.pbOrganization.Organization.verify(message.OrgList[i]);
+                    if (error)
+                        return "OrgList." + error;
+                }
             }
             return null;
         };
@@ -10999,6 +12006,27 @@ $root.pbuser = (function() {
                     throw TypeError(".pbuser.UserModel.userOauth: object expected");
                 message.userOauth = $root.pbuserOauth.UserOauthModel.fromObject(object.userOauth);
             }
+            if (object.currentOrgId != null)
+                if ($util.Long)
+                    (message.currentOrgId = $util.Long.fromValue(object.currentOrgId)).unsigned = false;
+                else if (typeof object.currentOrgId === "string")
+                    message.currentOrgId = parseInt(object.currentOrgId, 10);
+                else if (typeof object.currentOrgId === "number")
+                    message.currentOrgId = object.currentOrgId;
+                else if (typeof object.currentOrgId === "object")
+                    message.currentOrgId = new $util.LongBits(object.currentOrgId.low >>> 0, object.currentOrgId.high >>> 0).toNumber();
+            if (object.currentOrgName != null)
+                message.currentOrgName = String(object.currentOrgName);
+            if (object.OrgList) {
+                if (!Array.isArray(object.OrgList))
+                    throw TypeError(".pbuser.UserModel.OrgList: array expected");
+                message.OrgList = [];
+                for (var i = 0; i < object.OrgList.length; ++i) {
+                    if (typeof object.OrgList[i] !== "object")
+                        throw TypeError(".pbuser.UserModel.OrgList: object expected");
+                    message.OrgList[i] = $root.pbOrganization.Organization.fromObject(object.OrgList[i]);
+                }
+            }
             return message;
         };
 
@@ -11019,6 +12047,7 @@ $root.pbuser = (function() {
                 object.roles = [];
                 object.fans = [];
                 object.follows = [];
+                object.OrgList = [];
             }
             if (options.defaults) {
                 if ($util.Long) {
@@ -11083,6 +12112,12 @@ $root.pbuser = (function() {
                 object.isYoungMod = false;
                 object.roleModel = null;
                 object.userOauth = null;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.currentOrgId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.currentOrgId = options.longs === String ? "0" : 0;
+                object.currentOrgName = "";
             }
             if (message.id != null && message.hasOwnProperty("id"))
                 if (typeof message.id === "number")
@@ -11193,6 +12228,18 @@ $root.pbuser = (function() {
             }
             if (message.userOauth != null && message.hasOwnProperty("userOauth"))
                 object.userOauth = $root.pbuserOauth.UserOauthModel.toObject(message.userOauth, options);
+            if (message.currentOrgId != null && message.hasOwnProperty("currentOrgId"))
+                if (typeof message.currentOrgId === "number")
+                    object.currentOrgId = options.longs === String ? String(message.currentOrgId) : message.currentOrgId;
+                else
+                    object.currentOrgId = options.longs === String ? $util.Long.prototype.toString.call(message.currentOrgId) : options.longs === Number ? new $util.LongBits(message.currentOrgId.low >>> 0, message.currentOrgId.high >>> 0).toNumber() : message.currentOrgId;
+            if (message.currentOrgName != null && message.hasOwnProperty("currentOrgName"))
+                object.currentOrgName = message.currentOrgName;
+            if (message.OrgList && message.OrgList.length) {
+                object.OrgList = [];
+                for (var j = 0; j < message.OrgList.length; ++j)
+                    object.OrgList[j] = $root.pbOrganization.Organization.toObject(message.OrgList[j], options);
+            }
             return object;
         };
 
@@ -11716,6 +12763,7 @@ $root.pbuser = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -11741,6 +12789,9 @@ $root.pbuser = (function() {
                 case 5002:
                 case 10001:
                 case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -11820,6 +12871,10 @@ $root.pbuser = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -11920,6 +12975,18 @@ $root.pbuser = (function() {
             case "HalaPriceOutRange":
             case 10002:
                 message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -12614,7 +13681,818 @@ $root.pbuser = (function() {
          * @variation 2
          */
 
+        /**
+         * Callback as used by {@link pbuser.User#setCurrentOrg}.
+         * @memberof pbuser.User
+         * @typedef SetCurrentOrgCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls SetCurrentOrg.
+         * @function setCurrentOrg
+         * @memberof pbuser.User
+         * @instance
+         * @param {pbuser.ISetCurrentOrgArgs} request SetCurrentOrgArgs message or plain object
+         * @param {pbuser.User.SetCurrentOrgCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(User.prototype.setCurrentOrg = function setCurrentOrg(request, callback) {
+            return this.rpcCall(setCurrentOrg, $root.pbuser.SetCurrentOrgArgs, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "SetCurrentOrg" });
+
+        /**
+         * Calls SetCurrentOrg.
+         * @function setCurrentOrg
+         * @memberof pbuser.User
+         * @instance
+         * @param {pbuser.ISetCurrentOrgArgs} request SetCurrentOrgArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbuser.User#getCurrentOrg}.
+         * @memberof pbuser.User
+         * @typedef GetCurrentOrgCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbuser.GetCurrentOrgReply} [response] GetCurrentOrgReply
+         */
+
+        /**
+         * Calls GetCurrentOrg.
+         * @function getCurrentOrg
+         * @memberof pbuser.User
+         * @instance
+         * @param {pbcommon.IEmpty} request Empty message or plain object
+         * @param {pbuser.User.GetCurrentOrgCallback} callback Node-style callback called with the error, if any, and GetCurrentOrgReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(User.prototype.getCurrentOrg = function getCurrentOrg(request, callback) {
+            return this.rpcCall(getCurrentOrg, $root.pbcommon.Empty, $root.pbuser.GetCurrentOrgReply, request, callback);
+        }, "name", { value: "GetCurrentOrg" });
+
+        /**
+         * Calls GetCurrentOrg.
+         * @function getCurrentOrg
+         * @memberof pbuser.User
+         * @instance
+         * @param {pbcommon.IEmpty} request Empty message or plain object
+         * @returns {Promise<pbuser.GetCurrentOrgReply>} Promise
+         * @variation 2
+         */
+
         return User;
+    })();
+
+    pbuser.SetCurrentOrgArgs = (function() {
+
+        /**
+         * Properties of a SetCurrentOrgArgs.
+         * @memberof pbuser
+         * @interface ISetCurrentOrgArgs
+         * @property {number|Long|null} [userId] SetCurrentOrgArgs userId
+         * @property {number|Long|null} [orgId] SetCurrentOrgArgs orgId
+         */
+
+        /**
+         * Constructs a new SetCurrentOrgArgs.
+         * @memberof pbuser
+         * @classdesc Represents a SetCurrentOrgArgs.
+         * @implements ISetCurrentOrgArgs
+         * @constructor
+         * @param {pbuser.ISetCurrentOrgArgs=} [properties] Properties to set
+         */
+        function SetCurrentOrgArgs(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * SetCurrentOrgArgs userId.
+         * @member {number|Long} userId
+         * @memberof pbuser.SetCurrentOrgArgs
+         * @instance
+         */
+        SetCurrentOrgArgs.prototype.userId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * SetCurrentOrgArgs orgId.
+         * @member {number|Long} orgId
+         * @memberof pbuser.SetCurrentOrgArgs
+         * @instance
+         */
+        SetCurrentOrgArgs.prototype.orgId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * Creates a new SetCurrentOrgArgs instance using the specified properties.
+         * @function create
+         * @memberof pbuser.SetCurrentOrgArgs
+         * @static
+         * @param {pbuser.ISetCurrentOrgArgs=} [properties] Properties to set
+         * @returns {pbuser.SetCurrentOrgArgs} SetCurrentOrgArgs instance
+         */
+        SetCurrentOrgArgs.create = function create(properties) {
+            return new SetCurrentOrgArgs(properties);
+        };
+
+        /**
+         * Encodes the specified SetCurrentOrgArgs message. Does not implicitly {@link pbuser.SetCurrentOrgArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbuser.SetCurrentOrgArgs
+         * @static
+         * @param {pbuser.ISetCurrentOrgArgs} message SetCurrentOrgArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        SetCurrentOrgArgs.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.userId != null && Object.hasOwnProperty.call(message, "userId"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int64(message.userId);
+            if (message.orgId != null && Object.hasOwnProperty.call(message, "orgId"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int64(message.orgId);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified SetCurrentOrgArgs message, length delimited. Does not implicitly {@link pbuser.SetCurrentOrgArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbuser.SetCurrentOrgArgs
+         * @static
+         * @param {pbuser.ISetCurrentOrgArgs} message SetCurrentOrgArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        SetCurrentOrgArgs.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a SetCurrentOrgArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbuser.SetCurrentOrgArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbuser.SetCurrentOrgArgs} SetCurrentOrgArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        SetCurrentOrgArgs.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbuser.SetCurrentOrgArgs();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.userId = reader.int64();
+                        break;
+                    }
+                case 2: {
+                        message.orgId = reader.int64();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a SetCurrentOrgArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbuser.SetCurrentOrgArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbuser.SetCurrentOrgArgs} SetCurrentOrgArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        SetCurrentOrgArgs.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a SetCurrentOrgArgs message.
+         * @function verify
+         * @memberof pbuser.SetCurrentOrgArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        SetCurrentOrgArgs.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.userId != null && message.hasOwnProperty("userId"))
+                if (!$util.isInteger(message.userId) && !(message.userId && $util.isInteger(message.userId.low) && $util.isInteger(message.userId.high)))
+                    return "userId: integer|Long expected";
+            if (message.orgId != null && message.hasOwnProperty("orgId"))
+                if (!$util.isInteger(message.orgId) && !(message.orgId && $util.isInteger(message.orgId.low) && $util.isInteger(message.orgId.high)))
+                    return "orgId: integer|Long expected";
+            return null;
+        };
+
+        /**
+         * Creates a SetCurrentOrgArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbuser.SetCurrentOrgArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbuser.SetCurrentOrgArgs} SetCurrentOrgArgs
+         */
+        SetCurrentOrgArgs.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbuser.SetCurrentOrgArgs)
+                return object;
+            var message = new $root.pbuser.SetCurrentOrgArgs();
+            if (object.userId != null)
+                if ($util.Long)
+                    (message.userId = $util.Long.fromValue(object.userId)).unsigned = false;
+                else if (typeof object.userId === "string")
+                    message.userId = parseInt(object.userId, 10);
+                else if (typeof object.userId === "number")
+                    message.userId = object.userId;
+                else if (typeof object.userId === "object")
+                    message.userId = new $util.LongBits(object.userId.low >>> 0, object.userId.high >>> 0).toNumber();
+            if (object.orgId != null)
+                if ($util.Long)
+                    (message.orgId = $util.Long.fromValue(object.orgId)).unsigned = false;
+                else if (typeof object.orgId === "string")
+                    message.orgId = parseInt(object.orgId, 10);
+                else if (typeof object.orgId === "number")
+                    message.orgId = object.orgId;
+                else if (typeof object.orgId === "object")
+                    message.orgId = new $util.LongBits(object.orgId.low >>> 0, object.orgId.high >>> 0).toNumber();
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a SetCurrentOrgArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbuser.SetCurrentOrgArgs
+         * @static
+         * @param {pbuser.SetCurrentOrgArgs} message SetCurrentOrgArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        SetCurrentOrgArgs.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.userId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.userId = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.orgId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.orgId = options.longs === String ? "0" : 0;
+            }
+            if (message.userId != null && message.hasOwnProperty("userId"))
+                if (typeof message.userId === "number")
+                    object.userId = options.longs === String ? String(message.userId) : message.userId;
+                else
+                    object.userId = options.longs === String ? $util.Long.prototype.toString.call(message.userId) : options.longs === Number ? new $util.LongBits(message.userId.low >>> 0, message.userId.high >>> 0).toNumber() : message.userId;
+            if (message.orgId != null && message.hasOwnProperty("orgId"))
+                if (typeof message.orgId === "number")
+                    object.orgId = options.longs === String ? String(message.orgId) : message.orgId;
+                else
+                    object.orgId = options.longs === String ? $util.Long.prototype.toString.call(message.orgId) : options.longs === Number ? new $util.LongBits(message.orgId.low >>> 0, message.orgId.high >>> 0).toNumber() : message.orgId;
+            return object;
+        };
+
+        /**
+         * Converts this SetCurrentOrgArgs to JSON.
+         * @function toJSON
+         * @memberof pbuser.SetCurrentOrgArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        SetCurrentOrgArgs.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for SetCurrentOrgArgs
+         * @function getTypeUrl
+         * @memberof pbuser.SetCurrentOrgArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        SetCurrentOrgArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbuser.SetCurrentOrgArgs";
+        };
+
+        return SetCurrentOrgArgs;
+    })();
+
+    pbuser.GetCurrentOrgReply = (function() {
+
+        /**
+         * Properties of a GetCurrentOrgReply.
+         * @memberof pbuser
+         * @interface IGetCurrentOrgReply
+         * @property {pbcommon.EnumCode|null} [code] GetCurrentOrgReply code
+         * @property {string|null} [msg] GetCurrentOrgReply msg
+         * @property {number|Long|null} [orgId] GetCurrentOrgReply orgId
+         * @property {string|null} [orgName] GetCurrentOrgReply orgName
+         */
+
+        /**
+         * Constructs a new GetCurrentOrgReply.
+         * @memberof pbuser
+         * @classdesc Represents a GetCurrentOrgReply.
+         * @implements IGetCurrentOrgReply
+         * @constructor
+         * @param {pbuser.IGetCurrentOrgReply=} [properties] Properties to set
+         */
+        function GetCurrentOrgReply(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GetCurrentOrgReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbuser.GetCurrentOrgReply
+         * @instance
+         */
+        GetCurrentOrgReply.prototype.code = 0;
+
+        /**
+         * GetCurrentOrgReply msg.
+         * @member {string} msg
+         * @memberof pbuser.GetCurrentOrgReply
+         * @instance
+         */
+        GetCurrentOrgReply.prototype.msg = "";
+
+        /**
+         * GetCurrentOrgReply orgId.
+         * @member {number|Long} orgId
+         * @memberof pbuser.GetCurrentOrgReply
+         * @instance
+         */
+        GetCurrentOrgReply.prototype.orgId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * GetCurrentOrgReply orgName.
+         * @member {string} orgName
+         * @memberof pbuser.GetCurrentOrgReply
+         * @instance
+         */
+        GetCurrentOrgReply.prototype.orgName = "";
+
+        /**
+         * Creates a new GetCurrentOrgReply instance using the specified properties.
+         * @function create
+         * @memberof pbuser.GetCurrentOrgReply
+         * @static
+         * @param {pbuser.IGetCurrentOrgReply=} [properties] Properties to set
+         * @returns {pbuser.GetCurrentOrgReply} GetCurrentOrgReply instance
+         */
+        GetCurrentOrgReply.create = function create(properties) {
+            return new GetCurrentOrgReply(properties);
+        };
+
+        /**
+         * Encodes the specified GetCurrentOrgReply message. Does not implicitly {@link pbuser.GetCurrentOrgReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbuser.GetCurrentOrgReply
+         * @static
+         * @param {pbuser.IGetCurrentOrgReply} message GetCurrentOrgReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetCurrentOrgReply.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.orgId != null && Object.hasOwnProperty.call(message, "orgId"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int64(message.orgId);
+            if (message.orgName != null && Object.hasOwnProperty.call(message, "orgName"))
+                writer.uint32(/* id 4, wireType 2 =*/34).string(message.orgName);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GetCurrentOrgReply message, length delimited. Does not implicitly {@link pbuser.GetCurrentOrgReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbuser.GetCurrentOrgReply
+         * @static
+         * @param {pbuser.IGetCurrentOrgReply} message GetCurrentOrgReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetCurrentOrgReply.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GetCurrentOrgReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbuser.GetCurrentOrgReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbuser.GetCurrentOrgReply} GetCurrentOrgReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetCurrentOrgReply.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbuser.GetCurrentOrgReply();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.code = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.orgId = reader.int64();
+                        break;
+                    }
+                case 4: {
+                        message.orgName = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GetCurrentOrgReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbuser.GetCurrentOrgReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbuser.GetCurrentOrgReply} GetCurrentOrgReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetCurrentOrgReply.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GetCurrentOrgReply message.
+         * @function verify
+         * @memberof pbuser.GetCurrentOrgReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GetCurrentOrgReply.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.code != null && message.hasOwnProperty("code"))
+                switch (message.code) {
+                default:
+                    return "code: enum value expected";
+                case 0:
+                case 200:
+                case 403:
+                case 500:
+                case 501:
+                case 502:
+                case 503:
+                case 504:
+                case 505:
+                case 511:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
+                case 2002:
+                case 2003:
+                case 2004:
+                case 2005:
+                case 2006:
+                case 2007:
+                case 2008:
+                case 2009:
+                case 2010:
+                case 2011:
+                case 2012:
+                case 2013:
+                case 2014:
+                case 2015:
+                case 3001:
+                case 3002:
+                case 3003:
+                case 5001:
+                case 5002:
+                case 10001:
+                case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
+                    break;
+                }
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                if (!$util.isString(message.msg))
+                    return "msg: string expected";
+            if (message.orgId != null && message.hasOwnProperty("orgId"))
+                if (!$util.isInteger(message.orgId) && !(message.orgId && $util.isInteger(message.orgId.low) && $util.isInteger(message.orgId.high)))
+                    return "orgId: integer|Long expected";
+            if (message.orgName != null && message.hasOwnProperty("orgName"))
+                if (!$util.isString(message.orgName))
+                    return "orgName: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a GetCurrentOrgReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbuser.GetCurrentOrgReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbuser.GetCurrentOrgReply} GetCurrentOrgReply
+         */
+        GetCurrentOrgReply.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbuser.GetCurrentOrgReply)
+                return object;
+            var message = new $root.pbuser.GetCurrentOrgReply();
+            switch (object.code) {
+            default:
+                if (typeof object.code === "number") {
+                    message.code = object.code;
+                    break;
+                }
+                break;
+            case "None":
+            case 0:
+                message.code = 0;
+                break;
+            case "Success":
+            case 200:
+                message.code = 200;
+                break;
+            case "Forbidden":
+            case 403:
+                message.code = 403;
+                break;
+            case "Fail":
+            case 500:
+                message.code = 500;
+                break;
+            case "Unknown":
+            case 501:
+                message.code = 501;
+                break;
+            case "Internal":
+            case 502:
+                message.code = 502;
+                break;
+            case "Invalid":
+            case 503:
+                message.code = 503;
+                break;
+            case "InvalidParam":
+            case 504:
+                message.code = 504;
+                break;
+            case "ParamError":
+            case 505:
+                message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
+                break;
+            case "FindError":
+            case 1001:
+                message.code = 1001;
+                break;
+            case "CreateError":
+            case 1002:
+                message.code = 1002;
+                break;
+            case "DeleteError":
+            case 1003:
+                message.code = 1003;
+                break;
+            case "UpdateError":
+            case 1004:
+                message.code = 1004;
+                break;
+            case "InvalidToken":
+            case 2002:
+                message.code = 2002;
+                break;
+            case "InvalidSign":
+            case 2003:
+                message.code = 2003;
+                break;
+            case "NotLogin":
+            case 2004:
+                message.code = 2004;
+                break;
+            case "LoginTimeout":
+            case 2005:
+                message.code = 2005;
+                break;
+            case "LoginError":
+            case 2006:
+                message.code = 2006;
+                break;
+            case "LoginForbidden":
+            case 2007:
+                message.code = 2007;
+                break;
+            case "LoginExpired":
+            case 2008:
+                message.code = 2008;
+                break;
+            case "LoginInvalid":
+            case 2009:
+                message.code = 2009;
+                break;
+            case "LoginInvalidPassword":
+            case 2010:
+                message.code = 2010;
+                break;
+            case "LoginInvalidUsername":
+            case 2011:
+                message.code = 2011;
+                break;
+            case "LoginInvalidEmail":
+            case 2012:
+                message.code = 2012;
+                break;
+            case "LoginInvalidPhone":
+            case 2013:
+                message.code = 2013;
+                break;
+            case "LoginInvalidUsernameOrEmail":
+            case 2014:
+                message.code = 2014;
+                break;
+            case "LoginSocketRepeat":
+            case 2015:
+                message.code = 2015;
+                break;
+            case "RoleIsNotExist":
+            case 3001:
+                message.code = 3001;
+                break;
+            case "UserIsExist":
+            case 3002:
+                message.code = 3002;
+                break;
+            case "UserIsBan":
+            case 3003:
+                message.code = 3003;
+                break;
+            case "TalkIsBan":
+            case 5001:
+                message.code = 5001;
+                break;
+            case "EnterRoomErr":
+            case 5002:
+                message.code = 5002;
+                break;
+            case "HalaChatNeedBuy":
+            case 10001:
+                message.code = 10001;
+                break;
+            case "HalaPriceOutRange":
+            case 10002:
+                message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
+                break;
+            }
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.orgId != null)
+                if ($util.Long)
+                    (message.orgId = $util.Long.fromValue(object.orgId)).unsigned = false;
+                else if (typeof object.orgId === "string")
+                    message.orgId = parseInt(object.orgId, 10);
+                else if (typeof object.orgId === "number")
+                    message.orgId = object.orgId;
+                else if (typeof object.orgId === "object")
+                    message.orgId = new $util.LongBits(object.orgId.low >>> 0, object.orgId.high >>> 0).toNumber();
+            if (object.orgName != null)
+                message.orgName = String(object.orgName);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GetCurrentOrgReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbuser.GetCurrentOrgReply
+         * @static
+         * @param {pbuser.GetCurrentOrgReply} message GetCurrentOrgReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GetCurrentOrgReply.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.code = options.enums === String ? "None" : 0;
+                object.msg = "";
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.orgId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.orgId = options.longs === String ? "0" : 0;
+                object.orgName = "";
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.orgId != null && message.hasOwnProperty("orgId"))
+                if (typeof message.orgId === "number")
+                    object.orgId = options.longs === String ? String(message.orgId) : message.orgId;
+                else
+                    object.orgId = options.longs === String ? $util.Long.prototype.toString.call(message.orgId) : options.longs === Number ? new $util.LongBits(message.orgId.low >>> 0, message.orgId.high >>> 0).toNumber() : message.orgId;
+            if (message.orgName != null && message.hasOwnProperty("orgName"))
+                object.orgName = message.orgName;
+            return object;
+        };
+
+        /**
+         * Converts this GetCurrentOrgReply to JSON.
+         * @function toJSON
+         * @memberof pbuser.GetCurrentOrgReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GetCurrentOrgReply.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GetCurrentOrgReply
+         * @function getTypeUrl
+         * @memberof pbuser.GetCurrentOrgReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GetCurrentOrgReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbuser.GetCurrentOrgReply";
+        };
+
+        return GetCurrentOrgReply;
     })();
 
     return pbuser;
@@ -13534,6 +15412,7 @@ $root.pbuserOauth = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -13559,6 +15438,9 @@ $root.pbuserOauth = (function() {
                 case 5002:
                 case 10001:
                 case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -13638,6 +15520,10 @@ $root.pbuserOauth = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -13738,6 +15624,18 @@ $root.pbuserOauth = (function() {
             case "HalaPriceOutRange":
             case 10002:
                 message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -14003,6 +15901,7 @@ $root.pbuserOauth = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -14028,6 +15927,9 @@ $root.pbuserOauth = (function() {
                 case 5002:
                 case 10001:
                 case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
                     break;
                 }
             if (message.userOauth != null && message.hasOwnProperty("userOauth")) {
@@ -14092,6 +15994,10 @@ $root.pbuserOauth = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -14192,6 +16098,18 @@ $root.pbuserOauth = (function() {
             case "HalaPriceOutRange":
             case 10002:
                 message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.userOauth != null) {
@@ -14456,6 +16374,7730 @@ $root.pbuserOauth = (function() {
     })();
 
     return pbuserOauth;
+})();
+
+$root.pbOrganization = (function() {
+
+    /**
+     * Namespace pbOrganization.
+     * @exports pbOrganization
+     * @namespace
+     */
+    var pbOrganization = {};
+
+    /**
+     * OrgType enum.
+     * @name pbOrganization.OrgType
+     * @enum {number}
+     * @property {number} OrgTypeNone=0 OrgTypeNone value
+     * @property {number} OrgTypeCompany=1 OrgTypeCompany value
+     * @property {number} OrgTypeDepartment=2 OrgTypeDepartment value
+     * @property {number} OrgTypeGroup=3 OrgTypeGroup value
+     */
+    pbOrganization.OrgType = (function() {
+        var valuesById = {}, values = Object.create(valuesById);
+        values[valuesById[0] = "OrgTypeNone"] = 0;
+        values[valuesById[1] = "OrgTypeCompany"] = 1;
+        values[valuesById[2] = "OrgTypeDepartment"] = 2;
+        values[valuesById[3] = "OrgTypeGroup"] = 3;
+        return values;
+    })();
+
+    pbOrganization.Organization = (function() {
+
+        /**
+         * Properties of an Organization.
+         * @memberof pbOrganization
+         * @interface IOrganization
+         * @property {number|Long|null} [id] Organization id
+         * @property {number|Long|null} [parentId] Organization parentId
+         * @property {string|null} [orgName] Organization orgName
+         * @property {string|null} [orgCode] Organization orgCode
+         * @property {pbOrganization.OrgType|null} [orgType] Organization orgType
+         * @property {number|Long|null} [leaderId] Organization leaderId
+         * @property {number|null} [sort] Organization sort
+         * @property {number|null} [status] Organization status
+         * @property {string|null} [remark] Organization remark
+         * @property {number|Long|null} [appId] Organization appId
+         * @property {string|null} [createdAt] Organization createdAt
+         * @property {string|null} [updatedAt] Organization updatedAt
+         * @property {string|null} [inviteCode] Organization inviteCode
+         */
+
+        /**
+         * Constructs a new Organization.
+         * @memberof pbOrganization
+         * @classdesc Represents an Organization.
+         * @implements IOrganization
+         * @constructor
+         * @param {pbOrganization.IOrganization=} [properties] Properties to set
+         */
+        function Organization(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * Organization id.
+         * @member {number|Long} id
+         * @memberof pbOrganization.Organization
+         * @instance
+         */
+        Organization.prototype.id = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * Organization parentId.
+         * @member {number|Long} parentId
+         * @memberof pbOrganization.Organization
+         * @instance
+         */
+        Organization.prototype.parentId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * Organization orgName.
+         * @member {string} orgName
+         * @memberof pbOrganization.Organization
+         * @instance
+         */
+        Organization.prototype.orgName = "";
+
+        /**
+         * Organization orgCode.
+         * @member {string} orgCode
+         * @memberof pbOrganization.Organization
+         * @instance
+         */
+        Organization.prototype.orgCode = "";
+
+        /**
+         * Organization orgType.
+         * @member {pbOrganization.OrgType} orgType
+         * @memberof pbOrganization.Organization
+         * @instance
+         */
+        Organization.prototype.orgType = 0;
+
+        /**
+         * Organization leaderId.
+         * @member {number|Long} leaderId
+         * @memberof pbOrganization.Organization
+         * @instance
+         */
+        Organization.prototype.leaderId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * Organization sort.
+         * @member {number} sort
+         * @memberof pbOrganization.Organization
+         * @instance
+         */
+        Organization.prototype.sort = 0;
+
+        /**
+         * Organization status.
+         * @member {number} status
+         * @memberof pbOrganization.Organization
+         * @instance
+         */
+        Organization.prototype.status = 0;
+
+        /**
+         * Organization remark.
+         * @member {string} remark
+         * @memberof pbOrganization.Organization
+         * @instance
+         */
+        Organization.prototype.remark = "";
+
+        /**
+         * Organization appId.
+         * @member {number|Long} appId
+         * @memberof pbOrganization.Organization
+         * @instance
+         */
+        Organization.prototype.appId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * Organization createdAt.
+         * @member {string} createdAt
+         * @memberof pbOrganization.Organization
+         * @instance
+         */
+        Organization.prototype.createdAt = "";
+
+        /**
+         * Organization updatedAt.
+         * @member {string} updatedAt
+         * @memberof pbOrganization.Organization
+         * @instance
+         */
+        Organization.prototype.updatedAt = "";
+
+        /**
+         * Organization inviteCode.
+         * @member {string} inviteCode
+         * @memberof pbOrganization.Organization
+         * @instance
+         */
+        Organization.prototype.inviteCode = "";
+
+        /**
+         * Creates a new Organization instance using the specified properties.
+         * @function create
+         * @memberof pbOrganization.Organization
+         * @static
+         * @param {pbOrganization.IOrganization=} [properties] Properties to set
+         * @returns {pbOrganization.Organization} Organization instance
+         */
+        Organization.create = function create(properties) {
+            return new Organization(properties);
+        };
+
+        /**
+         * Encodes the specified Organization message. Does not implicitly {@link pbOrganization.Organization.verify|verify} messages.
+         * @function encode
+         * @memberof pbOrganization.Organization
+         * @static
+         * @param {pbOrganization.IOrganization} message Organization message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Organization.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id);
+            if (message.parentId != null && Object.hasOwnProperty.call(message, "parentId"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int64(message.parentId);
+            if (message.orgName != null && Object.hasOwnProperty.call(message, "orgName"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.orgName);
+            if (message.orgCode != null && Object.hasOwnProperty.call(message, "orgCode"))
+                writer.uint32(/* id 4, wireType 2 =*/34).string(message.orgCode);
+            if (message.orgType != null && Object.hasOwnProperty.call(message, "orgType"))
+                writer.uint32(/* id 5, wireType 0 =*/40).int32(message.orgType);
+            if (message.leaderId != null && Object.hasOwnProperty.call(message, "leaderId"))
+                writer.uint32(/* id 6, wireType 0 =*/48).int64(message.leaderId);
+            if (message.sort != null && Object.hasOwnProperty.call(message, "sort"))
+                writer.uint32(/* id 7, wireType 0 =*/56).int32(message.sort);
+            if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+                writer.uint32(/* id 8, wireType 0 =*/64).int32(message.status);
+            if (message.remark != null && Object.hasOwnProperty.call(message, "remark"))
+                writer.uint32(/* id 9, wireType 2 =*/74).string(message.remark);
+            if (message.appId != null && Object.hasOwnProperty.call(message, "appId"))
+                writer.uint32(/* id 10, wireType 0 =*/80).int64(message.appId);
+            if (message.createdAt != null && Object.hasOwnProperty.call(message, "createdAt"))
+                writer.uint32(/* id 11, wireType 2 =*/90).string(message.createdAt);
+            if (message.updatedAt != null && Object.hasOwnProperty.call(message, "updatedAt"))
+                writer.uint32(/* id 12, wireType 2 =*/98).string(message.updatedAt);
+            if (message.inviteCode != null && Object.hasOwnProperty.call(message, "inviteCode"))
+                writer.uint32(/* id 13, wireType 2 =*/106).string(message.inviteCode);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified Organization message, length delimited. Does not implicitly {@link pbOrganization.Organization.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbOrganization.Organization
+         * @static
+         * @param {pbOrganization.IOrganization} message Organization message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Organization.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an Organization message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbOrganization.Organization
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbOrganization.Organization} Organization
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Organization.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbOrganization.Organization();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.id = reader.int64();
+                        break;
+                    }
+                case 2: {
+                        message.parentId = reader.int64();
+                        break;
+                    }
+                case 3: {
+                        message.orgName = reader.string();
+                        break;
+                    }
+                case 4: {
+                        message.orgCode = reader.string();
+                        break;
+                    }
+                case 5: {
+                        message.orgType = reader.int32();
+                        break;
+                    }
+                case 6: {
+                        message.leaderId = reader.int64();
+                        break;
+                    }
+                case 7: {
+                        message.sort = reader.int32();
+                        break;
+                    }
+                case 8: {
+                        message.status = reader.int32();
+                        break;
+                    }
+                case 9: {
+                        message.remark = reader.string();
+                        break;
+                    }
+                case 10: {
+                        message.appId = reader.int64();
+                        break;
+                    }
+                case 11: {
+                        message.createdAt = reader.string();
+                        break;
+                    }
+                case 12: {
+                        message.updatedAt = reader.string();
+                        break;
+                    }
+                case 13: {
+                        message.inviteCode = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an Organization message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbOrganization.Organization
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbOrganization.Organization} Organization
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Organization.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an Organization message.
+         * @function verify
+         * @memberof pbOrganization.Organization
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        Organization.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (!$util.isInteger(message.id) && !(message.id && $util.isInteger(message.id.low) && $util.isInteger(message.id.high)))
+                    return "id: integer|Long expected";
+            if (message.parentId != null && message.hasOwnProperty("parentId"))
+                if (!$util.isInteger(message.parentId) && !(message.parentId && $util.isInteger(message.parentId.low) && $util.isInteger(message.parentId.high)))
+                    return "parentId: integer|Long expected";
+            if (message.orgName != null && message.hasOwnProperty("orgName"))
+                if (!$util.isString(message.orgName))
+                    return "orgName: string expected";
+            if (message.orgCode != null && message.hasOwnProperty("orgCode"))
+                if (!$util.isString(message.orgCode))
+                    return "orgCode: string expected";
+            if (message.orgType != null && message.hasOwnProperty("orgType"))
+                switch (message.orgType) {
+                default:
+                    return "orgType: enum value expected";
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                    break;
+                }
+            if (message.leaderId != null && message.hasOwnProperty("leaderId"))
+                if (!$util.isInteger(message.leaderId) && !(message.leaderId && $util.isInteger(message.leaderId.low) && $util.isInteger(message.leaderId.high)))
+                    return "leaderId: integer|Long expected";
+            if (message.sort != null && message.hasOwnProperty("sort"))
+                if (!$util.isInteger(message.sort))
+                    return "sort: integer expected";
+            if (message.status != null && message.hasOwnProperty("status"))
+                if (!$util.isInteger(message.status))
+                    return "status: integer expected";
+            if (message.remark != null && message.hasOwnProperty("remark"))
+                if (!$util.isString(message.remark))
+                    return "remark: string expected";
+            if (message.appId != null && message.hasOwnProperty("appId"))
+                if (!$util.isInteger(message.appId) && !(message.appId && $util.isInteger(message.appId.low) && $util.isInteger(message.appId.high)))
+                    return "appId: integer|Long expected";
+            if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                if (!$util.isString(message.createdAt))
+                    return "createdAt: string expected";
+            if (message.updatedAt != null && message.hasOwnProperty("updatedAt"))
+                if (!$util.isString(message.updatedAt))
+                    return "updatedAt: string expected";
+            if (message.inviteCode != null && message.hasOwnProperty("inviteCode"))
+                if (!$util.isString(message.inviteCode))
+                    return "inviteCode: string expected";
+            return null;
+        };
+
+        /**
+         * Creates an Organization message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbOrganization.Organization
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbOrganization.Organization} Organization
+         */
+        Organization.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbOrganization.Organization)
+                return object;
+            var message = new $root.pbOrganization.Organization();
+            if (object.id != null)
+                if ($util.Long)
+                    (message.id = $util.Long.fromValue(object.id)).unsigned = false;
+                else if (typeof object.id === "string")
+                    message.id = parseInt(object.id, 10);
+                else if (typeof object.id === "number")
+                    message.id = object.id;
+                else if (typeof object.id === "object")
+                    message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber();
+            if (object.parentId != null)
+                if ($util.Long)
+                    (message.parentId = $util.Long.fromValue(object.parentId)).unsigned = false;
+                else if (typeof object.parentId === "string")
+                    message.parentId = parseInt(object.parentId, 10);
+                else if (typeof object.parentId === "number")
+                    message.parentId = object.parentId;
+                else if (typeof object.parentId === "object")
+                    message.parentId = new $util.LongBits(object.parentId.low >>> 0, object.parentId.high >>> 0).toNumber();
+            if (object.orgName != null)
+                message.orgName = String(object.orgName);
+            if (object.orgCode != null)
+                message.orgCode = String(object.orgCode);
+            switch (object.orgType) {
+            default:
+                if (typeof object.orgType === "number") {
+                    message.orgType = object.orgType;
+                    break;
+                }
+                break;
+            case "OrgTypeNone":
+            case 0:
+                message.orgType = 0;
+                break;
+            case "OrgTypeCompany":
+            case 1:
+                message.orgType = 1;
+                break;
+            case "OrgTypeDepartment":
+            case 2:
+                message.orgType = 2;
+                break;
+            case "OrgTypeGroup":
+            case 3:
+                message.orgType = 3;
+                break;
+            }
+            if (object.leaderId != null)
+                if ($util.Long)
+                    (message.leaderId = $util.Long.fromValue(object.leaderId)).unsigned = false;
+                else if (typeof object.leaderId === "string")
+                    message.leaderId = parseInt(object.leaderId, 10);
+                else if (typeof object.leaderId === "number")
+                    message.leaderId = object.leaderId;
+                else if (typeof object.leaderId === "object")
+                    message.leaderId = new $util.LongBits(object.leaderId.low >>> 0, object.leaderId.high >>> 0).toNumber();
+            if (object.sort != null)
+                message.sort = object.sort | 0;
+            if (object.status != null)
+                message.status = object.status | 0;
+            if (object.remark != null)
+                message.remark = String(object.remark);
+            if (object.appId != null)
+                if ($util.Long)
+                    (message.appId = $util.Long.fromValue(object.appId)).unsigned = false;
+                else if (typeof object.appId === "string")
+                    message.appId = parseInt(object.appId, 10);
+                else if (typeof object.appId === "number")
+                    message.appId = object.appId;
+                else if (typeof object.appId === "object")
+                    message.appId = new $util.LongBits(object.appId.low >>> 0, object.appId.high >>> 0).toNumber();
+            if (object.createdAt != null)
+                message.createdAt = String(object.createdAt);
+            if (object.updatedAt != null)
+                message.updatedAt = String(object.updatedAt);
+            if (object.inviteCode != null)
+                message.inviteCode = String(object.inviteCode);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an Organization message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbOrganization.Organization
+         * @static
+         * @param {pbOrganization.Organization} message Organization
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Organization.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.id = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.parentId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.parentId = options.longs === String ? "0" : 0;
+                object.orgName = "";
+                object.orgCode = "";
+                object.orgType = options.enums === String ? "OrgTypeNone" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.leaderId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.leaderId = options.longs === String ? "0" : 0;
+                object.sort = 0;
+                object.status = 0;
+                object.remark = "";
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.appId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.appId = options.longs === String ? "0" : 0;
+                object.createdAt = "";
+                object.updatedAt = "";
+                object.inviteCode = "";
+            }
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (typeof message.id === "number")
+                    object.id = options.longs === String ? String(message.id) : message.id;
+                else
+                    object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id;
+            if (message.parentId != null && message.hasOwnProperty("parentId"))
+                if (typeof message.parentId === "number")
+                    object.parentId = options.longs === String ? String(message.parentId) : message.parentId;
+                else
+                    object.parentId = options.longs === String ? $util.Long.prototype.toString.call(message.parentId) : options.longs === Number ? new $util.LongBits(message.parentId.low >>> 0, message.parentId.high >>> 0).toNumber() : message.parentId;
+            if (message.orgName != null && message.hasOwnProperty("orgName"))
+                object.orgName = message.orgName;
+            if (message.orgCode != null && message.hasOwnProperty("orgCode"))
+                object.orgCode = message.orgCode;
+            if (message.orgType != null && message.hasOwnProperty("orgType"))
+                object.orgType = options.enums === String ? $root.pbOrganization.OrgType[message.orgType] === undefined ? message.orgType : $root.pbOrganization.OrgType[message.orgType] : message.orgType;
+            if (message.leaderId != null && message.hasOwnProperty("leaderId"))
+                if (typeof message.leaderId === "number")
+                    object.leaderId = options.longs === String ? String(message.leaderId) : message.leaderId;
+                else
+                    object.leaderId = options.longs === String ? $util.Long.prototype.toString.call(message.leaderId) : options.longs === Number ? new $util.LongBits(message.leaderId.low >>> 0, message.leaderId.high >>> 0).toNumber() : message.leaderId;
+            if (message.sort != null && message.hasOwnProperty("sort"))
+                object.sort = message.sort;
+            if (message.status != null && message.hasOwnProperty("status"))
+                object.status = message.status;
+            if (message.remark != null && message.hasOwnProperty("remark"))
+                object.remark = message.remark;
+            if (message.appId != null && message.hasOwnProperty("appId"))
+                if (typeof message.appId === "number")
+                    object.appId = options.longs === String ? String(message.appId) : message.appId;
+                else
+                    object.appId = options.longs === String ? $util.Long.prototype.toString.call(message.appId) : options.longs === Number ? new $util.LongBits(message.appId.low >>> 0, message.appId.high >>> 0).toNumber() : message.appId;
+            if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                object.createdAt = message.createdAt;
+            if (message.updatedAt != null && message.hasOwnProperty("updatedAt"))
+                object.updatedAt = message.updatedAt;
+            if (message.inviteCode != null && message.hasOwnProperty("inviteCode"))
+                object.inviteCode = message.inviteCode;
+            return object;
+        };
+
+        /**
+         * Converts this Organization to JSON.
+         * @function toJSON
+         * @memberof pbOrganization.Organization
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Organization.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for Organization
+         * @function getTypeUrl
+         * @memberof pbOrganization.Organization
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        Organization.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbOrganization.Organization";
+        };
+
+        return Organization;
+    })();
+
+    pbOrganization.UserOrg = (function() {
+
+        /**
+         * Properties of a UserOrg.
+         * @memberof pbOrganization
+         * @interface IUserOrg
+         * @property {number|Long|null} [id] UserOrg id
+         * @property {number|Long|null} [userId] UserOrg userId
+         * @property {number|Long|null} [orgId] UserOrg orgId
+         * @property {boolean|null} [isLeader] UserOrg isLeader
+         * @property {string|null} [position] UserOrg position
+         * @property {string|null} [createdAt] UserOrg createdAt
+         */
+
+        /**
+         * Constructs a new UserOrg.
+         * @memberof pbOrganization
+         * @classdesc Represents a UserOrg.
+         * @implements IUserOrg
+         * @constructor
+         * @param {pbOrganization.IUserOrg=} [properties] Properties to set
+         */
+        function UserOrg(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * UserOrg id.
+         * @member {number|Long} id
+         * @memberof pbOrganization.UserOrg
+         * @instance
+         */
+        UserOrg.prototype.id = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * UserOrg userId.
+         * @member {number|Long} userId
+         * @memberof pbOrganization.UserOrg
+         * @instance
+         */
+        UserOrg.prototype.userId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * UserOrg orgId.
+         * @member {number|Long} orgId
+         * @memberof pbOrganization.UserOrg
+         * @instance
+         */
+        UserOrg.prototype.orgId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * UserOrg isLeader.
+         * @member {boolean} isLeader
+         * @memberof pbOrganization.UserOrg
+         * @instance
+         */
+        UserOrg.prototype.isLeader = false;
+
+        /**
+         * UserOrg position.
+         * @member {string} position
+         * @memberof pbOrganization.UserOrg
+         * @instance
+         */
+        UserOrg.prototype.position = "";
+
+        /**
+         * UserOrg createdAt.
+         * @member {string} createdAt
+         * @memberof pbOrganization.UserOrg
+         * @instance
+         */
+        UserOrg.prototype.createdAt = "";
+
+        /**
+         * Creates a new UserOrg instance using the specified properties.
+         * @function create
+         * @memberof pbOrganization.UserOrg
+         * @static
+         * @param {pbOrganization.IUserOrg=} [properties] Properties to set
+         * @returns {pbOrganization.UserOrg} UserOrg instance
+         */
+        UserOrg.create = function create(properties) {
+            return new UserOrg(properties);
+        };
+
+        /**
+         * Encodes the specified UserOrg message. Does not implicitly {@link pbOrganization.UserOrg.verify|verify} messages.
+         * @function encode
+         * @memberof pbOrganization.UserOrg
+         * @static
+         * @param {pbOrganization.IUserOrg} message UserOrg message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        UserOrg.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id);
+            if (message.userId != null && Object.hasOwnProperty.call(message, "userId"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int64(message.userId);
+            if (message.orgId != null && Object.hasOwnProperty.call(message, "orgId"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int64(message.orgId);
+            if (message.isLeader != null && Object.hasOwnProperty.call(message, "isLeader"))
+                writer.uint32(/* id 4, wireType 0 =*/32).bool(message.isLeader);
+            if (message.position != null && Object.hasOwnProperty.call(message, "position"))
+                writer.uint32(/* id 5, wireType 2 =*/42).string(message.position);
+            if (message.createdAt != null && Object.hasOwnProperty.call(message, "createdAt"))
+                writer.uint32(/* id 6, wireType 2 =*/50).string(message.createdAt);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified UserOrg message, length delimited. Does not implicitly {@link pbOrganization.UserOrg.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbOrganization.UserOrg
+         * @static
+         * @param {pbOrganization.IUserOrg} message UserOrg message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        UserOrg.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a UserOrg message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbOrganization.UserOrg
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbOrganization.UserOrg} UserOrg
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        UserOrg.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbOrganization.UserOrg();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.id = reader.int64();
+                        break;
+                    }
+                case 2: {
+                        message.userId = reader.int64();
+                        break;
+                    }
+                case 3: {
+                        message.orgId = reader.int64();
+                        break;
+                    }
+                case 4: {
+                        message.isLeader = reader.bool();
+                        break;
+                    }
+                case 5: {
+                        message.position = reader.string();
+                        break;
+                    }
+                case 6: {
+                        message.createdAt = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a UserOrg message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbOrganization.UserOrg
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbOrganization.UserOrg} UserOrg
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        UserOrg.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a UserOrg message.
+         * @function verify
+         * @memberof pbOrganization.UserOrg
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        UserOrg.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (!$util.isInteger(message.id) && !(message.id && $util.isInteger(message.id.low) && $util.isInteger(message.id.high)))
+                    return "id: integer|Long expected";
+            if (message.userId != null && message.hasOwnProperty("userId"))
+                if (!$util.isInteger(message.userId) && !(message.userId && $util.isInteger(message.userId.low) && $util.isInteger(message.userId.high)))
+                    return "userId: integer|Long expected";
+            if (message.orgId != null && message.hasOwnProperty("orgId"))
+                if (!$util.isInteger(message.orgId) && !(message.orgId && $util.isInteger(message.orgId.low) && $util.isInteger(message.orgId.high)))
+                    return "orgId: integer|Long expected";
+            if (message.isLeader != null && message.hasOwnProperty("isLeader"))
+                if (typeof message.isLeader !== "boolean")
+                    return "isLeader: boolean expected";
+            if (message.position != null && message.hasOwnProperty("position"))
+                if (!$util.isString(message.position))
+                    return "position: string expected";
+            if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                if (!$util.isString(message.createdAt))
+                    return "createdAt: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a UserOrg message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbOrganization.UserOrg
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbOrganization.UserOrg} UserOrg
+         */
+        UserOrg.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbOrganization.UserOrg)
+                return object;
+            var message = new $root.pbOrganization.UserOrg();
+            if (object.id != null)
+                if ($util.Long)
+                    (message.id = $util.Long.fromValue(object.id)).unsigned = false;
+                else if (typeof object.id === "string")
+                    message.id = parseInt(object.id, 10);
+                else if (typeof object.id === "number")
+                    message.id = object.id;
+                else if (typeof object.id === "object")
+                    message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber();
+            if (object.userId != null)
+                if ($util.Long)
+                    (message.userId = $util.Long.fromValue(object.userId)).unsigned = false;
+                else if (typeof object.userId === "string")
+                    message.userId = parseInt(object.userId, 10);
+                else if (typeof object.userId === "number")
+                    message.userId = object.userId;
+                else if (typeof object.userId === "object")
+                    message.userId = new $util.LongBits(object.userId.low >>> 0, object.userId.high >>> 0).toNumber();
+            if (object.orgId != null)
+                if ($util.Long)
+                    (message.orgId = $util.Long.fromValue(object.orgId)).unsigned = false;
+                else if (typeof object.orgId === "string")
+                    message.orgId = parseInt(object.orgId, 10);
+                else if (typeof object.orgId === "number")
+                    message.orgId = object.orgId;
+                else if (typeof object.orgId === "object")
+                    message.orgId = new $util.LongBits(object.orgId.low >>> 0, object.orgId.high >>> 0).toNumber();
+            if (object.isLeader != null)
+                message.isLeader = Boolean(object.isLeader);
+            if (object.position != null)
+                message.position = String(object.position);
+            if (object.createdAt != null)
+                message.createdAt = String(object.createdAt);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a UserOrg message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbOrganization.UserOrg
+         * @static
+         * @param {pbOrganization.UserOrg} message UserOrg
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        UserOrg.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.id = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.userId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.userId = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.orgId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.orgId = options.longs === String ? "0" : 0;
+                object.isLeader = false;
+                object.position = "";
+                object.createdAt = "";
+            }
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (typeof message.id === "number")
+                    object.id = options.longs === String ? String(message.id) : message.id;
+                else
+                    object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id;
+            if (message.userId != null && message.hasOwnProperty("userId"))
+                if (typeof message.userId === "number")
+                    object.userId = options.longs === String ? String(message.userId) : message.userId;
+                else
+                    object.userId = options.longs === String ? $util.Long.prototype.toString.call(message.userId) : options.longs === Number ? new $util.LongBits(message.userId.low >>> 0, message.userId.high >>> 0).toNumber() : message.userId;
+            if (message.orgId != null && message.hasOwnProperty("orgId"))
+                if (typeof message.orgId === "number")
+                    object.orgId = options.longs === String ? String(message.orgId) : message.orgId;
+                else
+                    object.orgId = options.longs === String ? $util.Long.prototype.toString.call(message.orgId) : options.longs === Number ? new $util.LongBits(message.orgId.low >>> 0, message.orgId.high >>> 0).toNumber() : message.orgId;
+            if (message.isLeader != null && message.hasOwnProperty("isLeader"))
+                object.isLeader = message.isLeader;
+            if (message.position != null && message.hasOwnProperty("position"))
+                object.position = message.position;
+            if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                object.createdAt = message.createdAt;
+            return object;
+        };
+
+        /**
+         * Converts this UserOrg to JSON.
+         * @function toJSON
+         * @memberof pbOrganization.UserOrg
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        UserOrg.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for UserOrg
+         * @function getTypeUrl
+         * @memberof pbOrganization.UserOrg
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        UserOrg.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbOrganization.UserOrg";
+        };
+
+        return UserOrg;
+    })();
+
+    pbOrganization.FindOrganizationArgs = (function() {
+
+        /**
+         * Properties of a FindOrganizationArgs.
+         * @memberof pbOrganization
+         * @interface IFindOrganizationArgs
+         * @property {string|null} [orgName] FindOrganizationArgs orgName
+         * @property {string|null} [orgCode] FindOrganizationArgs orgCode
+         * @property {pbOrganization.OrgType|null} [orgType] FindOrganizationArgs orgType
+         * @property {number|null} [status] FindOrganizationArgs status
+         * @property {string|null} [appId] FindOrganizationArgs appId
+         */
+
+        /**
+         * Constructs a new FindOrganizationArgs.
+         * @memberof pbOrganization
+         * @classdesc Represents a FindOrganizationArgs.
+         * @implements IFindOrganizationArgs
+         * @constructor
+         * @param {pbOrganization.IFindOrganizationArgs=} [properties] Properties to set
+         */
+        function FindOrganizationArgs(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * FindOrganizationArgs orgName.
+         * @member {string} orgName
+         * @memberof pbOrganization.FindOrganizationArgs
+         * @instance
+         */
+        FindOrganizationArgs.prototype.orgName = "";
+
+        /**
+         * FindOrganizationArgs orgCode.
+         * @member {string} orgCode
+         * @memberof pbOrganization.FindOrganizationArgs
+         * @instance
+         */
+        FindOrganizationArgs.prototype.orgCode = "";
+
+        /**
+         * FindOrganizationArgs orgType.
+         * @member {pbOrganization.OrgType} orgType
+         * @memberof pbOrganization.FindOrganizationArgs
+         * @instance
+         */
+        FindOrganizationArgs.prototype.orgType = 0;
+
+        /**
+         * FindOrganizationArgs status.
+         * @member {number} status
+         * @memberof pbOrganization.FindOrganizationArgs
+         * @instance
+         */
+        FindOrganizationArgs.prototype.status = 0;
+
+        /**
+         * FindOrganizationArgs appId.
+         * @member {string} appId
+         * @memberof pbOrganization.FindOrganizationArgs
+         * @instance
+         */
+        FindOrganizationArgs.prototype.appId = "";
+
+        /**
+         * Creates a new FindOrganizationArgs instance using the specified properties.
+         * @function create
+         * @memberof pbOrganization.FindOrganizationArgs
+         * @static
+         * @param {pbOrganization.IFindOrganizationArgs=} [properties] Properties to set
+         * @returns {pbOrganization.FindOrganizationArgs} FindOrganizationArgs instance
+         */
+        FindOrganizationArgs.create = function create(properties) {
+            return new FindOrganizationArgs(properties);
+        };
+
+        /**
+         * Encodes the specified FindOrganizationArgs message. Does not implicitly {@link pbOrganization.FindOrganizationArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbOrganization.FindOrganizationArgs
+         * @static
+         * @param {pbOrganization.IFindOrganizationArgs} message FindOrganizationArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindOrganizationArgs.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.orgName != null && Object.hasOwnProperty.call(message, "orgName"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.orgName);
+            if (message.orgCode != null && Object.hasOwnProperty.call(message, "orgCode"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.orgCode);
+            if (message.orgType != null && Object.hasOwnProperty.call(message, "orgType"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int32(message.orgType);
+            if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+                writer.uint32(/* id 4, wireType 0 =*/32).int32(message.status);
+            if (message.appId != null && Object.hasOwnProperty.call(message, "appId"))
+                writer.uint32(/* id 5, wireType 2 =*/42).string(message.appId);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified FindOrganizationArgs message, length delimited. Does not implicitly {@link pbOrganization.FindOrganizationArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbOrganization.FindOrganizationArgs
+         * @static
+         * @param {pbOrganization.IFindOrganizationArgs} message FindOrganizationArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindOrganizationArgs.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a FindOrganizationArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbOrganization.FindOrganizationArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbOrganization.FindOrganizationArgs} FindOrganizationArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindOrganizationArgs.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbOrganization.FindOrganizationArgs();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.orgName = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message.orgCode = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.orgType = reader.int32();
+                        break;
+                    }
+                case 4: {
+                        message.status = reader.int32();
+                        break;
+                    }
+                case 5: {
+                        message.appId = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a FindOrganizationArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbOrganization.FindOrganizationArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbOrganization.FindOrganizationArgs} FindOrganizationArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindOrganizationArgs.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a FindOrganizationArgs message.
+         * @function verify
+         * @memberof pbOrganization.FindOrganizationArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        FindOrganizationArgs.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.orgName != null && message.hasOwnProperty("orgName"))
+                if (!$util.isString(message.orgName))
+                    return "orgName: string expected";
+            if (message.orgCode != null && message.hasOwnProperty("orgCode"))
+                if (!$util.isString(message.orgCode))
+                    return "orgCode: string expected";
+            if (message.orgType != null && message.hasOwnProperty("orgType"))
+                switch (message.orgType) {
+                default:
+                    return "orgType: enum value expected";
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                    break;
+                }
+            if (message.status != null && message.hasOwnProperty("status"))
+                if (!$util.isInteger(message.status))
+                    return "status: integer expected";
+            if (message.appId != null && message.hasOwnProperty("appId"))
+                if (!$util.isString(message.appId))
+                    return "appId: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a FindOrganizationArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbOrganization.FindOrganizationArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbOrganization.FindOrganizationArgs} FindOrganizationArgs
+         */
+        FindOrganizationArgs.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbOrganization.FindOrganizationArgs)
+                return object;
+            var message = new $root.pbOrganization.FindOrganizationArgs();
+            if (object.orgName != null)
+                message.orgName = String(object.orgName);
+            if (object.orgCode != null)
+                message.orgCode = String(object.orgCode);
+            switch (object.orgType) {
+            default:
+                if (typeof object.orgType === "number") {
+                    message.orgType = object.orgType;
+                    break;
+                }
+                break;
+            case "OrgTypeNone":
+            case 0:
+                message.orgType = 0;
+                break;
+            case "OrgTypeCompany":
+            case 1:
+                message.orgType = 1;
+                break;
+            case "OrgTypeDepartment":
+            case 2:
+                message.orgType = 2;
+                break;
+            case "OrgTypeGroup":
+            case 3:
+                message.orgType = 3;
+                break;
+            }
+            if (object.status != null)
+                message.status = object.status | 0;
+            if (object.appId != null)
+                message.appId = String(object.appId);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a FindOrganizationArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbOrganization.FindOrganizationArgs
+         * @static
+         * @param {pbOrganization.FindOrganizationArgs} message FindOrganizationArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FindOrganizationArgs.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.orgName = "";
+                object.orgCode = "";
+                object.orgType = options.enums === String ? "OrgTypeNone" : 0;
+                object.status = 0;
+                object.appId = "";
+            }
+            if (message.orgName != null && message.hasOwnProperty("orgName"))
+                object.orgName = message.orgName;
+            if (message.orgCode != null && message.hasOwnProperty("orgCode"))
+                object.orgCode = message.orgCode;
+            if (message.orgType != null && message.hasOwnProperty("orgType"))
+                object.orgType = options.enums === String ? $root.pbOrganization.OrgType[message.orgType] === undefined ? message.orgType : $root.pbOrganization.OrgType[message.orgType] : message.orgType;
+            if (message.status != null && message.hasOwnProperty("status"))
+                object.status = message.status;
+            if (message.appId != null && message.hasOwnProperty("appId"))
+                object.appId = message.appId;
+            return object;
+        };
+
+        /**
+         * Converts this FindOrganizationArgs to JSON.
+         * @function toJSON
+         * @memberof pbOrganization.FindOrganizationArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        FindOrganizationArgs.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for FindOrganizationArgs
+         * @function getTypeUrl
+         * @memberof pbOrganization.FindOrganizationArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        FindOrganizationArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbOrganization.FindOrganizationArgs";
+        };
+
+        return FindOrganizationArgs;
+    })();
+
+    pbOrganization.PageInfo = (function() {
+
+        /**
+         * Properties of a PageInfo.
+         * @memberof pbOrganization
+         * @interface IPageInfo
+         * @property {number|null} [page] PageInfo page
+         * @property {number|null} [pageSize] PageInfo pageSize
+         */
+
+        /**
+         * Constructs a new PageInfo.
+         * @memberof pbOrganization
+         * @classdesc Represents a PageInfo.
+         * @implements IPageInfo
+         * @constructor
+         * @param {pbOrganization.IPageInfo=} [properties] Properties to set
+         */
+        function PageInfo(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * PageInfo page.
+         * @member {number} page
+         * @memberof pbOrganization.PageInfo
+         * @instance
+         */
+        PageInfo.prototype.page = 0;
+
+        /**
+         * PageInfo pageSize.
+         * @member {number} pageSize
+         * @memberof pbOrganization.PageInfo
+         * @instance
+         */
+        PageInfo.prototype.pageSize = 0;
+
+        /**
+         * Creates a new PageInfo instance using the specified properties.
+         * @function create
+         * @memberof pbOrganization.PageInfo
+         * @static
+         * @param {pbOrganization.IPageInfo=} [properties] Properties to set
+         * @returns {pbOrganization.PageInfo} PageInfo instance
+         */
+        PageInfo.create = function create(properties) {
+            return new PageInfo(properties);
+        };
+
+        /**
+         * Encodes the specified PageInfo message. Does not implicitly {@link pbOrganization.PageInfo.verify|verify} messages.
+         * @function encode
+         * @memberof pbOrganization.PageInfo
+         * @static
+         * @param {pbOrganization.IPageInfo} message PageInfo message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        PageInfo.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.page != null && Object.hasOwnProperty.call(message, "page"))
+                writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.page);
+            if (message.pageSize != null && Object.hasOwnProperty.call(message, "pageSize"))
+                writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.pageSize);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified PageInfo message, length delimited. Does not implicitly {@link pbOrganization.PageInfo.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbOrganization.PageInfo
+         * @static
+         * @param {pbOrganization.IPageInfo} message PageInfo message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        PageInfo.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a PageInfo message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbOrganization.PageInfo
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbOrganization.PageInfo} PageInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        PageInfo.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbOrganization.PageInfo();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.page = reader.uint32();
+                        break;
+                    }
+                case 2: {
+                        message.pageSize = reader.uint32();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a PageInfo message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbOrganization.PageInfo
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbOrganization.PageInfo} PageInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        PageInfo.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a PageInfo message.
+         * @function verify
+         * @memberof pbOrganization.PageInfo
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        PageInfo.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.page != null && message.hasOwnProperty("page"))
+                if (!$util.isInteger(message.page))
+                    return "page: integer expected";
+            if (message.pageSize != null && message.hasOwnProperty("pageSize"))
+                if (!$util.isInteger(message.pageSize))
+                    return "pageSize: integer expected";
+            return null;
+        };
+
+        /**
+         * Creates a PageInfo message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbOrganization.PageInfo
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbOrganization.PageInfo} PageInfo
+         */
+        PageInfo.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbOrganization.PageInfo)
+                return object;
+            var message = new $root.pbOrganization.PageInfo();
+            if (object.page != null)
+                message.page = object.page >>> 0;
+            if (object.pageSize != null)
+                message.pageSize = object.pageSize >>> 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a PageInfo message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbOrganization.PageInfo
+         * @static
+         * @param {pbOrganization.PageInfo} message PageInfo
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        PageInfo.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.page = 0;
+                object.pageSize = 0;
+            }
+            if (message.page != null && message.hasOwnProperty("page"))
+                object.page = message.page;
+            if (message.pageSize != null && message.hasOwnProperty("pageSize"))
+                object.pageSize = message.pageSize;
+            return object;
+        };
+
+        /**
+         * Converts this PageInfo to JSON.
+         * @function toJSON
+         * @memberof pbOrganization.PageInfo
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        PageInfo.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for PageInfo
+         * @function getTypeUrl
+         * @memberof pbOrganization.PageInfo
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        PageInfo.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbOrganization.PageInfo";
+        };
+
+        return PageInfo;
+    })();
+
+    pbOrganization.FindOrganizationReply = (function() {
+
+        /**
+         * Properties of a FindOrganizationReply.
+         * @memberof pbOrganization
+         * @interface IFindOrganizationReply
+         * @property {pbcommon.EnumCode|null} [code] FindOrganizationReply code
+         * @property {string|null} [msg] FindOrganizationReply msg
+         * @property {Array.<pbOrganization.IOrganization>|null} [list] FindOrganizationReply list
+         * @property {number|Long|null} [total] FindOrganizationReply total
+         */
+
+        /**
+         * Constructs a new FindOrganizationReply.
+         * @memberof pbOrganization
+         * @classdesc Represents a FindOrganizationReply.
+         * @implements IFindOrganizationReply
+         * @constructor
+         * @param {pbOrganization.IFindOrganizationReply=} [properties] Properties to set
+         */
+        function FindOrganizationReply(properties) {
+            this.list = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * FindOrganizationReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbOrganization.FindOrganizationReply
+         * @instance
+         */
+        FindOrganizationReply.prototype.code = 0;
+
+        /**
+         * FindOrganizationReply msg.
+         * @member {string} msg
+         * @memberof pbOrganization.FindOrganizationReply
+         * @instance
+         */
+        FindOrganizationReply.prototype.msg = "";
+
+        /**
+         * FindOrganizationReply list.
+         * @member {Array.<pbOrganization.IOrganization>} list
+         * @memberof pbOrganization.FindOrganizationReply
+         * @instance
+         */
+        FindOrganizationReply.prototype.list = $util.emptyArray;
+
+        /**
+         * FindOrganizationReply total.
+         * @member {number|Long} total
+         * @memberof pbOrganization.FindOrganizationReply
+         * @instance
+         */
+        FindOrganizationReply.prototype.total = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * Creates a new FindOrganizationReply instance using the specified properties.
+         * @function create
+         * @memberof pbOrganization.FindOrganizationReply
+         * @static
+         * @param {pbOrganization.IFindOrganizationReply=} [properties] Properties to set
+         * @returns {pbOrganization.FindOrganizationReply} FindOrganizationReply instance
+         */
+        FindOrganizationReply.create = function create(properties) {
+            return new FindOrganizationReply(properties);
+        };
+
+        /**
+         * Encodes the specified FindOrganizationReply message. Does not implicitly {@link pbOrganization.FindOrganizationReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbOrganization.FindOrganizationReply
+         * @static
+         * @param {pbOrganization.IFindOrganizationReply} message FindOrganizationReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindOrganizationReply.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.list != null && message.list.length)
+                for (var i = 0; i < message.list.length; ++i)
+                    $root.pbOrganization.Organization.encode(message.list[i], writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            if (message.total != null && Object.hasOwnProperty.call(message, "total"))
+                writer.uint32(/* id 4, wireType 0 =*/32).int64(message.total);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified FindOrganizationReply message, length delimited. Does not implicitly {@link pbOrganization.FindOrganizationReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbOrganization.FindOrganizationReply
+         * @static
+         * @param {pbOrganization.IFindOrganizationReply} message FindOrganizationReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FindOrganizationReply.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a FindOrganizationReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbOrganization.FindOrganizationReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbOrganization.FindOrganizationReply} FindOrganizationReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindOrganizationReply.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbOrganization.FindOrganizationReply();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.code = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        if (!(message.list && message.list.length))
+                            message.list = [];
+                        message.list.push($root.pbOrganization.Organization.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 4: {
+                        message.total = reader.int64();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a FindOrganizationReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbOrganization.FindOrganizationReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbOrganization.FindOrganizationReply} FindOrganizationReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FindOrganizationReply.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a FindOrganizationReply message.
+         * @function verify
+         * @memberof pbOrganization.FindOrganizationReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        FindOrganizationReply.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.code != null && message.hasOwnProperty("code"))
+                switch (message.code) {
+                default:
+                    return "code: enum value expected";
+                case 0:
+                case 200:
+                case 403:
+                case 500:
+                case 501:
+                case 502:
+                case 503:
+                case 504:
+                case 505:
+                case 511:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
+                case 2002:
+                case 2003:
+                case 2004:
+                case 2005:
+                case 2006:
+                case 2007:
+                case 2008:
+                case 2009:
+                case 2010:
+                case 2011:
+                case 2012:
+                case 2013:
+                case 2014:
+                case 2015:
+                case 3001:
+                case 3002:
+                case 3003:
+                case 5001:
+                case 5002:
+                case 10001:
+                case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
+                    break;
+                }
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                if (!$util.isString(message.msg))
+                    return "msg: string expected";
+            if (message.list != null && message.hasOwnProperty("list")) {
+                if (!Array.isArray(message.list))
+                    return "list: array expected";
+                for (var i = 0; i < message.list.length; ++i) {
+                    var error = $root.pbOrganization.Organization.verify(message.list[i]);
+                    if (error)
+                        return "list." + error;
+                }
+            }
+            if (message.total != null && message.hasOwnProperty("total"))
+                if (!$util.isInteger(message.total) && !(message.total && $util.isInteger(message.total.low) && $util.isInteger(message.total.high)))
+                    return "total: integer|Long expected";
+            return null;
+        };
+
+        /**
+         * Creates a FindOrganizationReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbOrganization.FindOrganizationReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbOrganization.FindOrganizationReply} FindOrganizationReply
+         */
+        FindOrganizationReply.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbOrganization.FindOrganizationReply)
+                return object;
+            var message = new $root.pbOrganization.FindOrganizationReply();
+            switch (object.code) {
+            default:
+                if (typeof object.code === "number") {
+                    message.code = object.code;
+                    break;
+                }
+                break;
+            case "None":
+            case 0:
+                message.code = 0;
+                break;
+            case "Success":
+            case 200:
+                message.code = 200;
+                break;
+            case "Forbidden":
+            case 403:
+                message.code = 403;
+                break;
+            case "Fail":
+            case 500:
+                message.code = 500;
+                break;
+            case "Unknown":
+            case 501:
+                message.code = 501;
+                break;
+            case "Internal":
+            case 502:
+                message.code = 502;
+                break;
+            case "Invalid":
+            case 503:
+                message.code = 503;
+                break;
+            case "InvalidParam":
+            case 504:
+                message.code = 504;
+                break;
+            case "ParamError":
+            case 505:
+                message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
+                break;
+            case "FindError":
+            case 1001:
+                message.code = 1001;
+                break;
+            case "CreateError":
+            case 1002:
+                message.code = 1002;
+                break;
+            case "DeleteError":
+            case 1003:
+                message.code = 1003;
+                break;
+            case "UpdateError":
+            case 1004:
+                message.code = 1004;
+                break;
+            case "InvalidToken":
+            case 2002:
+                message.code = 2002;
+                break;
+            case "InvalidSign":
+            case 2003:
+                message.code = 2003;
+                break;
+            case "NotLogin":
+            case 2004:
+                message.code = 2004;
+                break;
+            case "LoginTimeout":
+            case 2005:
+                message.code = 2005;
+                break;
+            case "LoginError":
+            case 2006:
+                message.code = 2006;
+                break;
+            case "LoginForbidden":
+            case 2007:
+                message.code = 2007;
+                break;
+            case "LoginExpired":
+            case 2008:
+                message.code = 2008;
+                break;
+            case "LoginInvalid":
+            case 2009:
+                message.code = 2009;
+                break;
+            case "LoginInvalidPassword":
+            case 2010:
+                message.code = 2010;
+                break;
+            case "LoginInvalidUsername":
+            case 2011:
+                message.code = 2011;
+                break;
+            case "LoginInvalidEmail":
+            case 2012:
+                message.code = 2012;
+                break;
+            case "LoginInvalidPhone":
+            case 2013:
+                message.code = 2013;
+                break;
+            case "LoginInvalidUsernameOrEmail":
+            case 2014:
+                message.code = 2014;
+                break;
+            case "LoginSocketRepeat":
+            case 2015:
+                message.code = 2015;
+                break;
+            case "RoleIsNotExist":
+            case 3001:
+                message.code = 3001;
+                break;
+            case "UserIsExist":
+            case 3002:
+                message.code = 3002;
+                break;
+            case "UserIsBan":
+            case 3003:
+                message.code = 3003;
+                break;
+            case "TalkIsBan":
+            case 5001:
+                message.code = 5001;
+                break;
+            case "EnterRoomErr":
+            case 5002:
+                message.code = 5002;
+                break;
+            case "HalaChatNeedBuy":
+            case 10001:
+                message.code = 10001;
+                break;
+            case "HalaPriceOutRange":
+            case 10002:
+                message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
+                break;
+            }
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.list) {
+                if (!Array.isArray(object.list))
+                    throw TypeError(".pbOrganization.FindOrganizationReply.list: array expected");
+                message.list = [];
+                for (var i = 0; i < object.list.length; ++i) {
+                    if (typeof object.list[i] !== "object")
+                        throw TypeError(".pbOrganization.FindOrganizationReply.list: object expected");
+                    message.list[i] = $root.pbOrganization.Organization.fromObject(object.list[i]);
+                }
+            }
+            if (object.total != null)
+                if ($util.Long)
+                    (message.total = $util.Long.fromValue(object.total)).unsigned = false;
+                else if (typeof object.total === "string")
+                    message.total = parseInt(object.total, 10);
+                else if (typeof object.total === "number")
+                    message.total = object.total;
+                else if (typeof object.total === "object")
+                    message.total = new $util.LongBits(object.total.low >>> 0, object.total.high >>> 0).toNumber();
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a FindOrganizationReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbOrganization.FindOrganizationReply
+         * @static
+         * @param {pbOrganization.FindOrganizationReply} message FindOrganizationReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FindOrganizationReply.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.list = [];
+            if (options.defaults) {
+                object.code = options.enums === String ? "None" : 0;
+                object.msg = "";
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.total = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.total = options.longs === String ? "0" : 0;
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.list && message.list.length) {
+                object.list = [];
+                for (var j = 0; j < message.list.length; ++j)
+                    object.list[j] = $root.pbOrganization.Organization.toObject(message.list[j], options);
+            }
+            if (message.total != null && message.hasOwnProperty("total"))
+                if (typeof message.total === "number")
+                    object.total = options.longs === String ? String(message.total) : message.total;
+                else
+                    object.total = options.longs === String ? $util.Long.prototype.toString.call(message.total) : options.longs === Number ? new $util.LongBits(message.total.low >>> 0, message.total.high >>> 0).toNumber() : message.total;
+            return object;
+        };
+
+        /**
+         * Converts this FindOrganizationReply to JSON.
+         * @function toJSON
+         * @memberof pbOrganization.FindOrganizationReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        FindOrganizationReply.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for FindOrganizationReply
+         * @function getTypeUrl
+         * @memberof pbOrganization.FindOrganizationReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        FindOrganizationReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbOrganization.FindOrganizationReply";
+        };
+
+        return FindOrganizationReply;
+    })();
+
+    pbOrganization.GetOrgTreeArgs = (function() {
+
+        /**
+         * Properties of a GetOrgTreeArgs.
+         * @memberof pbOrganization
+         * @interface IGetOrgTreeArgs
+         * @property {number|Long|null} [parentId] GetOrgTreeArgs parentId
+         * @property {number|null} [status] GetOrgTreeArgs status
+         * @property {string|null} [appId] GetOrgTreeArgs appId
+         */
+
+        /**
+         * Constructs a new GetOrgTreeArgs.
+         * @memberof pbOrganization
+         * @classdesc Represents a GetOrgTreeArgs.
+         * @implements IGetOrgTreeArgs
+         * @constructor
+         * @param {pbOrganization.IGetOrgTreeArgs=} [properties] Properties to set
+         */
+        function GetOrgTreeArgs(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GetOrgTreeArgs parentId.
+         * @member {number|Long} parentId
+         * @memberof pbOrganization.GetOrgTreeArgs
+         * @instance
+         */
+        GetOrgTreeArgs.prototype.parentId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * GetOrgTreeArgs status.
+         * @member {number} status
+         * @memberof pbOrganization.GetOrgTreeArgs
+         * @instance
+         */
+        GetOrgTreeArgs.prototype.status = 0;
+
+        /**
+         * GetOrgTreeArgs appId.
+         * @member {string} appId
+         * @memberof pbOrganization.GetOrgTreeArgs
+         * @instance
+         */
+        GetOrgTreeArgs.prototype.appId = "";
+
+        /**
+         * Creates a new GetOrgTreeArgs instance using the specified properties.
+         * @function create
+         * @memberof pbOrganization.GetOrgTreeArgs
+         * @static
+         * @param {pbOrganization.IGetOrgTreeArgs=} [properties] Properties to set
+         * @returns {pbOrganization.GetOrgTreeArgs} GetOrgTreeArgs instance
+         */
+        GetOrgTreeArgs.create = function create(properties) {
+            return new GetOrgTreeArgs(properties);
+        };
+
+        /**
+         * Encodes the specified GetOrgTreeArgs message. Does not implicitly {@link pbOrganization.GetOrgTreeArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbOrganization.GetOrgTreeArgs
+         * @static
+         * @param {pbOrganization.IGetOrgTreeArgs} message GetOrgTreeArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetOrgTreeArgs.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.parentId != null && Object.hasOwnProperty.call(message, "parentId"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int64(message.parentId);
+            if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.status);
+            if (message.appId != null && Object.hasOwnProperty.call(message, "appId"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.appId);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GetOrgTreeArgs message, length delimited. Does not implicitly {@link pbOrganization.GetOrgTreeArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbOrganization.GetOrgTreeArgs
+         * @static
+         * @param {pbOrganization.IGetOrgTreeArgs} message GetOrgTreeArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetOrgTreeArgs.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GetOrgTreeArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbOrganization.GetOrgTreeArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbOrganization.GetOrgTreeArgs} GetOrgTreeArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetOrgTreeArgs.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbOrganization.GetOrgTreeArgs();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.parentId = reader.int64();
+                        break;
+                    }
+                case 2: {
+                        message.status = reader.int32();
+                        break;
+                    }
+                case 3: {
+                        message.appId = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GetOrgTreeArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbOrganization.GetOrgTreeArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbOrganization.GetOrgTreeArgs} GetOrgTreeArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetOrgTreeArgs.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GetOrgTreeArgs message.
+         * @function verify
+         * @memberof pbOrganization.GetOrgTreeArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GetOrgTreeArgs.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.parentId != null && message.hasOwnProperty("parentId"))
+                if (!$util.isInteger(message.parentId) && !(message.parentId && $util.isInteger(message.parentId.low) && $util.isInteger(message.parentId.high)))
+                    return "parentId: integer|Long expected";
+            if (message.status != null && message.hasOwnProperty("status"))
+                if (!$util.isInteger(message.status))
+                    return "status: integer expected";
+            if (message.appId != null && message.hasOwnProperty("appId"))
+                if (!$util.isString(message.appId))
+                    return "appId: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a GetOrgTreeArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbOrganization.GetOrgTreeArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbOrganization.GetOrgTreeArgs} GetOrgTreeArgs
+         */
+        GetOrgTreeArgs.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbOrganization.GetOrgTreeArgs)
+                return object;
+            var message = new $root.pbOrganization.GetOrgTreeArgs();
+            if (object.parentId != null)
+                if ($util.Long)
+                    (message.parentId = $util.Long.fromValue(object.parentId)).unsigned = false;
+                else if (typeof object.parentId === "string")
+                    message.parentId = parseInt(object.parentId, 10);
+                else if (typeof object.parentId === "number")
+                    message.parentId = object.parentId;
+                else if (typeof object.parentId === "object")
+                    message.parentId = new $util.LongBits(object.parentId.low >>> 0, object.parentId.high >>> 0).toNumber();
+            if (object.status != null)
+                message.status = object.status | 0;
+            if (object.appId != null)
+                message.appId = String(object.appId);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GetOrgTreeArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbOrganization.GetOrgTreeArgs
+         * @static
+         * @param {pbOrganization.GetOrgTreeArgs} message GetOrgTreeArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GetOrgTreeArgs.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.parentId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.parentId = options.longs === String ? "0" : 0;
+                object.status = 0;
+                object.appId = "";
+            }
+            if (message.parentId != null && message.hasOwnProperty("parentId"))
+                if (typeof message.parentId === "number")
+                    object.parentId = options.longs === String ? String(message.parentId) : message.parentId;
+                else
+                    object.parentId = options.longs === String ? $util.Long.prototype.toString.call(message.parentId) : options.longs === Number ? new $util.LongBits(message.parentId.low >>> 0, message.parentId.high >>> 0).toNumber() : message.parentId;
+            if (message.status != null && message.hasOwnProperty("status"))
+                object.status = message.status;
+            if (message.appId != null && message.hasOwnProperty("appId"))
+                object.appId = message.appId;
+            return object;
+        };
+
+        /**
+         * Converts this GetOrgTreeArgs to JSON.
+         * @function toJSON
+         * @memberof pbOrganization.GetOrgTreeArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GetOrgTreeArgs.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GetOrgTreeArgs
+         * @function getTypeUrl
+         * @memberof pbOrganization.GetOrgTreeArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GetOrgTreeArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbOrganization.GetOrgTreeArgs";
+        };
+
+        return GetOrgTreeArgs;
+    })();
+
+    pbOrganization.GetOrgTreeReply = (function() {
+
+        /**
+         * Properties of a GetOrgTreeReply.
+         * @memberof pbOrganization
+         * @interface IGetOrgTreeReply
+         * @property {pbcommon.EnumCode|null} [code] GetOrgTreeReply code
+         * @property {string|null} [msg] GetOrgTreeReply msg
+         * @property {Array.<pbOrganization.IOrganizationTree>|null} [trees] GetOrgTreeReply trees
+         */
+
+        /**
+         * Constructs a new GetOrgTreeReply.
+         * @memberof pbOrganization
+         * @classdesc Represents a GetOrgTreeReply.
+         * @implements IGetOrgTreeReply
+         * @constructor
+         * @param {pbOrganization.IGetOrgTreeReply=} [properties] Properties to set
+         */
+        function GetOrgTreeReply(properties) {
+            this.trees = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GetOrgTreeReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbOrganization.GetOrgTreeReply
+         * @instance
+         */
+        GetOrgTreeReply.prototype.code = 0;
+
+        /**
+         * GetOrgTreeReply msg.
+         * @member {string} msg
+         * @memberof pbOrganization.GetOrgTreeReply
+         * @instance
+         */
+        GetOrgTreeReply.prototype.msg = "";
+
+        /**
+         * GetOrgTreeReply trees.
+         * @member {Array.<pbOrganization.IOrganizationTree>} trees
+         * @memberof pbOrganization.GetOrgTreeReply
+         * @instance
+         */
+        GetOrgTreeReply.prototype.trees = $util.emptyArray;
+
+        /**
+         * Creates a new GetOrgTreeReply instance using the specified properties.
+         * @function create
+         * @memberof pbOrganization.GetOrgTreeReply
+         * @static
+         * @param {pbOrganization.IGetOrgTreeReply=} [properties] Properties to set
+         * @returns {pbOrganization.GetOrgTreeReply} GetOrgTreeReply instance
+         */
+        GetOrgTreeReply.create = function create(properties) {
+            return new GetOrgTreeReply(properties);
+        };
+
+        /**
+         * Encodes the specified GetOrgTreeReply message. Does not implicitly {@link pbOrganization.GetOrgTreeReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbOrganization.GetOrgTreeReply
+         * @static
+         * @param {pbOrganization.IGetOrgTreeReply} message GetOrgTreeReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetOrgTreeReply.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.trees != null && message.trees.length)
+                for (var i = 0; i < message.trees.length; ++i)
+                    $root.pbOrganization.OrganizationTree.encode(message.trees[i], writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GetOrgTreeReply message, length delimited. Does not implicitly {@link pbOrganization.GetOrgTreeReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbOrganization.GetOrgTreeReply
+         * @static
+         * @param {pbOrganization.IGetOrgTreeReply} message GetOrgTreeReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetOrgTreeReply.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GetOrgTreeReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbOrganization.GetOrgTreeReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbOrganization.GetOrgTreeReply} GetOrgTreeReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetOrgTreeReply.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbOrganization.GetOrgTreeReply();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.code = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        if (!(message.trees && message.trees.length))
+                            message.trees = [];
+                        message.trees.push($root.pbOrganization.OrganizationTree.decode(reader, reader.uint32()));
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GetOrgTreeReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbOrganization.GetOrgTreeReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbOrganization.GetOrgTreeReply} GetOrgTreeReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetOrgTreeReply.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GetOrgTreeReply message.
+         * @function verify
+         * @memberof pbOrganization.GetOrgTreeReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GetOrgTreeReply.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.code != null && message.hasOwnProperty("code"))
+                switch (message.code) {
+                default:
+                    return "code: enum value expected";
+                case 0:
+                case 200:
+                case 403:
+                case 500:
+                case 501:
+                case 502:
+                case 503:
+                case 504:
+                case 505:
+                case 511:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
+                case 2002:
+                case 2003:
+                case 2004:
+                case 2005:
+                case 2006:
+                case 2007:
+                case 2008:
+                case 2009:
+                case 2010:
+                case 2011:
+                case 2012:
+                case 2013:
+                case 2014:
+                case 2015:
+                case 3001:
+                case 3002:
+                case 3003:
+                case 5001:
+                case 5002:
+                case 10001:
+                case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
+                    break;
+                }
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                if (!$util.isString(message.msg))
+                    return "msg: string expected";
+            if (message.trees != null && message.hasOwnProperty("trees")) {
+                if (!Array.isArray(message.trees))
+                    return "trees: array expected";
+                for (var i = 0; i < message.trees.length; ++i) {
+                    var error = $root.pbOrganization.OrganizationTree.verify(message.trees[i]);
+                    if (error)
+                        return "trees." + error;
+                }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a GetOrgTreeReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbOrganization.GetOrgTreeReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbOrganization.GetOrgTreeReply} GetOrgTreeReply
+         */
+        GetOrgTreeReply.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbOrganization.GetOrgTreeReply)
+                return object;
+            var message = new $root.pbOrganization.GetOrgTreeReply();
+            switch (object.code) {
+            default:
+                if (typeof object.code === "number") {
+                    message.code = object.code;
+                    break;
+                }
+                break;
+            case "None":
+            case 0:
+                message.code = 0;
+                break;
+            case "Success":
+            case 200:
+                message.code = 200;
+                break;
+            case "Forbidden":
+            case 403:
+                message.code = 403;
+                break;
+            case "Fail":
+            case 500:
+                message.code = 500;
+                break;
+            case "Unknown":
+            case 501:
+                message.code = 501;
+                break;
+            case "Internal":
+            case 502:
+                message.code = 502;
+                break;
+            case "Invalid":
+            case 503:
+                message.code = 503;
+                break;
+            case "InvalidParam":
+            case 504:
+                message.code = 504;
+                break;
+            case "ParamError":
+            case 505:
+                message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
+                break;
+            case "FindError":
+            case 1001:
+                message.code = 1001;
+                break;
+            case "CreateError":
+            case 1002:
+                message.code = 1002;
+                break;
+            case "DeleteError":
+            case 1003:
+                message.code = 1003;
+                break;
+            case "UpdateError":
+            case 1004:
+                message.code = 1004;
+                break;
+            case "InvalidToken":
+            case 2002:
+                message.code = 2002;
+                break;
+            case "InvalidSign":
+            case 2003:
+                message.code = 2003;
+                break;
+            case "NotLogin":
+            case 2004:
+                message.code = 2004;
+                break;
+            case "LoginTimeout":
+            case 2005:
+                message.code = 2005;
+                break;
+            case "LoginError":
+            case 2006:
+                message.code = 2006;
+                break;
+            case "LoginForbidden":
+            case 2007:
+                message.code = 2007;
+                break;
+            case "LoginExpired":
+            case 2008:
+                message.code = 2008;
+                break;
+            case "LoginInvalid":
+            case 2009:
+                message.code = 2009;
+                break;
+            case "LoginInvalidPassword":
+            case 2010:
+                message.code = 2010;
+                break;
+            case "LoginInvalidUsername":
+            case 2011:
+                message.code = 2011;
+                break;
+            case "LoginInvalidEmail":
+            case 2012:
+                message.code = 2012;
+                break;
+            case "LoginInvalidPhone":
+            case 2013:
+                message.code = 2013;
+                break;
+            case "LoginInvalidUsernameOrEmail":
+            case 2014:
+                message.code = 2014;
+                break;
+            case "LoginSocketRepeat":
+            case 2015:
+                message.code = 2015;
+                break;
+            case "RoleIsNotExist":
+            case 3001:
+                message.code = 3001;
+                break;
+            case "UserIsExist":
+            case 3002:
+                message.code = 3002;
+                break;
+            case "UserIsBan":
+            case 3003:
+                message.code = 3003;
+                break;
+            case "TalkIsBan":
+            case 5001:
+                message.code = 5001;
+                break;
+            case "EnterRoomErr":
+            case 5002:
+                message.code = 5002;
+                break;
+            case "HalaChatNeedBuy":
+            case 10001:
+                message.code = 10001;
+                break;
+            case "HalaPriceOutRange":
+            case 10002:
+                message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
+                break;
+            }
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.trees) {
+                if (!Array.isArray(object.trees))
+                    throw TypeError(".pbOrganization.GetOrgTreeReply.trees: array expected");
+                message.trees = [];
+                for (var i = 0; i < object.trees.length; ++i) {
+                    if (typeof object.trees[i] !== "object")
+                        throw TypeError(".pbOrganization.GetOrgTreeReply.trees: object expected");
+                    message.trees[i] = $root.pbOrganization.OrganizationTree.fromObject(object.trees[i]);
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GetOrgTreeReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbOrganization.GetOrgTreeReply
+         * @static
+         * @param {pbOrganization.GetOrgTreeReply} message GetOrgTreeReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GetOrgTreeReply.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.trees = [];
+            if (options.defaults) {
+                object.code = options.enums === String ? "None" : 0;
+                object.msg = "";
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.trees && message.trees.length) {
+                object.trees = [];
+                for (var j = 0; j < message.trees.length; ++j)
+                    object.trees[j] = $root.pbOrganization.OrganizationTree.toObject(message.trees[j], options);
+            }
+            return object;
+        };
+
+        /**
+         * Converts this GetOrgTreeReply to JSON.
+         * @function toJSON
+         * @memberof pbOrganization.GetOrgTreeReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GetOrgTreeReply.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GetOrgTreeReply
+         * @function getTypeUrl
+         * @memberof pbOrganization.GetOrgTreeReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GetOrgTreeReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbOrganization.GetOrgTreeReply";
+        };
+
+        return GetOrgTreeReply;
+    })();
+
+    pbOrganization.OrganizationTree = (function() {
+
+        /**
+         * Properties of an OrganizationTree.
+         * @memberof pbOrganization
+         * @interface IOrganizationTree
+         * @property {pbOrganization.IOrganization|null} [org] OrganizationTree org
+         * @property {Array.<pbOrganization.IOrganizationTree>|null} [children] OrganizationTree children
+         */
+
+        /**
+         * Constructs a new OrganizationTree.
+         * @memberof pbOrganization
+         * @classdesc Represents an OrganizationTree.
+         * @implements IOrganizationTree
+         * @constructor
+         * @param {pbOrganization.IOrganizationTree=} [properties] Properties to set
+         */
+        function OrganizationTree(properties) {
+            this.children = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * OrganizationTree org.
+         * @member {pbOrganization.IOrganization|null|undefined} org
+         * @memberof pbOrganization.OrganizationTree
+         * @instance
+         */
+        OrganizationTree.prototype.org = null;
+
+        /**
+         * OrganizationTree children.
+         * @member {Array.<pbOrganization.IOrganizationTree>} children
+         * @memberof pbOrganization.OrganizationTree
+         * @instance
+         */
+        OrganizationTree.prototype.children = $util.emptyArray;
+
+        /**
+         * Creates a new OrganizationTree instance using the specified properties.
+         * @function create
+         * @memberof pbOrganization.OrganizationTree
+         * @static
+         * @param {pbOrganization.IOrganizationTree=} [properties] Properties to set
+         * @returns {pbOrganization.OrganizationTree} OrganizationTree instance
+         */
+        OrganizationTree.create = function create(properties) {
+            return new OrganizationTree(properties);
+        };
+
+        /**
+         * Encodes the specified OrganizationTree message. Does not implicitly {@link pbOrganization.OrganizationTree.verify|verify} messages.
+         * @function encode
+         * @memberof pbOrganization.OrganizationTree
+         * @static
+         * @param {pbOrganization.IOrganizationTree} message OrganizationTree message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        OrganizationTree.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.org != null && Object.hasOwnProperty.call(message, "org"))
+                $root.pbOrganization.Organization.encode(message.org, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.children != null && message.children.length)
+                for (var i = 0; i < message.children.length; ++i)
+                    $root.pbOrganization.OrganizationTree.encode(message.children[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified OrganizationTree message, length delimited. Does not implicitly {@link pbOrganization.OrganizationTree.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbOrganization.OrganizationTree
+         * @static
+         * @param {pbOrganization.IOrganizationTree} message OrganizationTree message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        OrganizationTree.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an OrganizationTree message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbOrganization.OrganizationTree
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbOrganization.OrganizationTree} OrganizationTree
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        OrganizationTree.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbOrganization.OrganizationTree();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.org = $root.pbOrganization.Organization.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 2: {
+                        if (!(message.children && message.children.length))
+                            message.children = [];
+                        message.children.push($root.pbOrganization.OrganizationTree.decode(reader, reader.uint32()));
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an OrganizationTree message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbOrganization.OrganizationTree
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbOrganization.OrganizationTree} OrganizationTree
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        OrganizationTree.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an OrganizationTree message.
+         * @function verify
+         * @memberof pbOrganization.OrganizationTree
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        OrganizationTree.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.org != null && message.hasOwnProperty("org")) {
+                var error = $root.pbOrganization.Organization.verify(message.org);
+                if (error)
+                    return "org." + error;
+            }
+            if (message.children != null && message.hasOwnProperty("children")) {
+                if (!Array.isArray(message.children))
+                    return "children: array expected";
+                for (var i = 0; i < message.children.length; ++i) {
+                    var error = $root.pbOrganization.OrganizationTree.verify(message.children[i]);
+                    if (error)
+                        return "children." + error;
+                }
+            }
+            return null;
+        };
+
+        /**
+         * Creates an OrganizationTree message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbOrganization.OrganizationTree
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbOrganization.OrganizationTree} OrganizationTree
+         */
+        OrganizationTree.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbOrganization.OrganizationTree)
+                return object;
+            var message = new $root.pbOrganization.OrganizationTree();
+            if (object.org != null) {
+                if (typeof object.org !== "object")
+                    throw TypeError(".pbOrganization.OrganizationTree.org: object expected");
+                message.org = $root.pbOrganization.Organization.fromObject(object.org);
+            }
+            if (object.children) {
+                if (!Array.isArray(object.children))
+                    throw TypeError(".pbOrganization.OrganizationTree.children: array expected");
+                message.children = [];
+                for (var i = 0; i < object.children.length; ++i) {
+                    if (typeof object.children[i] !== "object")
+                        throw TypeError(".pbOrganization.OrganizationTree.children: object expected");
+                    message.children[i] = $root.pbOrganization.OrganizationTree.fromObject(object.children[i]);
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an OrganizationTree message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbOrganization.OrganizationTree
+         * @static
+         * @param {pbOrganization.OrganizationTree} message OrganizationTree
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        OrganizationTree.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.children = [];
+            if (options.defaults)
+                object.org = null;
+            if (message.org != null && message.hasOwnProperty("org"))
+                object.org = $root.pbOrganization.Organization.toObject(message.org, options);
+            if (message.children && message.children.length) {
+                object.children = [];
+                for (var j = 0; j < message.children.length; ++j)
+                    object.children[j] = $root.pbOrganization.OrganizationTree.toObject(message.children[j], options);
+            }
+            return object;
+        };
+
+        /**
+         * Converts this OrganizationTree to JSON.
+         * @function toJSON
+         * @memberof pbOrganization.OrganizationTree
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        OrganizationTree.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for OrganizationTree
+         * @function getTypeUrl
+         * @memberof pbOrganization.OrganizationTree
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        OrganizationTree.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbOrganization.OrganizationTree";
+        };
+
+        return OrganizationTree;
+    })();
+
+    pbOrganization.GetOrgUsersArgs = (function() {
+
+        /**
+         * Properties of a GetOrgUsersArgs.
+         * @memberof pbOrganization
+         * @interface IGetOrgUsersArgs
+         * @property {number|Long|null} [orgId] GetOrgUsersArgs orgId
+         * @property {pbOrganization.IPageInfo|null} [pageInfo] GetOrgUsersArgs pageInfo
+         */
+
+        /**
+         * Constructs a new GetOrgUsersArgs.
+         * @memberof pbOrganization
+         * @classdesc Represents a GetOrgUsersArgs.
+         * @implements IGetOrgUsersArgs
+         * @constructor
+         * @param {pbOrganization.IGetOrgUsersArgs=} [properties] Properties to set
+         */
+        function GetOrgUsersArgs(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GetOrgUsersArgs orgId.
+         * @member {number|Long} orgId
+         * @memberof pbOrganization.GetOrgUsersArgs
+         * @instance
+         */
+        GetOrgUsersArgs.prototype.orgId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * GetOrgUsersArgs pageInfo.
+         * @member {pbOrganization.IPageInfo|null|undefined} pageInfo
+         * @memberof pbOrganization.GetOrgUsersArgs
+         * @instance
+         */
+        GetOrgUsersArgs.prototype.pageInfo = null;
+
+        /**
+         * Creates a new GetOrgUsersArgs instance using the specified properties.
+         * @function create
+         * @memberof pbOrganization.GetOrgUsersArgs
+         * @static
+         * @param {pbOrganization.IGetOrgUsersArgs=} [properties] Properties to set
+         * @returns {pbOrganization.GetOrgUsersArgs} GetOrgUsersArgs instance
+         */
+        GetOrgUsersArgs.create = function create(properties) {
+            return new GetOrgUsersArgs(properties);
+        };
+
+        /**
+         * Encodes the specified GetOrgUsersArgs message. Does not implicitly {@link pbOrganization.GetOrgUsersArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbOrganization.GetOrgUsersArgs
+         * @static
+         * @param {pbOrganization.IGetOrgUsersArgs} message GetOrgUsersArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetOrgUsersArgs.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.orgId != null && Object.hasOwnProperty.call(message, "orgId"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int64(message.orgId);
+            if (message.pageInfo != null && Object.hasOwnProperty.call(message, "pageInfo"))
+                $root.pbOrganization.PageInfo.encode(message.pageInfo, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GetOrgUsersArgs message, length delimited. Does not implicitly {@link pbOrganization.GetOrgUsersArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbOrganization.GetOrgUsersArgs
+         * @static
+         * @param {pbOrganization.IGetOrgUsersArgs} message GetOrgUsersArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetOrgUsersArgs.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GetOrgUsersArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbOrganization.GetOrgUsersArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbOrganization.GetOrgUsersArgs} GetOrgUsersArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetOrgUsersArgs.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbOrganization.GetOrgUsersArgs();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.orgId = reader.int64();
+                        break;
+                    }
+                case 2: {
+                        message.pageInfo = $root.pbOrganization.PageInfo.decode(reader, reader.uint32());
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GetOrgUsersArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbOrganization.GetOrgUsersArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbOrganization.GetOrgUsersArgs} GetOrgUsersArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetOrgUsersArgs.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GetOrgUsersArgs message.
+         * @function verify
+         * @memberof pbOrganization.GetOrgUsersArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GetOrgUsersArgs.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.orgId != null && message.hasOwnProperty("orgId"))
+                if (!$util.isInteger(message.orgId) && !(message.orgId && $util.isInteger(message.orgId.low) && $util.isInteger(message.orgId.high)))
+                    return "orgId: integer|Long expected";
+            if (message.pageInfo != null && message.hasOwnProperty("pageInfo")) {
+                var error = $root.pbOrganization.PageInfo.verify(message.pageInfo);
+                if (error)
+                    return "pageInfo." + error;
+            }
+            return null;
+        };
+
+        /**
+         * Creates a GetOrgUsersArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbOrganization.GetOrgUsersArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbOrganization.GetOrgUsersArgs} GetOrgUsersArgs
+         */
+        GetOrgUsersArgs.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbOrganization.GetOrgUsersArgs)
+                return object;
+            var message = new $root.pbOrganization.GetOrgUsersArgs();
+            if (object.orgId != null)
+                if ($util.Long)
+                    (message.orgId = $util.Long.fromValue(object.orgId)).unsigned = false;
+                else if (typeof object.orgId === "string")
+                    message.orgId = parseInt(object.orgId, 10);
+                else if (typeof object.orgId === "number")
+                    message.orgId = object.orgId;
+                else if (typeof object.orgId === "object")
+                    message.orgId = new $util.LongBits(object.orgId.low >>> 0, object.orgId.high >>> 0).toNumber();
+            if (object.pageInfo != null) {
+                if (typeof object.pageInfo !== "object")
+                    throw TypeError(".pbOrganization.GetOrgUsersArgs.pageInfo: object expected");
+                message.pageInfo = $root.pbOrganization.PageInfo.fromObject(object.pageInfo);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GetOrgUsersArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbOrganization.GetOrgUsersArgs
+         * @static
+         * @param {pbOrganization.GetOrgUsersArgs} message GetOrgUsersArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GetOrgUsersArgs.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.orgId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.orgId = options.longs === String ? "0" : 0;
+                object.pageInfo = null;
+            }
+            if (message.orgId != null && message.hasOwnProperty("orgId"))
+                if (typeof message.orgId === "number")
+                    object.orgId = options.longs === String ? String(message.orgId) : message.orgId;
+                else
+                    object.orgId = options.longs === String ? $util.Long.prototype.toString.call(message.orgId) : options.longs === Number ? new $util.LongBits(message.orgId.low >>> 0, message.orgId.high >>> 0).toNumber() : message.orgId;
+            if (message.pageInfo != null && message.hasOwnProperty("pageInfo"))
+                object.pageInfo = $root.pbOrganization.PageInfo.toObject(message.pageInfo, options);
+            return object;
+        };
+
+        /**
+         * Converts this GetOrgUsersArgs to JSON.
+         * @function toJSON
+         * @memberof pbOrganization.GetOrgUsersArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GetOrgUsersArgs.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GetOrgUsersArgs
+         * @function getTypeUrl
+         * @memberof pbOrganization.GetOrgUsersArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GetOrgUsersArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbOrganization.GetOrgUsersArgs";
+        };
+
+        return GetOrgUsersArgs;
+    })();
+
+    pbOrganization.GetOrgUsersReply = (function() {
+
+        /**
+         * Properties of a GetOrgUsersReply.
+         * @memberof pbOrganization
+         * @interface IGetOrgUsersReply
+         * @property {pbcommon.EnumCode|null} [code] GetOrgUsersReply code
+         * @property {string|null} [msg] GetOrgUsersReply msg
+         * @property {Array.<pbOrganization.IUserOrgUser>|null} [list] GetOrgUsersReply list
+         * @property {number|Long|null} [total] GetOrgUsersReply total
+         */
+
+        /**
+         * Constructs a new GetOrgUsersReply.
+         * @memberof pbOrganization
+         * @classdesc Represents a GetOrgUsersReply.
+         * @implements IGetOrgUsersReply
+         * @constructor
+         * @param {pbOrganization.IGetOrgUsersReply=} [properties] Properties to set
+         */
+        function GetOrgUsersReply(properties) {
+            this.list = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GetOrgUsersReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbOrganization.GetOrgUsersReply
+         * @instance
+         */
+        GetOrgUsersReply.prototype.code = 0;
+
+        /**
+         * GetOrgUsersReply msg.
+         * @member {string} msg
+         * @memberof pbOrganization.GetOrgUsersReply
+         * @instance
+         */
+        GetOrgUsersReply.prototype.msg = "";
+
+        /**
+         * GetOrgUsersReply list.
+         * @member {Array.<pbOrganization.IUserOrgUser>} list
+         * @memberof pbOrganization.GetOrgUsersReply
+         * @instance
+         */
+        GetOrgUsersReply.prototype.list = $util.emptyArray;
+
+        /**
+         * GetOrgUsersReply total.
+         * @member {number|Long} total
+         * @memberof pbOrganization.GetOrgUsersReply
+         * @instance
+         */
+        GetOrgUsersReply.prototype.total = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * Creates a new GetOrgUsersReply instance using the specified properties.
+         * @function create
+         * @memberof pbOrganization.GetOrgUsersReply
+         * @static
+         * @param {pbOrganization.IGetOrgUsersReply=} [properties] Properties to set
+         * @returns {pbOrganization.GetOrgUsersReply} GetOrgUsersReply instance
+         */
+        GetOrgUsersReply.create = function create(properties) {
+            return new GetOrgUsersReply(properties);
+        };
+
+        /**
+         * Encodes the specified GetOrgUsersReply message. Does not implicitly {@link pbOrganization.GetOrgUsersReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbOrganization.GetOrgUsersReply
+         * @static
+         * @param {pbOrganization.IGetOrgUsersReply} message GetOrgUsersReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetOrgUsersReply.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.list != null && message.list.length)
+                for (var i = 0; i < message.list.length; ++i)
+                    $root.pbOrganization.UserOrgUser.encode(message.list[i], writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            if (message.total != null && Object.hasOwnProperty.call(message, "total"))
+                writer.uint32(/* id 4, wireType 0 =*/32).int64(message.total);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GetOrgUsersReply message, length delimited. Does not implicitly {@link pbOrganization.GetOrgUsersReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbOrganization.GetOrgUsersReply
+         * @static
+         * @param {pbOrganization.IGetOrgUsersReply} message GetOrgUsersReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetOrgUsersReply.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GetOrgUsersReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbOrganization.GetOrgUsersReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbOrganization.GetOrgUsersReply} GetOrgUsersReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetOrgUsersReply.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbOrganization.GetOrgUsersReply();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.code = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        if (!(message.list && message.list.length))
+                            message.list = [];
+                        message.list.push($root.pbOrganization.UserOrgUser.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 4: {
+                        message.total = reader.int64();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GetOrgUsersReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbOrganization.GetOrgUsersReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbOrganization.GetOrgUsersReply} GetOrgUsersReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetOrgUsersReply.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GetOrgUsersReply message.
+         * @function verify
+         * @memberof pbOrganization.GetOrgUsersReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GetOrgUsersReply.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.code != null && message.hasOwnProperty("code"))
+                switch (message.code) {
+                default:
+                    return "code: enum value expected";
+                case 0:
+                case 200:
+                case 403:
+                case 500:
+                case 501:
+                case 502:
+                case 503:
+                case 504:
+                case 505:
+                case 511:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
+                case 2002:
+                case 2003:
+                case 2004:
+                case 2005:
+                case 2006:
+                case 2007:
+                case 2008:
+                case 2009:
+                case 2010:
+                case 2011:
+                case 2012:
+                case 2013:
+                case 2014:
+                case 2015:
+                case 3001:
+                case 3002:
+                case 3003:
+                case 5001:
+                case 5002:
+                case 10001:
+                case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
+                    break;
+                }
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                if (!$util.isString(message.msg))
+                    return "msg: string expected";
+            if (message.list != null && message.hasOwnProperty("list")) {
+                if (!Array.isArray(message.list))
+                    return "list: array expected";
+                for (var i = 0; i < message.list.length; ++i) {
+                    var error = $root.pbOrganization.UserOrgUser.verify(message.list[i]);
+                    if (error)
+                        return "list." + error;
+                }
+            }
+            if (message.total != null && message.hasOwnProperty("total"))
+                if (!$util.isInteger(message.total) && !(message.total && $util.isInteger(message.total.low) && $util.isInteger(message.total.high)))
+                    return "total: integer|Long expected";
+            return null;
+        };
+
+        /**
+         * Creates a GetOrgUsersReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbOrganization.GetOrgUsersReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbOrganization.GetOrgUsersReply} GetOrgUsersReply
+         */
+        GetOrgUsersReply.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbOrganization.GetOrgUsersReply)
+                return object;
+            var message = new $root.pbOrganization.GetOrgUsersReply();
+            switch (object.code) {
+            default:
+                if (typeof object.code === "number") {
+                    message.code = object.code;
+                    break;
+                }
+                break;
+            case "None":
+            case 0:
+                message.code = 0;
+                break;
+            case "Success":
+            case 200:
+                message.code = 200;
+                break;
+            case "Forbidden":
+            case 403:
+                message.code = 403;
+                break;
+            case "Fail":
+            case 500:
+                message.code = 500;
+                break;
+            case "Unknown":
+            case 501:
+                message.code = 501;
+                break;
+            case "Internal":
+            case 502:
+                message.code = 502;
+                break;
+            case "Invalid":
+            case 503:
+                message.code = 503;
+                break;
+            case "InvalidParam":
+            case 504:
+                message.code = 504;
+                break;
+            case "ParamError":
+            case 505:
+                message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
+                break;
+            case "FindError":
+            case 1001:
+                message.code = 1001;
+                break;
+            case "CreateError":
+            case 1002:
+                message.code = 1002;
+                break;
+            case "DeleteError":
+            case 1003:
+                message.code = 1003;
+                break;
+            case "UpdateError":
+            case 1004:
+                message.code = 1004;
+                break;
+            case "InvalidToken":
+            case 2002:
+                message.code = 2002;
+                break;
+            case "InvalidSign":
+            case 2003:
+                message.code = 2003;
+                break;
+            case "NotLogin":
+            case 2004:
+                message.code = 2004;
+                break;
+            case "LoginTimeout":
+            case 2005:
+                message.code = 2005;
+                break;
+            case "LoginError":
+            case 2006:
+                message.code = 2006;
+                break;
+            case "LoginForbidden":
+            case 2007:
+                message.code = 2007;
+                break;
+            case "LoginExpired":
+            case 2008:
+                message.code = 2008;
+                break;
+            case "LoginInvalid":
+            case 2009:
+                message.code = 2009;
+                break;
+            case "LoginInvalidPassword":
+            case 2010:
+                message.code = 2010;
+                break;
+            case "LoginInvalidUsername":
+            case 2011:
+                message.code = 2011;
+                break;
+            case "LoginInvalidEmail":
+            case 2012:
+                message.code = 2012;
+                break;
+            case "LoginInvalidPhone":
+            case 2013:
+                message.code = 2013;
+                break;
+            case "LoginInvalidUsernameOrEmail":
+            case 2014:
+                message.code = 2014;
+                break;
+            case "LoginSocketRepeat":
+            case 2015:
+                message.code = 2015;
+                break;
+            case "RoleIsNotExist":
+            case 3001:
+                message.code = 3001;
+                break;
+            case "UserIsExist":
+            case 3002:
+                message.code = 3002;
+                break;
+            case "UserIsBan":
+            case 3003:
+                message.code = 3003;
+                break;
+            case "TalkIsBan":
+            case 5001:
+                message.code = 5001;
+                break;
+            case "EnterRoomErr":
+            case 5002:
+                message.code = 5002;
+                break;
+            case "HalaChatNeedBuy":
+            case 10001:
+                message.code = 10001;
+                break;
+            case "HalaPriceOutRange":
+            case 10002:
+                message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
+                break;
+            }
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.list) {
+                if (!Array.isArray(object.list))
+                    throw TypeError(".pbOrganization.GetOrgUsersReply.list: array expected");
+                message.list = [];
+                for (var i = 0; i < object.list.length; ++i) {
+                    if (typeof object.list[i] !== "object")
+                        throw TypeError(".pbOrganization.GetOrgUsersReply.list: object expected");
+                    message.list[i] = $root.pbOrganization.UserOrgUser.fromObject(object.list[i]);
+                }
+            }
+            if (object.total != null)
+                if ($util.Long)
+                    (message.total = $util.Long.fromValue(object.total)).unsigned = false;
+                else if (typeof object.total === "string")
+                    message.total = parseInt(object.total, 10);
+                else if (typeof object.total === "number")
+                    message.total = object.total;
+                else if (typeof object.total === "object")
+                    message.total = new $util.LongBits(object.total.low >>> 0, object.total.high >>> 0).toNumber();
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GetOrgUsersReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbOrganization.GetOrgUsersReply
+         * @static
+         * @param {pbOrganization.GetOrgUsersReply} message GetOrgUsersReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GetOrgUsersReply.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.list = [];
+            if (options.defaults) {
+                object.code = options.enums === String ? "None" : 0;
+                object.msg = "";
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.total = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.total = options.longs === String ? "0" : 0;
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.list && message.list.length) {
+                object.list = [];
+                for (var j = 0; j < message.list.length; ++j)
+                    object.list[j] = $root.pbOrganization.UserOrgUser.toObject(message.list[j], options);
+            }
+            if (message.total != null && message.hasOwnProperty("total"))
+                if (typeof message.total === "number")
+                    object.total = options.longs === String ? String(message.total) : message.total;
+                else
+                    object.total = options.longs === String ? $util.Long.prototype.toString.call(message.total) : options.longs === Number ? new $util.LongBits(message.total.low >>> 0, message.total.high >>> 0).toNumber() : message.total;
+            return object;
+        };
+
+        /**
+         * Converts this GetOrgUsersReply to JSON.
+         * @function toJSON
+         * @memberof pbOrganization.GetOrgUsersReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GetOrgUsersReply.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GetOrgUsersReply
+         * @function getTypeUrl
+         * @memberof pbOrganization.GetOrgUsersReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GetOrgUsersReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbOrganization.GetOrgUsersReply";
+        };
+
+        return GetOrgUsersReply;
+    })();
+
+    pbOrganization.UserOrgUser = (function() {
+
+        /**
+         * Properties of a UserOrgUser.
+         * @memberof pbOrganization
+         * @interface IUserOrgUser
+         * @property {number|Long|null} [id] UserOrgUser id
+         * @property {number|Long|null} [userId] UserOrgUser userId
+         * @property {number|Long|null} [orgId] UserOrgUser orgId
+         * @property {boolean|null} [isLeader] UserOrgUser isLeader
+         * @property {string|null} [position] UserOrgUser position
+         * @property {string|null} [createdAt] UserOrgUser createdAt
+         * @property {string|null} [userName] UserOrgUser userName
+         * @property {string|null} [userPhone] UserOrgUser userPhone
+         * @property {string|null} [userNickName] UserOrgUser userNickName
+         */
+
+        /**
+         * Constructs a new UserOrgUser.
+         * @memberof pbOrganization
+         * @classdesc Represents a UserOrgUser.
+         * @implements IUserOrgUser
+         * @constructor
+         * @param {pbOrganization.IUserOrgUser=} [properties] Properties to set
+         */
+        function UserOrgUser(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * UserOrgUser id.
+         * @member {number|Long} id
+         * @memberof pbOrganization.UserOrgUser
+         * @instance
+         */
+        UserOrgUser.prototype.id = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * UserOrgUser userId.
+         * @member {number|Long} userId
+         * @memberof pbOrganization.UserOrgUser
+         * @instance
+         */
+        UserOrgUser.prototype.userId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * UserOrgUser orgId.
+         * @member {number|Long} orgId
+         * @memberof pbOrganization.UserOrgUser
+         * @instance
+         */
+        UserOrgUser.prototype.orgId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * UserOrgUser isLeader.
+         * @member {boolean} isLeader
+         * @memberof pbOrganization.UserOrgUser
+         * @instance
+         */
+        UserOrgUser.prototype.isLeader = false;
+
+        /**
+         * UserOrgUser position.
+         * @member {string} position
+         * @memberof pbOrganization.UserOrgUser
+         * @instance
+         */
+        UserOrgUser.prototype.position = "";
+
+        /**
+         * UserOrgUser createdAt.
+         * @member {string} createdAt
+         * @memberof pbOrganization.UserOrgUser
+         * @instance
+         */
+        UserOrgUser.prototype.createdAt = "";
+
+        /**
+         * UserOrgUser userName.
+         * @member {string} userName
+         * @memberof pbOrganization.UserOrgUser
+         * @instance
+         */
+        UserOrgUser.prototype.userName = "";
+
+        /**
+         * UserOrgUser userPhone.
+         * @member {string} userPhone
+         * @memberof pbOrganization.UserOrgUser
+         * @instance
+         */
+        UserOrgUser.prototype.userPhone = "";
+
+        /**
+         * UserOrgUser userNickName.
+         * @member {string} userNickName
+         * @memberof pbOrganization.UserOrgUser
+         * @instance
+         */
+        UserOrgUser.prototype.userNickName = "";
+
+        /**
+         * Creates a new UserOrgUser instance using the specified properties.
+         * @function create
+         * @memberof pbOrganization.UserOrgUser
+         * @static
+         * @param {pbOrganization.IUserOrgUser=} [properties] Properties to set
+         * @returns {pbOrganization.UserOrgUser} UserOrgUser instance
+         */
+        UserOrgUser.create = function create(properties) {
+            return new UserOrgUser(properties);
+        };
+
+        /**
+         * Encodes the specified UserOrgUser message. Does not implicitly {@link pbOrganization.UserOrgUser.verify|verify} messages.
+         * @function encode
+         * @memberof pbOrganization.UserOrgUser
+         * @static
+         * @param {pbOrganization.IUserOrgUser} message UserOrgUser message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        UserOrgUser.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id);
+            if (message.userId != null && Object.hasOwnProperty.call(message, "userId"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int64(message.userId);
+            if (message.orgId != null && Object.hasOwnProperty.call(message, "orgId"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int64(message.orgId);
+            if (message.isLeader != null && Object.hasOwnProperty.call(message, "isLeader"))
+                writer.uint32(/* id 4, wireType 0 =*/32).bool(message.isLeader);
+            if (message.position != null && Object.hasOwnProperty.call(message, "position"))
+                writer.uint32(/* id 5, wireType 2 =*/42).string(message.position);
+            if (message.createdAt != null && Object.hasOwnProperty.call(message, "createdAt"))
+                writer.uint32(/* id 6, wireType 2 =*/50).string(message.createdAt);
+            if (message.userName != null && Object.hasOwnProperty.call(message, "userName"))
+                writer.uint32(/* id 7, wireType 2 =*/58).string(message.userName);
+            if (message.userPhone != null && Object.hasOwnProperty.call(message, "userPhone"))
+                writer.uint32(/* id 8, wireType 2 =*/66).string(message.userPhone);
+            if (message.userNickName != null && Object.hasOwnProperty.call(message, "userNickName"))
+                writer.uint32(/* id 9, wireType 2 =*/74).string(message.userNickName);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified UserOrgUser message, length delimited. Does not implicitly {@link pbOrganization.UserOrgUser.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbOrganization.UserOrgUser
+         * @static
+         * @param {pbOrganization.IUserOrgUser} message UserOrgUser message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        UserOrgUser.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a UserOrgUser message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbOrganization.UserOrgUser
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbOrganization.UserOrgUser} UserOrgUser
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        UserOrgUser.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbOrganization.UserOrgUser();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.id = reader.int64();
+                        break;
+                    }
+                case 2: {
+                        message.userId = reader.int64();
+                        break;
+                    }
+                case 3: {
+                        message.orgId = reader.int64();
+                        break;
+                    }
+                case 4: {
+                        message.isLeader = reader.bool();
+                        break;
+                    }
+                case 5: {
+                        message.position = reader.string();
+                        break;
+                    }
+                case 6: {
+                        message.createdAt = reader.string();
+                        break;
+                    }
+                case 7: {
+                        message.userName = reader.string();
+                        break;
+                    }
+                case 8: {
+                        message.userPhone = reader.string();
+                        break;
+                    }
+                case 9: {
+                        message.userNickName = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a UserOrgUser message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbOrganization.UserOrgUser
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbOrganization.UserOrgUser} UserOrgUser
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        UserOrgUser.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a UserOrgUser message.
+         * @function verify
+         * @memberof pbOrganization.UserOrgUser
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        UserOrgUser.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (!$util.isInteger(message.id) && !(message.id && $util.isInteger(message.id.low) && $util.isInteger(message.id.high)))
+                    return "id: integer|Long expected";
+            if (message.userId != null && message.hasOwnProperty("userId"))
+                if (!$util.isInteger(message.userId) && !(message.userId && $util.isInteger(message.userId.low) && $util.isInteger(message.userId.high)))
+                    return "userId: integer|Long expected";
+            if (message.orgId != null && message.hasOwnProperty("orgId"))
+                if (!$util.isInteger(message.orgId) && !(message.orgId && $util.isInteger(message.orgId.low) && $util.isInteger(message.orgId.high)))
+                    return "orgId: integer|Long expected";
+            if (message.isLeader != null && message.hasOwnProperty("isLeader"))
+                if (typeof message.isLeader !== "boolean")
+                    return "isLeader: boolean expected";
+            if (message.position != null && message.hasOwnProperty("position"))
+                if (!$util.isString(message.position))
+                    return "position: string expected";
+            if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                if (!$util.isString(message.createdAt))
+                    return "createdAt: string expected";
+            if (message.userName != null && message.hasOwnProperty("userName"))
+                if (!$util.isString(message.userName))
+                    return "userName: string expected";
+            if (message.userPhone != null && message.hasOwnProperty("userPhone"))
+                if (!$util.isString(message.userPhone))
+                    return "userPhone: string expected";
+            if (message.userNickName != null && message.hasOwnProperty("userNickName"))
+                if (!$util.isString(message.userNickName))
+                    return "userNickName: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a UserOrgUser message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbOrganization.UserOrgUser
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbOrganization.UserOrgUser} UserOrgUser
+         */
+        UserOrgUser.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbOrganization.UserOrgUser)
+                return object;
+            var message = new $root.pbOrganization.UserOrgUser();
+            if (object.id != null)
+                if ($util.Long)
+                    (message.id = $util.Long.fromValue(object.id)).unsigned = false;
+                else if (typeof object.id === "string")
+                    message.id = parseInt(object.id, 10);
+                else if (typeof object.id === "number")
+                    message.id = object.id;
+                else if (typeof object.id === "object")
+                    message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber();
+            if (object.userId != null)
+                if ($util.Long)
+                    (message.userId = $util.Long.fromValue(object.userId)).unsigned = false;
+                else if (typeof object.userId === "string")
+                    message.userId = parseInt(object.userId, 10);
+                else if (typeof object.userId === "number")
+                    message.userId = object.userId;
+                else if (typeof object.userId === "object")
+                    message.userId = new $util.LongBits(object.userId.low >>> 0, object.userId.high >>> 0).toNumber();
+            if (object.orgId != null)
+                if ($util.Long)
+                    (message.orgId = $util.Long.fromValue(object.orgId)).unsigned = false;
+                else if (typeof object.orgId === "string")
+                    message.orgId = parseInt(object.orgId, 10);
+                else if (typeof object.orgId === "number")
+                    message.orgId = object.orgId;
+                else if (typeof object.orgId === "object")
+                    message.orgId = new $util.LongBits(object.orgId.low >>> 0, object.orgId.high >>> 0).toNumber();
+            if (object.isLeader != null)
+                message.isLeader = Boolean(object.isLeader);
+            if (object.position != null)
+                message.position = String(object.position);
+            if (object.createdAt != null)
+                message.createdAt = String(object.createdAt);
+            if (object.userName != null)
+                message.userName = String(object.userName);
+            if (object.userPhone != null)
+                message.userPhone = String(object.userPhone);
+            if (object.userNickName != null)
+                message.userNickName = String(object.userNickName);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a UserOrgUser message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbOrganization.UserOrgUser
+         * @static
+         * @param {pbOrganization.UserOrgUser} message UserOrgUser
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        UserOrgUser.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.id = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.userId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.userId = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.orgId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.orgId = options.longs === String ? "0" : 0;
+                object.isLeader = false;
+                object.position = "";
+                object.createdAt = "";
+                object.userName = "";
+                object.userPhone = "";
+                object.userNickName = "";
+            }
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (typeof message.id === "number")
+                    object.id = options.longs === String ? String(message.id) : message.id;
+                else
+                    object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id;
+            if (message.userId != null && message.hasOwnProperty("userId"))
+                if (typeof message.userId === "number")
+                    object.userId = options.longs === String ? String(message.userId) : message.userId;
+                else
+                    object.userId = options.longs === String ? $util.Long.prototype.toString.call(message.userId) : options.longs === Number ? new $util.LongBits(message.userId.low >>> 0, message.userId.high >>> 0).toNumber() : message.userId;
+            if (message.orgId != null && message.hasOwnProperty("orgId"))
+                if (typeof message.orgId === "number")
+                    object.orgId = options.longs === String ? String(message.orgId) : message.orgId;
+                else
+                    object.orgId = options.longs === String ? $util.Long.prototype.toString.call(message.orgId) : options.longs === Number ? new $util.LongBits(message.orgId.low >>> 0, message.orgId.high >>> 0).toNumber() : message.orgId;
+            if (message.isLeader != null && message.hasOwnProperty("isLeader"))
+                object.isLeader = message.isLeader;
+            if (message.position != null && message.hasOwnProperty("position"))
+                object.position = message.position;
+            if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                object.createdAt = message.createdAt;
+            if (message.userName != null && message.hasOwnProperty("userName"))
+                object.userName = message.userName;
+            if (message.userPhone != null && message.hasOwnProperty("userPhone"))
+                object.userPhone = message.userPhone;
+            if (message.userNickName != null && message.hasOwnProperty("userNickName"))
+                object.userNickName = message.userNickName;
+            return object;
+        };
+
+        /**
+         * Converts this UserOrgUser to JSON.
+         * @function toJSON
+         * @memberof pbOrganization.UserOrgUser
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        UserOrgUser.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for UserOrgUser
+         * @function getTypeUrl
+         * @memberof pbOrganization.UserOrgUser
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        UserOrgUser.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbOrganization.UserOrgUser";
+        };
+
+        return UserOrgUser;
+    })();
+
+    pbOrganization.GetUserOrgsArgs = (function() {
+
+        /**
+         * Properties of a GetUserOrgsArgs.
+         * @memberof pbOrganization
+         * @interface IGetUserOrgsArgs
+         * @property {number|Long|null} [userId] GetUserOrgsArgs userId
+         * @property {pbOrganization.IPageInfo|null} [pageInfo] GetUserOrgsArgs pageInfo
+         */
+
+        /**
+         * Constructs a new GetUserOrgsArgs.
+         * @memberof pbOrganization
+         * @classdesc Represents a GetUserOrgsArgs.
+         * @implements IGetUserOrgsArgs
+         * @constructor
+         * @param {pbOrganization.IGetUserOrgsArgs=} [properties] Properties to set
+         */
+        function GetUserOrgsArgs(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GetUserOrgsArgs userId.
+         * @member {number|Long} userId
+         * @memberof pbOrganization.GetUserOrgsArgs
+         * @instance
+         */
+        GetUserOrgsArgs.prototype.userId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * GetUserOrgsArgs pageInfo.
+         * @member {pbOrganization.IPageInfo|null|undefined} pageInfo
+         * @memberof pbOrganization.GetUserOrgsArgs
+         * @instance
+         */
+        GetUserOrgsArgs.prototype.pageInfo = null;
+
+        /**
+         * Creates a new GetUserOrgsArgs instance using the specified properties.
+         * @function create
+         * @memberof pbOrganization.GetUserOrgsArgs
+         * @static
+         * @param {pbOrganization.IGetUserOrgsArgs=} [properties] Properties to set
+         * @returns {pbOrganization.GetUserOrgsArgs} GetUserOrgsArgs instance
+         */
+        GetUserOrgsArgs.create = function create(properties) {
+            return new GetUserOrgsArgs(properties);
+        };
+
+        /**
+         * Encodes the specified GetUserOrgsArgs message. Does not implicitly {@link pbOrganization.GetUserOrgsArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbOrganization.GetUserOrgsArgs
+         * @static
+         * @param {pbOrganization.IGetUserOrgsArgs} message GetUserOrgsArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetUserOrgsArgs.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.userId != null && Object.hasOwnProperty.call(message, "userId"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int64(message.userId);
+            if (message.pageInfo != null && Object.hasOwnProperty.call(message, "pageInfo"))
+                $root.pbOrganization.PageInfo.encode(message.pageInfo, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GetUserOrgsArgs message, length delimited. Does not implicitly {@link pbOrganization.GetUserOrgsArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbOrganization.GetUserOrgsArgs
+         * @static
+         * @param {pbOrganization.IGetUserOrgsArgs} message GetUserOrgsArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetUserOrgsArgs.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GetUserOrgsArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbOrganization.GetUserOrgsArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbOrganization.GetUserOrgsArgs} GetUserOrgsArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetUserOrgsArgs.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbOrganization.GetUserOrgsArgs();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.userId = reader.int64();
+                        break;
+                    }
+                case 2: {
+                        message.pageInfo = $root.pbOrganization.PageInfo.decode(reader, reader.uint32());
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GetUserOrgsArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbOrganization.GetUserOrgsArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbOrganization.GetUserOrgsArgs} GetUserOrgsArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetUserOrgsArgs.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GetUserOrgsArgs message.
+         * @function verify
+         * @memberof pbOrganization.GetUserOrgsArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GetUserOrgsArgs.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.userId != null && message.hasOwnProperty("userId"))
+                if (!$util.isInteger(message.userId) && !(message.userId && $util.isInteger(message.userId.low) && $util.isInteger(message.userId.high)))
+                    return "userId: integer|Long expected";
+            if (message.pageInfo != null && message.hasOwnProperty("pageInfo")) {
+                var error = $root.pbOrganization.PageInfo.verify(message.pageInfo);
+                if (error)
+                    return "pageInfo." + error;
+            }
+            return null;
+        };
+
+        /**
+         * Creates a GetUserOrgsArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbOrganization.GetUserOrgsArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbOrganization.GetUserOrgsArgs} GetUserOrgsArgs
+         */
+        GetUserOrgsArgs.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbOrganization.GetUserOrgsArgs)
+                return object;
+            var message = new $root.pbOrganization.GetUserOrgsArgs();
+            if (object.userId != null)
+                if ($util.Long)
+                    (message.userId = $util.Long.fromValue(object.userId)).unsigned = false;
+                else if (typeof object.userId === "string")
+                    message.userId = parseInt(object.userId, 10);
+                else if (typeof object.userId === "number")
+                    message.userId = object.userId;
+                else if (typeof object.userId === "object")
+                    message.userId = new $util.LongBits(object.userId.low >>> 0, object.userId.high >>> 0).toNumber();
+            if (object.pageInfo != null) {
+                if (typeof object.pageInfo !== "object")
+                    throw TypeError(".pbOrganization.GetUserOrgsArgs.pageInfo: object expected");
+                message.pageInfo = $root.pbOrganization.PageInfo.fromObject(object.pageInfo);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GetUserOrgsArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbOrganization.GetUserOrgsArgs
+         * @static
+         * @param {pbOrganization.GetUserOrgsArgs} message GetUserOrgsArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GetUserOrgsArgs.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.userId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.userId = options.longs === String ? "0" : 0;
+                object.pageInfo = null;
+            }
+            if (message.userId != null && message.hasOwnProperty("userId"))
+                if (typeof message.userId === "number")
+                    object.userId = options.longs === String ? String(message.userId) : message.userId;
+                else
+                    object.userId = options.longs === String ? $util.Long.prototype.toString.call(message.userId) : options.longs === Number ? new $util.LongBits(message.userId.low >>> 0, message.userId.high >>> 0).toNumber() : message.userId;
+            if (message.pageInfo != null && message.hasOwnProperty("pageInfo"))
+                object.pageInfo = $root.pbOrganization.PageInfo.toObject(message.pageInfo, options);
+            return object;
+        };
+
+        /**
+         * Converts this GetUserOrgsArgs to JSON.
+         * @function toJSON
+         * @memberof pbOrganization.GetUserOrgsArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GetUserOrgsArgs.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GetUserOrgsArgs
+         * @function getTypeUrl
+         * @memberof pbOrganization.GetUserOrgsArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GetUserOrgsArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbOrganization.GetUserOrgsArgs";
+        };
+
+        return GetUserOrgsArgs;
+    })();
+
+    pbOrganization.AssignUserToOrgArgs = (function() {
+
+        /**
+         * Properties of an AssignUserToOrgArgs.
+         * @memberof pbOrganization
+         * @interface IAssignUserToOrgArgs
+         * @property {number|Long|null} [userId] AssignUserToOrgArgs userId
+         * @property {number|Long|null} [orgId] AssignUserToOrgArgs orgId
+         * @property {boolean|null} [isLeader] AssignUserToOrgArgs isLeader
+         * @property {string|null} [position] AssignUserToOrgArgs position
+         */
+
+        /**
+         * Constructs a new AssignUserToOrgArgs.
+         * @memberof pbOrganization
+         * @classdesc Represents an AssignUserToOrgArgs.
+         * @implements IAssignUserToOrgArgs
+         * @constructor
+         * @param {pbOrganization.IAssignUserToOrgArgs=} [properties] Properties to set
+         */
+        function AssignUserToOrgArgs(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * AssignUserToOrgArgs userId.
+         * @member {number|Long} userId
+         * @memberof pbOrganization.AssignUserToOrgArgs
+         * @instance
+         */
+        AssignUserToOrgArgs.prototype.userId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * AssignUserToOrgArgs orgId.
+         * @member {number|Long} orgId
+         * @memberof pbOrganization.AssignUserToOrgArgs
+         * @instance
+         */
+        AssignUserToOrgArgs.prototype.orgId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * AssignUserToOrgArgs isLeader.
+         * @member {boolean} isLeader
+         * @memberof pbOrganization.AssignUserToOrgArgs
+         * @instance
+         */
+        AssignUserToOrgArgs.prototype.isLeader = false;
+
+        /**
+         * AssignUserToOrgArgs position.
+         * @member {string} position
+         * @memberof pbOrganization.AssignUserToOrgArgs
+         * @instance
+         */
+        AssignUserToOrgArgs.prototype.position = "";
+
+        /**
+         * Creates a new AssignUserToOrgArgs instance using the specified properties.
+         * @function create
+         * @memberof pbOrganization.AssignUserToOrgArgs
+         * @static
+         * @param {pbOrganization.IAssignUserToOrgArgs=} [properties] Properties to set
+         * @returns {pbOrganization.AssignUserToOrgArgs} AssignUserToOrgArgs instance
+         */
+        AssignUserToOrgArgs.create = function create(properties) {
+            return new AssignUserToOrgArgs(properties);
+        };
+
+        /**
+         * Encodes the specified AssignUserToOrgArgs message. Does not implicitly {@link pbOrganization.AssignUserToOrgArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbOrganization.AssignUserToOrgArgs
+         * @static
+         * @param {pbOrganization.IAssignUserToOrgArgs} message AssignUserToOrgArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AssignUserToOrgArgs.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.userId != null && Object.hasOwnProperty.call(message, "userId"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int64(message.userId);
+            if (message.orgId != null && Object.hasOwnProperty.call(message, "orgId"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int64(message.orgId);
+            if (message.isLeader != null && Object.hasOwnProperty.call(message, "isLeader"))
+                writer.uint32(/* id 3, wireType 0 =*/24).bool(message.isLeader);
+            if (message.position != null && Object.hasOwnProperty.call(message, "position"))
+                writer.uint32(/* id 4, wireType 2 =*/34).string(message.position);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified AssignUserToOrgArgs message, length delimited. Does not implicitly {@link pbOrganization.AssignUserToOrgArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbOrganization.AssignUserToOrgArgs
+         * @static
+         * @param {pbOrganization.IAssignUserToOrgArgs} message AssignUserToOrgArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AssignUserToOrgArgs.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an AssignUserToOrgArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbOrganization.AssignUserToOrgArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbOrganization.AssignUserToOrgArgs} AssignUserToOrgArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AssignUserToOrgArgs.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbOrganization.AssignUserToOrgArgs();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.userId = reader.int64();
+                        break;
+                    }
+                case 2: {
+                        message.orgId = reader.int64();
+                        break;
+                    }
+                case 3: {
+                        message.isLeader = reader.bool();
+                        break;
+                    }
+                case 4: {
+                        message.position = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an AssignUserToOrgArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbOrganization.AssignUserToOrgArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbOrganization.AssignUserToOrgArgs} AssignUserToOrgArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AssignUserToOrgArgs.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an AssignUserToOrgArgs message.
+         * @function verify
+         * @memberof pbOrganization.AssignUserToOrgArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        AssignUserToOrgArgs.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.userId != null && message.hasOwnProperty("userId"))
+                if (!$util.isInteger(message.userId) && !(message.userId && $util.isInteger(message.userId.low) && $util.isInteger(message.userId.high)))
+                    return "userId: integer|Long expected";
+            if (message.orgId != null && message.hasOwnProperty("orgId"))
+                if (!$util.isInteger(message.orgId) && !(message.orgId && $util.isInteger(message.orgId.low) && $util.isInteger(message.orgId.high)))
+                    return "orgId: integer|Long expected";
+            if (message.isLeader != null && message.hasOwnProperty("isLeader"))
+                if (typeof message.isLeader !== "boolean")
+                    return "isLeader: boolean expected";
+            if (message.position != null && message.hasOwnProperty("position"))
+                if (!$util.isString(message.position))
+                    return "position: string expected";
+            return null;
+        };
+
+        /**
+         * Creates an AssignUserToOrgArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbOrganization.AssignUserToOrgArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbOrganization.AssignUserToOrgArgs} AssignUserToOrgArgs
+         */
+        AssignUserToOrgArgs.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbOrganization.AssignUserToOrgArgs)
+                return object;
+            var message = new $root.pbOrganization.AssignUserToOrgArgs();
+            if (object.userId != null)
+                if ($util.Long)
+                    (message.userId = $util.Long.fromValue(object.userId)).unsigned = false;
+                else if (typeof object.userId === "string")
+                    message.userId = parseInt(object.userId, 10);
+                else if (typeof object.userId === "number")
+                    message.userId = object.userId;
+                else if (typeof object.userId === "object")
+                    message.userId = new $util.LongBits(object.userId.low >>> 0, object.userId.high >>> 0).toNumber();
+            if (object.orgId != null)
+                if ($util.Long)
+                    (message.orgId = $util.Long.fromValue(object.orgId)).unsigned = false;
+                else if (typeof object.orgId === "string")
+                    message.orgId = parseInt(object.orgId, 10);
+                else if (typeof object.orgId === "number")
+                    message.orgId = object.orgId;
+                else if (typeof object.orgId === "object")
+                    message.orgId = new $util.LongBits(object.orgId.low >>> 0, object.orgId.high >>> 0).toNumber();
+            if (object.isLeader != null)
+                message.isLeader = Boolean(object.isLeader);
+            if (object.position != null)
+                message.position = String(object.position);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an AssignUserToOrgArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbOrganization.AssignUserToOrgArgs
+         * @static
+         * @param {pbOrganization.AssignUserToOrgArgs} message AssignUserToOrgArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        AssignUserToOrgArgs.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.userId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.userId = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.orgId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.orgId = options.longs === String ? "0" : 0;
+                object.isLeader = false;
+                object.position = "";
+            }
+            if (message.userId != null && message.hasOwnProperty("userId"))
+                if (typeof message.userId === "number")
+                    object.userId = options.longs === String ? String(message.userId) : message.userId;
+                else
+                    object.userId = options.longs === String ? $util.Long.prototype.toString.call(message.userId) : options.longs === Number ? new $util.LongBits(message.userId.low >>> 0, message.userId.high >>> 0).toNumber() : message.userId;
+            if (message.orgId != null && message.hasOwnProperty("orgId"))
+                if (typeof message.orgId === "number")
+                    object.orgId = options.longs === String ? String(message.orgId) : message.orgId;
+                else
+                    object.orgId = options.longs === String ? $util.Long.prototype.toString.call(message.orgId) : options.longs === Number ? new $util.LongBits(message.orgId.low >>> 0, message.orgId.high >>> 0).toNumber() : message.orgId;
+            if (message.isLeader != null && message.hasOwnProperty("isLeader"))
+                object.isLeader = message.isLeader;
+            if (message.position != null && message.hasOwnProperty("position"))
+                object.position = message.position;
+            return object;
+        };
+
+        /**
+         * Converts this AssignUserToOrgArgs to JSON.
+         * @function toJSON
+         * @memberof pbOrganization.AssignUserToOrgArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        AssignUserToOrgArgs.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for AssignUserToOrgArgs
+         * @function getTypeUrl
+         * @memberof pbOrganization.AssignUserToOrgArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        AssignUserToOrgArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbOrganization.AssignUserToOrgArgs";
+        };
+
+        return AssignUserToOrgArgs;
+    })();
+
+    pbOrganization.BatchAssignUsersArgs = (function() {
+
+        /**
+         * Properties of a BatchAssignUsersArgs.
+         * @memberof pbOrganization
+         * @interface IBatchAssignUsersArgs
+         * @property {Array.<number|Long>|null} [userIds] BatchAssignUsersArgs userIds
+         * @property {number|Long|null} [orgId] BatchAssignUsersArgs orgId
+         * @property {string|null} [position] BatchAssignUsersArgs position
+         */
+
+        /**
+         * Constructs a new BatchAssignUsersArgs.
+         * @memberof pbOrganization
+         * @classdesc Represents a BatchAssignUsersArgs.
+         * @implements IBatchAssignUsersArgs
+         * @constructor
+         * @param {pbOrganization.IBatchAssignUsersArgs=} [properties] Properties to set
+         */
+        function BatchAssignUsersArgs(properties) {
+            this.userIds = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BatchAssignUsersArgs userIds.
+         * @member {Array.<number|Long>} userIds
+         * @memberof pbOrganization.BatchAssignUsersArgs
+         * @instance
+         */
+        BatchAssignUsersArgs.prototype.userIds = $util.emptyArray;
+
+        /**
+         * BatchAssignUsersArgs orgId.
+         * @member {number|Long} orgId
+         * @memberof pbOrganization.BatchAssignUsersArgs
+         * @instance
+         */
+        BatchAssignUsersArgs.prototype.orgId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * BatchAssignUsersArgs position.
+         * @member {string} position
+         * @memberof pbOrganization.BatchAssignUsersArgs
+         * @instance
+         */
+        BatchAssignUsersArgs.prototype.position = "";
+
+        /**
+         * Creates a new BatchAssignUsersArgs instance using the specified properties.
+         * @function create
+         * @memberof pbOrganization.BatchAssignUsersArgs
+         * @static
+         * @param {pbOrganization.IBatchAssignUsersArgs=} [properties] Properties to set
+         * @returns {pbOrganization.BatchAssignUsersArgs} BatchAssignUsersArgs instance
+         */
+        BatchAssignUsersArgs.create = function create(properties) {
+            return new BatchAssignUsersArgs(properties);
+        };
+
+        /**
+         * Encodes the specified BatchAssignUsersArgs message. Does not implicitly {@link pbOrganization.BatchAssignUsersArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbOrganization.BatchAssignUsersArgs
+         * @static
+         * @param {pbOrganization.IBatchAssignUsersArgs} message BatchAssignUsersArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BatchAssignUsersArgs.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.userIds != null && message.userIds.length) {
+                writer.uint32(/* id 1, wireType 2 =*/10).fork();
+                for (var i = 0; i < message.userIds.length; ++i)
+                    writer.int64(message.userIds[i]);
+                writer.ldelim();
+            }
+            if (message.orgId != null && Object.hasOwnProperty.call(message, "orgId"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int64(message.orgId);
+            if (message.position != null && Object.hasOwnProperty.call(message, "position"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.position);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BatchAssignUsersArgs message, length delimited. Does not implicitly {@link pbOrganization.BatchAssignUsersArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbOrganization.BatchAssignUsersArgs
+         * @static
+         * @param {pbOrganization.IBatchAssignUsersArgs} message BatchAssignUsersArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BatchAssignUsersArgs.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BatchAssignUsersArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbOrganization.BatchAssignUsersArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbOrganization.BatchAssignUsersArgs} BatchAssignUsersArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BatchAssignUsersArgs.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbOrganization.BatchAssignUsersArgs();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        if (!(message.userIds && message.userIds.length))
+                            message.userIds = [];
+                        if ((tag & 7) === 2) {
+                            var end2 = reader.uint32() + reader.pos;
+                            while (reader.pos < end2)
+                                message.userIds.push(reader.int64());
+                        } else
+                            message.userIds.push(reader.int64());
+                        break;
+                    }
+                case 2: {
+                        message.orgId = reader.int64();
+                        break;
+                    }
+                case 3: {
+                        message.position = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a BatchAssignUsersArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbOrganization.BatchAssignUsersArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbOrganization.BatchAssignUsersArgs} BatchAssignUsersArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BatchAssignUsersArgs.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BatchAssignUsersArgs message.
+         * @function verify
+         * @memberof pbOrganization.BatchAssignUsersArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BatchAssignUsersArgs.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.userIds != null && message.hasOwnProperty("userIds")) {
+                if (!Array.isArray(message.userIds))
+                    return "userIds: array expected";
+                for (var i = 0; i < message.userIds.length; ++i)
+                    if (!$util.isInteger(message.userIds[i]) && !(message.userIds[i] && $util.isInteger(message.userIds[i].low) && $util.isInteger(message.userIds[i].high)))
+                        return "userIds: integer|Long[] expected";
+            }
+            if (message.orgId != null && message.hasOwnProperty("orgId"))
+                if (!$util.isInteger(message.orgId) && !(message.orgId && $util.isInteger(message.orgId.low) && $util.isInteger(message.orgId.high)))
+                    return "orgId: integer|Long expected";
+            if (message.position != null && message.hasOwnProperty("position"))
+                if (!$util.isString(message.position))
+                    return "position: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a BatchAssignUsersArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbOrganization.BatchAssignUsersArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbOrganization.BatchAssignUsersArgs} BatchAssignUsersArgs
+         */
+        BatchAssignUsersArgs.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbOrganization.BatchAssignUsersArgs)
+                return object;
+            var message = new $root.pbOrganization.BatchAssignUsersArgs();
+            if (object.userIds) {
+                if (!Array.isArray(object.userIds))
+                    throw TypeError(".pbOrganization.BatchAssignUsersArgs.userIds: array expected");
+                message.userIds = [];
+                for (var i = 0; i < object.userIds.length; ++i)
+                    if ($util.Long)
+                        (message.userIds[i] = $util.Long.fromValue(object.userIds[i])).unsigned = false;
+                    else if (typeof object.userIds[i] === "string")
+                        message.userIds[i] = parseInt(object.userIds[i], 10);
+                    else if (typeof object.userIds[i] === "number")
+                        message.userIds[i] = object.userIds[i];
+                    else if (typeof object.userIds[i] === "object")
+                        message.userIds[i] = new $util.LongBits(object.userIds[i].low >>> 0, object.userIds[i].high >>> 0).toNumber();
+            }
+            if (object.orgId != null)
+                if ($util.Long)
+                    (message.orgId = $util.Long.fromValue(object.orgId)).unsigned = false;
+                else if (typeof object.orgId === "string")
+                    message.orgId = parseInt(object.orgId, 10);
+                else if (typeof object.orgId === "number")
+                    message.orgId = object.orgId;
+                else if (typeof object.orgId === "object")
+                    message.orgId = new $util.LongBits(object.orgId.low >>> 0, object.orgId.high >>> 0).toNumber();
+            if (object.position != null)
+                message.position = String(object.position);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BatchAssignUsersArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbOrganization.BatchAssignUsersArgs
+         * @static
+         * @param {pbOrganization.BatchAssignUsersArgs} message BatchAssignUsersArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BatchAssignUsersArgs.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.userIds = [];
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.orgId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.orgId = options.longs === String ? "0" : 0;
+                object.position = "";
+            }
+            if (message.userIds && message.userIds.length) {
+                object.userIds = [];
+                for (var j = 0; j < message.userIds.length; ++j)
+                    if (typeof message.userIds[j] === "number")
+                        object.userIds[j] = options.longs === String ? String(message.userIds[j]) : message.userIds[j];
+                    else
+                        object.userIds[j] = options.longs === String ? $util.Long.prototype.toString.call(message.userIds[j]) : options.longs === Number ? new $util.LongBits(message.userIds[j].low >>> 0, message.userIds[j].high >>> 0).toNumber() : message.userIds[j];
+            }
+            if (message.orgId != null && message.hasOwnProperty("orgId"))
+                if (typeof message.orgId === "number")
+                    object.orgId = options.longs === String ? String(message.orgId) : message.orgId;
+                else
+                    object.orgId = options.longs === String ? $util.Long.prototype.toString.call(message.orgId) : options.longs === Number ? new $util.LongBits(message.orgId.low >>> 0, message.orgId.high >>> 0).toNumber() : message.orgId;
+            if (message.position != null && message.hasOwnProperty("position"))
+                object.position = message.position;
+            return object;
+        };
+
+        /**
+         * Converts this BatchAssignUsersArgs to JSON.
+         * @function toJSON
+         * @memberof pbOrganization.BatchAssignUsersArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BatchAssignUsersArgs.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for BatchAssignUsersArgs
+         * @function getTypeUrl
+         * @memberof pbOrganization.BatchAssignUsersArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        BatchAssignUsersArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbOrganization.BatchAssignUsersArgs";
+        };
+
+        return BatchAssignUsersArgs;
+    })();
+
+    pbOrganization.RemoveUserFromOrgArgs = (function() {
+
+        /**
+         * Properties of a RemoveUserFromOrgArgs.
+         * @memberof pbOrganization
+         * @interface IRemoveUserFromOrgArgs
+         * @property {number|Long|null} [userId] RemoveUserFromOrgArgs userId
+         * @property {number|Long|null} [orgId] RemoveUserFromOrgArgs orgId
+         */
+
+        /**
+         * Constructs a new RemoveUserFromOrgArgs.
+         * @memberof pbOrganization
+         * @classdesc Represents a RemoveUserFromOrgArgs.
+         * @implements IRemoveUserFromOrgArgs
+         * @constructor
+         * @param {pbOrganization.IRemoveUserFromOrgArgs=} [properties] Properties to set
+         */
+        function RemoveUserFromOrgArgs(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * RemoveUserFromOrgArgs userId.
+         * @member {number|Long} userId
+         * @memberof pbOrganization.RemoveUserFromOrgArgs
+         * @instance
+         */
+        RemoveUserFromOrgArgs.prototype.userId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * RemoveUserFromOrgArgs orgId.
+         * @member {number|Long} orgId
+         * @memberof pbOrganization.RemoveUserFromOrgArgs
+         * @instance
+         */
+        RemoveUserFromOrgArgs.prototype.orgId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * Creates a new RemoveUserFromOrgArgs instance using the specified properties.
+         * @function create
+         * @memberof pbOrganization.RemoveUserFromOrgArgs
+         * @static
+         * @param {pbOrganization.IRemoveUserFromOrgArgs=} [properties] Properties to set
+         * @returns {pbOrganization.RemoveUserFromOrgArgs} RemoveUserFromOrgArgs instance
+         */
+        RemoveUserFromOrgArgs.create = function create(properties) {
+            return new RemoveUserFromOrgArgs(properties);
+        };
+
+        /**
+         * Encodes the specified RemoveUserFromOrgArgs message. Does not implicitly {@link pbOrganization.RemoveUserFromOrgArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbOrganization.RemoveUserFromOrgArgs
+         * @static
+         * @param {pbOrganization.IRemoveUserFromOrgArgs} message RemoveUserFromOrgArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        RemoveUserFromOrgArgs.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.userId != null && Object.hasOwnProperty.call(message, "userId"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int64(message.userId);
+            if (message.orgId != null && Object.hasOwnProperty.call(message, "orgId"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int64(message.orgId);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified RemoveUserFromOrgArgs message, length delimited. Does not implicitly {@link pbOrganization.RemoveUserFromOrgArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbOrganization.RemoveUserFromOrgArgs
+         * @static
+         * @param {pbOrganization.IRemoveUserFromOrgArgs} message RemoveUserFromOrgArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        RemoveUserFromOrgArgs.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a RemoveUserFromOrgArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbOrganization.RemoveUserFromOrgArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbOrganization.RemoveUserFromOrgArgs} RemoveUserFromOrgArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        RemoveUserFromOrgArgs.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbOrganization.RemoveUserFromOrgArgs();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.userId = reader.int64();
+                        break;
+                    }
+                case 2: {
+                        message.orgId = reader.int64();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a RemoveUserFromOrgArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbOrganization.RemoveUserFromOrgArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbOrganization.RemoveUserFromOrgArgs} RemoveUserFromOrgArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        RemoveUserFromOrgArgs.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a RemoveUserFromOrgArgs message.
+         * @function verify
+         * @memberof pbOrganization.RemoveUserFromOrgArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        RemoveUserFromOrgArgs.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.userId != null && message.hasOwnProperty("userId"))
+                if (!$util.isInteger(message.userId) && !(message.userId && $util.isInteger(message.userId.low) && $util.isInteger(message.userId.high)))
+                    return "userId: integer|Long expected";
+            if (message.orgId != null && message.hasOwnProperty("orgId"))
+                if (!$util.isInteger(message.orgId) && !(message.orgId && $util.isInteger(message.orgId.low) && $util.isInteger(message.orgId.high)))
+                    return "orgId: integer|Long expected";
+            return null;
+        };
+
+        /**
+         * Creates a RemoveUserFromOrgArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbOrganization.RemoveUserFromOrgArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbOrganization.RemoveUserFromOrgArgs} RemoveUserFromOrgArgs
+         */
+        RemoveUserFromOrgArgs.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbOrganization.RemoveUserFromOrgArgs)
+                return object;
+            var message = new $root.pbOrganization.RemoveUserFromOrgArgs();
+            if (object.userId != null)
+                if ($util.Long)
+                    (message.userId = $util.Long.fromValue(object.userId)).unsigned = false;
+                else if (typeof object.userId === "string")
+                    message.userId = parseInt(object.userId, 10);
+                else if (typeof object.userId === "number")
+                    message.userId = object.userId;
+                else if (typeof object.userId === "object")
+                    message.userId = new $util.LongBits(object.userId.low >>> 0, object.userId.high >>> 0).toNumber();
+            if (object.orgId != null)
+                if ($util.Long)
+                    (message.orgId = $util.Long.fromValue(object.orgId)).unsigned = false;
+                else if (typeof object.orgId === "string")
+                    message.orgId = parseInt(object.orgId, 10);
+                else if (typeof object.orgId === "number")
+                    message.orgId = object.orgId;
+                else if (typeof object.orgId === "object")
+                    message.orgId = new $util.LongBits(object.orgId.low >>> 0, object.orgId.high >>> 0).toNumber();
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a RemoveUserFromOrgArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbOrganization.RemoveUserFromOrgArgs
+         * @static
+         * @param {pbOrganization.RemoveUserFromOrgArgs} message RemoveUserFromOrgArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        RemoveUserFromOrgArgs.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.userId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.userId = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.orgId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.orgId = options.longs === String ? "0" : 0;
+            }
+            if (message.userId != null && message.hasOwnProperty("userId"))
+                if (typeof message.userId === "number")
+                    object.userId = options.longs === String ? String(message.userId) : message.userId;
+                else
+                    object.userId = options.longs === String ? $util.Long.prototype.toString.call(message.userId) : options.longs === Number ? new $util.LongBits(message.userId.low >>> 0, message.userId.high >>> 0).toNumber() : message.userId;
+            if (message.orgId != null && message.hasOwnProperty("orgId"))
+                if (typeof message.orgId === "number")
+                    object.orgId = options.longs === String ? String(message.orgId) : message.orgId;
+                else
+                    object.orgId = options.longs === String ? $util.Long.prototype.toString.call(message.orgId) : options.longs === Number ? new $util.LongBits(message.orgId.low >>> 0, message.orgId.high >>> 0).toNumber() : message.orgId;
+            return object;
+        };
+
+        /**
+         * Converts this RemoveUserFromOrgArgs to JSON.
+         * @function toJSON
+         * @memberof pbOrganization.RemoveUserFromOrgArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        RemoveUserFromOrgArgs.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for RemoveUserFromOrgArgs
+         * @function getTypeUrl
+         * @memberof pbOrganization.RemoveUserFromOrgArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        RemoveUserFromOrgArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbOrganization.RemoveUserFromOrgArgs";
+        };
+
+        return RemoveUserFromOrgArgs;
+    })();
+
+    pbOrganization.MoveOrgArgs = (function() {
+
+        /**
+         * Properties of a MoveOrgArgs.
+         * @memberof pbOrganization
+         * @interface IMoveOrgArgs
+         * @property {number|Long|null} [orgId] MoveOrgArgs orgId
+         * @property {number|Long|null} [newParentId] MoveOrgArgs newParentId
+         * @property {number|null} [newSort] MoveOrgArgs newSort
+         */
+
+        /**
+         * Constructs a new MoveOrgArgs.
+         * @memberof pbOrganization
+         * @classdesc Represents a MoveOrgArgs.
+         * @implements IMoveOrgArgs
+         * @constructor
+         * @param {pbOrganization.IMoveOrgArgs=} [properties] Properties to set
+         */
+        function MoveOrgArgs(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * MoveOrgArgs orgId.
+         * @member {number|Long} orgId
+         * @memberof pbOrganization.MoveOrgArgs
+         * @instance
+         */
+        MoveOrgArgs.prototype.orgId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * MoveOrgArgs newParentId.
+         * @member {number|Long} newParentId
+         * @memberof pbOrganization.MoveOrgArgs
+         * @instance
+         */
+        MoveOrgArgs.prototype.newParentId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * MoveOrgArgs newSort.
+         * @member {number} newSort
+         * @memberof pbOrganization.MoveOrgArgs
+         * @instance
+         */
+        MoveOrgArgs.prototype.newSort = 0;
+
+        /**
+         * Creates a new MoveOrgArgs instance using the specified properties.
+         * @function create
+         * @memberof pbOrganization.MoveOrgArgs
+         * @static
+         * @param {pbOrganization.IMoveOrgArgs=} [properties] Properties to set
+         * @returns {pbOrganization.MoveOrgArgs} MoveOrgArgs instance
+         */
+        MoveOrgArgs.create = function create(properties) {
+            return new MoveOrgArgs(properties);
+        };
+
+        /**
+         * Encodes the specified MoveOrgArgs message. Does not implicitly {@link pbOrganization.MoveOrgArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbOrganization.MoveOrgArgs
+         * @static
+         * @param {pbOrganization.IMoveOrgArgs} message MoveOrgArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        MoveOrgArgs.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.orgId != null && Object.hasOwnProperty.call(message, "orgId"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int64(message.orgId);
+            if (message.newParentId != null && Object.hasOwnProperty.call(message, "newParentId"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int64(message.newParentId);
+            if (message.newSort != null && Object.hasOwnProperty.call(message, "newSort"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int32(message.newSort);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified MoveOrgArgs message, length delimited. Does not implicitly {@link pbOrganization.MoveOrgArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbOrganization.MoveOrgArgs
+         * @static
+         * @param {pbOrganization.IMoveOrgArgs} message MoveOrgArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        MoveOrgArgs.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a MoveOrgArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbOrganization.MoveOrgArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbOrganization.MoveOrgArgs} MoveOrgArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        MoveOrgArgs.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbOrganization.MoveOrgArgs();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.orgId = reader.int64();
+                        break;
+                    }
+                case 2: {
+                        message.newParentId = reader.int64();
+                        break;
+                    }
+                case 3: {
+                        message.newSort = reader.int32();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a MoveOrgArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbOrganization.MoveOrgArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbOrganization.MoveOrgArgs} MoveOrgArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        MoveOrgArgs.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a MoveOrgArgs message.
+         * @function verify
+         * @memberof pbOrganization.MoveOrgArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        MoveOrgArgs.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.orgId != null && message.hasOwnProperty("orgId"))
+                if (!$util.isInteger(message.orgId) && !(message.orgId && $util.isInteger(message.orgId.low) && $util.isInteger(message.orgId.high)))
+                    return "orgId: integer|Long expected";
+            if (message.newParentId != null && message.hasOwnProperty("newParentId"))
+                if (!$util.isInteger(message.newParentId) && !(message.newParentId && $util.isInteger(message.newParentId.low) && $util.isInteger(message.newParentId.high)))
+                    return "newParentId: integer|Long expected";
+            if (message.newSort != null && message.hasOwnProperty("newSort"))
+                if (!$util.isInteger(message.newSort))
+                    return "newSort: integer expected";
+            return null;
+        };
+
+        /**
+         * Creates a MoveOrgArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbOrganization.MoveOrgArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbOrganization.MoveOrgArgs} MoveOrgArgs
+         */
+        MoveOrgArgs.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbOrganization.MoveOrgArgs)
+                return object;
+            var message = new $root.pbOrganization.MoveOrgArgs();
+            if (object.orgId != null)
+                if ($util.Long)
+                    (message.orgId = $util.Long.fromValue(object.orgId)).unsigned = false;
+                else if (typeof object.orgId === "string")
+                    message.orgId = parseInt(object.orgId, 10);
+                else if (typeof object.orgId === "number")
+                    message.orgId = object.orgId;
+                else if (typeof object.orgId === "object")
+                    message.orgId = new $util.LongBits(object.orgId.low >>> 0, object.orgId.high >>> 0).toNumber();
+            if (object.newParentId != null)
+                if ($util.Long)
+                    (message.newParentId = $util.Long.fromValue(object.newParentId)).unsigned = false;
+                else if (typeof object.newParentId === "string")
+                    message.newParentId = parseInt(object.newParentId, 10);
+                else if (typeof object.newParentId === "number")
+                    message.newParentId = object.newParentId;
+                else if (typeof object.newParentId === "object")
+                    message.newParentId = new $util.LongBits(object.newParentId.low >>> 0, object.newParentId.high >>> 0).toNumber();
+            if (object.newSort != null)
+                message.newSort = object.newSort | 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a MoveOrgArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbOrganization.MoveOrgArgs
+         * @static
+         * @param {pbOrganization.MoveOrgArgs} message MoveOrgArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        MoveOrgArgs.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.orgId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.orgId = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.newParentId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.newParentId = options.longs === String ? "0" : 0;
+                object.newSort = 0;
+            }
+            if (message.orgId != null && message.hasOwnProperty("orgId"))
+                if (typeof message.orgId === "number")
+                    object.orgId = options.longs === String ? String(message.orgId) : message.orgId;
+                else
+                    object.orgId = options.longs === String ? $util.Long.prototype.toString.call(message.orgId) : options.longs === Number ? new $util.LongBits(message.orgId.low >>> 0, message.orgId.high >>> 0).toNumber() : message.orgId;
+            if (message.newParentId != null && message.hasOwnProperty("newParentId"))
+                if (typeof message.newParentId === "number")
+                    object.newParentId = options.longs === String ? String(message.newParentId) : message.newParentId;
+                else
+                    object.newParentId = options.longs === String ? $util.Long.prototype.toString.call(message.newParentId) : options.longs === Number ? new $util.LongBits(message.newParentId.low >>> 0, message.newParentId.high >>> 0).toNumber() : message.newParentId;
+            if (message.newSort != null && message.hasOwnProperty("newSort"))
+                object.newSort = message.newSort;
+            return object;
+        };
+
+        /**
+         * Converts this MoveOrgArgs to JSON.
+         * @function toJSON
+         * @memberof pbOrganization.MoveOrgArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        MoveOrgArgs.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for MoveOrgArgs
+         * @function getTypeUrl
+         * @memberof pbOrganization.MoveOrgArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        MoveOrgArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbOrganization.MoveOrgArgs";
+        };
+
+        return MoveOrgArgs;
+    })();
+
+    pbOrganization.JoinOrgByInviteCodeArgs = (function() {
+
+        /**
+         * Properties of a JoinOrgByInviteCodeArgs.
+         * @memberof pbOrganization
+         * @interface IJoinOrgByInviteCodeArgs
+         * @property {string|null} [inviteCode] JoinOrgByInviteCodeArgs inviteCode
+         */
+
+        /**
+         * Constructs a new JoinOrgByInviteCodeArgs.
+         * @memberof pbOrganization
+         * @classdesc Represents a JoinOrgByInviteCodeArgs.
+         * @implements IJoinOrgByInviteCodeArgs
+         * @constructor
+         * @param {pbOrganization.IJoinOrgByInviteCodeArgs=} [properties] Properties to set
+         */
+        function JoinOrgByInviteCodeArgs(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * JoinOrgByInviteCodeArgs inviteCode.
+         * @member {string} inviteCode
+         * @memberof pbOrganization.JoinOrgByInviteCodeArgs
+         * @instance
+         */
+        JoinOrgByInviteCodeArgs.prototype.inviteCode = "";
+
+        /**
+         * Creates a new JoinOrgByInviteCodeArgs instance using the specified properties.
+         * @function create
+         * @memberof pbOrganization.JoinOrgByInviteCodeArgs
+         * @static
+         * @param {pbOrganization.IJoinOrgByInviteCodeArgs=} [properties] Properties to set
+         * @returns {pbOrganization.JoinOrgByInviteCodeArgs} JoinOrgByInviteCodeArgs instance
+         */
+        JoinOrgByInviteCodeArgs.create = function create(properties) {
+            return new JoinOrgByInviteCodeArgs(properties);
+        };
+
+        /**
+         * Encodes the specified JoinOrgByInviteCodeArgs message. Does not implicitly {@link pbOrganization.JoinOrgByInviteCodeArgs.verify|verify} messages.
+         * @function encode
+         * @memberof pbOrganization.JoinOrgByInviteCodeArgs
+         * @static
+         * @param {pbOrganization.IJoinOrgByInviteCodeArgs} message JoinOrgByInviteCodeArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        JoinOrgByInviteCodeArgs.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.inviteCode != null && Object.hasOwnProperty.call(message, "inviteCode"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.inviteCode);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified JoinOrgByInviteCodeArgs message, length delimited. Does not implicitly {@link pbOrganization.JoinOrgByInviteCodeArgs.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbOrganization.JoinOrgByInviteCodeArgs
+         * @static
+         * @param {pbOrganization.IJoinOrgByInviteCodeArgs} message JoinOrgByInviteCodeArgs message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        JoinOrgByInviteCodeArgs.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a JoinOrgByInviteCodeArgs message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbOrganization.JoinOrgByInviteCodeArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbOrganization.JoinOrgByInviteCodeArgs} JoinOrgByInviteCodeArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        JoinOrgByInviteCodeArgs.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbOrganization.JoinOrgByInviteCodeArgs();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.inviteCode = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a JoinOrgByInviteCodeArgs message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbOrganization.JoinOrgByInviteCodeArgs
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbOrganization.JoinOrgByInviteCodeArgs} JoinOrgByInviteCodeArgs
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        JoinOrgByInviteCodeArgs.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a JoinOrgByInviteCodeArgs message.
+         * @function verify
+         * @memberof pbOrganization.JoinOrgByInviteCodeArgs
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        JoinOrgByInviteCodeArgs.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.inviteCode != null && message.hasOwnProperty("inviteCode"))
+                if (!$util.isString(message.inviteCode))
+                    return "inviteCode: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a JoinOrgByInviteCodeArgs message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbOrganization.JoinOrgByInviteCodeArgs
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbOrganization.JoinOrgByInviteCodeArgs} JoinOrgByInviteCodeArgs
+         */
+        JoinOrgByInviteCodeArgs.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbOrganization.JoinOrgByInviteCodeArgs)
+                return object;
+            var message = new $root.pbOrganization.JoinOrgByInviteCodeArgs();
+            if (object.inviteCode != null)
+                message.inviteCode = String(object.inviteCode);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a JoinOrgByInviteCodeArgs message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbOrganization.JoinOrgByInviteCodeArgs
+         * @static
+         * @param {pbOrganization.JoinOrgByInviteCodeArgs} message JoinOrgByInviteCodeArgs
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        JoinOrgByInviteCodeArgs.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.inviteCode = "";
+            if (message.inviteCode != null && message.hasOwnProperty("inviteCode"))
+                object.inviteCode = message.inviteCode;
+            return object;
+        };
+
+        /**
+         * Converts this JoinOrgByInviteCodeArgs to JSON.
+         * @function toJSON
+         * @memberof pbOrganization.JoinOrgByInviteCodeArgs
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        JoinOrgByInviteCodeArgs.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for JoinOrgByInviteCodeArgs
+         * @function getTypeUrl
+         * @memberof pbOrganization.JoinOrgByInviteCodeArgs
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        JoinOrgByInviteCodeArgs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbOrganization.JoinOrgByInviteCodeArgs";
+        };
+
+        return JoinOrgByInviteCodeArgs;
+    })();
+
+    pbOrganization.JoinOrgByInviteCodeReply = (function() {
+
+        /**
+         * Properties of a JoinOrgByInviteCodeReply.
+         * @memberof pbOrganization
+         * @interface IJoinOrgByInviteCodeReply
+         * @property {pbcommon.EnumCode|null} [code] JoinOrgByInviteCodeReply code
+         * @property {string|null} [msg] JoinOrgByInviteCodeReply msg
+         * @property {number|Long|null} [orgId] JoinOrgByInviteCodeReply orgId
+         * @property {string|null} [orgName] JoinOrgByInviteCodeReply orgName
+         */
+
+        /**
+         * Constructs a new JoinOrgByInviteCodeReply.
+         * @memberof pbOrganization
+         * @classdesc Represents a JoinOrgByInviteCodeReply.
+         * @implements IJoinOrgByInviteCodeReply
+         * @constructor
+         * @param {pbOrganization.IJoinOrgByInviteCodeReply=} [properties] Properties to set
+         */
+        function JoinOrgByInviteCodeReply(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * JoinOrgByInviteCodeReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbOrganization.JoinOrgByInviteCodeReply
+         * @instance
+         */
+        JoinOrgByInviteCodeReply.prototype.code = 0;
+
+        /**
+         * JoinOrgByInviteCodeReply msg.
+         * @member {string} msg
+         * @memberof pbOrganization.JoinOrgByInviteCodeReply
+         * @instance
+         */
+        JoinOrgByInviteCodeReply.prototype.msg = "";
+
+        /**
+         * JoinOrgByInviteCodeReply orgId.
+         * @member {number|Long} orgId
+         * @memberof pbOrganization.JoinOrgByInviteCodeReply
+         * @instance
+         */
+        JoinOrgByInviteCodeReply.prototype.orgId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * JoinOrgByInviteCodeReply orgName.
+         * @member {string} orgName
+         * @memberof pbOrganization.JoinOrgByInviteCodeReply
+         * @instance
+         */
+        JoinOrgByInviteCodeReply.prototype.orgName = "";
+
+        /**
+         * Creates a new JoinOrgByInviteCodeReply instance using the specified properties.
+         * @function create
+         * @memberof pbOrganization.JoinOrgByInviteCodeReply
+         * @static
+         * @param {pbOrganization.IJoinOrgByInviteCodeReply=} [properties] Properties to set
+         * @returns {pbOrganization.JoinOrgByInviteCodeReply} JoinOrgByInviteCodeReply instance
+         */
+        JoinOrgByInviteCodeReply.create = function create(properties) {
+            return new JoinOrgByInviteCodeReply(properties);
+        };
+
+        /**
+         * Encodes the specified JoinOrgByInviteCodeReply message. Does not implicitly {@link pbOrganization.JoinOrgByInviteCodeReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbOrganization.JoinOrgByInviteCodeReply
+         * @static
+         * @param {pbOrganization.IJoinOrgByInviteCodeReply} message JoinOrgByInviteCodeReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        JoinOrgByInviteCodeReply.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.orgId != null && Object.hasOwnProperty.call(message, "orgId"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int64(message.orgId);
+            if (message.orgName != null && Object.hasOwnProperty.call(message, "orgName"))
+                writer.uint32(/* id 4, wireType 2 =*/34).string(message.orgName);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified JoinOrgByInviteCodeReply message, length delimited. Does not implicitly {@link pbOrganization.JoinOrgByInviteCodeReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbOrganization.JoinOrgByInviteCodeReply
+         * @static
+         * @param {pbOrganization.IJoinOrgByInviteCodeReply} message JoinOrgByInviteCodeReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        JoinOrgByInviteCodeReply.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a JoinOrgByInviteCodeReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbOrganization.JoinOrgByInviteCodeReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbOrganization.JoinOrgByInviteCodeReply} JoinOrgByInviteCodeReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        JoinOrgByInviteCodeReply.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbOrganization.JoinOrgByInviteCodeReply();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.code = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.orgId = reader.int64();
+                        break;
+                    }
+                case 4: {
+                        message.orgName = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a JoinOrgByInviteCodeReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbOrganization.JoinOrgByInviteCodeReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbOrganization.JoinOrgByInviteCodeReply} JoinOrgByInviteCodeReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        JoinOrgByInviteCodeReply.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a JoinOrgByInviteCodeReply message.
+         * @function verify
+         * @memberof pbOrganization.JoinOrgByInviteCodeReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        JoinOrgByInviteCodeReply.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.code != null && message.hasOwnProperty("code"))
+                switch (message.code) {
+                default:
+                    return "code: enum value expected";
+                case 0:
+                case 200:
+                case 403:
+                case 500:
+                case 501:
+                case 502:
+                case 503:
+                case 504:
+                case 505:
+                case 511:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
+                case 2002:
+                case 2003:
+                case 2004:
+                case 2005:
+                case 2006:
+                case 2007:
+                case 2008:
+                case 2009:
+                case 2010:
+                case 2011:
+                case 2012:
+                case 2013:
+                case 2014:
+                case 2015:
+                case 3001:
+                case 3002:
+                case 3003:
+                case 5001:
+                case 5002:
+                case 10001:
+                case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
+                    break;
+                }
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                if (!$util.isString(message.msg))
+                    return "msg: string expected";
+            if (message.orgId != null && message.hasOwnProperty("orgId"))
+                if (!$util.isInteger(message.orgId) && !(message.orgId && $util.isInteger(message.orgId.low) && $util.isInteger(message.orgId.high)))
+                    return "orgId: integer|Long expected";
+            if (message.orgName != null && message.hasOwnProperty("orgName"))
+                if (!$util.isString(message.orgName))
+                    return "orgName: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a JoinOrgByInviteCodeReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbOrganization.JoinOrgByInviteCodeReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbOrganization.JoinOrgByInviteCodeReply} JoinOrgByInviteCodeReply
+         */
+        JoinOrgByInviteCodeReply.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbOrganization.JoinOrgByInviteCodeReply)
+                return object;
+            var message = new $root.pbOrganization.JoinOrgByInviteCodeReply();
+            switch (object.code) {
+            default:
+                if (typeof object.code === "number") {
+                    message.code = object.code;
+                    break;
+                }
+                break;
+            case "None":
+            case 0:
+                message.code = 0;
+                break;
+            case "Success":
+            case 200:
+                message.code = 200;
+                break;
+            case "Forbidden":
+            case 403:
+                message.code = 403;
+                break;
+            case "Fail":
+            case 500:
+                message.code = 500;
+                break;
+            case "Unknown":
+            case 501:
+                message.code = 501;
+                break;
+            case "Internal":
+            case 502:
+                message.code = 502;
+                break;
+            case "Invalid":
+            case 503:
+                message.code = 503;
+                break;
+            case "InvalidParam":
+            case 504:
+                message.code = 504;
+                break;
+            case "ParamError":
+            case 505:
+                message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
+                break;
+            case "FindError":
+            case 1001:
+                message.code = 1001;
+                break;
+            case "CreateError":
+            case 1002:
+                message.code = 1002;
+                break;
+            case "DeleteError":
+            case 1003:
+                message.code = 1003;
+                break;
+            case "UpdateError":
+            case 1004:
+                message.code = 1004;
+                break;
+            case "InvalidToken":
+            case 2002:
+                message.code = 2002;
+                break;
+            case "InvalidSign":
+            case 2003:
+                message.code = 2003;
+                break;
+            case "NotLogin":
+            case 2004:
+                message.code = 2004;
+                break;
+            case "LoginTimeout":
+            case 2005:
+                message.code = 2005;
+                break;
+            case "LoginError":
+            case 2006:
+                message.code = 2006;
+                break;
+            case "LoginForbidden":
+            case 2007:
+                message.code = 2007;
+                break;
+            case "LoginExpired":
+            case 2008:
+                message.code = 2008;
+                break;
+            case "LoginInvalid":
+            case 2009:
+                message.code = 2009;
+                break;
+            case "LoginInvalidPassword":
+            case 2010:
+                message.code = 2010;
+                break;
+            case "LoginInvalidUsername":
+            case 2011:
+                message.code = 2011;
+                break;
+            case "LoginInvalidEmail":
+            case 2012:
+                message.code = 2012;
+                break;
+            case "LoginInvalidPhone":
+            case 2013:
+                message.code = 2013;
+                break;
+            case "LoginInvalidUsernameOrEmail":
+            case 2014:
+                message.code = 2014;
+                break;
+            case "LoginSocketRepeat":
+            case 2015:
+                message.code = 2015;
+                break;
+            case "RoleIsNotExist":
+            case 3001:
+                message.code = 3001;
+                break;
+            case "UserIsExist":
+            case 3002:
+                message.code = 3002;
+                break;
+            case "UserIsBan":
+            case 3003:
+                message.code = 3003;
+                break;
+            case "TalkIsBan":
+            case 5001:
+                message.code = 5001;
+                break;
+            case "EnterRoomErr":
+            case 5002:
+                message.code = 5002;
+                break;
+            case "HalaChatNeedBuy":
+            case 10001:
+                message.code = 10001;
+                break;
+            case "HalaPriceOutRange":
+            case 10002:
+                message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
+                break;
+            }
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.orgId != null)
+                if ($util.Long)
+                    (message.orgId = $util.Long.fromValue(object.orgId)).unsigned = false;
+                else if (typeof object.orgId === "string")
+                    message.orgId = parseInt(object.orgId, 10);
+                else if (typeof object.orgId === "number")
+                    message.orgId = object.orgId;
+                else if (typeof object.orgId === "object")
+                    message.orgId = new $util.LongBits(object.orgId.low >>> 0, object.orgId.high >>> 0).toNumber();
+            if (object.orgName != null)
+                message.orgName = String(object.orgName);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a JoinOrgByInviteCodeReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbOrganization.JoinOrgByInviteCodeReply
+         * @static
+         * @param {pbOrganization.JoinOrgByInviteCodeReply} message JoinOrgByInviteCodeReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        JoinOrgByInviteCodeReply.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.code = options.enums === String ? "None" : 0;
+                object.msg = "";
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.orgId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.orgId = options.longs === String ? "0" : 0;
+                object.orgName = "";
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.orgId != null && message.hasOwnProperty("orgId"))
+                if (typeof message.orgId === "number")
+                    object.orgId = options.longs === String ? String(message.orgId) : message.orgId;
+                else
+                    object.orgId = options.longs === String ? $util.Long.prototype.toString.call(message.orgId) : options.longs === Number ? new $util.LongBits(message.orgId.low >>> 0, message.orgId.high >>> 0).toNumber() : message.orgId;
+            if (message.orgName != null && message.hasOwnProperty("orgName"))
+                object.orgName = message.orgName;
+            return object;
+        };
+
+        /**
+         * Converts this JoinOrgByInviteCodeReply to JSON.
+         * @function toJSON
+         * @memberof pbOrganization.JoinOrgByInviteCodeReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        JoinOrgByInviteCodeReply.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for JoinOrgByInviteCodeReply
+         * @function getTypeUrl
+         * @memberof pbOrganization.JoinOrgByInviteCodeReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        JoinOrgByInviteCodeReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbOrganization.JoinOrgByInviteCodeReply";
+        };
+
+        return JoinOrgByInviteCodeReply;
+    })();
+
+    pbOrganization.GetInviteCodeReply = (function() {
+
+        /**
+         * Properties of a GetInviteCodeReply.
+         * @memberof pbOrganization
+         * @interface IGetInviteCodeReply
+         * @property {pbcommon.EnumCode|null} [code] GetInviteCodeReply code
+         * @property {string|null} [msg] GetInviteCodeReply msg
+         * @property {string|null} [inviteCode] GetInviteCodeReply inviteCode
+         */
+
+        /**
+         * Constructs a new GetInviteCodeReply.
+         * @memberof pbOrganization
+         * @classdesc Represents a GetInviteCodeReply.
+         * @implements IGetInviteCodeReply
+         * @constructor
+         * @param {pbOrganization.IGetInviteCodeReply=} [properties] Properties to set
+         */
+        function GetInviteCodeReply(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GetInviteCodeReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbOrganization.GetInviteCodeReply
+         * @instance
+         */
+        GetInviteCodeReply.prototype.code = 0;
+
+        /**
+         * GetInviteCodeReply msg.
+         * @member {string} msg
+         * @memberof pbOrganization.GetInviteCodeReply
+         * @instance
+         */
+        GetInviteCodeReply.prototype.msg = "";
+
+        /**
+         * GetInviteCodeReply inviteCode.
+         * @member {string} inviteCode
+         * @memberof pbOrganization.GetInviteCodeReply
+         * @instance
+         */
+        GetInviteCodeReply.prototype.inviteCode = "";
+
+        /**
+         * Creates a new GetInviteCodeReply instance using the specified properties.
+         * @function create
+         * @memberof pbOrganization.GetInviteCodeReply
+         * @static
+         * @param {pbOrganization.IGetInviteCodeReply=} [properties] Properties to set
+         * @returns {pbOrganization.GetInviteCodeReply} GetInviteCodeReply instance
+         */
+        GetInviteCodeReply.create = function create(properties) {
+            return new GetInviteCodeReply(properties);
+        };
+
+        /**
+         * Encodes the specified GetInviteCodeReply message. Does not implicitly {@link pbOrganization.GetInviteCodeReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbOrganization.GetInviteCodeReply
+         * @static
+         * @param {pbOrganization.IGetInviteCodeReply} message GetInviteCodeReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetInviteCodeReply.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.inviteCode != null && Object.hasOwnProperty.call(message, "inviteCode"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.inviteCode);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GetInviteCodeReply message, length delimited. Does not implicitly {@link pbOrganization.GetInviteCodeReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbOrganization.GetInviteCodeReply
+         * @static
+         * @param {pbOrganization.IGetInviteCodeReply} message GetInviteCodeReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetInviteCodeReply.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GetInviteCodeReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbOrganization.GetInviteCodeReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbOrganization.GetInviteCodeReply} GetInviteCodeReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetInviteCodeReply.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbOrganization.GetInviteCodeReply();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.code = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.inviteCode = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GetInviteCodeReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbOrganization.GetInviteCodeReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbOrganization.GetInviteCodeReply} GetInviteCodeReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetInviteCodeReply.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GetInviteCodeReply message.
+         * @function verify
+         * @memberof pbOrganization.GetInviteCodeReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GetInviteCodeReply.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.code != null && message.hasOwnProperty("code"))
+                switch (message.code) {
+                default:
+                    return "code: enum value expected";
+                case 0:
+                case 200:
+                case 403:
+                case 500:
+                case 501:
+                case 502:
+                case 503:
+                case 504:
+                case 505:
+                case 511:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
+                case 2002:
+                case 2003:
+                case 2004:
+                case 2005:
+                case 2006:
+                case 2007:
+                case 2008:
+                case 2009:
+                case 2010:
+                case 2011:
+                case 2012:
+                case 2013:
+                case 2014:
+                case 2015:
+                case 3001:
+                case 3002:
+                case 3003:
+                case 5001:
+                case 5002:
+                case 10001:
+                case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
+                    break;
+                }
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                if (!$util.isString(message.msg))
+                    return "msg: string expected";
+            if (message.inviteCode != null && message.hasOwnProperty("inviteCode"))
+                if (!$util.isString(message.inviteCode))
+                    return "inviteCode: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a GetInviteCodeReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbOrganization.GetInviteCodeReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbOrganization.GetInviteCodeReply} GetInviteCodeReply
+         */
+        GetInviteCodeReply.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbOrganization.GetInviteCodeReply)
+                return object;
+            var message = new $root.pbOrganization.GetInviteCodeReply();
+            switch (object.code) {
+            default:
+                if (typeof object.code === "number") {
+                    message.code = object.code;
+                    break;
+                }
+                break;
+            case "None":
+            case 0:
+                message.code = 0;
+                break;
+            case "Success":
+            case 200:
+                message.code = 200;
+                break;
+            case "Forbidden":
+            case 403:
+                message.code = 403;
+                break;
+            case "Fail":
+            case 500:
+                message.code = 500;
+                break;
+            case "Unknown":
+            case 501:
+                message.code = 501;
+                break;
+            case "Internal":
+            case 502:
+                message.code = 502;
+                break;
+            case "Invalid":
+            case 503:
+                message.code = 503;
+                break;
+            case "InvalidParam":
+            case 504:
+                message.code = 504;
+                break;
+            case "ParamError":
+            case 505:
+                message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
+                break;
+            case "FindError":
+            case 1001:
+                message.code = 1001;
+                break;
+            case "CreateError":
+            case 1002:
+                message.code = 1002;
+                break;
+            case "DeleteError":
+            case 1003:
+                message.code = 1003;
+                break;
+            case "UpdateError":
+            case 1004:
+                message.code = 1004;
+                break;
+            case "InvalidToken":
+            case 2002:
+                message.code = 2002;
+                break;
+            case "InvalidSign":
+            case 2003:
+                message.code = 2003;
+                break;
+            case "NotLogin":
+            case 2004:
+                message.code = 2004;
+                break;
+            case "LoginTimeout":
+            case 2005:
+                message.code = 2005;
+                break;
+            case "LoginError":
+            case 2006:
+                message.code = 2006;
+                break;
+            case "LoginForbidden":
+            case 2007:
+                message.code = 2007;
+                break;
+            case "LoginExpired":
+            case 2008:
+                message.code = 2008;
+                break;
+            case "LoginInvalid":
+            case 2009:
+                message.code = 2009;
+                break;
+            case "LoginInvalidPassword":
+            case 2010:
+                message.code = 2010;
+                break;
+            case "LoginInvalidUsername":
+            case 2011:
+                message.code = 2011;
+                break;
+            case "LoginInvalidEmail":
+            case 2012:
+                message.code = 2012;
+                break;
+            case "LoginInvalidPhone":
+            case 2013:
+                message.code = 2013;
+                break;
+            case "LoginInvalidUsernameOrEmail":
+            case 2014:
+                message.code = 2014;
+                break;
+            case "LoginSocketRepeat":
+            case 2015:
+                message.code = 2015;
+                break;
+            case "RoleIsNotExist":
+            case 3001:
+                message.code = 3001;
+                break;
+            case "UserIsExist":
+            case 3002:
+                message.code = 3002;
+                break;
+            case "UserIsBan":
+            case 3003:
+                message.code = 3003;
+                break;
+            case "TalkIsBan":
+            case 5001:
+                message.code = 5001;
+                break;
+            case "EnterRoomErr":
+            case 5002:
+                message.code = 5002;
+                break;
+            case "HalaChatNeedBuy":
+            case 10001:
+                message.code = 10001;
+                break;
+            case "HalaPriceOutRange":
+            case 10002:
+                message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
+                break;
+            }
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.inviteCode != null)
+                message.inviteCode = String(object.inviteCode);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GetInviteCodeReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbOrganization.GetInviteCodeReply
+         * @static
+         * @param {pbOrganization.GetInviteCodeReply} message GetInviteCodeReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GetInviteCodeReply.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.code = options.enums === String ? "None" : 0;
+                object.msg = "";
+                object.inviteCode = "";
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.inviteCode != null && message.hasOwnProperty("inviteCode"))
+                object.inviteCode = message.inviteCode;
+            return object;
+        };
+
+        /**
+         * Converts this GetInviteCodeReply to JSON.
+         * @function toJSON
+         * @memberof pbOrganization.GetInviteCodeReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GetInviteCodeReply.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GetInviteCodeReply
+         * @function getTypeUrl
+         * @memberof pbOrganization.GetInviteCodeReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GetInviteCodeReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbOrganization.GetInviteCodeReply";
+        };
+
+        return GetInviteCodeReply;
+    })();
+
+    pbOrganization.ResetInviteCodeReply = (function() {
+
+        /**
+         * Properties of a ResetInviteCodeReply.
+         * @memberof pbOrganization
+         * @interface IResetInviteCodeReply
+         * @property {pbcommon.EnumCode|null} [code] ResetInviteCodeReply code
+         * @property {string|null} [msg] ResetInviteCodeReply msg
+         * @property {string|null} [inviteCode] ResetInviteCodeReply inviteCode
+         */
+
+        /**
+         * Constructs a new ResetInviteCodeReply.
+         * @memberof pbOrganization
+         * @classdesc Represents a ResetInviteCodeReply.
+         * @implements IResetInviteCodeReply
+         * @constructor
+         * @param {pbOrganization.IResetInviteCodeReply=} [properties] Properties to set
+         */
+        function ResetInviteCodeReply(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ResetInviteCodeReply code.
+         * @member {pbcommon.EnumCode} code
+         * @memberof pbOrganization.ResetInviteCodeReply
+         * @instance
+         */
+        ResetInviteCodeReply.prototype.code = 0;
+
+        /**
+         * ResetInviteCodeReply msg.
+         * @member {string} msg
+         * @memberof pbOrganization.ResetInviteCodeReply
+         * @instance
+         */
+        ResetInviteCodeReply.prototype.msg = "";
+
+        /**
+         * ResetInviteCodeReply inviteCode.
+         * @member {string} inviteCode
+         * @memberof pbOrganization.ResetInviteCodeReply
+         * @instance
+         */
+        ResetInviteCodeReply.prototype.inviteCode = "";
+
+        /**
+         * Creates a new ResetInviteCodeReply instance using the specified properties.
+         * @function create
+         * @memberof pbOrganization.ResetInviteCodeReply
+         * @static
+         * @param {pbOrganization.IResetInviteCodeReply=} [properties] Properties to set
+         * @returns {pbOrganization.ResetInviteCodeReply} ResetInviteCodeReply instance
+         */
+        ResetInviteCodeReply.create = function create(properties) {
+            return new ResetInviteCodeReply(properties);
+        };
+
+        /**
+         * Encodes the specified ResetInviteCodeReply message. Does not implicitly {@link pbOrganization.ResetInviteCodeReply.verify|verify} messages.
+         * @function encode
+         * @memberof pbOrganization.ResetInviteCodeReply
+         * @static
+         * @param {pbOrganization.IResetInviteCodeReply} message ResetInviteCodeReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        ResetInviteCodeReply.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.inviteCode != null && Object.hasOwnProperty.call(message, "inviteCode"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.inviteCode);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified ResetInviteCodeReply message, length delimited. Does not implicitly {@link pbOrganization.ResetInviteCodeReply.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pbOrganization.ResetInviteCodeReply
+         * @static
+         * @param {pbOrganization.IResetInviteCodeReply} message ResetInviteCodeReply message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        ResetInviteCodeReply.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a ResetInviteCodeReply message from the specified reader or buffer.
+         * @function decode
+         * @memberof pbOrganization.ResetInviteCodeReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pbOrganization.ResetInviteCodeReply} ResetInviteCodeReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        ResetInviteCodeReply.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pbOrganization.ResetInviteCodeReply();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.code = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.msg = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.inviteCode = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a ResetInviteCodeReply message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pbOrganization.ResetInviteCodeReply
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pbOrganization.ResetInviteCodeReply} ResetInviteCodeReply
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        ResetInviteCodeReply.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a ResetInviteCodeReply message.
+         * @function verify
+         * @memberof pbOrganization.ResetInviteCodeReply
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        ResetInviteCodeReply.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.code != null && message.hasOwnProperty("code"))
+                switch (message.code) {
+                default:
+                    return "code: enum value expected";
+                case 0:
+                case 200:
+                case 403:
+                case 500:
+                case 501:
+                case 502:
+                case 503:
+                case 504:
+                case 505:
+                case 511:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
+                case 2002:
+                case 2003:
+                case 2004:
+                case 2005:
+                case 2006:
+                case 2007:
+                case 2008:
+                case 2009:
+                case 2010:
+                case 2011:
+                case 2012:
+                case 2013:
+                case 2014:
+                case 2015:
+                case 3001:
+                case 3002:
+                case 3003:
+                case 5001:
+                case 5002:
+                case 10001:
+                case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
+                    break;
+                }
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                if (!$util.isString(message.msg))
+                    return "msg: string expected";
+            if (message.inviteCode != null && message.hasOwnProperty("inviteCode"))
+                if (!$util.isString(message.inviteCode))
+                    return "inviteCode: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a ResetInviteCodeReply message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pbOrganization.ResetInviteCodeReply
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pbOrganization.ResetInviteCodeReply} ResetInviteCodeReply
+         */
+        ResetInviteCodeReply.fromObject = function fromObject(object) {
+            if (object instanceof $root.pbOrganization.ResetInviteCodeReply)
+                return object;
+            var message = new $root.pbOrganization.ResetInviteCodeReply();
+            switch (object.code) {
+            default:
+                if (typeof object.code === "number") {
+                    message.code = object.code;
+                    break;
+                }
+                break;
+            case "None":
+            case 0:
+                message.code = 0;
+                break;
+            case "Success":
+            case 200:
+                message.code = 200;
+                break;
+            case "Forbidden":
+            case 403:
+                message.code = 403;
+                break;
+            case "Fail":
+            case 500:
+                message.code = 500;
+                break;
+            case "Unknown":
+            case 501:
+                message.code = 501;
+                break;
+            case "Internal":
+            case 502:
+                message.code = 502;
+                break;
+            case "Invalid":
+            case 503:
+                message.code = 503;
+                break;
+            case "InvalidParam":
+            case 504:
+                message.code = 504;
+                break;
+            case "ParamError":
+            case 505:
+                message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
+                break;
+            case "FindError":
+            case 1001:
+                message.code = 1001;
+                break;
+            case "CreateError":
+            case 1002:
+                message.code = 1002;
+                break;
+            case "DeleteError":
+            case 1003:
+                message.code = 1003;
+                break;
+            case "UpdateError":
+            case 1004:
+                message.code = 1004;
+                break;
+            case "InvalidToken":
+            case 2002:
+                message.code = 2002;
+                break;
+            case "InvalidSign":
+            case 2003:
+                message.code = 2003;
+                break;
+            case "NotLogin":
+            case 2004:
+                message.code = 2004;
+                break;
+            case "LoginTimeout":
+            case 2005:
+                message.code = 2005;
+                break;
+            case "LoginError":
+            case 2006:
+                message.code = 2006;
+                break;
+            case "LoginForbidden":
+            case 2007:
+                message.code = 2007;
+                break;
+            case "LoginExpired":
+            case 2008:
+                message.code = 2008;
+                break;
+            case "LoginInvalid":
+            case 2009:
+                message.code = 2009;
+                break;
+            case "LoginInvalidPassword":
+            case 2010:
+                message.code = 2010;
+                break;
+            case "LoginInvalidUsername":
+            case 2011:
+                message.code = 2011;
+                break;
+            case "LoginInvalidEmail":
+            case 2012:
+                message.code = 2012;
+                break;
+            case "LoginInvalidPhone":
+            case 2013:
+                message.code = 2013;
+                break;
+            case "LoginInvalidUsernameOrEmail":
+            case 2014:
+                message.code = 2014;
+                break;
+            case "LoginSocketRepeat":
+            case 2015:
+                message.code = 2015;
+                break;
+            case "RoleIsNotExist":
+            case 3001:
+                message.code = 3001;
+                break;
+            case "UserIsExist":
+            case 3002:
+                message.code = 3002;
+                break;
+            case "UserIsBan":
+            case 3003:
+                message.code = 3003;
+                break;
+            case "TalkIsBan":
+            case 5001:
+                message.code = 5001;
+                break;
+            case "EnterRoomErr":
+            case 5002:
+                message.code = 5002;
+                break;
+            case "HalaChatNeedBuy":
+            case 10001:
+                message.code = 10001;
+                break;
+            case "HalaPriceOutRange":
+            case 10002:
+                message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
+                break;
+            }
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.inviteCode != null)
+                message.inviteCode = String(object.inviteCode);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a ResetInviteCodeReply message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pbOrganization.ResetInviteCodeReply
+         * @static
+         * @param {pbOrganization.ResetInviteCodeReply} message ResetInviteCodeReply
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        ResetInviteCodeReply.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.code = options.enums === String ? "None" : 0;
+                object.msg = "";
+                object.inviteCode = "";
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = options.enums === String ? $root.pbcommon.EnumCode[message.code] === undefined ? message.code : $root.pbcommon.EnumCode[message.code] : message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.inviteCode != null && message.hasOwnProperty("inviteCode"))
+                object.inviteCode = message.inviteCode;
+            return object;
+        };
+
+        /**
+         * Converts this ResetInviteCodeReply to JSON.
+         * @function toJSON
+         * @memberof pbOrganization.ResetInviteCodeReply
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        ResetInviteCodeReply.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for ResetInviteCodeReply
+         * @function getTypeUrl
+         * @memberof pbOrganization.ResetInviteCodeReply
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        ResetInviteCodeReply.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pbOrganization.ResetInviteCodeReply";
+        };
+
+        return ResetInviteCodeReply;
+    })();
+
+    pbOrganization.OrganizationService = (function() {
+
+        /**
+         * Constructs a new OrganizationService service.
+         * @memberof pbOrganization
+         * @classdesc Represents an OrganizationService
+         * @extends $protobuf.rpc.Service
+         * @constructor
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         */
+        function OrganizationService(rpcImpl, requestDelimited, responseDelimited) {
+            $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited);
+        }
+
+        (OrganizationService.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = OrganizationService;
+
+        /**
+         * Creates new OrganizationService service using the specified rpc implementation.
+         * @function create
+         * @memberof pbOrganization.OrganizationService
+         * @static
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         * @returns {OrganizationService} RPC service. Useful where requests and/or responses are streamed.
+         */
+        OrganizationService.create = function create(rpcImpl, requestDelimited, responseDelimited) {
+            return new this(rpcImpl, requestDelimited, responseDelimited);
+        };
+
+        /**
+         * Callback as used by {@link pbOrganization.OrganizationService#createOrganization}.
+         * @memberof pbOrganization.OrganizationService
+         * @typedef CreateOrganizationCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls CreateOrganization.
+         * @function createOrganization
+         * @memberof pbOrganization.OrganizationService
+         * @instance
+         * @param {pbOrganization.IOrganization} request Organization message or plain object
+         * @param {pbOrganization.OrganizationService.CreateOrganizationCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(OrganizationService.prototype.createOrganization = function createOrganization(request, callback) {
+            return this.rpcCall(createOrganization, $root.pbOrganization.Organization, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "CreateOrganization" });
+
+        /**
+         * Calls CreateOrganization.
+         * @function createOrganization
+         * @memberof pbOrganization.OrganizationService
+         * @instance
+         * @param {pbOrganization.IOrganization} request Organization message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbOrganization.OrganizationService#updateOrganization}.
+         * @memberof pbOrganization.OrganizationService
+         * @typedef UpdateOrganizationCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls UpdateOrganization.
+         * @function updateOrganization
+         * @memberof pbOrganization.OrganizationService
+         * @instance
+         * @param {pbOrganization.IOrganization} request Organization message or plain object
+         * @param {pbOrganization.OrganizationService.UpdateOrganizationCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(OrganizationService.prototype.updateOrganization = function updateOrganization(request, callback) {
+            return this.rpcCall(updateOrganization, $root.pbOrganization.Organization, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "UpdateOrganization" });
+
+        /**
+         * Calls UpdateOrganization.
+         * @function updateOrganization
+         * @memberof pbOrganization.OrganizationService
+         * @instance
+         * @param {pbOrganization.IOrganization} request Organization message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbOrganization.OrganizationService#deleteOrganization}.
+         * @memberof pbOrganization.OrganizationService
+         * @typedef DeleteOrganizationCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls DeleteOrganization.
+         * @function deleteOrganization
+         * @memberof pbOrganization.OrganizationService
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbOrganization.OrganizationService.DeleteOrganizationCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(OrganizationService.prototype.deleteOrganization = function deleteOrganization(request, callback) {
+            return this.rpcCall(deleteOrganization, $root.pbcommon.IdArgs, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "DeleteOrganization" });
+
+        /**
+         * Calls DeleteOrganization.
+         * @function deleteOrganization
+         * @memberof pbOrganization.OrganizationService
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbOrganization.OrganizationService#findOrganizationById}.
+         * @memberof pbOrganization.OrganizationService
+         * @typedef FindOrganizationByIdCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbOrganization.FindOrganizationReply} [response] FindOrganizationReply
+         */
+
+        /**
+         * Calls FindOrganizationById.
+         * @function findOrganizationById
+         * @memberof pbOrganization.OrganizationService
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbOrganization.OrganizationService.FindOrganizationByIdCallback} callback Node-style callback called with the error, if any, and FindOrganizationReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(OrganizationService.prototype.findOrganizationById = function findOrganizationById(request, callback) {
+            return this.rpcCall(findOrganizationById, $root.pbcommon.IdArgs, $root.pbOrganization.FindOrganizationReply, request, callback);
+        }, "name", { value: "FindOrganizationById" });
+
+        /**
+         * Calls FindOrganizationById.
+         * @function findOrganizationById
+         * @memberof pbOrganization.OrganizationService
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbOrganization.FindOrganizationReply>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbOrganization.OrganizationService#findOrganizationList}.
+         * @memberof pbOrganization.OrganizationService
+         * @typedef FindOrganizationListCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbOrganization.FindOrganizationReply} [response] FindOrganizationReply
+         */
+
+        /**
+         * Calls FindOrganizationList.
+         * @function findOrganizationList
+         * @memberof pbOrganization.OrganizationService
+         * @instance
+         * @param {pbOrganization.IFindOrganizationArgs} request FindOrganizationArgs message or plain object
+         * @param {pbOrganization.OrganizationService.FindOrganizationListCallback} callback Node-style callback called with the error, if any, and FindOrganizationReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(OrganizationService.prototype.findOrganizationList = function findOrganizationList(request, callback) {
+            return this.rpcCall(findOrganizationList, $root.pbOrganization.FindOrganizationArgs, $root.pbOrganization.FindOrganizationReply, request, callback);
+        }, "name", { value: "FindOrganizationList" });
+
+        /**
+         * Calls FindOrganizationList.
+         * @function findOrganizationList
+         * @memberof pbOrganization.OrganizationService
+         * @instance
+         * @param {pbOrganization.IFindOrganizationArgs} request FindOrganizationArgs message or plain object
+         * @returns {Promise<pbOrganization.FindOrganizationReply>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbOrganization.OrganizationService#getOrgTree}.
+         * @memberof pbOrganization.OrganizationService
+         * @typedef GetOrgTreeCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbOrganization.GetOrgTreeReply} [response] GetOrgTreeReply
+         */
+
+        /**
+         * Calls GetOrgTree.
+         * @function getOrgTree
+         * @memberof pbOrganization.OrganizationService
+         * @instance
+         * @param {pbOrganization.IGetOrgTreeArgs} request GetOrgTreeArgs message or plain object
+         * @param {pbOrganization.OrganizationService.GetOrgTreeCallback} callback Node-style callback called with the error, if any, and GetOrgTreeReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(OrganizationService.prototype.getOrgTree = function getOrgTree(request, callback) {
+            return this.rpcCall(getOrgTree, $root.pbOrganization.GetOrgTreeArgs, $root.pbOrganization.GetOrgTreeReply, request, callback);
+        }, "name", { value: "GetOrgTree" });
+
+        /**
+         * Calls GetOrgTree.
+         * @function getOrgTree
+         * @memberof pbOrganization.OrganizationService
+         * @instance
+         * @param {pbOrganization.IGetOrgTreeArgs} request GetOrgTreeArgs message or plain object
+         * @returns {Promise<pbOrganization.GetOrgTreeReply>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbOrganization.OrganizationService#getOrgUsers}.
+         * @memberof pbOrganization.OrganizationService
+         * @typedef GetOrgUsersCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbOrganization.GetOrgUsersReply} [response] GetOrgUsersReply
+         */
+
+        /**
+         * Calls GetOrgUsers.
+         * @function getOrgUsers
+         * @memberof pbOrganization.OrganizationService
+         * @instance
+         * @param {pbOrganization.IGetOrgUsersArgs} request GetOrgUsersArgs message or plain object
+         * @param {pbOrganization.OrganizationService.GetOrgUsersCallback} callback Node-style callback called with the error, if any, and GetOrgUsersReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(OrganizationService.prototype.getOrgUsers = function getOrgUsers(request, callback) {
+            return this.rpcCall(getOrgUsers, $root.pbOrganization.GetOrgUsersArgs, $root.pbOrganization.GetOrgUsersReply, request, callback);
+        }, "name", { value: "GetOrgUsers" });
+
+        /**
+         * Calls GetOrgUsers.
+         * @function getOrgUsers
+         * @memberof pbOrganization.OrganizationService
+         * @instance
+         * @param {pbOrganization.IGetOrgUsersArgs} request GetOrgUsersArgs message or plain object
+         * @returns {Promise<pbOrganization.GetOrgUsersReply>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbOrganization.OrganizationService#getUserOrgs}.
+         * @memberof pbOrganization.OrganizationService
+         * @typedef GetUserOrgsCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbOrganization.GetOrgUsersReply} [response] GetOrgUsersReply
+         */
+
+        /**
+         * Calls GetUserOrgs.
+         * @function getUserOrgs
+         * @memberof pbOrganization.OrganizationService
+         * @instance
+         * @param {pbOrganization.IGetUserOrgsArgs} request GetUserOrgsArgs message or plain object
+         * @param {pbOrganization.OrganizationService.GetUserOrgsCallback} callback Node-style callback called with the error, if any, and GetOrgUsersReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(OrganizationService.prototype.getUserOrgs = function getUserOrgs(request, callback) {
+            return this.rpcCall(getUserOrgs, $root.pbOrganization.GetUserOrgsArgs, $root.pbOrganization.GetOrgUsersReply, request, callback);
+        }, "name", { value: "GetUserOrgs" });
+
+        /**
+         * Calls GetUserOrgs.
+         * @function getUserOrgs
+         * @memberof pbOrganization.OrganizationService
+         * @instance
+         * @param {pbOrganization.IGetUserOrgsArgs} request GetUserOrgsArgs message or plain object
+         * @returns {Promise<pbOrganization.GetOrgUsersReply>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbOrganization.OrganizationService#assignUserToOrg}.
+         * @memberof pbOrganization.OrganizationService
+         * @typedef AssignUserToOrgCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls AssignUserToOrg.
+         * @function assignUserToOrg
+         * @memberof pbOrganization.OrganizationService
+         * @instance
+         * @param {pbOrganization.IAssignUserToOrgArgs} request AssignUserToOrgArgs message or plain object
+         * @param {pbOrganization.OrganizationService.AssignUserToOrgCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(OrganizationService.prototype.assignUserToOrg = function assignUserToOrg(request, callback) {
+            return this.rpcCall(assignUserToOrg, $root.pbOrganization.AssignUserToOrgArgs, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "AssignUserToOrg" });
+
+        /**
+         * Calls AssignUserToOrg.
+         * @function assignUserToOrg
+         * @memberof pbOrganization.OrganizationService
+         * @instance
+         * @param {pbOrganization.IAssignUserToOrgArgs} request AssignUserToOrgArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbOrganization.OrganizationService#batchAssignUsers}.
+         * @memberof pbOrganization.OrganizationService
+         * @typedef BatchAssignUsersCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls BatchAssignUsers.
+         * @function batchAssignUsers
+         * @memberof pbOrganization.OrganizationService
+         * @instance
+         * @param {pbOrganization.IBatchAssignUsersArgs} request BatchAssignUsersArgs message or plain object
+         * @param {pbOrganization.OrganizationService.BatchAssignUsersCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(OrganizationService.prototype.batchAssignUsers = function batchAssignUsers(request, callback) {
+            return this.rpcCall(batchAssignUsers, $root.pbOrganization.BatchAssignUsersArgs, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "BatchAssignUsers" });
+
+        /**
+         * Calls BatchAssignUsers.
+         * @function batchAssignUsers
+         * @memberof pbOrganization.OrganizationService
+         * @instance
+         * @param {pbOrganization.IBatchAssignUsersArgs} request BatchAssignUsersArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbOrganization.OrganizationService#removeUserFromOrg}.
+         * @memberof pbOrganization.OrganizationService
+         * @typedef RemoveUserFromOrgCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls RemoveUserFromOrg.
+         * @function removeUserFromOrg
+         * @memberof pbOrganization.OrganizationService
+         * @instance
+         * @param {pbOrganization.IRemoveUserFromOrgArgs} request RemoveUserFromOrgArgs message or plain object
+         * @param {pbOrganization.OrganizationService.RemoveUserFromOrgCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(OrganizationService.prototype.removeUserFromOrg = function removeUserFromOrg(request, callback) {
+            return this.rpcCall(removeUserFromOrg, $root.pbOrganization.RemoveUserFromOrgArgs, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "RemoveUserFromOrg" });
+
+        /**
+         * Calls RemoveUserFromOrg.
+         * @function removeUserFromOrg
+         * @memberof pbOrganization.OrganizationService
+         * @instance
+         * @param {pbOrganization.IRemoveUserFromOrgArgs} request RemoveUserFromOrgArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbOrganization.OrganizationService#moveOrganization}.
+         * @memberof pbOrganization.OrganizationService
+         * @typedef MoveOrganizationCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbcommon.CommonResult} [response] CommonResult
+         */
+
+        /**
+         * Calls MoveOrganization.
+         * @function moveOrganization
+         * @memberof pbOrganization.OrganizationService
+         * @instance
+         * @param {pbOrganization.IMoveOrgArgs} request MoveOrgArgs message or plain object
+         * @param {pbOrganization.OrganizationService.MoveOrganizationCallback} callback Node-style callback called with the error, if any, and CommonResult
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(OrganizationService.prototype.moveOrganization = function moveOrganization(request, callback) {
+            return this.rpcCall(moveOrganization, $root.pbOrganization.MoveOrgArgs, $root.pbcommon.CommonResult, request, callback);
+        }, "name", { value: "MoveOrganization" });
+
+        /**
+         * Calls MoveOrganization.
+         * @function moveOrganization
+         * @memberof pbOrganization.OrganizationService
+         * @instance
+         * @param {pbOrganization.IMoveOrgArgs} request MoveOrgArgs message or plain object
+         * @returns {Promise<pbcommon.CommonResult>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbOrganization.OrganizationService#joinOrgByInviteCode}.
+         * @memberof pbOrganization.OrganizationService
+         * @typedef JoinOrgByInviteCodeCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbOrganization.JoinOrgByInviteCodeReply} [response] JoinOrgByInviteCodeReply
+         */
+
+        /**
+         * Calls JoinOrgByInviteCode.
+         * @function joinOrgByInviteCode
+         * @memberof pbOrganization.OrganizationService
+         * @instance
+         * @param {pbOrganization.IJoinOrgByInviteCodeArgs} request JoinOrgByInviteCodeArgs message or plain object
+         * @param {pbOrganization.OrganizationService.JoinOrgByInviteCodeCallback} callback Node-style callback called with the error, if any, and JoinOrgByInviteCodeReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(OrganizationService.prototype.joinOrgByInviteCode = function joinOrgByInviteCode(request, callback) {
+            return this.rpcCall(joinOrgByInviteCode, $root.pbOrganization.JoinOrgByInviteCodeArgs, $root.pbOrganization.JoinOrgByInviteCodeReply, request, callback);
+        }, "name", { value: "JoinOrgByInviteCode" });
+
+        /**
+         * Calls JoinOrgByInviteCode.
+         * @function joinOrgByInviteCode
+         * @memberof pbOrganization.OrganizationService
+         * @instance
+         * @param {pbOrganization.IJoinOrgByInviteCodeArgs} request JoinOrgByInviteCodeArgs message or plain object
+         * @returns {Promise<pbOrganization.JoinOrgByInviteCodeReply>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbOrganization.OrganizationService#resetInviteCode}.
+         * @memberof pbOrganization.OrganizationService
+         * @typedef ResetInviteCodeCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbOrganization.ResetInviteCodeReply} [response] ResetInviteCodeReply
+         */
+
+        /**
+         * Calls ResetInviteCode.
+         * @function resetInviteCode
+         * @memberof pbOrganization.OrganizationService
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbOrganization.OrganizationService.ResetInviteCodeCallback} callback Node-style callback called with the error, if any, and ResetInviteCodeReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(OrganizationService.prototype.resetInviteCode = function resetInviteCode(request, callback) {
+            return this.rpcCall(resetInviteCode, $root.pbcommon.IdArgs, $root.pbOrganization.ResetInviteCodeReply, request, callback);
+        }, "name", { value: "ResetInviteCode" });
+
+        /**
+         * Calls ResetInviteCode.
+         * @function resetInviteCode
+         * @memberof pbOrganization.OrganizationService
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbOrganization.ResetInviteCodeReply>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pbOrganization.OrganizationService#getInviteCode}.
+         * @memberof pbOrganization.OrganizationService
+         * @typedef GetInviteCodeCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pbOrganization.GetInviteCodeReply} [response] GetInviteCodeReply
+         */
+
+        /**
+         * Calls GetInviteCode.
+         * @function getInviteCode
+         * @memberof pbOrganization.OrganizationService
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @param {pbOrganization.OrganizationService.GetInviteCodeCallback} callback Node-style callback called with the error, if any, and GetInviteCodeReply
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(OrganizationService.prototype.getInviteCode = function getInviteCode(request, callback) {
+            return this.rpcCall(getInviteCode, $root.pbcommon.IdArgs, $root.pbOrganization.GetInviteCodeReply, request, callback);
+        }, "name", { value: "GetInviteCode" });
+
+        /**
+         * Calls GetInviteCode.
+         * @function getInviteCode
+         * @memberof pbOrganization.OrganizationService
+         * @instance
+         * @param {pbcommon.IIdArgs} request IdArgs message or plain object
+         * @returns {Promise<pbOrganization.GetInviteCodeReply>} Promise
+         * @variation 2
+         */
+
+        return OrganizationService;
+    })();
+
+    return pbOrganization;
 })();
 
 $root.httpgate = (function() {
@@ -15206,6 +24848,7 @@ $root.httpgate = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -15231,6 +24874,9 @@ $root.httpgate = (function() {
                 case 5002:
                 case 10001:
                 case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -15296,6 +24942,10 @@ $root.httpgate = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -15396,6 +25046,18 @@ $root.httpgate = (function() {
             case "HalaPriceOutRange":
             case 10002:
                 message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -17719,6 +27381,7 @@ $root.pbapp = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -17744,6 +27407,9 @@ $root.pbapp = (function() {
                 case 5002:
                 case 10001:
                 case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -17823,6 +27489,10 @@ $root.pbapp = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -17923,6 +27593,18 @@ $root.pbapp = (function() {
             case "HalaPriceOutRange":
             case 10002:
                 message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -19299,6 +28981,7 @@ $root.pbdeviceReport = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -19324,6 +29007,9 @@ $root.pbdeviceReport = (function() {
                 case 5002:
                 case 10001:
                 case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -19403,6 +29089,10 @@ $root.pbdeviceReport = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -19503,6 +29193,18 @@ $root.pbdeviceReport = (function() {
             case "HalaPriceOutRange":
             case 10002:
                 message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -22165,6 +31867,7 @@ $root.pbemployee = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -22190,6 +31893,9 @@ $root.pbemployee = (function() {
                 case 5002:
                 case 10001:
                 case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -22269,6 +31975,10 @@ $root.pbemployee = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -22369,6 +32079,18 @@ $root.pbemployee = (function() {
             case "HalaPriceOutRange":
             case 10002:
                 message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -23626,6 +33348,7 @@ $root.pbsalary = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -23651,6 +33374,9 @@ $root.pbsalary = (function() {
                 case 5002:
                 case 10001:
                 case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -23730,6 +33456,10 @@ $root.pbsalary = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -23830,6 +33560,18 @@ $root.pbsalary = (function() {
             case "HalaPriceOutRange":
             case 10002:
                 message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -24919,6 +34661,7 @@ $root.pbsystemlog = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -24944,6 +34687,9 @@ $root.pbsystemlog = (function() {
                 case 5002:
                 case 10001:
                 case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -25011,6 +34757,10 @@ $root.pbsystemlog = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -25111,6 +34861,18 @@ $root.pbsystemlog = (function() {
             case "HalaPriceOutRange":
             case 10002:
                 message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -26474,6 +36236,7 @@ $root.pbmoment = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -26499,6 +36262,9 @@ $root.pbmoment = (function() {
                 case 5002:
                 case 10001:
                 case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -26578,6 +36344,10 @@ $root.pbmoment = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -26678,6 +36448,18 @@ $root.pbmoment = (function() {
             case "HalaPriceOutRange":
             case 10002:
                 message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -27938,6 +37720,7 @@ $root.pbmomentMedia = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -27963,6 +37746,9 @@ $root.pbmomentMedia = (function() {
                 case 5002:
                 case 10001:
                 case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -28042,6 +37828,10 @@ $root.pbmomentMedia = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -28142,6 +37932,18 @@ $root.pbmomentMedia = (function() {
             case "HalaPriceOutRange":
             case 10002:
                 message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -29460,6 +39262,7 @@ $root.pbmomentComment = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -29485,6 +39288,9 @@ $root.pbmomentComment = (function() {
                 case 5002:
                 case 10001:
                 case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -29564,6 +39370,10 @@ $root.pbmomentComment = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -29664,6 +39474,18 @@ $root.pbmomentComment = (function() {
             case "HalaPriceOutRange":
             case 10002:
                 message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -30820,6 +40642,7 @@ $root.pbmomentLike = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -30845,6 +40668,9 @@ $root.pbmomentLike = (function() {
                 case 5002:
                 case 10001:
                 case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -30924,6 +40750,10 @@ $root.pbmomentLike = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -31024,6 +40854,18 @@ $root.pbmomentLike = (function() {
             case "HalaPriceOutRange":
             case 10002:
                 message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -32068,6 +41910,7 @@ $root.pblogic = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -32093,6 +41936,9 @@ $root.pblogic = (function() {
                 case 5002:
                 case 10001:
                 case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -32164,6 +42010,10 @@ $root.pblogic = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -32264,6 +42114,18 @@ $root.pblogic = (function() {
             case "HalaPriceOutRange":
             case 10002:
                 message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
@@ -33417,6 +43279,7 @@ $root.pbappVersion = (function() {
                 case 503:
                 case 504:
                 case 505:
+                case 511:
                 case 1001:
                 case 1002:
                 case 1003:
@@ -33442,6 +43305,9 @@ $root.pbappVersion = (function() {
                 case 5002:
                 case 10001:
                 case 10002:
+                case 20001:
+                case 20002:
+                case 20003:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -33521,6 +43387,10 @@ $root.pbappVersion = (function() {
             case "ParamError":
             case 505:
                 message.code = 505;
+                break;
+            case "TooManyRequests":
+            case 511:
+                message.code = 511;
                 break;
             case "FindError":
             case 1001:
@@ -33621,6 +43491,18 @@ $root.pbappVersion = (function() {
             case "HalaPriceOutRange":
             case 10002:
                 message.code = 10002;
+                break;
+            case "GamePhaseNotMatch":
+            case 20001:
+                message.code = 20001;
+                break;
+            case "GameNotStarted":
+            case 20002:
+                message.code = 20002;
+                break;
+            case "InsufficientBalance":
+            case 20003:
+                message.code = 20003;
                 break;
             }
             if (object.msg != null)
